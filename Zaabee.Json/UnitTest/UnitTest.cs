@@ -12,7 +12,8 @@ namespace UnitTest
         {
             var id = Guid.NewGuid();
             var age = new Random().Next(0, 100);
-            var time = new DateTime(2017, 1, 1);
+            var time = DateTime.Now;
+            var offset = DateTimeOffset.Now;
             var name = "banana";
 
             var testModel = new TestModel
@@ -20,6 +21,7 @@ namespace UnitTest
                 Id = id,
                 Age = age,
                 CreateTime = time,
+                CreateTimeOffset = offset,
                 Name = name
             };
 
@@ -55,8 +57,11 @@ namespace UnitTest
             var jsonStr =
                 $"{{\"Id\":\"{id}\",\"Age\":{age},\"Name\":\"{name}\",\"CreateTime\":\"{time:yyyy-MM-dd HH:mm:ss}\"}}";
 
-            var deserializeModel1 = jsonStr.FromJson<TestModel>();
-            var deserializeModel2 = jsonStr.FromJson(typeof(TestModel)) as TestModel;
+            var jsonStr2 =
+                "{\"Id\":\"3c15783f-baeb-4b64-b571-596eae8878e5\",\"Age\":26,\"Name\":\"banana\",\"CreateTime\":\"2018-08-02T19:09:47.0099778+08:00\",\"CreateTimeOffset\":\"2018-08-02T19:09:47.0100628+08:00\"}";
+
+            var deserializeModel1 = jsonStr2.FromJson<TestModel>();
+            var deserializeModel2 = jsonStr2.FromJson(typeof(TestModel)) as TestModel;
 
             Assert.Equal(deserializeModel1.Id, deserializeModel2.Id);
             Assert.Equal(deserializeModel1.Age, deserializeModel2.Age);

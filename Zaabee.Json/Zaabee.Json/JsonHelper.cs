@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace Zaabee.Json
 {
@@ -10,11 +9,6 @@ namespace Zaabee.Json
     /// </summary>
     public static class JsonHelper
     {
-        private static readonly IsoDateTimeConverter Iso = new IsoDateTimeConverter
-        {
-            DateTimeFormat = "yyyy-MM-dd HH:mm:ss"
-        };
-
         /// <summary>
         /// Serialize the object to json
         /// </summary>
@@ -27,8 +21,6 @@ namespace Zaabee.Json
             bool toLowerCamel = false)
         {
             var settings = new JsonSerializerSettings();
-            settings.Converters.Add(Iso);
-            settings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
             if (serializeFields != null || toLowerCamel)
                 settings.ContractResolver = new JsonContractResolver(serializeFields, toLowerCamel);
             return JsonConvert.SerializeObject(o, settings);
@@ -42,11 +34,7 @@ namespace Zaabee.Json
         /// <returns>generic object</returns>
         internal static T Deserialize<T>(string json)
         {
-            if (string.IsNullOrWhiteSpace(json)) return default(T);
-            return JsonConvert.DeserializeObject<T>(json, new JsonSerializerSettings
-            {
-                DateTimeZoneHandling = DateTimeZoneHandling.Local
-            });
+            return string.IsNullOrWhiteSpace(json) ? default(T) : JsonConvert.DeserializeObject<T>(json);
         }
 
         /// <summary>
@@ -54,14 +42,10 @@ namespace Zaabee.Json
         /// </summary>
         /// <param name="json">json</param>
         /// <param name="type"></param>
-        /// <returns>generic object</returns>
+        /// <returns></returns>
         internal static object Deserialize(string json, Type type)
         {
-            if (string.IsNullOrWhiteSpace(json)) return null;
-            return JsonConvert.DeserializeObject(json, type, new JsonSerializerSettings
-            {
-                DateTimeZoneHandling = DateTimeZoneHandling.Local
-            });
+            return string.IsNullOrWhiteSpace(json) ? null : JsonConvert.DeserializeObject(json);
         }
     }
 }
