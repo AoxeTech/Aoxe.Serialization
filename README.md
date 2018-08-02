@@ -7,12 +7,22 @@ The wraps and extensions for json.net/protobuf/jil/xml
 ### TestModel
 
 ```CSharp
+public class TestModel
+{
+    public Guid Id { get; set; }
+    public int Age { get; set; }
+    public string Name { get; set; }
+    public DateTimeOffset CreateTime { get; set; }
+}
+```
+
+```CSharp
 var testModel = new TestModel
 {
-    Id = id,
-    Age = age,
-    CreateTime = time,
-    Name = name
+    Id = Guid.NewGuid(),
+    Age = new Random().Next(0, 100),
+    CreateTime = DateTime.Now,
+    Name = "banana"
 };
 ```
 
