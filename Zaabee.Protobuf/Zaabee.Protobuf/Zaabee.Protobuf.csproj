@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageVersion>1.0.2</PackageVersion>
+    <Authors>Mutuduxf</Authors>
+    <Company>Mutuduxf</Company>
+    <Description>The wrappers and extensions methods for protobuf</Description>
+    <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Protobuf</PackageProjectUrl>
+    <PackagelicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaabee.Protobuf/master/LICENSE</PackagelicenseUrl>
+    <PackageTags>Zaabee Protobuf Protobuf-net serialize deserialize</PackageTags>
+    <PackageReleaseNotes>Can automatically setup protobuf serializations on types without the need to use attributes.Doesn't works for subclass which its base class has been serialize/deserialize and dataTables, please use protobuf-net-data for serializing those.</PackageReleaseNotes>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="protobuf-net" Version="2.3.15" />
+  </ItemGroup>
+</Project>

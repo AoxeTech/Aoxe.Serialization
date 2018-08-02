@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageVersion>1.0.2</PackageVersion>
+    <Authors>Mutuduxf</Authors>
+    <Company>Mutuduxf</Company>
+    <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Jil</PackageProjectUrl>
+    <PackagelicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaabee.Jil/master/LICENSE</PackagelicenseUrl>
+    <Description>The wrappers and extensions methods for Jil</Description>
+    <PackageTags>Zaabee Json Jil serialize deserialize</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Jil" Version="2.16.0" />
+  </ItemGroup>
+</Project>
