@@ -12,7 +12,7 @@ namespace Zaabee.Xml
         /// <returns></returns>
         public static string ToXml<T>(this T obj, Encoding encoding = null) where T : class
         {
-            return XmlHelper.Serialize(obj);
+            return XmlHelper.Serialize(obj, encoding);
         }
     }
 }

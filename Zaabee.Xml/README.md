@@ -31,4 +31,5 @@ The encoding param
 ```CSharp
 var xml = testModel.ToXml(Encoding.UTF32);
 var deserializeModel = xml.FromXml<TestModel>(Encoding.UTF32);
+var deserializeModel2 = xml.FromXml(typeof(TestModel), Encoding.UTF32) as TestModel;
 ```

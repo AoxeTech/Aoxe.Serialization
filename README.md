@@ -49,7 +49,8 @@ var deserializeModel2 = bytes.FromProtobuf(typeof(TestModel)) as TestModel;
 ```CSharp
 var xml1 = testModel.ToXml();
 var deserializeModel1 = xml.FromXml<TestModel>();
+var deserializeModel2 = xml.FromXml(typeof(TestModel)) as TestModel;
 
 var xml2 = testModel.ToXml(Encoding.UTF32);
-var deserializeModel2 = xml.FromXml<TestModel>(Encoding.UTF32);
+var deserializeModel3 = xml.FromXml<TestModel>(Encoding.UTF32);
 ```

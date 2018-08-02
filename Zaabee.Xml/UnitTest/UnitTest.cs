@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using Xunit;
 using Zaabee.Xml;
 
@@ -19,18 +20,49 @@ namespace UnitTest
                 Gender = Gender.Female
             };
         }
-        
+
         [Fact]
         public void ExtensionMethodTest()
         {
-            var xml = _testModel.ToXml();
-            var deserializeModel = xml.FromXml<TestModel>();
+            var xml1 = _testModel.ToXml();
+            var deserializeModel1 = xml1.FromXml<TestModel>();
 
-            Assert.Equal(deserializeModel.Id, _testModel.Id);
-            Assert.Equal(deserializeModel.Age, _testModel.Age);
-            Assert.Equal(deserializeModel.CreateTime, _testModel.CreateTime);
-            Assert.Equal(deserializeModel.Name, _testModel.Name);
-            Assert.Equal(deserializeModel.Gender, _testModel.Gender);
+            Assert.Equal(deserializeModel1.Id, _testModel.Id);
+            Assert.Equal(deserializeModel1.Age, _testModel.Age);
+            Assert.Equal(deserializeModel1.CreateTime, _testModel.CreateTime);
+            Assert.Equal(deserializeModel1.Name, _testModel.Name);
+            Assert.Equal(deserializeModel1.Gender, _testModel.Gender);
+
+            var xml2 = _testModel.ToXml();
+            var deserializeModel2 = xml2.FromXml(typeof(TestModel)) as TestModel;
+
+            Assert.Equal(deserializeModel2.Id, _testModel.Id);
+            Assert.Equal(deserializeModel2.Age, _testModel.Age);
+            Assert.Equal(deserializeModel2.CreateTime, _testModel.CreateTime);
+            Assert.Equal(deserializeModel2.Name, _testModel.Name);
+            Assert.Equal(deserializeModel2.Gender, _testModel.Gender);
+        }
+
+        [Fact]
+        public void ExtensionMethodWithEncodingTest()
+        {
+            var xml1 = _testModel.ToXml(Encoding.UTF32);
+            var deserializeModel1 = xml1.FromXml<TestModel>(Encoding.UTF32);
+
+            Assert.Equal(deserializeModel1.Id, _testModel.Id);
+            Assert.Equal(deserializeModel1.Age, _testModel.Age);
+            Assert.Equal(deserializeModel1.CreateTime, _testModel.CreateTime);
+            Assert.Equal(deserializeModel1.Name, _testModel.Name);
+            Assert.Equal(deserializeModel1.Gender, _testModel.Gender);
+
+            var xml2 = _testModel.ToXml(Encoding.UTF32);
+            var deserializeModel2 = xml2.FromXml(typeof(TestModel), Encoding.UTF32) as TestModel;
+
+            Assert.Equal(deserializeModel2.Id, _testModel.Id);
+            Assert.Equal(deserializeModel2.Age, _testModel.Age);
+            Assert.Equal(deserializeModel2.CreateTime, _testModel.CreateTime);
+            Assert.Equal(deserializeModel2.Name, _testModel.Name);
+            Assert.Equal(deserializeModel2.Gender, _testModel.Gender);
         }
     }
 }
