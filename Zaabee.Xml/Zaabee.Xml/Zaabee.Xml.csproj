@@ -2,11 +2,11 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>1.0.2</PackageVersion>
+    <PackageVersion>1.0.3</PackageVersion>
     <Authors>Mutuduxf</Authors>
     <Company>Mutuduxf</Company>
-    <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Xml</PackageProjectUrl>
-    <PackagelicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaabee.Xml/master/LICENSE</PackagelicenseUrl>
+    <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Xml</PackageProjectUrl>
+    <PackagelicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaabee.Serializers/master/LICENSE</PackagelicenseUrl>
     <Description>Extension methods for xml serialize/deserialize</Description>
     <PackageTags>Zaabee XML serialize deserialize</PackageTags>
   </PropertyGroup>

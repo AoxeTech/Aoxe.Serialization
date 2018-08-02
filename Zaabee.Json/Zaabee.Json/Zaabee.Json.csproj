@@ -2,11 +2,11 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>1.0.1</PackageVersion>
+    <PackageVersion>1.0.2</PackageVersion>
     <Authors>Mutuduxf</Authors>
     <Company>Mutuduxf</Company>
-    <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Json</PackageProjectUrl>
-    <PackagelicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaabee.Json/master/LICENSE</PackagelicenseUrl>
+    <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Json</PackageProjectUrl>
+    <PackagelicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaabee.Serializers/master/LICENSE</PackagelicenseUrl>
     <Description>The wrappers and extensions methods base by Json.NET</Description>
     <PackageTags>Zaabee Json Json.NET Newtonsoft.Json serialize deserialize</PackageTags>
   </PropertyGroup>
