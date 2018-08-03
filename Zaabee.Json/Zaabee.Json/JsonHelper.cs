@@ -16,13 +16,16 @@ namespace Zaabee.Json
         /// ect</param>
         /// <param name="serializeFields">serialize fields</param>
         /// <param name="toLowerCamel">is to lower camel</param>
+        /// <param name="dateTimeFormat"></param>
         /// <returns>json</returns>
         internal static string Serialize<T>(T o, IEnumerable<string> serializeFields = null,
-            bool toLowerCamel = false)
+            bool toLowerCamel = false, string dateTimeFormat = null)
         {
             var settings = new JsonSerializerSettings();
             if (serializeFields != null || toLowerCamel)
                 settings.ContractResolver = new JsonContractResolver(serializeFields, toLowerCamel);
+            if (!string.IsNullOrWhiteSpace(dateTimeFormat))
+                settings.DateFormatString = dateTimeFormat;
             return JsonConvert.SerializeObject(o, settings);
         }
 
@@ -45,7 +48,7 @@ namespace Zaabee.Json
         /// <returns></returns>
         internal static object Deserialize(string json, Type type)
         {
-            return string.IsNullOrWhiteSpace(json) ? null : JsonConvert.DeserializeObject(json);
+            return string.IsNullOrWhiteSpace(json) ? null : JsonConvert.DeserializeObject(json, type);
         }
     }
 }

@@ -26,16 +26,17 @@ namespace UnitTest
             };
 
             var jsonStr1 = testModel.ToJson();
-            Assert.Equal(jsonStr1,
-                $"{{\"Id\":\"{id}\",\"Age\":{age},\"Name\":\"{name}\",\"CreateTime\":\"{time:yyyy-MM-dd HH:mm:ss}\"}}");
 
             var jsonStr2 = testModel.ToJson(new List<string> {"Id", "Name"});
+
+            var jsonStr3 = testModel.ToJson(null, true, "yyyy-MM-dd HH:mm:ss");
+
+            Assert.Equal(jsonStr1,
+                $"{{\"Id\":\"{id}\",\"Age\":{age},\"Name\":\"{name}\",\"CreateTime\":\"{time:yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK}\",\"CreateTimeOffset\":\"{offset:yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK}\"}}");
             Assert.Equal(jsonStr2,
                 $"{{\"Id\":\"{id}\",\"Name\":\"{name}\"}}");
-
-            var jsonStr3 = testModel.ToJson(null, true);
             Assert.Equal(jsonStr3,
-                $"{{\"id\":\"{id}\",\"age\":{age},\"name\":\"{name}\",\"createTime\":\"{time:yyyy-MM-dd HH:mm:ss}\"}}");
+                $"{{\"id\":\"{id}\",\"age\":{age},\"name\":\"{name}\",\"createTime\":\"{time:yyyy-MM-dd HH:mm:ss}\",\"createTimeOffset\":\"{offset:yyyy-MM-dd HH:mm:ss}\"}}");
         }
 
         [Fact]
@@ -43,7 +44,7 @@ namespace UnitTest
         {
             var id = Guid.NewGuid();
             var age = new Random().Next(0, 100);
-            var time = new DateTime(2017, 1, 1);
+            var time = DateTime.Now;
             var name = "banana";
 
             var testModel = new TestModel
@@ -56,12 +57,9 @@ namespace UnitTest
 
             var jsonStr =
                 $"{{\"Id\":\"{id}\",\"Age\":{age},\"Name\":\"{name}\",\"CreateTime\":\"{time:yyyy-MM-dd HH:mm:ss}\"}}";
-
-            var jsonStr2 =
-                "{\"Id\":\"3c15783f-baeb-4b64-b571-596eae8878e5\",\"Age\":26,\"Name\":\"banana\",\"CreateTime\":\"2018-08-02T19:09:47.0099778+08:00\",\"CreateTimeOffset\":\"2018-08-02T19:09:47.0100628+08:00\"}";
-
-            var deserializeModel1 = jsonStr2.FromJson<TestModel>();
-            var deserializeModel2 = jsonStr2.FromJson(typeof(TestModel)) as TestModel;
+            
+            var deserializeModel1 = jsonStr.FromJson<TestModel>();
+            var deserializeModel2 = jsonStr.FromJson(typeof(TestModel)) as TestModel;
 
             Assert.Equal(deserializeModel1.Id, deserializeModel2.Id);
             Assert.Equal(deserializeModel1.Age, deserializeModel2.Age);
