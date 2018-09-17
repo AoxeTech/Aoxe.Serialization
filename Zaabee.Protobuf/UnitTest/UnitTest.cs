@@ -57,22 +57,20 @@ namespace UnitTest
         public void ExtensionMethodTest()
         {
             var bytes = _testModel.ToProtobuf();
-            var deserializeModel = bytes.FromProtobuf<TestModel>();
-            
-            var bytes2 = _testSubModelWithoutAttr.ToProtobuf();
-            var deserializeModel2 = bytes2.FromProtobuf<TestSubModelWithoutAttr>();
+            var deserializeModel1 = bytes.FromProtobuf<TestModel>();
+            var deserializeModel2 = bytes.FromProtobuf(typeof(TestModel)) as TestModel;
 
-            Assert.Equal(deserializeModel.Id, _testModel.Id);
-            Assert.Equal(deserializeModel.Age, _testModel.Age);
-            Assert.Equal(deserializeModel.CreateTime, _testModel.CreateTime);
-            Assert.Equal(deserializeModel.Name, _testModel.Name);
-            Assert.Equal(deserializeModel.Gender, _testModel.Gender);
+            Assert.Equal(deserializeModel1.Id, _testModel.Id);
+            Assert.Equal(deserializeModel1.Age, _testModel.Age);
+            Assert.Equal(deserializeModel1.CreateTime, _testModel.CreateTime);
+            Assert.Equal(deserializeModel1.Name, _testModel.Name);
+            Assert.Equal(deserializeModel1.Gender, _testModel.Gender);
 
-            Assert.Equal(deserializeModel2.Id, _testSubModelWithoutAttr.Id);
-            Assert.Equal(deserializeModel2.Age, _testSubModelWithoutAttr.Age);
-            Assert.Equal(deserializeModel2.CreateTime, _testSubModelWithoutAttr.CreateTime);
-            Assert.Equal(deserializeModel2.Name, _testSubModelWithoutAttr.Name);
-            Assert.Equal(deserializeModel2.Gender, _testSubModelWithoutAttr.Gender);
+            Assert.Equal(deserializeModel2.Id, _testModel.Id);
+            Assert.Equal(deserializeModel2.Age, _testModel.Age);
+            Assert.Equal(deserializeModel2.CreateTime, _testModel.CreateTime);
+            Assert.Equal(deserializeModel2.Name, _testModel.Name);
+            Assert.Equal(deserializeModel2.Gender, _testModel.Gender);
         }
 
         [Fact]
