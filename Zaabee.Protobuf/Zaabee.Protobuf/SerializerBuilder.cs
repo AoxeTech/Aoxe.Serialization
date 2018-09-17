@@ -12,7 +12,7 @@ namespace Zaabee.Protobuf
         private const BindingFlags Flags = BindingFlags.FlattenHierarchy | BindingFlags.Public |
                                            BindingFlags.NonPublic | BindingFlags.Instance;
 
-        private static readonly Dictionary<Type, HashSet<Type>> SubTypes = new Dictionary<Type, HashSet<Type>>();
+        private static readonly ConcurrentDictionary<Type, HashSet<Type>> SubTypes = new ConcurrentDictionary<Type, HashSet<Type>>();
         private static readonly ConcurrentBag<Type> BuiltTypes = new ConcurrentBag<Type>();
         private static readonly Type ObjectType = typeof(object);
 
@@ -30,7 +30,7 @@ namespace Zaabee.Protobuf
         /// Build the ProtoBuf serializer for the <see cref="Type">type</see>.
         /// </summary>
         /// <param name="type">The type of build the serializer for.</param>
-        private static void Build(Type type)
+        internal static void Build(Type type)
         {
             if (BuiltTypes.Contains(type))
                 return;
@@ -54,9 +54,7 @@ namespace Zaabee.Protobuf
                 BuildGenerics(type);
 
                 foreach (var memberType in fields.Select(f => f.FieldType).Where(t => !t.IsPrimitive))
-                {
                     Build(memberType);
-                }
 
                 BuiltTypes.Add(type);
             }
@@ -71,14 +69,10 @@ namespace Zaabee.Protobuf
             var baseType = type.BaseType;
             var inheritingType = type;
 
-
             while (baseType != null && baseType != ObjectType)
             {
                 if (!SubTypes.TryGetValue(baseType, out var baseTypeEntry))
-                {
-                    baseTypeEntry = new HashSet<Type>();
-                    SubTypes.Add(baseType, baseTypeEntry);
-                }
+                    SubTypes.TryAdd(baseType, baseTypeEntry = new HashSet<Type>());
 
                 if (!baseTypeEntry.Contains(inheritingType))
                 {

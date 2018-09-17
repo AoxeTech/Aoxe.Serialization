@@ -12,7 +12,7 @@ namespace Zaabee.Protobuf
         /// <typeparam name="T"></typeparam>
         /// <param name="t"></param>
         /// <returns></returns>
-        internal static byte[] Serialize<T>(T t)
+        public static byte[] Serialize<T>(T t)
         {
             SerializerBuilder.Build<T>();
             using (var ms = new MemoryStream())
@@ -28,9 +28,10 @@ namespace Zaabee.Protobuf
         /// <typeparam name="T"></typeparam>
         /// <param name="bytes"></param>
         /// <returns></returns>
-        internal static T Deserialize<T>(byte[] bytes)
+        public static T Deserialize<T>(byte[] bytes)
         {
             if (bytes == null) return default(T);
+            SerializerBuilder.Build<T>();
             using (var ms = new MemoryStream(bytes))
             {
                 return Serializer.Deserialize<T>(ms);
@@ -44,9 +45,10 @@ namespace Zaabee.Protobuf
         /// <param name="bytes"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        internal static object Deserialize(byte[] bytes, Type type)
+        public static object Deserialize(byte[] bytes, Type type)
         {
             if (bytes == null) return null;
+            SerializerBuilder.Build(type);
             using (var ms = new MemoryStream(bytes))
             {
                 return Serializer.Deserialize(type, ms);

@@ -12,17 +12,5 @@
         {
             return ProtobufHelper.Serialize(obj);
         }
-        
-        /// <summary>
-        /// Deserialize from protobuf bytes
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public static byte[] ToProtobufWithoutAttr<T>(this T obj)
-        {
-            SerializerBuilder.Build<T>();
-            return ProtobufHelper.Serialize(obj);
-        }
     }
 }
