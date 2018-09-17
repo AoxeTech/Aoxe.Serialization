@@ -92,5 +92,25 @@ namespace UnitTest
             Assert.Equal(deserializeModel2.Name, _testModelWithoutAttr.Name);
             Assert.Equal(deserializeModel2.Gender, _testModelWithoutAttr.Gender);
         }
+
+        [Fact]
+        public void ExtensionMethodWithoutAttrForSubTest()
+        {
+            var bytes = _testSubModelWithoutAttr.ToProtobuf();
+            var deserializeModel1 = bytes.FromProtobuf<TestSubModelWithoutAttr>();
+            var deserializeModel2 = bytes.FromProtobuf(typeof(TestSubModelWithoutAttr)) as TestSubModelWithoutAttr;
+
+            Assert.Equal(deserializeModel1.Id, _testSubModelWithoutAttr.Id);
+            Assert.Equal(deserializeModel1.Age, _testSubModelWithoutAttr.Age);
+            Assert.Equal(deserializeModel1.CreateTime, _testSubModelWithoutAttr.CreateTime);
+            Assert.Equal(deserializeModel1.Name, _testSubModelWithoutAttr.Name);
+            Assert.Equal(deserializeModel1.Gender, _testSubModelWithoutAttr.Gender);
+
+            Assert.Equal(deserializeModel2.Id, _testSubModelWithoutAttr.Id);
+            Assert.Equal(deserializeModel2.Age, _testSubModelWithoutAttr.Age);
+            Assert.Equal(deserializeModel2.CreateTime, _testSubModelWithoutAttr.CreateTime);
+            Assert.Equal(deserializeModel2.Name, _testSubModelWithoutAttr.Name);
+            Assert.Equal(deserializeModel2.Gender, _testSubModelWithoutAttr.Gender);
+        }
     }
 }
