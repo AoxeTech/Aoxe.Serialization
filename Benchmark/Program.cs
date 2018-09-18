@@ -19,7 +19,6 @@ namespace Benchmark
         }
     }
 
-    [SimpleJob(RunStrategy.ColdStart, targetCount: 10000)]
     [MinColumn, MaxColumn, MeanColumn, MedianColumn]
     public class BenchMarkTest
     {
