@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 using Zaabee.Protobuf;
 
@@ -29,15 +30,18 @@ namespace UnitTest
                 CreateTime = new DateTime(2017, 1, 1),
                 Name = "apple",
                 Gender = Gender.Female,
-                Kids = new List<TestModelWithoutAttr>
+                Kids = new Dictionary<Guid, TestModelWithoutAttr>
                 {
-                    new TestModelWithoutAttr
                     {
-                        Id = Guid.NewGuid(),
-                        Age = new Random().Next(0, 100),
-                        CreateTime = new DateTime(2017, 1, 1),
-                        Name = "pear",
-                        Gender = Gender.Female
+                        Guid.NewGuid(),
+                        new TestModelWithoutAttr
+                        {
+                            Id = Guid.NewGuid(),
+                            Age = new Random().Next(0, 100),
+                            CreateTime = new DateTime(2017, 1, 1),
+                            Name = "pear",
+                            Gender = Gender.Female
+                        }
                     }
                 }
             };
@@ -85,12 +89,21 @@ namespace UnitTest
             Assert.Equal(deserializeModel1.CreateTime, _testModelWithoutAttr.CreateTime);
             Assert.Equal(deserializeModel1.Name, _testModelWithoutAttr.Name);
             Assert.Equal(deserializeModel1.Gender, _testModelWithoutAttr.Gender);
+            Assert.Equal(deserializeModel1.Kids.Count, _testModelWithoutAttr.Kids.Count);
+            Assert.True(deserializeModel1.Kids.Keys.All(p => _testModelWithoutAttr.Kids.Keys.Any(q => q == p)));
+            Assert.True(deserializeModel1.Kids.Values.All(p => _testModelWithoutAttr.Kids.Values.Any(q =>
+                q.Id == p.Id && q.Age == p.Age && q.CreateTime == p.CreateTime && q.Name == p.Name &&
+                q.Gender == p.Gender)));
 
             Assert.Equal(deserializeModel2.Id, _testModelWithoutAttr.Id);
             Assert.Equal(deserializeModel2.Age, _testModelWithoutAttr.Age);
             Assert.Equal(deserializeModel2.CreateTime, _testModelWithoutAttr.CreateTime);
             Assert.Equal(deserializeModel2.Name, _testModelWithoutAttr.Name);
             Assert.Equal(deserializeModel2.Gender, _testModelWithoutAttr.Gender);
+            Assert.True(deserializeModel2.Kids.Keys.All(p => _testModelWithoutAttr.Kids.Keys.Any(q => q == p)));
+            Assert.True(deserializeModel2.Kids.Values.All(p => _testModelWithoutAttr.Kids.Values.Any(q =>
+                q.Id == p.Id && q.Age == p.Age && q.CreateTime == p.CreateTime && q.Name == p.Name &&
+                q.Gender == p.Gender)));
         }
 
         [Fact]

@@ -10,7 +10,7 @@ namespace UnitTest
         public string Name { get; set; }
         public DateTime CreateTime { get; set; }
         public Gender Gender { get; set; }
-        public List<TestModelWithoutAttr> Kids { get; set; }
+        public Dictionary<Guid, TestModelWithoutAttr> Kids { get; set; }
     }
 
     public class TestSubModelWithoutAttr : TestModelWithoutAttr
