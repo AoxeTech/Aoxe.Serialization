@@ -8,7 +8,7 @@ namespace Zaabee.Xml
 {
     public static class XmlHelper
     {
-        internal static string Serialize<T>(T t, Encoding encoding = null)
+        public static string Serialize<T>(T t, Encoding encoding = null)
         {
             if (t == null) return string.Empty;
             encoding = encoding ?? Encoding.UTF8;
@@ -23,7 +23,7 @@ namespace Zaabee.Xml
             }
         }
 
-        internal static T Deserialize<T>(string xml, Encoding encoding = null)
+        public static T Deserialize<T>(string xml, Encoding encoding = null)
         {
             if (string.IsNullOrWhiteSpace(xml)) return default(T);
             encoding = encoding ?? Encoding.UTF8;
@@ -34,7 +34,7 @@ namespace Zaabee.Xml
             }
         }
 
-        internal static object Deserialize(string xml, Type type, Encoding encoding = null)
+        public static object Deserialize(string xml, Type type, Encoding encoding = null)
         {
             if (string.IsNullOrWhiteSpace(xml)) return null;
             encoding = encoding ?? Encoding.UTF8;

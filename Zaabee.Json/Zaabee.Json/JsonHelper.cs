@@ -18,7 +18,7 @@ namespace Zaabee.Json
         /// <param name="toLowerCamel">is to lower camel</param>
         /// <param name="dateTimeFormat"></param>
         /// <returns>json</returns>
-        internal static string Serialize<T>(T o, IEnumerable<string> serializeFields = null,
+        public static string Serialize<T>(T o, IEnumerable<string> serializeFields = null,
             bool toLowerCamel = false, string dateTimeFormat = null)
         {
             var settings = new JsonSerializerSettings();
@@ -35,7 +35,7 @@ namespace Zaabee.Json
         /// <typeparam name="T">object</typeparam>
         /// <param name="json">json</param>
         /// <returns>generic object</returns>
-        internal static T Deserialize<T>(string json)
+        public static T Deserialize<T>(string json)
         {
             return string.IsNullOrWhiteSpace(json) ? default(T) : JsonConvert.DeserializeObject<T>(json);
         }
@@ -46,7 +46,7 @@ namespace Zaabee.Json
         /// <param name="json">json</param>
         /// <param name="type"></param>
         /// <returns></returns>
-        internal static object Deserialize(string json, Type type)
+        public static object Deserialize(string json, Type type)
         {
             return string.IsNullOrWhiteSpace(json) ? null : JsonConvert.DeserializeObject(json, type);
         }
