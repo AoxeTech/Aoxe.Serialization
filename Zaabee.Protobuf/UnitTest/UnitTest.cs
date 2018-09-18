@@ -53,7 +53,43 @@ namespace UnitTest
                 CreateTime = new DateTime(2017, 1, 1),
                 Name = "apple",
                 Gender = Gender.Female,
-                LongId = long.MaxValue
+                LongId = long.MaxValue,
+                Kids = new Dictionary<Guid, TestModelWithoutAttr>
+                {
+                    {
+                        Guid.NewGuid(), new TestSubModelWithoutAttr
+                        {
+                            Id = Guid.NewGuid(),
+                            Age = new Random().Next(0, 100),
+                            CreateTime = new DateTime(2017, 1, 1),
+                            Name = "apple",
+                            Gender = Gender.Female,
+                            LongId = long.MaxValue
+                        }
+                    },
+                    {
+                        Guid.NewGuid(), new TestSubModelWithoutAttr
+                        {
+                            Id = Guid.NewGuid(),
+                            Age = new Random().Next(0, 100),
+                            CreateTime = new DateTime(2017, 1, 1),
+                            Name = "apple",
+                            Gender = Gender.Female,
+                            LongId = long.MaxValue
+                        }
+                    },
+                    {
+                        Guid.NewGuid(), new TestSubModelWithoutAttr
+                        {
+                            Id = Guid.NewGuid(),
+                            Age = new Random().Next(0, 100),
+                            CreateTime = new DateTime(2017, 1, 1),
+                            Name = "apple",
+                            Gender = Gender.Female,
+                            LongId = long.MaxValue
+                        }
+                    }
+                }
             };
         }
 
@@ -118,12 +154,20 @@ namespace UnitTest
             Assert.Equal(deserializeModel1.CreateTime, _testSubModelWithoutAttr.CreateTime);
             Assert.Equal(deserializeModel1.Name, _testSubModelWithoutAttr.Name);
             Assert.Equal(deserializeModel1.Gender, _testSubModelWithoutAttr.Gender);
+            Assert.True(deserializeModel1.Kids.Keys.All(p => _testSubModelWithoutAttr.Kids.Keys.Any(q => q == p)));
+            Assert.True(deserializeModel1.Kids.Values.All(p => _testSubModelWithoutAttr.Kids.Values.Any(q =>
+                q.Id == p.Id && q.Age == p.Age && q.CreateTime == p.CreateTime && q.Name == p.Name &&
+                q.Gender == p.Gender)));
 
             Assert.Equal(deserializeModel2.Id, _testSubModelWithoutAttr.Id);
             Assert.Equal(deserializeModel2.Age, _testSubModelWithoutAttr.Age);
             Assert.Equal(deserializeModel2.CreateTime, _testSubModelWithoutAttr.CreateTime);
             Assert.Equal(deserializeModel2.Name, _testSubModelWithoutAttr.Name);
             Assert.Equal(deserializeModel2.Gender, _testSubModelWithoutAttr.Gender);
+            Assert.True(deserializeModel2.Kids.Keys.All(p => _testSubModelWithoutAttr.Kids.Keys.Any(q => q == p)));
+            Assert.True(deserializeModel2.Kids.Values.All(p => _testSubModelWithoutAttr.Kids.Values.Any(q =>
+                q.Id == p.Id && q.Age == p.Age && q.CreateTime == p.CreateTime && q.Name == p.Name &&
+                q.Gender == p.Gender)));
         }
     }
 }
