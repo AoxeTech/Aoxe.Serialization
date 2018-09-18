@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="BenchmarkDotNet" Version="0.11.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Zaabee.Jil\Zaabee.Jil\Zaabee.Jil.csproj" />
+      <ProjectReference Include="..\Zaabee.Json\Zaabee.Json\Zaabee.Json.csproj" />
+      <ProjectReference Include="..\Zaabee.Protobuf\Zaabee.Protobuf\Zaabee.Protobuf.csproj" />
+      <ProjectReference Include="..\Zaabee.Xml\Zaabee.Xml\Zaabee.Xml.csproj" />
+    </ItemGroup>
+
+</Project>
