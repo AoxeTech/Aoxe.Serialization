@@ -8,10 +8,11 @@ namespace Zaabee.Jil
         /// Serialize the object to json
         /// </summary>
         /// <param name="obj"></param>
+        /// <param name="options"></param>
         /// <returns></returns>
-        public static string ToJil<T>(this T obj)
+        public static string ToJil<T>(this T obj, Options options = null)
         {
-            return JSON.Serialize(obj);
+            return JilHelper.Serialize(obj, options);
         }
     }
 }
