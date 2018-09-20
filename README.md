@@ -78,13 +78,13 @@ Frequency=2742190 Hz, Resolution=364.6720 ns, Timer=TSC
   [Host]     : .NET Core 2.1.4 (CoreCLR 4.6.26814.03, CoreFX 4.6.26814.02), 64bit RyuJIT  [AttachedDebugger]
   DefaultJob : .NET Core 2.1.4 (CoreCLR 4.6.26814.03, CoreFX 4.6.26814.02), 64bit RyuJIT
 
-|              Method |       Mean |      Error |     StdDev |    Median |       Min |        Max |
-|-------------------- |-----------:|-----------:|-----------:|----------:|----------:|-----------:|
-|        JilSerialize |   5.702 us |  0.1446 us |  0.4150 us |  5.649 us |  4.989 us |   6.828 us |
-|       JsonSerialize |  14.486 us |  0.4098 us |  1.0796 us | 14.307 us | 12.971 us |  18.401 us |
-|   ProtobufSerialize |   3.987 us |  0.2389 us |  0.6581 us |  3.799 us |  3.152 us |   6.017 us |
-|        XmlSerialize |  55.075 us |  1.1933 us |  3.3264 us | 54.877 us | 48.931 us |  65.259 us |
-|      JilDeserialize |   6.253 us |  0.1346 us |  0.3819 us |  6.221 us |  5.524 us |   7.136 us |
-|     JsonDeserialize |  29.958 us |  0.8269 us |  2.4253 us | 29.675 us | 26.099 us |  36.429 us |
-| ProtobufDeserialize |   6.833 us |  0.1366 us |  0.3874 us |  6.793 us |  6.137 us |   7.734 us |
-|      XmlDeserialize | 114.487 us | 12.7054 us | 37.4621 us | 98.266 us | 77.358 us | 197.804 us |
+|              Method |      Mean |     Error |     StdDev |    Median |       Min |        Max |   Gen 0 | Allocated |
+|-------------------- |----------:|----------:|-----------:|----------:|----------:|-----------:|--------:|----------:|
+|        JilSerialize |  3.912 us | 0.1432 us |  0.4155 us |  3.746 us |  3.398 us |   4.972 us |  2.3346 |   4.79 KB |
+|       JsonSerialize | 13.018 us | 0.4916 us |  1.4261 us | 12.544 us | 11.331 us |  16.323 us |  2.9907 |   6.18 KB |
+|   ProtobufSerialize |  3.310 us | 0.1119 us |  0.3230 us |  3.208 us |  2.902 us |   4.082 us |  0.5417 |   1.12 KB |
+|        XmlSerialize | 54.116 us | 1.7183 us |  5.0396 us | 52.528 us | 47.314 us |  67.135 us | 13.5498 |  27.83 KB |
+|      JilDeserialize |  6.175 us | 0.2490 us |  0.7144 us |  5.906 us |  5.248 us |   8.311 us |  0.7477 |   1.54 KB |
+|     JsonDeserialize | 29.489 us | 0.9342 us |  2.7399 us | 28.297 us | 25.972 us |  36.791 us |  2.5330 |    5.2 KB |
+| ProtobufDeserialize |  8.531 us | 0.4940 us |  1.4331 us |  8.247 us |  5.995 us |  11.908 us |  0.6332 |    1.3 KB |
+|      XmlDeserialize | 99.753 us | 5.7044 us | 16.2751 us | 96.147 us | 75.318 us | 146.592 us |  8.3008 |  17.15 KB |
