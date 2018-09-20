@@ -18,6 +18,7 @@ namespace Benchmark
         }
     }
 
+    [MemoryDiagnoser]
     [MinColumn, MaxColumn, MeanColumn, MedianColumn]
     public class BenchMarkTest
     {
