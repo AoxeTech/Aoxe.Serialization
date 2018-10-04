@@ -12,7 +12,9 @@ namespace Zaabee.Protobuf
         private const BindingFlags Flags = BindingFlags.FlattenHierarchy | BindingFlags.Public |
                                            BindingFlags.NonPublic | BindingFlags.Instance;
 
-        private static readonly ConcurrentDictionary<Type, HashSet<Type>> SubTypes = new ConcurrentDictionary<Type, HashSet<Type>>();
+        private static readonly ConcurrentDictionary<Type, HashSet<Type>> SubTypes =
+            new ConcurrentDictionary<Type, HashSet<Type>>();
+
         private static readonly ConcurrentBag<Type> BuiltTypes = new ConcurrentBag<Type>();
         private static readonly Type ObjectType = typeof(object);
 
