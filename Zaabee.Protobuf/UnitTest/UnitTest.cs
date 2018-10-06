@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Xunit;
 using Zaabee.Protobuf;
@@ -166,6 +167,33 @@ namespace UnitTest
             Assert.Equal(deserializeModel2.Gender, _testSubModelWithoutAttr.Gender);
             Assert.True(deserializeModel2.Kids.Keys.All(p => _testSubModelWithoutAttr.Kids.Keys.Any(q => q == p)));
             Assert.True(deserializeModel2.Kids.Values.All(p => _testSubModelWithoutAttr.Kids.Values.Any(q =>
+                q.Id == p.Id && q.Age == p.Age && q.CreateTime == p.CreateTime && q.Name == p.Name &&
+                q.Gender == p.Gender)));
+        }
+
+        [Fact]
+        public void HelperTest()
+        {
+            TestSubModelWithoutAttr deserializeModel;
+
+            using (var stream = new MemoryStream())
+            {
+                ProtobufHelper.Serialize(stream, _testSubModelWithoutAttr);
+
+                deserializeModel = stream.ToArray().FromProtobuf<TestSubModelWithoutAttr>();
+                
+                var deserializeModel1 = ProtobufHelper.Deserialize<TestSubModelWithoutAttr>(stream);
+                var i  = ProtobufHelper.Deserialize(stream, typeof(TestSubModelWithoutAttr));
+                deserializeModel = (TestSubModelWithoutAttr) i;
+            }
+            
+            Assert.Equal(deserializeModel.Id, _testSubModelWithoutAttr.Id);
+            Assert.Equal(deserializeModel.Age, _testSubModelWithoutAttr.Age);
+            Assert.Equal(deserializeModel.CreateTime, _testSubModelWithoutAttr.CreateTime);
+            Assert.Equal(deserializeModel.Name, _testSubModelWithoutAttr.Name);
+            Assert.Equal(deserializeModel.Gender, _testSubModelWithoutAttr.Gender);
+            Assert.True(deserializeModel.Kids.Keys.All(p => _testSubModelWithoutAttr.Kids.Keys.Any(q => q == p)));
+            Assert.True(deserializeModel.Kids.Values.All(p => _testSubModelWithoutAttr.Kids.Values.Any(q =>
                 q.Id == p.Id && q.Age == p.Age && q.CreateTime == p.CreateTime && q.Name == p.Name &&
                 q.Gender == p.Gender)));
         }

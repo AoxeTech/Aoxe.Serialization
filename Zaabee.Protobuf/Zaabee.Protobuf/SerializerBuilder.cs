@@ -22,41 +22,42 @@ namespace Zaabee.Protobuf
         /// Build the ProtoBuf serializer from the generic <see cref="Type">type</see>.
         /// </summary>
         /// <typeparam name="T">The type of build the serializer for.</typeparam>
-        internal static void Build<T>()
+        internal static void Build<T>(RuntimeTypeModel runtimeTypeModel)
         {
             var type = typeof(T);
-            Build(type);
+            Build(runtimeTypeModel, type);
         }
 
         /// <summary>
         /// Build the ProtoBuf serializer for the <see cref="Type">type</see>.
         /// </summary>
+        /// <param name="runtimeTypeModel"></param>
         /// <param name="type">The type of build the serializer for.</param>
-        internal static void Build(Type type)
+        internal static void Build(RuntimeTypeModel runtimeTypeModel, Type type)
         {
             if (BuiltTypes.Contains(type))
                 return;
 
             lock (type)
             {
-                if (RuntimeTypeModel.Default.CanSerialize(type))
+                if (runtimeTypeModel.CanSerialize(type))
                 {
                     if (type.IsGenericType)
-                        BuildGenerics(type);
+                        BuildGenerics(runtimeTypeModel,type);
                     return;
                 }
 
-                var meta = RuntimeTypeModel.Default.Add(type, false);
+                var meta = runtimeTypeModel.Add(type, false);
                 var fields = type.GetFields(Flags);
 
                 meta.Add(fields.Select(m => m.Name).ToArray());
                 meta.UseConstructor = false;
 
-                BuildBaseClasses(type);
-                BuildGenerics(type);
+                BuildBaseClasses(runtimeTypeModel, type);
+                BuildGenerics(runtimeTypeModel, type);
 
                 foreach (var memberType in fields.Select(f => f.FieldType).Where(t => !t.IsPrimitive))
-                    Build(memberType);
+                    Build(runtimeTypeModel, memberType);
 
                 BuiltTypes.Add(type);
             }
@@ -65,8 +66,9 @@ namespace Zaabee.Protobuf
         /// <summary>
         /// Builds the base class serializers for a type.
         /// </summary>
+        /// <param name="runtimeTypeModel"></param>
         /// <param name="type">The type.</param>
-        private static void BuildBaseClasses(Type type)
+        private static void BuildBaseClasses(RuntimeTypeModel runtimeTypeModel, Type type)
         {
             var baseType = type.BaseType;
             var inheritingType = type;
@@ -78,8 +80,8 @@ namespace Zaabee.Protobuf
 
                 if (!baseTypeEntry.Contains(inheritingType))
                 {
-                    Build(baseType);
-                    RuntimeTypeModel.Default[baseType].AddSubType(baseTypeEntry.Count + 500, inheritingType);
+                    Build(runtimeTypeModel, baseType);
+                    runtimeTypeModel[baseType].AddSubType(baseTypeEntry.Count + 500, inheritingType);
                     baseTypeEntry.Add(inheritingType);
                 }
 
@@ -91,14 +93,15 @@ namespace Zaabee.Protobuf
         /// <summary>
         /// Builds the serializers for the generic parameters for a given type.
         /// </summary>
+        /// <param name="runtimeTypeModel"></param>
         /// <param name="type">The type.</param>
-        private static void BuildGenerics(Type type)
+        private static void BuildGenerics(RuntimeTypeModel runtimeTypeModel, Type type)
         {
             if (!type.IsGenericType && (type.BaseType == null || !type.BaseType.IsGenericType)) return;
             var generics = type.IsGenericType ? type.GetGenericArguments() : type.BaseType.GetGenericArguments();
 
             foreach (var generic in generics)
-                Build(generic);
+                Build(runtimeTypeModel, generic);
         }
     }
 }
