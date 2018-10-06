@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Jil;
 
 namespace Zaabee.Jil
@@ -38,7 +39,21 @@ namespace Zaabee.Jil
         /// <returns></returns>
         public static object Deserialize(string json, Type type, Options options = null)
         {
-            return string.IsNullOrWhiteSpace(json) ? null : JSON.Deserialize(json, type, options);
+            if (string.IsNullOrWhiteSpace(json)) return null;
+            using (var reader = new StringReader(json))
+                return Deserialize(reader, type, options);
+        }
+
+        /// <summary>
+        /// Deserialize the json to the specify type(if the string is null or white space then return null)
+        /// </summary>
+        /// <param name="reader">json</param>
+        /// <param name="type"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        public static object Deserialize(TextReader reader, Type type, Options options = null)
+        {
+            return reader == null ? null : JSON.Deserialize(reader, type, options);
         }
     }
 }
