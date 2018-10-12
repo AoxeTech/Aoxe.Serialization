@@ -3,17 +3,12 @@ using ProtoBuf;
 
 namespace UnitTest
 {
-    [ProtoContract]
-    public class TestModel
+    public class TestModel<T>
     {
-        [ProtoMember(1)] public Guid Id { get; set; }
-
-        [ProtoMember(2)] public int Age { get; set; }
-
-        [ProtoMember(3)] public string Name { get; set; }
-
-        [ProtoMember(4)] public DateTime CreateTime { get; set; }
-
-        [ProtoMember(5)] public Gender Gender { get; set; }
+        public T Id { get; set; }
+        public int Age { get; set; }
+        public string Name { get; set; }
+        public DateTime CreateTime { get; set; }
+        public Gender Gender { get; set; }
     }
 }
