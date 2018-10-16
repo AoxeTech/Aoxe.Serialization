@@ -18,10 +18,21 @@ namespace Zaabee.Protobuf
         /// <returns></returns>
         public static byte[] Serialize<T>(T t)
         {
-            SerializerBuilder.Build<T>(Model);
+            return Serialize(t, typeof(T));
+        }
+
+        /// <summary>
+        /// Serialize the object by protobuf
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static byte[] Serialize(object obj, Type type)
+        {
+            SerializerBuilder.Build(Model, type);
             using (var ms = new MemoryStream())
             {
-                Model.Serialize(ms, t);
+                Model.Serialize(ms, obj);
                 return ms.ToArray();
             }
         }
