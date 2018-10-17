@@ -96,7 +96,8 @@ namespace Zaabee.Protobuf
         public static object Deserialize(Stream stream, Type type)
         {
             SerializerBuilder.Build(Model, type);
-            stream.Position = 0;
+            if (stream.CanSeek)
+                stream.Position = 0;
             return Model.Deserialize(stream, null, type);
         }
 
