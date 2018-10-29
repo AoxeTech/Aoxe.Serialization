@@ -12,7 +12,7 @@ namespace Zaabee.Xml
         {
             if (t == null) return string.Empty;
             encoding = encoding ?? Encoding.UTF8;
-            using (var memoryStream = new MemoryStream())
+            var memoryStream = new MemoryStream();
             using (var xmlTextWriter = new XmlTextWriter(memoryStream, encoding))
             {
                 var serializer = new XmlSerializer(typeof(T));
@@ -27,22 +27,18 @@ namespace Zaabee.Xml
         {
             if (string.IsNullOrWhiteSpace(xml)) return default(T);
             encoding = encoding ?? Encoding.UTF8;
-            using (var memoryStream = new MemoryStream(encoding.GetBytes(xml)))
-            {
-                var xmlSerializer = new XmlSerializer(typeof(T));
-                return (T) xmlSerializer.Deserialize(memoryStream);
-            }
+            var memoryStream = new MemoryStream(encoding.GetBytes(xml));
+            var xmlSerializer = new XmlSerializer(typeof(T));
+            return (T) xmlSerializer.Deserialize(memoryStream);
         }
 
         public static object Deserialize(string xml, Type type, Encoding encoding = null)
         {
             if (string.IsNullOrWhiteSpace(xml)) return null;
             encoding = encoding ?? Encoding.UTF8;
-            using (var memoryStream = new MemoryStream(encoding.GetBytes(xml)))
-            {
-                var xmlSerializer = new XmlSerializer(type);
-                return xmlSerializer.Deserialize(memoryStream);
-            }
+            var memoryStream = new MemoryStream(encoding.GetBytes(xml));
+            var xmlSerializer = new XmlSerializer(type);
+            return xmlSerializer.Deserialize(memoryStream);
         }
     }
 }

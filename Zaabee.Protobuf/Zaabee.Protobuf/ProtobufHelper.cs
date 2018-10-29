@@ -30,11 +30,9 @@ namespace Zaabee.Protobuf
         public static byte[] Serialize(object obj, Type type)
         {
             SerializerBuilder.Build(Model, type);
-            using (var ms = new MemoryStream())
-            {
-                Model.Serialize(ms, obj);
-                return ms.ToArray();
-            }
+            var ms = new MemoryStream();
+            Model.Serialize(ms, obj);
+            return ms.ToArray();
         }
 
         /// <summary>
@@ -71,8 +69,7 @@ namespace Zaabee.Protobuf
         public static object Deserialize(byte[] bytes, Type type)
         {
             if (bytes == null || bytes.Length == 0) return null;
-            using (var ms = new MemoryStream(bytes))
-                return Deserialize(ms, type);
+            return Deserialize(new MemoryStream(bytes), type);
         }
 
         /// <summary>

@@ -176,16 +176,14 @@ namespace UnitTest
         {
             TestSubModelWithoutAttr deserializeModel;
 
-            using (var stream = new MemoryStream())
-            {
-                ProtobufHelper.Serialize(stream, _testSubModelWithoutAttr);
+            var stream = new MemoryStream();
+            ProtobufHelper.Serialize(stream, _testSubModelWithoutAttr);
 
-                deserializeModel = stream.ToArray().FromProtobuf<TestSubModelWithoutAttr>();
+            deserializeModel = stream.ToArray().FromProtobuf<TestSubModelWithoutAttr>();
 
-                var deserializeModel1 = ProtobufHelper.Deserialize<TestSubModelWithoutAttr>(stream);
-                var i = ProtobufHelper.Deserialize(stream, typeof(TestSubModelWithoutAttr));
-                deserializeModel = (TestSubModelWithoutAttr) i;
-            }
+            var deserializeModel1 = ProtobufHelper.Deserialize<TestSubModelWithoutAttr>(stream);
+            var i = ProtobufHelper.Deserialize(stream, typeof(TestSubModelWithoutAttr));
+            deserializeModel = (TestSubModelWithoutAttr) i;
 
             Assert.Equal(deserializeModel.Id, _testSubModelWithoutAttr.Id);
             Assert.Equal(deserializeModel.Age, _testSubModelWithoutAttr.Age);
