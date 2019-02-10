@@ -1,4 +1,4 @@
-﻿namespace UnitTest
+﻿namespace ZaabeeProtobufTestProject
 {
     public enum Gender
     {

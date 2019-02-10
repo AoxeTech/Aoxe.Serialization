@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Xunit;
 using Zaabee.Json;
 
-namespace UnitTest
+namespace ZaabeeJsonTestProject
 {
     public class UnitTest
     {

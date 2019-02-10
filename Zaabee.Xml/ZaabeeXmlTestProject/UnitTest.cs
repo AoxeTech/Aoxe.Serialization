@@ -3,7 +3,7 @@ using System.Text;
 using Xunit;
 using Zaabee.Xml;
 
-namespace UnitTest
+namespace ZaabeeXmlTestProject
 {
     public class UnitTest
     {

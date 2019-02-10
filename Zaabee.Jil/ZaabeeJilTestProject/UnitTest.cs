@@ -3,7 +3,7 @@ using Jil;
 using Xunit;
 using Zaabee.Jil;
 
-namespace UnitTest
+namespace ZaabeeJilTestProject
 {
     public class UnitTest
     {
