@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Xunit;
-using Zaabee.Json;
+using Zaabee.NewtonsoftJson;
 
-namespace ZaabeeJsonTestProject
+namespace ZaabeeNewtonsoftJsonTestProject
 {
     public class UnitTest
     {

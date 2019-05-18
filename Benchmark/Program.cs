@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 using Zaabee.Jil;
-using Zaabee.Json;
+using Zaabee.NewtonsoftJson;
 using Zaabee.Protobuf;
 using Zaabee.Xml;
 

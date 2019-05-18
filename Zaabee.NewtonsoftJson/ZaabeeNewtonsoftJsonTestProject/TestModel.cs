@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ZaabeeJsonTestProject
+namespace ZaabeeNewtonsoftJsonTestProject
 {
     public class TestModel
     {

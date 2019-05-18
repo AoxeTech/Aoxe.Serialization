@@ -11,7 +11,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Zaabee.Jil\Zaabee.Jil\Zaabee.Jil.csproj" />
-      <ProjectReference Include="..\Zaabee.Json\Zaabee.Json\Zaabee.Json.csproj" />
+      <ProjectReference Include="..\Zaabee.NewtonsoftJson\Zaabee.NewtonsoftJson\Zaabee.NewtonsoftJson.csproj" />
       <ProjectReference Include="..\Zaabee.Protobuf\Zaabee.Protobuf\Zaabee.Protobuf.csproj" />
       <ProjectReference Include="..\Zaabee.Xml\Zaabee.Xml\Zaabee.Xml.csproj" />
     </ItemGroup>
