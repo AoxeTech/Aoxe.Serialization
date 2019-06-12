@@ -1,12 +1,12 @@
-# Zaabee.Jil
+# Zaabee.Utf8Json
 
-Wrappers and extension methods by jil
+Wrappers and extension methods by Utf8Json
 
-## Jil
+## Utf8Json
 
 A fast JSON (de)serializer, built on [Sigil](https://github.com/kevin-montrose/Sigil) with a number of somewhat crazy optimization tricks.
 
-[Releases are available on Nuget](https://www.nuget.org/packages/Jil/) in addition to this repository.
+[Releases are available on Nuget](https://www.nuget.org/packages/Utf8Json/) in addition to this repository.
 
 TestModel
 
