@@ -40,6 +40,9 @@ namespace Zaabee.Protobuf
 
             lock (type)
             {
+                if (BuiltTypes.Contains(type))
+                    return;
+                
                 if (runtimeTypeModel.CanSerialize(type))
                 {
                     if (type.IsGenericType)

@@ -92,6 +92,9 @@ namespace ZaabeeProtobufTestProject
         [Fact]
         public void HelperTest()
         {
+            var testModelWithoutAttr = GetTestModelWithoutAttr();
+            var i1 = testModelWithoutAttr.ToProtobuf();
+            var i2 = i1.FromProtobuf<TestModelWithoutAttr>();
             var testSubModelWithoutAttr = GetTestSubModelWithoutAttr();
 
             var stream = new MemoryStream();

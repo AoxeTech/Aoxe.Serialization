@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.IO;
 using ProtoBuf.Meta;
 
@@ -10,6 +11,9 @@ namespace Zaabee.Protobuf
 
         private static RuntimeTypeModel Model => model.Value;
 
+        private static readonly ConcurrentDictionary<Type, RuntimeTypeModel> Models =
+            new ConcurrentDictionary<Type, RuntimeTypeModel>();
+
         /// <summary>
         /// Serialize the object by protobuf
         /// </summary>
@@ -18,6 +22,7 @@ namespace Zaabee.Protobuf
         /// <returns></returns>
         public static byte[] Serialize<T>(T t)
         {
+            SerializerBuilder.Build<T>(Model);
             return Serialize(t, typeof(T));
         }
 
@@ -56,6 +61,7 @@ namespace Zaabee.Protobuf
         public static T Deserialize<T>(byte[] bytes)
         {
             if (bytes == null || bytes.Length == 0) return default(T);
+            SerializerBuilder.Build<T>(Model);
             return (T) Deserialize(bytes, typeof(T));
         }
 
@@ -69,6 +75,7 @@ namespace Zaabee.Protobuf
         public static object Deserialize(byte[] bytes, Type type)
         {
             if (bytes == null || bytes.Length == 0) return null;
+            SerializerBuilder.Build(Model, type);
             return Deserialize(new MemoryStream(bytes), type);
         }
 
@@ -81,6 +88,7 @@ namespace Zaabee.Protobuf
         public static T Deserialize<T>(Stream stream)
         {
             var type = typeof(T);
+            SerializerBuilder.Build<T>(Model);
             return (T) Deserialize(stream, type);
         }
 
