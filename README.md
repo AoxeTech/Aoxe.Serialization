@@ -1,5 +1,7 @@
 # Zaabee.Serializers
 
+[![Build Status](https://dev.azure.com/Zaabee/Zaabee/_apis/build/status/Mutuduxf.Zaabee.Serializers?branchName=master)](https://dev.azure.com/Zaabee/Zaabee/_build/latest?definitionId=1&branchName=master)
+
 The wraps and extensions for json.net/protobuf/jil/xml
 
 ## QuickStart
