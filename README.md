@@ -37,7 +37,7 @@ var result1 = jsonStr.FromJil<TestModel>();
 var result2 = jsonStr.FromJil(typeof(TestModel)) as TestModel;
 ```
 
-### [Zaabee.Json](https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Json)
+### [Zaabee.NewtonsoftJson](https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.NewtonsoftJson)
 
 ```CSharp
 var json1 = testModel.ToJson();
