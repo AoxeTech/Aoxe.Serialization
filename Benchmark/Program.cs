@@ -5,6 +5,7 @@ using BenchmarkDotNet.Running;
 using Zaabee.Jil;
 using Zaabee.NewtonsoftJson;
 using Zaabee.Protobuf;
+using Zaabee.Utf8Json;
 using Zaabee.Xml;
 
 namespace Benchmark
@@ -25,6 +26,8 @@ namespace Benchmark
         private List<TestModel> _testModels;
         private readonly string _jil;
         private readonly string _json;
+        private readonly string _utf8JsonString;
+        private readonly byte[] _utf8JsonBytes;
         private readonly byte[] _protobuf;
         private readonly string _xml;
 
@@ -33,6 +36,8 @@ namespace Benchmark
             InitTestModel();
             _jil = _testModels.ToJil();
             _json = _testModels.ToJson();
+            _utf8JsonString = _testModels.Utf8JsonToString();
+            _utf8JsonBytes = _testModels.Utf8JsonToBytes();
             _protobuf = _testModels.ToProtobuf();
             _xml = _testModels.ToXml();
         }
@@ -47,6 +52,18 @@ namespace Benchmark
         public void JsonSerialize()
         {
             var json = _testModels.ToJson();
+        }
+
+        [Benchmark]
+        public void Utf8JsonSerializeString()
+        {
+            var json = _testModels.Utf8JsonToString();
+        }
+
+        [Benchmark]
+        public void Utf8JsonSerializeBytes()
+        {
+            var bytes = _testModels.Utf8JsonToBytes();
         }
 
         [Benchmark]
@@ -71,6 +88,18 @@ namespace Benchmark
         public void JsonDeserialize()
         {
             var model = _json.FromJson<List<TestModel>>();
+        }
+
+        [Benchmark]
+        public void Utf8DeserializeString()
+        {
+            var model = _utf8JsonString.FromUtf8Json<List<TestModel>>();
+        }
+
+        [Benchmark]
+        public void Utf8DeserializeBytes()
+        {
+            var model = _utf8JsonBytes.FromUtf8Json<List<TestModel>>();
         }
 
         [Benchmark]

@@ -69,24 +69,23 @@ var deserializeModel3 = xml.FromXml<TestModel>(Encoding.UTF32);
 
 ## Benchmark
 
-BenchmarkDotNet=v0.11.1, OS=Windows 10.0.17134.254 (1803/April2018Update/Redstone4)
+BenchmarkDotNet=v0.11.5, OS=Windows 10.0.17763.529 (1809/October2018Update/Redstone5)
+Intel Core i7-6600U CPU 2.60GHz (Skylake), 1 CPU, 4 logical and 2 physical cores
+.NET Core SDK=2.2.100
+  [Host]     : .NET Core 2.2.0 (CoreCLR 4.6.27110.04, CoreFX 4.6.27110.04), 64bit RyuJIT
+  DefaultJob : .NET Core 2.2.0 (CoreCLR 4.6.27110.04, CoreFX 4.6.27110.04), 64bit RyuJIT
 
-Intel Core i7-6600U CPU 2.60GHz (Max: 0.80GHz) (Skylake), 1 CPU, 4 logical and 2 physical cores
-
-Frequency=2742190 Hz, Resolution=364.6720 ns, Timer=TSC
-
-.NET Core SDK=2.1.402
-
-  [Host]     : .NET Core 2.1.4 (CoreCLR 4.6.26814.03, CoreFX 4.6.26814.02), 64bit RyuJIT  [AttachedDebugger]
-  DefaultJob : .NET Core 2.1.4 (CoreCLR 4.6.26814.03, CoreFX 4.6.26814.02), 64bit RyuJIT
-
-|              Method |      Mean |     Error |     StdDev |    Median |       Min |        Max |   Gen 0 | Allocated |
-|-------------------- |----------:|----------:|-----------:|----------:|----------:|-----------:|--------:|----------:|
-|        JilSerialize |  3.912 us | 0.1432 us |  0.4155 us |  3.746 us |  3.398 us |   4.972 us |  2.3346 |   4.79 KB |
-|       JsonSerialize | 13.018 us | 0.4916 us |  1.4261 us | 12.544 us | 11.331 us |  16.323 us |  2.9907 |   6.18 KB |
-|   ProtobufSerialize |  3.310 us | 0.1119 us |  0.3230 us |  3.208 us |  2.902 us |   4.082 us |  0.5417 |   1.12 KB |
-|        XmlSerialize | 54.116 us | 1.7183 us |  5.0396 us | 52.528 us | 47.314 us |  67.135 us | 13.5498 |  27.83 KB |
-|      JilDeserialize |  6.175 us | 0.2490 us |  0.7144 us |  5.906 us |  5.248 us |   8.311 us |  0.7477 |   1.54 KB |
-|     JsonDeserialize | 29.489 us | 0.9342 us |  2.7399 us | 28.297 us | 25.972 us |  36.791 us |  2.5330 |    5.2 KB |
-| ProtobufDeserialize |  8.531 us | 0.4940 us |  1.4331 us |  8.247 us |  5.995 us |  11.908 us |  0.6332 |    1.3 KB |
-|      XmlDeserialize | 99.753 us | 5.7044 us | 16.2751 us | 96.147 us | 75.318 us | 146.592 us |  8.3008 |  17.15 KB |
+|                  Method |       Mean |     Error |     StdDev |     Median |       Min |        Max |   Gen 0 | Gen 1 | Gen 2 | Allocated |
+|------------------------ |-----------:|----------:|-----------:|-----------:|----------:|-----------:|--------:|------:|------:|----------:|
+|            JilSerialize |   4.483 us | 0.1208 us |  0.3428 us |   4.477 us |  3.823 us |   5.304 us |  2.3346 |     - |     - |    4904 B |
+|           JsonSerialize |  14.786 us | 0.4052 us |  1.1625 us |  14.665 us | 12.932 us |  18.012 us |  2.9907 |     - |     - |    6320 B |
+| Utf8JsonSerializeString |   5.295 us | 0.1490 us |  0.4228 us |   5.180 us |  4.521 us |   6.594 us |  0.7706 |     - |     - |    1632 B |
+|  Utf8JsonSerializeBytes |   4.596 us | 0.1634 us |  0.4555 us |   4.551 us |  3.833 us |   5.812 us |  0.3891 |     - |     - |     832 B |
+|       ProtobufSerialize |   5.128 us | 0.2951 us |  0.8607 us |   4.926 us |  4.023 us |   7.357 us |  0.5798 |     - |     - |    1232 B |
+|            XmlSerialize |  71.736 us | 3.2386 us |  9.4981 us |  69.381 us | 56.751 us |  95.839 us | 13.5498 |     - |     - |   28500 B |
+|          JilDeserialize |   8.084 us | 0.2983 us |  0.8702 us |   7.853 us |  6.660 us |  10.282 us |  0.7477 |     - |     - |    1576 B |
+|         JsonDeserialize |  37.566 us | 1.6557 us |  4.7238 us |  36.875 us | 31.053 us |  51.269 us |  2.5024 |     - |     - |    5328 B |
+|   Utf8DeserializeString |  10.870 us | 0.3043 us |  0.8924 us |  10.887 us |  9.307 us |  13.277 us |  0.8240 |     - |     - |    1736 B |
+|    Utf8DeserializeBytes |  10.028 us | 0.3564 us |  1.0282 us |   9.890 us |  8.323 us |  12.986 us |  0.4272 |     - |     - |     904 B |
+|     ProtobufDeserialize |   9.692 us | 0.4401 us |  1.2699 us |   9.493 us |  7.433 us |  13.053 us |  0.7172 |     - |     - |    1512 B |
+|          XmlDeserialize | 124.819 us | 7.7805 us | 22.4486 us | 117.890 us | 92.684 us | 179.086 us |  8.3008 |     - |     - |   17546 B |
