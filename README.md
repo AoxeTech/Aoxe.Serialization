@@ -2,7 +2,7 @@
 
 [![Build Status](https://dev.azure.com/Zaabee/Zaabee/_apis/build/status/Mutuduxf.Zaabee.Serializers?branchName=master)](https://dev.azure.com/Zaabee/Zaabee/_build/latest?definitionId=1&branchName=master)
 
-The wraps and extensions for json.net/protobuf/jil/xml
+The wraps and extensions for json.net/protobuf/jil/Utf8Json/xml
 
 ## QuickStart
 
@@ -46,6 +46,15 @@ var json3 = testModel.ToJson(null, true);
 
 var result1 = jsonStr.FromJson<TestModel>();
 var result2 = jsonStr.FromJson(typeof(TestModel)) as TestModel;
+```
+
+### [Zaabee.Utf8Json](https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Utf8Json)
+
+```CSharp
+var json = testModel.Utf8JsonToString();
+var result1 = json.FromUtf8Json<TestModel>();
+var bytes = testModel.Utf8JsonToBytes();
+var result2 = bytes.FromUtf8Json<TestModel>();
 ```
 
 ### [Zaabee.Protobuf](https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Protobuf)
