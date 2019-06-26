@@ -10,6 +10,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Zaabee.Binary\Zaabee.Binary\Zaabee.Binary.csproj" />
       <ProjectReference Include="..\Zaabee.Jil\Zaabee.Jil\Zaabee.Jil.csproj" />
       <ProjectReference Include="..\Zaabee.NewtonsoftJson\Zaabee.NewtonsoftJson\Zaabee.NewtonsoftJson.csproj" />
       <ProjectReference Include="..\Zaabee.Protobuf\Zaabee.Protobuf\Zaabee.Protobuf.csproj" />

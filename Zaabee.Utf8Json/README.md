@@ -2,12 +2,6 @@
 
 Wrappers and extension methods by Utf8Json
 
-## Utf8Json
-
-A fast JSON (de)serializer, built on [Sigil](https://github.com/kevin-montrose/Sigil) with a number of somewhat crazy optimization tricks.
-
-[Releases are available on Nuget](https://www.nuget.org/packages/Utf8Json/) in addition to this repository.
-
 TestModel
 
 ```CSharp

@@ -9,6 +9,7 @@ The wraps and extensions for json.net/protobuf/jil/Utf8Json/xml
 ### TestModel
 
 ```CSharp
+[Serializable]
 public class TestModel
 {
     public Guid Id { get; set; }
@@ -26,6 +27,13 @@ var testModel = new TestModel
     CreateTime = DateTime.Now,
     Name = "banana"
 };
+```
+
+### [Zaabee.Binary](https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Binary)
+
+```CSharp
+var bytes = testModel.ToBytes();
+var result = bytes.FromBytes<TestModel>();
 ```
 
 ### [Zaabee.Jil](https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Jil)
@@ -84,17 +92,19 @@ Intel Core i7-6600U CPU 2.60GHz (Skylake), 1 CPU, 4 logical and 2 physical cores
   [Host]     : .NET Core 2.2.0 (CoreCLR 4.6.27110.04, CoreFX 4.6.27110.04), 64bit RyuJIT
   DefaultJob : .NET Core 2.2.0 (CoreCLR 4.6.27110.04, CoreFX 4.6.27110.04), 64bit RyuJIT
 
-|                  Method |       Mean |     Error |     StdDev |     Median |       Min |        Max |   Gen 0 | Gen 1 | Gen 2 | Allocated |
-|------------------------ |-----------:|----------:|-----------:|-----------:|----------:|-----------:|--------:|------:|------:|----------:|
-|            JilSerialize |   4.483 us | 0.1208 us |  0.3428 us |   4.477 us |  3.823 us |   5.304 us |  2.3346 |     - |     - |    4904 B |
-|           JsonSerialize |  14.786 us | 0.4052 us |  1.1625 us |  14.665 us | 12.932 us |  18.012 us |  2.9907 |     - |     - |    6320 B |
-| Utf8JsonSerializeString |   5.295 us | 0.1490 us |  0.4228 us |   5.180 us |  4.521 us |   6.594 us |  0.7706 |     - |     - |    1632 B |
-|  Utf8JsonSerializeBytes |   4.596 us | 0.1634 us |  0.4555 us |   4.551 us |  3.833 us |   5.812 us |  0.3891 |     - |     - |     832 B |
-|       ProtobufSerialize |   5.128 us | 0.2951 us |  0.8607 us |   4.926 us |  4.023 us |   7.357 us |  0.5798 |     - |     - |    1232 B |
-|            XmlSerialize |  71.736 us | 3.2386 us |  9.4981 us |  69.381 us | 56.751 us |  95.839 us | 13.5498 |     - |     - |   28500 B |
-|          JilDeserialize |   8.084 us | 0.2983 us |  0.8702 us |   7.853 us |  6.660 us |  10.282 us |  0.7477 |     - |     - |    1576 B |
-|         JsonDeserialize |  37.566 us | 1.6557 us |  4.7238 us |  36.875 us | 31.053 us |  51.269 us |  2.5024 |     - |     - |    5328 B |
-|   Utf8DeserializeString |  10.870 us | 0.3043 us |  0.8924 us |  10.887 us |  9.307 us |  13.277 us |  0.8240 |     - |     - |    1736 B |
-|    Utf8DeserializeBytes |  10.028 us | 0.3564 us |  1.0282 us |   9.890 us |  8.323 us |  12.986 us |  0.4272 |     - |     - |     904 B |
-|     ProtobufDeserialize |   9.692 us | 0.4401 us |  1.2699 us |   9.493 us |  7.433 us |  13.053 us |  0.7172 |     - |     - |    1512 B |
-|          XmlDeserialize | 124.819 us | 7.7805 us | 22.4486 us | 117.890 us | 92.684 us | 179.086 us |  8.3008 |     - |     - |   17546 B |
+|                  Method |       Mean |     Error |     StdDev |        Min |        Max |     Median |   Gen 0 | Allocated |
+|------------------------ |-----------:|----------:|-----------:|-----------:|-----------:|-----------:|--------:|----------:|
+|         BinarySerialize | 126.028 us | 3.7209 us | 10.8539 us | 106.497 us | 152.004 us | 124.803 us |  9.2773 |   19940 B |
+|            JilSerialize |   6.334 us | 0.1633 us |  0.4712 us |   5.479 us |   7.581 us |   6.244 us |  2.3346 |    4904 B |
+|           JsonSerialize |  19.405 us | 0.9043 us |  2.6523 us |  14.325 us |  25.242 us |  19.785 us |  2.9907 |    6328 B |
+| Utf8JsonSerializeString |   5.681 us | 0.1322 us |  0.3662 us |   5.120 us |   6.952 us |   5.587 us |  0.7706 |    1632 B |
+|  Utf8JsonSerializeBytes |   4.868 us | 0.0919 us |  0.2148 us |   4.434 us |   5.407 us |   4.897 us |  0.3891 |     832 B |
+|       ProtobufSerialize |   4.332 us | 0.0929 us |  0.2694 us |   3.864 us |   5.095 us |   4.282 us |  0.5798 |    1232 B |
+|            XmlSerialize |  66.176 us | 1.5435 us |  4.4285 us |  58.675 us |  78.309 us |  65.349 us | 13.5498 |   28500 B |
+|       BinaryDeserialize | 100.838 us | 2.0162 us |  5.3115 us |  88.538 us | 111.820 us | 100.584 us | 10.6201 |   22408 B |
+|          JilDeserialize |   7.316 us | 0.1455 us |  0.4009 us |   6.494 us |   8.295 us |   7.262 us |  0.7477 |    1576 B |
+|         JsonDeserialize |  35.500 us | 0.8303 us |  2.4482 us |  30.478 us |  41.988 us |  35.363 us |  2.5024 |    5328 B |
+|   Utf8DeserializeString |  10.659 us | 0.2110 us |  0.5255 us |   9.757 us |  11.981 us |  10.685 us |  0.8240 |    1736 B |
+|    Utf8DeserializeBytes |  10.317 us | 0.4271 us |  1.1765 us |   8.792 us |  13.601 us |  10.080 us |  0.4272 |     904 B |
+|     ProtobufDeserialize |  10.787 us | 0.2315 us |  0.6680 us |   9.593 us |  12.517 us |  10.718 us |  0.7172 |    1512 B |
+|          XmlDeserialize | 128.613 us | 3.3231 us |  9.7461 us | 108.185 us | 154.670 us | 127.390 us |  8.3008 |   17562 B |

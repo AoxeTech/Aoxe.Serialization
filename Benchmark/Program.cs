@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
+using Zaabee.Binary;
 using Zaabee.Jil;
 using Zaabee.NewtonsoftJson;
 using Zaabee.Protobuf;
@@ -24,6 +25,7 @@ namespace Benchmark
     public class BenchMarkTest
     {
         private List<TestModel> _testModels;
+        private readonly byte[] _binary;
         private readonly string _jil;
         private readonly string _json;
         private readonly string _utf8JsonString;
@@ -34,12 +36,19 @@ namespace Benchmark
         public BenchMarkTest()
         {
             InitTestModel();
+            _binary = _testModels.ToBytes();
             _jil = _testModels.ToJil();
             _json = _testModels.ToJson();
             _utf8JsonString = _testModels.Utf8JsonToString();
             _utf8JsonBytes = _testModels.Utf8JsonToBytes();
             _protobuf = _testModels.ToProtobuf();
             _xml = _testModels.ToXml();
+        }
+
+        [Benchmark]
+        public void BinarySerialize()
+        {
+            var bytes = _testModels.ToBytes();
         }
 
         [Benchmark]
@@ -76,6 +85,12 @@ namespace Benchmark
         public void XmlSerialize()
         {
             var xml = _testModels.ToXml();
+        }
+
+        [Benchmark]
+        public void BinaryDeserialize()
+        {
+            var model = _binary.FromBytes<List<TestModel>>();
         }
 
         [Benchmark]
@@ -173,6 +188,7 @@ namespace Benchmark
         }
     }
 
+    [Serializable]
     public class TestModel
     {
         public Guid Id { get; set; }
