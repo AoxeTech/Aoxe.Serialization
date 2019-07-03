@@ -1,6 +1,6 @@
 # Zaabee.Utf8Json
 
-Wrappers and extension methods by [Utf8Json](https://github.com/neuecc/Utf8Json)
+Wrappers and extension methods for [Utf8Json](https://github.com/neuecc/Utf8Json)
 
 TestModel
 
