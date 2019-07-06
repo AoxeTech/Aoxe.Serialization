@@ -1,6 +1,6 @@
 # Zaabee.Jil
 
-Wrappers and extension methods by jil
+Wrappers and extension methods by [jil](https://github.com/kevin-montrose/Jil)
 
 ## Jil
 

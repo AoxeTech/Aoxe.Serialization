@@ -1,6 +1,6 @@
-# NewtonsoftJson
+# Zaabee.NewtonsoftJson
 
-The wraps and extensions methods base by Json.NET
+The wraps and extensions methods base by [Json.NET](https://github.com/JamesNK/Newtonsoft.Json)
 
 TestModel
 
