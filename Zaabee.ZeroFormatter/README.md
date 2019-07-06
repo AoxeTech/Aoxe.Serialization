@@ -2,8 +2,6 @@
 
 The wraps and extensions methods for ZeroFormatter
 
-Protobuf Attributes
-
 ```CSharp
 [ZeroFormattable]
 public class TestModel

@@ -2,8 +2,6 @@
 
 The wraps and extensions methods for MsgPack.Cli
 
-Protobuf Attributes
-
 ```CSharp
 public class TestModel
 {
