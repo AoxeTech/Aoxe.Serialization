@@ -73,7 +73,7 @@ namespace Benchmark
         [Benchmark]
         public void MsgPackSerialize()
         {
-            var json = _testModel.ToMsgPack();
+            var bytes = _testModel.ToMsgPack();
         }
 
         [Benchmark]
