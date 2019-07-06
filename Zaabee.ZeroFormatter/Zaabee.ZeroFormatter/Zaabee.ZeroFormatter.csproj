@@ -2,6 +2,15 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>1.0.0</PackageVersion>
+        <Version>1.0.0</Version>
+        <Authors>Mutuduxf</Authors>
+        <Company>Mutuduxf</Company>
+        <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.ZeroFormatter</PackageProjectUrl>
+        <PackagelicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaabee.Serializers/master/LICENSE</PackagelicenseUrl>
+        <Description>The wrappers and extensions methods for ZeroFormatter</Description>
+        <PackageTags>Zaabee ZeroFormatter serialize deserialize</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>

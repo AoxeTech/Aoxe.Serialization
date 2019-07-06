@@ -46,6 +46,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.MsgPack", "Zaabee.Ms
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.ZeroFormatter", "Zaabee.ZeroFormatter\Zaabee.ZeroFormatter\Zaabee.ZeroFormatter.csproj", "{A496920E-17E1-4665-B9F7-C8EF3F090090}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZaabeeMsgPackTestProject", "Zaabee.MsgPack\ZaabeeMsgPackTestProject\ZaabeeMsgPackTestProject.csproj", "{BC9FF74F-B1C6-4FC5-8E6B-65E59BA0B976}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZaabeeZeroFormatterTestProject", "Zaabee.ZeroFormatter\ZaabeeZeroFormatterTestProject\ZaabeeZeroFormatterTestProject.csproj", "{8B2A8EA5-877C-4BB4-9564-52A9263AFE7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +70,8 @@ Global
 		{3E480B41-6846-4533-BEE9-BFEAF45A2A85} = {D0B6ABF8-D103-4705-B4B2-9FF7DB06E5EB}
 		{37C28E9D-1B85-4ECE-AC9C-84C0329F83EC} = {ACEC7BCC-C3C1-4CCA-B24C-C7EF482244AB}
 		{A496920E-17E1-4665-B9F7-C8EF3F090090} = {98421B4E-BD56-4922-B82E-DB45DC484DC3}
+		{BC9FF74F-B1C6-4FC5-8E6B-65E59BA0B976} = {ACEC7BCC-C3C1-4CCA-B24C-C7EF482244AB}
+		{8B2A8EA5-877C-4BB4-9564-52A9263AFE7C} = {98421B4E-BD56-4922-B82E-DB45DC484DC3}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4C440656-2446-4D41-B1CB-A9BEDCB74E7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -128,5 +134,13 @@ Global
 		{A496920E-17E1-4665-B9F7-C8EF3F090090}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A496920E-17E1-4665-B9F7-C8EF3F090090}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A496920E-17E1-4665-B9F7-C8EF3F090090}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC9FF74F-B1C6-4FC5-8E6B-65E59BA0B976}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC9FF74F-B1C6-4FC5-8E6B-65E59BA0B976}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC9FF74F-B1C6-4FC5-8E6B-65E59BA0B976}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC9FF74F-B1C6-4FC5-8E6B-65E59BA0B976}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B2A8EA5-877C-4BB4-9564-52A9263AFE7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B2A8EA5-877C-4BB4-9564-52A9263AFE7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B2A8EA5-877C-4BB4-9564-52A9263AFE7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B2A8EA5-877C-4BB4-9564-52A9263AFE7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
