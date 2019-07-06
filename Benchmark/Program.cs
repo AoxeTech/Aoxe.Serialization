@@ -1,6 +1,7 @@
 ﻿using System;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
+using ProtoBuf;
 using Zaabee.Binary;
 using Zaabee.Jil;
 using Zaabee.MsgPack;
@@ -64,7 +65,7 @@ namespace Benchmark
         }
 
         [Benchmark]
-        public void JsonSerialize()
+        public void NewtonJsonSerialize()
         {
             var json = _testModel.ToJson();
         }
@@ -118,7 +119,7 @@ namespace Benchmark
         }
 
         [Benchmark]
-        public void JsonDeserialize()
+        public void NewtonJsonDeserialize()
         {
             var model = _json.FromJson<TestModel>();
         }
@@ -130,13 +131,13 @@ namespace Benchmark
         }
 
         [Benchmark]
-        public void Utf8DeserializeString()
+        public void Utf8JsonDeserializeString()
         {
             var model = _utf8JsonString.FromUtf8Json<TestModel>();
         }
 
         [Benchmark]
-        public void Utf8DeserializeBytes()
+        public void Utf8JsonDeserializeBytes()
         {
             var model = _utf8JsonBytes.FromUtf8Json<TestModel>();
         }
@@ -173,19 +174,15 @@ namespace Benchmark
     }
 
     [Serializable]
+    [ProtoContract]
     [ZeroFormattable]
     public class TestModel
     {
-        [Index(0)]
-        public virtual Guid Id { get; set; }
-        [Index(1)]
-        public virtual int Age { get; set; }
-        [Index(2)]
-        public virtual string Name { get; set; }
-        [Index(3)]
-        public virtual DateTime CreateTime { get; set; }
-        [Index(4)]
-        public virtual Gender Gender { get; set; }
+        [ProtoMember(1)] [Index(0)] public virtual Guid Id { get; set; }
+        [ProtoMember(2)] [Index(1)] public virtual int Age { get; set; }
+        [ProtoMember(3)] [Index(2)] public virtual string Name { get; set; }
+        [ProtoMember(4)] [Index(3)] public virtual DateTime CreateTime { get; set; }
+        [ProtoMember(5)] [Index(4)] public virtual Gender Gender { get; set; }
     }
 
     public enum Gender

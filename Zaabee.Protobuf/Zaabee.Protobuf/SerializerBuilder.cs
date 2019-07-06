@@ -22,7 +22,7 @@ namespace Zaabee.Protobuf
         /// Build the ProtoBuf serializer from the generic <see cref="Type">type</see>.
         /// </summary>
         /// <typeparam name="T">The type of build the serializer for.</typeparam>
-        internal static void Build<T>(RuntimeTypeModel runtimeTypeModel)
+        public static void Build<T>(RuntimeTypeModel runtimeTypeModel)
         {
             var type = typeof(T);
             Build(runtimeTypeModel, type);
@@ -33,7 +33,7 @@ namespace Zaabee.Protobuf
         /// </summary>
         /// <param name="runtimeTypeModel"></param>
         /// <param name="type">The type of build the serializer for.</param>
-        internal static void Build(RuntimeTypeModel runtimeTypeModel, Type type)
+        public static void Build(RuntimeTypeModel runtimeTypeModel, Type type)
         {
             if (BuiltTypes.Contains(type))
                 return;

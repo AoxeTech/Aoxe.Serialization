@@ -10,17 +10,15 @@ The wraps and extensions for json.net/protobuf/jil/MsgPack/Utf8Json/xml/ZeroForm
 
 ```CSharp
 [Serializable]
+[ProtoContract]
 [ZeroFormattable]
 public class TestModel
 {
-    [Index(0)]
-    public Guid Id { get; set; }
-    [Index(1)]
-    public int Age { get; set; }
-    [Index(2)]
-    public string Name { get; set; }
-    [Index(3)]
-    public DateTimeOffset CreateTime { get; set; }
+    [ProtoMember(1)] [Index(0)] public virtual Guid Id { get; set; }
+    [ProtoMember(2)] [Index(1)] public virtual int Age { get; set; }
+    [ProtoMember(3)] [Index(2)] public virtual string Name { get; set; }
+    [ProtoMember(4)] [Index(3)] public virtual DateTime CreateTime { get; set; }
+    [ProtoMember(5)] [Index(4)] public virtual Gender Gender { get; set; }
 }
 ```
 
@@ -111,26 +109,30 @@ Intel Core i7-6600U CPU 2.60GHz (Skylake), 1 CPU, 4 logical and 2 physical cores
   [Host]     : .NET Core 2.2.0 (CoreCLR 4.6.27110.04, CoreFX 4.6.27110.04), 64bit RyuJIT
   DefaultJob : .NET Core 2.2.0 (CoreCLR 4.6.27110.04, CoreFX 4.6.27110.04), 64bit RyuJIT
 
-|                   Method |        Mean |      Error |       StdDev |      Median |         Min |         Max |  Gen 0 | Allocated |
-|------------------------- |------------:|-----------:|-------------:|------------:|------------:|------------:|-------:|----------:|
-|          BinarySerialize | 17,305.1 ns | 782.444 ns | 2,244.980 ns | 16,653.7 ns | 14,752.8 ns | 23,145.6 ns | 3.5400 |    7450 B |
-|             JilSerialize |    734.2 ns |  14.693 ns |    35.203 ns |    726.7 ns |    657.1 ns |    836.0 ns | 0.4377 |     920 B |
-|            JsonSerialize |  2,007.0 ns |  40.061 ns |   108.989 ns |  1,986.4 ns |  1,821.0 ns |  2,339.9 ns | 0.9842 |    2072 B |
-|         MsgPackSerialize |    990.0 ns |  20.462 ns |    43.607 ns |    977.6 ns |    936.5 ns |  1,116.8 ns | 0.4072 |     856 B |
-|  Utf8JsonSerializeString |    795.8 ns |  15.886 ns |    35.857 ns |    784.8 ns |    752.7 ns |    912.4 ns | 0.1287 |     272 B |
-|   Utf8JsonSerializeBytes |    643.8 ns |  12.790 ns |    23.386 ns |    640.5 ns |    606.5 ns |    711.3 ns | 0.0715 |     152 B |
-|        ProtobufSerialize |  1,522.5 ns |  31.996 ns |    76.042 ns |  1,507.2 ns |  1,398.3 ns |  1,801.8 ns | 0.3834 |     808 B |
-|             XmlSerialize | 16,813.8 ns | 335.546 ns |   692.961 ns | 16,638.1 ns | 15,641.2 ns | 18,595.0 ns | 7.4768 |   15696 B |
-|   ZeroFormatterSerialize |    327.1 ns |   6.568 ns |     8.540 ns |    326.5 ns |    311.2 ns |    342.3 ns | 0.2017 |     424 B |
+### Serialize
 
-|                   Method |        Mean |      Error |       StdDev |      Median |         Min |         Max |  Gen 0 | Allocated |
-|------------------------- |------------:|-----------:|-------------:|------------:|------------:|------------:|-------:|----------:|
-|        BinaryDeserialize | 17,960.0 ns | 355.908 ns |   710.787 ns | 17,912.4 ns | 16,572.3 ns | 19,917.8 ns | 4.6387 |    9736 B |
-|           JilDeserialize |    873.6 ns |  17.912 ns |    51.967 ns |    859.8 ns |    807.3 ns |  1,018.1 ns | 0.0896 |     192 B |
-|          JsonDeserialize |  4,728.2 ns |  93.011 ns |   172.403 ns |  4,696.0 ns |  4,361.1 ns |  5,185.4 ns | 1.4038 |    2960 B |
-|       MsgPackDeserialize |  1,580.2 ns |  31.530 ns |    50.916 ns |  1,567.1 ns |  1,482.9 ns |  1,698.4 ns | 0.3872 |     816 B |
-|    Utf8DeserializeString |  1,293.6 ns |  25.773 ns |    65.599 ns |  1,270.6 ns |  1,194.4 ns |  1,470.1 ns | 0.1163 |     248 B |
-|     Utf8DeserializeBytes |  1,136.7 ns |  22.589 ns |    44.588 ns |  1,128.5 ns |  1,045.5 ns |  1,227.5 ns | 0.0439 |      96 B |
-|      ProtobufDeserialize |  2,529.1 ns |  50.462 ns |   109.699 ns |  2,502.8 ns |  2,350.1 ns |  2,816.5 ns | 0.3090 |     656 B |
-|           XmlDeserialize | 29,321.3 ns | 675.701 ns | 1,971.051 ns | 28,809.8 ns | 26,181.7 ns | 34,679.1 ns | 4.2114 |    8928 B |
-| ZeroFormatterDeserialize |    132.2 ns |   2.656 ns |     4.721 ns |    131.8 ns |    123.8 ns |    144.3 ns | 0.1333 |     280 B |
+|          Method |        Mean |      Error |       StdDev |      Median |         Min |         Max |  Gen 0 | Allocated |
+|---------------- |------------:|-----------:|-------------:|------------:|------------:|------------:|-------:|----------:|
+|   ZeroFormatter |    344.3 ns |   6.837 ns |    14.718 ns |    313.9 ns |    388.5 ns |    341.6 ns | 0.2017 |     424 B |
+|   Utf8JsonBytes |    665.3 ns |  13.259 ns |    30.197 ns |    610.7 ns |    759.8 ns |    659.4 ns | 0.0715 |     152 B |
+|             Jil |    715.6 ns |  13.449 ns |    11.922 ns |    691.4 ns |    732.7 ns |    718.2 ns | 0.4377 |     920 B |
+|  Utf8JsonString |    820.0 ns |  17.972 ns |    27.980 ns |    771.3 ns |    898.3 ns |    821.1 ns | 0.1287 |     272 B |
+|         MsgPack |    979.8 ns |  19.256 ns |    34.723 ns |    918.0 ns |  1,057.1 ns |    975.5 ns | 0.4072 |     856 B |
+|        Protobuf |  1,036.9 ns |  25.119 ns |    63.936 ns |    953.7 ns |  1,222.1 ns |  1,022.3 ns | 0.3166 |     664 B |
+|      NewtonJson |  1,876.5 ns |  36.609 ns |    51.321 ns |  1,789.8 ns |  2,009.2 ns |  1,877.9 ns | 0.9842 |    2072 B |
+|          Binary | 15,294.1 ns | 322.520 ns |   680.305 ns | 14,258.9 ns | 17,165.6 ns | 15,373.9 ns | 3.5400 |    7450 B |
+|             Xml | 18,742.8 ns | 367.487 ns |   603.791 ns | 17,644.6 ns | 19,874.9 ns | 18,641.5 ns | 7.5684 |   15904 B |
+
+### Deserialize
+
+|          Method |        Mean |      Error |       StdDev |      Median |         Min |         Max |  Gen 0 | Allocated |
+|---------------- |------------:|-----------:|-------------:|------------:|------------:|------------:|-------:|----------:|
+|   ZeroFormatter |    135.7 ns |   2.733 ns |     6.704 ns |    124.0 ns |    153.0 ns |    135.2 ns | 0.1333 |     280 B |
+|             Jil |    936.1 ns |  20.958 ns |    61.795 ns |    824.0 ns |  1,098.0 ns |    932.0 ns | 0.0896 |     192 B |
+|   Utf8JsonBytes |  1,160.8 ns |  23.067 ns |    64.683 ns |  1,044.7 ns |  1,320.7 ns |  1,150.3 ns | 0.0439 |      96 B |
+|  Utf8JsonString |  1,346.4 ns |  26.723 ns |    38.325 ns |  1,271.3 ns |  1,429.0 ns |  1,348.1 ns | 0.1163 |     248 B |
+|        Protobuf |  1,578.1 ns |  33.284 ns |    32.689 ns |  1,526.0 ns |  1,645.8 ns |  1,575.2 ns | 0.2098 |     440 B |
+|         MsgPack |  1,787.5 ns |  34.918 ns |    66.434 ns |  1,661.5 ns |  1,936.9 ns |  1,792.7 ns | 0.3853 |     816 B |
+|      NewtonJson |  4,873.8 ns |  96.720 ns |   193.161 ns |  4,416.9 ns |  5,307.1 ns |  4,878.2 ns | 1.4038 |    2960 B |
+|          Binary | 18,457.0 ns | 367.981 ns |   759.944 ns | 17,249.2 ns | 20,345.6 ns | 18,324.6 ns | 4.6387 |    9736 B |
+|             Xml | 30,689.0 ns | 654.219 ns | 1,128.495 ns | 28,955.6 ns | 33,292.7 ns | 30,540.3 ns | 4.3335 |    9136 B |
