@@ -45,7 +45,18 @@ namespace Zaabee.Jil
         }
 
         /// <summary>
-        /// Deserialize the json to the specify type(if the string is null or white space then return null)
+        /// Deserialize the textReader to the specify type(if the textReader is null then return null)
+        /// </summary>
+        /// <param name="reader">json</param>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        public static T Deserialize<T>(TextReader reader, Options options = null)
+        {
+            return reader == null ? default(T) : JSON.Deserialize<T>(reader, options);
+        }
+
+        /// <summary>
+        /// Deserialize the textReader to the specify type(if the textReader is null then return null)
         /// </summary>
         /// <param name="reader">json</param>
         /// <param name="type"></param>

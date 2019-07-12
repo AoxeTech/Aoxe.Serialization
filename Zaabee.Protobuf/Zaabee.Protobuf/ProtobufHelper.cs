@@ -18,16 +18,15 @@ namespace Zaabee.Protobuf
         /// <returns>bytes</returns>
         public static byte[] Serialize<T>(T t)
         {
-            return t == null ? new byte[0] : Serialize(t, typeof(T));
+            return t == null ? new byte[0] : Serialize((object) t);
         }
 
         /// <summary>
         /// Serialize the object to byte[](if the object == null then return new byte[0])
         /// </summary>
         /// <param name="obj"></param>
-        /// <param name="type"></param>
         /// <returns></returns>
-        public static byte[] Serialize(object obj, Type type)
+        public static byte[] Serialize(object obj)
         {
             if (obj is null) return new byte[0];
             var ms = new MemoryStream();
