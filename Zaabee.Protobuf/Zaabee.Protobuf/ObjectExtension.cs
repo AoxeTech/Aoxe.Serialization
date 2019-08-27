@@ -8,9 +8,7 @@
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static byte[] ToProtobuf<T>(this T obj)
-        {
-            return ProtobufHelper.Serialize(obj);
-        }
+        public static byte[] ToProtobuf<T>(this T obj) =>
+            ProtobufHelper.Serialize(obj);
     }
 }

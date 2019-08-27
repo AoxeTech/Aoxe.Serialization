@@ -13,10 +13,8 @@ namespace Zaabee.Jil
         /// <param name="textReader"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public static T FromJil<T>(this TextReader textReader, Options options = null)
-        {
-            return JilHelper.Deserialize<T>(textReader, options);
-        }
+        public static T FromJil<T>(this TextReader textReader, Options options = null) =>
+            JilHelper.Deserialize<T>(textReader, options);
 
         /// <summary>
         /// Deserialize the textReader to the specify type(if the textReader is null then return null)
@@ -25,9 +23,7 @@ namespace Zaabee.Jil
         /// <param name="type"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public static object FromJil(this TextReader textReader, Type type, Options options = null)
-        {
-            return JilHelper.Deserialize(textReader, type, options);
-        }
+        public static object FromJil(this TextReader textReader, Type type, Options options = null) =>
+            JilHelper.Deserialize(textReader, type, options);
     }
 }

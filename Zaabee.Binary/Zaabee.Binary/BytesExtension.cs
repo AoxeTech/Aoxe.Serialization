@@ -8,9 +8,6 @@ namespace Zaabee.Binary
         /// <typeparam name="T"></typeparam>
         /// <param name="bytes"></param>
         /// <returns></returns>
-        public static T FromBytes<T>(this byte[] bytes)
-        {
-            return BinaryHelper.Deserialize<T>(bytes);
-        }
+        public static T FromBytes<T>(this byte[] bytes) => BinaryHelper.Deserialize<T>(bytes);
     }
 }

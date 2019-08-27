@@ -11,10 +11,8 @@ namespace Zaabee.Protobuf
         /// <typeparam name="T"></typeparam>
         /// <param name="stream"></param>
         /// <returns></returns>
-        public static T FromProtobuf<T>(this Stream stream)
-        {
-            return ProtobufHelper.Deserialize<T>(stream);
-        }
+        public static T FromProtobuf<T>(this Stream stream) =>
+            ProtobufHelper.Deserialize<T>(stream);
 
         /// <summary>
         /// Deserialize from stream
@@ -22,19 +20,15 @@ namespace Zaabee.Protobuf
         /// <param name="stream"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static object FromProtobuf(this Stream stream, Type type)
-        {
-            return ProtobufHelper.Deserialize(stream, type);
-        }
+        public static object FromProtobuf(this Stream stream, Type type) =>
+            ProtobufHelper.Deserialize(stream, type);
 
         /// <summary>
         /// Serialize the object to the stream
         /// </summary>
         /// <param name="stream"></param>
         /// <param name="obj"></param>
-        public static void PackByProtobuf(this Stream stream, object obj)
-        {
+        public static void PackByProtobuf(this Stream stream, object obj) =>
             ProtobufHelper.Serialize(stream, obj);
-        }
     }
 }

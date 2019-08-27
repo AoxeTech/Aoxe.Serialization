@@ -8,9 +8,7 @@ namespace Zaabee.Utf8Json
         /// <typeparam name="T"></typeparam>
         /// <param name="json"></param>
         /// <returns></returns>
-        public static T FromUtf8Json<T>(this string json)
-        {
-            return Utf8JsonHelper.Deserialize<T>(json);
-        }
+        public static T FromUtf8Json<T>(this string json) =>
+            Utf8JsonHelper.Deserialize<T>(json);
     }
 }

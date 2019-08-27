@@ -8,9 +8,7 @@ namespace Zaabee.MsgPack
         /// <typeparam name="T"></typeparam>
         /// <param name="bytes"></param>
         /// <returns></returns>
-        public static T FromMsgPak<T>(this byte[] bytes)
-        {
-            return MsgPackHelper.Deserialize<T>(bytes);
-        }
+        public static T FromMsgPak<T>(this byte[] bytes) =>
+            MsgPackHelper.Deserialize<T>(bytes);
     }
 }

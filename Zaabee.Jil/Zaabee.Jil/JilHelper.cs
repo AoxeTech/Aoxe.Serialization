@@ -13,10 +13,8 @@ namespace Zaabee.Jil
         /// ect</param>
         /// <param name="options"></param>
         /// <returns>json</returns>
-        public static string Serialize<T>(T o, Options options = null)
-        {
-            return JSON.Serialize(o, options);
-        }
+        public static string Serialize<T>(T o, Options options = null) =>
+            JSON.Serialize(o, options);
 
         /// <summary>
         /// Deserialize the json to the generic object(if the string is null or white space then return default(T))
@@ -25,10 +23,8 @@ namespace Zaabee.Jil
         /// <param name="json">json</param>
         /// <param name="options"></param>
         /// <returns>generic object</returns>
-        public static T Deserialize<T>(string json, Options options = null)
-        {
-            return string.IsNullOrWhiteSpace(json) ? default(T) : JSON.Deserialize<T>(json, options);
-        }
+        public static T Deserialize<T>(string json, Options options = null) =>
+            string.IsNullOrWhiteSpace(json) ? default(T) : JSON.Deserialize<T>(json, options);
 
         /// <summary>
         /// Deserialize the json to the specify type(if the string is null or white space then return null)
@@ -50,10 +46,8 @@ namespace Zaabee.Jil
         /// <param name="reader">json</param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public static T Deserialize<T>(TextReader reader, Options options = null)
-        {
-            return reader == null ? default(T) : JSON.Deserialize<T>(reader, options);
-        }
+        public static T Deserialize<T>(TextReader reader, Options options = null) =>
+            reader == null ? default(T) : JSON.Deserialize<T>(reader, options);
 
         /// <summary>
         /// Deserialize the textReader to the specify type(if the textReader is null then return null)
@@ -62,9 +56,7 @@ namespace Zaabee.Jil
         /// <param name="type"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public static object Deserialize(TextReader reader, Type type, Options options = null)
-        {
-            return reader == null ? null : JSON.Deserialize(reader, type, options);
-        }
+        public static object Deserialize(TextReader reader, Type type, Options options = null) =>
+            reader == null ? null : JSON.Deserialize(reader, type, options);
     }
 }

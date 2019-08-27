@@ -8,9 +8,7 @@ namespace Zaabee.ZeroFormatter
         /// <typeparam name="T"></typeparam>
         /// <param name="bytes"></param>
         /// <returns></returns>
-        public static T FromZeroFormatter<T>(this byte[] bytes)
-        {
-            return ZeroFormatterHelper.Deserialize<T>(bytes);
-        }
+        public static T FromZeroFormatter<T>(this byte[] bytes) =>
+            ZeroFormatterHelper.Deserialize<T>(bytes);
     }
 }

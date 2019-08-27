@@ -10,9 +10,7 @@ namespace Zaabee.Xml
         /// <param name="obj"></param>
         /// <param name="encoding"></param>
         /// <returns></returns>
-        public static string ToXml<T>(this T obj, Encoding encoding = null) where T : class
-        {
-            return XmlHelper.Serialize(obj, encoding);
-        }
+        public static string ToXml<T>(this T obj, Encoding encoding = null) where T : class =>
+            XmlHelper.Serialize(obj, encoding);
     }
 }

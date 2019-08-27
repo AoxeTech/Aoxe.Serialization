@@ -16,9 +16,7 @@ namespace Zaabee.NewtonsoftJson
         /// <param name="dateTimeFormat"></param>
         /// <returns></returns>
         public static string ToJson<T>(this T obj, IEnumerable<string> lstDisplayField = null,
-            bool toLowerCamel = false, string dateTimeFormat = null)
-        {
-            return JsonHelper.Serialize(obj, lstDisplayField, toLowerCamel, dateTimeFormat);
-        }
+            bool toLowerCamel = false, string dateTimeFormat = null) =>
+            JsonHelper.Serialize(obj, lstDisplayField, toLowerCamel, dateTimeFormat);
     }
 }

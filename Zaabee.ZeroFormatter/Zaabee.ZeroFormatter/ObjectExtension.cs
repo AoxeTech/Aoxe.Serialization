@@ -7,9 +7,7 @@ namespace Zaabee.ZeroFormatter
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static byte[] ToZeroFormatter<T>(this T obj)
-        {
-            return ZeroFormatterHelper.Serialize(obj);
-        }
+        public static byte[] ToZeroFormatter<T>(this T obj) =>
+            ZeroFormatterHelper.Serialize(obj);
     }
 }

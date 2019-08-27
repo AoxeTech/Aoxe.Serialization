@@ -7,9 +7,7 @@ namespace Zaabee.MsgPack
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static byte[] ToMsgPack<T>(this T obj)
-        {
-            return MsgPackHelper.Serialize(obj);
-        }
+        public static byte[] ToMsgPack<T>(this T obj) =>
+            MsgPackHelper.Serialize(obj);
     }
 }

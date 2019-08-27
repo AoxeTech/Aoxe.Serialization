@@ -10,9 +10,7 @@ namespace Zaabee.Jil
         /// <param name="obj"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public static string ToJil<T>(this T obj, Options options = null)
-        {
-            return JilHelper.Serialize(obj, options);
-        }
+        public static string ToJil<T>(this T obj, Options options = null) =>
+            JilHelper.Serialize(obj, options);
     }
 }

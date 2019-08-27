@@ -12,10 +12,8 @@ namespace Zaabee.Jil
         /// <param name="json"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public static T FromJil<T>(this string json, Options options = null)
-        {
-            return JilHelper.Deserialize<T>(json, options);
-        }
+        public static T FromJil<T>(this string json, Options options = null) =>
+            JilHelper.Deserialize<T>(json, options);
 
         /// <summary>
         /// Deserialize the json to the specify type(if the string is null or white space then return null)
@@ -24,9 +22,7 @@ namespace Zaabee.Jil
         /// <param name="type"></param>
         /// <param name="options"></param>
         /// <returns></returns>
-        public static object FromJil(this string json, Type type, Options options = null)
-        {
-            return JilHelper.Deserialize(json, type, options);
-        }
+        public static object FromJil(this string json, Type type, Options options = null) =>
+            JilHelper.Deserialize(json, type, options);
     }
 }

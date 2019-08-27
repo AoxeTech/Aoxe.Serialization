@@ -12,10 +12,8 @@ namespace Zaabee.Xml
         /// <param name="str"></param>
         /// <param name="encoding"></param>
         /// <returns></returns>
-        public static T FromXml<T>(this string str, Encoding encoding = null) where T : class
-        {
-            return XmlHelper.Deserialize<T>(str, encoding);
-        }
+        public static T FromXml<T>(this string str, Encoding encoding = null) where T : class =>
+            XmlHelper.Deserialize<T>(str, encoding);
 
         /// <summary>
         /// Deserialize the xml to the specify type
@@ -24,9 +22,7 @@ namespace Zaabee.Xml
         /// <param name="type"></param>
         /// <param name="encoding"></param>
         /// <returns></returns>
-        public static object FromXml(this string str, Type type, Encoding encoding = null)
-        {
-            return XmlHelper.Deserialize(str, type, encoding);
-        }
+        public static object FromXml(this string str, Type type, Encoding encoding = null) =>
+            XmlHelper.Deserialize(str, type, encoding);
     }
 }

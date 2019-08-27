@@ -9,10 +9,8 @@ namespace Zaabee.ZeroFormatter
         /// </summary>
         /// <param name="t">generic object</param>
         /// <returns>bytes</returns>
-        public static byte[] Serialize<T>(T t)
-        {
-            return t == null ? new byte[0] : ZeroFormatterSerializer.Serialize(t);
-        }
+        public static byte[] Serialize<T>(T t) =>
+            t is null ? new byte[0] : ZeroFormatterSerializer.Serialize(t);
 
         /// <summary>
         /// Deserialize the byte[] to the generic object(if the bytes is null or its length equals 0 then return default(T))
@@ -20,10 +18,7 @@ namespace Zaabee.ZeroFormatter
         /// <typeparam name="T">generic</typeparam>
         /// <param name="bytes">bytes</param>
         /// <returns>generic object</returns>
-        public static T Deserialize<T>(byte[] bytes)
-        {
-            if (bytes == null || bytes.Length == 0) return default(T);
-            return ZeroFormatterSerializer.Deserialize<T>(bytes);
-        }
+        public static T Deserialize<T>(byte[] bytes) =>
+            bytes is null || bytes.Length == 0 ? default(T) : ZeroFormatterSerializer.Deserialize<T>(bytes);
     }
 }

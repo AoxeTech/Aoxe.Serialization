@@ -16,10 +16,8 @@ namespace Zaabee.Protobuf
         /// <typeparam name="T"></typeparam>
         /// <param name="t">generic object</param>
         /// <returns>bytes</returns>
-        public static byte[] Serialize<T>(T t)
-        {
-            return t == null ? new byte[0] : Serialize((object) t);
-        }
+        public static byte[] Serialize<T>(T t) =>
+            t is null ? new byte[0] : Serialize((object) t);
 
         /// <summary>
         /// Serialize the object to byte[](if the object == null then return new byte[0])
@@ -39,10 +37,8 @@ namespace Zaabee.Protobuf
         /// </summary>
         /// <param name="dest"></param>
         /// <param name="value"></param>
-        public static void Serialize(Stream dest, object value)
-        {
+        public static void Serialize(Stream dest, object value) =>
             Model.Serialize(dest, value);
-        }
 
         /// <summary>
         /// Deserialize from protobuf bytes(if the bytes is null or its length equals 0 then return default(T))

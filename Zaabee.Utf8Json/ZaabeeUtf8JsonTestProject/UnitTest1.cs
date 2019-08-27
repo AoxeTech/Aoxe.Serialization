@@ -13,7 +13,7 @@ namespace ZaabeeUtf8JsonTestProject
             {
                 Id = Guid.NewGuid(),
                 Age = new Random().Next(0, 100),
-                CreateTime = DateTimeOffset.Now,
+                CreateTime = DateTime.Now,
                 Name = "banana"
             };
 
@@ -39,7 +39,7 @@ namespace ZaabeeUtf8JsonTestProject
             {
                 Id = Guid.NewGuid(),
                 Age = new Random().Next(0, 100),
-                CreateTime = DateTimeOffset.Now,
+                CreateTime = DateTime.Now,
                 Name = "banana"
             };
 
