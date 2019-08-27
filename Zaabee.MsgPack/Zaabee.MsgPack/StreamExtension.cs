@@ -22,5 +22,11 @@ namespace Zaabee.MsgPack
         /// <returns></returns>
         public static object FromMsgPak(this Stream stream, Type type) =>
             MsgPackHelper.UnPack(stream, type);
+
+        public static void PackByMsgPack<T>(this Stream stream, T t) =>
+            MsgPackHelper.Pack(stream, t);
+
+        public static void PackByMsgPack(this Stream stream, object obj, Type type) =>
+            MsgPackHelper.Pack(stream, obj, type);
     }
 }
