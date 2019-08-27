@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using ZeroFormatter;
 
 namespace Zaabee.ZeroFormatter
@@ -10,7 +12,20 @@ namespace Zaabee.ZeroFormatter
         /// <param name="t">generic object</param>
         /// <returns>bytes</returns>
         public static byte[] Serialize<T>(T t) =>
-            t is null ? new byte[0] : ZeroFormatterSerializer.Serialize(t);
+            t == null ? new byte[0] : ZeroFormatterSerializer.Serialize(t);
+
+        public static void Pack<T>(Stream stream, T t)
+        {
+            if (t != null) ZeroFormatterSerializer.Serialize(stream, t);
+        }
+
+        public static byte[] Serialize(Type type, object obj) =>
+            obj is null ? new byte[0] : ZeroFormatterSerializer.NonGeneric.Serialize(type, obj);
+
+        public static void Pack(Type type, Stream stream, object obj)
+        {
+            if (obj != null) ZeroFormatterSerializer.NonGeneric.Serialize(type, stream, obj);
+        }
 
         /// <summary>
         /// Deserialize the byte[] to the generic object(if the bytes is null or its length equals 0 then return default(T))
@@ -20,5 +35,14 @@ namespace Zaabee.ZeroFormatter
         /// <returns>generic object</returns>
         public static T Deserialize<T>(byte[] bytes) =>
             bytes is null || bytes.Length == 0 ? default(T) : ZeroFormatterSerializer.Deserialize<T>(bytes);
+
+        public static T UnPack<T>(Stream stream) =>
+            stream is null ? default(T) : ZeroFormatterSerializer.Deserialize<T>(stream);
+
+        public static object Deserialize(Type type, byte[] bytes) =>
+            bytes is null || bytes.Length == 0 ? null : ZeroFormatterSerializer.NonGeneric.Deserialize(type, bytes);
+
+        public static object UnPack(Type type, Stream stream) =>
+            stream is null ? null : ZeroFormatterSerializer.NonGeneric.Deserialize(type, stream);
     }
 }
