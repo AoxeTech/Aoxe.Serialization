@@ -1,10 +1,13 @@
 using System;
+using System.IO;
 using Utf8Json;
 
 namespace Zaabee.Utf8Json
 {
     public static class ObjectExtension
     {
+        #region Utf8JsonToString
+
         /// <summary>
         /// Serialize the object to json
         /// </summary>
@@ -41,6 +44,10 @@ namespace Zaabee.Utf8Json
         public static string Utf8JsonToString(this object obj, Type type, IJsonFormatterResolver resolver) =>
             Utf8JsonHelper.SerializeToString(type, obj, resolver);
 
+        #endregion
+
+        #region Utf8JsonToBytes
+
         /// <summary>
         /// Serialize the object to byte[]
         /// </summary>
@@ -76,5 +83,52 @@ namespace Zaabee.Utf8Json
         /// <returns></returns>
         public static byte[] Utf8JsonToBytes(this object obj, Type type, IJsonFormatterResolver resolver) =>
             Utf8JsonHelper.SerializeToBytes(type, obj, resolver);
+
+        #endregion
+
+        #region Utf8JsonToStream
+
+        /// <summary>
+        /// Serialize the object to stream.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="stream"></param>
+        /// <returns></returns>
+        public static void Utf8JsonToStream<T>(this T obj, Stream stream) =>
+            Utf8JsonHelper.SerializeToStream<T>(stream, obj);
+
+        /// <summary>
+        /// Serialize to stream.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="type"></param>
+        /// <param name="stream"></param>
+        /// <returns></returns>
+        public static void Utf8JsonToStream(this object obj, Type type, Stream stream) =>
+            Utf8JsonHelper.SerializeToStream(type, stream, obj);
+
+        /// <summary>
+        /// Serialize to stream with specified resolver.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="stream"></param>
+        /// <param name="resolver"></param>
+        /// <returns></returns>
+        public static void Utf8JsonToStream(this object obj, Stream stream, IJsonFormatterResolver resolver) =>
+            Utf8JsonHelper.SerializeToStream(stream, obj, resolver);
+
+        /// <summary>
+        /// Serialize to stream with specified resolver.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="type"></param>
+        /// <param name="stream"></param>
+        /// <param name="resolver"></param>
+        /// <returns></returns>
+        public static void Utf8JsonToStream(this object obj, Type type, Stream stream,
+            IJsonFormatterResolver resolver) =>
+            Utf8JsonHelper.SerializeToStream(type, stream, obj, resolver);
+
+        #endregion
     }
 }
