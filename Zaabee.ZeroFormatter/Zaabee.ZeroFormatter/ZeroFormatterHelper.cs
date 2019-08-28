@@ -37,6 +37,7 @@ namespace Zaabee.ZeroFormatter
         {
             if (obj != null) ZeroFormatterSerializer.NonGeneric.Serialize(type, stream, obj);
         }
+
         public static T Deserialize<T>(byte[] bytes) =>
             bytes is null || bytes.Length == 0 ? default(T) : ZeroFormatterSerializer.Deserialize<T>(bytes);
 
