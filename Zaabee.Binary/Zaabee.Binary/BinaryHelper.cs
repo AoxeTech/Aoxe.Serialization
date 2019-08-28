@@ -8,34 +8,54 @@ namespace Zaabee.Binary
     {
         [ThreadStatic] private static BinaryFormatter _binaryFormatter;
 
-        /// <summary>
-        /// Serialize the object to byte[](if the generic object == null then return new byte[0])
-        /// </summary>
-        /// <param name="t">generic object</param>
-        /// <returns>bytes</returns>
-        public static byte[] Serialize<T>(T t)
+        public static byte[] Serialize(object obj)
         {
-            if (t == null) return new byte[0];
-            if (_binaryFormatter == null) _binaryFormatter = new BinaryFormatter();
-            using (var ms = new MemoryStream())
-            {
-                _binaryFormatter.Serialize(ms, t);
+            if (obj is null) return new byte[0];
+            using (var ms = (MemoryStream) Pack(obj))
                 return ms.ToArray();
-            }
         }
 
-        /// <summary>
-        /// Deserialize the byte[] to the generic object(if the bytes is null or its length equals 0 then return default(T))
-        /// </summary>
-        /// <typeparam name="T">generic</typeparam>
-        /// <param name="bytes">bytes</param>
-        /// <returns>generic object</returns>
+        public static Stream Pack(object obj)
+        {
+            var ms = new MemoryStream();
+            if (obj != null) Pack(obj, ms);
+            return ms;
+        }
+
+        public static void Pack(object obj, Stream stream)
+        {
+            if (obj is null) return;
+            _binaryFormatter = _binaryFormatter ?? new BinaryFormatter();
+            _binaryFormatter.Serialize(stream, obj);
+        }
+
         public static T Deserialize<T>(byte[] bytes)
         {
             if (bytes == null || bytes.Length == 0) return default(T);
-            if (_binaryFormatter == null) _binaryFormatter = new BinaryFormatter();
+            return (T) Deserialize(typeof(T), bytes);
+        }
+
+        public static T Unpack<T>(Stream stream)
+        {
+            if (stream == null || stream.Length == 0) return default(T);
+            var type = typeof(T);
+            return (T) Unpack(type, stream);
+        }
+
+        public static object Deserialize(Type type, byte[] bytes)
+        {
+            if (bytes == null || bytes.Length == 0) return null;
             using (var ms = new MemoryStream(bytes))
-                return (T) _binaryFormatter.Deserialize(ms);
+                return Unpack(type, ms);
+        }
+
+        public static object Unpack(Type type, Stream stream)
+        {
+            if (stream == null || stream.Length == 0) return null;
+            if (stream.CanSeek && stream.Position > 0)
+                stream.Position = 0;
+            _binaryFormatter = _binaryFormatter ?? new BinaryFormatter();
+            return _binaryFormatter.Deserialize(stream);
         }
     }
 }
