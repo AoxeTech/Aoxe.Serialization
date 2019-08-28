@@ -1,14 +1,16 @@
-﻿namespace Zaabee.Protobuf
+﻿using System.IO;
+
+namespace Zaabee.Protobuf
 {
     public static class ObjectExtension
     {
-        /// <summary>
-        /// Serialize the object to bytes
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public static byte[] ToProtobuf<T>(this T obj) =>
+        public static byte[] ToProtobuf(this object obj) =>
             ProtobufHelper.Serialize(obj);
+
+        public static Stream PackProtobuf(this object obj) =>
+            ProtobufHelper.Pack(obj);
+
+        public static void PackProtobuf(this object obj, Stream stream) =>
+            ProtobufHelper.Pack(obj, stream);
     }
 }

@@ -5,30 +5,13 @@ namespace Zaabee.Protobuf
 {
     public static class StreamExtension
     {
-        /// <summary>
-        /// Deserialize from stream
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="stream"></param>
-        /// <returns></returns>
-        public static T FromProtobuf<T>(this Stream stream) =>
-            ProtobufHelper.Deserialize<T>(stream);
+        public static void PackProtobuf<T>(this Stream stream, T obj) =>
+            ProtobufHelper.Pack(obj, stream);
 
-        /// <summary>
-        /// Deserialize from stream
-        /// </summary>
-        /// <param name="stream"></param>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public static object FromProtobuf(this Stream stream, Type type) =>
-            ProtobufHelper.Deserialize(stream, type);
+        public static T UnPackProtobuf<T>(this Stream stream) =>
+            ProtobufHelper.UnPack<T>(stream);
 
-        /// <summary>
-        /// Serialize the object to the stream
-        /// </summary>
-        /// <param name="stream"></param>
-        /// <param name="obj"></param>
-        public static void PackByProtobuf(this Stream stream, object obj) =>
-            ProtobufHelper.Serialize(stream, obj);
+        public static object UnPackProtobuf(this Stream stream, Type type) =>
+            ProtobufHelper.UnPack(type, stream);
     }
 }

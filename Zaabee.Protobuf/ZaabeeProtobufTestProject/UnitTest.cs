@@ -11,17 +11,73 @@ namespace ZaabeeProtobufTestProject
     public class UnitTest
     {
         [Fact]
-        public void ExtensionMethodTest()
+        public void Test()
         {
-            var testModelGuid = GetTestModel();
-            var bytes = testModelGuid.ToProtobuf();
-            var deserializeModel1 = bytes.FromProtobuf<TestModel<Guid>>();
+            var testModel = GetTestModel();
+            
+            var bytes = testModel.ToProtobuf();
+            
+            var stream1 = testModel.PackProtobuf();
+            
+            var stream2 = new MemoryStream();testModel.PackProtobuf(stream2);
+            
+            var stream3 = new MemoryStream();stream3.PackProtobuf(testModel);
+            
+            var deserializeResult = bytes.FromProtobuf<TestModel<Guid>>();
+            
+            var unPackResult1 = stream1.UnPackProtobuf<TestModel<Guid>>();
+            
+            var unPackResult2 = stream2.UnPackProtobuf<TestModel<Guid>>();
+            
+            var unPackResult3 = stream3.UnPackProtobuf<TestModel<Guid>>();
 
-            Assert.Equal(deserializeModel1.Id, testModelGuid.Id);
-            Assert.Equal(deserializeModel1.Age, testModelGuid.Age);
-            Assert.Equal(deserializeModel1.CreateTime, testModelGuid.CreateTime);
-            Assert.Equal(deserializeModel1.Name, testModelGuid.Name);
-            Assert.Equal(deserializeModel1.Gender, testModelGuid.Gender);
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(deserializeResult.Id, deserializeResult.Age, deserializeResult.CreateTime, deserializeResult.Name, deserializeResult.Gender));
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(unPackResult1.Id, unPackResult1.Age, unPackResult1.CreateTime, unPackResult1.Name, unPackResult1.Gender));
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(unPackResult2.Id, unPackResult2.Age, unPackResult2.CreateTime, unPackResult2.Name, unPackResult2.Gender));
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name, unPackResult3.Gender));
+        }
+        [Fact]
+        public void NonGenericTest()
+        {
+            var type = typeof(TestModel<Guid>);
+            var testModel = GetTestModel();
+            
+            var bytes = testModel.ToProtobuf();
+            
+            var stream1 = testModel.PackProtobuf();
+            
+            var stream2 = new MemoryStream();testModel.PackProtobuf(stream2);
+            
+            var stream3 = new MemoryStream();stream3.PackProtobuf(testModel);
+            
+            var deserializeResult = (TestModel<Guid>)bytes.FromProtobuf(type);
+            
+            var unPackResult1 = (TestModel<Guid>)stream1.UnPackProtobuf(type);
+            
+            var unPackResult2 = (TestModel<Guid>)stream2.UnPackProtobuf(type);
+            
+            var unPackResult3 = (TestModel<Guid>)stream3.UnPackProtobuf(type);
+
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(deserializeResult.Id, deserializeResult.Age, deserializeResult.CreateTime, deserializeResult.Name, deserializeResult.Gender));
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(unPackResult1.Id, unPackResult1.Age, unPackResult1.CreateTime, unPackResult1.Name, unPackResult1.Gender));
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(unPackResult2.Id, unPackResult2.Age, unPackResult2.CreateTime, unPackResult2.Name, unPackResult2.Gender));
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name, unPackResult3.Gender));
         }
 
         [Fact]
