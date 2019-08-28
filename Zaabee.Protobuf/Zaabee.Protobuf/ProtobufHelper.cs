@@ -8,7 +8,7 @@ namespace Zaabee.Protobuf
     {
         private static readonly Lazy<RuntimeTypeModel> model = new Lazy<RuntimeTypeModel>(CreateTypeModel);
 
-        public static RuntimeTypeModel Model => model.Value;
+        private static RuntimeTypeModel Model => model.Value;
 
         public static byte[] Serialize(object obj)
         {
@@ -38,20 +38,21 @@ namespace Zaabee.Protobuf
             return (T) Deserialize(typeof(T), bytes);
         }
 
-        public static T UnPack<T>(Stream stream)
+        public static T Unpack<T>(Stream stream)
         {
             if (stream == null || stream.Length == 0) return default(T);
             var type = typeof(T);
-            return (T) UnPack(type, stream);
+            return (T) Unpack(type, stream);
         }
 
         public static object Deserialize(Type type, byte[] bytes)
         {
             if (bytes == null || bytes.Length == 0) return null;
-            return UnPack(type, new MemoryStream(bytes));
+            using (var ms = new MemoryStream(bytes))
+                return Unpack(type, ms);
         }
 
-        public static object UnPack(Type type, Stream stream)
+        public static object Unpack(Type type, Stream stream)
         {
             if (stream == null || stream.Length == 0) return null;
             if (stream.CanSeek)
@@ -59,7 +60,7 @@ namespace Zaabee.Protobuf
             return Model.Deserialize(stream, null, type);
         }
 
-        public static RuntimeTypeModel CreateTypeModel()
+        private static RuntimeTypeModel CreateTypeModel()
         {
             var typeModel = TypeModel.Create();
             typeModel.UseImplicitZeroDefaults = false;

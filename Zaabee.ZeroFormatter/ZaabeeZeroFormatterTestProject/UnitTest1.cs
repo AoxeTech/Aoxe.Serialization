@@ -22,11 +22,11 @@ namespace ZaabeeZeroFormatterTestProject
             
             var deserializeResult = bytes.FromZeroFormatter<TestModel>();
             
-            var unPackResult1 = stream1.UnPackZeroFormatter<TestModel>();
+            var unPackResult1 = stream1.UnpackZeroFormatter<TestModel>();
             
-            var unPackResult2 = stream2.UnPackZeroFormatter<TestModel>();
+            var unPackResult2 = stream2.UnpackZeroFormatter<TestModel>();
             
-            var unPackResult3 = stream3.UnPackZeroFormatter<TestModel>();
+            var unPackResult3 = stream3.UnpackZeroFormatter<TestModel>();
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
@@ -57,11 +57,11 @@ namespace ZaabeeZeroFormatterTestProject
             
             var deserializeResult = (TestModel)bytes.FromZeroFormatter(type);
             
-            var unPackResult1 = (TestModel)stream1.UnPackZeroFormatter(type);
+            var unPackResult1 = (TestModel)stream1.UnpackZeroFormatter(type);
             
-            var unPackResult2 = (TestModel)stream2.UnPackZeroFormatter(type);
+            var unPackResult2 = (TestModel)stream2.UnpackZeroFormatter(type);
             
-            var unPackResult3 = (TestModel)stream3.UnPackZeroFormatter(type);
+            var unPackResult3 = (TestModel)stream3.UnpackZeroFormatter(type);
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),

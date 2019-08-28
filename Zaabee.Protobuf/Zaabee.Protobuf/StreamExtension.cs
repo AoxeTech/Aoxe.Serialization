@@ -8,10 +8,10 @@ namespace Zaabee.Protobuf
         public static void PackProtobuf<T>(this Stream stream, T obj) =>
             ProtobufHelper.Pack(obj, stream);
 
-        public static T UnPackProtobuf<T>(this Stream stream) =>
-            ProtobufHelper.UnPack<T>(stream);
+        public static T UnpackProtobuf<T>(this Stream stream) =>
+            ProtobufHelper.Unpack<T>(stream);
 
-        public static object UnPackProtobuf(this Stream stream, Type type) =>
-            ProtobufHelper.UnPack(type, stream);
+        public static object UnpackProtobuf(this Stream stream, Type type) =>
+            ProtobufHelper.Unpack(type, stream);
     }
 }

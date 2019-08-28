@@ -11,10 +11,10 @@ namespace Zaabee.ZeroFormatter
         public static void PackZeroFormatter(this Stream stream, Type type, object obj) =>
             ZeroFormatterHelper.Pack(type, obj, stream);
 
-        public static T UnPackZeroFormatter<T>(this Stream stream) =>
-            ZeroFormatterHelper.UnPack<T>(stream);
+        public static T UnpackZeroFormatter<T>(this Stream stream) =>
+            ZeroFormatterHelper.Unpack<T>(stream);
 
-        public static object UnPackZeroFormatter(this Stream stream, Type type) =>
-            ZeroFormatterHelper.UnPack(type, stream);
+        public static object UnpackZeroFormatter(this Stream stream, Type type) =>
+            ZeroFormatterHelper.Unpack(type, stream);
     }
 }

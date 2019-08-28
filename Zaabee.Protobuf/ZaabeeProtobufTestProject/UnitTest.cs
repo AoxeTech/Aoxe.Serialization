@@ -25,11 +25,11 @@ namespace ZaabeeProtobufTestProject
             
             var deserializeResult = bytes.FromProtobuf<TestModel<Guid>>();
             
-            var unPackResult1 = stream1.UnPackProtobuf<TestModel<Guid>>();
+            var unPackResult1 = stream1.UnpackProtobuf<TestModel<Guid>>();
             
-            var unPackResult2 = stream2.UnPackProtobuf<TestModel<Guid>>();
+            var unPackResult2 = stream2.UnpackProtobuf<TestModel<Guid>>();
             
-            var unPackResult3 = stream3.UnPackProtobuf<TestModel<Guid>>();
+            var unPackResult3 = stream3.UnpackProtobuf<TestModel<Guid>>();
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
@@ -60,11 +60,11 @@ namespace ZaabeeProtobufTestProject
             
             var deserializeResult = (TestModel<Guid>)bytes.FromProtobuf(type);
             
-            var unPackResult1 = (TestModel<Guid>)stream1.UnPackProtobuf(type);
+            var unPackResult1 = (TestModel<Guid>)stream1.UnpackProtobuf(type);
             
-            var unPackResult2 = (TestModel<Guid>)stream2.UnPackProtobuf(type);
+            var unPackResult2 = (TestModel<Guid>)stream2.UnpackProtobuf(type);
             
-            var unPackResult3 = (TestModel<Guid>)stream3.UnPackProtobuf(type);
+            var unPackResult3 = (TestModel<Guid>)stream3.UnpackProtobuf(type);
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),

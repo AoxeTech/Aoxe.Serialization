@@ -41,13 +41,13 @@ namespace Zaabee.ZeroFormatter
         public static T Deserialize<T>(byte[] bytes) =>
             bytes is null || bytes.Length == 0 ? default(T) : ZeroFormatterSerializer.Deserialize<T>(bytes);
 
-        public static T UnPack<T>(Stream stream) =>
+        public static T Unpack<T>(Stream stream) =>
             stream is null ? default(T) : ZeroFormatterSerializer.Deserialize<T>(stream);
 
         public static object Deserialize(Type type, byte[] bytes) =>
             bytes is null || bytes.Length == 0 ? null : ZeroFormatterSerializer.NonGeneric.Deserialize(type, bytes);
 
-        public static object UnPack(Type type, Stream stream) =>
+        public static object Unpack(Type type, Stream stream) =>
             stream is null ? null : ZeroFormatterSerializer.NonGeneric.Deserialize(type, stream);
     }
 }
