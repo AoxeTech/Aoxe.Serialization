@@ -5,28 +5,16 @@ namespace Zaabee.MsgPack
 {
     public static class StreamExtension
     {
-        /// <summary>
-        /// Deserialize from stream
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="stream"></param>
-        /// <returns></returns>
-        public static T FromMsgPak<T>(this Stream stream) =>
-            MsgPackHelper.UnPack<T>(stream);
+        public static void PackMsgPack<T>(this Stream stream, T obj) =>
+            MsgPackHelper.Pack(obj, stream);
 
-        /// <summary>
-        /// Deserialize from stream
-        /// </summary>
-        /// <param name="stream"></param>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public static object FromMsgPak(this Stream stream, Type type) =>
-            MsgPackHelper.UnPack(stream, type);
+        public static void PackMsgPack(this Stream stream, Type type, object obj) =>
+            MsgPackHelper.Pack(type, obj, stream);
 
-        public static void PackByMsgPack<T>(this Stream stream, T t) =>
-            MsgPackHelper.Pack(stream, t);
+        public static T UnpackMsgPack<T>(this Stream stream) =>
+            MsgPackHelper.Unpack<T>(stream);
 
-        public static void PackByMsgPack(this Stream stream, object obj, Type type) =>
-            MsgPackHelper.Pack(stream, obj, type);
+        public static object UnpackMsgPack(this Stream stream, Type type) =>
+            MsgPackHelper.Unpack(type, stream);
     }
 }

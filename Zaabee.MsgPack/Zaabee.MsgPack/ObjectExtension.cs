@@ -5,27 +5,22 @@ namespace Zaabee.MsgPack
 {
     public static class ObjectExtension
     {
-        /// <summary>
-        /// Serialize the object to bytes
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public static byte[] ToMsgPack<T>(this T obj) =>
-            MsgPackHelper.Serialize(obj);
+        public static byte[] ToMsgPack<T>(this T t) =>
+            MsgPackHelper.Serialize(t);
+
+        public static Stream PackMsgPack<T>(this T t) =>
+            MsgPackHelper.Pack(t);
+
+        public static void PackMsgPack<T>(this T t, Stream stream) =>
+            MsgPackHelper.Pack(t, stream);
 
         public static byte[] ToMsgPack(this object obj, Type type) =>
-            MsgPackHelper.Serialize(obj, type);
+            MsgPackHelper.Serialize(type, obj);
 
-        /// <summary>
-        /// Serialize the object to stream
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <param name="stream"></param>
-        /// <returns></returns>
-        public static void ToMsgPack<T>(this T obj, Stream stream) =>
-            MsgPackHelper.Pack(stream, obj);
+        public static Stream PackMsgPack(this object obj, Type type) =>
+            MsgPackHelper.Pack(type, obj);
 
-        public static void ToMsgPack(this object obj, Type type, Stream stream) =>
-            MsgPackHelper.Pack(stream, obj, type);
+        public static void PackMsgPack(this object obj, Type type, Stream stream) =>
+            MsgPackHelper.Pack(type, obj, stream);
     }
 }

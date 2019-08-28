@@ -13,7 +13,7 @@ namespace Zaabee.ZeroFormatter
         {
             var ms = new MemoryStream();
             if (t is null) return ms;
-            ZeroFormatterSerializer.Serialize(ms, t);
+            Pack(t, ms);
             return ms;
         }
 
@@ -22,6 +22,12 @@ namespace Zaabee.ZeroFormatter
             if (t != null) ZeroFormatterSerializer.Serialize(stream, t);
         }
 
+        public static T Deserialize<T>(byte[] bytes) =>
+            bytes is null || bytes.Length == 0 ? default(T) : ZeroFormatterSerializer.Deserialize<T>(bytes);
+
+        public static T Unpack<T>(Stream stream) =>
+            stream is null ? default(T) : ZeroFormatterSerializer.Deserialize<T>(stream);
+        
         public static byte[] Serialize(Type type, object obj) =>
             obj is null ? new byte[0] : ZeroFormatterSerializer.NonGeneric.Serialize(type, obj);
 
@@ -29,7 +35,7 @@ namespace Zaabee.ZeroFormatter
         {
             var ms = new MemoryStream();
             if (obj is null) return ms;
-            ZeroFormatterSerializer.NonGeneric.Serialize(type, ms, obj);
+            Pack(type, obj, ms);
             return ms;
         }
 
@@ -37,12 +43,6 @@ namespace Zaabee.ZeroFormatter
         {
             if (obj != null) ZeroFormatterSerializer.NonGeneric.Serialize(type, stream, obj);
         }
-
-        public static T Deserialize<T>(byte[] bytes) =>
-            bytes is null || bytes.Length == 0 ? default(T) : ZeroFormatterSerializer.Deserialize<T>(bytes);
-
-        public static T Unpack<T>(Stream stream) =>
-            stream is null ? default(T) : ZeroFormatterSerializer.Deserialize<T>(stream);
 
         public static object Deserialize(Type type, byte[] bytes) =>
             bytes is null || bytes.Length == 0 ? null : ZeroFormatterSerializer.NonGeneric.Deserialize(type, bytes);

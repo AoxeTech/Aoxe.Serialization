@@ -9,33 +9,41 @@ namespace Zaabee.MsgPack
         public static byte[] Serialize<T>(T t)
         {
             if (t == null) return new byte[0];
-            var serializer = MessagePackSerializer.Get<T>();
-            using (var ms = new MemoryStream())
-            {
-                serializer.Pack(ms, t);
+            using (var ms = (MemoryStream) Pack(t))
                 return ms.ToArray();
-            }
         }
 
-        public static void Pack<T>(Stream stream, T t)
+        public static Stream Pack<T>(T t)
+        {
+            var ms = new MemoryStream();
+            if (t == null) return ms;
+            Pack(t, ms);
+            return ms;
+        }
+
+        public static void Pack<T>(T t, Stream stream)
         {
             if (t == null) return;
             var serializer = MessagePackSerializer.Get<T>();
             serializer.Pack(stream, t);
         }
 
-        public static byte[] Serialize(object obj, Type type)
+        public static byte[] Serialize(Type type, object obj)
         {
             if (obj == null) return new byte[0];
-            var serializer = MessagePackSerializer.Get(type);
-            using (var ms = new MemoryStream())
-            {
-                serializer.Pack(ms, obj);
+            using (var ms = (MemoryStream) Pack(type, obj))
                 return ms.ToArray();
-            }
         }
 
-        public static void Pack(Stream stream, object obj, Type type)
+        public static Stream Pack(Type type, object obj)
+        {
+            var ms = new MemoryStream();
+            if (obj is null) return ms;
+            Pack(type, obj, ms);
+            return ms;
+        }
+
+        public static void Pack(Type type, object obj, Stream stream)
         {
             if (obj == null) return;
             var serializer = MessagePackSerializer.Get(type);
@@ -45,30 +53,32 @@ namespace Zaabee.MsgPack
         public static T Deserialize<T>(byte[] bytes)
         {
             if (bytes == null || bytes.Length == 0) return default(T);
-            var serializer = MessagePackSerializer.Get<T>();
             using (var ms = new MemoryStream(bytes))
-                return serializer.Unpack(ms);
+                return Unpack<T>(ms);
         }
 
-        public static T UnPack<T>(Stream stream)
+        public static T Unpack<T>(Stream stream)
         {
             if (stream == null) return default(T);
             var serializer = MessagePackSerializer.Get<T>();
+            if (stream.CanSeek && stream.Position > 0)
+                stream.Position = 0;
             return serializer.Unpack(stream);
         }
 
-        public static object Deserialize(byte[] bytes, Type type)
+        public static object Deserialize(Type type, byte[] bytes)
         {
             if (bytes == null || bytes.Length == 0) return null;
-            var serializer = MessagePackSerializer.Get(type);
             using (var ms = new MemoryStream(bytes))
-                return serializer.Unpack(ms);
+                return Unpack(type, ms);
         }
 
-        public static object UnPack(Stream stream, Type type)
+        public static object Unpack(Type type, Stream stream)
         {
             if (stream == null) return null;
             var serializer = MessagePackSerializer.Get(type);
+            if (stream.CanSeek && stream.Position > 0)
+                stream.Position = 0;
             return serializer.Unpack(stream);
         }
     }

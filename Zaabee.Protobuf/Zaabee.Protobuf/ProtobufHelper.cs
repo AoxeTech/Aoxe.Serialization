@@ -14,17 +14,14 @@ namespace Zaabee.Protobuf
         {
             if (obj is null) return new byte[0];
             using (var ms = (MemoryStream) Pack(obj))
-            {
-                Model.Serialize(ms, obj);
                 return ms.ToArray();
-            }
         }
 
         public static Stream Pack(object obj)
         {
-            var stream = new MemoryStream();
-            if (obj != null) Pack(obj, stream);
-            return stream;
+            var ms = new MemoryStream();
+            if (obj != null) Pack(obj, ms);
+            return ms;
         }
 
         public static void Pack(object obj, Stream stream)
@@ -55,7 +52,7 @@ namespace Zaabee.Protobuf
         public static object Unpack(Type type, Stream stream)
         {
             if (stream == null || stream.Length == 0) return null;
-            if (stream.CanSeek)
+            if (stream.CanSeek && stream.Position > 0)
                 stream.Position = 0;
             return Model.Deserialize(stream, null, type);
         }
