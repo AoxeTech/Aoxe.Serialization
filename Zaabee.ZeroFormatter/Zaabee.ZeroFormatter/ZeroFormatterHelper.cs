@@ -12,12 +12,12 @@ namespace Zaabee.ZeroFormatter
         /// <param name="t">generic object</param>
         /// <returns>bytes</returns>
         public static byte[] Serialize<T>(T t) =>
-            t == null ? new byte[0] : ZeroFormatterSerializer.Serialize(t);
+            t is null ? new byte[0] : ZeroFormatterSerializer.Serialize(t);
 
         public static Stream Pack<T>(T t)
         {
             var ms = new MemoryStream();
-            if (t == null) return ms;
+            if (t is null) return ms;
             ZeroFormatterSerializer.Serialize(ms, t);
             return ms;
         }
