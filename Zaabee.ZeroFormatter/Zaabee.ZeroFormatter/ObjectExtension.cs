@@ -5,11 +5,6 @@ namespace Zaabee.ZeroFormatter
 {
     public static class ObjectExtension
     {
-        /// <summary>
-        /// Serialize the object to bytes
-        /// </summary>
-        /// <param name="t"></param>
-        /// <returns></returns>
         public static byte[] SerializeByZeroFormatter<T>(this T t) =>
             ZeroFormatterHelper.Serialize(t);
 
