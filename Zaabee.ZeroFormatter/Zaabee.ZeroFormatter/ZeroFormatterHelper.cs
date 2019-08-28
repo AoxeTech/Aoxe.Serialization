@@ -14,7 +14,15 @@ namespace Zaabee.ZeroFormatter
         public static byte[] Serialize<T>(T t) =>
             t == null ? new byte[0] : ZeroFormatterSerializer.Serialize(t);
 
-        public static void Serialize<T>(Stream stream, T t)
+        public static Stream Pack<T>(T t)
+        {
+            var ms = new MemoryStream();
+            if (t == null) return ms;
+            ZeroFormatterSerializer.Serialize(ms, t);
+            return ms;
+        }
+
+        public static void Pack<T>(T t, Stream stream)
         {
             if (t != null) ZeroFormatterSerializer.Serialize(stream, t);
         }
@@ -22,7 +30,15 @@ namespace Zaabee.ZeroFormatter
         public static byte[] Serialize(Type type, object obj) =>
             obj is null ? new byte[0] : ZeroFormatterSerializer.NonGeneric.Serialize(type, obj);
 
-        public static void Serialize(Type type, Stream stream, object obj)
+        public static Stream Pack(Type type, object obj)
+        {
+            var ms = new MemoryStream();
+            if (obj is null) return ms;
+            ZeroFormatterSerializer.NonGeneric.Serialize(type, ms, obj);
+            return ms;
+        }
+
+        public static void Pack(Type type, object obj, Stream stream)
         {
             if (obj != null) ZeroFormatterSerializer.NonGeneric.Serialize(type, stream, obj);
         }
@@ -36,13 +52,13 @@ namespace Zaabee.ZeroFormatter
         public static T Deserialize<T>(byte[] bytes) =>
             bytes is null || bytes.Length == 0 ? default(T) : ZeroFormatterSerializer.Deserialize<T>(bytes);
 
-        public static T Deserialize<T>(Stream stream) =>
+        public static T UnPack<T>(Stream stream) =>
             stream is null ? default(T) : ZeroFormatterSerializer.Deserialize<T>(stream);
 
         public static object Deserialize(Type type, byte[] bytes) =>
             bytes is null || bytes.Length == 0 ? null : ZeroFormatterSerializer.NonGeneric.Deserialize(type, bytes);
 
-        public static object Deserialize(Type type, Stream stream) =>
+        public static object UnPack(Type type, Stream stream) =>
             stream is null ? null : ZeroFormatterSerializer.NonGeneric.Deserialize(type, stream);
     }
 }

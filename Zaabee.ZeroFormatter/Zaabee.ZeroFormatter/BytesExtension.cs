@@ -10,10 +10,10 @@ namespace Zaabee.ZeroFormatter
         /// <typeparam name="T"></typeparam>
         /// <param name="bytes"></param>
         /// <returns></returns>
-        public static T FromZeroFormatter<T>(this byte[] bytes) =>
+        public static T Deserialize<T>(this byte[] bytes) =>
             ZeroFormatterHelper.Deserialize<T>(bytes);
 
-        public static object FromZeroFormatter(this byte[] bytes, Type type) =>
+        public static object Deserialize(this byte[] bytes, Type type) =>
             ZeroFormatterHelper.Deserialize(type, bytes);
     }
 }

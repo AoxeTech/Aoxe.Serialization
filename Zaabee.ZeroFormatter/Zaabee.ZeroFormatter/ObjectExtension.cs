@@ -8,18 +8,24 @@ namespace Zaabee.ZeroFormatter
         /// <summary>
         /// Serialize the object to bytes
         /// </summary>
-        /// <param name="obj"></param>
+        /// <param name="t"></param>
         /// <returns></returns>
-        public static byte[] ToZeroFormatter<T>(this T obj) =>
-            ZeroFormatterHelper.Serialize(obj);
+        public static byte[] Serialize<T>(this T t) =>
+            ZeroFormatterHelper.Serialize(t);
 
-        public static void PackByZeroFormatter<T>(this T obj, Stream stream) =>
-            ZeroFormatterHelper.Serialize(stream, obj);
+        public static Stream Pack<T>(this T t) =>
+            ZeroFormatterHelper.Pack(t);
 
-        public static byte[] ToZeroFormatter(this object obj, Type type) =>
+        public static void Pack<T>(this T t, Stream stream) =>
+            ZeroFormatterHelper.Pack(t, stream);
+
+        public static byte[] Serialize(this object obj, Type type) =>
             ZeroFormatterHelper.Serialize(type, obj);
 
-        public static void PackByZeroFormatter(this object obj, Stream stream, Type type) =>
-            ZeroFormatterHelper.Serialize(type, stream, obj);
+        public static Stream Pack(this object obj, Type type) =>
+            ZeroFormatterHelper.Pack(type, obj);
+
+        public static void Pack(this object obj, Type type, Stream stream) =>
+            ZeroFormatterHelper.Pack(type, obj, stream);
     }
 }
