@@ -68,14 +68,14 @@ namespace Zaabee.MsgPack
 
         public static object Deserialize(Type type, byte[] bytes)
         {
-            if (bytes == null || bytes.Length == 0) return null;
+            if (bytes == null || bytes.Length == 0) return default(Type);
             using (var ms = new MemoryStream(bytes))
                 return Unpack(type, ms);
         }
 
         public static object Unpack(Type type, Stream stream)
         {
-            if (stream == null) return null;
+            if (stream == null) return default(Type);
             var serializer = MessagePackSerializer.Get(type);
             if (stream.CanSeek && stream.Position > 0)
                 stream.Position = 0;

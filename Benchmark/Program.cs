@@ -11,6 +11,9 @@ using Zaabee.Utf8Json;
 using Zaabee.Xml;
 using Zaabee.ZeroFormatter;
 using ZeroFormatter;
+using BytesExtension = Zaabee.Protobuf.BytesExtension;
+using ObjectExtension = Zaabee.Protobuf.ObjectExtension;
+using StrExtension = Zaabee.NewtonsoftJson.StrExtension;
 
 namespace Benchmark
 {
@@ -41,13 +44,13 @@ namespace Benchmark
         public BenchMarkTest()
         {
             InitTestModel();
-            _binary = _testModel.ToBytes();
+            _binary = Zaabee.ZeroFormatter.ObjectExtension.ToBytes(_testModel);
             _jil = _testModel.ToJil();
-            _json = _testModel.ToJson();
-            _msgPackBytes = _testModel.ToMsgPack();
-            _utf8JsonString = _testModel.Utf8JsonToString();
-            _utf8JsonBytes = _testModel.Utf8JsonToBytes();
-            _protobuf = _testModel.ToProtobuf();
+            _json = Zaabee.NewtonsoftJson.ObjectExtension.ToJson(_testModel);
+            _msgPackBytes = Zaabee.MsgPack.ObjectExtension.ToBytes(_testModel);
+            _utf8JsonString = _testModel.ToJson();
+            _utf8JsonBytes = Zaabee.Utf8Json.ObjectExtension.ToBytes(_testModel);
+            _protobuf = ObjectExtension.ToBytes(_testModel);
             _xml = _testModel.ToXml();
             _zeroFormatterBytes = _testModel.ToZeroFormatter();
         }
@@ -55,7 +58,7 @@ namespace Benchmark
         [Benchmark]
         public void BinarySerialize()
         {
-            var bytes = _testModel.ToBytes();
+            var bytes = Zaabee.ZeroFormatter.ObjectExtension.ToBytes(_testModel);
         }
 
         [Benchmark]
@@ -67,31 +70,31 @@ namespace Benchmark
         [Benchmark]
         public void NewtonJsonSerialize()
         {
-            var json = _testModel.ToJson();
+            var json = Zaabee.NewtonsoftJson.ObjectExtension.ToJson(_testModel);
         }
 
         [Benchmark]
         public void MsgPackSerialize()
         {
-            var bytes = _testModel.ToMsgPack();
+            var bytes = Zaabee.MsgPack.ObjectExtension.ToBytes(_testModel);
         }
 
         [Benchmark]
         public void Utf8JsonSerializeString()
         {
-            var json = _testModel.Utf8JsonToString();
+            var json = _testModel.ToJson();
         }
 
         [Benchmark]
         public void Utf8JsonSerializeBytes()
         {
-            var bytes = _testModel.Utf8JsonToBytes();
+            var bytes = Zaabee.Utf8Json.ObjectExtension.ToBytes(_testModel);
         }
 
         [Benchmark]
         public void ProtobufSerialize()
         {
-            var protobuf = _testModel.ToProtobuf();
+            var protobuf = ObjectExtension.ToBytes(_testModel);
         }
 
         [Benchmark]
@@ -109,7 +112,7 @@ namespace Benchmark
         [Benchmark]
         public void BinaryDeserialize()
         {
-            var model = _binary.FromBytes<TestModel>();
+            var model = Zaabee.ZeroFormatter.BytesExtension.FromBytes<TestModel>(_binary);
         }
 
         [Benchmark]
@@ -121,31 +124,31 @@ namespace Benchmark
         [Benchmark]
         public void NewtonJsonDeserialize()
         {
-            var model = _json.FromJson<TestModel>();
+            var model = StrExtension.FromJson<TestModel>(_json);
         }
 
         [Benchmark]
         public void MsgPackDeserialize()
         {
-            var model = _msgPackBytes.FromMsgPak<TestModel>();
+            var model = Zaabee.MsgPack.BytesExtension.FromBytes<TestModel>(_msgPackBytes);
         }
 
         [Benchmark]
         public void Utf8JsonDeserializeString()
         {
-            var model = _utf8JsonString.FromUtf8Json<TestModel>();
+            var model = StringExtension.FromJson<TestModel>(_utf8JsonString);
         }
 
         [Benchmark]
         public void Utf8JsonDeserializeBytes()
         {
-            var model = _utf8JsonBytes.FromUtf8Json<TestModel>();
+            var model = Zaabee.Utf8Json.BytesExtension.FromBytes<TestModel>(_utf8JsonBytes);
         }
 
         [Benchmark]
         public void ProtobufDeserialize()
         {
-            var model = _protobuf.FromProtobuf<TestModel>();
+            var model = BytesExtension.FromBytes<TestModel>(_protobuf);
         }
 
         [Benchmark]

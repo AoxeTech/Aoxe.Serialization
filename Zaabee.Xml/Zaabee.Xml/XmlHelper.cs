@@ -1,44 +1,90 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using System.Xml;
 using System.Xml.Serialization;
 
 namespace Zaabee.Xml
 {
     public static class XmlHelper
     {
-        public static string Serialize<T>(T t, Encoding encoding = null)
+        private static readonly Encoding DefaultEncoding = Encoding.UTF8;
+
+        public static byte[] Serialize<T>(T t) => Serialize(typeof(T), t);
+
+        public static Stream Pack<T>(T t) => Pack(typeof(T), t);
+
+        public static void Pack<T>(T t, Stream stream) =>
+            Pack(typeof(T), t, stream);
+
+        public static string SerializeToXml<T>(T t, Encoding encoding = null) => SerializeToXml(typeof(T), t, encoding);
+
+        public static byte[] Serialize(Type type, object obj)
         {
-            if (t == null) return string.Empty;
-            encoding = encoding ?? Encoding.UTF8;
-            var memoryStream = new MemoryStream();
-            using (var xmlTextWriter = new XmlTextWriter(memoryStream, encoding))
+            if (obj is null) return new byte[0];
+            using (var ms = (MemoryStream) Pack(type, obj))
+                return ms.ToArray();
+        }
+
+        public static Stream Pack(Type type, object obj)
+        {
+            if (obj is null) return new MemoryStream();
+            var ms = new MemoryStream();
+            Pack(type, obj, ms);
+            return ms;
+        }
+
+        public static void Pack(Type type, object obj, Stream stream)
+        {
+            if (obj is null) return;
+            var serializer = new XmlSerializer(type);
+            serializer.Serialize(stream, obj);
+        }
+
+        public static string SerializeToXml(Type type, object obj, Encoding encoding = null)
+        {
+            if (obj is null) return string.Empty;
+            encoding = encoding ?? DefaultEncoding;
+            var xmlSerializer = new XmlSerializer(type);
+            using (var ms = (MemoryStream) Pack(type, obj))
             {
-                var serializer = new XmlSerializer(typeof(T));
-                serializer.Serialize(xmlTextWriter, t);
-                memoryStream.Position = 0;
-                using (var streamReader = new StreamReader(memoryStream, encoding))
-                    return streamReader.ReadToEnd();
+                ms.Position = 0;
+                xmlSerializer.Serialize(ms, obj);
+                return encoding.GetString(ms.ToArray());
             }
         }
 
-        public static T Deserialize<T>(string xml, Encoding encoding = null)
+        public static T Deserialize<T>(byte[] bytes) =>
+            (T) Deserialize(typeof(T), bytes);
+
+        public static T Unpack<T>(Stream stream) => (T) Unpack(typeof(T), stream);
+
+        public static T Deserialize<T>(string xml, Encoding encoding = null) =>
+            (T) Deserialize(typeof(T), xml, encoding);
+
+        public static object Deserialize(Type type, byte[] bytes)
         {
-            if (string.IsNullOrWhiteSpace(xml)) return default(T);
-            encoding = encoding ?? Encoding.UTF8;
-            var memoryStream = new MemoryStream(encoding.GetBytes(xml));
-            var xmlSerializer = new XmlSerializer(typeof(T));
-            return (T) xmlSerializer.Deserialize(memoryStream);
+            if (bytes == null || bytes.Length == 0) return default(Type);
+            var xmlSerializer = new XmlSerializer(type);
+            using (var ms = new MemoryStream(bytes))
+                return xmlSerializer.Deserialize(ms);
         }
 
-        public static object Deserialize(string xml, Type type, Encoding encoding = null)
+        public static object Unpack(Type type, Stream stream)
         {
-            if (string.IsNullOrWhiteSpace(xml)) return null;
-            encoding = encoding ?? Encoding.UTF8;
-            var memoryStream = new MemoryStream(encoding.GetBytes(xml));
+            if (stream == null || stream.Length == 0) return default(Type);
+            if (stream.CanSeek && stream.Position > 0)
+                stream.Position = 0;
             var xmlSerializer = new XmlSerializer(type);
-            return xmlSerializer.Deserialize(memoryStream);
+            return xmlSerializer.Deserialize(stream);
+        }
+
+        public static object Deserialize(Type type, string xml, Encoding encoding = null)
+        {
+            if (string.IsNullOrWhiteSpace(xml)) return default(Type);
+            encoding = encoding ?? DefaultEncoding;
+            var xmlSerializer = new XmlSerializer(type);
+            using (var ms = new MemoryStream(encoding.GetBytes(xml)))
+                return xmlSerializer.Deserialize(ms);
         }
     }
 }

@@ -4,10 +4,10 @@ using ProtoBuf;
 namespace ZaabeeProtobufTestProject
 {
     [ProtoContract]
-    public class TestModel<T>
+    public class TestModel
     {
         [ProtoMember(1)]
-        public T Id { get; set; }
+        public Guid Id { get; set; }
         [ProtoMember(2)]
         public int Age { get; set; }
         [ProtoMember(3)]

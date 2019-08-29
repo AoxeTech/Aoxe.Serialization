@@ -17,8 +17,8 @@ namespace ZaabeeUtf8JsonTestProject
                 Name = "banana"
             };
 
-            var jsonStr = testModel.Utf8JsonToString();
-            var result1 = jsonStr.FromUtf8Json<TestModel>();
+            var jsonStr = testModel.ToJson();
+            var result1 = jsonStr.FromJson<TestModel>();
 
             Assert.Equal(testModel.Id, result1.Id);
             Assert.Equal(testModel.Age, result1.Age);
@@ -43,8 +43,8 @@ namespace ZaabeeUtf8JsonTestProject
                 Name = "banana"
             };
 
-            var bytes = testModel.Utf8JsonToBytes();
-            var result1 = bytes.FromUtf8Json<TestModel>();
+            var bytes = testModel.ToBytes();
+            var result1 = bytes.FromBytes<TestModel>();
 
             Assert.Equal(testModel.Id, result1.Id);
             Assert.Equal(testModel.Age, result1.Age);

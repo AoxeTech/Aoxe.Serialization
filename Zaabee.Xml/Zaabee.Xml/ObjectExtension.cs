@@ -1,16 +1,32 @@
-﻿using System.Text;
+﻿using System;
+using System.IO;
 
 namespace Zaabee.Xml
 {
     public static class ObjectExtension
     {
-        /// <summary>
-        /// Serialize the object to xml
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <param name="encoding"></param>
-        /// <returns></returns>
-        public static string ToXml<T>(this T obj, Encoding encoding = null) where T : class =>
-            XmlHelper.Serialize(obj, encoding);
+        public static byte[] ToBytes<T>(this T t) =>
+            XmlHelper.Serialize(t);
+
+        public static Stream ToStream<T>(this T t) =>
+            XmlHelper.Pack(t);
+
+        public static string ToXml<T>(this T t) =>
+            XmlHelper.SerializeToXml(t);
+
+        public static void PackTo<T>(this T t, Stream stream) =>
+            XmlHelper.Pack(t, stream);
+
+        public static byte[] ToBytes(this object obj, Type type) =>
+            XmlHelper.Serialize(type, obj);
+
+        public static Stream ToStream(this object obj, Type type) =>
+            XmlHelper.Pack(type, obj);
+
+        public static string ToXml(this object obj, Type type) =>
+            XmlHelper.SerializeToXml(type, obj);
+
+        public static void PackTo(this object obj, Type type, Stream stream) =>
+            XmlHelper.Pack(type, obj, stream);
     }
 }

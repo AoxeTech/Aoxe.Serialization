@@ -1,9 +1,9 @@
 using System;
 using System.IO;
 using Xunit;
-using Zaabee.Xml;
+using Zaabee.ZeroFormatter;
 
-namespace ZaabeeXmlTestProject
+namespace ZaabeeZeroFormatterTestProject
 {
     public class UnitTest
     {
@@ -48,17 +48,6 @@ namespace ZaabeeXmlTestProject
         }
 
         [Fact]
-        public void StringTest()
-        {
-            var testModel = GetTestModel();
-            var xml = testModel.ToXml();
-            var result = xml.FromXml<TestModel>();
-            Assert.Equal(
-                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
-        }
-
-        [Fact]
         public void BytesNonGenericTest()
         {
             var testModel = GetTestModel();
@@ -97,17 +86,6 @@ namespace ZaabeeXmlTestProject
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
                     unPackResult3.Gender));
-        }
-
-        [Fact]
-        public void StringNonGenericTest()
-        {
-            var testModel = GetTestModel();
-            var xml = testModel.ToXml();
-            var result = (TestModel) xml.FromXml(typeof(TestModel));
-            Assert.Equal(
-                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
         }
 
         private static TestModel GetTestModel()
