@@ -15,21 +15,21 @@ namespace ZaabeeProtobufTestProject
         {
             var testModel = GetTestModel();
             
-            var bytes = testModel.ToProtobuf();
+            var bytes = testModel.ToBytes();
             
-            var stream1 = testModel.PackProtobuf();
+            var stream1 = testModel.ToStream();
             
-            var stream2 = new MemoryStream();testModel.PackProtobuf(stream2);
+            var stream2 = new MemoryStream();testModel.PackTo(stream2);
             
-            var stream3 = new MemoryStream();stream3.PackProtobuf(testModel);
+            var stream3 = new MemoryStream();stream3.Pack(testModel);
             
-            var deserializeResult = bytes.FromProtobuf<TestModel<Guid>>();
+            var deserializeResult = bytes.FromBytes<TestModel<Guid>>();
             
-            var unPackResult1 = stream1.UnpackProtobuf<TestModel<Guid>>();
+            var unPackResult1 = stream1.Unpack<TestModel<Guid>>();
             
-            var unPackResult2 = stream2.UnpackProtobuf<TestModel<Guid>>();
+            var unPackResult2 = stream2.Unpack<TestModel<Guid>>();
             
-            var unPackResult3 = stream3.UnpackProtobuf<TestModel<Guid>>();
+            var unPackResult3 = stream3.Unpack<TestModel<Guid>>();
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
@@ -50,21 +50,21 @@ namespace ZaabeeProtobufTestProject
             var type = typeof(TestModel<Guid>);
             var testModel = GetTestModel();
             
-            var bytes = testModel.ToProtobuf();
+            var bytes = testModel.ToBytes();
             
-            var stream1 = testModel.PackProtobuf();
+            var stream1 = testModel.ToStream();
             
-            var stream2 = new MemoryStream();testModel.PackProtobuf(stream2);
+            var stream2 = new MemoryStream();testModel.PackTo(stream2);
             
-            var stream3 = new MemoryStream();stream3.PackProtobuf(testModel);
+            var stream3 = new MemoryStream();stream3.Pack(testModel);
             
-            var deserializeResult = (TestModel<Guid>)bytes.FromProtobuf(type);
+            var deserializeResult = (TestModel<Guid>)bytes.FromBytes(type);
             
-            var unPackResult1 = (TestModel<Guid>)stream1.UnpackProtobuf(type);
+            var unPackResult1 = (TestModel<Guid>)stream1.Unpack(type);
             
-            var unPackResult2 = (TestModel<Guid>)stream2.UnpackProtobuf(type);
+            var unPackResult2 = (TestModel<Guid>)stream2.Unpack(type);
             
-            var unPackResult3 = (TestModel<Guid>)stream3.UnpackProtobuf(type);
+            var unPackResult3 = (TestModel<Guid>)stream3.Unpack(type);
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),

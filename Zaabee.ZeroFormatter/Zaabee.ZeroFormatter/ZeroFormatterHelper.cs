@@ -7,12 +7,12 @@ namespace Zaabee.ZeroFormatter
     public static class ZeroFormatterHelper
     {
         public static byte[] Serialize<T>(T t) =>
-            t is null ? new byte[0] : ZeroFormatterSerializer.Serialize(t);
+            t == null ? new byte[0] : ZeroFormatterSerializer.Serialize(t);
 
         public static Stream Pack<T>(T t)
         {
             var ms = new MemoryStream();
-            if (t is null) return ms;
+            if (t == null) return ms;
             Pack(t, ms);
             return ms;
         }

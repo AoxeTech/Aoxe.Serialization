@@ -4,10 +4,10 @@ namespace Zaabee.MsgPack
 {
     public static class BytesExtension
     {
-        public static T FromMsgPak<T>(this byte[] bytes) =>
+        public static T FromBytes<T>(this byte[] bytes) =>
             MsgPackHelper.Deserialize<T>(bytes);
 
-        public static object FromMsgPak(this byte[] bytes, Type type) =>
+        public static object FromBytes(this byte[] bytes, Type type) =>
             MsgPackHelper.Deserialize(type, bytes);
     }
 }

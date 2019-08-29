@@ -5,13 +5,13 @@ namespace Zaabee.Protobuf
 {
     public static class StreamExtension
     {
-        public static void PackProtobuf<T>(this Stream stream, T obj) =>
+        public static void Pack<T>(this Stream stream, T obj) =>
             ProtobufHelper.Pack(obj, stream);
 
-        public static T UnpackProtobuf<T>(this Stream stream) =>
+        public static T Unpack<T>(this Stream stream) =>
             ProtobufHelper.Unpack<T>(stream);
 
-        public static object UnpackProtobuf(this Stream stream, Type type) =>
+        public static object Unpack(this Stream stream, Type type) =>
             ProtobufHelper.Unpack(type, stream);
     }
 }

@@ -4,13 +4,13 @@ namespace Zaabee.Protobuf
 {
     public static class ObjectExtension
     {
-        public static byte[] ToProtobuf(this object obj) =>
+        public static byte[] ToBytes(this object obj) =>
             ProtobufHelper.Serialize(obj);
 
-        public static Stream PackProtobuf(this object obj) =>
+        public static Stream ToStream(this object obj) =>
             ProtobufHelper.Pack(obj);
 
-        public static void PackProtobuf(this object obj, Stream stream) =>
+        public static void PackTo(this object obj, Stream stream) =>
             ProtobufHelper.Pack(obj, stream);
     }
 }

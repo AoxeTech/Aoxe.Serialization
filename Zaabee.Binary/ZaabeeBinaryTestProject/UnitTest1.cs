@@ -12,23 +12,23 @@ namespace ZaabeeBinaryTestProject
         {
             var testModel = GetTestModel();
 
-            var bytes = testModel.ToBinary();
+            var bytes = testModel.ToBytes();
 
-            var stream1 = testModel.PackBinary();
+            var stream1 = testModel.ToStream();
 
             var stream2 = new MemoryStream();
-            testModel.PackBinary(stream2);
+            testModel.PackTo(stream2);
 
             var stream3 = new MemoryStream();
-            stream3.PackBinary(testModel);
+            stream3.Pack(testModel);
 
-            var deserializeResult = bytes.FromBinary<TestModel>();
+            var deserializeResult = bytes.FromBytes<TestModel>();
 
-            var unPackResult1 = stream1.UnpackBinary<TestModel>();
+            var unPackResult1 = stream1.Unpack<TestModel>();
 
-            var unPackResult2 = stream2.UnpackBinary<TestModel>();
+            var unPackResult2 = stream2.Unpack<TestModel>();
 
-            var unPackResult3 = stream3.UnpackBinary<TestModel>();
+            var unPackResult3 = stream3.Unpack<TestModel>();
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name),
@@ -51,23 +51,23 @@ namespace ZaabeeBinaryTestProject
             var type = typeof(TestModel);
             var testModel = GetTestModel();
 
-            var bytes = testModel.ToBinary();
+            var bytes = testModel.ToBytes();
 
-            var stream1 = testModel.PackBinary();
+            var stream1 = testModel.ToStream();
 
             var stream2 = new MemoryStream();
-            testModel.PackBinary(stream2);
+            testModel.PackTo(stream2);
 
             var stream3 = new MemoryStream();
-            stream3.PackBinary(testModel);
+            stream3.Pack(testModel);
 
-            var deserializeResult = (TestModel) bytes.FromBinary(type);
+            var deserializeResult = (TestModel) bytes.FromBytes(type);
 
-            var unPackResult1 = (TestModel) stream1.UnpackBinary(type);
+            var unPackResult1 = (TestModel) stream1.Unpack(type);
 
-            var unPackResult2 = (TestModel) stream2.UnpackBinary(type);
+            var unPackResult2 = (TestModel) stream2.Unpack(type);
 
-            var unPackResult3 = (TestModel) stream3.UnpackBinary(type);
+            var unPackResult3 = (TestModel) stream3.Unpack(type);
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name),
