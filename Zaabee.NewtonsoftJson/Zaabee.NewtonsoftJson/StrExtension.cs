@@ -14,7 +14,7 @@ namespace Zaabee.NewtonsoftJson
         /// <param name="str"></param>
         /// <returns></returns>
         public static T FromJson<T>(this string str) =>
-            JsonHelper.Deserialize<T>(str);
+            NewtonsoftJsonHelper.Deserialize<T>(str);
 
         /// <summary>
         /// Deserialize the json to the specify type
@@ -23,6 +23,6 @@ namespace Zaabee.NewtonsoftJson
         /// <param name="type"></param>
         /// <returns></returns>
         public static object FromJson(this string str, Type type) =>
-            JsonHelper.Deserialize(str, type);
+            NewtonsoftJsonHelper.Deserialize(str, type);
     }
 }
