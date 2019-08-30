@@ -8,7 +8,7 @@ namespace Zaabee.Jil
         public static byte[] ToBytes<T>(this T t, Options options = null) =>
             JilHelper.Serialize(t, options);
 
-        public static Stream ToStream<T>(this T t, Options options = null) =>
+        public static Stream Pack<T>(this T t, Options options = null) =>
             JilHelper.Pack(t, options);
 
         public static string ToJson<T>(this T t, Options options = null) =>
@@ -23,7 +23,7 @@ namespace Zaabee.Jil
         public static byte[] ToBytes(this object obj, Options options = null) =>
             JilHelper.Serialize(obj, options);
 
-        public static Stream ToStream(this object obj, Options options = null) =>
+        public static Stream Pack(this object obj, Options options = null) =>
             JilHelper.Pack(obj, options);
 
         public static string ToJson(this object obj, Options options = null) =>

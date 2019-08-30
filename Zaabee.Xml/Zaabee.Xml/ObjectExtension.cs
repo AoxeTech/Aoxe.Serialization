@@ -8,7 +8,7 @@ namespace Zaabee.Xml
         public static byte[] ToBytes<T>(this T t) =>
             XmlHelper.Serialize(t);
 
-        public static Stream ToStream<T>(this T t) =>
+        public static Stream Pack<T>(this T t) =>
             XmlHelper.Pack(t);
 
         public static string ToXml<T>(this T t) =>
@@ -20,7 +20,7 @@ namespace Zaabee.Xml
         public static byte[] ToBytes(this object obj, Type type) =>
             XmlHelper.Serialize(type, obj);
 
-        public static Stream ToStream(this object obj, Type type) =>
+        public static Stream Pack(this object obj, Type type) =>
             XmlHelper.Pack(type, obj);
 
         public static string ToXml(this object obj, Type type) =>

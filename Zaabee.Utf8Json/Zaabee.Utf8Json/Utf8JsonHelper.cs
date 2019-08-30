@@ -54,20 +54,38 @@ namespace Zaabee.Utf8Json
         public static object Deserialize(Type type, byte[] bytes, IJsonFormatterResolver resolver) =>
             bytes == null ? null : JsonSerializer.NonGeneric.Deserialize(type, bytes, resolver);
 
+        public static Stream Pack<T>(T value) =>
+            new MemoryStream(JsonSerializer.Serialize(value));
+
         public static void Pack<T>(T value, Stream stream) =>
             JsonSerializer.Serialize(stream, value);
+
+        public static Stream Pack<T>(T value, IJsonFormatterResolver resolver) =>
+            new MemoryStream(JsonSerializer.Serialize(value, resolver));
 
         public static void Pack<T>(T value, Stream stream, IJsonFormatterResolver resolver) =>
             JsonSerializer.Serialize(stream, value, resolver);
 
+        public static Stream Pack(object value) =>
+            new MemoryStream(JsonSerializer.NonGeneric.Serialize(value));
+
         public static void Pack(object value, Stream stream) =>
             JsonSerializer.NonGeneric.Serialize(stream, value);
+
+        public static Stream Pack(Type type, object value) =>
+            new MemoryStream(JsonSerializer.NonGeneric.Serialize(type, value));
 
         public static void Pack(Type type, object value, Stream stream) =>
             JsonSerializer.NonGeneric.Serialize(type, stream, value);
 
+        public static Stream Pack(object value, IJsonFormatterResolver resolver) =>
+            new MemoryStream(JsonSerializer.NonGeneric.Serialize(value, resolver));
+
         public static void Pack(object value, Stream stream, IJsonFormatterResolver resolver) =>
             JsonSerializer.NonGeneric.Serialize(stream, value, resolver);
+
+        public static Stream Pack(Type type, object value, IJsonFormatterResolver resolver) =>
+            new MemoryStream(JsonSerializer.NonGeneric.Serialize(type, value, resolver));
 
         public static void Pack(Type type, object value, Stream stream, IJsonFormatterResolver resolver) =>
             JsonSerializer.NonGeneric.Serialize(type, stream, value, resolver);

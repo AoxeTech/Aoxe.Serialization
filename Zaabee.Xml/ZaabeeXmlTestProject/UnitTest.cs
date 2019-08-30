@@ -23,7 +23,7 @@ namespace ZaabeeXmlTestProject
         {
             var testModel = GetTestModel();
 
-            var stream1 = testModel.ToStream();
+            var stream1 = testModel.Pack();
             var stream2 = new MemoryStream();
             testModel.PackTo(stream2);
             var stream3 = new MemoryStream();
@@ -75,7 +75,7 @@ namespace ZaabeeXmlTestProject
             var type = typeof(TestModel);
             var testModel = GetTestModel();
 
-            var stream1 = testModel.ToStream(type);
+            var stream1 = testModel.Pack(type);
             var stream2 = new MemoryStream();
             testModel.PackTo(type, stream2);
             var stream3 = new MemoryStream();
