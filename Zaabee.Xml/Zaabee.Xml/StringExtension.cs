@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Zaabee.Xml
 {
-    public static class StrExtension
+    public static class StringExtension
     {
         public static T FromXml<T>(this string str, Encoding encoding = null) =>
             XmlHelper.Deserialize<T>(str, encoding);
