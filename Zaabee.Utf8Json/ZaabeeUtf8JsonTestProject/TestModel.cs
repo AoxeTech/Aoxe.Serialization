@@ -8,7 +8,6 @@ namespace ZaabeeUtf8JsonTestProject
         public int Age { get; set; }
         public string Name { get; set; }
         public DateTime CreateTime { get; set; }
-
         public Gender Gender { get; set; }
     }
 }

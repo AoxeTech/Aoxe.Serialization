@@ -11,9 +11,6 @@ using Zaabee.Utf8Json;
 using Zaabee.Xml;
 using Zaabee.ZeroFormatter;
 using ZeroFormatter;
-using BytesExtension = Zaabee.Protobuf.BytesExtension;
-using ObjectExtension = Zaabee.Protobuf.ObjectExtension;
-using StrExtension = Zaabee.NewtonsoftJson.StrExtension;
 
 namespace Benchmark
 {

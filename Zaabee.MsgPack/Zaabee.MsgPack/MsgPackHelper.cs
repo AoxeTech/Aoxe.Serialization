@@ -9,8 +9,8 @@ namespace Zaabee.MsgPack
         public static byte[] Serialize<T>(T t)
         {
             if (t == null) return new byte[0];
-            using (var ms = (MemoryStream) Pack(t))
-                return ms.ToArray();
+            using (var stream = Pack(t))
+                return StreamToBytes(stream);
         }
 
         public static Stream Pack<T>(T t)
@@ -31,8 +31,8 @@ namespace Zaabee.MsgPack
         public static byte[] Serialize(Type type, object obj)
         {
             if (obj == null) return new byte[0];
-            using (var ms = (MemoryStream) Pack(type, obj))
-                return ms.ToArray();
+            using (var stream = Pack(type, obj))
+                return StreamToBytes(stream);
         }
 
         public static Stream Pack(Type type, object obj)
@@ -80,6 +80,15 @@ namespace Zaabee.MsgPack
             if (stream.CanSeek && stream.Position > 0)
                 stream.Position = 0;
             return serializer.Unpack(stream);
+        }
+
+        private static byte[] StreamToBytes(Stream stream)
+        {
+            var bytes = new byte[stream.Length];
+            if (stream.Position > 0 && stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
+            stream.Read(bytes, 0, bytes.Length);
+            if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
+            return bytes;
         }
     }
 }

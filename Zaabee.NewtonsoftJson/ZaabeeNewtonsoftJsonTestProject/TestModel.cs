@@ -9,5 +9,6 @@ namespace ZaabeeNewtonsoftJsonTestProject
         public string Name { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTimeOffset CreateTimeOffset { get; set; }
+        public Gender Gender { get; set; }
     }
 }
