@@ -15,8 +15,6 @@ namespace Benchmark
             var deserializeBenchmark = BenchmarkRunner.Run<DeserializeBenchmark>();
             var unpackBenchmark = BenchmarkRunner.Run<UnpackBenchmark>();
             var deserializeTextBenchmark = BenchmarkRunner.Run<DeserializeTextBenchmark>();
-            
-            Console.ReadLine();
         }
     }
 }
