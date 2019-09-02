@@ -6,7 +6,7 @@ namespace Zaabee.NewtonsoftJson
 {
     public static class StreamExtension
     {
-        public static void Pack(this Stream stream, object obj, JsonSerializerSettings settings = null,
+        public static void PackBy(this Stream stream, object obj, JsonSerializerSettings settings = null,
             Formatting? formatting = null) =>
             NewtonsoftJsonHelper.Pack(obj, stream, settings, formatting);
 

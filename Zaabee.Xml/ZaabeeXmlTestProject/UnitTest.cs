@@ -27,7 +27,7 @@ namespace ZaabeeXmlTestProject
             var stream2 = new MemoryStream();
             testModel.PackTo(stream2);
             var stream3 = new MemoryStream();
-            stream3.Pack(testModel);
+            stream3.PackBy(testModel);
 
             var unPackResult1 = stream1.Unpack<TestModel>();
             var unPackResult2 = stream2.Unpack<TestModel>();
@@ -79,7 +79,7 @@ namespace ZaabeeXmlTestProject
             var stream2 = new MemoryStream();
             testModel.PackTo(type, stream2);
             var stream3 = new MemoryStream();
-            stream3.Pack(type, testModel);
+            stream3.PackBy(type, testModel);
 
             var unPackResult1 = (TestModel) stream1.Unpack(type);
             var unPackResult2 = (TestModel) stream2.Unpack(type);

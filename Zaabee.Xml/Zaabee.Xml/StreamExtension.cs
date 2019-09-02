@@ -5,10 +5,10 @@ namespace Zaabee.Xml
 {
     public static class StreamExtension
     {
-        public static void Pack<T>(this Stream stream, T t) =>
+        public static void PackBy<T>(this Stream stream, T t) =>
             XmlHelper.Pack(t, stream);
 
-        public static void Pack(this Stream stream, Type type, object obj) =>
+        public static void PackBy(this Stream stream, Type type, object obj) =>
             XmlHelper.Pack(type, obj, stream);
 
         public static T Unpack<T>(this Stream stream) =>
