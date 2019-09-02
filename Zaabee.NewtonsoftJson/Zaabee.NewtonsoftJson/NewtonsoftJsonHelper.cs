@@ -7,11 +7,20 @@ namespace Zaabee.NewtonsoftJson
 {
     public static class NewtonsoftJsonHelper
     {
-        private static readonly Encoding DefaultEncoding = Encoding.UTF8;
+        private static Encoding _encoding = Encoding.UTF8;
+
+        public static Encoding DefaultEncoding
+        {
+            get => _encoding;
+            set => _encoding = value ?? _encoding;
+        }
+
         public static JsonSerializerSettings DefaultSettings;
 
         public static byte[] Serialize(object obj, JsonSerializerSettings settings = null) =>
-            obj == null ? new byte[0] : DefaultEncoding.GetBytes(SerializeToJson(obj, settings));
+            obj == null
+                ? new byte[0]
+                : DefaultEncoding.GetBytes(SerializeToJson(obj, settings));
 
         public static Stream Pack(object obj, JsonSerializerSettings settings = null)
         {
@@ -29,7 +38,7 @@ namespace Zaabee.NewtonsoftJson
         }
 
         public static string SerializeToJson(object obj, JsonSerializerSettings settings = null) =>
-            JsonConvert.SerializeObject(obj, settings ?? DefaultSettings);
+            obj == null ? string.Empty : JsonConvert.SerializeObject(obj, settings ?? DefaultSettings);
 
         public static T Deserialize<T>(byte[] bytes, JsonSerializerSettings settings = null) =>
             (T) Deserialize(typeof(T), bytes, settings);

@@ -7,7 +7,13 @@ namespace Zaabee.Xml
 {
     public static class XmlHelper
     {
-        private static readonly Encoding DefaultEncoding = Encoding.UTF8;
+        private static Encoding _encoding = Encoding.UTF8;
+
+        public static Encoding DefaultEncoding
+        {
+            get => _encoding;
+            set => _encoding = value ?? _encoding;
+        }
 
         public static byte[] Serialize<T>(T t) => Serialize(typeof(T), t);
 
