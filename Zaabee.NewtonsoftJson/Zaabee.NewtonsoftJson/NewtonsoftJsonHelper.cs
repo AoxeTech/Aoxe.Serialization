@@ -9,76 +9,51 @@ namespace Zaabee.NewtonsoftJson
     {
         private static readonly Encoding DefaultEncoding = Encoding.UTF8;
         public static JsonSerializerSettings DefaultSettings;
-        public static Formatting? DefaultFormatting;
 
-        public static byte[] Serialize(object obj, JsonSerializerSettings settings = null,
-            Formatting? formatting = null) =>
-            obj == null ? new byte[0] : DefaultEncoding.GetBytes(SerializeToJson(obj, settings, formatting));
+        public static byte[] Serialize(object obj, JsonSerializerSettings settings = null) =>
+            obj == null ? new byte[0] : DefaultEncoding.GetBytes(SerializeToJson(obj, settings));
 
-        public static Stream Pack(object obj, JsonSerializerSettings settings = null,
-            Formatting? formatting = null)
+        public static Stream Pack(object obj, JsonSerializerSettings settings = null)
         {
             var ms = new MemoryStream();
             if (obj is null) return ms;
-            Pack(obj, ms, settings, formatting);
+            Pack(obj, ms, settings);
             return ms;
         }
 
-        public static void Pack(object obj, Stream stream, JsonSerializerSettings settings = null,
-            Formatting? formatting = null)
+        public static void Pack(object obj, Stream stream, JsonSerializerSettings settings = null)
         {
             if (obj is null) return;
-            var bytes = Serialize(obj, settings, formatting);
+            var bytes = Serialize(obj, settings);
             stream.Write(bytes, 0, bytes.Length);
         }
 
-        public static string SerializeToJson(object obj, JsonSerializerSettings settings = null,
-            Formatting? formatting = null)
-        {
-            settings = settings ?? DefaultSettings;
-            if (settings != null)
-                settings.Formatting = formatting ?? (DefaultFormatting ?? Formatting.None);
-            return JsonConvert.SerializeObject(obj, settings ?? DefaultSettings);
-        }
+        public static string SerializeToJson(object obj, JsonSerializerSettings settings = null) =>
+            JsonConvert.SerializeObject(obj, settings ?? DefaultSettings);
 
-        public static T Deserialize<T>(byte[] bytes, JsonSerializerSettings settings = null,
-            Formatting? formatting = null) =>
-            (T) Deserialize(typeof(T), bytes, settings, formatting);
+        public static T Deserialize<T>(byte[] bytes, JsonSerializerSettings settings = null) =>
+            (T) Deserialize(typeof(T), bytes, settings);
 
-        public static T Unpack<T>(Stream stream, JsonSerializerSettings settings = null,
-            Formatting? formatting = null) =>
-            (T) Unpack(typeof(T), stream, settings, formatting);
+        public static T Unpack<T>(Stream stream, JsonSerializerSettings settings = null) =>
+            (T) Unpack(typeof(T), stream, settings);
 
-        public static T Deserialize<T>(string json, JsonSerializerSettings settings = null,
-            Formatting? formatting = null) =>
-            (T) Deserialize(typeof(T), json, settings, formatting);
+        public static T Deserialize<T>(string json, JsonSerializerSettings settings = null) =>
+            (T) Deserialize(typeof(T), json, settings);
 
+        public static object Deserialize(Type type, byte[] bytes, JsonSerializerSettings settings = null) =>
+            bytes == null || bytes.Length == 0
+                ? default(Type)
+                : Deserialize(type, DefaultEncoding.GetString(bytes), settings);
 
-        public static object Deserialize(Type type, byte[] bytes, JsonSerializerSettings settings = null,
-            Formatting? formatting = null)
-        {
-            if (bytes == null || bytes.Length == 0) return default(Type);
-            var json = DefaultEncoding.GetString(bytes);
-            return Deserialize(type, json, settings, formatting);
-        }
+        public static object Unpack(Type type, Stream stream, JsonSerializerSettings settings = null) =>
+            stream == null
+                ? default(Type)
+                : Deserialize(type, DefaultEncoding.GetString(StreamToBytes(stream)), settings);
 
-        public static object Unpack(Type type, Stream stream, JsonSerializerSettings settings = null,
-            Formatting? formatting = null)
-        {
-            if (stream == null) return default(Type);
-            var bytes = StreamToBytes(stream);
-            return Deserialize(type, DefaultEncoding.GetString(bytes), settings, formatting);
-        }
-
-        public static object Deserialize(Type type, string json, JsonSerializerSettings settings = null,
-            Formatting? formatting = null)
-        {
-            if (string.IsNullOrWhiteSpace(json)) return default(Type);
-            settings = settings ?? DefaultSettings;
-            if (settings != null)
-                settings.Formatting = formatting ?? (DefaultFormatting ?? Formatting.None);
-            return JsonConvert.DeserializeObject(json, type, settings);
-        }
+        public static object Deserialize(Type type, string json, JsonSerializerSettings settings = null) =>
+            string.IsNullOrWhiteSpace(json)
+                ? default(Type)
+                : JsonConvert.DeserializeObject(json, type, settings ?? DefaultSettings);
 
         private static byte[] StreamToBytes(Stream stream)
         {

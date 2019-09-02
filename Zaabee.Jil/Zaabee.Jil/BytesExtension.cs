@@ -1,13 +1,14 @@
 using System;
+using Jil;
 
 namespace Zaabee.Jil
 {
     public static class BytesExtension
     {
-        public static T FromBytes<T>(this byte[] bytes) =>
-            JilHelper.Deserialize<T>(bytes);
+        public static T FromBytes<T>(this byte[] bytes, Options options = null) =>
+            JilHelper.Deserialize<T>(bytes, options);
 
-        public static object FromBytes(this byte[] bytes, Type type) =>
-            JilHelper.Deserialize(type, bytes);
+        public static object FromBytes(this byte[] bytes, Type type, Options options = null) =>
+            JilHelper.Deserialize(type, bytes, options);
     }
 }
