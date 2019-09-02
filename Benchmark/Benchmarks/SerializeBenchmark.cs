@@ -1,5 +1,6 @@
 using System;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Engines;
 using Zaabee.Binary;
 using Zaabee.Jil;
 using Zaabee.MsgPack;
@@ -12,6 +13,7 @@ using Zaabee.ZeroFormatter;
 namespace Benchmark.Benchmarks
 {
     [MemoryDiagnoser]
+    [SimpleJob(RunStrategy.Monitoring, targetCount: 100)]
     [MinColumn, MaxColumn, MeanColumn, MedianColumn]
     public class SerializeBenchmark
     {

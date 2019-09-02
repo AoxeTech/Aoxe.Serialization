@@ -1,4 +1,4 @@
-﻿using Benchmark.Benchmarks;
+﻿using System;
 using BenchmarkDotNet.Running;
 
 namespace Benchmark
@@ -7,13 +7,14 @@ namespace Benchmark
     {
         static void Main(string[] args)
         {
-            var serializeBenchmark = BenchmarkRunner.Run<SerializeBenchmark>();
-            var packBenchmark = BenchmarkRunner.Run<PackBenchmark>();
-            var serializeTextBenchmark = BenchmarkRunner.Run<SerializeTextBenchmark>();
-            
-            var deserializeBenchmark = BenchmarkRunner.Run<DeserializeBenchmark>();
-            var unpackBenchmark = BenchmarkRunner.Run<UnpackBenchmark>();
-            var deserializeTextBenchmark = BenchmarkRunner.Run<DeserializeTextBenchmark>();
+            var assembly = typeof(TestModel).Assembly;
+            var summaries = BenchmarkRunner.Run(assembly);
+            foreach (var summary in summaries)
+            {
+                Console.WriteLine(summary.ResultsDirectoryPath);
+                foreach (var benchmarkReport in summary.Reports)
+                    Console.WriteLine(benchmarkReport);
+            }
         }
     }
 }

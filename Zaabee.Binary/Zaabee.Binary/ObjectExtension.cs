@@ -7,7 +7,7 @@ namespace Zaabee.Binary
         public static byte[] ToBytes(this object obj) =>
             BinaryHelper.Serialize(obj);
 
-        public static Stream ToStream(this object obj) =>
+        public static Stream Pack(this object obj) =>
             BinaryHelper.Pack(obj);
 
         public static void PackTo(this object obj, Stream stream) =>

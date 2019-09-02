@@ -36,7 +36,15 @@ var testModel = new TestModel
 
 ```CSharp
 var bytes = testModel.ToBytes();
-var result = bytes.FromBytes<TestModel>();
+var bytesResult1 = bytes.FromBytes<TestModel>();
+var bytesResult2 = bytes.FromBytes(typeof(TestModel));
+
+var stream = testModel.ToStream();
+var streamResult = stream.FromStream<TestModel>();
+
+var ms = new MemoryStream();
+testModel.PackTo(ms);
+var msResult = ms.FromStream<TestModel>();
 ```
 
 ### [Zaabee.Jil](https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Jil)
@@ -44,35 +52,33 @@ var result = bytes.FromBytes<TestModel>();
 ```CSharp
 var json = testModel.ToJil();
 
-var result1 = jsonStr.FromJil<TestModel>();
-var result2 = jsonStr.FromJil(typeof(TestModel)) as TestModel;
+var result1 = json.FromJil<TestModel>();
+var result2 = json.FromJil(typeof(TestModel)) as TestModel;
 ```
 
 ### [Zaabee.NewtonsoftJson](https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.NewtonsoftJson)
 
 ```CSharp
-var json1 = testModel.ToJson();
-var json2 = testModel.ToJson(new List<string> {"Id", "Name"});
-var json3 = testModel.ToJson(null, true);
+var json = testModel.ToJson();
 
-var result1 = jsonStr.FromJson<TestModel>();
-var result2 = jsonStr.FromJson(typeof(TestModel)) as TestModel;
+var result1 = json.FromJson<TestModel>();
+var result2 = json.FromJson(typeof(TestModel)) as TestModel;
 ```
 
 ### [Zaabee.MsgPack](https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.MsgPack)
 
 ```CSharp
 var bytes = testModel.ToMsgPack();
-var result1 = bytes.FromMsgPak<TestModel>();
+var result = bytes.FromMsgPak<TestModel>();
 ```
 
 ### [Zaabee.Utf8Json](https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Utf8Json)
 
 ```CSharp
-var json = testModel.Utf8JsonToString();
-var result1 = json.FromUtf8Json<TestModel>();
-var bytes = testModel.Utf8JsonToBytes();
-var result2 = bytes.FromUtf8Json<TestModel>();
+var json = testModel.ToJson();
+var result1 = json.FromJson<TestModel>();
+var bytes = testModel.ToBytes();
+var result2 = bytes.FromBytes<TestModel>();
 ```
 
 ### [Zaabee.Protobuf](https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Protobuf)
