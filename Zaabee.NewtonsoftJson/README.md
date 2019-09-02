@@ -5,47 +5,45 @@ The wraps and extensions methods base by [Json.NET](https://github.com/JamesNK/N
 TestModel
 
 ```CSharp
-var id = Guid.NewGuid();
-var age = new Random().Next(0, 100);
-var time = new DateTime(2017, 1, 1);
-var name = "banana";
+public class TestModel
+{
+    public Guid Id { get; set; }
+    public int Age { get; set; }
+    public string Name { get; set; }
+    public DateTimeOffset CreateTime { get; set; }
+}
+```
 
+TestMethod
+
+```CSharp
 var testModel = new TestModel
 {
-    Id = id,
-    Age = age,
-    CreateTime = time,
-    Name = name
+    Id = Guid.NewGuid(),
+    Age = new Random().Next(0, 100),
+    CreateTime = DateTimeOffset.Now,
+    Name = "banana"
 };
-```
 
-Serialize
+var json = testModel.ToJson();
+var jsonResult1 = json.FromJson<TestModel>();
+var jsonResult2 = json.FromJson(typeof(TestModel));
 
-```CSharp
-var jsonStr1 = testModel.ToJson();
-Assert.Equal(jsonStr1,
-    $"{{\"Id\":\"{id}\",\"Age\":{age},\"Name\":\"{name}\",\"CreateTime\":\"{time:yyyy-MM-dd HH:mm:ss}\"}}");
+var bytes = testModel.ToBytes();
+var bytesResult1 = bytes.FromBytes<TestModel>();
+var bytesResult2 = bytes.FromBytes(typeof(TestModel));
 
-var jsonStr2 = testModel.ToJson(new List<string> {"Id", "Name"});
-Assert.Equal(jsonStr2,
-    $"{{\"Id\":\"{id}\",\"Name\":\"{name}\"}}");
+var stream = testModel.Pack();
+var streamResult1 = stream.Unpack<TestModel>();
+var streamResult2 = stream.Unpack(typeof(TestModel));
 
-var jsonStr3 = testModel.ToJson(null, true);
-Assert.Equal(jsonStr3,
-    $"{{\"id\":\"{id}\",\"age\":{age},\"name\":\"{name}\",\"createTime\":\"{time:yyyy-MM-dd HH:mm:ss}\"}}");
-```
+var ms1 = new MemoryStream();
+testModel.PackTo(ms1);
+var msResult1 = ms1.Unpack<TestModel>();
+var msResult2 = ms1.Unpack(typeof(TestModel));
 
-Deserialize
-
-```CSharp
-var jsonStr =
-    $"{{\"Id\":\"{id}\",\"Age\":{age},\"Name\":\"{name}\",\"CreateTime\":\"{time:yyyy-MM-dd HH:mm:ss}\"}}";
-
-var deserializeModel1 = jsonStr.FromJson<TestModel>();
-var deserializeModel2 = jsonStr.FromJson(typeof(TestModel)) as TestModel;
-
-Assert.Equal(deserializeModel1.Id, deserializeModel2.Id);
-Assert.Equal(deserializeModel1.Age, deserializeModel2.Age);
-Assert.Equal(deserializeModel1.CreateTime, deserializeModel2.CreateTime);
-Assert.Equal(deserializeModel1.Name, deserializeModel2.Name);
+var ms2 = new MemoryStream();
+ms2.PackBy(testmodel);
+var msResult1 = ms2.Unpack<TestModel>();
+var msResult2 = ms2.Unpack(typeof(TestModel));
 ```

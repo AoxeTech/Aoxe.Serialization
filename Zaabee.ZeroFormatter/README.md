@@ -36,18 +36,17 @@ var testModel = new TestModel
     Name = "banana",
     Gender = Gender.Female
 };
-```
 
-ExtensionMethodTest
+var bytes = testModel.ToBytes();
+var bytesResult1 = bytes.FromBytes<TestModel>();
+var bytesResult2 = bytes.FromBytes(typeof(TestModel));
 
-```CSharp
-var testModel = GetTestModel();
-var bytes = testModel.ToZeroFormatter();
-var result = bytes.FromZeroFormatter<TestModel>();
+var stream = testModel.Pack();
+var streamResult1 = stream.Unpack<TestModel>();
+var streamResult2 = stream.Unpack(typeof(TestModel));
 
-Assert.Equal(testModel.Id, result.Id);
-Assert.Equal(testModel.Age, result.Age);
-Assert.Equal(testModel.CreateTime, result.CreateTime);
-Assert.Equal(testModel.Name, result.Name);
-Assert.Equal(testModel.Gender, result.Gender);
+var ms = new MemoryStream();
+testModel.PackTo(ms);
+var msResult1 = ms.Unpack<TestModel>();
+var msResult2 = ms.Unpack(typeof(TestModel));
 ```

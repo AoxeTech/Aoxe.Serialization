@@ -27,16 +27,15 @@ var testModel = new TestModel
 };
 
 var bytes = testModel.ToBytes();
-var result = bytes.FromBytes<TestModel>();
+var bytesResult1 = bytes.FromBytes<TestModel>();
+var bytesResult2 = bytes.FromBytes(typeof(TestModel));
 
-Assert.Equal(testModel.Id, result.Id);
-Assert.Equal(testModel.Age, result.Age);
-Assert.Equal(testModel.CreateTime.Year, result.CreateTime.Year);
-Assert.Equal(testModel.CreateTime.Month, result.CreateTime.Month);
-Assert.Equal(testModel.CreateTime.Day, result.CreateTime.Day);
-Assert.Equal(testModel.CreateTime.Hour, result.CreateTime.Hour);
-Assert.Equal(testModel.CreateTime.Minute, result.CreateTime.Minute);
-Assert.Equal(testModel.CreateTime.Second, result.CreateTime.Second);
-Assert.Equal(testModel.CreateTime.Millisecond, result.CreateTime.Millisecond);
-Assert.Equal(testModel.Name, result.Name);
+var stream = testModel.Pack();
+var streamResult1 = stream.Unpack<TestModel>();
+var streamResult2 = stream.Unpack(typeof(TestModel));
+
+var ms = new MemoryStream();
+testModel.PackTo(ms);
+var msResult1 = ms.Unpack<TestModel>();
+var msResult2 = ms.Unpack(typeof(TestModel));
 ```

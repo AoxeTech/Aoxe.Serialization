@@ -36,24 +36,17 @@ var testModel = new TestModel
     Name = "banana",
     Gender = Gender.Female
 };
-```
 
-ExtensionMethodTest
+var bytes = testModel.ToBytes();
+var bytesResult1 = bytes.FromBytes<TestModel>();
+var bytesResult2 = bytes.FromBytes(typeof(TestModel));
 
-```CSharp
-var bytes = _testModelWithoutAttr.ToProtobuf();
-var deserializeModel1 = bytes.FromProtobuf<TestModelWithoutAttr>();
-var deserializeModel2 = bytes.FromProtobuf(typeof(TestModelWithoutAttr)) as TestModelWithoutAttr;
+var stream = testModel.Pack();
+var streamResult1 = stream.Unpack<TestModel>();
+var streamResult2 = stream.Unpack(typeof(TestModel));
 
-Assert.Equal(deserializeModel1.Id, _testModelWithoutAttr.Id);
-Assert.Equal(deserializeModel1.Age, _testModelWithoutAttr.Age);
-Assert.Equal(deserializeModel1.CreateTime, _testModelWithoutAttr.CreateTime);
-Assert.Equal(deserializeModel1.Name, _testModelWithoutAttr.Name);
-Assert.Equal(deserializeModel1.Gender, _testModelWithoutAttr.Gender);
-
-Assert.Equal(deserializeModel2.Id, _testModelWithoutAttr.Id);
-Assert.Equal(deserializeModel2.Age, _testModelWithoutAttr.Age);
-Assert.Equal(deserializeModel2.CreateTime, _testModelWithoutAttr.CreateTime);
-Assert.Equal(deserializeModel2.Name, _testModelWithoutAttr.Name);
-Assert.Equal(deserializeModel2.Gender, _testModelWithoutAttr.Gender);
+var ms = new MemoryStream();
+testModel.PackTo(ms);
+var msResult1 = ms.Unpack<TestModel>();
+var msResult2 = ms.Unpack(typeof(TestModel));
 ```

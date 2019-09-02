@@ -23,41 +23,33 @@ public class TestModel
 TestMethod
 
 ```CSharp
-[Fact]
-public void ToJson()
+var testModel = new TestModel
 {
-    var testModel = new TestModel
-    {
-        Id = Guid.NewGuid(),
-        Age = new Random().Next(0, 100),
-        CreateTime = DateTimeOffset.Now,
-        Name = "banana"
-    };
+    Id = Guid.NewGuid(),
+    Age = new Random().Next(0, 100),
+    CreateTime = DateTimeOffset.Now,
+    Name = "banana"
+};
 
-    var jsonStr = testModel.ToJil();
-    var result1 = jsonStr.FromJil<TestModel>();
-    var result2 = jsonStr.FromJil(typeof(TestModel)) as TestModel;
+var json = testModel.ToJson();
+var jsonResult1 = json.FromJson<TestModel>();
+var jsonResult2 = json.FromJson(typeof(TestModel));
 
-    Assert.Equal(testModel.Id, result1.Id);
-    Assert.Equal(testModel.Age, result1.Age);
-    Assert.Equal(testModel.CreateTime.Year, result1.CreateTime.Year);
-    Assert.Equal(testModel.CreateTime.Month, result1.CreateTime.Month);
-    Assert.Equal(testModel.CreateTime.Day, result1.CreateTime.Day);
-    Assert.Equal(testModel.CreateTime.Hour, result1.CreateTime.Hour);
-    Assert.Equal(testModel.CreateTime.Minute, result1.CreateTime.Minute);
-    Assert.Equal(testModel.CreateTime.Second, result1.CreateTime.Second);
-    Assert.Equal(testModel.CreateTime.Millisecond, result1.CreateTime.Millisecond);
-    Assert.Equal(testModel.Name, result1.Name);
+var bytes = testModel.ToBytes();
+var bytesResult1 = bytes.FromBytes<TestModel>();
+var bytesResult2 = bytes.FromBytes(typeof(TestModel));
 
-    Assert.Equal(testModel.Id, result2.Id);
-    Assert.Equal(testModel.Age, result2.Age);
-    Assert.Equal(testModel.CreateTime.Year, result2.CreateTime.Year);
-    Assert.Equal(testModel.CreateTime.Month, result2.CreateTime.Month);
-    Assert.Equal(testModel.CreateTime.Day, result2.CreateTime.Day);
-    Assert.Equal(testModel.CreateTime.Hour, result2.CreateTime.Hour);
-    Assert.Equal(testModel.CreateTime.Minute, result2.CreateTime.Minute);
-    Assert.Equal(testModel.CreateTime.Second, result2.CreateTime.Second);
-    Assert.Equal(testModel.CreateTime.Millisecond, result2.CreateTime.Millisecond);
-    Assert.Equal(testModel.Name, result2.Name);
-}
+var stream = testModel.Pack();
+var streamResult1 = stream.Unpack<TestModel>();
+var streamResult2 = stream.Unpack(typeof(TestModel));
+
+var ms1 = new MemoryStream();
+testModel.PackTo(ms1);
+var msResult1 = ms1.Unpack<TestModel>();
+var msResult2 = ms1.Unpack(typeof(TestModel));
+
+var ms2 = new MemoryStream();
+ms2.PackBy(testmodel);
+var msResult1 = ms2.Unpack<TestModel>();
+var msResult2 = ms2.Unpack(typeof(TestModel));
 ```
