@@ -3,13 +3,14 @@ using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
 using Zaabee.Jil;
 using Zaabee.NewtonsoftJson;
+using Zaabee.SwifterJson;
 using Zaabee.Utf8Json;
 using Zaabee.Xml;
 
 namespace Benchmark.Benchmarks
 {
     [MemoryDiagnoser]
-    [SimpleJob(RunStrategy.Monitoring, targetCount: 100)]
+    [SimpleJob(RunStrategy.Monitoring, targetCount: 10000)]
     [MinColumn, MaxColumn, MeanColumn, MedianColumn]
     public class DeserializeTextBenchmark
     {
@@ -24,6 +25,7 @@ namespace Benchmark.Benchmarks
 
         private readonly string _jil;
         private readonly string _newtonsoftJson;
+        private readonly string _swifterJson;
         private readonly string _utf8Json;
         private readonly string _xml;
 
@@ -31,6 +33,7 @@ namespace Benchmark.Benchmarks
         {
             _jil = JilHelper.SerializeToJson(_testModel);
             _newtonsoftJson = NewtonsoftJsonHelper.SerializeToJson(_testModel);
+            _swifterJson = SwifterJsonHelper.SerializeToJson(_testModel);
             _utf8Json = Utf8JsonHelper.SerializeToJson(_testModel);
             _xml = XmlHelper.SerializeToXml(_testModel);
         }
@@ -40,6 +43,9 @@ namespace Benchmark.Benchmarks
 
         [Benchmark]
         public void NewtonsoftJsonDeserializeFromJson() => NewtonsoftJsonHelper.Deserialize<TestModel>(_newtonsoftJson);
+
+        [Benchmark]
+        public void SwifterJsonDeserializeFromJson() => SwifterJsonHelper.Deserialize<TestModel>(_swifterJson);
 
         [Benchmark]
         public void Utf8JsonDeserializeFromJson() => Utf8JsonHelper.Deserialize<TestModel>(_utf8Json);

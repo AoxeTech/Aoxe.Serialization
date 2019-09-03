@@ -87,12 +87,12 @@ namespace Zaabee.Jil
         public static object Deserialize(Type type, TextReader reader, Options options = null) =>
             reader == null ? default(Type) : JSON.Deserialize(reader, type, options ?? DefaultOptions);
 
-        private static byte[] StreamToBytes(Stream ms)
+        private static byte[] StreamToBytes(Stream stream)
         {
-            if (ms.CanSeek && ms.Position > 0)
-                ms.Position = 0;
-            var bytes = new byte[ms.Length];
-            ms.Read(bytes, 0, bytes.Length);
+            var bytes = new byte[stream.Length];
+            if (stream.CanSeek && stream.Position > 0) stream.Seek(0, SeekOrigin.Begin);
+            stream.Read(bytes, 0, bytes.Length);
+            if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
             return bytes;
         }
     }

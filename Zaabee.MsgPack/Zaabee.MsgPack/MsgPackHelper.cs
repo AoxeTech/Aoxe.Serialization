@@ -18,6 +18,7 @@ namespace Zaabee.MsgPack
             var ms = new MemoryStream();
             if (t == null) return ms;
             Pack(t, ms);
+            ms.Seek(0, SeekOrigin.Begin);
             return ms;
         }
 
@@ -40,6 +41,7 @@ namespace Zaabee.MsgPack
             var ms = new MemoryStream();
             if (obj is null) return ms;
             Pack(type, obj, ms);
+            ms.Seek(0, SeekOrigin.Begin);
             return ms;
         }
 

@@ -3,13 +3,14 @@ using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
 using Zaabee.Jil;
 using Zaabee.NewtonsoftJson;
+using Zaabee.SwifterJson;
 using Zaabee.Utf8Json;
 using Zaabee.Xml;
 
 namespace Benchmark.Benchmarks
 {
     [MemoryDiagnoser]
-    [SimpleJob(RunStrategy.Monitoring, targetCount: 100)]
+    [SimpleJob(RunStrategy.Monitoring, targetCount: 10000)]
     [MinColumn, MaxColumn, MeanColumn, MedianColumn]
     public class SerializeTextBenchmark
     {
@@ -27,6 +28,9 @@ namespace Benchmark.Benchmarks
 
         [Benchmark]
         public void NewtonsoftJsonSerializeToJson() => NewtonsoftJsonHelper.SerializeToJson(_testModel);
+
+        [Benchmark]
+        public void SwifterJsonSerializeToJson() => SwifterJsonHelper.SerializeToJson(_testModel);
 
         [Benchmark]
         public void Utf8JsonSerializeToJson() => Utf8JsonHelper.SerializeToJson(_testModel);

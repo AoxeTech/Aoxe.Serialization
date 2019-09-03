@@ -6,6 +6,7 @@ using Zaabee.Jil;
 using Zaabee.MsgPack;
 using Zaabee.NewtonsoftJson;
 using Zaabee.Protobuf;
+using Zaabee.SwifterJson;
 using Zaabee.Utf8Json;
 using Zaabee.Xml;
 using Zaabee.ZeroFormatter;
@@ -13,7 +14,7 @@ using Zaabee.ZeroFormatter;
 namespace Benchmark.Benchmarks
 {
     [MemoryDiagnoser]
-    [SimpleJob(RunStrategy.Monitoring, targetCount: 100)]
+    [SimpleJob(RunStrategy.Monitoring, targetCount: 10000)]
     [MinColumn, MaxColumn, MeanColumn, MedianColumn]
     public class SerializeBenchmark
     {
@@ -40,6 +41,9 @@ namespace Benchmark.Benchmarks
 
         [Benchmark]
         public void ProtobufSerialize() => ProtobufHelper.Serialize(_testModel);
+
+        [Benchmark]
+        public void SwifterJsonSerialize() => SwifterJsonHelper.Serialize(_testModel);
 
         [Benchmark]
         public void Utf8JsonSerialize() => Utf8JsonHelper.Serialize(_testModel);

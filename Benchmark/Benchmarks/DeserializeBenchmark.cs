@@ -6,6 +6,7 @@ using Zaabee.Jil;
 using Zaabee.MsgPack;
 using Zaabee.NewtonsoftJson;
 using Zaabee.Protobuf;
+using Zaabee.SwifterJson;
 using Zaabee.Utf8Json;
 using Zaabee.Xml;
 using Zaabee.ZeroFormatter;
@@ -13,7 +14,7 @@ using Zaabee.ZeroFormatter;
 namespace Benchmark.Benchmarks
 {
     [MemoryDiagnoser]
-    [SimpleJob(RunStrategy.Monitoring, targetCount: 100)]
+    [SimpleJob(RunStrategy.Monitoring, targetCount: 10000)]
     [MinColumn, MaxColumn, MeanColumn, MedianColumn]
     public class DeserializeBenchmark
     {
@@ -31,6 +32,7 @@ namespace Benchmark.Benchmarks
         private readonly byte[] _msgPackBytes;
         private readonly byte[] _newtonsoftJsonBytes;
         private readonly byte[] _protobufBytes;
+        private readonly byte[] _swifterJsonBytes;
         private readonly byte[] _utf8JsonBytes;
         private readonly byte[] _xmlBytes;
         private readonly byte[] _zeroFormatterBytes;
@@ -42,6 +44,7 @@ namespace Benchmark.Benchmarks
             _msgPackBytes = MsgPackHelper.Serialize(_testModel);
             _newtonsoftJsonBytes = NewtonsoftJsonHelper.Serialize(_testModel);
             _protobufBytes = ProtobufHelper.Serialize(_testModel);
+            _swifterJsonBytes = SwifterJsonHelper.Serialize(_testModel);
             _utf8JsonBytes = Utf8JsonHelper.Serialize(_testModel);
             _xmlBytes = XmlHelper.Serialize(_testModel);
             _zeroFormatterBytes = ZeroFormatterHelper.Serialize(_testModel);
@@ -61,6 +64,9 @@ namespace Benchmark.Benchmarks
 
         [Benchmark]
         public void ProtobufDeserialize() => ProtobufHelper.Deserialize<TestModel>(_protobufBytes);
+
+        [Benchmark]
+        public void SwifterJsonDeserialize() => SwifterJsonHelper.Deserialize<TestModel>(_swifterJsonBytes);
 
         [Benchmark]
         public void Utf8JsonSerializeDeserialize() => Utf8JsonHelper.Deserialize<TestModel>(_utf8JsonBytes);

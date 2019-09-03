@@ -7,6 +7,7 @@ using Zaabee.Jil;
 using Zaabee.MsgPack;
 using Zaabee.NewtonsoftJson;
 using Zaabee.Protobuf;
+using Zaabee.SwifterJson;
 using Zaabee.Utf8Json;
 using Zaabee.Xml;
 using Zaabee.ZeroFormatter;
@@ -14,7 +15,7 @@ using Zaabee.ZeroFormatter;
 namespace Benchmark.Benchmarks
 {
     [MemoryDiagnoser]
-    [SimpleJob(RunStrategy.Monitoring, targetCount: 100)]
+    [SimpleJob(RunStrategy.Monitoring, targetCount: 10000)]
     [MinColumn, MaxColumn, MeanColumn, MedianColumn]
     public class UnpackBenchmark
     {
@@ -32,6 +33,7 @@ namespace Benchmark.Benchmarks
         private readonly Stream _msgPackStream;
         private readonly Stream _newtonsoftJsonStream;
         private readonly Stream _protobufStream;
+        private readonly Stream _swifterJsonStream;
         private readonly Stream _utf8JsonStream;
         private readonly Stream _xmlStream;
         private readonly Stream _zeroFormatterStream;
@@ -43,6 +45,7 @@ namespace Benchmark.Benchmarks
             _msgPackStream = MsgPackHelper.Pack(_testModel);
             _newtonsoftJsonStream = NewtonsoftJsonHelper.Pack(_testModel);
             _protobufStream = ProtobufHelper.Pack(_testModel);
+            _swifterJsonStream = SwifterJsonHelper.Pack(_testModel);
             _utf8JsonStream = Utf8JsonHelper.Pack(_testModel);
             _xmlStream = XmlHelper.Pack(_testModel);
             _zeroFormatterStream = ZeroFormatterHelper.Pack(_testModel);
@@ -62,6 +65,9 @@ namespace Benchmark.Benchmarks
 
         [Benchmark]
         public void ProtobufUnpack() => ProtobufHelper.Unpack<TestModel>(_protobufStream);
+
+        [Benchmark]
+        public void SwifterJsonUnpack() => SwifterJsonHelper.Unpack<TestModel>(_swifterJsonStream);
 
         [Benchmark]
         public void Utf8JsonSerializeUnpack() => Utf8JsonHelper.Unpack<TestModel>(_utf8JsonStream);

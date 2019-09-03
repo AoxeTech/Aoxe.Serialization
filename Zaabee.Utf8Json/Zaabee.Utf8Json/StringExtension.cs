@@ -5,13 +5,10 @@ namespace Zaabee.Utf8Json
 {
     public static class StringExtension
     {
-        public static T FromJson<T>(this string json) =>
-            Utf8JsonHelper.Deserialize<T>(json);
+        public static T FromJson<T>(this string json, IJsonFormatterResolver resolver = null) =>
+            Utf8JsonHelper.Deserialize<T>(json, resolver);
 
-        public static object FromJson(this string json, Type type) =>
-            Utf8JsonHelper.Deserialize(type, json);
-
-        public static object FromJson(this string json, Type type, IJsonFormatterResolver resolver) =>
+        public static object FromJson(this string json, Type type, IJsonFormatterResolver resolver = null) =>
             Utf8JsonHelper.Deserialize(type, json, resolver);
     }
 }
