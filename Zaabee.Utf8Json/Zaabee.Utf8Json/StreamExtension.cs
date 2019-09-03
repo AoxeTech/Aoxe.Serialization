@@ -6,19 +6,16 @@ namespace Zaabee.Utf8Json
 {
     public static class StreamExtension
     {
-        public static void PackBy<T>(this Stream stream, T obj) =>
-            Utf8JsonHelper.Pack(obj, stream);
+        public static void PackBy<T>(this Stream stream, T obj, IJsonFormatterResolver resolver = null) =>
+            Utf8JsonHelper.Pack(obj, stream, resolver);
 
-        public static void PackBy(this Stream stream, Type type, object obj) =>
-            Utf8JsonHelper.Pack(type, obj, stream);
+        public static void PackBy(this Stream stream, Type type, object obj, IJsonFormatterResolver resolver = null) =>
+            Utf8JsonHelper.Pack(type, obj, stream, resolver);
 
-        public static T Unpack<T>(this Stream stream) =>
-            Utf8JsonHelper.Unpack<T>(stream);
+        public static T Unpack<T>(this Stream stream, IJsonFormatterResolver resolver = null) =>
+            Utf8JsonHelper.Unpack<T>(stream, resolver);
 
-        public static object Unpack(this Stream stream, Type type) =>
-            Utf8JsonHelper.Unpack(type, stream);
-
-        public static object Unpack(this Stream stream, Type type, IJsonFormatterResolver resolver) =>
+        public static object Unpack(this Stream stream, Type type, IJsonFormatterResolver resolver = null) =>
             Utf8JsonHelper.Unpack(type, stream, resolver);
     }
 }
