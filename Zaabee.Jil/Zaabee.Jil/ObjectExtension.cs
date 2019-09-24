@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Threading.Tasks;
 using Jil;
 
 namespace Zaabee.Jil
@@ -31,5 +32,32 @@ namespace Zaabee.Jil
 
         public static void PackTo(this object obj, Stream stream, Options options = null) =>
             JilHelper.Pack(obj, stream, options);
+
+        public static async Task<byte[]> ToBytesAsync<T>(this T t, Options options = null) =>
+            await JilHelper.SerializeAsync(t, options);
+
+        public static async Task<Stream> PackAsync<T>(this T t, Options options = null) =>
+            await JilHelper.PackAsync(t, options);
+
+        public static async Task<string> ToJsonAsync<T>(this T t, Options options = null) =>
+            await JilHelper.SerializeToJsonAsync(t, options);
+
+        public static async Task PackToAsync<T>(this T t, Stream stream, Options options = null) =>
+            await JilHelper.PackAsync(t, stream, options);
+
+        public static async Task SerializeAsync<T>(this object obj, TextWriter textWriter, Options options = null) =>
+            await JilHelper.SerializeAsync(obj, textWriter, options);
+
+        public static async Task<byte[]> ToBytesAsync(this object obj, Options options = null) =>
+            await JilHelper.SerializeAsync(obj, options);
+
+        public static async Task<Stream> PackAsync(this object obj, Options options = null) =>
+            await JilHelper.PackAsync(obj, options);
+
+        public static async Task<string> ToJsonAsync(this object obj, Options options = null) =>
+            await JilHelper.SerializeToJsonAsync(obj, options);
+
+        public static async Task PackToAsync(this object obj, Stream stream, Options options = null) =>
+            await JilHelper.PackAsync(obj, stream, options);
     }
 }

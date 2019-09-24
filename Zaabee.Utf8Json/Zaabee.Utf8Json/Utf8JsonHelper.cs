@@ -4,7 +4,7 @@ using Utf8Json;
 
 namespace Zaabee.Utf8Json
 {
-    public static class Utf8JsonHelper
+    public static partial class Utf8JsonHelper
     {
         public static string SerializeToJson<T>(T o, IJsonFormatterResolver resolver = null) =>
             JsonSerializer.ToJsonString(o, resolver);

@@ -4,7 +4,7 @@ using MsgPack.Serialization;
 
 namespace Zaabee.MsgPack
 {
-    public static class MsgPackHelper
+    public static partial class MsgPackHelper
     {
         public static byte[] Serialize<T>(T t)
         {

@@ -4,7 +4,7 @@ using ZeroFormatter;
 
 namespace Zaabee.ZeroFormatter
 {
-    public static class ZeroFormatterHelper
+    public static partial class ZeroFormatterHelper
     {
         public static byte[] Serialize<T>(T t) =>
             t == null ? new byte[0] : ZeroFormatterSerializer.Serialize(t);

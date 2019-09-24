@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace Zaabee.NewtonsoftJson
@@ -16,5 +17,17 @@ namespace Zaabee.NewtonsoftJson
 
         public static void PackTo(this object obj, Stream stream, JsonSerializerSettings settings = null) =>
             NewtonsoftJsonHelper.Pack(obj, stream, settings);
+
+        public static async Task<string> ToJsonAsync(this object obj, JsonSerializerSettings settings = null) =>
+            await NewtonsoftJsonHelper.SerializeToJsonAsync(obj, settings);
+
+        public static async Task<byte[]> ToBytesAsync(this object obj, JsonSerializerSettings settings = null) =>
+            await NewtonsoftJsonHelper.SerializeAsync(obj, settings);
+
+        public static async Task<Stream> PackAsync(this object obj, JsonSerializerSettings settings = null) =>
+            await NewtonsoftJsonHelper.PackAsync(obj, settings);
+
+        public static async Task PackToAsync(this object obj, Stream stream, JsonSerializerSettings settings = null) =>
+            await NewtonsoftJsonHelper.PackAsync(obj, stream, settings);
     }
 }

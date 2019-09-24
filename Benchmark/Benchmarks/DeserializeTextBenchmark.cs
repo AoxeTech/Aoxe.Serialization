@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
 using Zaabee.Jil;
@@ -10,7 +11,7 @@ using Zaabee.Xml;
 namespace Benchmark.Benchmarks
 {
     [MemoryDiagnoser]
-    [SimpleJob(RunStrategy.Monitoring, targetCount: 10000)]
+    [SimpleJob(RunStrategy.Monitoring, targetCount: 1000)]
     [MinColumn, MaxColumn, MeanColumn, MedianColumn]
     public class DeserializeTextBenchmark
     {

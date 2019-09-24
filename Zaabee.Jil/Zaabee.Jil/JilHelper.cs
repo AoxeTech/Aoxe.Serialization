@@ -5,7 +5,7 @@ using Jil;
 
 namespace Zaabee.Jil
 {
-    public static class JilHelper
+    public static partial class JilHelper
     {
         private static Encoding _encoding = Encoding.UTF8;
 

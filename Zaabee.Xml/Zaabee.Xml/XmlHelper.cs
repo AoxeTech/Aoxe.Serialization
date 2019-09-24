@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 namespace Zaabee.Xml
 {
-    public static class XmlHelper
+    public static partial class XmlHelper
     {
         private static Encoding _encoding = Encoding.UTF8;
 

@@ -4,7 +4,7 @@ using ProtoBuf.Meta;
 
 namespace Zaabee.Protobuf
 {
-    public static class ProtobufHelper
+    public static partial class ProtobufHelper
     {
         private static readonly Lazy<RuntimeTypeModel> model = new Lazy<RuntimeTypeModel>(CreateTypeModel);
 

@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using Utf8Json;
 
 namespace Zaabee.Utf8Json
@@ -39,8 +40,47 @@ namespace Zaabee.Utf8Json
         public static void PackTo(this object obj, Stream stream, IJsonFormatterResolver resolver = null) =>
             Utf8JsonHelper.Pack(obj, stream, resolver);
 
-        public static void PackTo(this object obj, Type type, Stream stream,
-            IJsonFormatterResolver resolver = null) =>
+        public static void PackTo(this object obj, Type type, Stream stream, IJsonFormatterResolver resolver = null) =>
             Utf8JsonHelper.Pack(type, obj, stream, resolver);
+
+        public static async Task<string> ToJsonAsync<T>(this T t, IJsonFormatterResolver resolver = null) =>
+            await Utf8JsonHelper.SerializeToJsonAsync(t, resolver);
+
+        public static async Task<byte[]> ToBytesAsync<T>(this T t, IJsonFormatterResolver resolver = null) =>
+            await Utf8JsonHelper.SerializeAsync(t, resolver);
+
+        public static async Task PackToAsync<T>(this T t, Stream stream, IJsonFormatterResolver resolver = null) =>
+            await Utf8JsonHelper.PackAsync(t, stream, resolver);
+
+        public static async Task<Stream> PackAsync<T>(this T t, IJsonFormatterResolver resolver = null) =>
+            await Utf8JsonHelper.PackAsync(t, resolver);
+
+        public static async Task<string> ToJsonAsync(this object obj, IJsonFormatterResolver resolver = null) =>
+            await Utf8JsonHelper.SerializeToJsonAsync(obj, resolver);
+
+        public static async Task<string>
+            ToJsonAsync(this object obj, Type type, IJsonFormatterResolver resolver = null) =>
+            await Utf8JsonHelper.SerializeToJsonAsync(type, obj, resolver);
+
+        public static async Task<byte[]> ToBytesAsync(this object obj, IJsonFormatterResolver resolver = null) =>
+            await Utf8JsonHelper.SerializeAsync(obj, resolver);
+
+        public static async Task<byte[]> ToBytesAsync(this object obj, Type type,
+            IJsonFormatterResolver resolver = null) =>
+            await Utf8JsonHelper.SerializeAsync(type, obj, resolver);
+
+        public static async Task<Stream> PackAsync(this object obj, IJsonFormatterResolver resolver = null) =>
+            await Utf8JsonHelper.PackAsync(obj, resolver);
+
+        public static async Task<Stream> PackAsync(this object obj, Type type,
+            IJsonFormatterResolver resolver = null) =>
+            await Utf8JsonHelper.PackAsync(type, obj, resolver);
+
+        public static async Task PackToAsync(this object obj, Stream stream, IJsonFormatterResolver resolver = null) =>
+            await Utf8JsonHelper.PackAsync(obj, stream, resolver);
+
+        public static async Task PackToAsync(this object obj, Type type, Stream stream,
+            IJsonFormatterResolver resolver = null) =>
+            await Utf8JsonHelper.PackAsync(type, obj, stream, resolver);
     }
 }

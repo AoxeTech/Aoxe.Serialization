@@ -5,7 +5,7 @@ using Zaabee.Utf8Json;
 
 namespace ZaabeeUtf8JsonTestProject
 {
-    public class UnitTest1
+    public class UnitTest
     {
         [Fact]
         public void BytesTest()
@@ -64,7 +64,8 @@ namespace ZaabeeUtf8JsonTestProject
             var bytes = testModel.ToBytes();
             var result = (TestModel) bytes.FromBytes(typeof(TestModel));
             Assert.Equal(
-                Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age, ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
+                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
+                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
                 Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
         }
 
@@ -85,15 +86,18 @@ namespace ZaabeeUtf8JsonTestProject
             var unPackResult3 = (TestModel) stream3.Unpack(type);
 
             Assert.Equal(
-                Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age, ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
+                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
+                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
                 Tuple.Create(unPackResult1.Id, unPackResult1.Age, unPackResult1.CreateTime, unPackResult1.Name,
                     unPackResult1.Gender));
             Assert.Equal(
-                Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age, ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
+                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
+                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
                 Tuple.Create(unPackResult2.Id, unPackResult2.Age, unPackResult2.CreateTime, unPackResult2.Name,
                     unPackResult2.Gender));
             Assert.Equal(
-                Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age, ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
+                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
+                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
                 Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
                     unPackResult3.Gender));
         }
@@ -107,8 +111,10 @@ namespace ZaabeeUtf8JsonTestProject
             var json2 = testModel.ToJson(typeof(TestModel));
             var result2 = json2.FromJson(typeof(TestModel));
             Assert.Equal(
-                Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age, ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
-                Tuple.Create(((TestModel)result1).Id, ((TestModel)result1).Age, ((TestModel)result1).CreateTime, ((TestModel)result1).Name, ((TestModel)result1).Gender));
+                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
+                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
+                Tuple.Create(((TestModel) result1).Id, ((TestModel) result1).Age, ((TestModel) result1).CreateTime,
+                    ((TestModel) result1).Name, ((TestModel) result1).Gender));
         }
 
         private static TestModel GetTestModel()
@@ -122,6 +128,7 @@ namespace ZaabeeUtf8JsonTestProject
                 Gender = Gender.Female
             };
         }
+
         [Fact]
         public void ObjectString()
         {

@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace Zaabee.NewtonsoftJson
 {
-    public static class NewtonsoftJsonHelper
+    public static partial class NewtonsoftJsonHelper
     {
         private static Encoding _encoding = Encoding.UTF8;
 
