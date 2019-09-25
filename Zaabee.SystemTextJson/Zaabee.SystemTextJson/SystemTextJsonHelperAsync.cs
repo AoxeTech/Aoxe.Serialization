@@ -47,8 +47,11 @@ namespace Zaabee.SystemTextJson
             return ms;
         }
 
-        public static async Task PackAsync<T>(T value, Stream stream, JsonSerializerOptions options = null) =>
+        public static async Task PackAsync<T>(T value, Stream stream, JsonSerializerOptions options = null)
+        {
             await JsonSerializer.SerializeAsync(stream, value, options);
+            stream.Position = 0L;
+        }
 
         public static async Task<Stream> PackAsync(Type type, object value, JsonSerializerOptions options = null)
         {
@@ -58,8 +61,11 @@ namespace Zaabee.SystemTextJson
         }
 
         public static async Task PackAsync(Type type, object value, Stream stream,
-            JsonSerializerOptions options = null) =>
+            JsonSerializerOptions options = null)
+        {
             await JsonSerializer.SerializeAsync(stream, value, type, options);
+            stream.Position = 0L;
+        }
 
         public static async Task<T> UnpackAsync<T>(Stream stream, JsonSerializerOptions options = null) =>
             await JsonSerializer.DeserializeAsync<T>(stream, options);

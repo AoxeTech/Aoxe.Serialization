@@ -77,44 +77,31 @@ namespace ZaabeeSystemTextJsonTestProject
             var type = typeof(TestModel);
             object testModel = GetTestModel();
 
-            using (var ms = new MemoryStream())
-            {
-                await JsonSerializer.SerializeAsync(ms, testModel, type);
-                var result0 = await JsonSerializer.DeserializeAsync(ms, type);
-                var result1 = await JsonSerializer.DeserializeAsync<TestModel>(ms);
-                Assert.Equal(
-                    Tuple.Create(((TestModel) result0).Id, ((TestModel) result0).Age,
-                        ((TestModel) result0).CreateTime, ((TestModel) result0).Name, ((TestModel) result0).Gender),
-                    Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name,
-                        result1.Gender));
-            }
+            var stream1 = await testModel.PackAsync(type);
+            var stream2 = new MemoryStream();
+            await testModel.PackToAsync(type, stream2);
+            var stream3 = new MemoryStream();
+            await stream3.PackByAsync(type, testModel);
 
+            var unPackResult1 = (TestModel) await stream1.UnpackAsync(type);
+            var unPackResult2 = (TestModel) await stream2.UnpackAsync(type);
+            var unPackResult3 = (TestModel) await stream3.UnpackAsync(type);
 
-//            var stream1 = await testModel.PackAsync(type);
-//            var stream2 = new MemoryStream();
-//            await testModel.PackToAsync(type, stream2);
-//            var stream3 = new MemoryStream();
-//            await stream3.PackByAsync(type, testModel);
-//
-//            var unPackResult1 = (TestModel) await stream1.UnpackAsync(type);
-//            var unPackResult2 = (TestModel) await stream2.UnpackAsync(type);
-//            var unPackResult3 = (TestModel) await stream3.UnpackAsync(type);
-//
-//            Assert.Equal(
-//                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
-//                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
-//                Tuple.Create(unPackResult1.Id, unPackResult1.Age, unPackResult1.CreateTime, unPackResult1.Name,
-//                    unPackResult1.Gender));
-//            Assert.Equal(
-//                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
-//                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
-//                Tuple.Create(unPackResult2.Id, unPackResult2.Age, unPackResult2.CreateTime, unPackResult2.Name,
-//                    unPackResult2.Gender));
-//            Assert.Equal(
-//                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
-//                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
-//                Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
-//                    unPackResult3.Gender));
+            Assert.Equal(
+                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
+                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
+                Tuple.Create(unPackResult1.Id, unPackResult1.Age, unPackResult1.CreateTime, unPackResult1.Name,
+                    unPackResult1.Gender));
+            Assert.Equal(
+                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
+                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
+                Tuple.Create(unPackResult2.Id, unPackResult2.Age, unPackResult2.CreateTime, unPackResult2.Name,
+                    unPackResult2.Gender));
+            Assert.Equal(
+                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
+                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
+                Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
+                    unPackResult3.Gender));
         }
 
         [Fact]
