@@ -2,7 +2,15 @@
 
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-        <LangVersion>default</LangVersion>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>2.1.0</PackageVersion>
+        <Version>2.1.0</Version>
+        <Authors>Mutuduxf</Authors>
+        <Company>Mutuduxf</Company>
+        <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Protobuf</PackageProjectUrl>
+        <PackagelicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaabee.Serializers/master/LICENSE</PackagelicenseUrl>
+        <Description>The wrappers and extensions methods for System.Text.Json</Description>
+        <PackageTags>Zaabee Json System.Text.Json serialize deserialize</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
