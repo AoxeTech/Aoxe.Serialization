@@ -4,6 +4,7 @@ using BenchmarkDotNet.Engines;
 using Zaabee.Jil;
 using Zaabee.NewtonsoftJson;
 using Zaabee.SwifterJson;
+using Zaabee.SystemTextJson;
 using Zaabee.Utf8Json;
 using Zaabee.Xml;
 
@@ -31,6 +32,9 @@ namespace Benchmark.Benchmarks
 
         [Benchmark]
         public void SwifterJsonSerializeToJson() => SwifterJsonHelper.SerializeToJson(_testModel);
+
+        [Benchmark]
+        public void SystemTextJsonSerializeToJson() => SystemTextJsonHelper.SerializeToJson(_testModel);
 
         [Benchmark]
         public void Utf8JsonSerializeToJson() => Utf8JsonHelper.SerializeToJson(_testModel);

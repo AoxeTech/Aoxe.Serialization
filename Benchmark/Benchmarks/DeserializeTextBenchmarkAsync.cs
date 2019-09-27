@@ -5,6 +5,7 @@ using BenchmarkDotNet.Engines;
 using Zaabee.Jil;
 using Zaabee.NewtonsoftJson;
 using Zaabee.SwifterJson;
+using Zaabee.SystemTextJson;
 using Zaabee.Utf8Json;
 using Zaabee.Xml;
 
@@ -27,6 +28,7 @@ namespace Benchmark.Benchmarks
         private readonly string _jil;
         private readonly string _newtonsoftJson;
         private readonly string _swifterJson;
+        private readonly string _systemTextJson;
         private readonly string _utf8Json;
         private readonly string _xml;
 
@@ -35,6 +37,7 @@ namespace Benchmark.Benchmarks
             _jil = JilHelper.SerializeToJson(_testModel);
             _newtonsoftJson = NewtonsoftJsonHelper.SerializeToJson(_testModel);
             _swifterJson = SwifterJsonHelper.SerializeToJson(_testModel);
+            _systemTextJson = SystemTextJsonHelper.SerializeToJson(_testModel);
             _utf8Json = Utf8JsonHelper.SerializeToJson(_testModel);
             _xml = XmlHelper.SerializeToXml(_testModel);
         }
@@ -45,6 +48,10 @@ namespace Benchmark.Benchmarks
         [Benchmark]
         public async Task NewtonsoftJsonDeserializeFromJsonAsync() =>
             await NewtonsoftJsonHelper.DeserializeAsync<TestModel>(_newtonsoftJson);
+
+        [Benchmark]
+        public async Task SystemTextJsonDeserializeFromJsonAsync() =>
+            await SystemTextJsonHelper.DeserializeAsync<TestModel>(_systemTextJson);
 
         [Benchmark]
         public async Task Utf8JsonDeserializeFromJsonAsync() =>

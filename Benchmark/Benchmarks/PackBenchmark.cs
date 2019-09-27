@@ -8,6 +8,7 @@ using Zaabee.MsgPack;
 using Zaabee.NewtonsoftJson;
 using Zaabee.Protobuf;
 using Zaabee.SwifterJson;
+using Zaabee.SystemTextJson;
 using Zaabee.Utf8Json;
 using Zaabee.Xml;
 using Zaabee.ZeroFormatter;
@@ -45,6 +46,9 @@ namespace Benchmark.Benchmarks
 
         [Benchmark]
         public void SwifterJsonPack() => SwifterJsonHelper.Pack(_testModel);
+
+        [Benchmark]
+        public void SystemTextJsonPack() => SystemTextJsonHelper.Pack(_testModel);
 
         [Benchmark]
         public void Utf8JsonPack() => Utf8JsonHelper.Pack(_testModel);

@@ -4,6 +4,7 @@ using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
 using Zaabee.Jil;
 using Zaabee.NewtonsoftJson;
+using Zaabee.SystemTextJson;
 using Zaabee.Utf8Json;
 using Zaabee.Xml;
 
@@ -24,7 +25,8 @@ namespace Benchmark.Benchmarks
         };
 
         [Benchmark]
-        public async Task JilSerializeToJsonAsync() => await JilHelper.SerializeToJsonAsync(_testModel);
+        public async Task JilSerializeToJsonAsync() =>
+            await JilHelper.SerializeToJsonAsync(_testModel);
 
         [Benchmark]
         public async Task NewtonsoftJsonSerializeToJsonAsync() =>
@@ -34,6 +36,11 @@ namespace Benchmark.Benchmarks
         public async Task Utf8JsonSerializeToJsonAsync() => await Utf8JsonHelper.SerializeToJsonAsync(_testModel);
 
         [Benchmark]
-        public async Task XmlSerializeToXmlAsync() => await XmlHelper.SerializeToXmlAsync(_testModel);
+        public async Task SystemTextJsonSerializeToJsonAsync() =>
+            await SystemTextJsonHelper.SerializeToJsonAsync(_testModel);
+
+        [Benchmark]
+        public async Task XmlSerializeToXmlAsync() =>
+            await XmlHelper.SerializeToXmlAsync(_testModel);
     }
 }

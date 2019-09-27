@@ -8,6 +8,7 @@ using Zaabee.MsgPack;
 using Zaabee.NewtonsoftJson;
 using Zaabee.Protobuf;
 using Zaabee.SwifterJson;
+using Zaabee.SystemTextJson;
 using Zaabee.Utf8Json;
 using Zaabee.Xml;
 using Zaabee.ZeroFormatter;
@@ -34,6 +35,7 @@ namespace Benchmark.Benchmarks
         private readonly byte[] _newtonsoftJsonBytes;
         private readonly byte[] _protobufBytes;
         private readonly byte[] _swifterJsonBytes;
+        private readonly byte[] _systemTextJsonBytes;
         private readonly byte[] _utf8JsonBytes;
         private readonly byte[] _xmlBytes;
         private readonly byte[] _zeroFormatterBytes;
@@ -46,30 +48,41 @@ namespace Benchmark.Benchmarks
             _newtonsoftJsonBytes = NewtonsoftJsonHelper.Serialize(_testModel);
             _protobufBytes = ProtobufHelper.Serialize(_testModel);
             _swifterJsonBytes = SwifterJsonHelper.Serialize(_testModel);
+            _systemTextJsonBytes = SystemTextJsonHelper.Serialize(_testModel);
             _utf8JsonBytes = Utf8JsonHelper.Serialize(_testModel);
             _xmlBytes = XmlHelper.Serialize(_testModel);
             _zeroFormatterBytes = ZeroFormatterHelper.Serialize(_testModel);
         }
-        
-        [Benchmark]
-        public async Task JilDeserializeAsync() =>await JilHelper.DeserializeAsync<TestModel>(_jilBytes);
 
         [Benchmark]
-        public async Task MsgPackDeserializeAsync() =>await MsgPackHelper.DeserializeAsync<TestModel>(_msgPackBytes);
+        public async Task JilDeserializeAsync() =>
+            await JilHelper.DeserializeAsync<TestModel>(_jilBytes);
 
         [Benchmark]
-        public async Task NewtonsoftJsonDeserializeAsync() =>await NewtonsoftJsonHelper.DeserializeAsync<TestModel>(_newtonsoftJsonBytes);
+        public async Task MsgPackDeserializeAsync() =>
+            await MsgPackHelper.DeserializeAsync<TestModel>(_msgPackBytes);
 
         [Benchmark]
-        public async Task ProtobufDeserializeAsync() =>await ProtobufHelper.DeserializeAsync<TestModel>(_protobufBytes);
+        public async Task NewtonsoftJsonDeserializeAsync() =>
+            await NewtonsoftJsonHelper.DeserializeAsync<TestModel>(_newtonsoftJsonBytes);
 
         [Benchmark]
-        public async Task Utf8JsonSerializeDeserializeAsync() =>await Utf8JsonHelper.DeserializeAsync<TestModel>(_utf8JsonBytes);
+        public async Task ProtobufDeserializeAsync() =>
+            await ProtobufHelper.DeserializeAsync<TestModel>(_protobufBytes);
 
         [Benchmark]
-        public async Task XmlDeserializeAsync() =>await XmlHelper.DeserializeAsync<TestModel>(_xmlBytes);
+        public async Task SystemTextJsonDeserializeAsync() =>
+            await SystemTextJsonHelper.DeserializeAsync<TestModel>(_systemTextJsonBytes);
 
         [Benchmark]
-        public async Task ZeroFormatterDeserializeAsync() =>await ZeroFormatterHelper.DeserializeAsync<TestModel>(_zeroFormatterBytes);
+        public async Task Utf8JsonSerializeDeserializeAsync() =>
+            await Utf8JsonHelper.DeserializeAsync<TestModel>(_utf8JsonBytes);
+
+        [Benchmark]
+        public async Task XmlDeserializeAsync() => await XmlHelper.DeserializeAsync<TestModel>(_xmlBytes);
+
+        [Benchmark]
+        public async Task ZeroFormatterDeserializeAsync() =>
+            await ZeroFormatterHelper.DeserializeAsync<TestModel>(_zeroFormatterBytes);
     }
 }

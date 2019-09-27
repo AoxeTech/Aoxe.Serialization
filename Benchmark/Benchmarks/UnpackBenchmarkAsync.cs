@@ -9,6 +9,7 @@ using Zaabee.MsgPack;
 using Zaabee.NewtonsoftJson;
 using Zaabee.Protobuf;
 using Zaabee.SwifterJson;
+using Zaabee.SystemTextJson;
 using Zaabee.Utf8Json;
 using Zaabee.Xml;
 using Zaabee.ZeroFormatter;
@@ -35,6 +36,7 @@ namespace Benchmark.Benchmarks
         private readonly Stream _newtonsoftJsonStream;
         private readonly Stream _protobufStream;
         private readonly Stream _swifterJsonStream;
+        private readonly Stream _systemTextJsonStream;
         private readonly Stream _utf8JsonStream;
         private readonly Stream _xmlStream;
         private readonly Stream _zeroFormatterStream;
@@ -47,6 +49,7 @@ namespace Benchmark.Benchmarks
             _newtonsoftJsonStream = NewtonsoftJsonHelper.Pack(_testModel);
             _protobufStream = ProtobufHelper.Pack(_testModel);
             _swifterJsonStream = SwifterJsonHelper.Pack(_testModel);
+            _systemTextJsonStream = SystemTextJsonHelper.Pack(_testModel);
             _utf8JsonStream = Utf8JsonHelper.Pack(_testModel);
             _xmlStream = XmlHelper.Pack(_testModel);
             _zeroFormatterStream = ZeroFormatterHelper.Pack(_testModel);
@@ -64,6 +67,10 @@ namespace Benchmark.Benchmarks
 
         [Benchmark]
         public async Task ProtobufUnpackAsync() => await ProtobufHelper.UnpackAsync<TestModel>(_protobufStream);
+
+        [Benchmark]
+        public async Task SystemTextJsonUnpackAsync() =>
+            await SystemTextJsonHelper.UnpackAsync<TestModel>(_systemTextJsonStream);
 
         [Benchmark]
         public async Task Utf8JsonSerializeUnpackAsync() =>

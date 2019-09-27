@@ -8,6 +8,7 @@ using Zaabee.MsgPack;
 using Zaabee.NewtonsoftJson;
 using Zaabee.Protobuf;
 using Zaabee.SwifterJson;
+using Zaabee.SystemTextJson;
 using Zaabee.Utf8Json;
 using Zaabee.Xml;
 using Zaabee.ZeroFormatter;
@@ -39,6 +40,9 @@ namespace Benchmark.Benchmarks
 
         [Benchmark]
         public async Task ProtobufPackAsync() => await ProtobufHelper.PackAsync(_testModel);
+
+        [Benchmark]
+        public async Task SystemTextJsonPackAsync() => await SystemTextJsonHelper.PackAsync(_testModel);
 
         [Benchmark]
         public async Task Utf8JsonPackAsync() => await Utf8JsonHelper.PackAsync(_testModel);
