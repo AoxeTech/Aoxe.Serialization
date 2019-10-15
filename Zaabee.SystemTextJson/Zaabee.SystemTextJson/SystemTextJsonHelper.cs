@@ -25,10 +25,10 @@ namespace Zaabee.SystemTextJson
             JsonSerializer.SerializeToUtf8Bytes(value, type, options);
 
         public static T Deserialize<T>(byte[] bytes, JsonSerializerOptions options = null) =>
-            bytes == null ? default : JsonSerializer.Deserialize<T>(bytes, options);
+            bytes is null ? default : JsonSerializer.Deserialize<T>(bytes, options);
 
         public static object Deserialize(Type type, byte[] bytes, JsonSerializerOptions options = null) =>
-            bytes == null ? default(Type) : JsonSerializer.Deserialize(bytes, type, options);
+            bytes is null ? default(Type) : JsonSerializer.Deserialize(bytes, type, options);
 
         public static Stream Pack<T>(T value, JsonSerializerOptions options = null)
         {

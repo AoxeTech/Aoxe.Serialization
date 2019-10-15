@@ -31,7 +31,7 @@ namespace Zaabee.MsgPack
 
         public static byte[] Serialize(Type type, object obj)
         {
-            if (obj == null) return new byte[0];
+            if (obj is null) return new byte[0];
             using (var stream = Pack(type, obj))
                 return StreamToBytes(stream);
         }
@@ -47,21 +47,21 @@ namespace Zaabee.MsgPack
 
         public static void Pack(Type type, object obj, Stream stream)
         {
-            if (obj == null) return;
+            if (obj is null) return;
             var serializer = MessagePackSerializer.Get(type);
             serializer.Pack(stream, obj);
         }
 
         public static T Deserialize<T>(byte[] bytes)
         {
-            if (bytes == null || bytes.Length == 0) return default(T);
+            if (bytes is null || bytes.Length == 0) return default;
             using (var ms = new MemoryStream(bytes))
                 return Unpack<T>(ms);
         }
 
         public static T Unpack<T>(Stream stream)
         {
-            if (stream == null) return default(T);
+            if (stream is null) return default;
             var serializer = MessagePackSerializer.Get<T>();
             if (stream.CanSeek && stream.Position > 0)
                 stream.Position = 0;
@@ -70,14 +70,14 @@ namespace Zaabee.MsgPack
 
         public static object Deserialize(Type type, byte[] bytes)
         {
-            if (bytes == null || bytes.Length == 0) return default(Type);
+            if (bytes is null || bytes.Length == 0) return default(Type);
             using (var ms = new MemoryStream(bytes))
                 return Unpack(type, ms);
         }
 
         public static object Unpack(Type type, Stream stream)
         {
-            if (stream == null) return default(Type);
+            if (stream is null) return default(Type);
             var serializer = MessagePackSerializer.Get(type);
             if (stream.CanSeek && stream.Position > 0)
                 stream.Position = 0;

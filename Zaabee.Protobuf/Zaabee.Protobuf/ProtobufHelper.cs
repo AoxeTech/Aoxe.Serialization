@@ -31,27 +31,27 @@ namespace Zaabee.Protobuf
 
         public static T Deserialize<T>(byte[] bytes)
         {
-            if (bytes == null || bytes.Length == 0) return default(T);
+            if (bytes is null || bytes.Length == 0) return default;
             return (T) Deserialize(typeof(T), bytes);
         }
 
         public static T Unpack<T>(Stream stream)
         {
-            if (stream == null || stream.Length == 0) return default(T);
+            if (stream is null || stream.Length == 0) return default;
             var type = typeof(T);
             return (T) Unpack(type, stream);
         }
 
         public static object Deserialize(Type type, byte[] bytes)
         {
-            if (bytes == null || bytes.Length == 0) return default(Type);
+            if (bytes is null || bytes.Length == 0) return default(Type);
             using (var ms = new MemoryStream(bytes))
                 return Unpack(type, ms);
         }
 
         public static object Unpack(Type type, Stream stream)
         {
-            if (stream == null || stream.Length == 0) return default(Type);
+            if (stream is null || stream.Length == 0) return default(Type);
             if (stream.CanSeek && stream.Position > 0)
                 stream.Position = 0;
             return Model.Deserialize(stream, null, type);

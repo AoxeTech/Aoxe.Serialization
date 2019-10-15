@@ -33,11 +33,11 @@ namespace Zaabee.SystemTextJson
             await Task.Run(() => JsonSerializer.SerializeToUtf8Bytes(value, type, options));
 
         public static async Task<T> DeserializeAsync<T>(byte[] bytes, JsonSerializerOptions options = null) =>
-            bytes == null ? default : await Task.Run(() => JsonSerializer.Deserialize<T>(bytes, options));
+            bytes is null ? default : await Task.Run(() => JsonSerializer.Deserialize<T>(bytes, options));
 
         public static async Task<object>
             DeserializeAsync(Type type, byte[] bytes, JsonSerializerOptions options = null) =>
-            bytes == null ? default(Type) : await Task.Run(() => JsonSerializer.Deserialize(bytes, type, options));
+            bytes is null ? default(Type) : await Task.Run(() => JsonSerializer.Deserialize(bytes, type, options));
 
         public static async Task<Stream> PackAsync<T>(T value, JsonSerializerOptions options = null)
         {
@@ -72,14 +72,5 @@ namespace Zaabee.SystemTextJson
 
         public static async Task<object> UnpackAsync(Type type, Stream stream, JsonSerializerOptions options = null) =>
             await JsonSerializer.DeserializeAsync(stream, type, options);
-
-        private static async Task<byte[]> StreamToBytesAsync(Stream stream)
-        {
-            var bytes = new byte[stream.Length];
-            if (stream.Position > 0 && stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-            await stream.ReadAsync(bytes, 0, bytes.Length);
-            if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-            return bytes;
-        }
     }
 }

@@ -25,11 +25,11 @@ namespace Zaabee.ZeroFormatter
 
         public static async Task<T> DeserializeAsync<T>(byte[] bytes) =>
             bytes is null || bytes.Length == 0
-                ? default(T)
+                ? default
                 : await Task.Run(() => ZeroFormatterSerializer.Deserialize<T>(bytes));
 
         public static async Task<T> UnpackAsync<T>(Stream stream) =>
-            stream is null ? default(T) : await Task.Run(() => ZeroFormatterSerializer.Deserialize<T>(stream));
+            stream is null ? default : await Task.Run(() => ZeroFormatterSerializer.Deserialize<T>(stream));
 
         public static async Task<byte[]> SerializeAsync(Type type, object obj) =>
             obj is null ? new byte[0] : await Task.Run(() => ZeroFormatterSerializer.NonGeneric.Serialize(type, obj));

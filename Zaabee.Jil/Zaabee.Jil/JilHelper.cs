@@ -51,28 +51,28 @@ namespace Zaabee.Jil
         }
 
         public static T Deserialize<T>(byte[] bytes, Options options = null) =>
-            bytes == null || bytes.Length == 0
-                ? default(T)
+            bytes is null || bytes.Length is 0
+                ? default
                 : JSON.Deserialize<T>(DefaultEncoding.GetString(bytes), options ?? DefaultOptions);
 
         public static T Unpack<T>(Stream stream, Options options = null) =>
-            stream == null
-                ? default(T)
+            stream is null
+                ? default
                 : JSON.Deserialize<T>(DefaultEncoding.GetString(StreamToBytes(stream)), options ?? DefaultOptions);
 
         public static T Deserialize<T>(string json, Options options = null) =>
-            string.IsNullOrWhiteSpace(json) ? default(T) : JSON.Deserialize<T>(json, options ?? DefaultOptions);
+            string.IsNullOrWhiteSpace(json) ? default : JSON.Deserialize<T>(json, options ?? DefaultOptions);
 
         public static string SerializeToJson(object obj, Options options = null) =>
             obj is null ? string.Empty : JSON.SerializeDynamic(obj, options ?? DefaultOptions);
 
         public static object Deserialize(Type type, byte[] bytes, Options options = null) =>
-            bytes == null || bytes.Length == 0
+            bytes is null || bytes.Length is 0
                 ? default(Type)
                 : JSON.Deserialize(DefaultEncoding.GetString(bytes), type, options ?? DefaultOptions);
 
         public static object Unpack(Type type, Stream stream, Options options = null) =>
-            stream == null
+            stream is null
                 ? default(Type)
                 : JSON.Deserialize(DefaultEncoding.GetString(StreamToBytes(stream)), type, options ?? DefaultOptions);
 
@@ -82,10 +82,10 @@ namespace Zaabee.Jil
                 : JSON.Deserialize(json, type, options ?? DefaultOptions);
 
         public static T Deserialize<T>(TextReader reader, Options options = null) =>
-            reader == null ? default(T) : JSON.Deserialize<T>(reader, options ?? DefaultOptions);
+            reader is null ? default : JSON.Deserialize<T>(reader, options ?? DefaultOptions);
 
         public static object Deserialize(Type type, TextReader reader, Options options = null) =>
-            reader == null ? default(Type) : JSON.Deserialize(reader, type, options ?? DefaultOptions);
+            reader is null ? default(Type) : JSON.Deserialize(reader, type, options ?? DefaultOptions);
 
         private static byte[] StreamToBytes(Stream stream)
         {

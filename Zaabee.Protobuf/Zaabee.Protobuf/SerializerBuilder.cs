@@ -100,7 +100,7 @@ namespace Zaabee.Protobuf
         /// <param name="type">The type.</param>
         private static void BuildGenerics(RuntimeTypeModel runtimeTypeModel, Type type)
         {
-            if (!type.IsGenericType && (type.BaseType == null || !type.BaseType.IsGenericType)) return;
+            if (!type.IsGenericType && (type.BaseType is null || !type.BaseType.IsGenericType)) return;
             var generics = type.IsGenericType ? type.GetGenericArguments() : type.BaseType.GetGenericArguments();
 
             foreach (var generic in generics)

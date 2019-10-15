@@ -8,6 +8,6 @@ namespace Zaabee.Binary
             BinaryHelper.Deserialize<T>(bytes);
 
         public static object FromBytes(this byte[] bytes, Type type) =>
-            BinaryHelper.Deserialize(type, bytes);
+            BinaryHelper.Deserialize(bytes);
     }
 }

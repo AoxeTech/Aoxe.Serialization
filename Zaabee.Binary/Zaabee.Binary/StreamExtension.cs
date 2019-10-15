@@ -12,6 +12,6 @@ namespace Zaabee.Binary
             BinaryHelper.Unpack<T>(stream);
 
         public static object Unpack(this Stream stream, Type type) =>
-            BinaryHelper.Unpack(type, stream);
+            BinaryHelper.Unpack(stream);
     }
 }

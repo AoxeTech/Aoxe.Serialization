@@ -64,7 +64,7 @@ namespace Zaabee.Xml
 
         public static object Deserialize(Type type, byte[] bytes)
         {
-            if (bytes == null || bytes.Length == 0) return default(Type);
+            if (bytes is null || bytes.Length == 0) return default(Type);
             var xmlSerializer = new XmlSerializer(type);
             using (var ms = new MemoryStream(bytes))
                 return xmlSerializer.Deserialize(ms);
@@ -72,7 +72,7 @@ namespace Zaabee.Xml
 
         public static object Unpack(Type type, Stream stream)
         {
-            if (stream == null || stream.Length == 0) return default(Type);
+            if (stream is null || stream.Length == 0) return default(Type);
             if (stream.CanSeek && stream.Position > 0)
                 stream.Position = 0;
             var xmlSerializer = new XmlSerializer(type);

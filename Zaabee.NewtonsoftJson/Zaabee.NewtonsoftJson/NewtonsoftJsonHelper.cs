@@ -18,7 +18,7 @@ namespace Zaabee.NewtonsoftJson
         public static JsonSerializerSettings DefaultSettings;
 
         public static byte[] Serialize(object obj, JsonSerializerSettings settings = null) =>
-            obj == null
+            obj is null
                 ? new byte[0]
                 : DefaultEncoding.GetBytes(SerializeToJson(obj, settings));
 
@@ -38,7 +38,7 @@ namespace Zaabee.NewtonsoftJson
         }
 
         public static string SerializeToJson(object obj, JsonSerializerSettings settings = null) =>
-            obj == null ? string.Empty : JsonConvert.SerializeObject(obj, settings ?? DefaultSettings);
+            obj is null ? string.Empty : JsonConvert.SerializeObject(obj, settings ?? DefaultSettings);
 
         public static T Deserialize<T>(byte[] bytes, JsonSerializerSettings settings = null) =>
             (T) Deserialize(typeof(T), bytes, settings);
@@ -50,12 +50,12 @@ namespace Zaabee.NewtonsoftJson
             (T) Deserialize(typeof(T), json, settings);
 
         public static object Deserialize(Type type, byte[] bytes, JsonSerializerSettings settings = null) =>
-            bytes == null || bytes.Length == 0
+            bytes is null || bytes.Length == 0
                 ? default(Type)
                 : Deserialize(type, DefaultEncoding.GetString(bytes), settings);
 
         public static object Unpack(Type type, Stream stream, JsonSerializerSettings settings = null) =>
-            stream == null
+            stream is null
                 ? default(Type)
                 : Deserialize(type, DefaultEncoding.GetString(StreamToBytes(stream)), settings);
 

@@ -41,36 +41,36 @@ namespace Zaabee.Jil
         }
 
         public static async Task<T> DeserializeAsync<T>(byte[] bytes, Options options = null) =>
-            bytes == null || bytes.Length == 0
-                ? default(T)
+            bytes is null || bytes.Length == 0
+                ? default
                 : await Task.Run(() =>
                     JSON.Deserialize<T>(DefaultEncoding.GetString(bytes), options ?? DefaultOptions));
 
         public static async Task<T> UnpackAsync<T>(Stream stream, Options options = null) =>
-            stream == null
-                ? default(T)
-                : await Task.Run(() =>
-                    JSON.Deserialize<T>(DefaultEncoding.GetString(StreamToBytes(stream)), options ?? DefaultOptions));
+            stream is null
+                ? default
+                : JSON.Deserialize<T>(DefaultEncoding.GetString(await StreamToBytesAsync(stream)),
+                    options ?? DefaultOptions);
 
         public static async Task<T> DeserializeAsync<T>(string json, Options options = null) =>
             string.IsNullOrWhiteSpace(json)
-                ? default(T)
+                ? default
                 : await Task.Run(() => JSON.Deserialize<T>(json, options ?? DefaultOptions));
 
         public static async Task<string> SerializeToJsonAsync(object obj, Options options = null) =>
             obj is null ? string.Empty : await Task.Run(() => JSON.SerializeDynamic(obj, options ?? DefaultOptions));
 
         public static async Task<object> DeserializeAsync(Type type, byte[] bytes, Options options = null) =>
-            bytes == null || bytes.Length == 0
+            bytes is null || bytes.Length == 0
                 ? default(Type)
                 : await Task.Run(() =>
                     JSON.Deserialize(DefaultEncoding.GetString(bytes), type, options ?? DefaultOptions));
 
         public static async Task<object> UnpackAsync(Type type, Stream stream, Options options = null) =>
-            stream == null
+            stream is null
                 ? default(Type)
-                : await Task.Run(() => JSON.Deserialize(DefaultEncoding.GetString(StreamToBytes(stream)), type,
-                    options ?? DefaultOptions));
+                : JSON.Deserialize(DefaultEncoding.GetString(await StreamToBytesAsync(stream)), type,
+                    options ?? DefaultOptions);
 
         public static async Task<object> DeserializeAsync(Type type, string json, Options options = null) =>
             string.IsNullOrWhiteSpace(json)
@@ -78,10 +78,10 @@ namespace Zaabee.Jil
                 : await Task.Run(() => JSON.Deserialize(json, type, options ?? DefaultOptions));
 
         public static async Task<T> DeserializeAsync<T>(TextReader reader, Options options = null) =>
-            reader == null ? default(T) : await Task.Run(() => JSON.Deserialize<T>(reader, options ?? DefaultOptions));
+            reader is null ? default : await Task.Run(() => JSON.Deserialize<T>(reader, options ?? DefaultOptions));
 
         public static async Task<object> DeserializeAsync(Type type, TextReader reader, Options options = null) =>
-            reader == null
+            reader is null
                 ? default(Type)
                 : await Task.Run(() => JSON.Deserialize(reader, type, options ?? DefaultOptions));
 

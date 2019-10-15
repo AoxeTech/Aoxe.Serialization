@@ -19,7 +19,7 @@ namespace Zaabee.Utf8Json
 
         public static async Task<T> DeserializeAsync<T>(string json, IJsonFormatterResolver resolver = null) =>
             await Task.Run(() =>
-                string.IsNullOrWhiteSpace(json) ? default(T) : JsonSerializer.Deserialize<T>(json, resolver));
+                string.IsNullOrWhiteSpace(json) ? default : JsonSerializer.Deserialize<T>(json, resolver));
 
         public static async Task<object> DeserializeAsync(Type type, string json,
             IJsonFormatterResolver resolver = null) =>
@@ -38,11 +38,11 @@ namespace Zaabee.Utf8Json
             await Task.Run(() => JsonSerializer.NonGeneric.Serialize(type, value, resolver));
 
         public static async Task<T> DeserializeAsync<T>(byte[] bytes, IJsonFormatterResolver resolver = null) =>
-            bytes == null ? default(T) : await Task.Run(() => JsonSerializer.Deserialize<T>(bytes, resolver));
+            bytes is null ? default : await Task.Run(() => JsonSerializer.Deserialize<T>(bytes, resolver));
 
         public static async Task<object> DeserializeAsync(Type type, byte[] bytes,
             IJsonFormatterResolver resolver = null) =>
-            bytes == null
+            bytes is null
                 ? default(Type)
                 : await Task.Run(() => JsonSerializer.NonGeneric.Deserialize(type, bytes, resolver));
 

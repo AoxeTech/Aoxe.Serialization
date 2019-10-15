@@ -10,7 +10,6 @@ namespace Zaabee.Binary
 
         public static byte[] Serialize(object obj)
         {
-            if (obj is null) return new byte[0];
             using (var stream = Pack(obj))
                 return StreamToBytes(stream);
         }
@@ -29,29 +28,20 @@ namespace Zaabee.Binary
             _binaryFormatter.Serialize(stream, obj);
         }
 
-        public static T Deserialize<T>(byte[] bytes)
-        {
-            if (bytes == null || bytes.Length == 0) return default(T);
-            return (T) Deserialize(typeof(T), bytes);
-        }
+        public static T Deserialize<T>(byte[] bytes) => (T) Deserialize(bytes);
 
-        public static T Unpack<T>(Stream stream)
-        {
-            if (stream == null || stream.Length == 0) return default(T);
-            var type = typeof(T);
-            return (T) Unpack(type, stream);
-        }
+        public static T Unpack<T>(Stream stream) => (T) Unpack(stream);
 
-        public static object Deserialize(Type type, byte[] bytes)
+        public static object Deserialize(byte[] bytes)
         {
-            if (bytes == null || bytes.Length == 0) return default(Type);
+            if (bytes is null || bytes.Length is 0) return default(Type);
             using (var ms = new MemoryStream(bytes))
-                return Unpack(type, ms);
+                return Unpack(ms);
         }
 
-        public static object Unpack(Type type, Stream stream)
+        public static object Unpack(Stream stream)
         {
-            if (stream == null || stream.Length == 0) return default(Type);
+            if (stream is null || stream.Length is 0) return default(Type);
             if (stream.CanSeek && stream.Position > 0)
                 stream.Position = 0;
             _binaryFormatter = _binaryFormatter ?? new BinaryFormatter();

@@ -23,10 +23,10 @@ namespace Zaabee.ZeroFormatter
         }
 
         public static T Deserialize<T>(byte[] bytes) =>
-            bytes is null || bytes.Length == 0 ? default(T) : ZeroFormatterSerializer.Deserialize<T>(bytes);
+            bytes is null || bytes.Length == 0 ? default : ZeroFormatterSerializer.Deserialize<T>(bytes);
 
         public static T Unpack<T>(Stream stream) =>
-            stream is null ? default(T) : ZeroFormatterSerializer.Deserialize<T>(stream);
+            stream is null ? default : ZeroFormatterSerializer.Deserialize<T>(stream);
         
         public static byte[] Serialize(Type type, object obj) =>
             obj is null ? new byte[0] : ZeroFormatterSerializer.NonGeneric.Serialize(type, obj);

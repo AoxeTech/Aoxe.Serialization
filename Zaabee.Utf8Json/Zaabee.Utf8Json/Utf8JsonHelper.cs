@@ -16,7 +16,7 @@ namespace Zaabee.Utf8Json
             JsonSerializer.NonGeneric.ToJsonString(type, value, resolver);
 
         public static T Deserialize<T>(string json, IJsonFormatterResolver resolver = null) =>
-            string.IsNullOrWhiteSpace(json) ? default(T) : JsonSerializer.Deserialize<T>(json, resolver);
+            string.IsNullOrWhiteSpace(json) ? default : JsonSerializer.Deserialize<T>(json, resolver);
 
         public static object Deserialize(Type type, string json, IJsonFormatterResolver resolver = null) =>
             string.IsNullOrWhiteSpace(json) ? default(Type) : JsonSerializer.NonGeneric.Deserialize(type, json, resolver);
@@ -31,10 +31,10 @@ namespace Zaabee.Utf8Json
             JsonSerializer.NonGeneric.Serialize(type, value, resolver);
 
         public static T Deserialize<T>(byte[] bytes, IJsonFormatterResolver resolver = null) =>
-            bytes == null ? default(T) : JsonSerializer.Deserialize<T>(bytes, resolver);
+            bytes is null ? default : JsonSerializer.Deserialize<T>(bytes, resolver);
 
         public static object Deserialize(Type type, byte[] bytes, IJsonFormatterResolver resolver = null) =>
-            bytes == null ? default(Type) : JsonSerializer.NonGeneric.Deserialize(type, bytes, resolver);
+            bytes is null ? default(Type) : JsonSerializer.NonGeneric.Deserialize(type, bytes, resolver);
 
         public static Stream Pack<T>(T value, IJsonFormatterResolver resolver = null)
         {

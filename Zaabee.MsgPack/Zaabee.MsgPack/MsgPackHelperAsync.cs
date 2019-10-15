@@ -32,7 +32,7 @@ namespace Zaabee.MsgPack
 
         public static async Task<byte[]> SerializeAsync(Type type, object obj)
         {
-            if (obj == null) return new byte[0];
+            if (obj is null) return new byte[0];
             using (var stream = await PackAsync(type, obj))
                 return await StreamToBytesAsync(stream);
         }
@@ -48,21 +48,21 @@ namespace Zaabee.MsgPack
 
         public static async Task PackAsync(Type type, object obj, Stream stream)
         {
-            if (obj == null) return;
+            if (obj is null) return;
             var serializer = MessagePackSerializer.Get(type);
             await Task.Run(() => serializer.Pack(stream, obj));
         }
 
         public static async Task<T> DeserializeAsync<T>(byte[] bytes)
         {
-            if (bytes == null || bytes.Length == 0) return default(T);
+            if (bytes is null || bytes.Length == 0) return default;
             using (var ms = new MemoryStream(bytes))
                 return await UnpackAsync<T>(ms);
         }
 
         public static async Task<T> UnpackAsync<T>(Stream stream)
         {
-            if (stream == null) return default(T);
+            if (stream is null) return default;
             var serializer = MessagePackSerializer.Get<T>();
             if (stream.CanSeek && stream.Position > 0)
                 stream.Position = 0;
@@ -71,14 +71,14 @@ namespace Zaabee.MsgPack
 
         public static async Task<object> DeserializeAsync(Type type, byte[] bytes)
         {
-            if (bytes == null || bytes.Length == 0) return default(Type);
+            if (bytes is null || bytes.Length == 0) return default(Type);
             using (var ms = new MemoryStream(bytes))
                 return await UnpackAsync(type, ms);
         }
 
         public static async Task<object> UnpackAsync(Type type, Stream stream)
         {
-            if (stream == null) return default(Type);
+            if (stream is null) return default(Type);
             var serializer = MessagePackSerializer.Get(type);
             if (stream.CanSeek && stream.Position > 0)
                 stream.Position = 0;

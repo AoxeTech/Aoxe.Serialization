@@ -19,7 +19,7 @@ namespace Zaabee.SwifterJson
             JsonFormatter.SerializeObject(o);
 
         public static T Deserialize<T>(string json) =>
-            string.IsNullOrWhiteSpace(json) ? default(T) : JsonFormatter.DeserializeObject<T>(json);
+            string.IsNullOrWhiteSpace(json) ? default : JsonFormatter.DeserializeObject<T>(json);
 
         public static object Deserialize(Type type, string json) =>
             string.IsNullOrWhiteSpace(json) ? default(Type) : JsonFormatter.DeserializeObject(json, type);
@@ -28,12 +28,12 @@ namespace Zaabee.SwifterJson
             JsonFormatter.SerializeObject(o, encoding ?? DefaultEncoding);
 
         public static T Deserialize<T>(byte[] bytes, Encoding encoding = null) =>
-            bytes == null
-                ? default(T)
+            bytes is null
+                ? default
                 : JsonFormatter.DeserializeObject<T>((encoding ?? DefaultEncoding).GetString(bytes));
 
         public static object Deserialize(Type type, byte[] bytes, Encoding encoding = null) =>
-            bytes == null
+            bytes is null
                 ? default(Type)
                 : JsonFormatter.DeserializeObject((encoding ?? DefaultEncoding).GetString(bytes), type);
 

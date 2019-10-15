@@ -8,7 +8,7 @@ namespace Zaabee.NewtonsoftJson
     public static partial class NewtonsoftJsonHelper
     {
         public static async Task<byte[]> SerializeAsync(object obj, JsonSerializerSettings settings = null) =>
-            obj == null
+            obj is null
                 ? new byte[0]
                 : DefaultEncoding.GetBytes(await SerializeToJsonAsync(obj, settings));
 
@@ -28,7 +28,7 @@ namespace Zaabee.NewtonsoftJson
         }
 
         public static async Task<string> SerializeToJsonAsync(object obj, JsonSerializerSettings settings = null) =>
-            obj == null
+            obj is null
                 ? string.Empty
                 : await Task.Run(() => JsonConvert.SerializeObject(obj, settings ?? DefaultSettings));
 
@@ -43,13 +43,13 @@ namespace Zaabee.NewtonsoftJson
 
         public static async Task<object> DeserializeAsync(Type type, byte[] bytes,
             JsonSerializerSettings settings = null) =>
-            bytes == null || bytes.Length == 0
+            bytes is null || bytes.Length == 0
                 ? default(Type)
                 : await DeserializeAsync(type, DefaultEncoding.GetString(bytes), settings);
 
         public static async Task<object> UnpackAsync(Type type, Stream stream,
             JsonSerializerSettings settings = null) =>
-            stream == null
+            stream is null
                 ? default(Type)
                 : await DeserializeAsync(type, DefaultEncoding.GetString(await StreamToBytesAsync(stream)), settings);
 

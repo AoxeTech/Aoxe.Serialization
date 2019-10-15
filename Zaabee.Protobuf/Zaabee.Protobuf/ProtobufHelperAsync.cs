@@ -27,26 +27,26 @@ namespace Zaabee.Protobuf
 
         public static async Task<T> DeserializeAsync<T>(byte[] bytes)
         {
-            if (bytes == null || bytes.Length == 0) return default(T);
+            if (bytes is null || bytes.Length == 0) return default;
             return (T) await DeserializeAsync(typeof(T), bytes);
         }
 
         public static async Task<T> UnpackAsync<T>(Stream stream)
         {
-            if (stream == null || stream.Length == 0) return default(T);
+            if (stream is null || stream.Length == 0) return default;
             return (T) await UnpackAsync(typeof(T), stream);
         }
 
         public static async Task<object> DeserializeAsync(Type type, byte[] bytes)
         {
-            if (bytes == null || bytes.Length == 0) return default(Type);
+            if (bytes is null || bytes.Length == 0) return default(Type);
             using (var ms = new MemoryStream(bytes))
                 return await UnpackAsync(type, ms);
         }
 
         public static async Task<object> UnpackAsync(Type type, Stream stream)
         {
-            if (stream == null || stream.Length == 0) return default(Type);
+            if (stream is null || stream.Length == 0) return default(Type);
             if (stream.CanSeek && stream.Position > 0)
                 stream.Position = 0;
             return await Task.Run(() => Model.Deserialize(stream, null, type));

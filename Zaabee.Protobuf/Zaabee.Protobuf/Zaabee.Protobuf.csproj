@@ -12,6 +12,6 @@
     <PackageTags>Zaabee Protobuf Protobuf-net serialize deserialize</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="protobuf-net" Version="2.4.0" />
+    <PackageReference Include="protobuf-net" Version="2.4.1" />
   </ItemGroup>
 </Project>
