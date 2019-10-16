@@ -11,6 +11,7 @@
         <PackagelicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaabee.Serializers/master/LICENSE</PackagelicenseUrl>
         <Description>The wrappers and extensions methods for Utf8Json</Description>
         <PackageTags>Zaabee Json Utf8Json serialize deserialize</PackageTags>
+        <LangVersion>8.0</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>

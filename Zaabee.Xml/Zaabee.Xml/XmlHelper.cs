@@ -27,8 +27,8 @@ namespace Zaabee.Xml
         public static byte[] Serialize(Type type, object obj)
         {
             if (obj is null) return new byte[0];
-            using (var stream = Pack(type, obj))
-                return StreamToBytes(stream);
+            using var stream = Pack(type, obj);
+            return StreamToBytes(stream);
         }
 
         public static Stream Pack(Type type, object obj)
@@ -49,9 +49,9 @@ namespace Zaabee.Xml
         public static string SerializeToXml(Type type, object obj, Encoding encoding = null)
         {
             if (obj is null) return string.Empty;
-            encoding = encoding ?? DefaultEncoding;
-            using (var stream = Pack(type, obj))
-                return encoding.GetString(StreamToBytes(stream));
+            encoding ??= DefaultEncoding;
+            using var stream = Pack(type, obj);
+            return encoding.GetString(StreamToBytes(stream));
         }
 
         public static T Deserialize<T>(byte[] bytes) =>
@@ -66,8 +66,8 @@ namespace Zaabee.Xml
         {
             if (bytes is null || bytes.Length == 0) return default(Type);
             var xmlSerializer = new XmlSerializer(type);
-            using (var ms = new MemoryStream(bytes))
-                return xmlSerializer.Deserialize(ms);
+            using var ms = new MemoryStream(bytes);
+            return xmlSerializer.Deserialize(ms);
         }
 
         public static object Unpack(Type type, Stream stream)
@@ -82,10 +82,10 @@ namespace Zaabee.Xml
         public static object Deserialize(Type type, string xml, Encoding encoding = null)
         {
             if (string.IsNullOrWhiteSpace(xml)) return default(Type);
-            encoding = encoding ?? DefaultEncoding;
+            encoding ??= DefaultEncoding;
             var xmlSerializer = new XmlSerializer(type);
-            using (var ms = new MemoryStream(encoding.GetBytes(xml)))
-                return xmlSerializer.Deserialize(ms);
+            using var ms = new MemoryStream(encoding.GetBytes(xml));
+            return xmlSerializer.Deserialize(ms);
         }
 
         private static byte[] StreamToBytes(Stream stream)

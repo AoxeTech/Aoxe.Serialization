@@ -21,8 +21,8 @@ namespace Zaabee.Xml
         public static async Task<byte[]> SerializeAsync(Type type, object obj)
         {
             if (obj is null) return new byte[0];
-            using (var stream = await PackAsync(type, obj))
-                return await StreamToBytesAsync(stream);
+            using var stream = await PackAsync(type, obj);
+            return await StreamToBytesAsync(stream);
         }
 
         public static async Task<Stream> PackAsync(Type type, object obj)
@@ -43,9 +43,9 @@ namespace Zaabee.Xml
         public static async Task<string> SerializeToXmlAsync(Type type, object obj, Encoding encoding = null)
         {
             if (obj is null) return string.Empty;
-            encoding = encoding ?? DefaultEncoding;
-            using (var stream =await PackAsync(type, obj))
-                return encoding.GetString(await StreamToBytesAsync(stream));
+            encoding ??= DefaultEncoding;
+            using var stream =await PackAsync(type, obj);
+            return encoding.GetString(await StreamToBytesAsync(stream));
         }
 
         public static async Task<T> DeserializeAsync<T>(byte[] bytes) =>
@@ -60,8 +60,8 @@ namespace Zaabee.Xml
         {
             if (bytes is null || bytes.Length == 0) return default(Type);
             var xmlSerializer = new XmlSerializer(type);
-            using (var ms = new MemoryStream(bytes))
-                return await Task.Run(() => xmlSerializer.Deserialize(ms));
+            using var ms = new MemoryStream(bytes);
+            return await Task.Run(() => xmlSerializer.Deserialize(ms));
         }
 
         public static async Task<object> UnpackAsync(Type type, Stream stream)
@@ -76,10 +76,10 @@ namespace Zaabee.Xml
         public static async Task<object> DeserializeAsync(Type type, string xml, Encoding encoding = null)
         {
             if (string.IsNullOrWhiteSpace(xml)) return default(Type);
-            encoding = encoding ?? DefaultEncoding;
+            encoding ??= DefaultEncoding;
             var xmlSerializer = new XmlSerializer(type);
-            using (var ms = new MemoryStream(encoding.GetBytes(xml)))
-                return await Task.Run(() => xmlSerializer.Deserialize(ms));
+            using var ms = new MemoryStream(encoding.GetBytes(xml));
+            return await Task.Run(() => xmlSerializer.Deserialize(ms));
         }
 
         private static async Task<byte[]> StreamToBytesAsync(Stream stream)

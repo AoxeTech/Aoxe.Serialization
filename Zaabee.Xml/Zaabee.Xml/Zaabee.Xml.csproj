@@ -10,5 +10,6 @@
     <PackagelicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaabee.Serializers/master/LICENSE</PackagelicenseUrl>
     <Description>Extension methods for xml serialize/deserialize</Description>
     <PackageTags>Zaabee XML serialize deserialize</PackageTags>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 </Project>

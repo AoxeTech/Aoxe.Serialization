@@ -10,6 +10,7 @@
     <PackagelicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaabee.Serializers/master/LICENSE</PackagelicenseUrl>
     <Description>The wrappers and extensions methods for Jil</Description>
     <PackageTags>Zaabee Json Jil serialize deserialize</PackageTags>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Jil" Version="2.17.0" />

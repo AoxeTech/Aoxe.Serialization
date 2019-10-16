@@ -10,8 +10,8 @@ namespace Zaabee.MsgPack
         public static async Task<byte[]> SerializeAsync<T>(T t)
         {
             if (t == null) return new byte[0];
-            using (var stream = await PackAsync(t))
-                return await StreamToBytesAsync(stream);
+            using var stream = await PackAsync(t);
+            return await StreamToBytesAsync(stream);
         }
 
         public static async Task<Stream> PackAsync<T>(T t)
@@ -33,8 +33,8 @@ namespace Zaabee.MsgPack
         public static async Task<byte[]> SerializeAsync(Type type, object obj)
         {
             if (obj is null) return new byte[0];
-            using (var stream = await PackAsync(type, obj))
-                return await StreamToBytesAsync(stream);
+            using var stream = await PackAsync(type, obj);
+            return await StreamToBytesAsync(stream);
         }
 
         public static async Task<Stream> PackAsync(Type type, object obj)
@@ -56,8 +56,8 @@ namespace Zaabee.MsgPack
         public static async Task<T> DeserializeAsync<T>(byte[] bytes)
         {
             if (bytes is null || bytes.Length == 0) return default;
-            using (var ms = new MemoryStream(bytes))
-                return await UnpackAsync<T>(ms);
+            using var ms = new MemoryStream(bytes);
+            return await UnpackAsync<T>(ms);
         }
 
         public static async Task<T> UnpackAsync<T>(Stream stream)
@@ -72,8 +72,8 @@ namespace Zaabee.MsgPack
         public static async Task<object> DeserializeAsync(Type type, byte[] bytes)
         {
             if (bytes is null || bytes.Length == 0) return default(Type);
-            using (var ms = new MemoryStream(bytes))
-                return await UnpackAsync(type, ms);
+            using var ms = new MemoryStream(bytes);
+            return await UnpackAsync(type, ms);
         }
 
         public static async Task<object> UnpackAsync(Type type, Stream stream)

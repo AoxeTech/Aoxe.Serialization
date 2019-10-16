@@ -13,8 +13,8 @@ namespace Zaabee.Protobuf
         public static byte[] Serialize(object obj)
         {
             if (obj is null) return new byte[0];
-            using (var stream = Pack(obj))
-                return StreamToBytes(stream);
+            using var stream = Pack(obj);
+            return StreamToBytes(stream);
         }
 
         public static Stream Pack(object obj)
@@ -45,8 +45,8 @@ namespace Zaabee.Protobuf
         public static object Deserialize(Type type, byte[] bytes)
         {
             if (bytes is null || bytes.Length == 0) return default(Type);
-            using (var ms = new MemoryStream(bytes))
-                return Unpack(type, ms);
+            using var ms = new MemoryStream(bytes);
+            return Unpack(type, ms);
         }
 
         public static object Unpack(Type type, Stream stream)

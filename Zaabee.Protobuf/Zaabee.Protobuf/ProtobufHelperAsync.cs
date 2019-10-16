@@ -9,8 +9,8 @@ namespace Zaabee.Protobuf
         public static async Task<byte[]> SerializeAsync(object obj)
         {
             if (obj is null) return new byte[0];
-            using (var stream = await PackAsync(obj))
-                return await StreamToBytesAsync(stream);
+            using var stream = await PackAsync(obj);
+            return await StreamToBytesAsync(stream);
         }
 
         public static async Task<Stream> PackAsync(object obj)
@@ -40,8 +40,8 @@ namespace Zaabee.Protobuf
         public static async Task<object> DeserializeAsync(Type type, byte[] bytes)
         {
             if (bytes is null || bytes.Length == 0) return default(Type);
-            using (var ms = new MemoryStream(bytes))
-                return await UnpackAsync(type, ms);
+            using var ms = new MemoryStream(bytes);
+            return await UnpackAsync(type, ms);
         }
 
         public static async Task<object> UnpackAsync(Type type, Stream stream)

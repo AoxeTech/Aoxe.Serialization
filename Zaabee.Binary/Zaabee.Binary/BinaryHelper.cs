@@ -10,8 +10,8 @@ namespace Zaabee.Binary
 
         public static byte[] Serialize(object obj)
         {
-            using (var stream = Pack(obj))
-                return StreamToBytes(stream);
+            using var stream = Pack(obj);
+            return StreamToBytes(stream);
         }
 
         public static Stream Pack(object obj)
@@ -24,7 +24,7 @@ namespace Zaabee.Binary
         public static void Pack(object obj, Stream stream)
         {
             if (obj is null) return;
-            _binaryFormatter = _binaryFormatter ?? new BinaryFormatter();
+            _binaryFormatter ??= new BinaryFormatter();
             _binaryFormatter.Serialize(stream, obj);
         }
 
@@ -35,8 +35,8 @@ namespace Zaabee.Binary
         public static object Deserialize(byte[] bytes)
         {
             if (bytes is null || bytes.Length is 0) return default(Type);
-            using (var ms = new MemoryStream(bytes))
-                return Unpack(ms);
+            using var ms = new MemoryStream(bytes);
+            return Unpack(ms);
         }
 
         public static object Unpack(Stream stream)
@@ -44,7 +44,7 @@ namespace Zaabee.Binary
             if (stream is null || stream.Length is 0) return default(Type);
             if (stream.CanSeek && stream.Position > 0)
                 stream.Position = 0;
-            _binaryFormatter = _binaryFormatter ?? new BinaryFormatter();
+            _binaryFormatter ??= new BinaryFormatter();
             return _binaryFormatter.Deserialize(stream);
         }
 
