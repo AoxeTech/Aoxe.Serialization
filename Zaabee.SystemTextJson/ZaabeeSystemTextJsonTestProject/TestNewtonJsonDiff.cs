@@ -30,7 +30,7 @@ namespace ZaabeeSystemTextJsonTestProject
         [Description("测试英文序列化")]
         public void TestEnglish()
         {
-            object jsonObject = new {english = "bla bla"};
+            object jsonObject = new {English = "bla bla"};
             var aJsonString = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObject);
             var bJsonString = SystemTextJsonHelper.SerializeToJson(jsonObject);
 
