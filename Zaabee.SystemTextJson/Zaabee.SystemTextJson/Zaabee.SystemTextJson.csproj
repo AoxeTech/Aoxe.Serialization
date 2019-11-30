@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;netcoreapp3.0</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2.1.2</PackageVersion>
-        <Version>2.1.2</Version>
+        <PackageVersion>2.1.3</PackageVersion>
+        <Version>2.1.3</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Protobuf</PackageProjectUrl>
-        <PackagelicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaabee.Serializers/master/LICENSE</PackagelicenseUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Description>The wrappers and extensions methods for System.Text.Json</Description>
         <PackageTags>Zaabee Json System.Text.Json serialize deserialize</PackageTags>
         <LangVersion>8.0</LangVersion>

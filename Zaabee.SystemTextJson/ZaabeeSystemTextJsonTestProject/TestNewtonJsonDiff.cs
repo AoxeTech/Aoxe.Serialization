@@ -79,10 +79,8 @@ namespace ZaabeeSystemTextJsonTestProject
             var aJsonObject = Newtonsoft.Json.JsonConvert.DeserializeObject<TestClass>(ajsonString);
 
             // 报错，The JSON value could not be converted to System.Int32. Path: $.number | LineNumber: 0 | BytePositionInLine: 15
-            var bJsonObject =
-                System.Text.Json.JsonSerializer.Deserialize<TestClass>(ajsonString);
-
-            Assert.Equal(aJsonObject.Number, bJsonObject.Number);
+            Assert.Throws<System.Text.Json.JsonException>(() =>
+                System.Text.Json.JsonSerializer.Deserialize<TestClass>(ajsonString));
         }
 
         public class TestClass

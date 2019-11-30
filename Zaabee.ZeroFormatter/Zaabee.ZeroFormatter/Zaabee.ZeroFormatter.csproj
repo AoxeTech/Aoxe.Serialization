@@ -3,12 +3,12 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2.1.1</PackageVersion>
-        <Version>2.1.1</Version>
+        <PackageVersion>2.1.2</PackageVersion>
+        <Version>2.1.2</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.ZeroFormatter</PackageProjectUrl>
-        <PackagelicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaabee.Serializers/master/LICENSE</PackagelicenseUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Description>Cause the ZeroFormatter has not updated for long time I thing it is abandoned.This package will not be maintenanced.(This version is not compatible for dotnet core 3.0)</Description>
         <PackageTags>Zaabee ZeroFormatter serialize deserialize</PackageTags>
     </PropertyGroup>
