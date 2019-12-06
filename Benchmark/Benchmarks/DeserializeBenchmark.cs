@@ -1,5 +1,4 @@
 using System;
-using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
 using Zaabee.Binary;
@@ -7,7 +6,6 @@ using Zaabee.Jil;
 using Zaabee.MsgPack;
 using Zaabee.NewtonsoftJson;
 using Zaabee.Protobuf;
-using Zaabee.SwifterJson;
 using Zaabee.SystemTextJson;
 using Zaabee.Utf8Json;
 using Zaabee.Xml;
@@ -34,7 +32,6 @@ namespace Benchmark.Benchmarks
         private readonly byte[] _msgPackBytes;
         private readonly byte[] _newtonsoftJsonBytes;
         private readonly byte[] _protobufBytes;
-        private readonly byte[] _swifterJsonBytes;
         private readonly byte[] _systemTextJsonBytes;
         private readonly byte[] _utf8JsonBytes;
         private readonly byte[] _xmlBytes;
@@ -47,7 +44,6 @@ namespace Benchmark.Benchmarks
             _msgPackBytes = MsgPackHelper.Serialize(_testModel);
             _newtonsoftJsonBytes = NewtonsoftJsonHelper.Serialize(_testModel);
             _protobufBytes = ProtobufHelper.Serialize(_testModel);
-            _swifterJsonBytes = SwifterJsonHelper.Serialize(_testModel);
             _systemTextJsonBytes = SystemTextJsonHelper.Serialize(_testModel);
             _utf8JsonBytes = Utf8JsonHelper.Serialize(_testModel);
             _xmlBytes = XmlHelper.Serialize(_testModel);
@@ -68,9 +64,6 @@ namespace Benchmark.Benchmarks
 
         [Benchmark]
         public void ProtobufDeserialize() => ProtobufHelper.Deserialize<TestModel>(_protobufBytes);
-
-        [Benchmark]
-        public void SwifterJsonDeserialize() => SwifterJsonHelper.Deserialize<TestModel>(_swifterJsonBytes);
 
         [Benchmark]
         public void SystemTextJsonDeserialize() => SystemTextJsonHelper.Deserialize<TestModel>(_systemTextJsonBytes);

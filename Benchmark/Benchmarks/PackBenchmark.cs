@@ -1,5 +1,4 @@
 using System;
-using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
 using Zaabee.Binary;
@@ -7,7 +6,6 @@ using Zaabee.Jil;
 using Zaabee.MsgPack;
 using Zaabee.NewtonsoftJson;
 using Zaabee.Protobuf;
-using Zaabee.SwifterJson;
 using Zaabee.SystemTextJson;
 using Zaabee.Utf8Json;
 using Zaabee.Xml;
@@ -43,9 +41,6 @@ namespace Benchmark.Benchmarks
 
         [Benchmark]
         public void ProtobufPack() => ProtobufHelper.Pack(_testModel);
-
-        [Benchmark]
-        public void SwifterJsonPack() => SwifterJsonHelper.Pack(_testModel);
 
         [Benchmark]
         public void SystemTextJsonPack() => SystemTextJsonHelper.Pack(_testModel);

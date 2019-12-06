@@ -15,7 +15,6 @@
       <ProjectReference Include="..\Zaabee.MsgPack\Zaabee.MsgPack\Zaabee.MsgPack.csproj" />
       <ProjectReference Include="..\Zaabee.NewtonsoftJson\Zaabee.NewtonsoftJson\Zaabee.NewtonsoftJson.csproj" />
       <ProjectReference Include="..\Zaabee.Protobuf\Zaabee.Protobuf\Zaabee.Protobuf.csproj" />
-      <ProjectReference Include="..\Zaabee.SwifterJson\Zaabee.SwifterJson\Zaabee.SwifterJson.csproj" />
       <ProjectReference Include="..\Zaabee.SystemTextJson\Zaabee.SystemTextJson\Zaabee.SystemTextJson.csproj" />
       <ProjectReference Include="..\Zaabee.Utf8Json\Zaabee.Utf8Json\Zaabee.Utf8Json.csproj" />
       <ProjectReference Include="..\Zaabee.Xml\Zaabee.Xml\Zaabee.Xml.csproj" />
