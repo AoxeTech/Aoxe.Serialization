@@ -2,12 +2,9 @@ using System;
 using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
-using Zaabee.Binary;
-using Zaabee.Jil;
 using Zaabee.MsgPack;
 using Zaabee.NewtonsoftJson;
 using Zaabee.Protobuf;
-using Zaabee.SwifterJson;
 using Zaabee.SystemTextJson;
 using Zaabee.Utf8Json;
 using Zaabee.Xml;
@@ -28,13 +25,9 @@ namespace Benchmark.Benchmarks
             Name = "apple",
             Gender = Gender.Female
         };
-
-        private readonly byte[] _binaryBytes;
-        private readonly byte[] _jilBytes;
         private readonly byte[] _msgPackBytes;
         private readonly byte[] _newtonsoftJsonBytes;
         private readonly byte[] _protobufBytes;
-        private readonly byte[] _swifterJsonBytes;
         private readonly byte[] _systemTextJsonBytes;
         private readonly byte[] _utf8JsonBytes;
         private readonly byte[] _xmlBytes;
@@ -42,21 +35,14 @@ namespace Benchmark.Benchmarks
 
         public DeserializeBenchmarkAsync()
         {
-            _binaryBytes = BinaryHelper.Serialize(_testModel);
-            _jilBytes = JilHelper.Serialize(_testModel);
             _msgPackBytes = MsgPackHelper.Serialize(_testModel);
             _newtonsoftJsonBytes = NewtonsoftJsonHelper.Serialize(_testModel);
             _protobufBytes = ProtobufHelper.Serialize(_testModel);
-            _swifterJsonBytes = SwifterJsonHelper.Serialize(_testModel);
             _systemTextJsonBytes = SystemTextJsonHelper.Serialize(_testModel);
             _utf8JsonBytes = Utf8JsonHelper.Serialize(_testModel);
             _xmlBytes = XmlHelper.Serialize(_testModel);
             _zeroFormatterBytes = ZeroFormatterHelper.Serialize(_testModel);
         }
-
-        [Benchmark]
-        public async Task JilDeserializeAsync() =>
-            await JilHelper.DeserializeAsync<TestModel>(_jilBytes);
 
         [Benchmark]
         public async Task MsgPackDeserializeAsync() =>

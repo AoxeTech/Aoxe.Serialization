@@ -12,11 +12,5 @@ namespace Zaabee.Jil
 
         public static object FromJson(this TextReader textReader, Type type, Options options = null) =>
             JilHelper.Deserialize(type, textReader, options);
-
-        public static async Task<T> FromJsonAsync<T>(this TextReader textReader, Options options = null) =>
-            await JilHelper.DeserializeAsync<T>(textReader, options);
-
-        public static async Task<object> FromJsonAsync(this TextReader textReader, Type type, Options options = null) =>
-            await JilHelper.DeserializeAsync(type, textReader, options);
     }
 }

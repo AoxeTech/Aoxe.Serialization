@@ -2,12 +2,9 @@ using System;
 using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
-using Zaabee.Binary;
-using Zaabee.Jil;
 using Zaabee.MsgPack;
 using Zaabee.NewtonsoftJson;
 using Zaabee.Protobuf;
-using Zaabee.SwifterJson;
 using Zaabee.SystemTextJson;
 using Zaabee.Utf8Json;
 using Zaabee.Xml;
@@ -28,9 +25,6 @@ namespace Benchmark.Benchmarks
             Name = "apple",
             Gender = Gender.Female
         };
-
-        [Benchmark]
-        public async Task JilSerializeAsync() => await JilHelper.SerializeAsync(_testModel);
 
         [Benchmark]
         public async Task MsgPackSerializeAsync() => await MsgPackHelper.SerializeAsync(_testModel);

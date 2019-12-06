@@ -2,7 +2,6 @@ using System;
 using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
-using Zaabee.Jil;
 using Zaabee.NewtonsoftJson;
 using Zaabee.SystemTextJson;
 using Zaabee.Utf8Json;
@@ -23,10 +22,6 @@ namespace Benchmark.Benchmarks
             Name = "apple",
             Gender = Gender.Female
         };
-
-        [Benchmark]
-        public async Task JilSerializeToJsonAsync() =>
-            await JilHelper.SerializeToJsonAsync(_testModel);
 
         [Benchmark]
         public async Task NewtonsoftJsonSerializeToJsonAsync() =>

@@ -2,7 +2,6 @@ using System;
 using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
-using Zaabee.Jil;
 using Zaabee.MsgPack;
 using Zaabee.NewtonsoftJson;
 using Zaabee.Protobuf;
@@ -26,9 +25,6 @@ namespace Benchmark.Benchmarks
             Name = "apple",
             Gender = Gender.Female
         };
-
-        [Benchmark]
-        public async Task JilPackAsync() => await JilHelper.PackAsync(_testModel);
 
         [Benchmark]
         public async Task MsgPackPackAsync() => await MsgPackHelper.PackAsync(_testModel);

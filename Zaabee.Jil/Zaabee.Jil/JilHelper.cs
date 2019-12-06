@@ -18,27 +18,27 @@ namespace Zaabee.Jil
         public static Options DefaultOptions;
 
         public static byte[] Serialize<T>(T t, Options options = null) =>
-            t == null
+            t is null
                 ? new byte[0]
                 : DefaultEncoding.GetBytes(SerializeToJson(t, options));
 
         public static Stream Pack<T>(T t, Options options = null)
         {
             var ms = new MemoryStream();
-            if (t == null) return ms;
+            if (t is null) return ms;
             Pack(t, ms, options);
             return ms;
         }
 
         public static void Pack<T>(T t, Stream stream, Options options = null)
         {
-            if (t == null || !stream.CanWrite) return;
+            if (t is null || !stream.CanWrite) return;
             var bytes = Serialize(t, options);
             stream.Write(bytes, 0, bytes.Length);
         }
 
         public static string SerializeToJson<T>(T t, Options options = null) =>
-            t == null ? string.Empty : JSON.Serialize(t, options ?? DefaultOptions);
+            t is null ? string.Empty : JSON.Serialize(t, options ?? DefaultOptions);
 
         public static void Serialize<T>(T t, TextWriter output, Options options = null)
         {
