@@ -3,12 +3,9 @@ using System.IO;
 using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
-using Zaabee.Binary;
 using Zaabee.Jil;
 using Zaabee.MsgPack;
 using Zaabee.NewtonsoftJson;
-using Zaabee.Protobuf;
-using Zaabee.SwifterJson;
 using Zaabee.SystemTextJson;
 using Zaabee.Utf8Json;
 using Zaabee.Xml;
@@ -30,12 +27,9 @@ namespace Benchmark.Benchmarks
             Gender = Gender.Female
         };
 
-        private readonly Stream _binaryStream;
         private readonly Stream _jilStream;
         private readonly Stream _msgPackStream;
         private readonly Stream _newtonsoftJsonStream;
-        private readonly Stream _protobufStream;
-        private readonly Stream _swifterJsonStream;
         private readonly Stream _systemTextJsonStream;
         private readonly Stream _utf8JsonStream;
         private readonly Stream _xmlStream;
@@ -43,12 +37,9 @@ namespace Benchmark.Benchmarks
 
         public UnpackBenchmarkAsync()
         {
-            _binaryStream = BinaryHelper.Pack(_testModel);
             _jilStream = JilHelper.Pack(_testModel);
             _msgPackStream = MsgPackHelper.Pack(_testModel);
             _newtonsoftJsonStream = NewtonsoftJsonHelper.Pack(_testModel);
-            _protobufStream = ProtobufHelper.Pack(_testModel);
-            _swifterJsonStream = SwifterJsonHelper.Pack(_testModel);
             _systemTextJsonStream = SystemTextJsonHelper.Pack(_testModel);
             _utf8JsonStream = Utf8JsonHelper.Pack(_testModel);
             _xmlStream = XmlHelper.Pack(_testModel);
@@ -64,9 +55,6 @@ namespace Benchmark.Benchmarks
         [Benchmark]
         public async Task NewtonsoftJsonUnpackAsync() =>
             await NewtonsoftJsonHelper.UnpackAsync<TestModel>(_newtonsoftJsonStream);
-
-        [Benchmark]
-        public async Task ProtobufUnpackAsync() => await ProtobufHelper.UnpackAsync<TestModel>(_protobufStream);
 
         [Benchmark]
         public async Task SystemTextJsonUnpackAsync() =>

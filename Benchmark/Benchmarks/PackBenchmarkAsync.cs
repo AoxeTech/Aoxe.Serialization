@@ -25,9 +25,6 @@ namespace Benchmark.Benchmarks
         };
 
         [Benchmark]
-        public async Task ProtobufPackAsync() => await ProtobufHelper.PackAsync(_testModel);
-
-        [Benchmark]
         public async Task SystemTextJsonPackAsync() => await SystemTextJsonHelper.PackAsync(_testModel);
 
         [Benchmark]
