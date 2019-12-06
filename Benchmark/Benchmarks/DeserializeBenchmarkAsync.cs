@@ -25,8 +25,6 @@ namespace Benchmark.Benchmarks
             Name = "apple",
             Gender = Gender.Female
         };
-        private readonly byte[] _msgPackBytes;
-        private readonly byte[] _newtonsoftJsonBytes;
         private readonly byte[] _protobufBytes;
         private readonly byte[] _systemTextJsonBytes;
         private readonly byte[] _utf8JsonBytes;
@@ -35,18 +33,12 @@ namespace Benchmark.Benchmarks
 
         public DeserializeBenchmarkAsync()
         {
-            _msgPackBytes = MsgPackHelper.Serialize(_testModel);
-            _newtonsoftJsonBytes = NewtonsoftJsonHelper.Serialize(_testModel);
             _protobufBytes = ProtobufHelper.Serialize(_testModel);
             _systemTextJsonBytes = SystemTextJsonHelper.Serialize(_testModel);
             _utf8JsonBytes = Utf8JsonHelper.Serialize(_testModel);
             _xmlBytes = XmlHelper.Serialize(_testModel);
             _zeroFormatterBytes = ZeroFormatterHelper.Serialize(_testModel);
         }
-
-        [Benchmark]
-        public async Task NewtonsoftJsonDeserializeAsync() =>
-            await NewtonsoftJsonHelper.DeserializeAsync<TestModel>(_newtonsoftJsonBytes);
 
         [Benchmark]
         public async Task ProtobufDeserializeAsync() =>
