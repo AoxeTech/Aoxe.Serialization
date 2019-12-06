@@ -11,6 +11,7 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Description>Cause the ZeroFormatter has not updated for long time I thing it is abandoned.This package will not be maintenanced.(This version is not compatible for dotnet core 3.0)</Description>
         <PackageTags>Zaabee ZeroFormatter serialize deserialize</PackageTags>
+        <LangVersion>8.0</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>

@@ -8,12 +8,12 @@ namespace Zaabee.ZeroFormatter
     public static partial class ZeroFormatterHelper
     {
         public static async Task<byte[]> SerializeAsync<T>(T t) =>
-            t == null ? new byte[0] : await Task.Run(() => ZeroFormatterSerializer.Serialize(t));
+            t is null ? new byte[0] : await Task.Run(() => ZeroFormatterSerializer.Serialize(t));
 
         public static async Task<Stream> PackAsync<T>(T t)
         {
             var ms = new MemoryStream();
-            if (t == null) return ms;
+            if (t is null) return ms;
             await PackAsync(t, ms);
             return ms;
         }
