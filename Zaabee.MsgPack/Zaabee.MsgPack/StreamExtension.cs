@@ -21,13 +21,7 @@ namespace Zaabee.MsgPack
         public static async Task PackByAsync<T>(this Stream stream, T obj) =>
             await MsgPackHelper.PackAsync(obj, stream);
 
-        public static async Task PackByAsync(this Stream stream, Type type, object obj) =>
-            await MsgPackHelper.PackAsync(type, obj, stream);
-
         public static async Task<T> UnpackAsync<T>(this Stream stream) =>
             await MsgPackHelper.UnpackAsync<T>(stream);
-
-        public static async Task<object> UnpackAsync(this Stream stream, Type type) =>
-            await MsgPackHelper.UnpackAsync(type, stream);
     }
 }

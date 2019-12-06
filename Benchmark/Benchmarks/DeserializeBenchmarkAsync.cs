@@ -45,10 +45,6 @@ namespace Benchmark.Benchmarks
         }
 
         [Benchmark]
-        public async Task MsgPackDeserializeAsync() =>
-            await MsgPackHelper.DeserializeAsync<TestModel>(_msgPackBytes);
-
-        [Benchmark]
         public async Task NewtonsoftJsonDeserializeAsync() =>
             await NewtonsoftJsonHelper.DeserializeAsync<TestModel>(_newtonsoftJsonBytes);
 

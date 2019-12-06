@@ -27,9 +27,6 @@ namespace Benchmark.Benchmarks
         };
 
         [Benchmark]
-        public async Task MsgPackPackAsync() => await MsgPackHelper.PackAsync(_testModel);
-
-        [Benchmark]
         public async Task NewtonsoftJsonPackAsync() => await NewtonsoftJsonHelper.PackAsync(_testModel);
 
         [Benchmark]

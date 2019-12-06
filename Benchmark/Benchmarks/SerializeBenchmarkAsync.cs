@@ -27,9 +27,6 @@ namespace Benchmark.Benchmarks
         };
 
         [Benchmark]
-        public async Task MsgPackSerializeAsync() => await MsgPackHelper.SerializeAsync(_testModel);
-
-        [Benchmark]
         public async Task NewtonsoftJsonSerializeAsync() => await NewtonsoftJsonHelper.SerializeAsync(_testModel);
 
         [Benchmark]

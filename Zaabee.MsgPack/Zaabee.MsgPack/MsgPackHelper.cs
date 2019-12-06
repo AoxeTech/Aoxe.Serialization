@@ -8,7 +8,7 @@ namespace Zaabee.MsgPack
     {
         public static byte[] Serialize<T>(T t)
         {
-            if (t == null) return new byte[0];
+            if (t is null) return new byte[0];
             using var stream = Pack(t);
             return StreamToBytes(stream);
         }
@@ -16,7 +16,7 @@ namespace Zaabee.MsgPack
         public static Stream Pack<T>(T t)
         {
             var ms = new MemoryStream();
-            if (t == null) return ms;
+            if (t is null) return ms;
             Pack(t, ms);
             ms.Seek(0, SeekOrigin.Begin);
             return ms;
@@ -24,7 +24,7 @@ namespace Zaabee.MsgPack
 
         public static void Pack<T>(T t, Stream stream)
         {
-            if (t == null) return;
+            if (t is null) return;
             var serializer = MessagePackSerializer.Get<T>();
             serializer.Pack(stream, t);
         }
