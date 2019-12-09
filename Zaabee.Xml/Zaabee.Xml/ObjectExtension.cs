@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace Zaabee.Xml
 {
@@ -29,29 +28,5 @@ namespace Zaabee.Xml
 
         public static void PackTo(this object obj, Type type, Stream stream) =>
             XmlHelper.Pack(type, obj, stream);
-
-        public static async Task<byte[]> ToBytesAsync<T>(this T t) =>
-            await XmlHelper.SerializeAsync(t);
-
-        public static async Task<Stream> PackAsync<T>(this T t) =>
-            await XmlHelper.PackAsync(t);
-
-        public static async Task<string> ToXmlAsync<T>(this T t) =>
-            await XmlHelper.SerializeToXmlAsync(t);
-
-        public static async Task PackToAsync<T>(this T t, Stream stream) =>
-            await XmlHelper.PackAsync(t, stream);
-
-        public static async Task<byte[]> ToBytesAsync(this object obj, Type type) =>
-            await XmlHelper.SerializeAsync(type, obj);
-
-        public static async Task<Stream> PackAsync(this object obj, Type type) =>
-            await XmlHelper.PackAsync(type, obj);
-
-        public static async Task<string> ToXmlAsync(this object obj, Type type) =>
-            await XmlHelper.SerializeToXmlAsync(type, obj);
-
-        public static async Task PackToAsync(this object obj, Type type, Stream stream) =>
-            await XmlHelper.PackAsync(type, obj, stream);
     }
 }
