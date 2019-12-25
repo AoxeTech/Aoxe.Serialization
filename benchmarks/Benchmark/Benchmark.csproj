@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFrameworks>netcoreapp2.1;netcoreapp3.0</TargetFrameworks>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="BenchmarkDotNet" Version="0.12.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\Zaabee.Binary\Zaabee.Binary.csproj" />
+      <ProjectReference Include="..\..\src\Zaabee.Jil\Zaabee.Jil.csproj" />
+      <ProjectReference Include="..\..\src\Zaabee.MsgPack\Zaabee.MsgPack.csproj" />
+      <ProjectReference Include="..\..\src\Zaabee.NewtonsoftJson\Zaabee.NewtonsoftJson.csproj" />
+      <ProjectReference Include="..\..\src\Zaabee.Protobuf\Zaabee.Protobuf.csproj" />
+      <ProjectReference Include="..\..\src\Zaabee.SystemTextJson\Zaabee.SystemTextJson.csproj" />
+      <ProjectReference Include="..\..\src\Zaabee.Utf8Json\Zaabee.Utf8Json.csproj" />
+      <ProjectReference Include="..\..\src\Zaabee.Xml\Zaabee.Xml.csproj" />
+      <ProjectReference Include="..\..\src\Zaabee.ZeroFormatter\Zaabee.ZeroFormatter.csproj" />
+    </ItemGroup>
+
+</Project>
