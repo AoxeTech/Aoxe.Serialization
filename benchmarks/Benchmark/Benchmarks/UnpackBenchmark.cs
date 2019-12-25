@@ -10,7 +10,6 @@ using Zaabee.Protobuf;
 using Zaabee.SystemTextJson;
 using Zaabee.Utf8Json;
 using Zaabee.Xml;
-using Zaabee.ZeroFormatter;
 
 namespace Benchmark.Benchmarks
 {
@@ -36,7 +35,6 @@ namespace Benchmark.Benchmarks
         private readonly Stream _systemTextJsonStream;
         private readonly Stream _utf8JsonStream;
         private readonly Stream _xmlStream;
-        private readonly Stream _zeroFormatterStream;
 
         public UnpackBenchmark()
         {
@@ -48,7 +46,6 @@ namespace Benchmark.Benchmarks
             _systemTextJsonStream = SystemTextJsonHelper.Pack(_testModel);
             _utf8JsonStream = Utf8JsonHelper.Pack(_testModel);
             _xmlStream = XmlHelper.Pack(_testModel);
-            _zeroFormatterStream = ZeroFormatterHelper.Pack(_testModel);
         }
 
         [Benchmark]
@@ -74,8 +71,5 @@ namespace Benchmark.Benchmarks
 
         [Benchmark]
         public void XmlUnpack() => XmlHelper.Unpack<TestModel>(_xmlStream);
-
-        [Benchmark]
-        public void ZeroFormatterUnpack() => ZeroFormatterHelper.Unpack<TestModel>(_zeroFormatterStream);
     }
 }

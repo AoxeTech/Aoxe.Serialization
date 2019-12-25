@@ -9,7 +9,6 @@ using Zaabee.Protobuf;
 using Zaabee.SystemTextJson;
 using Zaabee.Utf8Json;
 using Zaabee.Xml;
-using Zaabee.ZeroFormatter;
 
 namespace Benchmark.Benchmarks
 {
@@ -50,8 +49,5 @@ namespace Benchmark.Benchmarks
 
         [Benchmark]
         public void XmlPack() => XmlHelper.Pack(_testModel);
-
-        [Benchmark]
-        public void ZeroFormatterPack() => ZeroFormatterHelper.Pack(_testModel);
     }
 }

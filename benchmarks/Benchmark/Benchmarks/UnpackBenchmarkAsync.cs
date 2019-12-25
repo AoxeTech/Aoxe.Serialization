@@ -8,7 +8,6 @@ using Zaabee.MsgPack;
 using Zaabee.NewtonsoftJson;
 using Zaabee.SystemTextJson;
 using Zaabee.Utf8Json;
-using Zaabee.ZeroFormatter;
 
 namespace Benchmark.Benchmarks
 {
@@ -31,7 +30,6 @@ namespace Benchmark.Benchmarks
         private readonly Stream _newtonsoftJsonStream;
         private readonly Stream _systemTextJsonStream;
         private readonly Stream _utf8JsonStream;
-        private readonly Stream _zeroFormatterStream;
 
         public UnpackBenchmarkAsync()
         {
@@ -40,7 +38,6 @@ namespace Benchmark.Benchmarks
             _newtonsoftJsonStream = NewtonsoftJsonHelper.Pack(_testModel);
             _systemTextJsonStream = SystemTextJsonHelper.Pack(_testModel);
             _utf8JsonStream = Utf8JsonHelper.Pack(_testModel);
-            _zeroFormatterStream = ZeroFormatterHelper.Pack(_testModel);
         }
 
         [Benchmark]
@@ -60,9 +57,5 @@ namespace Benchmark.Benchmarks
         [Benchmark]
         public async Task Utf8JsonSerializeUnpackAsync() =>
             await Utf8JsonHelper.UnpackAsync<TestModel>(_utf8JsonStream);
-
-        [Benchmark]
-        public async Task ZeroFormatterUnpackAsync() =>
-            await ZeroFormatterHelper.UnpackAsync<TestModel>(_zeroFormatterStream);
     }
 }

@@ -9,7 +9,6 @@ using Zaabee.Protobuf;
 using Zaabee.SystemTextJson;
 using Zaabee.Utf8Json;
 using Zaabee.Xml;
-using Zaabee.ZeroFormatter;
 
 namespace Benchmark.Benchmarks
 {
@@ -35,7 +34,6 @@ namespace Benchmark.Benchmarks
         private readonly byte[] _systemTextJsonBytes;
         private readonly byte[] _utf8JsonBytes;
         private readonly byte[] _xmlBytes;
-        private readonly byte[] _zeroFormatterBytes;
 
         public DeserializeBenchmark()
         {
@@ -47,7 +45,6 @@ namespace Benchmark.Benchmarks
             _systemTextJsonBytes = SystemTextJsonHelper.Serialize(_testModel);
             _utf8JsonBytes = Utf8JsonHelper.Serialize(_testModel);
             _xmlBytes = XmlHelper.Serialize(_testModel);
-            _zeroFormatterBytes = ZeroFormatterHelper.Serialize(_testModel);
         }
 
         [Benchmark]
@@ -73,8 +70,5 @@ namespace Benchmark.Benchmarks
 
         [Benchmark]
         public void XmlDeserialize() => XmlHelper.Deserialize<TestModel>(_xmlBytes);
-
-        [Benchmark]
-        public void ZeroFormatterDeserialize() => ZeroFormatterHelper.Deserialize<TestModel>(_zeroFormatterBytes);
     }
 }
