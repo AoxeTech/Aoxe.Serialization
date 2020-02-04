@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.IO;
 using System.Text;
 using System.Xml.Serialization;
@@ -8,6 +9,9 @@ namespace Zaabee.Xml
     public static class XmlHelper
     {
         private static Encoding _encoding = Encoding.UTF8;
+
+        private static readonly ConcurrentDictionary<Type, XmlSerializer> SerializerCache =
+            new ConcurrentDictionary<Type, XmlSerializer>();
 
         public static Encoding DefaultEncoding
         {
@@ -42,7 +46,7 @@ namespace Zaabee.Xml
         public static void Pack(Type type, object obj, Stream stream)
         {
             if (obj is null) return;
-            var serializer = new XmlSerializer(type);
+            var serializer = SerializerCache.GetOrAdd(type, new XmlSerializer(type));
             serializer.Serialize(stream, obj);
         }
 
@@ -65,9 +69,9 @@ namespace Zaabee.Xml
         public static object Deserialize(Type type, byte[] bytes)
         {
             if (bytes is null || bytes.Length == 0) return default(Type);
-            var xmlSerializer = new XmlSerializer(type);
+            var serializer = SerializerCache.GetOrAdd(type, new XmlSerializer(type));
             using var ms = new MemoryStream(bytes);
-            return xmlSerializer.Deserialize(ms);
+            return serializer.Deserialize(ms);
         }
 
         public static object Unpack(Type type, Stream stream)
@@ -75,17 +79,17 @@ namespace Zaabee.Xml
             if (stream is null || stream.Length == 0) return default(Type);
             if (stream.CanSeek && stream.Position > 0)
                 stream.Position = 0;
-            var xmlSerializer = new XmlSerializer(type);
-            return xmlSerializer.Deserialize(stream);
+            var serializer = SerializerCache.GetOrAdd(type, new XmlSerializer(type));
+            return serializer.Deserialize(stream);
         }
 
         public static object Deserialize(Type type, string xml, Encoding encoding = null)
         {
             if (string.IsNullOrWhiteSpace(xml)) return default(Type);
             encoding ??= DefaultEncoding;
-            var xmlSerializer = new XmlSerializer(type);
+            var serializer = SerializerCache.GetOrAdd(type, new XmlSerializer(type));
             using var ms = new MemoryStream(encoding.GetBytes(xml));
-            return xmlSerializer.Deserialize(ms);
+            return serializer.Deserialize(ms);
         }
 
         private static byte[] StreamToBytes(Stream stream)
