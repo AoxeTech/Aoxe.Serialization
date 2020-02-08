@@ -18,82 +18,48 @@ namespace Zaabee.Jil
         public static Options DefaultOptions;
 
         public static byte[] Serialize<T>(T t, Options options = null) =>
-            t is null
-                ? new byte[0]
-                : DefaultEncoding.GetBytes(SerializeToJson(t, options));
+            JilSerializer.Serialize(t, options ?? DefaultOptions, DefaultEncoding);
 
-        public static Stream Pack<T>(T t, Options options = null)
-        {
-            var ms = new MemoryStream();
-            if (t is null) return ms;
-            Pack(t, ms, options);
-            return ms;
-        }
+        public static Stream Pack<T>(T t, Options options = null) =>
+            JilSerializer.Pack(t, options ?? DefaultOptions, DefaultEncoding);
 
-        public static void Pack<T>(T t, Stream stream, Options options = null)
-        {
-            if (t is null || !stream.CanWrite) return;
-            var bytes = Serialize(t, options);
-            stream.Write(bytes, 0, bytes.Length);
-        }
+        public static void Pack<T>(T t, Stream stream, Options options = null) =>
+            JilSerializer.Pack(t, stream, options ?? DefaultOptions, DefaultEncoding);
 
         public static string SerializeToJson<T>(T t, Options options = null) =>
-            t is null ? string.Empty : JSON.Serialize(t, options ?? DefaultOptions);
+            JilSerializer.SerializeToJson(t, options ?? DefaultOptions);
 
-        public static void Serialize<T>(T t, TextWriter output, Options options = null)
-        {
-            if (t != null) JSON.Serialize(t, output, options ?? DefaultOptions);
-        }
+        public static void Serialize<T>(T t, TextWriter output, Options options = null) =>
+            JilSerializer.Serialize(t, output, options ?? DefaultOptions);
 
-        public static void Serialize(object obj, TextWriter output, Options options = null)
-        {
-            if (obj != null) JSON.SerializeDynamic(obj, output, options ?? DefaultOptions);
-        }
+        public static void Serialize(object obj, TextWriter output, Options options = null) =>
+            JilSerializer.Serialize(obj, output, options ?? DefaultOptions);
 
         public static T Deserialize<T>(byte[] bytes, Options options = null) =>
-            bytes is null || bytes.Length is 0
-                ? default
-                : JSON.Deserialize<T>(DefaultEncoding.GetString(bytes), options ?? DefaultOptions);
+            JilSerializer.Deserialize<T>(bytes, options ?? DefaultOptions, DefaultEncoding);
 
         public static T Unpack<T>(Stream stream, Options options = null) =>
-            stream is null
-                ? default
-                : JSON.Deserialize<T>(DefaultEncoding.GetString(StreamToBytes(stream)), options ?? DefaultOptions);
+            JilSerializer.Unpack<T>(stream, options ?? DefaultOptions, DefaultEncoding);
 
         public static T Deserialize<T>(string json, Options options = null) =>
-            string.IsNullOrWhiteSpace(json) ? default : JSON.Deserialize<T>(json, options ?? DefaultOptions);
+            JilSerializer.Deserialize<T>(json, options ?? DefaultOptions);
 
         public static string SerializeToJson(object obj, Options options = null) =>
-            obj is null ? string.Empty : JSON.SerializeDynamic(obj, options ?? DefaultOptions);
+            JilSerializer.SerializeToJson(obj, options ?? DefaultOptions);
 
         public static object Deserialize(Type type, byte[] bytes, Options options = null) =>
-            bytes is null || bytes.Length is 0
-                ? default(Type)
-                : JSON.Deserialize(DefaultEncoding.GetString(bytes), type, options ?? DefaultOptions);
+            JilSerializer.Deserialize(type, bytes, options ?? DefaultOptions, DefaultEncoding);
 
         public static object Unpack(Type type, Stream stream, Options options = null) =>
-            stream is null
-                ? default(Type)
-                : JSON.Deserialize(DefaultEncoding.GetString(StreamToBytes(stream)), type, options ?? DefaultOptions);
+            JilSerializer.Unpack(type, stream, options ?? DefaultOptions, DefaultEncoding);
 
         public static object Deserialize(Type type, string json, Options options = null) =>
-            string.IsNullOrWhiteSpace(json)
-                ? default(Type)
-                : JSON.Deserialize(json, type, options ?? DefaultOptions);
+            JilSerializer.Deserialize(type, json, options ?? DefaultOptions);
 
         public static T Deserialize<T>(TextReader reader, Options options = null) =>
-            reader is null ? default : JSON.Deserialize<T>(reader, options ?? DefaultOptions);
+            JilSerializer.Deserialize<T>(reader, options ?? DefaultOptions);
 
         public static object Deserialize(Type type, TextReader reader, Options options = null) =>
-            reader is null ? default(Type) : JSON.Deserialize(reader, type, options ?? DefaultOptions);
-
-        private static byte[] StreamToBytes(Stream stream)
-        {
-            var bytes = new byte[stream.Length];
-            if (stream.CanSeek && stream.Position > 0) stream.Seek(0, SeekOrigin.Begin);
-            stream.Read(bytes, 0, bytes.Length);
-            if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-            return bytes;
-        }
+            JilSerializer.Deserialize(type, reader, options ?? DefaultOptions);
     }
 }
