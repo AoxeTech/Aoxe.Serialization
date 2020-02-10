@@ -18,59 +18,33 @@ namespace Zaabee.NewtonsoftJson
         public static JsonSerializerSettings DefaultSettings;
 
         public static byte[] Serialize(object obj, JsonSerializerSettings settings = null) =>
-            obj is null
-                ? new byte[0]
-                : DefaultEncoding.GetBytes(SerializeToJson(obj, settings));
+            NewtonsoftJsonSerializer.Serialize(obj, settings ?? DefaultSettings, DefaultEncoding);
 
-        public static Stream Pack(object obj, JsonSerializerSettings settings = null)
-        {
-            var ms = new MemoryStream();
-            if (obj is null) return ms;
-            Pack(obj, ms, settings);
-            return ms;
-        }
+        public static Stream Pack(object obj, JsonSerializerSettings settings = null) =>
+            NewtonsoftJsonSerializer.Pack(obj, settings ?? DefaultSettings, DefaultEncoding);
 
-        public static void Pack(object obj, Stream stream, JsonSerializerSettings settings = null)
-        {
-            if (obj is null) return;
-            var bytes = Serialize(obj, settings);
-            stream.Write(bytes, 0, bytes.Length);
-        }
+        public static void Pack(object obj, Stream stream, JsonSerializerSettings settings = null) =>
+            NewtonsoftJsonSerializer.Pack(obj, stream, settings ?? DefaultSettings, DefaultEncoding);
 
         public static string SerializeToJson(object obj, JsonSerializerSettings settings = null) =>
-            obj is null ? string.Empty : JsonConvert.SerializeObject(obj, settings ?? DefaultSettings);
+            NewtonsoftJsonSerializer.SerializeToJson(obj, settings ?? DefaultSettings);
 
         public static T Deserialize<T>(byte[] bytes, JsonSerializerSettings settings = null) =>
-            (T) Deserialize(typeof(T), bytes, settings);
+            NewtonsoftJsonSerializer.Deserialize<T>(bytes, settings ?? DefaultSettings, DefaultEncoding);
 
         public static T Unpack<T>(Stream stream, JsonSerializerSettings settings = null) =>
-            (T) Unpack(typeof(T), stream, settings);
+            NewtonsoftJsonSerializer.Unpack<T>(stream, settings ?? DefaultSettings, DefaultEncoding);
 
         public static T Deserialize<T>(string json, JsonSerializerSettings settings = null) =>
-            (T) Deserialize(typeof(T), json, settings);
+            NewtonsoftJsonSerializer.Deserialize<T>(json, settings ?? DefaultSettings);
 
         public static object Deserialize(Type type, byte[] bytes, JsonSerializerSettings settings = null) =>
-            bytes is null || bytes.Length == 0
-                ? default(Type)
-                : Deserialize(type, DefaultEncoding.GetString(bytes), settings);
+            NewtonsoftJsonSerializer.Deserialize(type, bytes, settings ?? DefaultSettings, DefaultEncoding);
 
         public static object Unpack(Type type, Stream stream, JsonSerializerSettings settings = null) =>
-            stream is null
-                ? default(Type)
-                : Deserialize(type, DefaultEncoding.GetString(StreamToBytes(stream)), settings);
+            NewtonsoftJsonSerializer.Unpack(type, stream, settings ?? DefaultSettings, DefaultEncoding);
 
         public static object Deserialize(Type type, string json, JsonSerializerSettings settings = null) =>
-            string.IsNullOrWhiteSpace(json)
-                ? default(Type)
-                : JsonConvert.DeserializeObject(json, type, settings ?? DefaultSettings);
-
-        private static byte[] StreamToBytes(Stream stream)
-        {
-            var bytes = new byte[stream.Length];
-            if (stream.Position > 0 && stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-            stream.Read(bytes, 0, bytes.Length);
-            if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-            return bytes;
-        }
+            NewtonsoftJsonSerializer.Deserialize(type, json, settings ?? DefaultSettings);
     }
 }
