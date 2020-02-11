@@ -9,79 +9,45 @@ namespace Zaabee.SystemTextJson
         public static JsonSerializerOptions DefaultJsonSerializerOptions;
 
         public static string SerializeToJson<T>(T o, JsonSerializerOptions options = null) =>
-            JsonSerializer.Serialize(o, options ?? DefaultJsonSerializerOptions);
+            SystemTextJsonSerializer.SerializeToJson(o, options ?? DefaultJsonSerializerOptions);
 
         public static string SerializeToJson(Type type, object value, JsonSerializerOptions options = null) =>
-            JsonSerializer.Serialize(value, type, options ?? DefaultJsonSerializerOptions);
+            SystemTextJsonSerializer.SerializeToJson(type, value, options ?? DefaultJsonSerializerOptions);
 
         public static T Deserialize<T>(string json, JsonSerializerOptions options = null) =>
-            string.IsNullOrWhiteSpace(json)
-                ? default
-                : JsonSerializer.Deserialize<T>(json, options ?? DefaultJsonSerializerOptions);
+            SystemTextJsonSerializer.Deserialize<T>(json, options ?? DefaultJsonSerializerOptions);
 
         public static object Deserialize(Type type, string json, JsonSerializerOptions options = null) =>
-            string.IsNullOrWhiteSpace(json)
-                ? default(Type)
-                : JsonSerializer.Deserialize(json, type, options ?? DefaultJsonSerializerOptions);
+            SystemTextJsonSerializer.Deserialize(type, json, options ?? DefaultJsonSerializerOptions);
 
         public static byte[] Serialize<T>(T o, JsonSerializerOptions options = null) =>
-            JsonSerializer.SerializeToUtf8Bytes(o, options ?? DefaultJsonSerializerOptions);
+            SystemTextJsonSerializer.Serialize(o, options ?? DefaultJsonSerializerOptions);
 
         public static byte[] Serialize(Type type, object value, JsonSerializerOptions options = null) =>
-            JsonSerializer.SerializeToUtf8Bytes(value, type, options ?? DefaultJsonSerializerOptions);
+            SystemTextJsonSerializer.Serialize(type, value, options ?? DefaultJsonSerializerOptions);
 
         public static T Deserialize<T>(byte[] bytes, JsonSerializerOptions options = null) =>
-            bytes is null ? default : JsonSerializer.Deserialize<T>(bytes, options ?? DefaultJsonSerializerOptions);
+            SystemTextJsonSerializer.Deserialize<T>(bytes, options ?? DefaultJsonSerializerOptions);
 
         public static object Deserialize(Type type, byte[] bytes, JsonSerializerOptions options = null) =>
-            bytes is null
-                ? default(Type)
-                : JsonSerializer.Deserialize(bytes, type, options ?? DefaultJsonSerializerOptions);
+            SystemTextJsonSerializer.Deserialize(type, bytes, options ?? DefaultJsonSerializerOptions);
 
-        public static Stream Pack<T>(T value, JsonSerializerOptions options = null)
-        {
-            var ms = new MemoryStream();
-            Pack(value, ms, options ?? DefaultJsonSerializerOptions);
-            ms.Seek(0, SeekOrigin.Begin);
-            return ms;
-        }
+        public static Stream Pack<T>(T value, JsonSerializerOptions options = null) =>
+            SystemTextJsonSerializer.Pack(value, options ?? DefaultJsonSerializerOptions);
 
-        public static void Pack<T>(T value, Stream stream, JsonSerializerOptions options = null)
-        {
-            var bytes = JsonSerializer.SerializeToUtf8Bytes(value, options ?? DefaultJsonSerializerOptions);
-            if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-            stream.Write(bytes, 0, bytes.Length);
-            if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-        }
+        public static void Pack<T>(T value, Stream stream, JsonSerializerOptions options = null) =>
+            SystemTextJsonSerializer.Pack(value, stream, options ?? DefaultJsonSerializerOptions);
 
-        public static Stream Pack(Type type, object value, JsonSerializerOptions options = null)
-        {
-            var ms = new MemoryStream();
-            Pack(type, value, ms, options ?? DefaultJsonSerializerOptions);
-            return ms;
-        }
+        public static Stream Pack(Type type, object value, JsonSerializerOptions options = null) =>
+            SystemTextJsonSerializer.Pack(type, value, options ?? DefaultJsonSerializerOptions);
 
-        public static void Pack(Type type, object value, Stream stream, JsonSerializerOptions options = null)
-        {
-            var bytes = JsonSerializer.SerializeToUtf8Bytes(value, type, options ?? DefaultJsonSerializerOptions);
-            if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-            stream.Write(bytes, 0, bytes.Length);
-            if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-        }
+        public static void Pack(Type type, object value, Stream stream, JsonSerializerOptions options = null) =>
+            SystemTextJsonSerializer.Pack(type, value, stream, options ?? DefaultJsonSerializerOptions);
 
         public static T Unpack<T>(Stream stream, JsonSerializerOptions options = null) =>
-            JsonSerializer.Deserialize<T>(StreamToBytes(stream), options ?? DefaultJsonSerializerOptions);
+            SystemTextJsonSerializer.Unpack<T>(stream, options ?? DefaultJsonSerializerOptions);
 
         public static object Unpack(Type type, Stream stream, JsonSerializerOptions options = null) =>
-            JsonSerializer.Deserialize(StreamToBytes(stream), type, options ?? DefaultJsonSerializerOptions);
-
-        private static byte[] StreamToBytes(Stream stream)
-        {
-            var bytes = new byte[stream.Length];
-            if (stream.Position > 0 && stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-            stream.Read(bytes, 0, bytes.Length);
-            if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-            return bytes;
-        }
+            SystemTextJsonSerializer.Unpack(type, stream, options ?? DefaultJsonSerializerOptions);
     }
 }

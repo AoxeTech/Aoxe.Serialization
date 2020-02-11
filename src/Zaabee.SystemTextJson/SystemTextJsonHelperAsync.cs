@@ -7,23 +7,17 @@ namespace Zaabee.SystemTextJson
 {
     public static partial class SystemTextJsonHelper
     {
-        public static async Task PackAsync<T>(T value, Stream stream, JsonSerializerOptions options = null)
-        {
-            await JsonSerializer.SerializeAsync(stream, value, options ?? DefaultJsonSerializerOptions);
-            if (stream.CanSeek) stream.Position = 0L;
-        }
+        public static async Task PackAsync<T>(T value, Stream stream, JsonSerializerOptions options = null) =>
+            await SystemTextJsonSerializer.PackAsync(value, stream, options ?? DefaultJsonSerializerOptions);
 
         public static async Task PackAsync(Type type, object value, Stream stream,
-            JsonSerializerOptions options = null)
-        {
-            await JsonSerializer.SerializeAsync(stream, value, type, options ?? DefaultJsonSerializerOptions);
-            if (stream.CanSeek) stream.Position = 0L;
-        }
+            JsonSerializerOptions options = null) =>
+            await SystemTextJsonSerializer.PackAsync(type, value, stream, options ?? DefaultJsonSerializerOptions);
 
         public static async Task<T> UnpackAsync<T>(Stream stream, JsonSerializerOptions options = null) =>
-            await JsonSerializer.DeserializeAsync<T>(stream, options ?? DefaultJsonSerializerOptions);
+            await SystemTextJsonSerializer.UnpackAsync<T>(stream, options ?? DefaultJsonSerializerOptions);
 
         public static async Task<object> UnpackAsync(Type type, Stream stream, JsonSerializerOptions options = null) =>
-            await JsonSerializer.DeserializeAsync(stream, type, options ?? DefaultJsonSerializerOptions);
+            await SystemTextJsonSerializer.UnpackAsync(type, stream, options ?? DefaultJsonSerializerOptions);
     }
 }
