@@ -23,23 +23,5 @@ namespace Zaabee.ZeroFormatter
 
         public static void PackTo(this object obj, Type type, Stream stream) =>
             ZeroFormatterHelper.Pack(type, obj, stream);
-
-        public static async Task<byte[]> ToBytesAsync<T>(this T t) =>
-            await ZeroFormatterHelper.SerializeAsync(t);
-
-        public static async Task<Stream> ToStreamAsync<T>(this T t) =>
-            await ZeroFormatterHelper.PackAsync(t);
-
-        public static async Task PackToAsync<T>(this T t, Stream stream) =>
-            await ZeroFormatterHelper.PackAsync(t, stream);
-
-        public static async Task<byte[]> ToBytesAsync(this object obj, Type type) =>
-            await ZeroFormatterHelper.SerializeAsync(type, obj);
-
-        public static async Task<Stream> ToStreamAsync(this object obj, Type type) =>
-            await ZeroFormatterHelper.PackAsync(type, obj);
-
-        public static async Task PackToAsync(this object obj, Type type, Stream stream) =>
-            await ZeroFormatterHelper.PackAsync(type, obj, stream);
     }
 }

@@ -1,53 +1,28 @@
 using System;
 using System.IO;
-using ZeroFormatter;
 
 namespace Zaabee.ZeroFormatter
 {
     public static partial class ZeroFormatterHelper
     {
-        public static byte[] Serialize<T>(T t) =>
-            t is null ? new byte[0] : ZeroFormatterSerializer.Serialize(t);
+        public static byte[] Serialize<T>(T t) => ZeroSerializer.Serialize(t);
 
-        public static Stream Pack<T>(T t)
-        {
-            var ms = new MemoryStream();
-            if (t is null) return ms;
-            Pack(t, ms);
-            return ms;
-        }
+        public static Stream Pack<T>(T t) => ZeroSerializer.Pack(t);
 
-        public static void Pack<T>(T t, Stream stream)
-        {
-            if (t != null) ZeroFormatterSerializer.Serialize(stream, t);
-        }
+        public static void Pack<T>(T t, Stream stream) => ZeroSerializer.Pack(t, stream);
 
-        public static T Deserialize<T>(byte[] bytes) =>
-            bytes is null || bytes.Length == 0 ? default : ZeroFormatterSerializer.Deserialize<T>(bytes);
+        public static T Deserialize<T>(byte[] bytes) => ZeroSerializer.Deserialize<T>(bytes);
 
-        public static T Unpack<T>(Stream stream) =>
-            stream is null ? default : ZeroFormatterSerializer.Deserialize<T>(stream);
-        
-        public static byte[] Serialize(Type type, object obj) =>
-            obj is null ? new byte[0] : ZeroFormatterSerializer.NonGeneric.Serialize(type, obj);
+        public static T Unpack<T>(Stream stream) => ZeroSerializer.Unpack<T>(stream);
 
-        public static Stream Pack(Type type, object obj)
-        {
-            var ms = new MemoryStream();
-            if (obj is null) return ms;
-            Pack(type, obj, ms);
-            return ms;
-        }
+        public static byte[] Serialize(Type type, object obj) => ZeroSerializer.Serialize(type, obj);
 
-        public static void Pack(Type type, object obj, Stream stream)
-        {
-            if (obj != null) ZeroFormatterSerializer.NonGeneric.Serialize(type, stream, obj);
-        }
+        public static Stream Pack(Type type, object obj) => ZeroSerializer.Pack(type, obj);
 
-        public static object Deserialize(Type type, byte[] bytes) =>
-            bytes is null || bytes.Length == 0 ? default(Type) : ZeroFormatterSerializer.NonGeneric.Deserialize(type, bytes);
+        public static void Pack(Type type, object obj, Stream stream) => ZeroSerializer.Pack(type, obj, stream);
 
-        public static object Unpack(Type type, Stream stream) =>
-            stream is null ? default(Type) : ZeroFormatterSerializer.NonGeneric.Deserialize(type, stream);
+        public static object Deserialize(Type type, byte[] bytes) => ZeroSerializer.Deserialize(type, bytes);
+
+        public static object Unpack(Type type, Stream stream) => ZeroSerializer.Unpack(type, stream);
     }
 }

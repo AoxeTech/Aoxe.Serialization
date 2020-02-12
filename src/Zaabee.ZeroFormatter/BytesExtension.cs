@@ -10,11 +10,5 @@ namespace Zaabee.ZeroFormatter
 
         public static object FromBytes(this byte[] bytes, Type type) =>
             ZeroFormatterHelper.Deserialize(type, bytes);
-
-        public static async Task<T> FromBytesAsync<T>(this byte[] bytes) =>
-            await ZeroFormatterHelper.DeserializeAsync<T>(bytes);
-
-        public static async Task<object> FromBytesAsync(this byte[] bytes, Type type) =>
-            await ZeroFormatterHelper.DeserializeAsync(type, bytes);
     }
 }
