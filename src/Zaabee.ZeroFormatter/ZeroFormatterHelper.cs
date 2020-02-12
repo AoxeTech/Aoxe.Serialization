@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Zaabee.ZeroFormatter
 {
-    public static partial class ZeroFormatterHelper
+    public static class ZeroFormatterHelper
     {
         public static byte[] Serialize<T>(T t) => ZeroSerializer.Serialize(t);
 
