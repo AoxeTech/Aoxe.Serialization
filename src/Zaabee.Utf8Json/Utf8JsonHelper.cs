@@ -6,7 +6,7 @@ namespace Zaabee.Utf8Json
 {
     public static partial class Utf8JsonHelper
     {
-        public static IJsonFormatterResolver DefaultJsonFormatterResolver;
+        public static IJsonFormatterResolver DefaultJsonFormatterResolver { get; set; }
 
         public static string SerializeToJson<T>(T value, IJsonFormatterResolver resolver = null) =>
             Utf8JsonSerializer.SerializeToJson(value, resolver ?? DefaultJsonFormatterResolver);

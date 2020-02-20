@@ -6,7 +6,7 @@ namespace Zaabee.SystemTextJson
 {
     public static partial class SystemTextJsonHelper
     {
-        public static JsonSerializerOptions DefaultJsonSerializerOptions;
+        public static JsonSerializerOptions DefaultJsonSerializerOptions { get; set; }
 
         public static string SerializeToJson<T>(T o, JsonSerializerOptions options = null) =>
             SystemTextJsonSerializer.SerializeToJson(o, options ?? DefaultJsonSerializerOptions);

@@ -15,7 +15,7 @@ namespace Zaabee.Jil
             set => _encoding = value ?? _encoding;
         }
 
-        public static Options DefaultOptions;
+        public static Options DefaultOptions { get; set; }
 
         public static byte[] Serialize<T>(T t, Options options = null) =>
             JilSerializer.Serialize(t, options ?? DefaultOptions, DefaultEncoding);

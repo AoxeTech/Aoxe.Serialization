@@ -15,7 +15,7 @@ namespace Zaabee.NewtonsoftJson
             set => _encoding = value ?? _encoding;
         }
 
-        public static JsonSerializerSettings DefaultSettings;
+        public static JsonSerializerSettings DefaultSettings { get; set; }
 
         public static byte[] Serialize(object obj, JsonSerializerSettings settings = null) =>
             NewtonsoftJsonSerializer.Serialize(obj, settings ?? DefaultSettings, DefaultEncoding);
