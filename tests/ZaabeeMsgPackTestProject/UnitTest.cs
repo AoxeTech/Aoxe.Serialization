@@ -11,11 +11,16 @@ namespace ZaabeeMsgPackTestProject
         public void BytesTest()
         {
             var testModel = GetTestModel();
-            var bytes = testModel.ToBytes();
-            var result = bytes.FromBytes<TestModel>();
+            var bytes0 = testModel.ToBytes();
+            var bytes1 = testModel.ToBytes(typeof(TestModel));
+            var result0 = bytes0.FromBytes<TestModel>();
+            var result1 = bytes1.FromBytes<TestModel>();
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+                Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
         }
 
         [Fact]

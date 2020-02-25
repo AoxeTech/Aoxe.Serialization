@@ -12,8 +12,7 @@ namespace Benchmark
             foreach (var summary in summaries)
             {
                 Console.WriteLine(summary.ResultsDirectoryPath);
-                foreach (var benchmarkReport in summary.Reports)
-                    Console.WriteLine(benchmarkReport);
+                Console.WriteLine(string.Join("\r\n", summary.Reports));
             }
         }
     }

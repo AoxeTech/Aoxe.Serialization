@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>3.0.0</PackageVersion>
-    <Version>3.0.0</Version>
+    <PackageVersion>3.1.0</PackageVersion>
+    <Version>3.1.0</Version>
     <Authors>Mutuduxf</Authors>
     <Company>Mutuduxf</Company>
     <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Xml</PackageProjectUrl>
@@ -11,5 +11,6 @@
     <Description>Extension methods for xml serialize/deserialize</Description>
     <PackageTags>Zaabee XML serialize deserialize</PackageTags>
     <LangVersion>8.0</LangVersion>
+    <NullableContextOptions>enable</NullableContextOptions>
   </PropertyGroup>
 </Project>

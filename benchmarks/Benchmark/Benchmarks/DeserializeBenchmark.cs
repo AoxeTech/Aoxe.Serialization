@@ -13,7 +13,7 @@ using Zaabee.Xml;
 namespace Benchmark.Benchmarks
 {
     [MemoryDiagnoser]
-    [SimpleJob(RunStrategy.Monitoring, targetCount: 10000)]
+    [SimpleJob(RunStrategy.Monitoring, targetCount: 1000)]
     [MinColumn, MaxColumn, MeanColumn, MedianColumn]
     public class DeserializeBenchmark
     {
@@ -66,7 +66,7 @@ namespace Benchmark.Benchmarks
         public void SystemTextJsonDeserialize() => SystemTextJsonHelper.Deserialize<TestModel>(_systemTextJsonBytes);
 
         [Benchmark]
-        public void Utf8JsonSerializeDeserialize() => Utf8JsonHelper.Deserialize<TestModel>(_utf8JsonBytes);
+        public void Utf8JsonDeserialize() => Utf8JsonHelper.Deserialize<TestModel>(_utf8JsonBytes);
 
         [Benchmark]
         public void XmlDeserialize() => XmlHelper.Deserialize<TestModel>(_xmlBytes);

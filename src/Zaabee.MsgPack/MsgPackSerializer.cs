@@ -108,6 +108,7 @@ namespace Zaabee.MsgPack
         }
 
         #endregion
+        
         public static byte[] StreamToBytes(Stream stream)
         {
             var bytes = new byte[stream.Length];

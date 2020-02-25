@@ -14,7 +14,7 @@ using Zaabee.Xml;
 namespace Benchmark.Benchmarks
 {
     [MemoryDiagnoser]
-    [SimpleJob(RunStrategy.Monitoring, targetCount: 10000)]
+    [SimpleJob(RunStrategy.Monitoring, targetCount: 1000)]
     [MinColumn, MaxColumn, MeanColumn, MedianColumn]
     public class UnpackBenchmark
     {
@@ -67,7 +67,7 @@ namespace Benchmark.Benchmarks
         public void SystemTextJsonUnpack() => SystemTextJsonHelper.Unpack<TestModel>(_systemTextJsonStream);
 
         [Benchmark]
-        public void Utf8JsonSerializeUnpack() => Utf8JsonHelper.Unpack<TestModel>(_utf8JsonStream);
+        public void Utf8JsonUnpack() => Utf8JsonHelper.Unpack<TestModel>(_utf8JsonStream);
 
         [Benchmark]
         public void XmlUnpack() => XmlHelper.Unpack<TestModel>(_xmlStream);

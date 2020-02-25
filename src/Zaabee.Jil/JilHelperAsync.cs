@@ -8,7 +8,7 @@ namespace Zaabee.Jil
     public static partial class JilHelper
     {
         public static async Task PackAsync<T>(T t, Stream stream, Options options = null) =>
-            await JilSerializer.PackAsync<T>(t, stream, options, DefaultEncoding);
+            await JilSerializer.PackAsync(t, stream, options, DefaultEncoding);
 
         public static async Task<T> UnpackAsync<T>(Stream stream, Options options = null) =>
             await JilSerializer.UnpackAsync<T>(stream, options, DefaultEncoding);

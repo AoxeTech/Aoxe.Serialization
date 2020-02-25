@@ -25,29 +25,17 @@ namespace Zaabee.SystemTextJson
         public static string ToJson(this object obj, Type type, JsonSerializerOptions options = null) =>
             SystemTextJsonHelper.SerializeToJson(type, obj, options);
 
-        public static byte[] ToBytes(this object obj, JsonSerializerOptions options = null) =>
-            SystemTextJsonHelper.Serialize(obj, options);
-
         public static byte[] ToBytes(this object obj, Type type, JsonSerializerOptions options = null) =>
             SystemTextJsonHelper.Serialize(type, obj, options);
 
-        public static Stream Pack(this object obj, JsonSerializerOptions options = null) =>
-            SystemTextJsonHelper.Pack(obj, options);
-
         public static Stream Pack(this object obj, Type type, JsonSerializerOptions options = null) =>
             SystemTextJsonHelper.Pack(type, obj, options);
-
-        public static void PackTo(this object obj, Stream stream, JsonSerializerOptions options = null) =>
-            SystemTextJsonHelper.Pack(obj, stream, options);
 
         public static void PackTo(this object obj, Type type, Stream stream, JsonSerializerOptions options = null) =>
             SystemTextJsonHelper.Pack(type, obj, stream, options);
 
         public static async Task PackToAsync<T>(this T t, Stream stream, JsonSerializerOptions options = null) =>
             await SystemTextJsonHelper.PackAsync(t, stream, options);
-
-        public static async Task PackToAsync(this object obj, Stream stream, JsonSerializerOptions options = null) =>
-            await SystemTextJsonHelper.PackAsync(obj, stream, options);
 
         public static async Task PackToAsync(this object obj, Type type, Stream stream,
             JsonSerializerOptions options = null) =>

@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>2.2.0</PackageVersion>
-    <Version>2.2.0</Version>
+    <PackageVersion>3.0.0</PackageVersion>
+    <Version>3.0.0</Version>
     <Authors>Mutuduxf</Authors>
     <Company>Mutuduxf</Company>
     <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Protobuf</PackageProjectUrl>
@@ -11,6 +11,7 @@
     <Description>The wrappers and extensions methods for protobuf</Description>
     <PackageTags>Zaabee Protobuf Protobuf-net serialize deserialize</PackageTags>
     <LangVersion>8.0</LangVersion>
+    <NullableContextOptions>enable</NullableContextOptions>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="protobuf-net" Version="2.4.4" />

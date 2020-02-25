@@ -1,5 +1,4 @@
 using System;
-using System.Threading.Tasks;
 using Utf8Json;
 
 namespace Zaabee.Utf8Json

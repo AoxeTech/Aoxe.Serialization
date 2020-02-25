@@ -12,7 +12,7 @@ using Zaabee.Utf8Json;
 namespace Benchmark.Benchmarks
 {
     [MemoryDiagnoser]
-    [SimpleJob(RunStrategy.Monitoring, targetCount: 10000)]
+    [SimpleJob(RunStrategy.Monitoring, targetCount: 1000)]
     [MinColumn, MaxColumn, MeanColumn, MedianColumn]
     public class UnpackBenchmarkAsync
     {
@@ -25,19 +25,19 @@ namespace Benchmark.Benchmarks
             Gender = Gender.Female
         };
 
-        private readonly Stream _jilStream;
-        private readonly Stream _msgPackStream;
-        private readonly Stream _newtonsoftJsonStream;
-        private readonly Stream _systemTextJsonStream;
-        private readonly Stream _utf8JsonStream;
+        private readonly FileStream _jilStream = new FileStream(".\\JilStream", FileMode.Create);
+        private readonly FileStream _msgPackStream = new FileStream(".\\MsgPackStream", FileMode.Create);
+        private readonly FileStream _newtonsoftJsonStream = new FileStream(".\\NewtonsoftJsonStream", FileMode.Create);
+        private readonly FileStream _systemTextJsonStream = new FileStream(".\\SystemTextJsonStream", FileMode.Create);
+        private readonly FileStream _utf8JsonStream = new FileStream(".\\Utf8JsonStream", FileMode.Create);
 
         public UnpackBenchmarkAsync()
         {
-            _jilStream = JilHelper.Pack(_testModel);
-            _msgPackStream = MsgPackHelper.Pack(_testModel);
-            _newtonsoftJsonStream = NewtonsoftJsonHelper.Pack(_testModel);
-            _systemTextJsonStream = SystemTextJsonHelper.Pack(_testModel);
-            _utf8JsonStream = Utf8JsonHelper.Pack(_testModel);
+            JilHelper.Pack(_testModel, _jilStream);
+            MsgPackHelper.Pack(_testModel, _msgPackStream);
+            NewtonsoftJsonHelper.Pack(_testModel, _newtonsoftJsonStream);
+            SystemTextJsonHelper.Pack(_testModel, _systemTextJsonStream);
+            Utf8JsonHelper.Pack(_testModel, _utf8JsonStream);
         }
 
         [Benchmark]
@@ -55,7 +55,6 @@ namespace Benchmark.Benchmarks
             await SystemTextJsonHelper.UnpackAsync<TestModel>(_systemTextJsonStream);
 
         [Benchmark]
-        public async Task Utf8JsonSerializeUnpackAsync() =>
-            await Utf8JsonHelper.UnpackAsync<TestModel>(_utf8JsonStream);
+        public async Task Utf8JsonUnpackAsync() => await Utf8JsonHelper.UnpackAsync<TestModel>(_utf8JsonStream);
     }
 }

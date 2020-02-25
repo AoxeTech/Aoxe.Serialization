@@ -13,22 +13,22 @@ namespace ZaabeeUtf8JsonTestProject
         public async Task StreamTest()
         {
             var testModel = GetTestModel();
-            var stream2 = new MemoryStream();
-            await testModel.PackToAsync(stream2);
-            var stream3 = new MemoryStream();
-            await stream3.PackByAsync(testModel);
+            var stream0 = new FileStream(".\\StreamTest0",FileMode.Create);
+            await testModel.PackToAsync(stream0);
+            var stream1 = new FileStream(".\\StreamTest1",FileMode.Create);
+            await stream1.PackByAsync(testModel);
 
-            var unPackResult2 = await stream2.UnpackAsync<TestModel>();
-            var unPackResult3 = await stream3.UnpackAsync<TestModel>();
+            var unPackResult0 = await stream0.UnpackAsync<TestModel>();
+            var unPackResult1 = await stream1.UnpackAsync<TestModel>();
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-                Tuple.Create(unPackResult2.Id, unPackResult2.Age, unPackResult2.CreateTime, unPackResult2.Name,
-                    unPackResult2.Gender));
+                Tuple.Create(unPackResult0.Id, unPackResult0.Age, unPackResult0.CreateTime, unPackResult0.Name,
+                    unPackResult0.Gender));
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-                Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
-                    unPackResult3.Gender));
+                Tuple.Create(unPackResult1.Id, unPackResult1.Age, unPackResult1.CreateTime, unPackResult1.Name,
+                    unPackResult1.Gender));
         }
 
         [Fact]
@@ -37,24 +37,24 @@ namespace ZaabeeUtf8JsonTestProject
             var type = typeof(TestModel);
             object testModel = GetTestModel();
 
-            var stream2 = new MemoryStream();
-            await testModel.PackToAsync(type, stream2);
-            var stream3 = new MemoryStream();
-            await stream3.PackByAsync(type, testModel);
+            var stream0 = new FileStream(".\\StreamNonGenericTest0",FileMode.Create);
+            await testModel.PackToAsync(type, stream0);
+            var stream1 = new FileStream(".\\StreamNonGenericTest1",FileMode.Create);
+            await stream1.PackByAsync(type, testModel);
 
-            var unPackResult2 = (TestModel) await stream2.UnpackAsync(type);
-            var unPackResult3 = (TestModel) await stream3.UnpackAsync(type);
+            var unPackResult0 = (TestModel) await stream0.UnpackAsync(type);
+            var unPackResult1 = (TestModel) await stream1.UnpackAsync(type);
 
             Assert.Equal(
                 Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
                     ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
-                Tuple.Create(unPackResult2.Id, unPackResult2.Age, unPackResult2.CreateTime, unPackResult2.Name,
-                    unPackResult2.Gender));
+                Tuple.Create(unPackResult0.Id, unPackResult0.Age, unPackResult0.CreateTime, unPackResult0.Name,
+                    unPackResult0.Gender));
             Assert.Equal(
                 Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
                     ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
-                Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
-                    unPackResult3.Gender));
+                Tuple.Create(unPackResult1.Id, unPackResult1.Age, unPackResult1.CreateTime, unPackResult1.Name,
+                    unPackResult1.Gender));
         }
 
         private static TestModel GetTestModel()
