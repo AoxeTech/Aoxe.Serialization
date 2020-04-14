@@ -117,18 +117,6 @@ namespace ZaabeeUtf8JsonTestProject
                     ((TestModel) result1).Name, ((TestModel) result1).Gender));
         }
 
-        private static TestModel GetTestModel()
-        {
-            return new TestModel
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = new DateTime(2017, 1, 1).ToUniversalTime(),
-                Name = "apple",
-                Gender = Gender.Female
-            };
-        }
-
         [Fact]
         public void ObjectString()
         {
@@ -179,6 +167,18 @@ namespace ZaabeeUtf8JsonTestProject
             Assert.Equal(testModel.CreateTime.Second, result1.CreateTime.Second);
             Assert.Equal(testModel.CreateTime.Millisecond, result1.CreateTime.Millisecond);
             Assert.Equal(testModel.Name, result1.Name);
+        }
+
+        private static TestModel GetTestModel()
+        {
+            return new TestModel
+            {
+                Id = Guid.NewGuid(),
+                Age = new Random().Next(0, 100),
+                CreateTime = new DateTime(2017, 1, 1),
+                Name = "apple",
+                Gender = Gender.Female
+            };
         }
     }
 }

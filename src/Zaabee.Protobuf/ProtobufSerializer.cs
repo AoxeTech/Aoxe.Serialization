@@ -8,12 +8,12 @@ namespace Zaabee.Protobuf
     {
         private static readonly Lazy<RuntimeTypeModel> Model = new Lazy<RuntimeTypeModel>(() =>
         {
-            var typeModel = TypeModel.Create();
+            var typeModel = RuntimeTypeModel.Create();
             typeModel.UseImplicitZeroDefaults = false;
             return typeModel;
         });
 
-        private static TypeModel TypeModel => Model.Value;
+        private static RuntimeTypeModel TypeModel => Model.Value;
 
         public static byte[] Serialize(object obj)
         {

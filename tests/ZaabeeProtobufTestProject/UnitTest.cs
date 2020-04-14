@@ -96,7 +96,7 @@ namespace ZaabeeProtobufTestProject
         {
             var testModelWithoutAttr = GetTestSubModelWithoutAttr();
 
-            var typeModel = TypeModel.Create();
+            var typeModel = RuntimeTypeModel.Create();
             typeModel.UseImplicitZeroDefaults = false;
             SerializerBuilder.Build<TestSubModelWithoutAttr>(typeModel);
 
