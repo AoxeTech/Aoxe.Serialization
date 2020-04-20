@@ -1,6 +1,6 @@
 # Zaabee.SystemTextJson
 
-The wraps and extensions methods base by BinaryFormatter
+The wraps and extensions methods base by System.Text.Json
 
 TestModel
 
