@@ -49,5 +49,11 @@ namespace Zaabee.SystemTextJson
 
         public static object Unpack(Type type, Stream stream, JsonSerializerOptions options = null) =>
             SystemTextJsonSerializer.Unpack(type, stream, options ?? DefaultJsonSerializerOptions);
+
+        public static T Unpack<T>(ReadOnlySpan<byte> spanBytes, JsonSerializerOptions options = null) =>
+            SystemTextJsonSerializer.Unpack<T>(spanBytes, options ?? DefaultJsonSerializerOptions);
+
+        public static object Unpack(Type type, ReadOnlySpan<byte> spanBytes, JsonSerializerOptions options = null) =>
+            SystemTextJsonSerializer.Unpack(type, spanBytes, options ?? DefaultJsonSerializerOptions);
     }
 }

@@ -41,14 +41,7 @@ namespace Benchmark.Benchmarks
         }
 
         [Benchmark]
-        public async Task JilUnpackAsync() => await JilHelper.UnpackAsync<TestModel>(_jilStream);
-
-        [Benchmark]
         public async Task MsgPackUnpackAsync() => await MsgPackHelper.UnpackAsync<TestModel>(_msgPackStream);
-
-        [Benchmark]
-        public async Task NewtonsoftJsonUnpackAsync() =>
-            await NewtonsoftJsonHelper.UnpackAsync<TestModel>(_newtonsoftJsonStream);
 
         [Benchmark]
         public async Task SystemTextJsonUnpackAsync() =>

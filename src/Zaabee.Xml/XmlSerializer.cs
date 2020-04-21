@@ -22,7 +22,7 @@ namespace Zaabee.Xml
         {
             if (obj is null) return new byte[0];
             using var stream = Pack(type, obj);
-            return StreamToBytes(stream);
+            return ReadToEnd(stream);
         }
 
         public static Stream Pack(Type type, object obj)
@@ -44,7 +44,7 @@ namespace Zaabee.Xml
         {
             if (obj is null) return string.Empty;
             using var stream = Pack(type, obj);
-            return encoding.GetString(StreamToBytes(stream));
+            return encoding.GetString(ReadToEnd(stream));
         }
 
         public static T Deserialize<T>(byte[] bytes) =>
@@ -80,13 +80,12 @@ namespace Zaabee.Xml
             return serializer.Deserialize(ms);
         }
 
-        private static byte[] StreamToBytes(Stream stream)
+        private static byte[] ReadToEnd(this Stream stream)
         {
-            var bytes = new byte[stream.Length];
-            if (stream.Position > 0 && stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-            stream.Read(bytes, 0, bytes.Length);
-            if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-            return bytes;
+            if (stream is MemoryStream ms) return ms.ToArray();
+            using var memoryStream = new MemoryStream();
+            stream.CopyTo(memoryStream);
+            return memoryStream.ToArray();
         }
     }
 }

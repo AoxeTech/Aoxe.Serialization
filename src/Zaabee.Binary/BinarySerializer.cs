@@ -11,7 +11,7 @@ namespace Zaabee.Binary
         public static byte[] Serialize(object obj)
         {
             using var stream = Pack(obj);
-            return StreamToBytes(stream);
+            return ReadToEnd(stream);
         }
 
         public static Stream Pack(object obj)
@@ -47,14 +47,13 @@ namespace Zaabee.Binary
             _binaryFormatter ??= new BinaryFormatter();
             return _binaryFormatter.Deserialize(stream);
         }
-
-        private static byte[] StreamToBytes(Stream stream)
+        
+        private static byte[] ReadToEnd(this Stream stream)
         {
-            var bytes = new byte[stream.Length];
-            if (stream.CanSeek && stream.Position > 0) stream.Seek(0, SeekOrigin.Begin);
-            stream.Read(bytes, 0, bytes.Length);
-            if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-            return bytes;
+            if (stream is MemoryStream ms) return ms.ToArray();
+            using var memoryStream = new MemoryStream();
+            stream.CopyTo(memoryStream);
+            return memoryStream.ToArray();
         }
     }
 }

@@ -71,10 +71,16 @@ namespace Zaabee.SystemTextJson
         }
 
         public static T Unpack<T>(Stream stream, JsonSerializerOptions options) =>
-            JsonSerializer.Deserialize<T>(StreamToBytes(stream), options);
+            Unpack<T>(ReadToEnd(stream), options);
 
         public static object Unpack(Type type, Stream stream, JsonSerializerOptions options) =>
-            JsonSerializer.Deserialize(StreamToBytes(stream), type, options);
+            Unpack(type, ReadToEnd(stream), options);
+
+        public static T Unpack<T>(ReadOnlySpan<byte> spanBytes, JsonSerializerOptions options) =>
+            JsonSerializer.Deserialize<T>(spanBytes, options);
+
+        public static object Unpack(Type type, ReadOnlySpan<byte> spanBytes, JsonSerializerOptions options) =>
+            JsonSerializer.Deserialize(spanBytes, type, options);
 
         #endregion
 
@@ -108,14 +114,13 @@ namespace Zaabee.SystemTextJson
         }
 
         #endregion
-
-        private static byte[] StreamToBytes(Stream stream)
+        
+        private static byte[] ReadToEnd(this Stream stream)
         {
-            var bytes = new byte[stream.Length];
-            if (stream.Position > 0 && stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-            stream.Read(bytes, 0, bytes.Length);
-            if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-            return bytes;
+            if (stream is MemoryStream ms) return ms.ToArray();
+            using var memoryStream = new MemoryStream();
+            stream.CopyTo(memoryStream);
+            return memoryStream.ToArray();
         }
     }
 }

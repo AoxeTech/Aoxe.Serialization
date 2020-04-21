@@ -18,12 +18,5 @@ namespace Zaabee.NewtonsoftJson
 
         public static async Task PackByAsync(this Stream stream, object obj, JsonSerializerSettings settings = null) =>
             await NewtonsoftJsonHelper.PackAsync(obj, stream, settings);
-
-        public static async Task<T> UnpackAsync<T>(this Stream stream, JsonSerializerSettings settings = null) =>
-            await NewtonsoftJsonHelper.UnpackAsync<T>(stream, settings);
-
-        public static async Task<object> UnpackAsync(this Stream stream, Type type,
-            JsonSerializerSettings settings = null) =>
-            await NewtonsoftJsonHelper.UnpackAsync(type, stream, settings);
     }
 }

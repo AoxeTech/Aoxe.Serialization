@@ -13,7 +13,7 @@ namespace Zaabee.MsgPack
         {
             if (t is null) return new byte[0];
             using var stream = Pack(t);
-            return StreamToBytes(stream);
+            return ReadToEnd(stream);
         }
 
         public static Stream Pack<T>(T t)
@@ -36,7 +36,7 @@ namespace Zaabee.MsgPack
         {
             if (obj is null) return new byte[0];
             using var stream = Pack(type, obj);
-            return StreamToBytes(stream);
+            return ReadToEnd(stream);
         }
 
         public static Stream Pack(Type type, object obj)
@@ -109,13 +109,12 @@ namespace Zaabee.MsgPack
 
         #endregion
         
-        public static byte[] StreamToBytes(Stream stream)
+        private static byte[] ReadToEnd(this Stream stream)
         {
-            var bytes = new byte[stream.Length];
-            if (stream.Position > 0 && stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-            stream.Read(bytes, 0, bytes.Length);
-            if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-            return bytes;
+            if (stream is MemoryStream ms) return ms.ToArray();
+            using var memoryStream = new MemoryStream();
+            stream.CopyTo(memoryStream);
+            return memoryStream.ToArray();
         }
     }
 }

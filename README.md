@@ -52,16 +52,16 @@ IterationCount=10000  RunStrategy=Monitoring
 
 ### Bytes
 
-|                  Method |     Mean |    Error |    StdDev |   Median |       Min |         Max | Allocated |
-|------------------------ |---------:|---------:|----------:|---------:|----------:|------------:|----------:|
-|         BinarySerialize | 72.56 us | 3.160 us | 30.282 us | 69.10 us | 36.300 us |   321.60 us |    7904 B |
-|            JilSerialize | 11.31 us | 0.879 us |  8.419 us | 10.30 us |  5.800 us |   230.70 us |    1072 B |
-|        MsgPackSerialize | 17.38 us | 1.022 us |  9.796 us | 16.00 us |  8.100 us |   207.00 us |     856 B |
-| NewtonsoftJsonSerialize | 18.04 us | 0.974 us |  9.332 us | 16.00 us | 10.000 us |   151.40 us |    1904 B |
-|       ProtobufSerialize | 13.10 us | 0.746 us |  7.152 us | 11.60 us |  7.100 us |   113.10 us |    1712 B |
-| SystemTextJsonSerialize | 15.22 us | 0.711 us |  6.810 us | 14.00 us |  8.400 us |    83.30 us |     296 B |
-|       Utf8JsonSerialize | 11.57 us | 0.663 us |  6.351 us | 10.40 us |  5.400 us |    73.40 us |     152 B |
-|            XmlSerialize | 97.57 us | 5.588 us | 53.544 us | 94.30 us | 50.000 us | 1,322.80 us |   10888 B |
+|                  Method |      Mean |    Error |    StdDev |    Median |       Min |       Max | Allocated |
+|------------------------ |----------:|---------:|----------:|----------:|----------:|----------:|----------:|
+|         BinarySerialize |  67.78 μs | 3.950 μs | 37.849 μs | 54.950 μs | 35.600 μs | 346.80 μs |    7904 B |
+|            JilSerialize |  10.93 μs | 0.816 μs |  7.816 μs |  8.700 μs |  4.900 μs |  77.60 μs |    1072 B |
+|        MsgPackSerialize |  18.71 μs | 1.199 μs | 11.491 μs | 16.300 μs |  7.600 μs |  95.20 μs |     856 B |
+| NewtonsoftJsonSerialize |  22.06 μs | 1.455 μs | 13.939 μs | 19.000 μs |  9.300 μs | 134.90 μs |    1904 B |
+|       ProtobufSerialize |  13.11 μs | 1.067 μs | 10.220 μs | 10.050 μs |  5.700 μs | 141.40 μs |    1712 B |
+| SystemTextJsonSerialize |  19.56 μs | 1.398 μs | 13.397 μs | 16.650 μs |  7.300 μs | 157.10 μs |     296 B |
+|       Utf8JsonSerialize |  12.69 μs | 0.971 μs |  9.300 μs | 10.900 μs |  4.400 μs | 119.40 μs |     152 B |
+|            XmlSerialize | 106.50 μs | 5.705 μs | 54.663 μs | 99.500 μs | 43.500 μs | 672.40 μs |   10888 B |
 
 |                    Method |      Mean |    Error |    StdDev |    Median |       Min |       Max | Allocated |
 |-------------------------- |----------:|---------:|----------:|----------:|----------:|----------:|----------:|
@@ -94,27 +94,27 @@ IterationCount=10000  RunStrategy=Monitoring
 
 ### Stream
 
-|             Method |     Mean |    Error |    StdDev |   Median |       Min |       Max | Allocated |
-|------------------- |---------:|---------:|----------:|---------:|----------:|----------:|----------:|
-|         BinaryPack | 66.31 us | 2.611 us | 25.015 us | 61.25 us | 37.100 us | 258.00 us |    7440 B |
-|            JilPack | 11.49 us | 0.608 us |  5.822 us | 10.40 us |  5.900 us |  66.90 us |    1424 B |
-|        MsgPackPack | 16.98 us | 1.263 us | 12.098 us | 14.70 us |  8.100 us | 157.80 us |     792 B |
-| NewtonsoftJsonPack | 25.70 us | 1.237 us | 11.849 us | 24.60 us | 10.900 us | 146.50 us |    2256 B |
-|       ProtobufPack | 11.47 us | 0.628 us |  6.013 us | 10.00 us |  6.100 us |  87.50 us |    1648 B |
-| SystemTextJsonPack | 17.66 us | 1.352 us | 12.950 us | 15.45 us |  9.100 us | 325.40 us |     648 B |
-|       Utf8JsonPack | 14.78 us | 0.728 us |  6.977 us | 13.90 us |  6.400 us |  83.00 us |     352 B |
-|            XmlPack | 92.78 us | 4.747 us | 45.488 us | 85.85 us | 47.400 us | 724.40 us |   10552 B |
+|             Method |      Mean |    Error |    StdDev |   Median |       Min |       Max | Allocated |
+|------------------- |----------:|---------:|----------:|---------:|----------:|----------:|----------:|
+|         BinaryPack |  68.53 μs | 4.071 μs | 39.009 μs | 59.40 μs | 34.300 μs | 415.30 μs |    7440 B |
+|            JilPack |  14.01 μs | 0.881 μs |  8.443 μs | 12.70 μs |  5.300 μs |  90.70 μs |    1424 B |
+|        MsgPackPack |  17.75 μs | 1.205 μs | 11.547 μs | 15.15 μs |  7.300 μs |  78.90 μs |     792 B |
+| NewtonsoftJsonPack |  22.95 μs | 1.579 μs | 15.134 μs | 19.85 μs | 10.400 μs | 157.30 μs |    2256 B |
+|       ProtobufPack |  12.97 μs | 1.426 μs | 13.666 μs | 10.60 μs |  5.700 μs | 354.70 μs |    1648 B |
+| SystemTextJsonPack |  19.25 μs | 1.958 μs | 18.760 μs | 15.20 μs |  8.500 μs | 339.60 μs |     648 B |
+|       Utf8JsonPack |  15.00 μs | 1.015 μs |  9.721 μs | 12.80 μs |  5.500 μs |  95.90 μs |     352 B |
+|            XmlPack | 100.06 μs | 5.407 μs | 51.812 μs | 91.15 μs | 43.600 μs | 391.80 μs |   10552 B |
 
 |               Method |      Mean |    Error |    StdDev |    Median |       Min |       Max | Allocated |
 |--------------------- |----------:|---------:|----------:|----------:|----------:|----------:|----------:|
-|         BinaryUnpack |  81.06 us | 2.889 us | 27.682 us |  73.65 us | 46.500 us | 385.30 us |    9664 B |
-|            JilUnpack |  17.37 us | 0.627 us |  6.011 us |  15.80 us |  9.600 us |  78.30 us |     624 B |
-|        MsgPackUnpack |  31.22 us | 1.179 us | 11.295 us |  28.70 us | 15.700 us | 180.50 us |     744 B |
-| NewtonsoftJsonUnpack |  50.68 us | 1.553 us | 14.883 us |  49.60 us | 26.800 us | 165.70 us |    3360 B |
-|       ProtobufUnpack |  25.81 us | 1.446 us | 13.859 us |  23.60 us | 13.000 us | 312.00 us |    1416 B |
-| SystemTextJsonUnpack |  28.83 us | 1.106 us | 10.601 us |  26.85 us | 14.300 us | 125.30 us |     240 B |
-|       Utf8JsonUnpack |  16.10 us | 0.770 us |  7.374 us |  14.20 us |  8.200 us | 125.90 us |      96 B |
-|            XmlUnpack | 141.45 us | 3.369 us | 32.277 us | 134.15 us | 87.500 us | 358.80 us |    8272 B |
+|         BinaryUnpack |  91.25 μs | 3.293 μs | 31.558 μs |  84.10 μs | 44.200 μs | 246.00 μs |    9664 B |
+|            JilUnpack |  17.82 μs | 0.883 μs |  8.458 μs |  16.30 μs |  7.700 μs |  75.20 μs |     624 B |
+|        MsgPackUnpack |  34.01 μs | 1.711 μs | 16.392 μs |  31.30 μs | 14.400 μs | 153.50 μs |     744 B |
+| NewtonsoftJsonUnpack |  57.31 μs | 2.292 μs | 21.962 μs |  54.85 μs | 24.800 μs | 178.20 μs |    3360 B |
+|       ProtobufUnpack |  29.34 μs | 1.727 μs | 16.545 μs |  26.40 μs | 11.800 μs | 236.30 μs |    1416 B |
+| SystemTextJsonUnpack |  36.16 μs | 1.631 μs | 15.625 μs |  33.00 μs | 13.900 μs | 174.70 μs |     240 B |
+|       Utf8JsonUnpack |  19.07 μs | 1.003 μs |  9.609 μs |  17.60 μs |  7.700 μs |  97.50 μs |      96 B |
+|            XmlUnpack | 195.23 μs | 6.697 μs | 64.173 μs | 186.90 μs | 90.000 μs | 678.00 μs |    8272 B |
 
 ### FileStream Async
 

@@ -50,7 +50,7 @@ namespace Zaabee.NewtonsoftJson
         public static object Unpack(Type type, Stream stream, JsonSerializerSettings settings, Encoding encoding) =>
             stream is null
                 ? default(Type)
-                : Deserialize(type, encoding.GetString(StreamToBytes(stream)), settings);
+                : Deserialize(type, encoding.GetString(ReadToEnd(stream)), settings);
 
         public static object Deserialize(Type type, string json, JsonSerializerSettings settings) =>
             string.IsNullOrWhiteSpace(json)
@@ -69,39 +69,14 @@ namespace Zaabee.NewtonsoftJson
             await stream.WriteAsync(bytes, 0, bytes.Length);
         }
 
-        public static async Task<T> UnpackAsync<T>(Stream stream, JsonSerializerSettings settings, Encoding encoding)
-        {
-            if (stream is null) return default;
-            var bytes = await StreamToBytesAsync(stream);
-            return Deserialize<T>(encoding.GetString(bytes), settings);
-        }
-
-        public static async Task<object> UnpackAsync(Type type, Stream stream, JsonSerializerSettings settings,
-            Encoding encoding)
-        {
-            if (stream is null) return default;
-            var bytes = await StreamToBytesAsync(stream);
-            return Deserialize(type, encoding.GetString(bytes), settings);
-        }
-
         #endregion
-
-        private static byte[] StreamToBytes(Stream stream)
+        
+        private static byte[] ReadToEnd(this Stream stream)
         {
-            var bytes = new byte[stream.Length];
-            if (stream.Position > 0 && stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-            stream.Read(bytes, 0, bytes.Length);
-            if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-            return bytes;
-        }
-
-        private static async Task<byte[]> StreamToBytesAsync(Stream stream)
-        {
-            var bytes = new byte[stream.Length];
-            if (stream.CanSeek && stream.Position > 0) stream.Seek(0, SeekOrigin.Begin);
-            await stream.ReadAsync(bytes, 0, bytes.Length);
-            if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-            return bytes;
+            if (stream is MemoryStream ms) return ms.ToArray();
+            using var memoryStream = new MemoryStream();
+            stream.CopyTo(memoryStream);
+            return memoryStream.ToArray();
         }
     }
 }

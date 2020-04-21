@@ -13,13 +13,13 @@ namespace ZaabeeNewtonsoftJsonTestProject
         public async Task StreamTest()
         {
             var testModel = GetTestModel();
-            var stream0 = new FileStream(".\\StreamTest0",FileMode.Create);
+            var stream0 = new FileStream(".\\StreamTest0", FileMode.Create);
             await testModel.PackToAsync(stream0);
-            var stream1 = new FileStream(".\\StreamTest1",FileMode.Create);
+            var stream1 = new FileStream(".\\StreamTest1", FileMode.Create);
             await stream1.PackByAsync(testModel);
 
-            var unPackResult0 = await stream0.UnpackAsync<TestModel>();
-            var unPackResult1 = await stream1.UnpackAsync<TestModel>();
+            var unPackResult0 = stream0.Unpack<TestModel>();
+            var unPackResult1 = stream1.Unpack<TestModel>();
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
@@ -37,13 +37,13 @@ namespace ZaabeeNewtonsoftJsonTestProject
             var type = typeof(TestModel);
             object testModel = GetTestModel();
 
-            var stream0 = new FileStream(".\\StreamNonGenericTest0",FileMode.Create);
+            var stream0 = new FileStream(".\\StreamNonGenericTest0", FileMode.Create);
             await testModel.PackToAsync(stream0);
-            var stream1 = new FileStream(".\\StreamNonGenericTest1",FileMode.Create);
+            var stream1 = new FileStream(".\\StreamNonGenericTest1", FileMode.Create);
             await stream1.PackByAsync(testModel);
 
-            var unPackResult0 = (TestModel) await stream0.UnpackAsync(type);
-            var unPackResult1 = (TestModel) await stream1.UnpackAsync(type);
+            var unPackResult0 = (TestModel) stream0.Unpack(type);
+            var unPackResult1 = (TestModel) stream1.Unpack(type);
 
             Assert.Equal(
                 Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
