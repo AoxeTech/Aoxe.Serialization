@@ -67,10 +67,11 @@ namespace Zaabee.NewtonsoftJson
             if (obj is null) return;
             var bytes = Serialize(obj, settings, encoding);
             await stream.WriteAsync(bytes, 0, bytes.Length);
+            if (stream.CanSeek && stream.Position > 0) stream.Seek(0, SeekOrigin.Begin);
         }
 
         #endregion
-        
+
         private static byte[] ReadToEnd(this Stream stream)
         {
             if (stream is MemoryStream ms) return ms.ToArray();

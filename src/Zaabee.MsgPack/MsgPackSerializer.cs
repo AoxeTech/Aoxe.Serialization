@@ -102,13 +102,12 @@ namespace Zaabee.MsgPack
         {
             if (stream is null) return default;
             var serializer = MessagePackSerializer.Get<T>();
-            if (stream.CanSeek && stream.Position > 0)
-                stream.Position = 0;
+            if (stream.CanSeek && stream.Position > 0) stream.Seek(0, SeekOrigin.Begin);
             return await serializer.UnpackAsync(stream);
         }
 
         #endregion
-        
+
         private static byte[] ReadToEnd(this Stream stream)
         {
             if (stream is MemoryStream ms) return ms.ToArray();

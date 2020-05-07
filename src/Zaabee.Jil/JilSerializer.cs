@@ -89,10 +89,11 @@ namespace Zaabee.Jil
             if (t is null || !stream.CanWrite) await Task.CompletedTask;
             var bytes = Serialize(t, options, encoding);
             await stream.WriteAsync(bytes, 0, bytes.Length);
+            if (stream.CanSeek && stream.Position > 0) stream.Seek(0, SeekOrigin.Begin);
         }
 
         #endregion
-        
+
         private static byte[] ReadToEnd(this Stream stream)
         {
             if (stream is MemoryStream ms) return ms.ToArray();
