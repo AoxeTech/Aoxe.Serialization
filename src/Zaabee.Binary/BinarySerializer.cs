@@ -8,11 +8,22 @@ namespace Zaabee.Binary
     {
         [ThreadStatic] private static BinaryFormatter _binaryFormatter;
 
-        public static byte[] Serialize(object obj)
+        #region Bytes
+
+        public static byte[] Serialize(object obj) => ReadToEnd(Pack(obj));
+
+        public static T Deserialize<T>(byte[] bytes) => (T) Deserialize(bytes);
+
+        public static object Deserialize(byte[] bytes)
         {
-            using var stream = Pack(obj);
-            return ReadToEnd(stream);
+            if (bytes is null || bytes.Length is 0) return default(Type);
+            using var ms = new MemoryStream(bytes);
+            return Unpack(ms);
         }
+
+        #endregion
+
+        #region Stream
 
         public static Stream Pack(object obj)
         {
@@ -28,26 +39,18 @@ namespace Zaabee.Binary
             _binaryFormatter.Serialize(stream, obj);
         }
 
-        public static T Deserialize<T>(byte[] bytes) => (T) Deserialize(bytes);
-
         public static T Unpack<T>(Stream stream) => (T) Unpack(stream);
-
-        public static object Deserialize(byte[] bytes)
-        {
-            if (bytes is null || bytes.Length is 0) return default(Type);
-            using var ms = new MemoryStream(bytes);
-            return Unpack(ms);
-        }
 
         public static object Unpack(Stream stream)
         {
             if (stream is null || stream.Length is 0) return default(Type);
-            if (stream.CanSeek && stream.Position > 0)
-                stream.Position = 0;
+            if (stream.CanSeek && stream.Position > 0) stream.Position = 0;
             _binaryFormatter ??= new BinaryFormatter();
             return _binaryFormatter.Deserialize(stream);
         }
-        
+
+        #endregion
+
         private static byte[] ReadToEnd(this Stream stream)
         {
             if (stream is MemoryStream ms) return ms.ToArray();

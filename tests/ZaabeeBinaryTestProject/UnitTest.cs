@@ -12,10 +12,10 @@ namespace ZaabeeBinaryTestProject
         {
             var testModel = GetTestModel();
             var bytes = testModel.ToBytes();
-            var result = bytes.FromBytes<TestModel>();
+            var result0 = bytes.FromBytes<TestModel>();
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+                Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
         }
 
         [Fact]
@@ -88,9 +88,8 @@ namespace ZaabeeBinaryTestProject
                     unPackResult3.Gender));
         }
 
-        private static TestModel GetTestModel()
-        {
-            return new TestModel
+        private static TestModel GetTestModel() =>
+            new TestModel
             {
                 Id = Guid.NewGuid(),
                 Age = new Random().Next(0, 100),
@@ -98,6 +97,5 @@ namespace ZaabeeBinaryTestProject
                 Name = "apple",
                 Gender = Gender.Female
             };
-        }
     }
 }
