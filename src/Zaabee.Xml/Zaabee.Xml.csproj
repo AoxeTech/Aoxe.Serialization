@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>3.2.0</PackageVersion>
-        <Version>3.2.0</Version>
+        <PackageVersion>2020.1.0</PackageVersion>
+        <Version>2020.1.0</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Xml</PackageProjectUrl>
