@@ -7,7 +7,7 @@ namespace Zaabee.Protobuf
     {
         public static byte[] Serialize(object obj) => ProtobufSerializer.Serialize(obj);
 
-        public static Stream Pack(object obj) => ProtobufSerializer.Pack(obj);
+        public static MemoryStream Pack(object obj) => ProtobufSerializer.Pack(obj);
 
         public static void Pack(object obj, Stream stream) => ProtobufSerializer.Pack(obj, stream);
 

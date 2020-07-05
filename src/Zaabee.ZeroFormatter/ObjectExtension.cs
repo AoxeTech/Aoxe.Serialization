@@ -8,7 +8,7 @@ namespace Zaabee.ZeroFormatter
         public static byte[] ToBytes<T>(this T t) =>
             ZeroFormatterHelper.Serialize(t);
 
-        public static Stream ToStream<T>(this T t) =>
+        public static MemoryStream ToStream<T>(this T t) =>
             ZeroFormatterHelper.Pack(t);
 
         public static void PackTo<T>(this T t, Stream stream) =>
@@ -17,7 +17,7 @@ namespace Zaabee.ZeroFormatter
         public static byte[] ToBytes(this object obj, Type type) =>
             ZeroFormatterHelper.Serialize(type, obj);
 
-        public static Stream ToStream(this object obj, Type type) =>
+        public static MemoryStream ToStream(this object obj, Type type) =>
             ZeroFormatterHelper.Pack(type, obj);
 
         public static void PackTo(this object obj, Type type, Stream stream) =>

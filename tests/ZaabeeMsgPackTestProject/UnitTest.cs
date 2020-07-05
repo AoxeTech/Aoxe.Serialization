@@ -50,13 +50,17 @@ namespace ZaabeeMsgPackTestProject
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
                     unPackResult3.Gender));
+
+            TestModel nullModel = null;
+            MemoryStream nullMs = null;
+            nullModel.PackTo(nullMs);
         }
 
         [Fact]
         public void BytesNonGenericTest()
         {
             var testModel = GetTestModel();
-            var bytes = testModel.ToBytes();
+            var bytes = testModel.ToBytes(typeof(TestModel));
             var result = (TestModel) bytes.FromBytes(typeof(TestModel));
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
@@ -91,6 +95,10 @@ namespace ZaabeeMsgPackTestProject
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
                     unPackResult3.Gender));
+            
+            TestModel nullModel = null;
+            MemoryStream nullMs = null;
+            nullModel.PackTo(typeof(TestModel),nullMs);
         }
 
         private static TestModel GetTestModel()

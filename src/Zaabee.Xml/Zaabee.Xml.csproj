@@ -1,16 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>3.2.0</PackageVersion>
-    <Version>3.2.0</Version>
-    <Authors>Mutuduxf</Authors>
-    <Company>Mutuduxf</Company>
-    <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Xml</PackageProjectUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Description>Extension methods for xml serialize/deserialize</Description>
-    <PackageTags>Zaabee XML serialize deserialize</PackageTags>
-    <LangVersion>8.0</LangVersion>
-    <NullableContextOptions>enable</NullableContextOptions>
-  </PropertyGroup>
+  
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>3.2.0</PackageVersion>
+        <Version>3.2.0</Version>
+        <Authors>Mutuduxf</Authors>
+        <Company>Mutuduxf</Company>
+        <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Xml</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Description>Extension methods for xml serialize/deserialize</Description>
+        <PackageTags>Zaabee XML serialize deserialize</PackageTags>
+        <LangVersion>Latest</LangVersion>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Zaabee.Extensions" Version="2020.1.0" />
+    </ItemGroup>
+  
 </Project>

@@ -7,7 +7,7 @@ namespace Zaabee.ZeroFormatter
     {
         public static byte[] Serialize<T>(T t) => ZeroSerializer.Serialize(t);
 
-        public static Stream Pack<T>(T t) => ZeroSerializer.Pack(t);
+        public static MemoryStream Pack<T>(T t) => ZeroSerializer.Pack(t);
 
         public static void Pack<T>(T t, Stream stream) => ZeroSerializer.Pack(t, stream);
 
@@ -17,7 +17,7 @@ namespace Zaabee.ZeroFormatter
 
         public static byte[] Serialize(Type type, object obj) => ZeroSerializer.Serialize(type, obj);
 
-        public static Stream Pack(Type type, object obj) => ZeroSerializer.Pack(type, obj);
+        public static MemoryStream Pack(Type type, object obj) => ZeroSerializer.Pack(type, obj);
 
         public static void Pack(Type type, object obj, Stream stream) => ZeroSerializer.Pack(type, obj, stream);
 

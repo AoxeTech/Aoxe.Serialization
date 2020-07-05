@@ -22,7 +22,7 @@ namespace ZaabeeNewtonsoftJsonTestProject
         public void StreamTest()
         {
             var testModel = GetTestModel();
-            var stream1 = testModel.Pack();
+            var stream1 = testModel.ToStream();
             var stream2 = new MemoryStream();
             testModel.PackTo(stream2);
             var stream3 = new MemoryStream();
@@ -75,7 +75,7 @@ namespace ZaabeeNewtonsoftJsonTestProject
             var type = typeof(TestModel);
             object testModel = GetTestModel();
 
-            var stream1 = testModel.Pack();
+            var stream1 = testModel.ToStream();
             var stream2 = new MemoryStream();
             testModel.PackTo(stream2);
             var stream3 = new MemoryStream();

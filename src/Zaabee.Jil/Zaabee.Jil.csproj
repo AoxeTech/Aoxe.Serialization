@@ -1,19 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>3.2.1</PackageVersion>
-    <Version>3.2.1</Version>
-    <Authors>Mutuduxf</Authors>
-    <Company>Mutuduxf</Company>
-    <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Jil</PackageProjectUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Description>The wrappers and extensions methods for Jil</Description>
-    <PackageTags>Zaabee Json Jil serialize deserialize</PackageTags>
-    <LangVersion>8.0</LangVersion>
-    <NullableContextOptions>enable</NullableContextOptions>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Jil" Version="2.17.0" />
-  </ItemGroup>
+    
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>2020.1.0</PackageVersion>
+        <Version>2020.1.0</Version>
+        <Authors>Mutuduxf</Authors>
+        <Company>Mutuduxf</Company>
+        <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Jil</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Description>The wrappers and extensions methods for Jil</Description>
+        <PackageTags>Zaabee Json Jil serialize deserialize</PackageTags>
+        <LangVersion>Latest</LangVersion>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Jil" Version="2.17.0" />
+        <PackageReference Include="Zaabee.Extensions" Version="2020.1.0" />
+    </ItemGroup>
+  
 </Project>

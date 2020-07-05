@@ -6,7 +6,7 @@ namespace Zaabee.Protobuf
     {
         public static byte[] ToBytes(this object obj) => ProtobufHelper.Serialize(obj);
 
-        public static Stream ToStream(this object obj) => ProtobufHelper.Pack(obj);
+        public static MemoryStream ToStream(this object obj) => ProtobufHelper.Pack(obj);
 
         public static void PackTo(this object obj, Stream stream) => ProtobufHelper.Pack(obj, stream);
     }

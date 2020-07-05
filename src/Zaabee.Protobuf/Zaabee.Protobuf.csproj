@@ -1,19 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>3.2.0</PackageVersion>
-    <Version>3.2.0</Version>
-    <Authors>Mutuduxf</Authors>
-    <Company>Mutuduxf</Company>
-    <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Protobuf</PackageProjectUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Description>The wrappers and extensions methods for protobuf</Description>
-    <PackageTags>Zaabee Protobuf Protobuf-net serialize deserialize</PackageTags>
-    <LangVersion>8.0</LangVersion>
-    <NullableContextOptions>enable</NullableContextOptions>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="protobuf-net" Version="2.4.6" />
-  </ItemGroup>
+  
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>2020.1.0</PackageVersion>
+        <Version>2020.1.0</Version>
+        <Authors>Mutuduxf</Authors>
+        <Company>Mutuduxf</Company>
+        <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Protobuf</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Description>The wrappers and extensions methods for protobuf</Description>
+        <PackageTags>Zaabee Protobuf Protobuf-net serialize deserialize</PackageTags>
+        <LangVersion>Latest</LangVersion>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="protobuf-net" Version="3.0.21" />
+        <PackageReference Include="Zaabee.Extensions" Version="2020.1.0" />
+    </ItemGroup>
+  
 </Project>

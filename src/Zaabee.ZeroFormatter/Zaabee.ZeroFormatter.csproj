@@ -3,20 +3,20 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>3.1.0</PackageVersion>
-        <Version>3.1.0</Version>
+        <PackageVersion>2020.1.0</PackageVersion>
+        <Version>2020.1.0</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.ZeroFormatter</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Description>Cause the ZeroFormatter has not updated for long time I thing it is abandoned.This package will not be maintenanced.(This version is not compatible for dotnet core 3.0)</Description>
         <PackageTags>Zaabee ZeroFormatter serialize deserialize</PackageTags>
-        <LangVersion>8.0</LangVersion>
-        <NullableContextOptions>enable</NullableContextOptions>
+        <LangVersion>Latest</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="ZeroFormatter" Version="1.6.4" />
+        <PackageReference Include="Zaabee.Extensions" Version="2020.1.0" />
+        <PackageReference Include="ZeroFormatter" Version="1.6.4" />
     </ItemGroup>
 
 </Project>

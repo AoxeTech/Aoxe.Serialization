@@ -41,9 +41,11 @@ namespace ZaabeeNewtonsoftJsonTestProject
             await testModel.PackToAsync(stream0);
             var stream1 = new FileStream(".\\StreamNonGenericTest1", FileMode.Create);
             await stream1.PackByAsync(testModel);
+            var stream2 = await testModel.ToStreamAsync();
 
             var unPackResult0 = (TestModel) stream0.Unpack(type);
             var unPackResult1 = (TestModel) stream1.Unpack(type);
+            var unPackResult2 = (TestModel) stream2.Unpack(type);
 
             Assert.Equal(
                 Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
@@ -55,6 +57,11 @@ namespace ZaabeeNewtonsoftJsonTestProject
                     ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
                 Tuple.Create(unPackResult1.Id, unPackResult1.Age, unPackResult1.CreateTime, unPackResult1.Name,
                     unPackResult1.Gender));
+            Assert.Equal(
+                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
+                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
+                Tuple.Create(unPackResult2.Id, unPackResult2.Age, unPackResult2.CreateTime, unPackResult2.Name,
+                    unPackResult2.Gender));
         }
 
         private static TestModel GetTestModel()

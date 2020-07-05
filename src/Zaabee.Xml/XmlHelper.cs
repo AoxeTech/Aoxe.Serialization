@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using System.Xml;
 
 namespace Zaabee.Xml
 {
@@ -17,7 +18,7 @@ namespace Zaabee.Xml
         public static byte[] Serialize<T>(T t) =>
             XmlSerializer.Serialize(t);
 
-        public static Stream Pack<T>(T t) =>
+        public static MemoryStream Pack<T>(T t) =>
             XmlSerializer.Pack(t);
 
         public static void Pack<T>(T t, Stream stream) =>
@@ -29,7 +30,7 @@ namespace Zaabee.Xml
         public static byte[] Serialize(Type type, object obj) =>
             XmlSerializer.Serialize(type, obj);
 
-        public static Stream Pack(Type type, object obj) =>
+        public static MemoryStream Pack(Type type, object obj) =>
             XmlSerializer.Pack(type, obj);
 
         public static void Pack(Type type, object obj, Stream stream) =>
@@ -55,5 +56,29 @@ namespace Zaabee.Xml
 
         public static object Deserialize(Type type, string xml, Encoding encoding = null) =>
             XmlSerializer.Deserialize(type, xml, encoding ?? DefaultEncoding);
+
+        public static void Serialize<T>(TextWriter textWriter, T t) =>
+            XmlSerializer.Serialize<T>(textWriter, t);
+
+        public static void Serialize(Type type, TextWriter textWriter, object obj) =>
+            XmlSerializer.Serialize(type, textWriter, obj);
+
+        public static T Deserialize<T>(TextReader textReader) =>
+            XmlSerializer.Deserialize<T>(textReader);
+
+        public static object Deserialize(Type type, TextReader textReader) =>
+            XmlSerializer.Deserialize(type, textReader);
+
+        public static void Serialize<T>(XmlWriter xmlWriter, T t) =>
+            XmlSerializer.Serialize<T>(xmlWriter, t);
+
+        public static void Serialize(Type type, XmlWriter xmlWriter, object obj) =>
+            XmlSerializer.Serialize(type, xmlWriter, obj);
+
+        public static T Deserialize<T>(XmlReader xmlReader) =>
+            XmlSerializer.Deserialize<T>(xmlReader);
+
+        public static object Deserialize(Type type, XmlReader xmlReader) =>
+            XmlSerializer.Deserialize(type, xmlReader);
     }
 }

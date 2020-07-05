@@ -2,28 +2,13 @@ using System;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Zaabee.Extensions;
 
 namespace Zaabee.SystemTextJson
 {
     public static class SystemTextJsonSerializer
     {
-        #region Sync
-
-        public static string SerializeToJson<T>(T o, JsonSerializerOptions options) =>
-            JsonSerializer.Serialize(o, options);
-
-        public static string SerializeToJson(Type type, object value, JsonSerializerOptions options) =>
-            JsonSerializer.Serialize(value, type, options);
-
-        public static T Deserialize<T>(string json, JsonSerializerOptions options) =>
-            string.IsNullOrWhiteSpace(json)
-                ? default
-                : JsonSerializer.Deserialize<T>(json, options);
-
-        public static object Deserialize(Type type, string json, JsonSerializerOptions options) =>
-            string.IsNullOrWhiteSpace(json)
-                ? default(Type)
-                : JsonSerializer.Deserialize(json, type, options);
+        #region Bytes
 
         public static byte[] Serialize<T>(T o, JsonSerializerOptions options) =>
             JsonSerializer.SerializeToUtf8Bytes(o, options);
@@ -32,18 +17,19 @@ namespace Zaabee.SystemTextJson
             JsonSerializer.SerializeToUtf8Bytes(value, type, options);
 
         public static T Deserialize<T>(byte[] bytes, JsonSerializerOptions options) =>
-            bytes is null ? default : JsonSerializer.Deserialize<T>(bytes, options);
+            bytes.IsNullOrEmpty() ? default : JsonSerializer.Deserialize<T>(bytes, options);
 
         public static object Deserialize(Type type, byte[] bytes, JsonSerializerOptions options) =>
-            bytes is null
-                ? default(Type)
-                : JsonSerializer.Deserialize(bytes, type, options);
+            bytes.IsNullOrEmpty() ? default(Type) : JsonSerializer.Deserialize(bytes, type, options);
 
-        public static Stream Pack<T>(T value, JsonSerializerOptions options)
+        #endregion
+
+        #region Stream
+
+        public static MemoryStream Pack<T>(T value, JsonSerializerOptions options)
         {
             var ms = new MemoryStream();
             Pack(value, ms, options);
-            ms.Seek(0, SeekOrigin.Begin);
             return ms;
         }
 
@@ -55,7 +41,7 @@ namespace Zaabee.SystemTextJson
             if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
         }
 
-        public static Stream Pack(Type type, object value, JsonSerializerOptions options)
+        public static MemoryStream Pack(Type type, object value, JsonSerializerOptions options)
         {
             var ms = new MemoryStream();
             Pack(type, value, ms, options);
@@ -71,20 +57,10 @@ namespace Zaabee.SystemTextJson
         }
 
         public static T Unpack<T>(Stream stream, JsonSerializerOptions options) =>
-            Unpack<T>(ReadToEnd(stream), options);
+            Unpack<T>(stream.ReadToEnd(), options);
 
         public static object Unpack(Type type, Stream stream, JsonSerializerOptions options) =>
-            Unpack(type, ReadToEnd(stream), options);
-
-        public static T Unpack<T>(ReadOnlySpan<byte> spanBytes, JsonSerializerOptions options) =>
-            JsonSerializer.Deserialize<T>(spanBytes, options);
-
-        public static object Unpack(Type type, ReadOnlySpan<byte> spanBytes, JsonSerializerOptions options) =>
-            JsonSerializer.Deserialize(spanBytes, type, options);
-
-        #endregion
-
-        #region Async
+            Unpack(type, stream.ReadToEnd(), options);
 
         public static async Task PackAsync<T>(T value, Stream stream, JsonSerializerOptions options)
         {
@@ -114,13 +90,35 @@ namespace Zaabee.SystemTextJson
         }
 
         #endregion
-        
-        private static byte[] ReadToEnd(this Stream stream)
-        {
-            if (stream is MemoryStream ms) return ms.ToArray();
-            using var memoryStream = new MemoryStream();
-            stream.CopyTo(memoryStream);
-            return memoryStream.ToArray();
-        }
+
+        #region Text
+
+        public static string SerializeToJson<T>(T o, JsonSerializerOptions options) =>
+            JsonSerializer.Serialize(o, options);
+
+        public static string SerializeToJson(Type type, object value, JsonSerializerOptions options) =>
+            JsonSerializer.Serialize(value, type, options);
+
+        public static T Deserialize<T>(string json, JsonSerializerOptions options) =>
+            string.IsNullOrWhiteSpace(json)
+                ? default
+                : JsonSerializer.Deserialize<T>(json, options);
+
+        public static object Deserialize(Type type, string json, JsonSerializerOptions options) =>
+            string.IsNullOrWhiteSpace(json)
+                ? default(Type)
+                : JsonSerializer.Deserialize(json, type, options);
+
+        #endregion
+
+        #region ReadOnlySpan<byte>
+
+        public static T Unpack<T>(ReadOnlySpan<byte> spanBytes, JsonSerializerOptions options) =>
+            JsonSerializer.Deserialize<T>(spanBytes, options);
+
+        public static object Unpack(Type type, ReadOnlySpan<byte> spanBytes, JsonSerializerOptions options) =>
+            JsonSerializer.Deserialize(spanBytes, type, options);
+
+        #endregion
     }
 }

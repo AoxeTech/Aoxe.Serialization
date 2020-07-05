@@ -22,7 +22,7 @@ namespace ZaabeeSystemTextJsonTestProject
         public void StreamTest()
         {
             var testModel = GetTestModel();
-            var stream1 = testModel.Pack();
+            var stream1 = testModel.ToStream();
             var stream2 = new MemoryStream();
             testModel.PackTo(stream2);
             var stream3 = new MemoryStream();
@@ -61,7 +61,7 @@ namespace ZaabeeSystemTextJsonTestProject
         public void BytesNonGenericTest()
         {
             object testModel = GetTestModel();
-            var bytes = testModel.ToBytes();
+            var bytes = SystemTextJsonHelper.Serialize(typeof(TestModel), testModel);
             var result = (TestModel) bytes.FromBytes(typeof(TestModel));
             Assert.Equal(
                 Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
@@ -75,7 +75,7 @@ namespace ZaabeeSystemTextJsonTestProject
             var type = typeof(TestModel);
             object testModel = GetTestModel();
 
-            var stream1 = testModel.Pack(type);
+            var stream1 = testModel.ToStream(type);
             var stream2 = new MemoryStream();
             testModel.PackTo(type, stream2);
             var stream3 = new MemoryStream();

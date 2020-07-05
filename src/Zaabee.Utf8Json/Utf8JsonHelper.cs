@@ -38,19 +38,19 @@ namespace Zaabee.Utf8Json
         public static object Deserialize(Type type, byte[] bytes, IJsonFormatterResolver resolver = null) =>
             Utf8JsonSerializer.Deserialize(type, bytes, resolver ?? DefaultJsonFormatterResolver);
 
-        public static Stream Pack<T>(T value, IJsonFormatterResolver resolver = null) =>
+        public static MemoryStream Pack<T>(T value, IJsonFormatterResolver resolver = null) =>
             Utf8JsonSerializer.Pack(value, resolver ?? DefaultJsonFormatterResolver);
 
         public static void Pack<T>(T value, Stream stream, IJsonFormatterResolver resolver = null) =>
             Utf8JsonSerializer.Pack(value, stream, resolver ?? DefaultJsonFormatterResolver);
 
-        public static Stream Pack(object obj, IJsonFormatterResolver resolver = null) =>
+        public static MemoryStream Pack(object obj, IJsonFormatterResolver resolver = null) =>
             Utf8JsonSerializer.Pack(obj, resolver ?? DefaultJsonFormatterResolver);
 
         public static void Pack(object obj, Stream stream, IJsonFormatterResolver resolver = null) =>
             Utf8JsonSerializer.Pack(obj, stream, resolver ?? DefaultJsonFormatterResolver);
 
-        public static Stream Pack(Type type, object obj, IJsonFormatterResolver resolver = null) =>
+        public static MemoryStream Pack(Type type, object obj, IJsonFormatterResolver resolver = null) =>
             Utf8JsonSerializer.Pack(type, obj, resolver ?? DefaultJsonFormatterResolver);
 
         public static void Pack(Type type, object obj, Stream stream, IJsonFormatterResolver resolver = null) =>

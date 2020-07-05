@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Text;
 using Jil;
 using Xunit;
 using Zaabee.Jil;
@@ -8,6 +9,12 @@ namespace ZaabeeJilTestProject
 {
     public class UnitTest
     {
+        public UnitTest()
+        {
+            JilHelper.DefaultEncoding = Encoding.UTF32;
+            JilHelper.DefaultOptions = null;
+        }
+
         [Fact]
         public void BytesTest()
         {
@@ -24,7 +31,7 @@ namespace ZaabeeJilTestProject
         {
             var testModel = GetTestModel();
 
-            var stream1 = testModel.Pack();
+            var stream1 = testModel.ToStream();
             var stream2 = new MemoryStream();
             testModel.PackTo(stream2);
             var stream3 = new MemoryStream();
@@ -46,6 +53,9 @@ namespace ZaabeeJilTestProject
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
                     unPackResult3.Gender));
+
+            JilHelper.Pack<TestModel>(null, stream1);
+            JilHelper.Pack(testModel, null, null);
         }
 
         [Fact]
@@ -77,7 +87,7 @@ namespace ZaabeeJilTestProject
             var type = typeof(TestModel);
             object testModel = GetTestModel();
 
-            var stream1 = testModel.Pack();
+            var stream1 = testModel.ToStream();
             var stream2 = new MemoryStream();
             testModel.PackTo(stream2);
             var stream3 = new MemoryStream();
@@ -99,6 +109,9 @@ namespace ZaabeeJilTestProject
                 Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age, ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
                 Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
                     unPackResult3.Gender));
+
+            JilHelper.Pack(null, stream1);
+            JilHelper.Pack(testModel, null, null);
         }
 
         [Fact]
@@ -109,6 +122,64 @@ namespace ZaabeeJilTestProject
             var result = (TestModel) json.FromJson(typeof(TestModel));
             Assert.Equal(
                 Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age, ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
+                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+        }
+
+        [Fact]
+        public void TextWriterReaderTest()
+        {
+            var testModel = GetTestModel();
+            TestModel result;
+            using (var fs = new FileStream("TextWriterReaderTest.json", FileMode.Create))
+            {
+                var writer = new StreamWriter(fs, Encoding.UTF8);
+                testModel.ToJson(writer);
+                writer.Close();
+            }
+
+            using (var fs = new FileStream("TextWriterReaderTest.json", FileMode.Open))
+            {
+                var reader = new StreamReader(fs, Encoding.UTF8);
+                result = reader.FromJson<TestModel>();
+                reader.Close();
+            }
+
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+
+
+            using (var fs = new FileStream("TextWriterReaderTest.json", FileMode.Create))
+            {
+                var writer = new StreamWriter(fs, Encoding.UTF8);
+                JilHelper.Serialize<TestModel>(null, writer);
+                JilHelper.Serialize(null, writer);
+                writer.Close();
+            }
+        }
+
+        [Fact]
+        public void TextWriterReaderNonGenericTest()
+        {
+            object testModel = GetTestModel();
+            TestModel result;
+            using (var fs = new FileStream("TextWriterReaderNonGenericTest.json", FileMode.Create))
+            {
+                var writer = new StreamWriter(fs, Encoding.UTF8);
+                testModel.ToJson(writer);
+                writer.Close();
+            }
+
+            using (var fs = new FileStream("TextWriterReaderNonGenericTest.json", FileMode.Open))
+            {
+                var reader = new StreamReader(fs, Encoding.UTF8);
+                result = (TestModel) reader.FromJson(typeof(TestModel));
+                reader.Close();
+            }
+
+            Assert.Equal(
+                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
+                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
                 Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
         }
 

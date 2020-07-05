@@ -22,7 +22,7 @@ namespace ZaabeeUtf8JsonTestProject
         public void StreamTest()
         {
             var testModel = GetTestModel();
-            var stream1 = testModel.Pack();
+            var stream1 = testModel.ToStream();
             var stream2 = new MemoryStream();
             testModel.PackTo(stream2);
             var stream3 = new MemoryStream();
@@ -70,16 +70,61 @@ namespace ZaabeeUtf8JsonTestProject
         }
 
         [Fact]
+        public void BytesNonGenericWithTypeTest()
+        {
+            object testModel = GetTestModel();
+            var bytes = testModel.ToBytes(typeof(TestModel));
+            var result = (TestModel) bytes.FromBytes(typeof(TestModel));
+            Assert.Equal(
+                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
+                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
+                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+        }
+
+        [Fact]
         public void StreamNonGenericTest()
         {
             var type = typeof(TestModel);
             object testModel = GetTestModel();
 
-            var stream1 = testModel.Pack(type);
+            var stream1 = testModel.ToStream(type);
             var stream2 = new MemoryStream();
             testModel.PackTo(type, stream2);
             var stream3 = new MemoryStream();
             stream3.PackBy(type, testModel);
+
+            var unPackResult1 = (TestModel) stream1.Unpack(type);
+            var unPackResult2 = (TestModel) stream2.Unpack(type);
+            var unPackResult3 = (TestModel) stream3.Unpack(type);
+
+            Assert.Equal(
+                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
+                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
+                Tuple.Create(unPackResult1.Id, unPackResult1.Age, unPackResult1.CreateTime, unPackResult1.Name,
+                    unPackResult1.Gender));
+            Assert.Equal(
+                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
+                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
+                Tuple.Create(unPackResult2.Id, unPackResult2.Age, unPackResult2.CreateTime, unPackResult2.Name,
+                    unPackResult2.Gender));
+            Assert.Equal(
+                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
+                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
+                Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
+                    unPackResult3.Gender));
+        }
+
+        [Fact]
+        public void StreamNonGenericWithTypeTest()
+        {
+            var type = typeof(TestModel);
+            object testModel = GetTestModel();
+
+            var stream1 = testModel.ToStream();
+            var stream2 = new MemoryStream();
+            testModel.PackTo(stream2);
+            var stream3 = new MemoryStream();
+            stream3.PackBy(testModel);
 
             var unPackResult1 = (TestModel) stream1.Unpack(type);
             var unPackResult2 = (TestModel) stream2.Unpack(type);

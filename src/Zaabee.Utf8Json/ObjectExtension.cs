@@ -16,7 +16,7 @@ namespace Zaabee.Utf8Json
         public static void PackTo<T>(this T t, Stream stream, IJsonFormatterResolver resolver = null) =>
             Utf8JsonHelper.Pack(t, stream, resolver);
 
-        public static Stream Pack<T>(this T t, IJsonFormatterResolver resolver = null) =>
+        public static MemoryStream ToStream<T>(this T t, IJsonFormatterResolver resolver = null) =>
             Utf8JsonHelper.Pack(t, resolver);
 
         public static string ToJson(this object obj, IJsonFormatterResolver resolver = null) =>
@@ -31,10 +31,10 @@ namespace Zaabee.Utf8Json
         public static byte[] ToBytes(this object obj, Type type, IJsonFormatterResolver resolver = null) =>
             Utf8JsonHelper.Serialize(type, obj, resolver);
 
-        public static Stream Pack(this object obj, IJsonFormatterResolver resolver = null) =>
+        public static MemoryStream ToStream(this object obj, IJsonFormatterResolver resolver = null) =>
             Utf8JsonHelper.Pack(obj, resolver);
 
-        public static Stream Pack(this object obj, Type type, IJsonFormatterResolver resolver = null) =>
+        public static MemoryStream ToStream(this object obj, Type type, IJsonFormatterResolver resolver = null) =>
             Utf8JsonHelper.Pack(type, obj, resolver);
 
         public static void PackTo(this object obj, Stream stream, IJsonFormatterResolver resolver = null) =>

@@ -16,6 +16,9 @@ namespace ZaabeeBinaryTestProject
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
+
+            Assert.Empty(BinaryHelper.Serialize(null));
+            Assert.Null(BinaryHelper.Deserialize<TestModel>(null));
         }
 
         [Fact]
@@ -23,7 +26,7 @@ namespace ZaabeeBinaryTestProject
         {
             var testModel = GetTestModel();
 
-            var stream1 = testModel.Pack();
+            var stream1 = testModel.ToStream();
             var stream2 = new MemoryStream();
             testModel.PackTo(stream2);
             var stream3 = new MemoryStream();
@@ -45,6 +48,13 @@ namespace ZaabeeBinaryTestProject
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
                     unPackResult3.Gender));
+
+            Assert.Equal(0, BinaryHelper.Pack(null).Length);
+            Assert.Null(BinaryHelper.Unpack<TestModel>(null));
+            var ms = new MemoryStream();
+            BinaryHelper.Pack(null, ms);
+            Assert.Equal(0, ms.Length);
+            Assert.Equal(0, ms.Position);
         }
 
         [Fact]
@@ -64,7 +74,7 @@ namespace ZaabeeBinaryTestProject
             var type = typeof(TestModel);
             var testModel = GetTestModel();
 
-            var stream1 = testModel.Pack();
+            var stream1 = testModel.ToStream();
             var stream2 = new MemoryStream();
             testModel.PackTo(stream2);
             var stream3 = new MemoryStream();

@@ -10,9 +10,6 @@ namespace Zaabee.Jil
         public static void PackBy<T>(this Stream stream, T t, Options options = null) =>
             JilHelper.Pack(t, stream, options);
 
-        public static void PackBy(this Stream stream, object obj, Options options = null) =>
-            JilHelper.Pack(obj, stream, options);
-
         public static T Unpack<T>(this Stream stream, Options options = null) =>
             JilHelper.Unpack<T>(stream, options);
 

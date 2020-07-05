@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using ProtoBuf.Meta;
+using Zaabee.Extensions;
 
 namespace Zaabee.Protobuf
 {
@@ -15,14 +16,30 @@ namespace Zaabee.Protobuf
 
         private static RuntimeTypeModel TypeModel => Model.Value;
 
+        #region Bytes
+
         public static byte[] Serialize(object obj)
         {
             if (obj is null) return new byte[0];
-            using var stream = Pack(obj);
-            return ReadToEnd(stream);
+            using var ms = Pack(obj);
+            return ms.ToArray();
         }
 
-        public static Stream Pack(object obj)
+        public static T Deserialize<T>(byte[] bytes) =>
+            bytes.IsNullOrEmpty() ? default : (T) Deserialize(typeof(T), bytes);
+
+        public static object Deserialize(Type type, byte[] bytes)
+        {
+            if (bytes.IsNullOrEmpty()) return default(Type);
+            using var ms = new MemoryStream(bytes);
+            return Unpack(type, ms);
+        }
+
+        #endregion
+
+        #region Stream
+
+        public static MemoryStream Pack(object obj)
         {
             var ms = new MemoryStream();
             if (obj != null) Pack(obj, ms);
@@ -31,13 +48,8 @@ namespace Zaabee.Protobuf
 
         public static void Pack(object obj, Stream stream)
         {
-            if (obj != null) TypeModel.Serialize(stream, obj);
-        }
-
-        public static T Deserialize<T>(byte[] bytes)
-        {
-            if (bytes is null || bytes.Length is 0) return default;
-            return (T) Deserialize(typeof(T), bytes);
+            if (obj is null) return;
+            TypeModel.Serialize(stream, obj);
         }
 
         public static T Unpack<T>(Stream stream)
@@ -45,13 +57,6 @@ namespace Zaabee.Protobuf
             if (stream is null || stream.Length is 0) return default;
             var type = typeof(T);
             return (T) Unpack(type, stream);
-        }
-
-        public static object Deserialize(Type type, byte[] bytes)
-        {
-            if (bytes is null || bytes.Length is 0) return default(Type);
-            using var ms = new MemoryStream(bytes);
-            return Unpack(type, ms);
         }
 
         public static object Unpack(Type type, Stream stream)
@@ -62,12 +67,6 @@ namespace Zaabee.Protobuf
             return TypeModel.Deserialize(stream, null, type);
         }
 
-        private static byte[] ReadToEnd(this Stream stream)
-        {
-            if (stream is MemoryStream ms) return ms.ToArray();
-            using var memoryStream = new MemoryStream();
-            stream.CopyTo(memoryStream);
-            return memoryStream.ToArray();
-        }
+        #endregion
     }
 }

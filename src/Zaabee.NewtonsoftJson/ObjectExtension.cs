@@ -12,8 +12,11 @@ namespace Zaabee.NewtonsoftJson
         public static byte[] ToBytes(this object obj, JsonSerializerSettings settings = null) =>
             NewtonsoftJsonHelper.Serialize(obj, settings);
 
-        public static Stream Pack(this object obj, JsonSerializerSettings settings = null) =>
+        public static MemoryStream ToStream(this object obj, JsonSerializerSettings settings = null) =>
             NewtonsoftJsonHelper.Pack(obj, settings);
+
+        public static async Task<MemoryStream> ToStreamAsync(this object obj, JsonSerializerSettings settings = null) =>
+            await NewtonsoftJsonHelper.PackAsync(obj, settings);
 
         public static void PackTo(this object obj, Stream stream, JsonSerializerSettings settings = null) =>
             NewtonsoftJsonHelper.Pack(obj, stream, settings);

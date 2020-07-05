@@ -32,13 +32,13 @@ namespace Zaabee.SystemTextJson
         public static object Deserialize(Type type, byte[] bytes, JsonSerializerOptions options = null) =>
             SystemTextJsonSerializer.Deserialize(type, bytes, options ?? DefaultJsonSerializerOptions);
 
-        public static Stream Pack<T>(T value, JsonSerializerOptions options = null) =>
+        public static MemoryStream Pack<T>(T value, JsonSerializerOptions options = null) =>
             SystemTextJsonSerializer.Pack(value, options ?? DefaultJsonSerializerOptions);
 
         public static void Pack<T>(T value, Stream stream, JsonSerializerOptions options = null) =>
             SystemTextJsonSerializer.Pack(value, stream, options ?? DefaultJsonSerializerOptions);
 
-        public static Stream Pack(Type type, object value, JsonSerializerOptions options = null) =>
+        public static MemoryStream Pack(Type type, object value, JsonSerializerOptions options = null) =>
             SystemTextJsonSerializer.Pack(type, value, options ?? DefaultJsonSerializerOptions);
 
         public static void Pack(Type type, object value, Stream stream, JsonSerializerOptions options = null) =>
