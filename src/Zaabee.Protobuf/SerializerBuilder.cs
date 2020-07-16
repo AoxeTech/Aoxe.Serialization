@@ -35,18 +35,15 @@ namespace Zaabee.Protobuf
         /// <param name="type">The type of build the serializer for.</param>
         public static void Build(RuntimeTypeModel runtimeTypeModel, Type type)
         {
-            if (BuiltTypes.Contains(type))
-                return;
+            if (BuiltTypes.Contains(type)) return;
 
             lock (type)
             {
-                if (BuiltTypes.Contains(type))
-                    return;
-                
-                if (runtimeTypeModel.CanSerialize(type))
+                if (BuiltTypes.Contains(type)) return;
+
+                if (runtimeTypeModel.CanSerialize(type) && type.IsGenericType)
                 {
-                    if (type.IsGenericType)
-                        BuildGenerics(runtimeTypeModel,type);
+                    BuildGenerics(runtimeTypeModel, type);
                     return;
                 }
 
