@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using ProtoBuf.Meta;
 using Xunit;
 using Zaabee.Protobuf;
 
@@ -89,35 +87,6 @@ namespace ZaabeeProtobufTestProject
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
                     unPackResult3.Gender));
-        }
-
-        [Fact]
-        public void SerializerBuilderTest()
-        {
-            var testModelWithoutAttr = GetTestSubModelWithoutAttr();
-
-            var typeModel = RuntimeTypeModel.Create();
-            typeModel.UseImplicitZeroDefaults = false;
-            SerializerBuilder.Build<TestSubModelWithoutAttr>(typeModel);
-
-            var ms = new MemoryStream();
-            typeModel.Serialize(ms, testModelWithoutAttr);
-            var bytes = ms.ToArray();
-
-            var deserializeModel1 =
-                (TestSubModelWithoutAttr) typeModel.Deserialize(new MemoryStream(bytes), null,
-                    typeof(TestSubModelWithoutAttr));
-
-            Assert.Equal(deserializeModel1.Id, testModelWithoutAttr.Id);
-            Assert.Equal(deserializeModel1.Age, testModelWithoutAttr.Age);
-            Assert.Equal(deserializeModel1.CreateTime, testModelWithoutAttr.CreateTime);
-            Assert.Equal(deserializeModel1.Name, testModelWithoutAttr.Name);
-            Assert.Equal(deserializeModel1.Gender, testModelWithoutAttr.Gender);
-            Assert.Equal(deserializeModel1.Kids.Count, testModelWithoutAttr.Kids.Count);
-            Assert.True(deserializeModel1.Kids.Keys.All(p => testModelWithoutAttr.Kids.Keys.Any(q => q == p)));
-            Assert.True(deserializeModel1.Kids.Values.All(p => testModelWithoutAttr.Kids.Values.Any(q =>
-                q.Id == p.Id && q.Age == p.Age && q.CreateTime == p.CreateTime && q.Name == p.Name &&
-                q.Gender == p.Gender)));
         }
 
         private TestModel GetTestModel()

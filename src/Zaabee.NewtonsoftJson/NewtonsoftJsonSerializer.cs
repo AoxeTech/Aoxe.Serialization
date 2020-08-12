@@ -20,7 +20,7 @@ namespace Zaabee.NewtonsoftJson
             bytes.IsNullOrEmpty() ? default : (T) Deserialize(typeof(T), bytes, settings, encoding);
 
         public static object Deserialize(Type type, byte[] bytes, JsonSerializerSettings settings, Encoding encoding) =>
-            bytes.IsNullOrEmpty() ? default(Type) : Deserialize(type, encoding.GetString(bytes), settings);
+            bytes.IsNullOrEmpty() ? type.GetDefaultValue() : Deserialize(type, encoding.GetString(bytes), settings);
 
         #endregion
 
@@ -46,7 +46,7 @@ namespace Zaabee.NewtonsoftJson
 
         public static object Unpack(Type type, Stream stream, JsonSerializerSettings settings, Encoding encoding) =>
             stream is null
-                ? default(Type)
+                ? type.GetDefaultValue()
                 : Deserialize(type, encoding.GetString(stream.ReadToEnd()), settings);
 
         public static async Task<MemoryStream> PackAsync(object obj, JsonSerializerSettings settings, Encoding encoding)
@@ -75,11 +75,13 @@ namespace Zaabee.NewtonsoftJson
             obj is null ? string.Empty : JsonConvert.SerializeObject(obj, settings);
 
         public static T Deserialize<T>(string json, JsonSerializerSettings settings) =>
-            JsonConvert.DeserializeObject<T>(json, settings);
+            string.IsNullOrWhiteSpace(json)
+                ? default
+                : JsonConvert.DeserializeObject<T>(json, settings);
 
         public static object Deserialize(Type type, string json, JsonSerializerSettings settings) =>
             string.IsNullOrWhiteSpace(json)
-                ? default(Type)
+                ? type.GetDefaultValue()
                 : JsonConvert.DeserializeObject(json, type, settings);
 
         #endregion

@@ -28,7 +28,7 @@ namespace Zaabee.Xml
 
         public static object Deserialize(Type type, byte[] bytes)
         {
-            if (bytes.IsNullOrEmpty()) return default(Type);
+            if (bytes.IsNullOrEmpty()) return type.GetDefaultValue();
             using var ms = new MemoryStream(bytes);
             return Unpack(type, ms);
         }
@@ -60,7 +60,7 @@ namespace Zaabee.Xml
 
         public static object Unpack(Type type, Stream stream)
         {
-            if (stream is null || stream.Length == 0) return default(Type);
+            if (stream is null || stream.Length == 0) return type.GetDefaultValue();
             if (stream.CanSeek && stream.Position > 0) stream.Position = 0;
             var serializer = SerializerCache.GetOrAdd(type, new System.Xml.Serialization.XmlSerializer(type));
             return serializer.Deserialize(stream);
@@ -84,7 +84,7 @@ namespace Zaabee.Xml
 
         public static object Deserialize(Type type, string xml, Encoding encoding)
         {
-            if (string.IsNullOrWhiteSpace(xml)) return default(Type);
+            if (string.IsNullOrWhiteSpace(xml)) return type.GetDefaultValue();
             using var ms = new MemoryStream(encoding.GetBytes(xml));
             return Unpack(type, ms);
         }
@@ -105,7 +105,7 @@ namespace Zaabee.Xml
 
         public static object Deserialize(Type type, TextReader textReader)
         {
-            if (textReader is null) return default(Type);
+            if (textReader is null) return type.GetDefaultValue();
             var serializer = SerializerCache.GetOrAdd(type, new System.Xml.Serialization.XmlSerializer(type));
             return serializer.Deserialize(textReader);
         }
@@ -126,7 +126,7 @@ namespace Zaabee.Xml
 
         public static object Deserialize(Type type, XmlReader xmlReader)
         {
-            if (xmlReader is null) return default(Type);
+            if (xmlReader is null) return type.GetDefaultValue();
             var serializer = SerializerCache.GetOrAdd(type, new System.Xml.Serialization.XmlSerializer(type));
             return serializer.Deserialize(xmlReader);
         }

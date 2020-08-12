@@ -23,7 +23,7 @@ namespace Zaabee.Utf8Json
             bytes.IsNullOrEmpty() ? default : JsonSerializer.Deserialize<T>(bytes, resolver);
 
         public static object Deserialize(Type type, byte[] bytes, IJsonFormatterResolver resolver) =>
-            bytes.IsNullOrEmpty() ? default(Type) : JsonSerializer.NonGeneric.Deserialize(type, bytes, resolver);
+            bytes.IsNullOrEmpty() ? type.GetDefaultValue() : JsonSerializer.NonGeneric.Deserialize(type, bytes, resolver);
 
         #endregion
 
@@ -112,7 +112,7 @@ namespace Zaabee.Utf8Json
 
         public static object Deserialize(Type type, string json, IJsonFormatterResolver resolver) =>
             string.IsNullOrWhiteSpace(json)
-                ? default(Type)
+                ? type.GetDefaultValue()
                 : JsonSerializer.NonGeneric.Deserialize(type, json, resolver);
 
         #endregion

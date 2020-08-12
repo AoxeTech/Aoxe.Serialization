@@ -20,7 +20,7 @@ namespace Zaabee.SystemTextJson
             bytes.IsNullOrEmpty() ? default : JsonSerializer.Deserialize<T>(bytes, options);
 
         public static object Deserialize(Type type, byte[] bytes, JsonSerializerOptions options) =>
-            bytes.IsNullOrEmpty() ? default(Type) : JsonSerializer.Deserialize(bytes, type, options);
+            bytes.IsNullOrEmpty() ? type.GetDefaultValue() : JsonSerializer.Deserialize(bytes, type, options);
 
         #endregion
 
@@ -106,7 +106,7 @@ namespace Zaabee.SystemTextJson
 
         public static object Deserialize(Type type, string json, JsonSerializerOptions options) =>
             string.IsNullOrWhiteSpace(json)
-                ? default(Type)
+                ? type.GetDefaultValue()
                 : JsonSerializer.Deserialize(json, type, options);
 
         #endregion

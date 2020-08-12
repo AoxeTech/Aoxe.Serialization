@@ -30,7 +30,7 @@ namespace Zaabee.Protobuf
 
         public static object Deserialize(Type type, byte[] bytes)
         {
-            if (bytes.IsNullOrEmpty()) return default(Type);
+            if (bytes.IsNullOrEmpty()) return type.GetDefaultValue();
             using var ms = new MemoryStream(bytes);
             return Unpack(type, ms);
         }
@@ -61,7 +61,7 @@ namespace Zaabee.Protobuf
 
         public static object Unpack(Type type, Stream stream)
         {
-            if (stream is null || stream.Length is 0) return default(Type);
+            if (stream is null || stream.Length is 0) return type.GetDefaultValue();
             if (stream.CanSeek && stream.Position > 0)
                 stream.Position = 0;
             return TypeModel.Deserialize(stream, null, type);

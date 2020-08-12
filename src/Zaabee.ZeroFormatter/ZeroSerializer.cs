@@ -19,7 +19,7 @@ namespace Zaabee.ZeroFormatter
             bytes.IsNullOrEmpty() ? default : ZeroFormatterSerializer.Deserialize<T>(bytes);
 
         public static object Deserialize(Type type, byte[] bytes) =>
-            bytes.IsNullOrEmpty() ? default(Type) : ZeroFormatterSerializer.NonGeneric.Deserialize(type, bytes);
+            bytes.IsNullOrEmpty() ? type.GetDefaultValue() : ZeroFormatterSerializer.NonGeneric.Deserialize(type, bytes);
 
         #endregion
 
@@ -57,7 +57,7 @@ namespace Zaabee.ZeroFormatter
         }
 
         public static object Unpack(Type type, Stream stream) =>
-            stream is null ? default(Type) : ZeroFormatterSerializer.NonGeneric.Deserialize(type, stream);
+            stream is null ? type.GetDefaultValue() : ZeroFormatterSerializer.NonGeneric.Deserialize(type, stream);
 
         #endregion
     }

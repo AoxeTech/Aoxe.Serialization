@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  
+
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2020.1.0</PackageVersion>
-        <Version>2020.1.0</Version>
+        <PackageVersion>2020.3.0</PackageVersion>
+        <Version>2020.3.0</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Xml</PackageProjectUrl>
@@ -13,9 +13,9 @@
         <PackageTags>Zaabee XML serialize deserialize</PackageTags>
         <LangVersion>Latest</LangVersion>
     </PropertyGroup>
-    
+
     <ItemGroup>
-        <PackageReference Include="Zaabee.Extensions" Version="2020.1.0" />
+        <PackageReference Include="Zaabee.Extensions" Version="2020.2.0" />
     </ItemGroup>
-  
+
 </Project>
