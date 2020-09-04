@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using Utf8Json;
-using Zaabee.Extensions;
 
 namespace Zaabee.Utf8Json
 {
@@ -20,10 +19,10 @@ namespace Zaabee.Utf8Json
             JsonSerializer.NonGeneric.Serialize(type, obj, resolver);
 
         public static T Deserialize<T>(byte[] bytes, IJsonFormatterResolver resolver) =>
-            bytes.IsNullOrEmpty() ? default : JsonSerializer.Deserialize<T>(bytes, resolver);
+            JsonSerializer.Deserialize<T>(bytes, resolver);
 
         public static object Deserialize(Type type, byte[] bytes, IJsonFormatterResolver resolver) =>
-            bytes.IsNullOrEmpty() ? type.GetDefaultValue() : JsonSerializer.NonGeneric.Deserialize(type, bytes, resolver);
+            JsonSerializer.NonGeneric.Deserialize(type, bytes, resolver);
 
         #endregion
 
@@ -106,14 +105,10 @@ namespace Zaabee.Utf8Json
             JsonSerializer.NonGeneric.ToJsonString(type, obj, resolver);
 
         public static T Deserialize<T>(string json, IJsonFormatterResolver resolver) =>
-            string.IsNullOrWhiteSpace(json)
-                ? default
-                : JsonSerializer.Deserialize<T>(json, resolver);
+            JsonSerializer.Deserialize<T>(json, resolver);
 
         public static object Deserialize(Type type, string json, IJsonFormatterResolver resolver) =>
-            string.IsNullOrWhiteSpace(json)
-                ? type.GetDefaultValue()
-                : JsonSerializer.NonGeneric.Deserialize(type, json, resolver);
+            JsonSerializer.NonGeneric.Deserialize(type, json, resolver);
 
         #endregion
     }

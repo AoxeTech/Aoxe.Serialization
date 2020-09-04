@@ -9,6 +9,11 @@ namespace ZaabeeXmlTestProject
 {
     public class UnitTest
     {
+        public UnitTest()
+        {
+            XmlHelper.DefaultEncoding = Encoding.UTF8;
+        }
+
         [Fact]
         public void BytesTest()
         {
@@ -19,10 +24,10 @@ namespace ZaabeeXmlTestProject
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
             
-            Assert.Empty(XmlSerializer.Serialize(typeof(TestModel),null));
-            Assert.Null(XmlSerializer.Deserialize<TestModel>((byte[])null));
-            Assert.Null(XmlSerializer.Deserialize<TestModel>((TextReader)null));
-            Assert.Null(XmlSerializer.Deserialize<TestModel>((XmlReader)null));
+            Assert.Empty(XmlHelper.Serialize(typeof(TestModel),null));
+            Assert.Null(XmlHelper.Deserialize<TestModel>((byte[])null));
+            Assert.Null(XmlHelper.Deserialize<TestModel>((TextReader)null));
+            Assert.Null(XmlHelper.Deserialize<TestModel>((XmlReader)null));
         }
 
         [Fact]
@@ -53,10 +58,10 @@ namespace ZaabeeXmlTestProject
                 Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
                     unPackResult3.Gender));
             
-            Assert.Equal(0,XmlSerializer.Pack<TestModel>(null).Length);
-            Assert.Null(XmlSerializer.Unpack<TestModel>(null));
+            Assert.Equal(0,XmlHelper.Pack<TestModel>(null).Length);
+            Assert.Null(XmlHelper.Unpack<TestModel>(null));
             var ms = new MemoryStream();
-            XmlSerializer.Pack<TestModel>(null, ms);
+            XmlHelper.Pack<TestModel>(null, ms);
             Assert.Equal(0,ms.Length);
             Assert.Equal(0,ms.Position);
         }
@@ -82,10 +87,10 @@ namespace ZaabeeXmlTestProject
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
             
-            Assert.Empty(XmlSerializer.Serialize(typeof(TestModel),null));
-            Assert.Null(XmlSerializer.Deserialize(typeof(TestModel),(byte[])null));
-            Assert.Null(XmlSerializer.Deserialize(typeof(TestModel),(TextReader)null));
-            Assert.Null(XmlSerializer.Deserialize(typeof(TestModel),(XmlReader)null));
+            Assert.Empty(XmlHelper.Serialize(typeof(TestModel),null));
+            Assert.Null(XmlHelper.Deserialize(typeof(TestModel),(byte[])null));
+            Assert.Null(XmlHelper.Deserialize(typeof(TestModel),(TextReader)null));
+            Assert.Null(XmlHelper.Deserialize(typeof(TestModel),(XmlReader)null));
         }
 
         [Fact]
@@ -122,9 +127,9 @@ namespace ZaabeeXmlTestProject
             Assert.Equal(0,streamNull.Length);
             Assert.Equal(0,streamNull.Position);
             
-            Assert.Null(XmlSerializer.Unpack(typeof(TestModel),null));
+            Assert.Null(XmlHelper.Unpack(typeof(TestModel),null));
             var ms = new MemoryStream();
-            XmlSerializer.Pack(typeof(TestModel),null, ms);
+            XmlHelper.Pack(typeof(TestModel),null, ms);
             Assert.Equal(0,ms.Length);
             Assert.Equal(0,ms.Position);
         }
@@ -139,8 +144,6 @@ namespace ZaabeeXmlTestProject
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
 
-            TestModel nullTestModel = null;
-            Assert.Equal(string.Empty,nullTestModel.ToXml());
             string str = null;
             Assert.Null(str.FromXml(typeof(TestModel)));
         }

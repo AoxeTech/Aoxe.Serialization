@@ -95,6 +95,12 @@ namespace Zaabee.Jil
             if (stream.CanSeek && stream.Position > 0) stream.Seek(0, SeekOrigin.Begin);
         }
 
+        public static async Task<T> UnpackAsync<T>(Stream stream, Options options, Encoding encoding) =>
+            Deserialize<T>(encoding.GetString(await stream.ReadToEndAsync()), options);
+
+        public static async Task<object> UnpackAsync(Type type, Stream stream, Options options, Encoding encoding) =>
+            Deserialize(type, encoding.GetString(await stream.ReadToEndAsync()), options);
+
         #endregion
 
         #region Text

@@ -6,12 +6,12 @@ namespace Zaabee.Binary
     public static class BinaryHelper
     {
         #region Bytes
-        
+
         public static byte[] Serialize(object obj) =>
             obj is null ? new byte[0] : BinarySerializer.Serialize(obj);
 
         public static T Deserialize<T>(byte[] bytes) =>
-            bytes.IsNullOrEmpty() ? default : BinarySerializer.Deserialize<T>(bytes);
+            bytes.IsNullOrEmpty() ? (T) typeof(T).GetDefaultValue() : BinarySerializer.Deserialize<T>(bytes);
 
         public static object Deserialize(byte[] bytes) =>
             bytes.IsNullOrEmpty() ? null : BinarySerializer.Deserialize(bytes);
@@ -30,10 +30,10 @@ namespace Zaabee.Binary
         }
 
         public static T Unpack<T>(Stream stream) =>
-            stream is null ? default : BinarySerializer.Unpack<T>(stream);
+            stream.IsNullOrEmpty() ? (T) typeof(T).GetDefaultValue() : BinarySerializer.Unpack<T>(stream);
 
         public static object Unpack(Stream stream) =>
-            stream is null ? null : BinarySerializer.Unpack(stream);
+            stream.IsNullOrEmpty() ? null : BinarySerializer.Unpack(stream);
 
         #endregion
     }

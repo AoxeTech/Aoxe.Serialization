@@ -17,8 +17,8 @@ namespace ZaabeeZeroFormatterTestProject
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
             
-            Assert.Empty(ZeroSerializer.Serialize(typeof(TestModel),null));
-            Assert.Null(ZeroSerializer.Deserialize<TestModel>(null));
+            Assert.Empty(ZeroFormatterHelper.Serialize(typeof(TestModel),null));
+            Assert.Null(ZeroFormatterHelper.Deserialize<TestModel>(null));
         }
 
         [Fact]
@@ -49,10 +49,10 @@ namespace ZaabeeZeroFormatterTestProject
                 Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
                     unPackResult3.Gender));
             
-            Assert.Equal(0,ZeroSerializer.Pack<TestModel>(null).Length);
-            Assert.Null(ZeroSerializer.Unpack<TestModel>(null));
+            Assert.Equal(0,ZeroFormatterHelper.Pack<TestModel>(null).Length);
+            Assert.Null(ZeroFormatterHelper.Unpack<TestModel>(null));
             var ms = new MemoryStream();
-            ZeroSerializer.Pack<TestModel>(null, ms);
+            ZeroFormatterHelper.Pack<TestModel>(null, ms);
             Assert.Equal(0,ms.Length);
             Assert.Equal(0,ms.Position);
         }
@@ -102,9 +102,9 @@ namespace ZaabeeZeroFormatterTestProject
             Assert.Equal(0,streamNull.Length);
             Assert.Equal(0,streamNull.Position);
             
-            Assert.Null(ZeroSerializer.Unpack(typeof(TestModel),null));
+            Assert.Null(ZeroFormatterHelper.Unpack(typeof(TestModel),null));
             var ms = new MemoryStream();
-            ZeroSerializer.Pack(typeof(TestModel),null, ms);
+            ZeroFormatterHelper.Pack(typeof(TestModel),null, ms);
             Assert.Equal(0,ms.Length);
             Assert.Equal(0,ms.Position);
         }

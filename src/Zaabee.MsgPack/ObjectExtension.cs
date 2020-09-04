@@ -18,8 +18,8 @@ namespace Zaabee.MsgPack
 
         public static void PackTo(this object obj, Type type, Stream stream) => MsgPackHelper.Pack(type, obj, stream);
 
-        public static async Task<MemoryStream> ToStreamAsync<T>(this T t) => await MsgPackHelper.PackAsync(t);
+        public static Task<MemoryStream> ToStreamAsync<T>(this T t) => MsgPackHelper.PackAsync(t);
 
-        public static async Task PackToAsync<T>(this T t, Stream stream) => await MsgPackHelper.PackAsync(t, stream);
+        public static Task PackToAsync<T>(this T t, Stream stream) => MsgPackHelper.PackAsync(t, stream);
     }
 }

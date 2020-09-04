@@ -21,5 +21,11 @@ namespace Zaabee.Jil
 
         public static async Task PackByAsync(this Stream stream, object obj, Options options = null) =>
             await JilHelper.PackAsync(obj, stream, options);
+
+        public static async Task<T> UnpackAsync<T>(this Stream stream, Options options = null) =>
+            await JilHelper.UnpackAsync<T>(stream, options);
+
+        public static async Task<object> UnpackAsync(this Stream stream, Type type, Options options = null) =>
+            await JilHelper.UnpackAsync(type, stream, options);
     }
 }

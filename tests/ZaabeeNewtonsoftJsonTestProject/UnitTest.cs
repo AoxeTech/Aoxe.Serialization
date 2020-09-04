@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Text;
 using Xunit;
 using Zaabee.NewtonsoftJson;
 
@@ -7,6 +8,15 @@ namespace ZaabeeNewtonsoftJsonTestProject
 {
     public class UnitTest
     {
+        [Fact]
+        public void DefaultTest()
+        {
+            NewtonsoftJsonHelper.DefaultEncoding = Encoding.UTF8;
+            NewtonsoftJsonHelper.DefaultSettings = null;
+            Assert.Equal(NewtonsoftJsonHelper.DefaultEncoding, Encoding.UTF8);
+            Assert.Null(NewtonsoftJsonHelper.DefaultSettings);
+        }
+
         [Fact]
         public void BytesTest()
         {

@@ -3,7 +3,6 @@ using System.Collections.Concurrent;
 using System.IO;
 using System.Text;
 using System.Xml;
-using Zaabee.Extensions;
 
 namespace Zaabee.Xml
 {
@@ -18,17 +17,15 @@ namespace Zaabee.Xml
 
         public static byte[] Serialize(Type type, object obj)
         {
-            if (obj is null) return new byte[0];
             using var ms = Pack(type, obj);
             return ms.ToArray();
         }
 
         public static T Deserialize<T>(byte[] bytes) =>
-            bytes.IsNullOrEmpty() ? default : (T) Deserialize(typeof(T), bytes);
+            (T) Deserialize(typeof(T), bytes);
 
         public static object Deserialize(Type type, byte[] bytes)
         {
-            if (bytes.IsNullOrEmpty()) return type.GetDefaultValue();
             using var ms = new MemoryStream(bytes);
             return Unpack(type, ms);
         }
@@ -43,7 +40,6 @@ namespace Zaabee.Xml
 
         public static MemoryStream Pack(Type type, object obj)
         {
-            if (obj is null) return new MemoryStream();
             var ms = new MemoryStream();
             Pack(type, obj, ms);
             return ms;
@@ -51,7 +47,6 @@ namespace Zaabee.Xml
 
         public static void Pack(Type type, object obj, Stream stream)
         {
-            if (obj is null) return;
             var serializer = SerializerCache.GetOrAdd(type, new System.Xml.Serialization.XmlSerializer(type));
             serializer.Serialize(stream, obj);
         }
@@ -60,7 +55,6 @@ namespace Zaabee.Xml
 
         public static object Unpack(Type type, Stream stream)
         {
-            if (stream is null || stream.Length == 0) return type.GetDefaultValue();
             if (stream.CanSeek && stream.Position > 0) stream.Position = 0;
             var serializer = SerializerCache.GetOrAdd(type, new System.Xml.Serialization.XmlSerializer(type));
             return serializer.Deserialize(stream);
@@ -74,7 +68,6 @@ namespace Zaabee.Xml
 
         public static string SerializeToXml(Type type, object obj, Encoding encoding)
         {
-            if (obj is null) return string.Empty;
             using var ms = Pack(type, obj);
             return encoding.GetString(ms.ToArray());
         }
@@ -84,7 +77,6 @@ namespace Zaabee.Xml
 
         public static object Deserialize(Type type, string xml, Encoding encoding)
         {
-            if (string.IsNullOrWhiteSpace(xml)) return type.GetDefaultValue();
             using var ms = new MemoryStream(encoding.GetBytes(xml));
             return Unpack(type, ms);
         }
@@ -105,7 +97,6 @@ namespace Zaabee.Xml
 
         public static object Deserialize(Type type, TextReader textReader)
         {
-            if (textReader is null) return type.GetDefaultValue();
             var serializer = SerializerCache.GetOrAdd(type, new System.Xml.Serialization.XmlSerializer(type));
             return serializer.Deserialize(textReader);
         }
@@ -126,7 +117,6 @@ namespace Zaabee.Xml
 
         public static object Deserialize(Type type, XmlReader xmlReader)
         {
-            if (xmlReader is null) return type.GetDefaultValue();
             var serializer = SerializerCache.GetOrAdd(type, new System.Xml.Serialization.XmlSerializer(type));
             return serializer.Deserialize(xmlReader);
         }

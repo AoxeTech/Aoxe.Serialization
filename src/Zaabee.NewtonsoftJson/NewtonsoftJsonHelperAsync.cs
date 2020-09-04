@@ -1,7 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Zaabee.Extensions;
 
 namespace Zaabee.NewtonsoftJson
 {
@@ -23,5 +25,15 @@ namespace Zaabee.NewtonsoftJson
                 encoding ?? DefaultEncoding);
         }
 
+        public static async Task<T> UnpackAsync<T>(Stream stream, JsonSerializerSettings settings = null) =>
+            stream is null
+                ? (T) typeof(T).GetDefaultValue()
+                : await NewtonsoftJsonSerializer.UnpackAsync<T>(stream, settings ?? DefaultSettings, DefaultEncoding);
+
+        public static async Task<object> UnpackAsync(Type type, Stream stream, JsonSerializerSettings settings = null) =>
+            stream is null
+                ? type.GetDefaultValue()
+                : await NewtonsoftJsonSerializer.UnpackAsync(type, stream, settings ?? DefaultSettings,
+                    DefaultEncoding);
     }
 }

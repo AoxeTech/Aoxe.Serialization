@@ -41,17 +41,12 @@ namespace Zaabee.NewtonsoftJson
 
         public static T Deserialize<T>(byte[] bytes, JsonSerializerSettings settings = null) =>
             bytes.IsNullOrEmpty()
-                ? default
+                ? (T) typeof(T).GetDefaultValue()
                 : NewtonsoftJsonSerializer.Deserialize<T>(bytes, settings ?? DefaultSettings, DefaultEncoding);
-
-        public static T Unpack<T>(Stream stream, JsonSerializerSettings settings = null) =>
-            stream is null
-                ? default
-                : NewtonsoftJsonSerializer.Unpack<T>(stream, settings ?? DefaultSettings, DefaultEncoding);
 
         public static T Deserialize<T>(string json, JsonSerializerSettings settings = null) =>
             json.IsNullOrWhiteSpace()
-                ? default
+                ? (T) typeof(T).GetDefaultValue()
                 : NewtonsoftJsonSerializer.Deserialize<T>(json, settings ?? DefaultSettings);
 
         public static object Deserialize(Type type, byte[] bytes, JsonSerializerSettings settings = null) =>
@@ -59,14 +54,19 @@ namespace Zaabee.NewtonsoftJson
                 ? type.GetDefaultValue()
                 : NewtonsoftJsonSerializer.Deserialize(type, bytes, settings ?? DefaultSettings, DefaultEncoding);
 
-        public static object Unpack(Type type, Stream stream, JsonSerializerSettings settings = null) =>
-            stream is null
-                ? null
-                : NewtonsoftJsonSerializer.Unpack(type, stream, settings ?? DefaultSettings, DefaultEncoding);
-
         public static object Deserialize(Type type, string json, JsonSerializerSettings settings = null) =>
             json.IsNullOrWhiteSpace()
-                ? null
+                ? type.GetDefaultValue()
                 : NewtonsoftJsonSerializer.Deserialize(type, json, settings ?? DefaultSettings);
+
+        public static T Unpack<T>(Stream stream, JsonSerializerSettings settings = null) =>
+            stream is null
+                ? (T) typeof(T).GetDefaultValue()
+                : NewtonsoftJsonSerializer.Unpack<T>(stream, settings ?? DefaultSettings, DefaultEncoding);
+
+        public static object Unpack(Type type, Stream stream, JsonSerializerSettings settings = null) =>
+            stream is null
+                ? type.GetDefaultValue()
+                : NewtonsoftJsonSerializer.Unpack(type, stream, settings ?? DefaultSettings, DefaultEncoding);
     }
 }

@@ -20,7 +20,7 @@ namespace Zaabee.MsgPack
 
         public static T Deserialize<T>(byte[] bytes) =>
             bytes.IsNullOrEmpty()
-                ? default
+                ? (T) typeof(T).GetDefaultValue()
                 : MsgPackSerializer.Deserialize<T>(bytes);
 
         public static object Deserialize(Type type, byte[] bytes) =>
@@ -56,7 +56,7 @@ namespace Zaabee.MsgPack
 
         public static T Unpack<T>(Stream stream) =>
             stream is null
-                ? default
+                ? (T) typeof(T).GetDefaultValue()
                 : MsgPackSerializer.Unpack<T>(stream);
 
         public static object Unpack(Type type, Stream stream) =>

@@ -22,8 +22,7 @@ namespace Zaabee.SystemTextJson
         public static async Task PackByAsync<T>(this Stream stream, T obj, JsonSerializerOptions options = null) =>
             await SystemTextJsonHelper.PackAsync(obj, stream, options);
 
-        public static async Task PackByAsync(this Stream stream, Type type, object obj,
-            JsonSerializerOptions options = null) =>
+        public static async Task PackByAsync(this Stream stream, Type type, object obj, JsonSerializerOptions options = null) =>
             await SystemTextJsonHelper.PackAsync(type, obj, stream, options);
 
         public static async Task<T> UnpackAsync<T>(this Stream stream, JsonSerializerOptions options = null) =>

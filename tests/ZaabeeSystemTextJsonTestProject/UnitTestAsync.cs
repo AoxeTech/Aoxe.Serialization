@@ -12,10 +12,13 @@ namespace ZaabeeSystemTextJsonTestProject
         public async Task StreamTest()
         {
             var testModel = GetTestModel();
-            var stream0 = new FileStream(".\\StreamTest0",FileMode.Create);
-            await testModel.PackToAsync(stream0);
-            var stream1 = new FileStream(".\\StreamTest1",FileMode.Create);
-            await stream1.PackByAsync(testModel);
+
+            var stream0 = await testModel.ToStreamAsync();
+            var stream1 = new FileStream(".\\StreamTest1", FileMode.Create);
+            await testModel.PackToAsync(stream1);
+            var stream2 = new MemoryStream();
+            await stream2.PackByAsync(testModel);
+
             var unPackResult0 = await stream0.UnpackAsync<TestModel>();
             var unPackResult1 = await stream1.UnpackAsync<TestModel>();
 
@@ -28,16 +31,18 @@ namespace ZaabeeSystemTextJsonTestProject
                 Tuple.Create(unPackResult1.Id, unPackResult1.Age, unPackResult1.CreateTime, unPackResult1.Name,
                     unPackResult1.Gender));
         }
+
         [Fact]
         public async Task StreamNonGenericTest()
         {
             var type = typeof(TestModel);
             object testModel = GetTestModel();
 
-            var stream0 = new FileStream(".\\StreamNonGenericTest0",FileMode.Create);
-            await testModel.PackToAsync(type, stream0);
-            var stream1 = new FileStream(".\\StreamNonGenericTest1",FileMode.Create);
-            await stream1.PackByAsync(type, testModel);
+            var stream0 = await testModel.ToStreamAsync(type);
+            var stream1 = new FileStream(".\\StreamNonGenericTest1", FileMode.Create);
+            await testModel.PackToAsync(type, stream1);
+            var stream2 = new MemoryStream();
+            await stream2.PackByAsync(type, testModel);
 
             var unPackResult0 = (TestModel) await stream0.UnpackAsync(type);
             var unPackResult1 = (TestModel) await stream1.UnpackAsync(type);

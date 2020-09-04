@@ -18,8 +18,8 @@ namespace ZaabeeNewtonsoftJsonTestProject
             var stream1 = new FileStream(".\\StreamTest1", FileMode.Create);
             await stream1.PackByAsync(testModel);
 
-            var unPackResult0 = stream0.Unpack<TestModel>();
-            var unPackResult1 = stream1.Unpack<TestModel>();
+            var unPackResult0 = await stream0.UnpackAsync<TestModel>();
+            var unPackResult1 = await stream1.UnpackAsync<TestModel>();
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
@@ -43,9 +43,9 @@ namespace ZaabeeNewtonsoftJsonTestProject
             await stream1.PackByAsync(testModel);
             var stream2 = await testModel.ToStreamAsync();
 
-            var unPackResult0 = (TestModel) stream0.Unpack(type);
-            var unPackResult1 = (TestModel) stream1.Unpack(type);
-            var unPackResult2 = (TestModel) stream2.Unpack(type);
+            var unPackResult0 = (TestModel) await stream0.UnpackAsync(type);
+            var unPackResult1 = (TestModel) await stream1.UnpackAsync(type);
+            var unPackResult2 = (TestModel) await stream2.UnpackAsync(type);
 
             Assert.Equal(
                 Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,

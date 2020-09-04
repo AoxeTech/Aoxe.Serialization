@@ -32,12 +32,12 @@ namespace Zaabee.Jil
 
         public static T Deserialize<T>(byte[] bytes, Options options = null) =>
             bytes.IsNullOrEmpty()
-                ? default
+                ? (T) typeof(T).GetDefaultValue()
                 : JilSerializer.Deserialize<T>(bytes, options ?? DefaultOptions, DefaultEncoding);
 
         public static object Deserialize(Type type, byte[] bytes, Options options = null) =>
             bytes.IsNullOrEmpty()
-                ? null
+                ? type.GetDefaultValue()
                 : JilSerializer.Deserialize(type, bytes, options ?? DefaultOptions, DefaultEncoding);
 
         #endregion
@@ -68,12 +68,12 @@ namespace Zaabee.Jil
 
         public static T Unpack<T>(Stream stream, Options options = null) =>
             stream is null
-                ? default
+                ? (T) typeof(T).GetDefaultValue()
                 : JilSerializer.Unpack<T>(stream, options ?? DefaultOptions, DefaultEncoding);
 
         public static object Unpack(Type type, Stream stream, Options options = null) =>
             stream is null
-                ? null
+                ? type.GetDefaultValue()
                 : JilSerializer.Unpack(type, stream, options ?? DefaultOptions, DefaultEncoding);
 
         #endregion
@@ -87,7 +87,7 @@ namespace Zaabee.Jil
 
         public static T Deserialize<T>(string json, Options options = null) =>
             json.IsNullOrWhiteSpace()
-                ? default
+                ? (T) typeof(T).GetDefaultValue()
                 : JilSerializer.Deserialize<T>(json, options ?? DefaultOptions);
 
         public static string SerializeToJson(object obj, Options options = null) =>
@@ -97,7 +97,7 @@ namespace Zaabee.Jil
 
         public static object Deserialize(Type type, string json, Options options = null) =>
             json.IsNullOrWhiteSpace()
-                ? null
+                ? type.GetDefaultValue()
                 : JilSerializer.Deserialize(type, json, options ?? DefaultOptions);
 
         #endregion
@@ -118,7 +118,7 @@ namespace Zaabee.Jil
 
         public static T Deserialize<T>(TextReader reader, Options options = null) =>
             reader is null
-                ? default
+                ? (T) typeof(T).GetDefaultValue()
                 : JilSerializer.Deserialize<T>(reader, options ?? DefaultOptions);
 
         public static object Deserialize(Type type, TextReader reader, Options options = null) =>

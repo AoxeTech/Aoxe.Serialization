@@ -1,5 +1,6 @@
 using System.IO;
 using System.Threading.Tasks;
+using Zaabee.Extensions;
 
 namespace Zaabee.MsgPack
 {
@@ -21,7 +22,7 @@ namespace Zaabee.MsgPack
 
         public static async Task<T> UnpackAsync<T>(Stream stream) =>
             stream is null
-                ? default
+                ? (T) typeof(T).GetDefaultValue()
                 : await MsgPackSerializer.UnpackAsync<T>(stream);
 
         #endregion

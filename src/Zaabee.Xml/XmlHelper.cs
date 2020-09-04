@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using System.Xml;
+using Zaabee.Extensions;
 
 namespace Zaabee.Xml
 {
@@ -19,55 +20,71 @@ namespace Zaabee.Xml
             XmlSerializer.Serialize(t);
 
         public static MemoryStream Pack<T>(T t) =>
-            XmlSerializer.Pack(t);
+            t is null ? new MemoryStream() : XmlSerializer.Pack(t);
 
-        public static void Pack<T>(T t, Stream stream) =>
+        public static void Pack<T>(T t, Stream stream)
+        {
+            if (t is null || stream is null) return;
             XmlSerializer.Pack(t, stream);
+        }
 
         public static string SerializeToXml<T>(T t, Encoding encoding = null) =>
             XmlSerializer.SerializeToXml(t, encoding ?? DefaultEncoding);
 
         public static byte[] Serialize(Type type, object obj) =>
-            XmlSerializer.Serialize(type, obj);
+            obj is null ? new byte[0] : XmlSerializer.Serialize(type, obj);
 
         public static MemoryStream Pack(Type type, object obj) =>
-            XmlSerializer.Pack(type, obj);
+            obj is null ? new MemoryStream() : XmlSerializer.Pack(type, obj);
 
-        public static void Pack(Type type, object obj, Stream stream) =>
+        public static void Pack(Type type, object obj, Stream stream)
+        {
+            if (type is null || obj is null || stream is null) return;
             XmlSerializer.Pack(type, obj, stream);
+        }
 
         public static string SerializeToXml(Type type, object obj, Encoding encoding = null) =>
             XmlSerializer.SerializeToXml(type, obj, encoding ?? DefaultEncoding);
 
         public static T Deserialize<T>(byte[] bytes) =>
-            XmlSerializer.Deserialize<T>(bytes);
+            bytes.IsNullOrEmpty() ? (T) typeof(T).GetDefaultValue() : XmlSerializer.Deserialize<T>(bytes);
 
         public static T Unpack<T>(Stream stream) =>
-            XmlSerializer.Unpack<T>(stream);
+            stream.IsNullOrEmpty() ? (T) typeof(T).GetDefaultValue() : XmlSerializer.Unpack<T>(stream);
 
         public static T Deserialize<T>(string xml, Encoding encoding = null) =>
-            XmlSerializer.Deserialize<T>(xml, encoding ?? DefaultEncoding);
+            xml.IsNullOrWhiteSpace()
+                ? (T) typeof(T).GetDefaultValue()
+                : XmlSerializer.Deserialize<T>(xml, encoding ?? DefaultEncoding);
 
         public static object Deserialize(Type type, byte[] bytes) =>
-            XmlSerializer.Deserialize(type, bytes);
+            bytes.IsNullOrEmpty() ? type.GetDefaultValue() : XmlSerializer.Deserialize(type, bytes);
 
         public static object Unpack(Type type, Stream stream) =>
-            XmlSerializer.Unpack(type, stream);
+            type is null || stream.IsNullOrEmpty() ? null : XmlSerializer.Unpack(type, stream);
 
         public static object Deserialize(Type type, string xml, Encoding encoding = null) =>
-            XmlSerializer.Deserialize(type, xml, encoding ?? DefaultEncoding);
+            type is null || xml.IsNullOrWhiteSpace()
+                ? null
+                : XmlSerializer.Deserialize(type, xml, encoding ?? DefaultEncoding);
 
-        public static void Serialize<T>(TextWriter textWriter, T t) =>
+        public static void Serialize<T>(TextWriter textWriter, T t)
+        {
+            if (textWriter is null || t is null) return;
             XmlSerializer.Serialize<T>(textWriter, t);
+        }
 
-        public static void Serialize(Type type, TextWriter textWriter, object obj) =>
+        public static void Serialize(Type type, TextWriter textWriter, object obj)
+        {
+            if (type is null || textWriter is null || obj is null) return;
             XmlSerializer.Serialize(type, textWriter, obj);
+        }
 
         public static T Deserialize<T>(TextReader textReader) =>
-            XmlSerializer.Deserialize<T>(textReader);
+            textReader is null ? (T) typeof(T).GetDefaultValue() : XmlSerializer.Deserialize<T>(textReader);
 
         public static object Deserialize(Type type, TextReader textReader) =>
-            XmlSerializer.Deserialize(type, textReader);
+            type is null || textReader is null ? null : XmlSerializer.Deserialize(type, textReader);
 
         public static void Serialize<T>(XmlWriter xmlWriter, T t) =>
             XmlSerializer.Serialize<T>(xmlWriter, t);
@@ -76,9 +93,9 @@ namespace Zaabee.Xml
             XmlSerializer.Serialize(type, xmlWriter, obj);
 
         public static T Deserialize<T>(XmlReader xmlReader) =>
-            XmlSerializer.Deserialize<T>(xmlReader);
+            xmlReader is null ? (T) typeof(T).GetDefaultValue() : XmlSerializer.Deserialize<T>(xmlReader);
 
         public static object Deserialize(Type type, XmlReader xmlReader) =>
-            XmlSerializer.Deserialize(type, xmlReader);
+            type is null || xmlReader is null ? null : XmlSerializer.Deserialize(type, xmlReader);
     }
 }
