@@ -81,9 +81,7 @@ namespace Zaabee.Jil
         #region Text
 
         public static string SerializeToJson<T>(T t, Options options = null) =>
-            t is null
-                ? string.Empty
-                : JilSerializer.SerializeToJson(t, options ?? DefaultOptions);
+            JilSerializer.SerializeToJson(t, options ?? DefaultOptions);
 
         public static T Deserialize<T>(string json, Options options = null) =>
             json.IsNullOrWhiteSpace()
@@ -91,9 +89,7 @@ namespace Zaabee.Jil
                 : JilSerializer.Deserialize<T>(json, options ?? DefaultOptions);
 
         public static string SerializeToJson(object obj, Options options = null) =>
-            obj is null
-                ? string.Empty
-                : JilSerializer.SerializeToJson(obj, options ?? DefaultOptions);
+            JilSerializer.SerializeToJson(obj, options ?? DefaultOptions);
 
         public static object Deserialize(Type type, string json, Options options = null) =>
             json.IsNullOrWhiteSpace()

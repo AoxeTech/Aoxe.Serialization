@@ -35,9 +35,7 @@ namespace Zaabee.NewtonsoftJson
         }
 
         public static string SerializeToJson(object obj, JsonSerializerSettings settings = null) =>
-            obj is null
-                ? string.Empty
-                : NewtonsoftJsonSerializer.SerializeToJson(obj, settings ?? DefaultSettings);
+            NewtonsoftJsonSerializer.SerializeToJson(obj, settings ?? DefaultSettings);
 
         public static T Deserialize<T>(byte[] bytes, JsonSerializerSettings settings = null) =>
             bytes.IsNullOrEmpty()
