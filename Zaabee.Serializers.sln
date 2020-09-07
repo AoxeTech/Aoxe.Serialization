@@ -22,23 +22,23 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.Xml", "src\Zaabee.Xm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.ZeroFormatter", "src\Zaabee.ZeroFormatter\Zaabee.ZeroFormatter.csproj", "{AA3DBC81-CD31-40AB-9529-5DFD45F5F4F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZaabeeBinaryTestProject", "tests\ZaabeeBinaryTestProject\ZaabeeBinaryTestProject.csproj", "{EBF8B223-5B18-4034-8E9D-ACE5565AF9B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.Binary.UnitTest", "tests\Zaabee.Binary.UnitTest\Zaabee.Binary.UnitTest.csproj", "{EBF8B223-5B18-4034-8E9D-ACE5565AF9B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZaabeeJilTestProject", "tests\ZaabeeJilTestProject\ZaabeeJilTestProject.csproj", "{B42A3EA0-D986-4E04-B65A-23D1001C844F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.Jil.UnitTest", "tests\Zaabee.Jil.UnitTest\Zaabee.Jil.UnitTest.csproj", "{B42A3EA0-D986-4E04-B65A-23D1001C844F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZaabeeMsgPackTestProject", "tests\ZaabeeMsgPackTestProject\ZaabeeMsgPackTestProject.csproj", "{B3374987-D77E-47A6-8040-CC04B7AD9D78}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.MsgPack.UnitTest", "tests\Zaabee.MsgPack.UnitTest\Zaabee.MsgPack.UnitTest.csproj", "{B3374987-D77E-47A6-8040-CC04B7AD9D78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZaabeeNewtonsoftJsonTestProject", "tests\ZaabeeNewtonsoftJsonTestProject\ZaabeeNewtonsoftJsonTestProject.csproj", "{F1186ABB-5FD8-4C2C-8323-08960FA8B3A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.NewtonsoftJson.UnitTest", "tests\Zaabee.NewtonsoftJson.UnitTest\Zaabee.NewtonsoftJson.UnitTest.csproj", "{F1186ABB-5FD8-4C2C-8323-08960FA8B3A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZaabeeProtobufTestProject", "tests\ZaabeeProtobufTestProject\ZaabeeProtobufTestProject.csproj", "{35C6273A-4592-49B4-8953-D5732932B321}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.Protobuf.UnitTest", "tests\Zaabee.Protobuf.UnitTest\Zaabee.Protobuf.UnitTest.csproj", "{35C6273A-4592-49B4-8953-D5732932B321}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZaabeeSystemTextJsonTestProject", "tests\ZaabeeSystemTextJsonTestProject\ZaabeeSystemTextJsonTestProject.csproj", "{A560B90C-DA67-4546-838B-D9A57969A271}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.SystemTextJson.UnitTest", "tests\Zaabee.SystemTextJson.UnitTest\Zaabee.SystemTextJson.UnitTest.csproj", "{A560B90C-DA67-4546-838B-D9A57969A271}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZaabeeUtf8JsonTestProject", "tests\ZaabeeUtf8JsonTestProject\ZaabeeUtf8JsonTestProject.csproj", "{356021EC-4895-46F4-B75F-B0985445C2B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.Utf8Json.UnitTest", "tests\Zaabee.Utf8Json.UnitTest\Zaabee.Utf8Json.UnitTest.csproj", "{356021EC-4895-46F4-B75F-B0985445C2B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZaabeeXmlTestProject", "tests\ZaabeeXmlTestProject\ZaabeeXmlTestProject.csproj", "{88F11347-373C-4A7C-875D-A4F55E8C0A0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.Xml.UnitTest", "tests\Zaabee.Xml.UnitTest\Zaabee.Xml.UnitTest.csproj", "{88F11347-373C-4A7C-875D-A4F55E8C0A0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZaabeeZeroFormatterTestProject", "tests\ZaabeeZeroFormatterTestProject\ZaabeeZeroFormatterTestProject.csproj", "{69823E1C-9A95-4FA8-BD3C-234208A323E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.ZeroFormatter.UnitTest", "tests\Zaabee.ZeroFormatter.UnitTest\Zaabee.ZeroFormatter.UnitTest.csproj", "{69823E1C-9A95-4FA8-BD3C-234208A323E9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "benchmarks", "benchmarks", "{90DB4B57-6A0D-41E0-91E4-1505A822AD16}"
 EndProject
