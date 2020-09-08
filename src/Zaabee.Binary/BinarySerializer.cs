@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Zaabee.Extensions;
 
 namespace Zaabee.Binary
 {
@@ -35,15 +36,17 @@ namespace Zaabee.Binary
         {
             _binaryFormatter ??= new BinaryFormatter();
             _binaryFormatter.Serialize(stream, obj);
+            stream.TrySeek(0, SeekOrigin.Begin);
         }
 
         public static T Unpack<T>(Stream stream) => (T) Unpack(stream);
 
         public static object Unpack(Stream stream)
         {
-            if (stream.CanSeek && stream.Position > 0) stream.Position = 0;
             _binaryFormatter ??= new BinaryFormatter();
-            return _binaryFormatter.Deserialize(stream);
+            var result = _binaryFormatter.Deserialize(stream);
+            stream.TrySeek(0, SeekOrigin.Begin);
+            return result;
         }
 
         #endregion

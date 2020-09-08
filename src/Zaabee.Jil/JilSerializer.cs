@@ -36,8 +36,8 @@ namespace Zaabee.Jil
 
         public static void Pack<T>(T t, Stream stream, Options options, Encoding encoding)
         {
-            var bytes = Serialize(t, options, encoding);
-            stream.Write(bytes, 0, bytes.Length);
+            Serialize(t, options, encoding).WriteTo(stream);
+            stream.TrySeek(0, SeekOrigin.Begin);
         }
 
         public static MemoryStream Pack(object obj, Options options, Encoding encoding)
@@ -49,15 +49,23 @@ namespace Zaabee.Jil
 
         public static void Pack(object obj, Stream stream, Options options, Encoding encoding)
         {
-            var bytes = Serialize(obj, options, encoding);
-            stream.Write(bytes, 0, bytes.Length);
+            Serialize(obj, options, encoding).WriteTo(stream);
+            stream.TrySeek(0, SeekOrigin.Begin);
         }
 
-        public static T Unpack<T>(Stream stream, Options options, Encoding encoding) =>
-            Deserialize<T>(encoding.GetString(stream.ReadToEnd()), options);
+        public static T Unpack<T>(Stream stream, Options options, Encoding encoding)
+        {
+            var result = Deserialize<T>(encoding.GetString(stream.ReadToEnd()), options);
+            stream.TrySeek(0, SeekOrigin.Begin);
+            return result;
+        }
 
-        public static object Unpack(Type type, Stream stream, Options options, Encoding encoding) =>
-            Deserialize(type, encoding.GetString(stream.ReadToEnd()), options);
+        public static object Unpack(Type type, Stream stream, Options options, Encoding encoding)
+        {
+            var result = Deserialize(type, encoding.GetString(stream.ReadToEnd()), options);
+            stream.TrySeek(0, SeekOrigin.Begin);
+            return result;
+        }
 
         #endregion
 
@@ -66,40 +74,42 @@ namespace Zaabee.Jil
         public static async Task<MemoryStream> PackAsync<T>(T t, Options options, Encoding encoding)
         {
             var ms = new MemoryStream();
-            var bytes = Serialize(t, options, encoding);
-            await ms.WriteAsync(bytes, 0, bytes.Length);
-            ms.Seek(0, SeekOrigin.Begin);
+            await PackAsync(t, ms, options, encoding);
             return ms;
         }
 
         public static async Task PackAsync<T>(T t, Stream stream, Options options, Encoding encoding)
         {
-            var bytes = Serialize(t, options, encoding);
-            await stream.WriteAsync(bytes, 0, bytes.Length);
-            if (stream.CanSeek && stream.Position > 0) stream.Seek(0, SeekOrigin.Begin);
+            await Serialize(t, options, encoding).WriteToAsync(stream);
+            stream.TrySeek(0, SeekOrigin.Begin);
         }
 
         public static async Task<MemoryStream> PackAsync(object obj, Options options, Encoding encoding)
         {
             var ms = new MemoryStream();
-            var bytes = Serialize(obj, options, encoding);
-            await ms.WriteAsync(bytes, 0, bytes.Length);
-            ms.Seek(0, SeekOrigin.Begin);
+            await PackAsync(obj, ms, options, encoding);
             return ms;
         }
 
         public static async Task PackAsync(object obj, Stream stream, Options options, Encoding encoding)
         {
-            var bytes = Serialize(obj, options, encoding);
-            await stream.WriteAsync(bytes, 0, bytes.Length);
-            if (stream.CanSeek && stream.Position > 0) stream.Seek(0, SeekOrigin.Begin);
+            await Serialize(obj, options, encoding).WriteToAsync(stream);
+            stream.TrySeek(0, SeekOrigin.Begin);
         }
 
-        public static async Task<T> UnpackAsync<T>(Stream stream, Options options, Encoding encoding) =>
-            Deserialize<T>(encoding.GetString(await stream.ReadToEndAsync()), options);
+        public static async Task<T> UnpackAsync<T>(Stream stream, Options options, Encoding encoding)
+        {
+            var result = Deserialize<T>(encoding.GetString(await stream.ReadToEndAsync()), options);
+            stream.TrySeek(0, SeekOrigin.Begin);
+            return result;
+        }
 
-        public static async Task<object> UnpackAsync(Type type, Stream stream, Options options, Encoding encoding) =>
-            Deserialize(type, encoding.GetString(await stream.ReadToEndAsync()), options);
+        public static async Task<object> UnpackAsync(Type type, Stream stream, Options options, Encoding encoding)
+        {
+            var result = Deserialize(type, encoding.GetString(await stream.ReadToEndAsync()), options);
+            stream.TrySeek(0, SeekOrigin.Begin);
+            return result;
+        }
 
         #endregion
 

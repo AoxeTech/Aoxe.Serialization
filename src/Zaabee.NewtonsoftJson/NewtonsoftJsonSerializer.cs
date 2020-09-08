@@ -33,38 +33,44 @@ namespace Zaabee.NewtonsoftJson
 
         public static void Pack(object obj, Stream stream, JsonSerializerSettings settings, Encoding encoding)
         {
-            var bytes = Serialize(obj, settings, encoding);
-            stream.Write(bytes, 0, bytes.Length);
+            Serialize(obj, settings, encoding).WriteTo(stream);
+            stream.TrySeek(0, SeekOrigin.Begin);
         }
 
         public static T Unpack<T>(Stream stream, JsonSerializerSettings settings, Encoding encoding) =>
             (T) Unpack(typeof(T), stream, settings, encoding);
 
-        public static object Unpack(Type type, Stream stream, JsonSerializerSettings settings, Encoding encoding) =>
-            Deserialize(type, encoding.GetString(stream.ReadToEnd()), settings);
+        public static object Unpack(Type type, Stream stream, JsonSerializerSettings settings, Encoding encoding)
+        {
+            var result = Deserialize(type, encoding.GetString(stream.ReadToEnd()), settings);
+            stream.TrySeek(0, SeekOrigin.Begin);
+            return result;
+        }
 
         public static async Task<MemoryStream> PackAsync(object obj, JsonSerializerSettings settings, Encoding encoding)
         {
             var ms = new MemoryStream();
-            var bytes = Serialize(obj, settings, encoding);
-            await ms.WriteAsync(bytes, 0, bytes.Length);
-            ms.Seek(0, SeekOrigin.Begin);
+            await PackAsync(obj, ms, settings, encoding);
             return ms;
         }
 
         public static async Task PackAsync(object obj, Stream stream, JsonSerializerSettings settings,
             Encoding encoding)
         {
-            var bytes = Serialize(obj, settings, encoding);
-            await stream.WriteAsync(bytes, 0, bytes.Length);
-            if (stream.CanSeek && stream.Position > 0) stream.Seek(0, SeekOrigin.Begin);
+            await Serialize(obj, settings, encoding).WriteToAsync(stream);
+            stream.TrySeek(0, SeekOrigin.Begin);
         }
 
         public static async Task<T> UnpackAsync<T>(Stream stream, JsonSerializerSettings settings, Encoding encoding) =>
             (T) await UnpackAsync(typeof(T), stream, settings, encoding);
 
-        public static async Task<object> UnpackAsync(Type type, Stream stream, JsonSerializerSettings settings, Encoding encoding) =>
-            Deserialize(type, encoding.GetString(await stream.ReadToEndAsync()), settings);
+        public static async Task<object> UnpackAsync(Type type, Stream stream, JsonSerializerSettings settings,
+            Encoding encoding)
+        {
+            var result = Deserialize(type, encoding.GetString(await stream.ReadToEndAsync()), settings);
+            stream.TrySeek(0, SeekOrigin.Begin);
+            return result;
+        }
 
         #endregion
 

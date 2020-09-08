@@ -42,25 +42,29 @@ namespace Zaabee.SystemTextJson
 
         public static void Pack<T>(T value, Stream stream, JsonSerializerOptions options)
         {
-            var bytes = JsonSerializer.SerializeToUtf8Bytes(value, options);
-            if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-            stream.Write(bytes, 0, bytes.Length);
-            if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
+            JsonSerializer.SerializeToUtf8Bytes(value, options).WriteTo(stream);
+            stream.TrySeek(0, SeekOrigin.Begin);
         }
 
         public static void Pack(Type type, object value, Stream stream, JsonSerializerOptions options)
         {
-            var bytes = JsonSerializer.SerializeToUtf8Bytes(value, type, options);
-            if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
-            stream.Write(bytes, 0, bytes.Length);
-            if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
+            JsonSerializer.SerializeToUtf8Bytes(value, type, options).WriteTo(stream);
+            stream.TrySeek(0, SeekOrigin.Begin);
         }
 
-        public static T Unpack<T>(Stream stream, JsonSerializerOptions options) =>
-            Deserialize<T>(stream.ReadToEnd(), options);
+        public static T Unpack<T>(Stream stream, JsonSerializerOptions options)
+        {
+            var result = Deserialize<T>(stream.ReadToEnd(), options);
+            stream.TrySeek(0, SeekOrigin.Begin);
+            return result;
+        }
 
-        public static object Unpack(Type type, Stream stream, JsonSerializerOptions options) =>
-            Deserialize(type, stream.ReadToEnd(), options);
+        public static object Unpack(Type type, Stream stream, JsonSerializerOptions options)
+        {
+            var result = Deserialize(type, stream.ReadToEnd(), options);
+            stream.TrySeek(0, SeekOrigin.Begin);
+            return result;
+        }
 
         public static async Task<MemoryStream> PackAsync<T>(T value, JsonSerializerOptions options)
         {
@@ -79,20 +83,28 @@ namespace Zaabee.SystemTextJson
         public static async Task PackAsync<T>(T value, Stream stream, JsonSerializerOptions options)
         {
             await JsonSerializer.SerializeAsync(stream, value, options);
-            if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
+            stream.TrySeek(0, SeekOrigin.Begin);
         }
 
         public static async Task PackAsync(Type type, object value, Stream stream, JsonSerializerOptions options)
         {
             await JsonSerializer.SerializeAsync(stream, value, type, options);
-            if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
+            stream.TrySeek(0, SeekOrigin.Begin);
         }
 
-        public static async Task<T> UnpackAsync<T>(Stream stream, JsonSerializerOptions options) =>
-            await JsonSerializer.DeserializeAsync<T>(stream, options);
+        public static async Task<T> UnpackAsync<T>(Stream stream, JsonSerializerOptions options)
+        {
+            var result = await JsonSerializer.DeserializeAsync<T>(stream, options);
+            stream.TrySeek(0, SeekOrigin.Begin);
+            return result;
+        }
 
-        public static async Task<object> UnpackAsync(Type type, Stream stream, JsonSerializerOptions options) =>
-            await JsonSerializer.DeserializeAsync(stream, type, options);
+        public static async Task<object> UnpackAsync(Type type, Stream stream, JsonSerializerOptions options)
+        {
+            var result = await JsonSerializer.DeserializeAsync(stream, type, options);
+            stream.TrySeek(0, SeekOrigin.Begin);
+            return result;
+        }
 
         #endregion
 

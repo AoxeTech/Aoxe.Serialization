@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.IO;
 using System.Text;
 using System.Xml;
+using Zaabee.Extensions;
 
 namespace Zaabee.Xml
 {
@@ -34,9 +35,8 @@ namespace Zaabee.Xml
 
         #region Stream
 
-        public static MemoryStream Pack<T>(T t) => Pack(typeof(T), t);
-
-        public static void Pack<T>(T t, Stream stream) => Pack(typeof(T), t, stream);
+        public static MemoryStream Pack<T>(T t) =>
+            Pack(typeof(T), t);
 
         public static MemoryStream Pack(Type type, object obj)
         {
@@ -45,19 +45,23 @@ namespace Zaabee.Xml
             return ms;
         }
 
+        public static void Pack<T>(T t, Stream stream) =>
+            Pack(typeof(T), t, stream);
+
         public static void Pack(Type type, object obj, Stream stream)
         {
-            var serializer = SerializerCache.GetOrAdd(type, new System.Xml.Serialization.XmlSerializer(type));
-            serializer.Serialize(stream, obj);
+            GetSerializer(type).Serialize(stream, obj);
+            stream.TrySeek(0, SeekOrigin.Begin);
         }
 
-        public static T Unpack<T>(Stream stream) => (T) Unpack(typeof(T), stream);
+        public static T Unpack<T>(Stream stream) =>
+            (T) Unpack(typeof(T), stream);
 
         public static object Unpack(Type type, Stream stream)
         {
-            if (stream.CanSeek && stream.Position > 0) stream.Position = 0;
-            var serializer = SerializerCache.GetOrAdd(type, new System.Xml.Serialization.XmlSerializer(type));
-            return serializer.Deserialize(stream);
+            var result = GetSerializer(type).Deserialize(stream);
+            stream.TrySeek(0, SeekOrigin.Begin);
+            return result;
         }
 
         #endregion
@@ -85,42 +89,36 @@ namespace Zaabee.Xml
 
         #region TextWriter/TextReader
 
-        public static void Serialize<T>(TextWriter textWriter, object obj) => Serialize(typeof(T), textWriter, obj);
+        public static void Serialize<T>(TextWriter textWriter, object obj) =>
+            Serialize(typeof(T), textWriter, obj);
 
-        public static void Serialize(Type type, TextWriter textWriter, object obj)
-        {
-            var serializer = SerializerCache.GetOrAdd(type, new System.Xml.Serialization.XmlSerializer(type));
-            serializer.Serialize(textWriter, obj);
-        }
+        public static void Serialize(Type type, TextWriter textWriter, object obj) =>
+            GetSerializer(type).Serialize(textWriter, obj);
 
-        public static T Deserialize<T>(TextReader textReader) => (T) Deserialize(typeof(T), textReader);
+        public static T Deserialize<T>(TextReader textReader) =>
+            (T) Deserialize(typeof(T), textReader);
 
-        public static object Deserialize(Type type, TextReader textReader)
-        {
-            var serializer = SerializerCache.GetOrAdd(type, new System.Xml.Serialization.XmlSerializer(type));
-            return serializer.Deserialize(textReader);
-        }
+        public static object Deserialize(Type type, TextReader textReader) =>
+            GetSerializer(type).Deserialize(textReader);
 
         #endregion
 
         #region XmlWriter/XmlReader
 
-        public static void Serialize<T>(XmlWriter xmlWriter, object obj) => Serialize(typeof(T), xmlWriter, obj);
+        public static void Serialize<T>(XmlWriter xmlWriter, object obj) =>
+            Serialize(typeof(T), xmlWriter, obj);
 
-        public static void Serialize(Type type, XmlWriter xmlWriter, object obj)
-        {
-            var serializer = SerializerCache.GetOrAdd(type, new System.Xml.Serialization.XmlSerializer(type));
-            serializer.Serialize(xmlWriter, obj);
-        }
+        public static void Serialize(Type type, XmlWriter xmlWriter, object obj) =>
+            GetSerializer(type).Serialize(xmlWriter, obj);
 
         public static T Deserialize<T>(XmlReader xmlReader) => (T) Deserialize(typeof(T), xmlReader);
 
-        public static object Deserialize(Type type, XmlReader xmlReader)
-        {
-            var serializer = SerializerCache.GetOrAdd(type, new System.Xml.Serialization.XmlSerializer(type));
-            return serializer.Deserialize(xmlReader);
-        }
+        public static object Deserialize(Type type, XmlReader xmlReader) =>
+            GetSerializer(type).Deserialize(xmlReader);
 
         #endregion
+
+        private static System.Xml.Serialization.XmlSerializer GetSerializer(Type type) =>
+            SerializerCache.GetOrAdd(type, new System.Xml.Serialization.XmlSerializer(type));
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 
 namespace Zaabee.Binary
@@ -9,6 +8,6 @@ namespace Zaabee.Binary
 
         public static T Unpack<T>(this Stream stream) => BinaryHelper.Unpack<T>(stream);
 
-        public static object Unpack(this Stream stream, Type type) => BinaryHelper.Unpack(stream);
+        public static object Unpack(this Stream stream) => BinaryHelper.Unpack(stream);
     }
 }

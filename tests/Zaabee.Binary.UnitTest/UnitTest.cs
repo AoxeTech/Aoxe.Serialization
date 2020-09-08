@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using Xunit;
-using Zaabee.Binary;
 
 namespace Zaabee.Binary.UnitTest
 {
@@ -71,7 +70,6 @@ namespace Zaabee.Binary.UnitTest
         [Fact]
         public void StreamNonGenericTest()
         {
-            var type = typeof(TestModel);
             var testModel = GetTestModel();
 
             var stream1 = testModel.ToStream();
@@ -80,9 +78,9 @@ namespace Zaabee.Binary.UnitTest
             var stream3 = new MemoryStream();
             stream3.PackBy(testModel);
 
-            var unPackResult1 = (TestModel) stream1.Unpack(type);
-            var unPackResult2 = (TestModel) stream2.Unpack(type);
-            var unPackResult3 = (TestModel) stream3.Unpack(type);
+            var unPackResult1 = (TestModel) stream1.Unpack();
+            var unPackResult2 = (TestModel) stream2.Unpack();
+            var unPackResult3 = (TestModel) stream3.Unpack();
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),

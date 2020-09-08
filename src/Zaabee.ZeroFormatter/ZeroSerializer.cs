@@ -9,12 +9,14 @@ namespace Zaabee.ZeroFormatter
     {
         #region Bytes
 
-        public static byte[] Serialize<T>(T t) => ZeroFormatterSerializer.Serialize(t);
+        public static byte[] Serialize<T>(T t) =>
+            ZeroFormatterSerializer.Serialize(t);
 
         public static byte[] Serialize(Type type, object obj) =>
             ZeroFormatterSerializer.NonGeneric.Serialize(type, obj);
 
-        public static T Deserialize<T>(byte[] bytes) => ZeroFormatterSerializer.Deserialize<T>(bytes);
+        public static T Deserialize<T>(byte[] bytes) =>
+            ZeroFormatterSerializer.Deserialize<T>(bytes);
 
         public static object Deserialize(Type type, byte[] bytes) =>
             ZeroFormatterSerializer.NonGeneric.Deserialize(type, bytes);
@@ -30,10 +32,6 @@ namespace Zaabee.ZeroFormatter
             return ms;
         }
 
-        public static void Pack<T>(T t, Stream stream) => ZeroFormatterSerializer.Serialize(stream, t);
-
-        public static T Unpack<T>(Stream stream) => ZeroFormatterSerializer.Deserialize<T>(stream);
-
         public static MemoryStream Pack(Type type, object obj)
         {
             var ms = new MemoryStream();
@@ -41,11 +39,31 @@ namespace Zaabee.ZeroFormatter
             return ms;
         }
 
-        public static void Pack(Type type, object obj, Stream stream) =>
-            ZeroFormatterSerializer.NonGeneric.Serialize(type, stream, obj);
+        public static void Pack<T>(T t, Stream stream)
+        {
+            ZeroFormatterSerializer.Serialize(stream, t);
+            stream.TrySeek(0, SeekOrigin.Begin);
+        }
 
-        public static object Unpack(Type type, Stream stream) =>
-            ZeroFormatterSerializer.NonGeneric.Deserialize(type, stream);
+        public static void Pack(Type type, object obj, Stream stream)
+        {
+            ZeroFormatterSerializer.NonGeneric.Serialize(type, stream, obj);
+            stream.TrySeek(0, SeekOrigin.Begin);
+        }
+
+        public static T Unpack<T>(Stream stream)
+        {
+            var result = ZeroFormatterSerializer.Deserialize<T>(stream);
+            stream.TrySeek(0, SeekOrigin.Begin);
+            return result;
+        }
+
+        public static object Unpack(Type type, Stream stream)
+        {
+            var result = ZeroFormatterSerializer.NonGeneric.Deserialize(type, stream);
+            stream.TrySeek(0, SeekOrigin.Begin);
+            return result;
+        }
 
         #endregion
     }
