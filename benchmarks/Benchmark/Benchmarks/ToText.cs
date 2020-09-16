@@ -24,18 +24,18 @@ namespace Benchmark.Benchmarks
         };
 
         [Benchmark]
-        public void JilSerializeToJson() => JilHelper.SerializeToJson(_testModel);
+        public void JilToText() => JilHelper.SerializeToJson(_testModel);
 
         [Benchmark]
-        public void NewtonsoftJsonSerializeToJson() => NewtonsoftJsonHelper.SerializeToJson(_testModel);
+        public void NewtonsoftJsonToText() => NewtonsoftJsonHelper.SerializeToJson(_testModel);
 
         [Benchmark]
-        public void SystemTextJsonSerializeToJson() => SystemTextJsonHelper.SerializeToJson(_testModel);
+        public void SystemTextJsonToText() => SystemTextJsonHelper.SerializeToJson(_testModel);
 
         [Benchmark]
-        public void Utf8JsonSerializeToJson() => Utf8JsonHelper.SerializeToJson(_testModel);
+        public void Utf8JsonToText() => Utf8JsonHelper.SerializeToJson(_testModel);
 
         [Benchmark]
-        public void XmlSerializeToXml() => XmlHelper.SerializeToXml(_testModel);
+        public void XmlToText() => XmlHelper.SerializeToXml(_testModel);
     }
 }

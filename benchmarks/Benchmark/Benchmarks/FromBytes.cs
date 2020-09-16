@@ -51,30 +51,30 @@ namespace Benchmark.Benchmarks
         }
 
         [Benchmark]
-        public void BinaryDeserialize() => BinaryHelper.Deserialize<TestModel>(_binaryBytes);
+        public void BinaryFromBytes() => BinaryHelper.Deserialize<TestModel>(_binaryBytes);
 
         [Benchmark]
-        public void JilDeserialize() => JilHelper.Deserialize<TestModel>(_jilBytes);
+        public void JilFromBytes() => JilHelper.Deserialize<TestModel>(_jilBytes);
 
         [Benchmark]
-        public void MsgPackDeserialize() => MsgPackHelper.Deserialize<TestModel>(_msgPackBytes);
+        public void MsgPackFromBytes() => MsgPackHelper.Deserialize<TestModel>(_msgPackBytes);
 
         [Benchmark]
-        public void NewtonsoftJsonDeserialize() => NewtonsoftJsonHelper.Deserialize<TestModel>(_newtonsoftJsonBytes);
+        public void NewtonsoftJsonFromBytes() => NewtonsoftJsonHelper.Deserialize<TestModel>(_newtonsoftJsonBytes);
 
         [Benchmark]
-        public void ProtobufDeserialize() => ProtobufHelper.Deserialize<TestModel>(_protobufBytes);
+        public void ProtobufFromBytes() => ProtobufHelper.Deserialize<TestModel>(_protobufBytes);
 
         [Benchmark]
-        public void SystemTextJsonDeserialize() => SystemTextJsonHelper.Deserialize<TestModel>(_systemTextJsonBytes);
+        public void SystemTextJsonFromBytes() => SystemTextJsonHelper.Deserialize<TestModel>(_systemTextJsonBytes);
 
         [Benchmark]
-        public void Utf8JsonDeserialize() => Utf8JsonHelper.Deserialize<TestModel>(_utf8JsonBytes);
+        public void Utf8JsonFromBytes() => Utf8JsonHelper.Deserialize<TestModel>(_utf8JsonBytes);
 
         [Benchmark]
-        public void XmlDeserialize() => XmlHelper.Deserialize<TestModel>(_xmlBytes);
+        public void XmlFromBytes() => XmlHelper.Deserialize<TestModel>(_xmlBytes);
 
         [Benchmark]
-        public void ZeroFormatterDeserialize() => ZeroFormatterHelper.Deserialize<TestModel>(_zeroFormatterBytes);
+        public void ZeroFormatterFromBytes() => ZeroFormatterHelper.Deserialize<TestModel>(_zeroFormatterBytes);
     }
 }

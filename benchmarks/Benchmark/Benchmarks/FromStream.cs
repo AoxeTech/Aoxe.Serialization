@@ -52,30 +52,30 @@ namespace Benchmark.Benchmarks
         }
 
         [Benchmark]
-        public void BinaryUnpack() => BinaryHelper.Unpack<TestModel>(_binaryStream);
+        public void BinaryFromStream() => BinaryHelper.Unpack<TestModel>(_binaryStream);
 
         [Benchmark]
-        public void JilUnpack() => JilHelper.Unpack<TestModel>(_jilStream);
+        public void JilFromStream() => JilHelper.Unpack<TestModel>(_jilStream);
 
         [Benchmark]
-        public void MsgPackUnpack() => MsgPackHelper.Unpack<TestModel>(_msgPackStream);
+        public void MsgPackFromStream() => MsgPackHelper.Unpack<TestModel>(_msgPackStream);
 
         [Benchmark]
-        public void NewtonsoftJsonUnpack() => NewtonsoftJsonHelper.Unpack<TestModel>(_newtonsoftJsonStream);
+        public void NewtonsoftJsonFromStream() => NewtonsoftJsonHelper.Unpack<TestModel>(_newtonsoftJsonStream);
 
         [Benchmark]
-        public void ProtobufUnpack() => ProtobufHelper.Unpack<TestModel>(_protobufStream);
+        public void ProtobufFromStream() => ProtobufHelper.Unpack<TestModel>(_protobufStream);
 
         [Benchmark]
-        public void SystemTextJsonUnpack() => SystemTextJsonHelper.Unpack<TestModel>(_systemTextJsonStream);
+        public void SystemTextJsonFromStream() => SystemTextJsonHelper.Unpack<TestModel>(_systemTextJsonStream);
 
         [Benchmark]
-        public void Utf8JsonUnpack() => Utf8JsonHelper.Unpack<TestModel>(_utf8JsonStream);
+        public void Utf8JsonFromStream() => Utf8JsonHelper.Unpack<TestModel>(_utf8JsonStream);
 
         [Benchmark]
-        public void XmlUnpack() => XmlHelper.Unpack<TestModel>(_xmlStream);
+        public void XmlFromStream() => XmlHelper.Unpack<TestModel>(_xmlStream);
 
         [Benchmark]
-        public void ZeroFormatterUnpack() => ZeroFormatterHelper.Unpack<TestModel>(_zeroFormatterStream);
+        public void ZeroFormatterFromStream() => ZeroFormatterHelper.Unpack<TestModel>(_zeroFormatterStream);
     }
 }

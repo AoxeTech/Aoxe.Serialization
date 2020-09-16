@@ -39,18 +39,18 @@ namespace Benchmark.Benchmarks
         }
 
         [Benchmark]
-        public void JilDeserializeFromJson() => JilHelper.Deserialize<TestModel>(_jil);
+        public void JilDeserializeFromText() => JilHelper.Deserialize<TestModel>(_jil);
 
         [Benchmark]
-        public void NewtonsoftJsonDeserializeFromJson() => NewtonsoftJsonHelper.Deserialize<TestModel>(_newtonsoftJson);
+        public void NewtonsoftJsonDeserializeFromText() => NewtonsoftJsonHelper.Deserialize<TestModel>(_newtonsoftJson);
 
         [Benchmark]
-        public void SystemTextJsonDeserializeFromJson() => SystemTextJsonHelper.Deserialize<TestModel>(_systemTextJson);
+        public void SystemTextJsonDeserializeFromText() => SystemTextJsonHelper.Deserialize<TestModel>(_systemTextJson);
 
         [Benchmark]
-        public void Utf8JsonDeserializeFromJson() => Utf8JsonHelper.Deserialize<TestModel>(_utf8Json);
+        public void Utf8JsonDeserializeFromText() => Utf8JsonHelper.Deserialize<TestModel>(_utf8Json);
 
         [Benchmark]
-        public void XmlDeserializeFromXml() => XmlHelper.Deserialize<TestModel>(_xml);
+        public void XmlDeserializeFromText() => XmlHelper.Deserialize<TestModel>(_xml);
     }
 }

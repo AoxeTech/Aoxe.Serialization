@@ -28,30 +28,30 @@ namespace Benchmark.Benchmarks
         };
 
         [Benchmark]
-        public void BinaryPack() => BinaryHelper.Pack(_testModel);
+        public void BinaryToStream() => BinaryHelper.Pack(_testModel);
 
         [Benchmark]
-        public void JilPack() => JilHelper.Pack(_testModel);
+        public void JilToStream() => JilHelper.Pack(_testModel);
 
         [Benchmark]
-        public void MsgPackPack() => MsgPackHelper.Pack(_testModel);
+        public void MsgPackToStream() => MsgPackHelper.Pack(_testModel);
 
         [Benchmark]
-        public void NewtonsoftJsonPack() => NewtonsoftJsonHelper.Pack(_testModel);
+        public void NewtonsoftJsonToStream() => NewtonsoftJsonHelper.Pack(_testModel);
 
         [Benchmark]
-        public void ProtobufPack() => ProtobufHelper.Pack(_testModel);
+        public void ProtobufToStream() => ProtobufHelper.Pack(_testModel);
 
         [Benchmark]
-        public void SystemTextJsonPack() => SystemTextJsonHelper.Pack(_testModel);
+        public void SystemTextJsonToStream() => SystemTextJsonHelper.Pack(_testModel);
 
         [Benchmark]
-        public void Utf8JsonPack() => Utf8JsonHelper.Pack(_testModel);
+        public void Utf8JsonToStream() => Utf8JsonHelper.Pack(_testModel);
 
         [Benchmark]
-        public void XmlPack() => XmlHelper.Pack(_testModel);
+        public void XmlToStream() => XmlHelper.Pack(_testModel);
 
         [Benchmark]
-        public void ZeroFormatterPack() => ZeroFormatterHelper.Pack(_testModel);
+        public void ZeroFormatterToStream() => ZeroFormatterHelper.Pack(_testModel);
     }
 }
