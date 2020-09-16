@@ -3,8 +3,8 @@
     <PropertyGroup>
 	    <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2020.4.2</PackageVersion>
-        <Version>2020.4.2</Version>
+        <PackageVersion>2020.5.0</PackageVersion>
+        <Version>2020.5.0</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.ZeroFormatter</PackageProjectUrl>
@@ -14,7 +14,7 @@
     </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Zaabee.Extensions" Version="2020.4.0" />
+		<PackageReference Include="Zaabee.Extensions" Version="2020.5.0" />
 		<PackageReference Include="ZeroFormatter" Version="1.6.4" Condition="'$(TargetFramework)'=='netstandard2.0'" />
 		<PackageReference Include="Alexinea.ZeroFormatter" Version="1.6.4" Condition="'$(TargetFramework)' == 'netcoreapp3.1'" />
 	</ItemGroup>

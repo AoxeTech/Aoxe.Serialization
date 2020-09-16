@@ -43,6 +43,16 @@ namespace Zaabee.Utf8Json
         public static void PackTo(this object obj, Type type, Stream stream, IJsonFormatterResolver resolver = null) =>
             Utf8JsonHelper.Pack(type, obj, stream, resolver);
 
+        public static async Task<MemoryStream> ToStreamAsync<T>(this T t, IJsonFormatterResolver resolver = null) =>
+            await Utf8JsonHelper.PackAsync(t, resolver);
+
+        public static async Task<MemoryStream> ToStreamAsync(this object obj, IJsonFormatterResolver resolver = null) =>
+            await Utf8JsonHelper.PackAsync(obj, resolver);
+
+        public static async Task<MemoryStream> ToStreamAsync(this object obj, Type type,
+            IJsonFormatterResolver resolver = null) =>
+            await Utf8JsonHelper.PackAsync(type, obj, resolver);
+
         public static async Task PackToAsync<T>(this T t, Stream stream, IJsonFormatterResolver resolver = null) =>
             await Utf8JsonHelper.PackAsync(t, stream, resolver);
 

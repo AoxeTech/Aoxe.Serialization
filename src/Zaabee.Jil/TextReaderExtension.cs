@@ -6,10 +6,10 @@ namespace Zaabee.Jil
 {
     public static class TextReaderExtension
     {
-        public static T FromJson<T>(this TextReader textReader, Options options = null) =>
+        public static T ReadJson<T>(this TextReader textReader, Options options = null) =>
             JilHelper.Deserialize<T>(textReader, options);
 
-        public static object FromJson(this TextReader textReader, Type type, Options options = null) =>
+        public static object ReadJson(this TextReader textReader, Type type, Options options = null) =>
             JilHelper.Deserialize(type, textReader, options);
     }
 }

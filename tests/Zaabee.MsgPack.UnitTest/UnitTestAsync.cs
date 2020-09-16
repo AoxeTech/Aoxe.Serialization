@@ -3,7 +3,6 @@ using System.IO;
 using System.Threading.Tasks;
 using Xunit;
 using Zaabee.Extensions;
-using Zaabee.MsgPack;
 
 namespace Zaabee.MsgPack.UnitTest
 {

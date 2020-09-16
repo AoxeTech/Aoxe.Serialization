@@ -3,7 +3,6 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using Xunit;
-using Zaabee.Xml;
 
 namespace Zaabee.Xml.UnitTest
 {
@@ -152,96 +151,159 @@ namespace Zaabee.Xml.UnitTest
         public void TextWriterReaderTest()
         {
             var testModel = GetTestModel();
-            TestModel result;
-            using (var fs = new FileStream("TextWriterReaderTest.xml", FileMode.Create))
+            TestModel result0;
+            using (var fs = new FileStream("TextWriterReaderTest0.xml", FileMode.Create))
+            {
+                var writer = new StreamWriter(fs, Encoding.UTF8);
+                writer.WriteXml(testModel);
+                writer.Close();
+            }
+            using (var fs = new FileStream("TextWriterReaderTest0.xml", FileMode.Open))
+            {
+                var reader = new StreamReader(fs, Encoding.UTF8);
+                result0 = reader.ReadXml<TestModel>();
+                reader.Close();
+            }
+
+            TestModel result1;
+            using (var fs = new FileStream("TextWriterReaderTest1.xml", FileMode.Create))
             {
                 var writer = new StreamWriter(fs, Encoding.UTF8);
                 testModel.ToXml(writer);
                 writer.Close();
             }
-
-            using (var fs = new FileStream("TextWriterReaderTest.xml", FileMode.Open))
+            using (var fs = new FileStream("TextWriterReaderTest1.xml", FileMode.Open))
             {
                 var reader = new StreamReader(fs, Encoding.UTF8);
-                result = reader.FromXml<TestModel>();
+                result1 = reader.ReadXml<TestModel>();
                 reader.Close();
             }
-
+            
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+                Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
+            
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
         }
 
         [Fact]
         public void TextWriterReaderNonGenericTest()
         {
             var testModel = GetTestModel();
-            TestModel result;
-            using (var fs = new FileStream("TextWriterReaderNonGenericTest.xml", FileMode.Create))
+            TestModel result0;
+            using (var fs = new FileStream("TextWriterReaderNonGenericTest0.xml", FileMode.Create))
             {
                 var writer = new StreamWriter(fs, Encoding.UTF8);
-                testModel.ToXml(typeof(TestModel), writer);
+                writer.WriteXml(typeof(TestModel), testModel);
                 writer.Close();
             }
-
-            using (var fs = new FileStream("TextWriterReaderNonGenericTest.xml", FileMode.Open))
+            using (var fs = new FileStream("TextWriterReaderNonGenericTest0.xml", FileMode.Open))
             {
                 var reader = new StreamReader(fs, Encoding.UTF8);
-                result = (TestModel) reader.FromXml(typeof(TestModel));
+                result0 = (TestModel) reader.ReadXml(typeof(TestModel));
+                reader.Close();
+            }
+            TestModel result1;
+            using (var fs = new FileStream("TextWriterReaderNonGenericTest1.xml", FileMode.Create))
+            {
+                var writer = new StreamWriter(fs, Encoding.UTF8);
+                testModel.ToXml(typeof(TestModel),writer);
+                writer.Close();
+            }
+            using (var fs = new FileStream("TextWriterReaderNonGenericTest1.xml", FileMode.Open))
+            {
+                var reader = new StreamReader(fs, Encoding.UTF8);
+                result1 = (TestModel) reader.ReadXml(typeof(TestModel));
                 reader.Close();
             }
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+                Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
         }
 
         [Fact]
         public void XmlWriterReaderTest()
         {
             var testModel = GetTestModel();
-            TestModel result;
-            using (var fs = new FileStream("XmlWriterReaderTest.xml", FileMode.Create))
+            TestModel result0;
+            using (var fs = new FileStream("XmlWriterReaderTest0.xml", FileMode.Create))
+            {
+                var writer = new XmlTextWriter(fs, Encoding.UTF8);
+                writer.WriteXml(testModel);
+                writer.Close();
+            }
+            using (var fs = new FileStream("XmlWriterReaderTest0.xml", FileMode.Open))
+            {
+                var reader = new XmlTextReader(fs);
+                result0 = reader.ReadXml<TestModel>();
+                reader.Close();
+            }
+            TestModel result1;
+            using (var fs = new FileStream("XmlWriterReaderTest1.xml", FileMode.Create))
             {
                 var writer = new XmlTextWriter(fs, Encoding.UTF8);
                 testModel.ToXml(writer);
                 writer.Close();
             }
-
-            using (var fs = new FileStream("XmlWriterReaderTest.xml", FileMode.Open))
+            using (var fs = new FileStream("XmlWriterReaderTest1.xml", FileMode.Open))
             {
                 var reader = new XmlTextReader(fs);
-                result = reader.FromXml<TestModel>();
+                result1 = reader.ReadXml<TestModel>();
                 reader.Close();
             }
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+                Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
+
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
         }
 
         [Fact]
         public void XmlWriterReaderNonGenericTest()
         {
             var testModel = GetTestModel();
-            TestModel result;
-            using (var fs = new FileStream("XmlWriterReaderNonGenericTest.xml", FileMode.Create))
+            TestModel result0;
+            using (var fs = new FileStream("XmlWriterReaderNonGenericTest0.xml", FileMode.Create))
+            {
+                var writer = new XmlTextWriter(fs, Encoding.UTF8);
+                writer.WriteXml(typeof(TestModel), testModel);
+                writer.Close();
+            }
+            using (var fs = new FileStream("XmlWriterReaderNonGenericTest0.xml", FileMode.Open))
+            {
+                var reader = new XmlTextReader(fs);
+                result0 = (TestModel) reader.ReadXml(typeof(TestModel));
+                reader.Close();
+            }
+            TestModel result1;
+            using (var fs = new FileStream("XmlWriterReaderNonGenericTest0.xml", FileMode.Create))
             {
                 var writer = new XmlTextWriter(fs, Encoding.UTF8);
                 testModel.ToXml(typeof(TestModel), writer);
                 writer.Close();
             }
-
-            using (var fs = new FileStream("XmlWriterReaderNonGenericTest.xml", FileMode.Open))
+            using (var fs = new FileStream("XmlWriterReaderNonGenericTest0.xml", FileMode.Open))
             {
                 var reader = new XmlTextReader(fs);
-                result = (TestModel) reader.FromXml(typeof(TestModel));
+                result1 = (TestModel) reader.ReadXml(typeof(TestModel));
                 reader.Close();
             }
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+                Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
         }
 
         private static TestModel GetTestModel()

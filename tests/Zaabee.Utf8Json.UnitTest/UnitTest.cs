@@ -1,12 +1,18 @@
 using System;
 using System.IO;
 using Xunit;
-using Zaabee.Utf8Json;
 
 namespace Zaabee.Utf8Json.UnitTest
 {
     public class UnitTest
     {
+        [Fact]
+        public void DefaultTest()
+        {
+            Utf8JsonHelper.DefaultJsonFormatterResolver = null;
+            Assert.Null(Utf8JsonHelper.DefaultJsonFormatterResolver);
+        }
+        
         [Fact]
         public void BytesTest()
         {

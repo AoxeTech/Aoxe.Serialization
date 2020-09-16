@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Xunit;
-using Zaabee.Protobuf;
 
 namespace Zaabee.Protobuf.UnitTest
 {

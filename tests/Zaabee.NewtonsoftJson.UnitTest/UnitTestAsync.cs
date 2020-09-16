@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using Xunit;
-using Zaabee.NewtonsoftJson;
 
 namespace Zaabee.NewtonsoftJson.UnitTest
 {

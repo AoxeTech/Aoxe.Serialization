@@ -3,7 +3,6 @@ using System.IO;
 using System.Text;
 using Jil;
 using Xunit;
-using Zaabee.Jil;
 
 namespace Zaabee.Jil.UnitTest
 {
@@ -129,24 +128,40 @@ namespace Zaabee.Jil.UnitTest
         public void TextWriterReaderTest()
         {
             var testModel = GetTestModel();
-            TestModel result;
-            using (var fs = new FileStream("TextWriterReaderTest.json", FileMode.Create))
+            TestModel result0;
+            using (var fs = new FileStream("TextWriterReaderTest0.json", FileMode.Create))
+            {
+                var writer = new StreamWriter(fs, Encoding.UTF8);
+                writer.WriteJson(testModel);
+                writer.Close();
+            }
+            using (var fs = new FileStream("TextWriterReaderTest0.json", FileMode.Open))
+            {
+                var reader = new StreamReader(fs, Encoding.UTF8);
+                result0 = reader.ReadJson<TestModel>();
+                reader.Close();
+            }
+            TestModel result1;
+            using (var fs = new FileStream("TextWriterReaderTest1.json", FileMode.Create))
             {
                 var writer = new StreamWriter(fs, Encoding.UTF8);
                 testModel.ToJson(writer);
                 writer.Close();
             }
-
-            using (var fs = new FileStream("TextWriterReaderTest.json", FileMode.Open))
+            using (var fs = new FileStream("TextWriterReaderTest1.json", FileMode.Open))
             {
                 var reader = new StreamReader(fs, Encoding.UTF8);
-                result = reader.FromJson<TestModel>();
+                result1 = reader.ReadJson<TestModel>();
                 reader.Close();
             }
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+                Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
+
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
 
 
             using (var fs = new FileStream("TextWriterReaderTest.json", FileMode.Create))
@@ -162,25 +177,45 @@ namespace Zaabee.Jil.UnitTest
         public void TextWriterReaderNonGenericTest()
         {
             object testModel = GetTestModel();
-            TestModel result;
-            using (var fs = new FileStream("TextWriterReaderNonGenericTest.json", FileMode.Create))
+            TestModel result0;
+            using (var fs = new FileStream("TextWriterReaderNonGenericTest0.json", FileMode.Create))
+            {
+                var writer = new StreamWriter(fs, Encoding.UTF8);
+                writer.WriteJson(testModel);
+                writer.Close();
+            }
+
+            using (var fs = new FileStream("TextWriterReaderNonGenericTest0.json", FileMode.Open))
+            {
+                var reader = new StreamReader(fs, Encoding.UTF8);
+                result0 = (TestModel) reader.ReadJson(typeof(TestModel));
+                reader.Close();
+            }
+
+            TestModel result1;
+            using (var fs = new FileStream("TextWriterReaderNonGenericTest1.json", FileMode.Create))
             {
                 var writer = new StreamWriter(fs, Encoding.UTF8);
                 testModel.ToJson(writer);
                 writer.Close();
             }
 
-            using (var fs = new FileStream("TextWriterReaderNonGenericTest.json", FileMode.Open))
+            using (var fs = new FileStream("TextWriterReaderNonGenericTest1.json", FileMode.Open))
             {
                 var reader = new StreamReader(fs, Encoding.UTF8);
-                result = (TestModel) reader.FromJson(typeof(TestModel));
+                result1 = (TestModel) reader.ReadJson(typeof(TestModel));
                 reader.Close();
             }
 
             Assert.Equal(
                 Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
                     ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
-                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+                Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
+
+            Assert.Equal(
+                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
+                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
+                Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
         }
 
         private static TestModel GetTestModel()
