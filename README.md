@@ -42,11 +42,11 @@ Fastest C# Serializer and Infinitely Fast Deserializer for .NET, .NET Core and U
 
 ## Benchmark
 
-BenchmarkDotNet=v0.12.0, OS=Windows 10.0.18363
+BenchmarkDotNet=v0.12.1, OS=Windows 10.0.19041.508 (2004/?/20H1)
 Intel Core i7-6600U CPU 2.60GHz (Skylake), 1 CPU, 4 logical and 2 physical cores
-.NET Core SDK=3.1.101
-  [Host]     : .NET Core 2.1.15 (CoreCLR 4.6.28325.01, CoreFX 4.6.28327.02), X64 RyuJIT
-  Job-AZAVGG : .NET Core 2.1.15 (CoreCLR 4.6.28325.01, CoreFX 4.6.28327.02), X64 RyuJIT
+.NET Core SDK=3.1.302
+  [Host]     : .NET Core 3.1.6 (CoreCLR 4.700.20.26901, CoreFX 4.700.20.31603), X64 RyuJIT
+  Job-CIJWEL : .NET Core 3.1.6 (CoreCLR 4.700.20.26901, CoreFX 4.700.20.31603), X64 RyuJIT
 
 IterationCount=10000  RunStrategy=Monitoring
 
