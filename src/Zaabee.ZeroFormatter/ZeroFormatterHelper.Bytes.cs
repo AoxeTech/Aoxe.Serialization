@@ -15,8 +15,9 @@ namespace Zaabee.ZeroFormatter
         public static byte[] Serialize(Type type, object obj) =>
             obj is null ? new byte[0] : ZeroSerializer.Serialize(type, obj);
 
-        public static object Deserialize(Type type, byte[] bytes) => bytes.IsNullOrEmpty()
-            ? type.GetDefaultValue()
-            : ZeroSerializer.Deserialize(type, bytes);
+        public static object Deserialize(Type type, byte[] bytes) =>
+            bytes.IsNullOrEmpty()
+                ? type.GetDefaultValue()
+                : ZeroSerializer.Deserialize(type, bytes);
     }
 }
