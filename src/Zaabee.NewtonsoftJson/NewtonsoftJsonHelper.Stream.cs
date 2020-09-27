@@ -8,16 +8,28 @@ namespace Zaabee.NewtonsoftJson
 {
     public static partial class NewtonsoftJsonHelper
     {
-        public static MemoryStream Pack(object obj, JsonSerializerSettings settings = null, Encoding encoding = null) =>
+        public static MemoryStream Pack<T>(T t, JsonSerializerSettings settings = null, Encoding encoding = null) =>
+            t is null
+                ? new MemoryStream()
+                : NewtonsoftJsonSerializer.Pack(t, settings ?? DefaultSettings, encoding ?? DefaultEncoding);
+
+        public static MemoryStream Pack(Type type, object obj, JsonSerializerSettings settings = null,
+            Encoding encoding = null) =>
             obj is null
                 ? new MemoryStream()
-                : NewtonsoftJsonSerializer.Pack(obj, settings ?? DefaultSettings, encoding ?? DefaultEncoding);
+                : NewtonsoftJsonSerializer.Pack(type, obj, settings ?? DefaultSettings, encoding ?? DefaultEncoding);
 
-        public static void Pack(object obj, Stream stream, JsonSerializerSettings settings = null,
+        public static void Pack<T>(T t, Stream stream, JsonSerializerSettings settings = null, Encoding encoding = null)
+        {
+            if (t is null || stream is null) return;
+            NewtonsoftJsonSerializer.Pack(t, stream, settings ?? DefaultSettings, encoding ?? DefaultEncoding);
+        }
+
+        public static void Pack(Type type, object obj, Stream stream, JsonSerializerSettings settings = null,
             Encoding encoding = null)
         {
             if (obj is null || stream is null) return;
-            NewtonsoftJsonSerializer.Pack(obj, stream, settings ?? DefaultSettings, encoding ?? DefaultEncoding);
+            NewtonsoftJsonSerializer.Pack(type, obj, stream, settings ?? DefaultSettings, encoding ?? DefaultEncoding);
         }
 
         public static T Unpack<T>(Stream stream, JsonSerializerSettings settings = null, Encoding encoding = null) =>

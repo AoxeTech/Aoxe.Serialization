@@ -6,10 +6,21 @@ namespace Zaabee.Protobuf
 {
     public static partial class ProtobufHelper
     {
+        public static MemoryStream Pack<T>(T t) =>
+            t is null
+                ? new MemoryStream()
+                : ProtobufSerializer.Pack(t);
+
         public static MemoryStream Pack(object obj) =>
             obj is null
                 ? new MemoryStream()
                 : ProtobufSerializer.Pack(obj);
+
+        public static void Pack<T>(T t, Stream stream)
+        {
+            if (t != null && stream != null)
+                ProtobufSerializer.Pack(t, stream);
+        }
 
         public static void Pack(object obj, Stream stream)
         {

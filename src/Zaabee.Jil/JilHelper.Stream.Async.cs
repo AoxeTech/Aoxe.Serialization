@@ -12,25 +12,25 @@ namespace Zaabee.Jil
         public static async Task<MemoryStream> PackAsync<T>(T t, Options options = null, Encoding encoding = null)
         {
             if (t is null) return new MemoryStream();
-            return await JilSerializer.PackAsync(t, options, encoding ?? DefaultEncoding);
+            return await JilSerializer.PackAsync(t, options ?? DefaultOptions, encoding ?? DefaultEncoding);
         }
 
         public static async Task<MemoryStream> PackAsync(object obj, Options options = null, Encoding encoding = null)
         {
             if (obj is null) return new MemoryStream();
-            return await JilSerializer.PackAsync(obj, options, encoding ?? DefaultEncoding);
+            return await JilSerializer.PackAsync(obj, options ?? DefaultOptions, encoding ?? DefaultEncoding);
         }
 
         public static async Task PackAsync<T>(T t, Stream stream, Options options = null, Encoding encoding = null)
         {
             if (t is null || stream is null) return;
-            await JilSerializer.PackAsync(t, stream, options, encoding ?? DefaultEncoding);
+            await JilSerializer.PackAsync(t, stream, options ?? DefaultOptions, encoding ?? DefaultEncoding);
         }
 
         public static async Task PackAsync(object obj, Stream stream, Options options = null, Encoding encoding = null)
         {
             if (obj is null || stream is null) return;
-            await JilSerializer.PackAsync(obj, stream, options, encoding ?? DefaultEncoding);
+            await JilSerializer.PackAsync(obj, stream, options ?? DefaultOptions, encoding ?? DefaultEncoding);
         }
 
         public static async Task<T> UnpackAsync<T>(Stream stream, Options options = null, Encoding encoding = null) =>

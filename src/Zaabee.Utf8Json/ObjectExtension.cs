@@ -13,6 +13,9 @@ namespace Zaabee.Utf8Json
         public static byte[] ToBytes<T>(this T t, IJsonFormatterResolver resolver = null) =>
             Utf8JsonHelper.Serialize(t, resolver);
 
+        public static ArraySegment<byte> ToBytesUnsafe<T>(this T t, IJsonFormatterResolver resolver = null) =>
+            Utf8JsonHelper.SerializeUnsafe(t, resolver);
+
         public static void PackTo<T>(this T t, Stream stream, IJsonFormatterResolver resolver = null) =>
             Utf8JsonHelper.Pack(t, stream, resolver);
 
@@ -30,6 +33,13 @@ namespace Zaabee.Utf8Json
 
         public static byte[] ToBytes(this object obj, Type type, IJsonFormatterResolver resolver = null) =>
             Utf8JsonHelper.Serialize(type, obj, resolver);
+
+        public static ArraySegment<byte> ToBytesUnsafe(this object obj, IJsonFormatterResolver resolver = null) =>
+            Utf8JsonHelper.SerializeUnsafe(obj, resolver);
+
+        public static ArraySegment<byte> ToBytesUnsafe(this object obj, Type type,
+            IJsonFormatterResolver resolver = null) =>
+            Utf8JsonHelper.SerializeUnsafe(type, obj, resolver);
 
         public static MemoryStream ToStream(this object obj, IJsonFormatterResolver resolver = null) =>
             Utf8JsonHelper.Pack(obj, resolver);

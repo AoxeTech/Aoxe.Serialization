@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using Xunit;
 
 namespace Zaabee.Utf8Json.UnitTest
@@ -18,6 +19,18 @@ namespace Zaabee.Utf8Json.UnitTest
         {
             var testModel = GetTestModel();
             var bytes = testModel.ToBytes();
+            var result = bytes.FromBytes<TestModel>();
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+        }
+        
+        [Fact]
+        public void BytesUnsafeTest()
+        {
+            var testModel = GetTestModel();
+            var arraySegmentBytes = testModel.ToBytesUnsafe();
+            var bytes = arraySegmentBytes.Take(arraySegmentBytes.Count).ToArray();
             var result = bytes.FromBytes<TestModel>();
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
@@ -76,10 +89,36 @@ namespace Zaabee.Utf8Json.UnitTest
         }
 
         [Fact]
+        public void BytesNonGenericUnsafeTest()
+        {
+            object testModel = GetTestModel();
+            var arraySegmentBytes = testModel.ToBytesUnsafe();
+            var bytes = arraySegmentBytes.Take(arraySegmentBytes.Count).ToArray();
+            var result = bytes.FromBytes<TestModel>();
+            Assert.Equal(
+                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
+                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
+                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+        }
+
+        [Fact]
         public void BytesNonGenericWithTypeTest()
         {
             object testModel = GetTestModel();
             var bytes = testModel.ToBytes(typeof(TestModel));
+            var result = (TestModel) bytes.FromBytes(typeof(TestModel));
+            Assert.Equal(
+                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
+                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
+                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+        }
+
+        [Fact]
+        public void BytesNonGenericWithTypeUnsafeTest()
+        {
+            object testModel = GetTestModel();
+            var arraySegmentBytes = testModel.ToBytesUnsafe(typeof(TestModel));
+            var bytes = arraySegmentBytes.Take(arraySegmentBytes.Count).ToArray();
             var result = (TestModel) bytes.FromBytes(typeof(TestModel));
             Assert.Equal(
                 Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,

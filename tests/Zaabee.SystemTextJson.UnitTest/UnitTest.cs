@@ -16,6 +16,16 @@ namespace Zaabee.SystemTextJson.UnitTest
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
         }
+        [Fact]
+        public void ReadOnlySpanBytesTest()
+        {
+            var testModel = GetTestModel();
+            var bytes = testModel.ToBytes();
+            var result = ((ReadOnlySpan<byte>)bytes).FromBytes<TestModel>();
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+        }
 
         [Fact]
         public void StreamTest()
@@ -62,6 +72,18 @@ namespace Zaabee.SystemTextJson.UnitTest
             object testModel = GetTestModel();
             var bytes = testModel.ToBytes(typeof(TestModel));
             var result = (TestModel) bytes.FromBytes(typeof(TestModel));
+            Assert.Equal(
+                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
+                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
+                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+        }
+        
+        [Fact]
+        public void ReadOnlySpanBytesNonGenericTest()
+        {
+            object testModel = GetTestModel();
+            var bytes = testModel.ToBytes(typeof(TestModel));
+            var result = (TestModel) ((ReadOnlySpan<byte>)bytes).FromBytes(typeof(TestModel));
             Assert.Equal(
                 Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
                     ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),

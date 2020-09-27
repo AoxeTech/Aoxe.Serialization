@@ -5,6 +5,11 @@ namespace Zaabee.Protobuf
 {
     public static partial class ProtobufHelper
     {
+        public static byte[] Serialize<T>(T t) =>
+            t is null
+                ? new byte[0]
+                : ProtobufSerializer.Serialize(t);
+
         public static byte[] Serialize(object obj) =>
             obj is null
                 ? new byte[0]

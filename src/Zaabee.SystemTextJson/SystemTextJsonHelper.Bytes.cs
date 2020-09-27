@@ -12,13 +12,13 @@ namespace Zaabee.SystemTextJson
         public static byte[] Serialize(Type type, object value, JsonSerializerOptions options = null) =>
             SystemTextJsonSerializer.Serialize(type, value, options ?? DefaultJsonSerializerOptions);
 
-        public static T Deserialize<T>(byte[] bytes, JsonSerializerOptions options = null) =>
-            bytes.IsNullOrEmpty()
+        public static T Deserialize<T>(ReadOnlySpan<byte> bytes, JsonSerializerOptions options = null) =>
+            bytes.IsEmpty
                 ? (T) typeof(T).GetDefaultValue()
                 : SystemTextJsonSerializer.Deserialize<T>(bytes, options ?? DefaultJsonSerializerOptions);
 
-        public static object Deserialize(Type type, byte[] bytes, JsonSerializerOptions options = null) =>
-            bytes.IsNullOrEmpty()
+        public static object Deserialize(Type type, ReadOnlySpan<byte> bytes, JsonSerializerOptions options = null) =>
+            bytes.IsEmpty 
                 ? type.GetDefaultValue()
                 : SystemTextJsonSerializer.Deserialize(type, bytes, options ?? DefaultJsonSerializerOptions);
     }

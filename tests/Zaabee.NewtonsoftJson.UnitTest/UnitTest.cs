@@ -20,11 +20,11 @@ namespace Zaabee.NewtonsoftJson.UnitTest
         public void BytesTest()
         {
             var testModel = GetTestModel();
-            var bytes = testModel.ToBytes();
-            var result = bytes.FromBytes<TestModel>();
+            var bytes0 = testModel.ToBytes();
+            var result0 = bytes0.FromBytes<TestModel>();
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+                Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
         }
 
         [Fact]
@@ -70,7 +70,7 @@ namespace Zaabee.NewtonsoftJson.UnitTest
         public void BytesNonGenericTest()
         {
             object testModel = GetTestModel();
-            var bytes = testModel.ToBytes();
+            var bytes = testModel.ToBytes(typeof(TestModel));
             var result = (TestModel) bytes.FromBytes(typeof(TestModel));
             Assert.Equal(
                 Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
@@ -84,11 +84,11 @@ namespace Zaabee.NewtonsoftJson.UnitTest
             var type = typeof(TestModel);
             object testModel = GetTestModel();
 
-            var stream1 = testModel.ToStream();
+            var stream1 = testModel.ToStream(type);
             var stream2 = new MemoryStream();
-            testModel.PackTo(stream2);
+            testModel.PackTo(type, stream2);
             var stream3 = new MemoryStream();
-            stream3.PackBy(testModel);
+            stream3.PackBy(type, testModel);
 
             var unPackResult1 = (TestModel) stream1.Unpack(type);
             var unPackResult2 = (TestModel) stream2.Unpack(type);
@@ -114,9 +114,17 @@ namespace Zaabee.NewtonsoftJson.UnitTest
         [Fact]
         public void StringNonGenericTest()
         {
+            var type = typeof(TestModel);
             object testModel = GetTestModel();
-            var json1 = testModel.ToJson();
-            var result1 = json1.FromJson(typeof(TestModel));
+            var json0 = testModel.ToJson(type);
+            var result0 = json0.FromJson(type);
+            var json1 = testModel.ToJson(type);
+            var result1 = json1.FromJson(type);
+            Assert.Equal(
+                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
+                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
+                Tuple.Create(((TestModel) result0).Id, ((TestModel) result0).Age, ((TestModel) result0).CreateTime,
+                    ((TestModel) result0).Name, ((TestModel) result0).Gender));
             Assert.Equal(
                 Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
                     ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),

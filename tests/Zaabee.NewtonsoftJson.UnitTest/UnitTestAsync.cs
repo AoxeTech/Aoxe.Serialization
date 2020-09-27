@@ -16,9 +16,11 @@ namespace Zaabee.NewtonsoftJson.UnitTest
             await testModel.PackToAsync(stream0);
             var stream1 = new FileStream(".\\StreamTest1", FileMode.Create);
             await stream1.PackByAsync(testModel);
+            var stream2 = await testModel.ToStreamAsync();
 
             var unPackResult0 = await stream0.UnpackAsync<TestModel>();
             var unPackResult1 = await stream1.UnpackAsync<TestModel>();
+            var unPackResult2 = (TestModel) await stream2.UnpackAsync<TestModel>();
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
@@ -28,6 +30,10 @@ namespace Zaabee.NewtonsoftJson.UnitTest
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(unPackResult1.Id, unPackResult1.Age, unPackResult1.CreateTime, unPackResult1.Name,
                     unPackResult1.Gender));
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(unPackResult2.Id, unPackResult2.Age, unPackResult2.CreateTime, unPackResult2.Name,
+                    unPackResult2.Gender));
         }
 
         [Fact]
@@ -37,10 +43,10 @@ namespace Zaabee.NewtonsoftJson.UnitTest
             object testModel = GetTestModel();
 
             var stream0 = new FileStream(".\\StreamNonGenericTest0", FileMode.Create);
-            await testModel.PackToAsync(stream0);
+            await testModel.PackToAsync(type, stream0);
             var stream1 = new FileStream(".\\StreamNonGenericTest1", FileMode.Create);
-            await stream1.PackByAsync(testModel);
-            var stream2 = await testModel.ToStreamAsync();
+            await stream1.PackByAsync(type, testModel);
+            var stream2 = await testModel.ToStreamAsync(type);
 
             var unPackResult0 = (TestModel) await stream0.UnpackAsync(type);
             var unPackResult1 = (TestModel) await stream1.UnpackAsync(type);

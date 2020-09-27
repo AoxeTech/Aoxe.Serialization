@@ -6,8 +6,11 @@ namespace Zaabee.NewtonsoftJson
 {
     public static partial class NewtonsoftJsonHelper
     {
-        public static string SerializeToJson(object obj, JsonSerializerSettings settings = null) =>
-            NewtonsoftJsonSerializer.SerializeToJson(obj, settings ?? DefaultSettings);
+        public static string SerializeToJson<T>(T t, JsonSerializerSettings settings = null) =>
+            NewtonsoftJsonSerializer.SerializeToJson(t, settings ?? DefaultSettings);
+
+        public static string SerializeToJson(Type type, object obj, JsonSerializerSettings settings = null) =>
+            NewtonsoftJsonSerializer.SerializeToJson(type, obj, settings ?? DefaultSettings);
 
         public static T Deserialize<T>(string json, JsonSerializerSettings settings = null) =>
             json.IsNullOrWhiteSpace()
