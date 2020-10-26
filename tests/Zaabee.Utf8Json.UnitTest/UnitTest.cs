@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using Xunit;
+using Zaabee.Extensions;
 
 namespace Zaabee.Utf8Json.UnitTest
 {
@@ -40,6 +41,15 @@ namespace Zaabee.Utf8Json.UnitTest
         [Fact]
         public void StreamTest()
         {
+            TestModel nullModel = null;
+            MemoryStream nullMs = null;
+            nullModel.PackTo(nullMs);
+            nullMs.PackBy(nullModel);
+            var emptyStream = nullModel.ToStream();
+            Assert.True(emptyStream.IsNullOrEmpty());
+            nullModel = emptyStream.Unpack<TestModel>();
+            Assert.Null(nullModel);
+            
             var testModel = GetTestModel();
             var stream1 = testModel.ToStream();
             var stream2 = new MemoryStream();
@@ -130,6 +140,18 @@ namespace Zaabee.Utf8Json.UnitTest
         public void StreamNonGenericTest()
         {
             var type = typeof(TestModel);
+
+            object nullModel = null;
+            MemoryStream nullMs = null;
+            nullModel.PackTo(nullMs);
+            nullMs.PackBy(nullModel);
+            nullModel.PackTo(type, nullMs);
+            nullMs.PackBy(type, nullModel);
+            var emptyStream = nullModel.ToStream();
+            Assert.True(emptyStream.IsNullOrEmpty());
+            nullModel = emptyStream.Unpack<object>();
+            Assert.Null(nullModel);
+            
             object testModel = GetTestModel();
 
             var stream1 = testModel.ToStream(type);

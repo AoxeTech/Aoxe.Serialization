@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 using Xunit;
+using Zaabee.Extensions;
 
 namespace Zaabee.NewtonsoftJson.UnitTest
 {
@@ -19,6 +20,12 @@ namespace Zaabee.NewtonsoftJson.UnitTest
         [Fact]
         public void BytesTest()
         {
+            TestModel nullModel = null;
+            var emptyBytes = nullModel.ToBytes();
+            Assert.True(emptyBytes.IsNullOrEmpty());
+            nullModel = emptyBytes.FromBytes<TestModel>();
+            Assert.Null(nullModel);
+
             var testModel = GetTestModel();
             var bytes0 = testModel.ToBytes();
             var result0 = bytes0.FromBytes<TestModel>();
@@ -30,6 +37,15 @@ namespace Zaabee.NewtonsoftJson.UnitTest
         [Fact]
         public void StreamTest()
         {
+            TestModel nullModel = null;
+            MemoryStream nullMs = null;
+            nullModel.PackTo(nullMs);
+            nullMs.PackBy(nullModel);
+            var emptyStream = nullModel.ToStream();
+            Assert.True(emptyStream.IsNullOrEmpty());
+            nullModel = emptyStream.Unpack<TestModel>();
+            Assert.Null(nullModel);
+
             var testModel = GetTestModel();
             var stream1 = testModel.ToStream();
             var stream2 = new MemoryStream();
@@ -58,6 +74,11 @@ namespace Zaabee.NewtonsoftJson.UnitTest
         [Fact]
         public void StringTest()
         {
+            TestModel nullModel = null;
+            var emptyJson = nullModel.ToJson();
+            nullModel = emptyJson.FromJson<TestModel>();
+            Assert.Null(nullModel);
+            
             var testModel = GetTestModel();
             var json = testModel.ToJson();
             var result = json.FromJson<TestModel>();
@@ -69,6 +90,12 @@ namespace Zaabee.NewtonsoftJson.UnitTest
         [Fact]
         public void BytesNonGenericTest()
         {
+            object nullModel = null;
+            var emptyBytes = nullModel.ToBytes();
+            Assert.True(emptyBytes.IsNullOrEmpty());
+            nullModel = emptyBytes.FromBytes<object>();
+            Assert.Null(nullModel);
+
             object testModel = GetTestModel();
             var bytes = testModel.ToBytes(typeof(TestModel));
             var result = (TestModel) bytes.FromBytes(typeof(TestModel));
@@ -82,6 +109,18 @@ namespace Zaabee.NewtonsoftJson.UnitTest
         public void StreamNonGenericTest()
         {
             var type = typeof(TestModel);
+
+            object nullModel = null;
+            MemoryStream nullMs = null;
+            nullModel.PackTo(nullMs);
+            nullMs.PackBy(nullModel);
+            nullModel.PackTo(type, nullMs);
+            nullMs.PackBy(type, nullModel);
+            var emptyStream = nullModel.ToStream();
+            Assert.True(emptyStream.IsNullOrEmpty());
+            nullModel = emptyStream.Unpack<object>();
+            Assert.Null(nullModel);
+            
             object testModel = GetTestModel();
 
             var stream1 = testModel.ToStream(type);
@@ -114,6 +153,11 @@ namespace Zaabee.NewtonsoftJson.UnitTest
         [Fact]
         public void StringNonGenericTest()
         {
+            object nullModel = null;
+            var emptyJson = nullModel.ToJson();
+            nullModel = emptyJson.FromJson<TestModel>();
+            Assert.Null(nullModel);
+            
             var type = typeof(TestModel);
             object testModel = GetTestModel();
             var json0 = testModel.ToJson(type);

@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using Xunit;
+using Zaabee.Extensions;
 
 namespace Zaabee.SystemTextJson.UnitTest
 {
@@ -10,6 +11,15 @@ namespace Zaabee.SystemTextJson.UnitTest
         [Fact]
         public async Task StreamTest()
         {
+            TestModel nullModel = null;
+            MemoryStream nullMs = null;
+            await nullModel.PackToAsync(nullMs);
+            await nullMs.PackByAsync(nullModel);
+            var emptyStream = await nullModel.ToStreamAsync();
+            Assert.True(emptyStream.IsNullOrEmpty());
+            nullModel = await emptyStream.UnpackAsync<TestModel>();
+            Assert.Null(nullModel);
+            
             var testModel = GetTestModel();
 
             var stream0 = await testModel.ToStreamAsync();
@@ -35,6 +45,18 @@ namespace Zaabee.SystemTextJson.UnitTest
         public async Task StreamNonGenericTest()
         {
             var type = typeof(TestModel);
+
+            object nullModel = null;
+            MemoryStream nullMs = null;
+            await nullModel.PackToAsync(nullMs);
+            await nullMs.PackByAsync(nullModel);
+            await nullModel.PackToAsync(type, nullMs);
+            await nullMs.PackByAsync(type, nullModel);
+            var emptyStream = await nullModel.ToStreamAsync();
+            Assert.True(emptyStream.IsNullOrEmpty());
+            nullModel = await emptyStream.UnpackAsync<object>();
+            Assert.Null(nullModel);
+            
             object testModel = GetTestModel();
 
             var stream0 = await testModel.ToStreamAsync(type);
