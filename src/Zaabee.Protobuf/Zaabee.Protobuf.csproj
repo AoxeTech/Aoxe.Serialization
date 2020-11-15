@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2020.6.2</PackageVersion>
-        <Version>2020.6.2</Version>
+        <PackageVersion>2020.7.0</PackageVersion>
+        <Version>2020.7.0</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Protobuf</PackageProjectUrl>
@@ -15,8 +15,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="protobuf-net" Version="3.0.52" />
-        <PackageReference Include="Zaabee.Extensions" Version="2020.6.0" />
+        <PackageReference Include="protobuf-net" Version="3.0.62" />
+        <PackageReference Include="Zaabee.Extensions" Version="2020.7.0" />
     </ItemGroup>
 
 </Project>

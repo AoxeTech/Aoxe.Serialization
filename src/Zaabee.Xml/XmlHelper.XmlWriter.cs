@@ -8,7 +8,7 @@ namespace Zaabee.Xml
         public static void Serialize<T>(XmlWriter xmlWriter, T t)
         {
             if (xmlWriter is null || t is null) return;
-            XmlSerializer.Serialize<T>(xmlWriter, t);
+            XmlSerializer.Serialize(xmlWriter, t);
         }
 
         public static void Serialize(Type type, XmlWriter xmlWriter, object obj)
