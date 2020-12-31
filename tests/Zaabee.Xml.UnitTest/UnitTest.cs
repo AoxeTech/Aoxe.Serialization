@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using Xunit;
+using Zaabee.Xml.UnitTest.Models;
 
 namespace Zaabee.Xml.UnitTest
 {

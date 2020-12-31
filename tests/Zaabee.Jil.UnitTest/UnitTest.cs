@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using Jil;
 using Xunit;
+using Zaabee.Jil.UnitTest.Models;
 
 namespace Zaabee.Jil.UnitTest
 {

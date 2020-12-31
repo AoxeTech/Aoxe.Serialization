@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using Xunit;
+using Zaabee.ZeroFormatter.UnitTest.Models;
 
 namespace Zaabee.ZeroFormatter.UnitTest
 {

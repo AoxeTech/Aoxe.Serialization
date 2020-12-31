@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using Xunit;
 using Zaabee.Extensions;
+using Zaabee.Utf8Json.UnitTest.Models;
 
 namespace Zaabee.Utf8Json.UnitTest
 {

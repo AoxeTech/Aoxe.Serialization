@@ -1,14 +1,14 @@
 ﻿using System;
 
-namespace Zaabee.NewtonsoftJson.UnitTest
+namespace Zaabee.Binary.UnitTest.Models
 {
+    [Serializable]
     public class TestModel
     {
         public Guid Id { get; set; }
         public int Age { get; set; }
         public string Name { get; set; }
-        public DateTime CreateTime { get; set; }
-        public DateTimeOffset CreateTimeOffset { get; set; }
+        public DateTimeOffset CreateTime { get; set; }
         public Gender Gender { get; set; }
     }
 }

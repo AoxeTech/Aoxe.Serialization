@@ -1,4 +1,4 @@
-﻿namespace Zaabee.MsgPack.UnitTest
+﻿namespace Zaabee.MsgPack.UnitTest.Models
 {
     public enum Gender
     {

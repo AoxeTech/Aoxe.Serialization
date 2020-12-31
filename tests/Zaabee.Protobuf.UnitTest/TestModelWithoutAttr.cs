@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Zaabee.Protobuf.UnitTest.Models;
 
 namespace Zaabee.Protobuf.UnitTest
 {

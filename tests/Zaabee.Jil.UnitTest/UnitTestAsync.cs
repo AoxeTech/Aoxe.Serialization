@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Xunit;
 using Zaabee.Extensions;
 using Zaabee.Jil;
+using Zaabee.Jil.UnitTest.Models;
 
 namespace Zaabee.Jil.UnitTest
 {

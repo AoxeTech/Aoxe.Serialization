@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using Xunit;
 using Zaabee.Extensions;
+using Zaabee.SystemTextJson.UnitTest.Models;
 
 namespace Zaabee.SystemTextJson.UnitTest
 {

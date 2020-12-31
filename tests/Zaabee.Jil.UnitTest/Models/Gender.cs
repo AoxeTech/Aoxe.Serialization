@@ -1,4 +1,4 @@
-﻿namespace Zaabee.ZeroFormatter.UnitTest
+﻿namespace Zaabee.Jil.UnitTest.Models
 {
     public enum Gender
     {

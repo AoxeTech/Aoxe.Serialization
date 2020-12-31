@@ -1,5 +1,6 @@
 using System;
 using Xunit;
+using Zaabee.Binary.UnitTest.Models;
 
 namespace Zaabee.Binary.UnitTest
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using ZeroFormatter;
 
-namespace Zaabee.ZeroFormatter.UnitTest
+namespace Zaabee.ZeroFormatter.UnitTest.Models
 {
     [ZeroFormattable]
     public class TestModel

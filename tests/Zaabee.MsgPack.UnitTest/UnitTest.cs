@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using Xunit;
+using Zaabee.MsgPack.UnitTest.Models;
 
 namespace Zaabee.MsgPack.UnitTest
 {

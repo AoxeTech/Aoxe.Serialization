@@ -1,4 +1,4 @@
-﻿namespace Zaabee.NewtonsoftJson.UnitTest
+﻿namespace Zaabee.SystemTextJson.UnitTest.Models
 {
     public enum Gender
     {

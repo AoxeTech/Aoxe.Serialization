@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Zaabee.Utf8Json.UnitTest
+namespace Zaabee.MsgPack.UnitTest.Models
 {
     public class TestModel
     {

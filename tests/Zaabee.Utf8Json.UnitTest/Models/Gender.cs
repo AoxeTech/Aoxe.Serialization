@@ -1,4 +1,4 @@
-﻿namespace Zaabee.Binary.UnitTest
+﻿namespace Zaabee.Utf8Json.UnitTest.Models
 {
     public enum Gender
     {
