@@ -5,7 +5,7 @@ namespace Zaabee.Binary.UnitTest
     public partial class BinaryUnitTest
     {
         private static TestModel GetTestModel() =>
-            new TestModel
+            new()
             {
                 Id = Guid.NewGuid(),
                 Age = new Random().Next(0, 100),

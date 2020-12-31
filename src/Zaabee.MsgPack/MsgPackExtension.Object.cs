@@ -5,6 +5,10 @@ namespace Zaabee.MsgPack
 {
     public static partial class MsgPackExtension
     {
+        public static string ToBase64<T>(this T t) => MsgPackHelper.SerializeToBase64(t);
+
+        public static string ToBase64(this object obj, Type type) => MsgPackHelper.SerializeToBase64(type, obj);
+
         public static byte[] ToBytes<T>(this T t) => MsgPackHelper.Serialize(t);
 
         public static MemoryStream ToStream<T>(this T t) => MsgPackHelper.Pack(t);

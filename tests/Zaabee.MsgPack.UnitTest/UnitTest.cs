@@ -7,13 +7,29 @@ namespace Zaabee.MsgPack.UnitTest
     public class UnitTest
     {
         [Fact]
+        public void TextTest()
+        {
+            var testModel = GetTestModel();
+            var base64A = testModel.ToBase64();
+            var base64B = testModel.ToBase64(typeof(TestModel));
+            var result0 = base64A.FromBase64<TestModel>();
+            var result1 = (TestModel) base64B.FromBase64(typeof(TestModel));
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
+        }
+
+        [Fact]
         public void BytesTest()
         {
             var testModel = GetTestModel();
             var bytes0 = testModel.ToBytes();
             var bytes1 = testModel.ToBytes(typeof(TestModel));
             var result0 = bytes0.FromBytes<TestModel>();
-            var result1 = bytes1.FromBytes<TestModel>();
+            var result1 = (TestModel) bytes1.FromBytes(typeof(TestModel));
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
@@ -94,10 +110,10 @@ namespace Zaabee.MsgPack.UnitTest
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
                     unPackResult3.Gender));
-            
+
             TestModel nullModel = null;
             MemoryStream nullMs = null;
-            nullModel.PackTo(typeof(TestModel),nullMs);
+            nullModel.PackTo(typeof(TestModel), nullMs);
         }
 
         private static TestModel GetTestModel()

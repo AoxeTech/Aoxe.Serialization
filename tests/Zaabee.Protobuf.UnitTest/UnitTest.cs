@@ -8,6 +8,17 @@ namespace Zaabee.Protobuf.UnitTest
     public class UnitTest
     {
         [Fact]
+        public void BaseTest()
+        {
+            var testModel = GetTestModel();
+            var text = testModel.ToBase64();
+            var result = text.FromBase64<TestModel>();
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+        }
+        
+        [Fact]
         public void BytesTest()
         {
             var testModel = GetTestModel();
@@ -45,6 +56,18 @@ namespace Zaabee.Protobuf.UnitTest
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
                     unPackResult3.Gender));
+        }
+
+        [Fact]
+        public void Base64NonGenericTest()
+        {
+            var type = typeof(TestModel);
+            object testModel = GetTestModel();
+            var text = testModel.ToBase64();
+            var result = (TestModel) text.FromBase64(type);
+            Assert.Equal(Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
+                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
+                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
         }
 
         [Fact]

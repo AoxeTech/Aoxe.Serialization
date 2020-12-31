@@ -1,12 +1,25 @@
 using System;
 using System.IO;
 using Xunit;
-using Zaabee.ZeroFormatter;
 
 namespace Zaabee.ZeroFormatter.UnitTest
 {
     public class UnitTest
     {
+        [Fact]
+        public void TextTest()
+        {
+            var testModel = GetTestModel();
+            var base64 = testModel.ToBase64();
+            var result = base64.FromBase64<TestModel>();
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+            
+            Assert.Empty(ZeroFormatterHelper.Serialize(typeof(TestModel),null));
+            Assert.Null(ZeroFormatterHelper.Deserialize<TestModel>(null));
+        }
+        
         [Fact]
         public void BytesTest()
         {
@@ -55,6 +68,17 @@ namespace Zaabee.ZeroFormatter.UnitTest
             ZeroFormatterHelper.Pack<TestModel>(null, ms);
             Assert.Equal(0,ms.Length);
             Assert.Equal(0,ms.Position);
+        }
+
+        [Fact]
+        public void TextNonGenericTest()
+        {
+            var testModel = GetTestModel();
+            var base64 = testModel.ToBase64(typeof(TestModel));
+            var result = (TestModel) base64.FromBase64(typeof(TestModel));
+            Assert.Equal(
+                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+                Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
         }
 
         [Fact]

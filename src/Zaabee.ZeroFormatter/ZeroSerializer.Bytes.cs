@@ -6,7 +6,7 @@ namespace Zaabee.ZeroFormatter
     public static partial class ZeroSerializer
     {
         /// <summary>
-        /// Serializes the specified generic instance to a bytes.
+        /// Serialize the specified generic instance to a bytes.
         /// </summary>
         /// <param name="t"></param>
         /// <typeparam name="T"></typeparam>
@@ -15,7 +15,7 @@ namespace Zaabee.ZeroFormatter
             ZeroFormatterSerializer.Serialize(t);
 
         /// <summary>
-        /// Serializes the specified object to a bytes.
+        /// Serialize the specified object to a bytes.
         /// </summary>
         /// <param name="type"></param>
         /// <param name="obj"></param>
@@ -24,7 +24,7 @@ namespace Zaabee.ZeroFormatter
             ZeroFormatterSerializer.NonGeneric.Serialize(type, obj);
 
         /// <summary>
-        /// Deserializes the bytes to an generic instance.
+        /// Deserialize the bytes to an generic instance.
         /// </summary>
         /// <param name="bytes"></param>
         /// <typeparam name="T"></typeparam>
@@ -33,7 +33,7 @@ namespace Zaabee.ZeroFormatter
             ZeroFormatterSerializer.Deserialize<T>(bytes);
 
         /// <summary>
-        /// Deserializes the bytes to an object.
+        /// Deserialize the bytes to an object.
         /// </summary>
         /// <param name="type"></param>
         /// <param name="bytes"></param>
