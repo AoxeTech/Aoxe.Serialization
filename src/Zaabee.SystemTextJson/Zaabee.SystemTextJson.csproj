@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2020.8.0</PackageVersion>
-        <Version>2020.8.0</Version>
+        <PackageVersion>2021.1.0</PackageVersion>
+        <Version>2021.1.0</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Protobuf</PackageProjectUrl>
@@ -15,8 +15,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="System.Text.Json" Version="5.0.0" />
-        <PackageReference Include="Zaabee.Extensions" Version="2020.8.0" />
+        <PackageReference Include="System.Text.Json" Version="5.0.1" />
+        <PackageReference Include="Zaabee.Extensions" Version="2021.1.0" />
     </ItemGroup>
 
 </Project>

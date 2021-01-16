@@ -221,7 +221,7 @@ namespace Zaabee.Jil.UnitTest
 
         private static TestModel GetTestModel()
         {
-            return new TestModel
+            return new()
             {
                 Id = Guid.NewGuid(),
                 Age = new Random().Next(0, 100),
