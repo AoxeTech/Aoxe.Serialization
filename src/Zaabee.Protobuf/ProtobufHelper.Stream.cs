@@ -18,13 +18,13 @@ namespace Zaabee.Protobuf
 
         public static void Pack<T>(T t, Stream stream)
         {
-            if (t != null && stream != null)
+            if (t is not null && stream is not null)
                 ProtobufSerializer.Pack(t, stream);
         }
 
         public static void Pack(object obj, Stream stream)
         {
-            if (obj != null && stream != null)
+            if (obj is not null && stream is not null)
                 ProtobufSerializer.Pack(obj, stream);
         }
 
