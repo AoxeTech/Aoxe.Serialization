@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using Xunit;
-using Zaabee.SystemTextJson;
 
 namespace Zaabee.SystemTextJson.UnitTest
 {
