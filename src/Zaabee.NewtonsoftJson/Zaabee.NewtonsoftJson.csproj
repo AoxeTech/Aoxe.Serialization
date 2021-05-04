@@ -3,20 +3,20 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2021.1.2</PackageVersion>
-        <Version>2021.1.2</Version>
+        <PackageVersion>2021.1.3</PackageVersion>
+        <Version>2021.1.3</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.NewtonsoftJson</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Description>The wrappers and extensions methods base by Json.NET</Description>
         <PackageTags>Zaabee Json Json.NET Newtonsoft.Json serialize deserialize</PackageTags>
-        <LangVersion>Latest</LangVersion>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-        <PackageReference Include="Zaabee.Extensions" Version="2021.2.0" />
+        <PackageReference Include="Zaabee.Extensions" Version="2021.3.0" />
     </ItemGroup>
 
 </Project>
