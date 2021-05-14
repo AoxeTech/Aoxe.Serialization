@@ -17,7 +17,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\Zaabee.Jil\Zaabee.Jil.csproj" />
+        <ProjectReference Include="..\..\src\Zaabee.Jil\Zaabee.Jil.csproj" />
+        <ProjectReference Include="..\TestModels\TestModels.csproj" />
     </ItemGroup>
 
 </Project>

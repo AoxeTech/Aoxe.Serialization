@@ -1,10 +1,9 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using TestModels;
 using Xunit;
 using Zaabee.Extensions;
-using Zaabee.Jil;
-using Zaabee.Jil.UnitTest.Models;
 
 namespace Zaabee.Jil.UnitTest
 {
@@ -13,7 +12,7 @@ namespace Zaabee.Jil.UnitTest
         [Fact]
         public async Task StreamTestAsync()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
 
             var stream0 = new FileStream(".\\StreamTestAsync0", FileMode.Create);
             await testModel.PackToAsync(stream0);
@@ -48,7 +47,7 @@ namespace Zaabee.Jil.UnitTest
         public async Task StreamNonGenericTestAsync()
         {
             var type = typeof(TestModel);
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
 
             var stream0 = new FileStream(".\\StreamNonGenericTestAsync0", FileMode.Create);
             await testModel.PackToAsync(stream0);
@@ -81,15 +80,5 @@ namespace Zaabee.Jil.UnitTest
             await nullModel.PackToAsync(nullMs);
             Assert.True((await nullModel.ToStreamAsync()).ToArray().IsNullOrEmpty());
         }
-
-        private static TestModel GetTestModel() =>
-            new TestModel
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = new DateTime(2017, 1, 1).ToUniversalTime(),
-                Name = "apple",
-                Gender = Gender.Female
-            };
     }
 }

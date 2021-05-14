@@ -1,9 +1,9 @@
 using System;
 using System.IO;
 using System.Linq;
+using TestModels;
 using Xunit;
 using Zaabee.Extensions;
-using Zaabee.Utf8Json.UnitTest.Models;
 
 namespace Zaabee.Utf8Json.UnitTest
 {
@@ -19,7 +19,7 @@ namespace Zaabee.Utf8Json.UnitTest
         [Fact]
         public void BytesTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var bytes = testModel.ToBytes();
             var result = bytes.FromBytes<TestModel>();
             Assert.Equal(
@@ -30,7 +30,7 @@ namespace Zaabee.Utf8Json.UnitTest
         [Fact]
         public void BytesUnsafeTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var arraySegmentBytes = testModel.ToBytesUnsafe();
             var bytes = arraySegmentBytes.Take(arraySegmentBytes.Count).ToArray();
             var result = bytes.FromBytes<TestModel>();
@@ -51,7 +51,7 @@ namespace Zaabee.Utf8Json.UnitTest
             nullModel = emptyStream.Unpack<TestModel>();
             Assert.Null(nullModel);
             
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var stream1 = testModel.ToStream();
             var stream2 = new MemoryStream();
             testModel.PackTo(stream2);
@@ -79,7 +79,7 @@ namespace Zaabee.Utf8Json.UnitTest
         [Fact]
         public void StringTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var json = testModel.ToJson();
             var result = json.FromJson<TestModel>();
             Assert.Equal(
@@ -90,7 +90,7 @@ namespace Zaabee.Utf8Json.UnitTest
         [Fact]
         public void BytesNonGenericTest()
         {
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
             var bytes = testModel.ToBytes();
             var result = (TestModel) bytes.FromBytes(typeof(TestModel));
             Assert.Equal(
@@ -102,7 +102,7 @@ namespace Zaabee.Utf8Json.UnitTest
         [Fact]
         public void BytesNonGenericUnsafeTest()
         {
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
             var arraySegmentBytes = testModel.ToBytesUnsafe();
             var bytes = arraySegmentBytes.Take(arraySegmentBytes.Count).ToArray();
             var result = bytes.FromBytes<TestModel>();
@@ -115,7 +115,7 @@ namespace Zaabee.Utf8Json.UnitTest
         [Fact]
         public void BytesNonGenericWithTypeTest()
         {
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
             var bytes = testModel.ToBytes(typeof(TestModel));
             var result = (TestModel) bytes.FromBytes(typeof(TestModel));
             Assert.Equal(
@@ -127,7 +127,7 @@ namespace Zaabee.Utf8Json.UnitTest
         [Fact]
         public void BytesNonGenericWithTypeUnsafeTest()
         {
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
             var arraySegmentBytes = testModel.ToBytesUnsafe(typeof(TestModel));
             var bytes = arraySegmentBytes.Take(arraySegmentBytes.Count).ToArray();
             var result = (TestModel) bytes.FromBytes(typeof(TestModel));
@@ -153,7 +153,7 @@ namespace Zaabee.Utf8Json.UnitTest
             nullModel = emptyStream.Unpack<object>();
             Assert.Null(nullModel);
             
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
 
             var stream1 = testModel.ToStream(type);
             var stream2 = new MemoryStream();
@@ -186,7 +186,7 @@ namespace Zaabee.Utf8Json.UnitTest
         public void StreamNonGenericWithTypeTest()
         {
             var type = typeof(TestModel);
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
 
             var stream1 = testModel.ToStream();
             var stream2 = new MemoryStream();
@@ -218,7 +218,7 @@ namespace Zaabee.Utf8Json.UnitTest
         [Fact]
         public void StringNonGenericTest()
         {
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
             var json1 = testModel.ToJson();
             var result1 = json1.FromJson(typeof(TestModel));
             var json2 = testModel.ToJson(typeof(TestModel));
@@ -233,13 +233,7 @@ namespace Zaabee.Utf8Json.UnitTest
         [Fact]
         public void ObjectString()
         {
-            var testModel = new TestModel
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = DateTime.Now,
-                Name = "banana"
-            };
+            var testModel = TestModelFactory.Create();
 
             var jsonStr = testModel.ToJson();
             var result1 = jsonStr.FromJson<TestModel>();
@@ -259,13 +253,7 @@ namespace Zaabee.Utf8Json.UnitTest
         [Fact]
         public void ObjectBytes()
         {
-            var testModel = new TestModel
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = DateTime.Now,
-                Name = "banana"
-            };
+            var testModel = TestModelFactory.Create();
 
             var bytes = testModel.ToBytes();
             var result1 = bytes.FromBytes<TestModel>();
@@ -280,18 +268,6 @@ namespace Zaabee.Utf8Json.UnitTest
             Assert.Equal(testModel.CreateTime.Second, result1.CreateTime.Second);
             Assert.Equal(testModel.CreateTime.Millisecond, result1.CreateTime.Millisecond);
             Assert.Equal(testModel.Name, result1.Name);
-        }
-
-        private static TestModel GetTestModel()
-        {
-            return new TestModel
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = new DateTime(2017, 1, 1),
-                Name = "apple",
-                Gender = Gender.Female
-            };
         }
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using System.IO;
+using TestModels;
 using Xunit;
-using Zaabee.Binary.UnitTest.Models;
 
 namespace Zaabee.Binary.UnitTest
 {
@@ -10,7 +10,7 @@ namespace Zaabee.Binary.UnitTest
         [Fact]
         public void StreamTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
 
             var stream1 = testModel.ToStream();
             var stream2 = new MemoryStream();

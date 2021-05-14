@@ -1,8 +1,8 @@
 using System;
 using System.IO;
+using TestModels;
 using Xunit;
 using Zaabee.Extensions;
-using Zaabee.SystemTextJson.UnitTest.Models;
 
 namespace Zaabee.SystemTextJson.UnitTest
 {
@@ -11,19 +11,20 @@ namespace Zaabee.SystemTextJson.UnitTest
         [Fact]
         public void BytesTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var bytes = testModel.ToBytes();
             var result = bytes.FromBytes<TestModel>();
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
         }
+
         [Fact]
         public void ReadOnlySpanBytesTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var bytes = testModel.ToBytes();
-            var result = ((ReadOnlySpan<byte>)bytes).FromBytes<TestModel>();
+            var result = ((ReadOnlySpan<byte>) bytes).FromBytes<TestModel>();
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
@@ -40,8 +41,8 @@ namespace Zaabee.SystemTextJson.UnitTest
             Assert.True(emptyStream.IsNullOrEmpty());
             nullModel = emptyStream.Unpack<TestModel>();
             Assert.Null(nullModel);
-            
-            var testModel = GetTestModel();
+
+            var testModel = TestModelFactory.Create();
             var stream1 = testModel.ToStream();
             var stream2 = new MemoryStream();
             testModel.PackTo(stream2);
@@ -69,7 +70,7 @@ namespace Zaabee.SystemTextJson.UnitTest
         [Fact]
         public void StringTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var json = testModel.ToJson();
             var result = json.FromJson<TestModel>();
             Assert.Equal(
@@ -80,7 +81,7 @@ namespace Zaabee.SystemTextJson.UnitTest
         [Fact]
         public void BytesNonGenericTest()
         {
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
             var bytes = testModel.ToBytes(typeof(TestModel));
             var result = (TestModel) bytes.FromBytes(typeof(TestModel));
             Assert.Equal(
@@ -88,13 +89,13 @@ namespace Zaabee.SystemTextJson.UnitTest
                     ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
                 Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
         }
-        
+
         [Fact]
         public void ReadOnlySpanBytesNonGenericTest()
         {
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
             var bytes = testModel.ToBytes(typeof(TestModel));
-            var result = (TestModel) ((ReadOnlySpan<byte>)bytes).FromBytes(typeof(TestModel));
+            var result = (TestModel) ((ReadOnlySpan<byte>) bytes).FromBytes(typeof(TestModel));
             Assert.Equal(
                 Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
                     ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
@@ -116,8 +117,8 @@ namespace Zaabee.SystemTextJson.UnitTest
             Assert.True(emptyStream.IsNullOrEmpty());
             nullModel = emptyStream.Unpack<object>();
             Assert.Null(nullModel);
-            
-            object testModel = GetTestModel();
+
+            object testModel = TestModelFactory.Create();
 
             var stream1 = testModel.ToStream(type);
             var stream2 = new MemoryStream();
@@ -149,7 +150,7 @@ namespace Zaabee.SystemTextJson.UnitTest
         [Fact]
         public void StringNonGenericTest()
         {
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
             var json1 = testModel.ToJson();
             var result1 = json1.FromJson(typeof(TestModel));
             var json2 = testModel.ToJson(typeof(TestModel));
@@ -164,13 +165,7 @@ namespace Zaabee.SystemTextJson.UnitTest
         [Fact]
         public void ObjectString()
         {
-            var testModel = new TestModel
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = DateTime.Now,
-                Name = "banana"
-            };
+            var testModel = TestModelFactory.Create();
 
             var jsonStr = testModel.ToJson();
             var result1 = jsonStr.FromJson<TestModel>();
@@ -190,13 +185,7 @@ namespace Zaabee.SystemTextJson.UnitTest
         [Fact]
         public void ObjectBytes()
         {
-            var testModel = new TestModel
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = DateTime.Now,
-                Name = "banana"
-            };
+            var testModel = TestModelFactory.Create();
 
             var bytes = testModel.ToBytes();
             var result1 = bytes.FromBytes<TestModel>();
@@ -211,18 +200,6 @@ namespace Zaabee.SystemTextJson.UnitTest
             Assert.Equal(testModel.CreateTime.Second, result1.CreateTime.Second);
             Assert.Equal(testModel.CreateTime.Millisecond, result1.CreateTime.Millisecond);
             Assert.Equal(testModel.Name, result1.Name);
-        }
-
-        private static TestModel GetTestModel()
-        {
-            return new TestModel
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = new DateTime(2017, 1, 1).ToUniversalTime(),
-                Name = "apple",
-                Gender = Gender.Female
-            };
         }
     }
 }

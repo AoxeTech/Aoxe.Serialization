@@ -1,9 +1,9 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using TestModels;
 using Xunit;
 using Zaabee.Extensions;
-using Zaabee.MsgPack.UnitTest.Models;
 
 namespace Zaabee.MsgPack.UnitTest
 {
@@ -12,7 +12,7 @@ namespace Zaabee.MsgPack.UnitTest
         [Fact]
         public async Task StreamTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
 
             var stream0 = new FileStream(".\\StreamTest0",FileMode.Create);
             await testModel.PackToAsync(stream0);
@@ -41,18 +41,6 @@ namespace Zaabee.MsgPack.UnitTest
             MemoryStream nullMs = null;
             await nullModel.PackToAsync(nullMs);
             Assert.True((await nullModel.ToStreamAsync()).ToArray().IsNullOrEmpty());
-        }
-
-        private static TestModel GetTestModel()
-        {
-            return new TestModel
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = new DateTime(2017, 1, 1).ToUniversalTime(),
-                Name = "apple",
-                Gender = Gender.Female
-            };
         }
     }
 }

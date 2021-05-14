@@ -1,6 +1,6 @@
 using System;
+using TestModels;
 using Xunit;
-using Zaabee.Binary.UnitTest.Models;
 
 namespace Zaabee.Binary.UnitTest
 {
@@ -9,7 +9,7 @@ namespace Zaabee.Binary.UnitTest
         [Fact]
         public void BytesTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var bytes = testModel.ToBytes();
             var result = bytes.FromBytes<TestModel>();
             Assert.Equal(

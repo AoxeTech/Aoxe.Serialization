@@ -1,7 +1,7 @@
 using System;
 using System.IO;
+using TestModels;
 using Xunit;
-using Zaabee.MsgPack.UnitTest.Models;
 
 namespace Zaabee.MsgPack.UnitTest
 {
@@ -10,7 +10,7 @@ namespace Zaabee.MsgPack.UnitTest
         [Fact]
         public void TextTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var base64A = testModel.ToBase64();
             var base64B = testModel.ToBase64(typeof(TestModel));
             var result0 = base64A.FromBase64<TestModel>();
@@ -26,7 +26,7 @@ namespace Zaabee.MsgPack.UnitTest
         [Fact]
         public void BytesTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var bytes0 = testModel.ToBytes();
             var bytes1 = testModel.ToBytes(typeof(TestModel));
             var result0 = bytes0.FromBytes<TestModel>();
@@ -42,7 +42,7 @@ namespace Zaabee.MsgPack.UnitTest
         [Fact]
         public void StreamTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
 
             var stream1 = testModel.ToStream();
             var stream2 = new MemoryStream();
@@ -75,7 +75,7 @@ namespace Zaabee.MsgPack.UnitTest
         [Fact]
         public void BytesNonGenericTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var bytes = testModel.ToBytes(typeof(TestModel));
             var result = (TestModel) bytes.FromBytes(typeof(TestModel));
             Assert.Equal(
@@ -87,7 +87,7 @@ namespace Zaabee.MsgPack.UnitTest
         public void StreamNonGenericTest()
         {
             var type = typeof(TestModel);
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
 
             var stream1 = testModel.ToStream(type);
             var stream2 = new MemoryStream();
@@ -115,18 +115,6 @@ namespace Zaabee.MsgPack.UnitTest
             TestModel nullModel = null;
             MemoryStream nullMs = null;
             nullModel.PackTo(typeof(TestModel), nullMs);
-        }
-
-        private static TestModel GetTestModel()
-        {
-            return new TestModel
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = new DateTime(2017, 1, 1),
-                Name = "apple",
-                Gender = Gender.Female
-            };
         }
     }
 }

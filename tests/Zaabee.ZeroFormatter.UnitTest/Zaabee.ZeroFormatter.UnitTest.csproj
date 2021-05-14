@@ -17,7 +17,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\Zaabee.ZeroFormatter\Zaabee.ZeroFormatter.csproj" />
+        <ProjectReference Include="..\..\src\Zaabee.ZeroFormatter\Zaabee.ZeroFormatter.csproj" />
+        <ProjectReference Include="..\TestModels\TestModels.csproj" />
     </ItemGroup>
 
 </Project>

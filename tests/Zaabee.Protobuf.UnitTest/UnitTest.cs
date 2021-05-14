@@ -1,8 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
+using TestModels;
 using Xunit;
-using Zaabee.Protobuf.UnitTest.Models;
 
 namespace Zaabee.Protobuf.UnitTest
 {
@@ -11,7 +10,7 @@ namespace Zaabee.Protobuf.UnitTest
         [Fact]
         public void BaseTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var text = testModel.ToBase64();
             var result = text.FromBase64<TestModel>();
             Assert.Equal(
@@ -22,7 +21,7 @@ namespace Zaabee.Protobuf.UnitTest
         [Fact]
         public void BytesTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var bytes = testModel.ToBytes();
             var result = bytes.FromBytes<TestModel>();
             Assert.Equal(
@@ -33,7 +32,7 @@ namespace Zaabee.Protobuf.UnitTest
         [Fact]
         public void StreamTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
 
             var stream1 = testModel.ToStream();
             var stream2 = new MemoryStream();
@@ -63,7 +62,7 @@ namespace Zaabee.Protobuf.UnitTest
         public void Base64NonGenericTest()
         {
             var type = typeof(TestModel);
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
             var text = testModel.ToBase64();
             var result = (TestModel) text.FromBase64(type);
             Assert.Equal(Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
@@ -75,7 +74,7 @@ namespace Zaabee.Protobuf.UnitTest
         public void BytesNonGenericTest()
         {
             var type = typeof(TestModel);
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
             var bytes = testModel.ToBytes();
             var result = (TestModel) bytes.FromBytes(type);
             Assert.Equal(Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
@@ -87,7 +86,7 @@ namespace Zaabee.Protobuf.UnitTest
         public void StreamNonGenericTest()
         {
             var type = typeof(TestModel);
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
 
             var stream1 = testModel.ToStream();
             var stream2 = new MemoryStream();
@@ -111,67 +110,6 @@ namespace Zaabee.Protobuf.UnitTest
                     ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
                 Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
                     unPackResult3.Gender));
-        }
-
-        private TestModel GetTestModel()
-        {
-            return new TestModel
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = new DateTime(2017, 1, 1),
-                Name = "banana",
-                Gender = Gender.Female
-            };
-        }
-
-        private TestSubModelWithoutAttr GetTestSubModelWithoutAttr()
-        {
-            return new TestSubModelWithoutAttr
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = new DateTime(2017, 1, 1),
-                Name = "apple",
-                Gender = Gender.Female,
-                LongId = long.MaxValue,
-                Kids = new Dictionary<Guid, TestModelWithoutAttr>
-                {
-                    {
-                        Guid.NewGuid(), new TestSubModelWithoutAttr
-                        {
-                            Id = Guid.NewGuid(),
-                            Age = new Random().Next(0, 100),
-                            CreateTime = new DateTime(2017, 1, 1),
-                            Name = "apple",
-                            Gender = Gender.Female,
-                            LongId = long.MaxValue
-                        }
-                    },
-                    {
-                        Guid.NewGuid(), new TestSubModelWithoutAttr
-                        {
-                            Id = Guid.NewGuid(),
-                            Age = new Random().Next(0, 100),
-                            CreateTime = new DateTime(2017, 1, 1),
-                            Name = "apple",
-                            Gender = Gender.Female,
-                            LongId = long.MaxValue
-                        }
-                    },
-                    {
-                        Guid.NewGuid(), new TestSubModelWithoutAttr
-                        {
-                            Id = Guid.NewGuid(),
-                            Age = new Random().Next(0, 100),
-                            CreateTime = new DateTime(2017, 1, 1),
-                            Name = "apple",
-                            Gender = Gender.Female,
-                            LongId = long.MaxValue
-                        }
-                    }
-                }
-            };
         }
     }
 }

@@ -2,8 +2,8 @@ using System;
 using System.IO;
 using System.Text;
 using Jil;
+using TestModels;
 using Xunit;
-using Zaabee.Jil.UnitTest.Models;
 
 namespace Zaabee.Jil.UnitTest
 {
@@ -18,7 +18,7 @@ namespace Zaabee.Jil.UnitTest
         [Fact]
         public void BytesTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var bytes = testModel.ToBytes();
             var result = bytes.FromBytes<TestModel>();
             Assert.Equal(
@@ -29,7 +29,7 @@ namespace Zaabee.Jil.UnitTest
         [Fact]
         public void StreamTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
 
             var stream1 = testModel.ToStream();
             var stream2 = new MemoryStream();
@@ -61,7 +61,7 @@ namespace Zaabee.Jil.UnitTest
         [Fact]
         public void StringTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var json = testModel.ToJson();
             var result = json.FromJson<TestModel>();
             Assert.Equal(
@@ -72,7 +72,7 @@ namespace Zaabee.Jil.UnitTest
         [Fact]
         public void BytesNonGenericTest()
         {
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
             var bytes = testModel.ToBytes();
             var result = (TestModel) bytes.FromBytes(typeof(TestModel));
             Assert.Equal(
@@ -85,7 +85,7 @@ namespace Zaabee.Jil.UnitTest
         public void StreamNonGenericTest()
         {
             var type = typeof(TestModel);
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
 
             var stream1 = testModel.ToStream();
             var stream2 = new MemoryStream();
@@ -117,7 +117,7 @@ namespace Zaabee.Jil.UnitTest
         [Fact]
         public void StringNonGenericTest()
         {
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
             var json = testModel.ToJson();
             var result = (TestModel) json.FromJson(typeof(TestModel));
             Assert.Equal(
@@ -128,7 +128,7 @@ namespace Zaabee.Jil.UnitTest
         [Fact]
         public void TextWriterReaderTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             TestModel result0;
             using (var fs = new FileStream("TextWriterReaderTest0.json", FileMode.Create))
             {
@@ -177,7 +177,7 @@ namespace Zaabee.Jil.UnitTest
         [Fact]
         public void TextWriterReaderNonGenericTest()
         {
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
             TestModel result0;
             using (var fs = new FileStream("TextWriterReaderNonGenericTest0.json", FileMode.Create))
             {
@@ -219,28 +219,10 @@ namespace Zaabee.Jil.UnitTest
                 Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
         }
 
-        private static TestModel GetTestModel()
-        {
-            return new()
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = new DateTime(2017, 1, 1).ToUniversalTime(),
-                Name = "apple",
-                Gender = Gender.Female
-            };
-        }
-
         [Fact]
         public void ToJson()
         {
-            var testModel = new TestModel
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = DateTimeOffset.Now,
-                Name = "banana"
-            };
+            var testModel = TestModelFactory.Create();
 
             var jsonStr = testModel.ToJson();
             var result1 = jsonStr.FromJson<TestModel>();
@@ -272,13 +254,7 @@ namespace Zaabee.Jil.UnitTest
         [Fact]
         public void ToJsonWithOptions()
         {
-            var testModel = new TestModel
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = DateTimeOffset.Now,
-                Name = "banana"
-            };
+            var testModel = TestModelFactory.Create();
 
             var options = new Options(dateFormat: DateTimeFormat.ISO8601,
                 excludeNulls: true, includeInherited: true,

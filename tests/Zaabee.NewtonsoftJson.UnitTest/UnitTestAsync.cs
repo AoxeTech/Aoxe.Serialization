@@ -1,9 +1,9 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using TestModels;
 using Xunit;
 using Zaabee.Extensions;
-using Zaabee.NewtonsoftJson.UnitTest.Models;
 
 namespace Zaabee.NewtonsoftJson.UnitTest
 {
@@ -22,7 +22,7 @@ namespace Zaabee.NewtonsoftJson.UnitTest
             nullModel = await emptyStream.UnpackAsync<TestModel>();
             Assert.Null(nullModel);
 
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var stream0 = new FileStream(".\\StreamTest0", FileMode.Create);
             await testModel.PackToAsync(stream0);
             var stream1 = new FileStream(".\\StreamTest1", FileMode.Create);
@@ -31,7 +31,7 @@ namespace Zaabee.NewtonsoftJson.UnitTest
 
             var unPackResult0 = await stream0.UnpackAsync<TestModel>();
             var unPackResult1 = await stream1.UnpackAsync<TestModel>();
-            var unPackResult2 = (TestModel) await stream2.UnpackAsync<TestModel>();
+            var unPackResult2 = await stream2.UnpackAsync<TestModel>();
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
@@ -63,7 +63,7 @@ namespace Zaabee.NewtonsoftJson.UnitTest
             nullModel = await emptyStream.UnpackAsync<object>();
             Assert.Null(nullModel);
             
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
 
             var stream0 = new FileStream(".\\StreamNonGenericTest0", FileMode.Create);
             await testModel.PackToAsync(type, stream0);
@@ -90,18 +90,6 @@ namespace Zaabee.NewtonsoftJson.UnitTest
                     ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
                 Tuple.Create(unPackResult2.Id, unPackResult2.Age, unPackResult2.CreateTime, unPackResult2.Name,
                     unPackResult2.Gender));
-        }
-
-        private static TestModel GetTestModel()
-        {
-            return new TestModel
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = new DateTime(2017, 1, 1).ToUniversalTime(),
-                Name = "apple",
-                Gender = Gender.Female
-            };
         }
     }
 }

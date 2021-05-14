@@ -1,9 +1,9 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using TestModels;
 using Xunit;
 using Zaabee.Extensions;
-using Zaabee.SystemTextJson.UnitTest.Models;
 
 namespace Zaabee.SystemTextJson.UnitTest
 {
@@ -21,7 +21,7 @@ namespace Zaabee.SystemTextJson.UnitTest
             nullModel = await emptyStream.UnpackAsync<TestModel>();
             Assert.Null(nullModel);
             
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
 
             var stream0 = await testModel.ToStreamAsync();
             var stream1 = new FileStream(".\\StreamTest1", FileMode.Create);
@@ -58,7 +58,7 @@ namespace Zaabee.SystemTextJson.UnitTest
             nullModel = await emptyStream.UnpackAsync<object>();
             Assert.Null(nullModel);
             
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
 
             var stream0 = await testModel.ToStreamAsync(type);
             var stream1 = new FileStream(".\\StreamNonGenericTest1", FileMode.Create);
@@ -79,18 +79,6 @@ namespace Zaabee.SystemTextJson.UnitTest
                     ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
                 Tuple.Create(unPackResult1.Id, unPackResult1.Age, unPackResult1.CreateTime, unPackResult1.Name,
                     unPackResult1.Gender));
-        }
-
-        private static TestModel GetTestModel()
-        {
-            return new TestModel
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = new DateTime(2017, 1, 1).ToUniversalTime(),
-                Name = "apple",
-                Gender = Gender.Female
-            };
         }
     }
 }

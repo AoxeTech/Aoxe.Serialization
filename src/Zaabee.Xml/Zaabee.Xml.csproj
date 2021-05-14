@@ -3,19 +3,19 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2021.1.3</PackageVersion>
-        <Version>2021.1.3</Version>
+        <PackageVersion>2021.1.4</PackageVersion>
+        <Version>2021.1.4</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Xml</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <Description>Extension methods for xml serialize/deserialize</Description>
+        <Description>The wrappers and extension methods for xml serialize/deserialize</Description>
         <PackageTags>Zaabee XML serialize deserialize</PackageTags>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Zaabee.Extensions" Version="2021.3.0" />
+        <PackageReference Include="Zaabee.Extensions" Version="2021.3.6" />
     </ItemGroup>
 
 </Project>

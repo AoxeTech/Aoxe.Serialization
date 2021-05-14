@@ -1,9 +1,9 @@
 using System;
 using System.IO;
 using System.Text;
+using TestModels;
 using Xunit;
 using Zaabee.Extensions;
-using Zaabee.NewtonsoftJson.UnitTest.Models;
 
 namespace Zaabee.NewtonsoftJson.UnitTest
 {
@@ -27,7 +27,7 @@ namespace Zaabee.NewtonsoftJson.UnitTest
             nullModel = emptyBytes.FromBytes<TestModel>();
             Assert.Null(nullModel);
 
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var bytes0 = testModel.ToBytes();
             var result0 = bytes0.FromBytes<TestModel>();
             Assert.Equal(
@@ -47,7 +47,7 @@ namespace Zaabee.NewtonsoftJson.UnitTest
             nullModel = emptyStream.Unpack<TestModel>();
             Assert.Null(nullModel);
 
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var stream1 = testModel.ToStream();
             var stream2 = new MemoryStream();
             testModel.PackTo(stream2);
@@ -80,7 +80,7 @@ namespace Zaabee.NewtonsoftJson.UnitTest
             nullModel = emptyJson.FromJson<TestModel>();
             Assert.Null(nullModel);
             
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var json = testModel.ToJson();
             var result = json.FromJson<TestModel>();
             Assert.Equal(
@@ -97,7 +97,7 @@ namespace Zaabee.NewtonsoftJson.UnitTest
             nullModel = emptyBytes.FromBytes<object>();
             Assert.Null(nullModel);
 
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
             var bytes = testModel.ToBytes(typeof(TestModel));
             var result = (TestModel) bytes.FromBytes(typeof(TestModel));
             Assert.Equal(
@@ -122,7 +122,7 @@ namespace Zaabee.NewtonsoftJson.UnitTest
             nullModel = emptyStream.Unpack<object>();
             Assert.Null(nullModel);
             
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
 
             var stream1 = testModel.ToStream(type);
             var stream2 = new MemoryStream();
@@ -160,7 +160,7 @@ namespace Zaabee.NewtonsoftJson.UnitTest
             Assert.Null(nullModel);
             
             var type = typeof(TestModel);
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
             var json0 = testModel.ToJson(type);
             var result0 = json0.FromJson(type);
             var json1 = testModel.ToJson(type);
@@ -177,28 +177,10 @@ namespace Zaabee.NewtonsoftJson.UnitTest
                     ((TestModel) result1).Name, ((TestModel) result1).Gender));
         }
 
-        private static TestModel GetTestModel()
-        {
-            return new TestModel
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = new DateTime(2017, 1, 1).ToUniversalTime(),
-                Name = "apple",
-                Gender = Gender.Female
-            };
-        }
-
         [Fact]
         public void ObjectString()
         {
-            var testModel = new TestModel
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = DateTime.Now,
-                Name = "banana"
-            };
+            var testModel = TestModelFactory.Create();
 
             var jsonStr = testModel.ToJson();
             var result1 = jsonStr.FromJson<TestModel>();
@@ -218,13 +200,7 @@ namespace Zaabee.NewtonsoftJson.UnitTest
         [Fact]
         public void ObjectBytes()
         {
-            var testModel = new TestModel
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = DateTime.Now,
-                Name = "banana"
-            };
+            var testModel = TestModelFactory.Create();
 
             var bytes = testModel.ToBytes();
             var result1 = bytes.FromBytes<TestModel>();

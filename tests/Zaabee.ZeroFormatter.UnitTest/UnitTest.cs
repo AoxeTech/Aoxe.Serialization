@@ -1,7 +1,7 @@
 using System;
 using System.IO;
+using TestModels;
 using Xunit;
-using Zaabee.ZeroFormatter.UnitTest.Models;
 
 namespace Zaabee.ZeroFormatter.UnitTest
 {
@@ -10,7 +10,7 @@ namespace Zaabee.ZeroFormatter.UnitTest
         [Fact]
         public void TextTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var base64 = testModel.ToBase64();
             var result = base64.FromBase64<TestModel>();
             Assert.Equal(
@@ -24,7 +24,7 @@ namespace Zaabee.ZeroFormatter.UnitTest
         [Fact]
         public void BytesTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var bytes = testModel.ToBytes();
             var result = bytes.FromBytes<TestModel>();
             Assert.Equal(
@@ -38,7 +38,7 @@ namespace Zaabee.ZeroFormatter.UnitTest
         [Fact]
         public void StreamTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
 
             var stream1 = testModel.ToStream();
             var stream2 = new MemoryStream();
@@ -74,7 +74,7 @@ namespace Zaabee.ZeroFormatter.UnitTest
         [Fact]
         public void TextNonGenericTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var base64 = testModel.ToBase64(typeof(TestModel));
             var result = (TestModel) base64.FromBase64(typeof(TestModel));
             Assert.Equal(
@@ -85,7 +85,7 @@ namespace Zaabee.ZeroFormatter.UnitTest
         [Fact]
         public void BytesNonGenericTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var bytes = testModel.ToBytes(typeof(TestModel));
             var result = (TestModel) bytes.FromBytes(typeof(TestModel));
             Assert.Equal(
@@ -97,7 +97,7 @@ namespace Zaabee.ZeroFormatter.UnitTest
         public void StreamNonGenericTest()
         {
             var type = typeof(TestModel);
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
 
             var stream1 = testModel.ToStream(type);
             var stream2 = new MemoryStream();
@@ -132,18 +132,6 @@ namespace Zaabee.ZeroFormatter.UnitTest
             ZeroFormatterHelper.Pack(typeof(TestModel),null, ms);
             Assert.Equal(0,ms.Length);
             Assert.Equal(0,ms.Position);
-        }
-
-        private static TestModel GetTestModel()
-        {
-            return new TestModel
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = new DateTime(2017, 1, 1).ToUniversalTime(),
-                Name = "apple",
-                Gender = Gender.Female
-            };
         }
     }
 }

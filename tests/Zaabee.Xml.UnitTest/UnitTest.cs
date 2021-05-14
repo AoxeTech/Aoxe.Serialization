@@ -2,8 +2,8 @@ using System;
 using System.IO;
 using System.Text;
 using System.Xml;
+using TestModels;
 using Xunit;
-using Zaabee.Xml.UnitTest.Models;
 
 namespace Zaabee.Xml.UnitTest
 {
@@ -17,7 +17,7 @@ namespace Zaabee.Xml.UnitTest
         [Fact]
         public void BytesTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var bytes = testModel.ToBytes();
             var result = bytes.FromBytes<TestModel>();
             Assert.Equal(
@@ -33,7 +33,7 @@ namespace Zaabee.Xml.UnitTest
         [Fact]
         public void StreamTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
 
             var stream1 = testModel.ToStream();
             var stream2 = new MemoryStream();
@@ -69,7 +69,7 @@ namespace Zaabee.Xml.UnitTest
         [Fact]
         public void StringTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var xml = testModel.ToXml();
             var result = xml.FromXml<TestModel>();
             Assert.Equal(
@@ -80,7 +80,7 @@ namespace Zaabee.Xml.UnitTest
         [Fact]
         public void BytesNonGenericTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var bytes = testModel.ToBytes(typeof(TestModel));
             var result = (TestModel) bytes.FromBytes(typeof(TestModel));
             Assert.Equal(
@@ -97,7 +97,7 @@ namespace Zaabee.Xml.UnitTest
         public void StreamNonGenericTest()
         {
             var type = typeof(TestModel);
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
 
             var stream1 = testModel.Pack(type);
             var stream2 = new MemoryStream();
@@ -137,7 +137,7 @@ namespace Zaabee.Xml.UnitTest
         [Fact]
         public void StringNonGenericTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var xml = testModel.ToXml(typeof(TestModel));
             var result = (TestModel) xml.FromXml(typeof(TestModel));
             Assert.Equal(
@@ -151,7 +151,7 @@ namespace Zaabee.Xml.UnitTest
         [Fact]
         public void TextWriterReaderTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             TestModel result0;
             using (var fs = new FileStream("TextWriterReaderTest0.xml", FileMode.Create))
             {
@@ -199,7 +199,7 @@ namespace Zaabee.Xml.UnitTest
         [Fact]
         public void TextWriterReaderNonGenericTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             TestModel result0;
             using (var fs = new FileStream("TextWriterReaderNonGenericTest0.xml", FileMode.Create))
             {
@@ -238,7 +238,7 @@ namespace Zaabee.Xml.UnitTest
         [Fact]
         public void XmlWriterReaderTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             TestModel result0;
             using (var fs = new FileStream("XmlWriterReaderTest0.xml", FileMode.Create))
             {
@@ -278,7 +278,7 @@ namespace Zaabee.Xml.UnitTest
         [Fact]
         public void XmlWriterReaderNonGenericTest()
         {
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             TestModel result0;
             using (var fs = new FileStream("XmlWriterReaderNonGenericTest0.xml", FileMode.Create))
             {
@@ -312,18 +312,6 @@ namespace Zaabee.Xml.UnitTest
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
-        }
-
-        private static TestModel GetTestModel()
-        {
-            return new TestModel
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = new DateTime(2017, 1, 1).ToUniversalTime(),
-                Name = "apple",
-                Gender = Gender.Female
-            };
         }
     }
 }

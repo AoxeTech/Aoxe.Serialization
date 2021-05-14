@@ -1,9 +1,9 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using TestModels;
 using Xunit;
 using Zaabee.Extensions;
-using Zaabee.Utf8Json.UnitTest.Models;
 
 namespace Zaabee.Utf8Json.UnitTest
 {
@@ -22,7 +22,7 @@ namespace Zaabee.Utf8Json.UnitTest
             nullModel = await emptyStream.UnpackAsync<TestModel>();
             Assert.Null(nullModel);
             
-            var testModel = GetTestModel();
+            var testModel = TestModelFactory.Create();
             var stream0 = new FileStream(".\\StreamTest0",FileMode.Create);
             await testModel.PackToAsync(stream0);
             var stream1 = await testModel.ToStreamAsync();
@@ -62,7 +62,7 @@ namespace Zaabee.Utf8Json.UnitTest
             nullModel = await emptyStream.UnpackAsync<object>();
             Assert.Null(nullModel);
             
-            object testModel = GetTestModel();
+            object testModel = TestModelFactory.Create();
 
             var stream0 = new FileStream(".\\StreamNonGenericTest0",FileMode.Create);
             await testModel.PackToAsync(type, stream0);
@@ -96,18 +96,6 @@ namespace Zaabee.Utf8Json.UnitTest
                     ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
                 Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
                     unPackResult3.Gender));
-        }
-
-        private static TestModel GetTestModel()
-        {
-            return new TestModel
-            {
-                Id = Guid.NewGuid(),
-                Age = new Random().Next(0, 100),
-                CreateTime = new DateTime(2017, 1, 1).ToUniversalTime(),
-                Name = "apple",
-                Gender = Gender.Female
-            };
         }
     }
 }
