@@ -29,24 +29,12 @@ namespace Zaabee.Jil.UnitTest
 
             Assert.Equal(testModel.Id, result1.Id);
             Assert.Equal(testModel.Age, result1.Age);
-            Assert.Equal(testModel.CreateTime.Year, result1.CreateTime.Year);
-            Assert.Equal(testModel.CreateTime.Month, result1.CreateTime.Month);
-            Assert.Equal(testModel.CreateTime.Day, result1.CreateTime.Day);
-            Assert.Equal(testModel.CreateTime.Hour, result1.CreateTime.Hour);
-            Assert.Equal(testModel.CreateTime.Minute, result1.CreateTime.Minute);
-            Assert.Equal(testModel.CreateTime.Second, result1.CreateTime.Second);
-            Assert.Equal(testModel.CreateTime.Millisecond, result1.CreateTime.Millisecond);
+            Assert.Equal(testModel.CreateTime, result1.CreateTime);
             Assert.Equal(testModel.Name, result1.Name);
 
             Assert.Equal(testModel.Id, result2.Id);
             Assert.Equal(testModel.Age, result2.Age);
-            Assert.Equal(testModel.CreateTime.Year, result2.CreateTime.Year);
-            Assert.Equal(testModel.CreateTime.Month, result2.CreateTime.Month);
-            Assert.Equal(testModel.CreateTime.Day, result2.CreateTime.Day);
-            Assert.Equal(testModel.CreateTime.Hour, result2.CreateTime.Hour);
-            Assert.Equal(testModel.CreateTime.Minute, result2.CreateTime.Minute);
-            Assert.Equal(testModel.CreateTime.Second, result2.CreateTime.Second);
-            Assert.Equal(testModel.CreateTime.Millisecond, result2.CreateTime.Millisecond);
+            Assert.Equal(testModel.CreateTime, result2.CreateTime);
             Assert.Equal(testModel.Name, result2.Name);
         }
 
@@ -65,24 +53,12 @@ namespace Zaabee.Jil.UnitTest
 
             Assert.Equal(testModel.Id, result1.Id);
             Assert.Equal(testModel.Age, result1.Age);
-            Assert.Equal(testModel.CreateTime.Year, result1.CreateTime.Year);
-            Assert.Equal(testModel.CreateTime.Month, result1.CreateTime.Month);
-            Assert.Equal(testModel.CreateTime.Day, result1.CreateTime.Day);
-            Assert.Equal(testModel.CreateTime.Hour, result1.CreateTime.Hour);
-            Assert.Equal(testModel.CreateTime.Minute, result1.CreateTime.Minute);
-            Assert.Equal(testModel.CreateTime.Second, result1.CreateTime.Second);
-            Assert.Equal(testModel.CreateTime.Millisecond, result1.CreateTime.Millisecond);
+            Assert.Equal(testModel.CreateTime, result1.CreateTime);
             Assert.Equal(testModel.Name, result1.Name);
 
             Assert.Equal(testModel.Id, result2.Id);
             Assert.Equal(testModel.Age, result2.Age);
-            Assert.Equal(testModel.CreateTime.Year, result2.CreateTime.Year);
-            Assert.Equal(testModel.CreateTime.Month, result2.CreateTime.Month);
-            Assert.Equal(testModel.CreateTime.Day, result2.CreateTime.Day);
-            Assert.Equal(testModel.CreateTime.Hour, result2.CreateTime.Hour);
-            Assert.Equal(testModel.CreateTime.Minute, result2.CreateTime.Minute);
-            Assert.Equal(testModel.CreateTime.Second, result2.CreateTime.Second);
-            Assert.Equal(testModel.CreateTime.Millisecond, result2.CreateTime.Millisecond);
+            Assert.Equal(testModel.CreateTime, result2.CreateTime);
             Assert.Equal(testModel.Name, result2.Name);
         }
     }
