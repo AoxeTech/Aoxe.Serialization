@@ -7,10 +7,10 @@ using Zaabee.Extensions;
 
 namespace Zaabee.MsgPack.UnitTest
 {
-    public class UnitTestAsync
+    public partial class MsgPackUnitTest
     {
         [Fact]
-        public async Task StreamTest()
+        public async Task StreamAsyncTest()
         {
             var testModel = TestModelFactory.Create();
 
