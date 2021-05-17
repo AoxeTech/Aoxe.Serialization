@@ -1,25 +1,24 @@
 using System;
-using System.Text;
 using Zaabee.Extensions;
 
 namespace Zaabee.Xml
 {
     public static partial class XmlHelper
     {
-        public static string SerializeToXml<T>(T t, Encoding encoding = null) =>
-            XmlSerializer.SerializeToXml(t, encoding ?? DefaultEncoding);
+        public static string SerializeToXml<T>(T t) =>
+            XmlSerializer.SerializeToXml(t);
 
-        public static string SerializeToXml(Type type, object obj, Encoding encoding = null) =>
-            XmlSerializer.SerializeToXml(type, obj, encoding ?? DefaultEncoding);
+        public static string SerializeToXml(Type type, object obj) =>
+            XmlSerializer.SerializeToXml(type, obj);
 
-        public static T Deserialize<T>(string xml, Encoding encoding = null) =>
+        public static T Deserialize<T>(string xml) =>
             xml.IsNullOrWhiteSpace()
                 ? (T) typeof(T).GetDefaultValue()
-                : XmlSerializer.Deserialize<T>(xml, encoding ?? DefaultEncoding);
+                : XmlSerializer.Deserialize<T>(xml);
 
-        public static object Deserialize(Type type, string xml, Encoding encoding = null) =>
+        public static object Deserialize(Type type, string xml) =>
             type is null || xml.IsNullOrWhiteSpace()
                 ? null
-                : XmlSerializer.Deserialize(type, xml, encoding ?? DefaultEncoding);
+                : XmlSerializer.Deserialize(type, xml);
     }
 }
