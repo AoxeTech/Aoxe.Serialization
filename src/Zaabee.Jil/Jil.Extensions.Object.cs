@@ -6,8 +6,8 @@ namespace Zaabee.Jil
 {
     public static partial class JilExtensions
     {
-        public static byte[] ToBytes<T>(this T t, Options options = null) =>
-            JilHelper.Serialize(t, options);
+        public static byte[] ToBytes<T>(this T t, Options options = null, Encoding encoding = null) =>
+            JilHelper.Serialize(t, options, encoding);
 
         public static MemoryStream ToStream<T>(this T t, Options options = null, Encoding encoding = null) =>
             JilHelper.Pack(t, options, encoding);
@@ -21,8 +21,8 @@ namespace Zaabee.Jil
         public static void PackTo<T>(this T t, Stream stream, Options options = null, Encoding encoding = null) =>
             JilHelper.Pack(t, stream, options, encoding);
 
-        public static byte[] ToBytes(this object obj, Options options = null) =>
-            JilHelper.Serialize(obj, options);
+        public static byte[] ToBytes(this object obj, Options options = null, Encoding encoding = null) =>
+            JilHelper.Serialize(obj, options, encoding);
 
         public static MemoryStream ToStream(this object obj, Options options = null, Encoding encoding = null) =>
             JilHelper.Pack(obj, options, encoding);
