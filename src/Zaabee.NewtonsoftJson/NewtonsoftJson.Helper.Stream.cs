@@ -33,13 +33,13 @@ namespace Zaabee.NewtonsoftJson
         }
 
         public static T Unpack<T>(Stream stream, JsonSerializerSettings settings = null, Encoding encoding = null) =>
-            stream is null
+            stream.IsNullOrEmpty()
                 ? (T) typeof(T).GetDefaultValue()
                 : NewtonsoftJsonSerializer.Unpack<T>(stream, settings ?? DefaultSettings, encoding ?? DefaultEncoding);
 
         public static object Unpack(Type type, Stream stream, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
-            stream is null
+            stream.IsNullOrEmpty()
                 ? type.GetDefaultValue()
                 : NewtonsoftJsonSerializer.Unpack(type, stream, settings ?? DefaultSettings,
                     encoding ?? DefaultEncoding);

@@ -14,9 +14,6 @@ namespace Zaabee.ZeroFormatter
             ZeroSerializer.Pack(t, stream);
         }
 
-        public static T Unpack<T>(Stream stream) =>
-            stream is null ? (T) typeof(T).GetDefaultValue() : ZeroSerializer.Unpack<T>(stream);
-
         public static MemoryStream Pack(Type type, object obj) =>
             obj is null ? new MemoryStream() : ZeroSerializer.Pack(type, obj);
 
@@ -26,7 +23,14 @@ namespace Zaabee.ZeroFormatter
             ZeroSerializer.Pack(type, obj, stream);
         }
 
+        public static T Unpack<T>(Stream stream) =>
+            stream.IsNullOrEmpty()
+                ? (T) typeof(T).GetDefaultValue()
+                : ZeroSerializer.Unpack<T>(stream);
+
         public static object Unpack(Type type, Stream stream) =>
-            stream is null ? type.GetDefaultValue() : ZeroSerializer.Unpack(type, stream);
+            stream.IsNullOrEmpty()
+                ? type.GetDefaultValue()
+                : ZeroSerializer.Unpack(type, stream);
     }
 }

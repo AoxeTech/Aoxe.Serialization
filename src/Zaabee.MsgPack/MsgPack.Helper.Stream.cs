@@ -29,12 +29,12 @@ namespace Zaabee.MsgPack
         }
 
         public static T Unpack<T>(Stream stream) =>
-            stream is null
+            stream.IsNullOrEmpty()
                 ? (T) typeof(T).GetDefaultValue()
                 : MsgPackSerializer.Unpack<T>(stream);
 
         public static object Unpack(Type type, Stream stream) =>
-            stream is null
+            stream.IsNullOrEmpty()
                 ? type.GetDefaultValue()
                 : MsgPackSerializer.Unpack(type, stream);
     }

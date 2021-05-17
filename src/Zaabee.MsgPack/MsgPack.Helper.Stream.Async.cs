@@ -18,7 +18,7 @@ namespace Zaabee.MsgPack
         }
 
         public static Task<T> UnpackAsync<T>(Stream stream) =>
-            stream is null
+            stream.IsNullOrEmpty()
                 ? Task.FromResult((T) typeof(T).GetDefaultValue())
                 : MsgPackSerializer.UnpackAsync<T>(stream);
     }

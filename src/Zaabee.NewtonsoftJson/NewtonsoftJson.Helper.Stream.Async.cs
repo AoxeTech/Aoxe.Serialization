@@ -49,7 +49,7 @@ namespace Zaabee.NewtonsoftJson
         /// <returns></returns>
         public static Task<T> UnpackAsync<T>(Stream stream, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
-            stream is null
+            stream.IsNullOrEmpty()
                 ? Task.FromResult((T) typeof(T).GetDefaultValue())
                 : NewtonsoftJsonSerializer.UnpackAsync<T>(stream, settings ?? DefaultSettings,
                     encoding ?? DefaultEncoding);
@@ -64,7 +64,7 @@ namespace Zaabee.NewtonsoftJson
         /// <returns></returns>
         public static Task<object> UnpackAsync(Type type, Stream stream, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
-            stream is null
+            stream.IsNullOrEmpty()
                 ? Task.FromResult(type.GetDefaultValue())
                 : NewtonsoftJsonSerializer.UnpackAsync(type, stream, settings ?? DefaultSettings,
                     encoding ?? DefaultEncoding);

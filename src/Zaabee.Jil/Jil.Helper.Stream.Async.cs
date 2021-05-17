@@ -32,14 +32,14 @@ namespace Zaabee.Jil
         }
 
         public static Task<T> UnpackAsync<T>(Stream stream, Options options = null, Encoding encoding = null) =>
-            stream is null
+            stream.IsNullOrEmpty()
                 ? Task.FromResult((T) typeof(T).GetDefaultValue())
                 : JilSerializer.UnpackAsync<T>(stream, options ?? DefaultOptions, encoding ?? DefaultEncoding);
 
         public static Task<object> UnpackAsync(Type type, Stream stream, Options options = null,
             Encoding encoding = null) =>
-            stream is null
-                ? Task.FromResult<object>(null)
+            stream.IsNullOrEmpty()
+                ? Task.FromResult(type.GetDefaultValue())
                 : JilSerializer.UnpackAsync(type, stream, options ?? DefaultOptions, encoding ?? DefaultEncoding);
     }
 }

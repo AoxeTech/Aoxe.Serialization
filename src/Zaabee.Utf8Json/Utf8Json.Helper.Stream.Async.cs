@@ -48,7 +48,7 @@ namespace Zaabee.Utf8Json
 
         public static Task<object> UnpackAsync(Type type, Stream stream, IJsonFormatterResolver resolver = null) =>
             stream.IsNullOrEmpty()
-                ? Task.FromResult<object>(type.GetDefaultValue())
+                ? Task.FromResult(type.GetDefaultValue())
                 : Utf8JsonSerializer.UnpackAsync(type, stream, resolver ?? DefaultJsonFormatterResolver);
     }
 }

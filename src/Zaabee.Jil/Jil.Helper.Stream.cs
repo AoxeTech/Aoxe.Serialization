@@ -31,12 +31,12 @@ namespace Zaabee.Jil
         }
 
         public static T Unpack<T>(Stream stream, Options options = null, Encoding encoding = null) =>
-            stream is null
+            stream.IsNullOrEmpty()
                 ? (T) typeof(T).GetDefaultValue()
                 : JilSerializer.Unpack<T>(stream, options ?? DefaultOptions, encoding ?? DefaultEncoding);
 
         public static object Unpack(Type type, Stream stream, Options options = null, Encoding encoding = null) =>
-            stream is null
+            stream.IsNullOrEmpty()
                 ? type.GetDefaultValue()
                 : JilSerializer.Unpack(type, stream, options ?? DefaultOptions, encoding ?? DefaultEncoding);
     }

@@ -25,9 +25,13 @@ namespace Zaabee.Xml
             obj is null ? new MemoryStream() : XmlSerializer.Pack(type, obj);
         
         public static T Unpack<T>(Stream stream) =>
-            stream.IsNullOrEmpty() ? (T) typeof(T).GetDefaultValue() : XmlSerializer.Unpack<T>(stream);
+            stream.IsNullOrEmpty()
+                ? (T) typeof(T).GetDefaultValue()
+                : XmlSerializer.Unpack<T>(stream);
         
         public static object Unpack(Type type, Stream stream) =>
-            type is null || stream.IsNullOrEmpty() ? null : XmlSerializer.Unpack(type, stream);
+            stream.IsNullOrEmpty()
+                ? type.GetDefaultValue()
+                : XmlSerializer.Unpack(type, stream);
     }
 }
