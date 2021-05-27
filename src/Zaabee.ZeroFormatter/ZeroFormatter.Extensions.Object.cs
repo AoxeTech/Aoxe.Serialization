@@ -5,10 +5,10 @@ namespace Zaabee.ZeroFormatter
 {
     public static partial class ZeroFormatterExtensions
     {
-        public static string ToBase64<T>(this T t) =>
+        public static string SerializeToBase64<T>(this T t) =>
             ZeroFormatterHelper.SerializeToBase64(t);
 
-        public static string ToBase64(this object obj, Type type) =>
+        public static string SerializeToBase64(this object obj, Type type) =>
             ZeroFormatterHelper.SerializeToBase64(type, obj);
 
         public static byte[] ToBytes<T>(this T t) =>

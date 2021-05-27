@@ -10,8 +10,8 @@ namespace Zaabee.MsgPack.UnitTest
         public void StringNonGenericTest()
         {
             var testModel = TestModelFactory.Create();
-            var base64 = testModel.ToBase64(typeof(TestModel));
-            var result = (TestModel) base64.FromBase64(typeof(TestModel));
+            var base64 = testModel.SerializeToBase64(typeof(TestModel));
+            var result = (TestModel) base64.DeserializeFromBase64(typeof(TestModel));
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));

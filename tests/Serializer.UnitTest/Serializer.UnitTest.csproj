@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFrameworks>net48;netcoreapp2.1;netcoreapp3.1;net5.0</TargetFrameworks>
@@ -17,7 +17,15 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\src\Zaabee.Binary\Zaabee.Binary.csproj" />
         <ProjectReference Include="..\..\src\Zaabee.Jil\Zaabee.Jil.csproj" />
+        <ProjectReference Include="..\..\src\Zaabee.MsgPack\Zaabee.MsgPack.csproj" />
+        <ProjectReference Include="..\..\src\Zaabee.NewtonsoftJson\Zaabee.NewtonsoftJson.csproj" />
+        <ProjectReference Include="..\..\src\Zaabee.Protobuf\Zaabee.Protobuf.csproj" />
+        <ProjectReference Include="..\..\src\Zaabee.SystemTextJson\Zaabee.SystemTextJson.csproj" />
+        <ProjectReference Include="..\..\src\Zaabee.Utf8Json\Zaabee.Utf8Json.csproj" />
+        <ProjectReference Include="..\..\src\Zaabee.Xml\Zaabee.Xml.csproj" />
+        <ProjectReference Include="..\..\src\Zaabee.ZeroFormatter\Zaabee.ZeroFormatter.csproj" />
         <ProjectReference Include="..\TestModels\TestModels.csproj" />
     </ItemGroup>
 

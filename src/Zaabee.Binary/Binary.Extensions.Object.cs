@@ -4,7 +4,7 @@ namespace Zaabee.Binary
 {
     public static partial class BinaryExtensions
     {
-        public static string ToBase64(this object obj) => BinaryHelper.SerializeToBase64(obj);
+        public static string SerializeToBase64(this object obj) => BinaryHelper.SerializeToBase64(obj);
         
         public static byte[] ToBytes(this object obj) => BinaryHelper.Serialize(obj);
 

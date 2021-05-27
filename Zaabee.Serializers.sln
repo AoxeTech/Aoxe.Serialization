@@ -48,6 +48,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestModels", "tests\TestMod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.Serializer.Abstraction", "src\Zaabee.Serializer.Abstraction\Zaabee.Serializer.Abstraction.csproj", "{12DC7AB7-49EA-4A17-B693-CCAE289BDA53}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serializer.UnitTest", "tests\Serializer.UnitTest\Serializer.UnitTest.csproj", "{7E985718-5D73-450D-AAD9-D14A2FBD5DE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,7 @@ Global
 		{35FF82EA-937C-4FBE-B6EA-2B73B360F365} = {90DB4B57-6A0D-41E0-91E4-1505A822AD16}
 		{8E52BA25-0F76-432E-94BF-8F9DC1723979} = {27F442D2-123E-43B6-AC3A-EFCFF0B4C598}
 		{12DC7AB7-49EA-4A17-B693-CCAE289BDA53} = {788742B9-1878-4A60-B381-A60F4E43F907}
+		{7E985718-5D73-450D-AAD9-D14A2FBD5DE8} = {27F442D2-123E-43B6-AC3A-EFCFF0B4C598}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{DC489EBA-145D-4FEF-A6A8-D397A3BE8477}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -161,5 +164,9 @@ Global
 		{12DC7AB7-49EA-4A17-B693-CCAE289BDA53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12DC7AB7-49EA-4A17-B693-CCAE289BDA53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12DC7AB7-49EA-4A17-B693-CCAE289BDA53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E985718-5D73-450D-AAD9-D14A2FBD5DE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E985718-5D73-450D-AAD9-D14A2FBD5DE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E985718-5D73-450D-AAD9-D14A2FBD5DE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E985718-5D73-450D-AAD9-D14A2FBD5DE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
