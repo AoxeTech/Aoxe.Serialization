@@ -1,4 +1,4 @@
-namespace Zaabee.Serializer.Abstraction
+namespace Zaabee.Serializer.Abstractions
 {
     public interface ISerializer : IBytesSerializer, IStreamSerializer, IStringSerializer
     {

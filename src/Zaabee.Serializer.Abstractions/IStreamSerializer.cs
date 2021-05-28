@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace Zaabee.Serializer.Abstraction
+namespace Zaabee.Serializer.Abstractions
 {
     public interface IStreamSerializer
     {

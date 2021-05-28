@@ -46,7 +46,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benchmark", "benchmarks\Ben
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestModels", "tests\TestModels\TestModels.csproj", "{8E52BA25-0F76-432E-94BF-8F9DC1723979}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.Serializer.Abstraction", "src\Zaabee.Serializer.Abstraction\Zaabee.Serializer.Abstraction.csproj", "{12DC7AB7-49EA-4A17-B693-CCAE289BDA53}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.Serializer.Abstractions", "src\Zaabee.Serializer.Abstractions\Zaabee.Serializer.Abstractions.csproj", "{12DC7AB7-49EA-4A17-B693-CCAE289BDA53}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serializer.UnitTest", "tests\Serializer.UnitTest\Serializer.UnitTest.csproj", "{7E985718-5D73-450D-AAD9-D14A2FBD5DE8}"
 EndProject

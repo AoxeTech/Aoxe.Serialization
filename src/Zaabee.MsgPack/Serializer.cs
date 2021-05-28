@@ -1,6 +1,6 @@
 using System.IO;
 using Zaabee.Extensions;
-using Zaabee.Serializer.Abstraction;
+using Zaabee.Serializer.Abstractions;
 
 namespace Zaabee.MsgPack
 {

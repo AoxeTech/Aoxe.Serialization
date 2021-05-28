@@ -1,7 +1,7 @@
 using System.IO;
 using System.Text;
 using Newtonsoft.Json;
-using Zaabee.Serializer.Abstraction;
+using Zaabee.Serializer.Abstractions;
 
 namespace Zaabee.NewtonsoftJson
 {

@@ -1,7 +1,7 @@
 using System;
 using TestModels;
 using Xunit;
-using Zaabee.Serializer.Abstraction;
+using Zaabee.Serializer.Abstractions;
 
 namespace Serializer.UnitTest
 {

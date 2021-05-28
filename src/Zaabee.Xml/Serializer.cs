@@ -1,6 +1,6 @@
 using System.IO;
 using System.Text;
-using Zaabee.Serializer.Abstraction;
+using Zaabee.Serializer.Abstractions;
 
 namespace Zaabee.Xml
 {
