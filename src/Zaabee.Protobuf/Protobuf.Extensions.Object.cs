@@ -4,10 +4,6 @@ namespace Zaabee.Protobuf
 {
     public static partial class ProtobufExtensions
     {
-        public static string SerializeToBase64<T>(this T t) => ProtobufHelper.SerializeToBase64(t);
-
-        public static string SerializeToBase64(this object obj) => ProtobufHelper.SerializeToBase64(obj);
-
         public static byte[] ToBytes<T>(this T t) => ProtobufHelper.Serialize(t);
 
         public static byte[] ToBytes(this object obj) => ProtobufHelper.Serialize(obj);

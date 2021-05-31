@@ -1,8 +1,6 @@
 namespace Zaabee.Serializer.Abstractions
 {
-    public interface ISerializer : IBytesSerializer, IStreamSerializer, IStringSerializer
+    public interface ISerializer : IBytesSerializer, IStreamSerializer
     {
-        string BytesToString(byte[] bytes);
-        byte[] StringToBytes(string text);
     }
 }

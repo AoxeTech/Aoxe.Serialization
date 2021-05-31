@@ -5,7 +5,7 @@ using Zaabee.Serializer.Abstractions;
 
 namespace Zaabee.Jil
 {
-    public class Serializer : ISerializer
+    public class Serializer : ITextSerializer
     {
         private readonly Options _options;
         private readonly Encoding _encoding;
@@ -19,17 +19,11 @@ namespace Zaabee.Jil
         public T DeserializeFromBytes<T>(byte[] bytes) =>
             JilSerializer.Deserialize<T>(bytes, _options, _encoding);
 
-        public string BytesToString(byte[] bytes) =>
-            _encoding.GetString(bytes);
-
         public string SerializeToString<T>(T t) =>
             JilSerializer.SerializeToJson(t, _options);
 
         public T DeserializeFromString<T>(string text) =>
             JilSerializer.Deserialize<T>(text, _options);
-
-        public byte[] StringToBytes(string text) =>
-            _encoding.GetBytes(text);
 
         public Stream SerializeToStream<T>(T t) =>
             JilSerializer.Pack(t, _options, _encoding);

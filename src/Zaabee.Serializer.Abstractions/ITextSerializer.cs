@@ -1,6 +1,6 @@
-﻿namespace Zaabee.Serializer.Abstractions
+namespace Zaabee.Serializer.Abstractions
 {
-    public interface IStringSerializer
+    public interface ITextSerializer : ISerializer
     {
         string SerializeToString<T>(T t);
         T DeserializeFromString<T>(string text);
