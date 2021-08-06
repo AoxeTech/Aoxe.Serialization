@@ -9,12 +9,12 @@ namespace Zaabee.Jil
     {
         public static byte[] Serialize<T>(T t, Options options = null, Encoding encoding = null) =>
             t is null
-                ? new byte[0]
+                ? Array.Empty<byte>()
                 : JilSerializer.Serialize(t, options ?? DefaultOptions, encoding ?? DefaultEncoding);
 
         public static byte[] Serialize(object obj, Options options = null, Encoding encoding = null) =>
             obj is null
-                ? new byte[0]
+                ? Array.Empty<byte>()
                 : JilSerializer.Serialize(obj, options ?? DefaultOptions, encoding ?? DefaultEncoding);
 
         public static T Deserialize<T>(byte[] bytes, Options options = null, Encoding encoding = null) =>

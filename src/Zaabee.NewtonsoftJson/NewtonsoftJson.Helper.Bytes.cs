@@ -9,14 +9,14 @@ namespace Zaabee.NewtonsoftJson
     {
         public static byte[] Serialize<T>(T t, JsonSerializerSettings settings = null, Encoding encoding = null) =>
             t is null
-                ? new byte[0]
+                ? Array.Empty<byte>()
                 : NewtonsoftJsonSerializer.Serialize(t, settings ?? DefaultSettings,
                     encoding ?? DefaultEncoding);
 
         public static byte[] Serialize(Type type, object obj, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
             obj is null
-                ? new byte[0]
+                ? Array.Empty<byte>()
                 : NewtonsoftJsonSerializer.Serialize(type, obj, settings ?? DefaultSettings,
                     encoding ?? DefaultEncoding);
 

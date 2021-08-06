@@ -7,12 +7,12 @@ namespace Zaabee.MsgPack
     {
         public static byte[] Serialize<T>(T t) =>
             t is null
-                ? new byte[0]
+                ? Array.Empty<byte>()
                 : MsgPackSerializer.Serialize(t);
 
         public static byte[] Serialize(Type type, object obj) =>
             obj is null
-                ? new byte[0]
+                ? Array.Empty<byte>()
                 : MsgPackSerializer.Serialize(type, obj);
 
         public static T Deserialize<T>(byte[] bytes) =>

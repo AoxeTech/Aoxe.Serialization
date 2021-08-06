@@ -7,12 +7,12 @@ namespace Zaabee.Protobuf
     {
         public static byte[] Serialize<T>(T t) =>
             t is null
-                ? new byte[0]
+                ? Array.Empty<byte>()
                 : ProtobufSerializer.Serialize(t);
 
         public static byte[] Serialize(object obj) =>
             obj is null
-                ? new byte[0]
+                ? Array.Empty<byte>()
                 : ProtobufSerializer.Serialize(obj);
 
         public static T Deserialize<T>(byte[] bytes) =>
