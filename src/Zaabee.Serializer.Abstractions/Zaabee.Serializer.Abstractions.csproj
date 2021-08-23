@@ -3,14 +3,14 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2021.8.0</PackageVersion>
-        <Version>2021.8.0</Version>
+        <PackageVersion>2021.8.2</PackageVersion>
+        <Version>2021.8.2</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <Description>The abstractions for Zaabee.Serializer</Description>
-        <PackageTags>Serializer abstractions</PackageTags>
+        <Description>The abstractions for Zaabee.Serializers</Description>
+        <PackageTags>Zaabee;Serializer;Abstractions</PackageTags>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
 

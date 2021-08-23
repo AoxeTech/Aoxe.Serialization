@@ -19,21 +19,19 @@ namespace Zaabee.Jil
                 ? Task.FromResult(new MemoryStream())
                 : JilSerializer.PackAsync(obj, options ?? DefaultOptions, encoding ?? DefaultEncoding);
 
-        public static Task PackAsync<T>(T t, Stream stream, Options options = null, Encoding encoding = null)
-        {
-            if (t is null || stream is null) return Task.CompletedTask;
-            return JilSerializer.PackAsync(t, stream, options ?? DefaultOptions, encoding ?? DefaultEncoding);
-        }
+        public static Task PackAsync<T>(T t, Stream stream, Options options = null, Encoding encoding = null) =>
+            t is null || stream is null
+                ? Task.CompletedTask
+                : JilSerializer.PackAsync(t, stream, options ?? DefaultOptions, encoding ?? DefaultEncoding);
 
-        public static Task PackAsync(object obj, Stream stream, Options options = null, Encoding encoding = null)
-        {
-            if (obj is null || stream is null) return Task.CompletedTask;
-            return JilSerializer.PackAsync(obj, stream, options ?? DefaultOptions, encoding ?? DefaultEncoding);
-        }
+        public static Task PackAsync(object obj, Stream stream, Options options = null, Encoding encoding = null) =>
+            obj is null || stream is null
+                ? Task.CompletedTask
+                : JilSerializer.PackAsync(obj, stream, options ?? DefaultOptions, encoding ?? DefaultEncoding);
 
         public static Task<T> UnpackAsync<T>(Stream stream, Options options = null, Encoding encoding = null) =>
             stream.IsNullOrEmpty()
-                ? Task.FromResult((T) typeof(T).GetDefaultValue())
+                ? Task.FromResult((T)typeof(T).GetDefaultValue())
                 : JilSerializer.UnpackAsync<T>(stream, options ?? DefaultOptions, encoding ?? DefaultEncoding);
 
         public static Task<object> UnpackAsync(Type type, Stream stream, Options options = null,

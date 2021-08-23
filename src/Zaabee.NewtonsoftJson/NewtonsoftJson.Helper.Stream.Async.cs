@@ -24,20 +24,18 @@ namespace Zaabee.NewtonsoftJson
                     encoding ?? DefaultEncoding);
 
         public static Task PackAsync<T>(T t, Stream stream, JsonSerializerSettings settings = null,
-            Encoding encoding = null)
-        {
-            if (t is null || stream is null) return Task.CompletedTask;
-            return NewtonsoftJsonSerializer.PackAsync(t, stream, settings ?? DefaultSettings,
-                encoding ?? DefaultEncoding);
-        }
+            Encoding encoding = null) =>
+            t is null || stream is null
+                ? Task.CompletedTask
+                : NewtonsoftJsonSerializer.PackAsync(t, stream, settings ?? DefaultSettings,
+                    encoding ?? DefaultEncoding);
 
         public static Task PackAsync(Type type, object obj, Stream stream, JsonSerializerSettings settings = null,
-            Encoding encoding = null)
-        {
-            if (obj is null || stream is null) return Task.CompletedTask;
-            return NewtonsoftJsonSerializer.PackAsync(type, obj, stream, settings ?? DefaultSettings,
-                encoding ?? DefaultEncoding);
-        }
+            Encoding encoding = null) =>
+            obj is null || stream is null
+                ? Task.CompletedTask
+                : NewtonsoftJsonSerializer.PackAsync(type, obj, stream, settings ?? DefaultSettings,
+                    encoding ?? DefaultEncoding);
 
         /// <summary>
         /// Asynchronously read the stream to bytes, encode it to string and deserialize it.
@@ -50,7 +48,7 @@ namespace Zaabee.NewtonsoftJson
         public static Task<T> UnpackAsync<T>(Stream stream, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
             stream.IsNullOrEmpty()
-                ? Task.FromResult((T) typeof(T).GetDefaultValue())
+                ? Task.FromResult((T)typeof(T).GetDefaultValue())
                 : NewtonsoftJsonSerializer.UnpackAsync<T>(stream, settings ?? DefaultSettings,
                     encoding ?? DefaultEncoding);
 

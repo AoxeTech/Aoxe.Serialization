@@ -1,23 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;netcoreapp3.1;net5.0</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2021.4.3</PackageVersion>
-        <Version>2021.4.3</Version>
+        <PackageVersion>2021.5.0</PackageVersion>
+        <Version>2021.5.0</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Protobuf</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Description>The wrappers and extensions methods for System.Text.Json</Description>
-        <PackageTags>Zaabee Json System.Text.Json serialize deserialize</PackageTags>
+        <PackageTags>Zaabee;Json;System.Text.Json;serialize;deserialize</PackageTags>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="System.Text.Json" Version="5.0.2" />
-        <PackageReference Include="Zaabee.Extensions" Version="2021.4.0" />
-        <PackageReference Include="Zaabee.Serializer.Abstractions" Version="2021.8.0" />
+        <PackageReference Include="Zaabee.Extensions" Version="2021.5.0" />
+        <PackageReference Include="Zaabee.Serializer.Abstractions" Version="2021.8.2" />
     </ItemGroup>
 
 </Project>
