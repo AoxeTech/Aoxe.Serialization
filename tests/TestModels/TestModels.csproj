@@ -6,9 +6,11 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="MessagePack.Annotations" Version="2.3.75" />
         <PackageReference Include="protobuf-net" Version="3.0.101" />
         <PackageReference Include="ZeroFormatter" Version="1.6.4" Condition="'$(TargetFramework)'=='netstandard2.0'" />
         <PackageReference Include="Alexinea.ZeroFormatter" Version="1.6.4" Condition="'$(TargetFramework)' == 'netcoreapp3.1'" />
+        <PackageReference Include="Alexinea.ZeroFormatter" Version="1.6.4" Condition="'$(TargetFramework)' == 'net5.0'" />
     </ItemGroup>
 
 </Project>
