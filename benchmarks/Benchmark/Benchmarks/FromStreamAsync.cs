@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
 using Zaabee.Jil;
+using Zaabee.MessagePack;
 using Zaabee.MsgPack;
 using Zaabee.NewtonsoftJson;
 using Zaabee.SystemTextJson;
@@ -26,6 +27,7 @@ namespace Benchmark.Benchmarks
         };
 
         private readonly FileStream _jilStream = new FileStream(".\\JilStream", FileMode.Create);
+        private readonly FileStream _messagePackStream = new FileStream(".\\MessagePackStream", FileMode.Create);
         private readonly FileStream _msgPackStream = new FileStream(".\\MsgPackStream", FileMode.Create);
         private readonly FileStream _newtonsoftJsonStream = new FileStream(".\\NewtonsoftJsonStream", FileMode.Create);
         private readonly FileStream _systemTextJsonStream = new FileStream(".\\SystemTextJsonStream", FileMode.Create);
@@ -34,6 +36,7 @@ namespace Benchmark.Benchmarks
         public FromStreamAsync()
         {
             JilHelper.Pack(_testModel, _jilStream);
+            MessagePackHelper.Pack(_testModel, _messagePackStream);
             MsgPackHelper.Pack(_testModel, _msgPackStream);
             NewtonsoftJsonHelper.Pack(_testModel, _newtonsoftJsonStream);
             SystemTextJsonHelper.Pack(_testModel, _systemTextJsonStream);
@@ -43,6 +46,10 @@ namespace Benchmark.Benchmarks
         [Benchmark]
         public async Task JilFromStreamAsync() =>
             await JilHelper.UnpackAsync<TestModel>(_jilStream);
+
+        [Benchmark]
+        public async Task MessagePackFromStreamAsync() =>
+            await MessagePackHelper.UnpackAsync<TestModel>(_messagePackStream);
 
         [Benchmark]
         public async Task MsgPackFromStreamAsync() =>

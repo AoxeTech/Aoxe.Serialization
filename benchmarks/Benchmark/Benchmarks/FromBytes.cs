@@ -3,6 +3,7 @@ using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
 using Zaabee.Binary;
 using Zaabee.Jil;
+using Zaabee.MessagePack;
 using Zaabee.MsgPack;
 using Zaabee.NewtonsoftJson;
 using Zaabee.Protobuf;
@@ -29,6 +30,7 @@ namespace Benchmark.Benchmarks
 
         private readonly byte[] _binaryBytes;
         private readonly byte[] _jilBytes;
+        private readonly byte[] _messagePackBytes;
         private readonly byte[] _msgPackBytes;
         private readonly byte[] _newtonsoftJsonBytes;
         private readonly byte[] _protobufBytes;
@@ -41,6 +43,7 @@ namespace Benchmark.Benchmarks
         {
             _binaryBytes = BinaryHelper.Serialize(_testModel);
             _jilBytes = JilHelper.Serialize(_testModel);
+            _messagePackBytes = MessagePackHelper.Serialize(_testModel);
             _msgPackBytes = MsgPackHelper.Serialize(_testModel);
             _newtonsoftJsonBytes = NewtonsoftJsonHelper.Serialize(_testModel);
             _protobufBytes = ProtobufHelper.Serialize(_testModel);
@@ -55,6 +58,9 @@ namespace Benchmark.Benchmarks
 
         [Benchmark]
         public void JilFromBytes() => JilHelper.Deserialize<TestModel>(_jilBytes);
+
+        [Benchmark]
+        public void MessagePackFromBytes() => MessagePackHelper.Deserialize<TestModel>(_messagePackBytes);
 
         [Benchmark]
         public void MsgPackFromBytes() => MsgPackHelper.Deserialize<TestModel>(_msgPackBytes);

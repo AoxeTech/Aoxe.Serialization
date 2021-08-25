@@ -43,13 +43,17 @@ namespace Zaabee.MessagePack
         public static async ValueTask<T> UnpackAsync<T>(Stream stream, MessagePackSerializerOptions options = null,
             CancellationToken cancellationToken = default)
         {
-            return await MessagePackSerializer.DeserializeAsync<T>(stream, options, cancellationToken);
+            var result = await MessagePackSerializer.DeserializeAsync<T>(stream, options, cancellationToken);
+            stream.TrySeek(0, SeekOrigin.Begin);
+            return result;
         }
 
         public static async ValueTask<object> UnpackAsync(Type type, Stream stream,
             MessagePackSerializerOptions options = null, CancellationToken cancellationToken = default)
         {
-            return await MessagePackSerializer.DeserializeAsync(type, stream, options, cancellationToken);
+            var result = await MessagePackSerializer.DeserializeAsync(type, stream, options, cancellationToken);
+            stream.TrySeek(0, SeekOrigin.Begin);
+            return result;
         }
     }
 }

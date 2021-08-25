@@ -39,11 +39,19 @@ namespace Zaabee.MessagePack
         }
 
         public static T Unpack<T>(Stream stream, MessagePackSerializerOptions options = null,
-            CancellationToken cancellationToken = default) =>
-            MessagePackSerializer.Deserialize<T>(stream, options, cancellationToken);
+            CancellationToken cancellationToken = default)
+        {
+            var result = MessagePackSerializer.Deserialize<T>(stream, options, cancellationToken);
+            stream.TrySeek(0, SeekOrigin.Begin);
+            return result;
+        }
 
         public static object Unpack(Type type, Stream stream, MessagePackSerializerOptions options = null,
-            CancellationToken cancellationToken = default) =>
-            MessagePackSerializer.Deserialize(type, stream, options, cancellationToken);
+            CancellationToken cancellationToken = default)
+        {
+            var result = MessagePackSerializer.Deserialize(type, stream, options, cancellationToken);
+            stream.TrySeek(0, SeekOrigin.Begin);
+            return result;
+        }
     }
 }

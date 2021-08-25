@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
 using Zaabee.Jil;
+using Zaabee.MessagePack;
 using Zaabee.MsgPack;
 using Zaabee.NewtonsoftJson;
 using Zaabee.SystemTextJson;
@@ -26,6 +27,9 @@ namespace Benchmark.Benchmarks
 
         [Benchmark]
         public async Task JilToStreamAsync() => await JilHelper.PackAsync(_testModel);
+
+        [Benchmark]
+        public async Task MessagePackToStreamAsync() => await MessagePackHelper.PackAsync(_testModel);
 
         [Benchmark]
         public async Task MsgPackToStreamAsync() => await MsgPackHelper.PackAsync(_testModel);

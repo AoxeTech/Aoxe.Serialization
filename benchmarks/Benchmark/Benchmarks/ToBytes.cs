@@ -3,6 +3,7 @@ using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
 using Zaabee.Binary;
 using Zaabee.Jil;
+using Zaabee.MessagePack;
 using Zaabee.MsgPack;
 using Zaabee.NewtonsoftJson;
 using Zaabee.Protobuf;
@@ -32,6 +33,9 @@ namespace Benchmark.Benchmarks
 
         [Benchmark]
         public void JilToBytes() => JilHelper.Serialize(_testModel);
+
+        [Benchmark]
+        public void MessagePackToBytes() => MessagePackHelper.Serialize(_testModel);
 
         [Benchmark]
         public void MsgPackToBytes() => MsgPackHelper.Serialize(_testModel);

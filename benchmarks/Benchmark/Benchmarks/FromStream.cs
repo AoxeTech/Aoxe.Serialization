@@ -4,6 +4,7 @@ using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
 using Zaabee.Binary;
 using Zaabee.Jil;
+using Zaabee.MessagePack;
 using Zaabee.MsgPack;
 using Zaabee.NewtonsoftJson;
 using Zaabee.Protobuf;
@@ -30,6 +31,7 @@ namespace Benchmark.Benchmarks
 
         private readonly Stream _binaryStream;
         private readonly Stream _jilStream;
+        private readonly Stream _messagePackStream;
         private readonly Stream _msgPackStream;
         private readonly Stream _newtonsoftJsonStream;
         private readonly Stream _protobufStream;
@@ -42,6 +44,7 @@ namespace Benchmark.Benchmarks
         {
             _binaryStream = BinaryHelper.Pack(_testModel);
             _jilStream = JilHelper.Pack(_testModel);
+            _messagePackStream = MessagePackHelper.Pack(_testModel);
             _msgPackStream = MsgPackHelper.Pack(_testModel);
             _newtonsoftJsonStream = NewtonsoftJsonHelper.Pack(_testModel);
             _protobufStream = ProtobufHelper.Pack(_testModel);
@@ -56,6 +59,9 @@ namespace Benchmark.Benchmarks
 
         [Benchmark]
         public void JilFromStream() => JilHelper.Unpack<TestModel>(_jilStream);
+
+        [Benchmark]
+        public void MessagePackFromStream() => MessagePackHelper.Unpack<TestModel>(_messagePackStream);
 
         [Benchmark]
         public void MsgPackFromStream() => MsgPackHelper.Unpack<TestModel>(_msgPackStream);
