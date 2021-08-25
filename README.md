@@ -16,9 +16,13 @@ A fast JSON (de)serializer, built on [Sigil](https://github.com/kevin-montrose/S
 
 Json.NET is a popular high-performance JSON framework for .NET [https://www.newtonsoft.com/json](https://www.newtonsoft.com/json)
 
+## [Zaabee.MessagePack](https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/src/Zaabee.MessagePack)
+
+The extremely fast MessagePack serializer for C#. It is 10x faster than MsgPack-Cli and outperforms other C# serializers. MessagePack for C# also ships with built-in support for LZ4 compression - an extremely fast compression algorithm. Performance is important, particularly in applications like games, distributed computing, microservices, or data caches.
+
 ## [Zaabee.MsgPack](https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/src/Zaabee.MsgPack)
 
-MessagePack is an extremely efficient object serialization library. It's like JSON, but very fast and small.
+MessagePack implementation for Common Language Infrastructure / msgpack.org[C#]
 
 ## [Zaabee.Utf8Json](https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/src/Zaabee.Utf8Json)
 

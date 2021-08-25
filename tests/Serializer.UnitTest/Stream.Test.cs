@@ -16,6 +16,10 @@ namespace Serializer.UnitTest
             StreamTest(new Zaabee.Jil.Serializer());
 
         [Fact]
+        public void MessagePackStreamTest() =>
+            StreamTest(new Zaabee.MessagePack.Serializer());
+
+        [Fact]
         public void MsgPackStreamTest() =>
             StreamTest(new Zaabee.MsgPack.Serializer());
 

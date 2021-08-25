@@ -2,12 +2,22 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>2021.1.0</PackageVersion>
+        <Version>2021.1.0</Version>
+        <Authors>Mutuduxf</Authors>
+        <Company>Mutuduxf</Company>
+        <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.MessagePack</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Description>The wrappers and extensions methods for MessagePack</Description>
+        <PackageTags>Zaabee;MessagePack;serialize;deserialize</PackageTags>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="MessagePack" Version="2.3.75" />
-      <PackageReference Include="Zaabee.Extensions" Version="2021.5.0" />
+        <PackageReference Include="MessagePack" Version="2.3.75" />
+        <PackageReference Include="Zaabee.Extensions" Version="2021.5.0" />
+        <PackageReference Include="Zaabee.Serializer.Abstractions" Version="2021.8.2" />
     </ItemGroup>
 
 </Project>
