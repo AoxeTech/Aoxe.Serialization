@@ -3,11 +3,11 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2021.5.0</PackageVersion>
-        <Version>2021.5.0</Version>
+        <PackageVersion>2021.6.0</PackageVersion>
+        <Version>2021.6.0</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
-        <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Utf8Json</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/src/Zaabee.Utf8Json</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Description>The wrappers and extensions methods for Utf8Json</Description>
         <PackageTags>Zaabee;Json;Utf8Json;serialize;deserialize</PackageTags>

@@ -3,11 +3,11 @@
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;netcoreapp3.1;net5.0</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2021.5.0</PackageVersion>
-        <Version>2021.5.0</Version>
+        <PackageVersion>2021.6.0</PackageVersion>
+        <Version>2021.6.0</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
-        <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/Zaabee.Xml</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/src/Zaabee.Xml</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Description>The wrappers and extension methods for xml serialize/deserialize</Description>
         <PackageTags>Zaabee;XML;serialize;deserialize</PackageTags>
