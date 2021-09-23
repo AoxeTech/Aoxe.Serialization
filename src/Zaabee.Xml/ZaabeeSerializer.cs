@@ -3,7 +3,7 @@ using Zaabee.Serializer.Abstractions;
 
 namespace Zaabee.Xml
 {
-    public class Serializer : ITextSerializer
+    public class ZaabeeSerializer : ITextSerializer
     {
         public byte[] SerializeToBytes<T>(T t) =>
             XmlSerializer.Serialize(typeof(T), t);

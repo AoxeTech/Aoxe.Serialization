@@ -9,23 +9,23 @@ namespace Serializer.UnitTest
     {
         [Fact]
         public void JilStringTest() =>
-            StringTest(new Zaabee.Jil.Serializer());
+            StringTest(new Zaabee.Jil.ZaabeeSerializer());
 
         [Fact]
         public void NewtonsoftJsonStringTest() =>
-            StringTest(new Zaabee.NewtonsoftJson.Serializer());
+            StringTest(new Zaabee.NewtonsoftJson.ZaabeeSerializer());
 
         [Fact]
         public void SystemTextJsonStringTest() =>
-            StringTest(new Zaabee.SystemTextJson.Serializer());
+            StringTest(new Zaabee.SystemTextJson.ZaabeeSerializer());
 
         [Fact]
         public void Utf8JsonStringTest() =>
-            StringTest(new Zaabee.Utf8Json.Serializer());
+            StringTest(new Zaabee.Utf8Json.ZaabeeSerializer());
 
         [Fact]
         public void XmlStringTest() =>
-            StringTest(new Zaabee.Xml.Serializer());
+            StringTest(new Zaabee.Xml.ZaabeeSerializer());
 
         private static void StringTest(ITextSerializer serializer)
         {

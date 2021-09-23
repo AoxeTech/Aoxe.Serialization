@@ -3,7 +3,7 @@ using Zaabee.Serializer.Abstractions;
 
 namespace Zaabee.Protobuf
 {
-    public class Serializer : ISerializer
+    public class ZaabeeSerializer : IBytesSerializer
     {
         public byte[] SerializeToBytes<T>(T t) =>
             ProtobufSerializer.Serialize(t);

@@ -5,12 +5,12 @@ using Zaabee.Serializer.Abstractions;
 
 namespace Zaabee.NewtonsoftJson
 {
-    public class Serializer : ITextSerializer
+    public class ZaabeeSerializer : ITextSerializer
     {
         private readonly JsonSerializerSettings _settings;
         private readonly Encoding _encoding;
 
-        public Serializer(JsonSerializerSettings settings = null, Encoding encoding = null) =>
+        public ZaabeeSerializer(JsonSerializerSettings settings = null, Encoding encoding = null) =>
             (_settings, _encoding) = (settings, encoding ?? NewtonsoftJsonHelper.DefaultEncoding);
 
         public byte[] SerializeToBytes<T>(T t) =>

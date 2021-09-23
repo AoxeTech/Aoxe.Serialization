@@ -9,43 +9,43 @@ namespace Serializer.UnitTest
     {
         [Fact]
         public void BinaryStreamTest() =>
-            StreamTest(new Zaabee.Binary.Serializer());
+            StreamTest(new Zaabee.Binary.ZaabeeSerializer());
 
         [Fact]
         public void JilStreamTest() =>
-            StreamTest(new Zaabee.Jil.Serializer());
+            StreamTest(new Zaabee.Jil.ZaabeeSerializer());
 
         [Fact]
         public void MessagePackStreamTest() =>
-            StreamTest(new Zaabee.MessagePack.Serializer());
+            StreamTest(new Zaabee.MessagePack.ZaabeeSerializer());
 
         [Fact]
         public void MsgPackStreamTest() =>
-            StreamTest(new Zaabee.MsgPack.Serializer());
+            StreamTest(new Zaabee.MsgPack.ZaabeeSerializer());
 
         [Fact]
         public void NewtonsoftJsonStreamTest() =>
-            StreamTest(new Zaabee.NewtonsoftJson.Serializer());
+            StreamTest(new Zaabee.NewtonsoftJson.ZaabeeSerializer());
 
         [Fact]
         public void ProtobufStreamTest() =>
-            StreamTest(new Zaabee.Protobuf.Serializer());
+            StreamTest(new Zaabee.Protobuf.ZaabeeSerializer());
 
         [Fact]
         public void SystemTextJsonStreamTest() =>
-            StreamTest(new Zaabee.SystemTextJson.Serializer());
+            StreamTest(new Zaabee.SystemTextJson.ZaabeeSerializer());
 
         [Fact]
         public void Utf8JsonStreamTest() =>
-            StreamTest(new Zaabee.Utf8Json.Serializer());
+            StreamTest(new Zaabee.Utf8Json.ZaabeeSerializer());
 
         [Fact]
         public void XmlStreamTest() =>
-            StreamTest(new Zaabee.Xml.Serializer());
+            StreamTest(new Zaabee.Xml.ZaabeeSerializer());
 
         [Fact]
         public void ZeroFormatterStreamTest() =>
-            StreamTest(new Zaabee.ZeroFormatter.Serializer());
+            StreamTest(new Zaabee.ZeroFormatter.ZaabeeSerializer());
 
         private static void StreamTest(IStreamSerializer serializer)
         {

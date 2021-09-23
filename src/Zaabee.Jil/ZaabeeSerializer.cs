@@ -5,12 +5,12 @@ using Zaabee.Serializer.Abstractions;
 
 namespace Zaabee.Jil
 {
-    public class Serializer : ITextSerializer
+    public class ZaabeeSerializer : ITextSerializer
     {
         private readonly Options _options;
         private readonly Encoding _encoding;
 
-        public Serializer(Options options = null, Encoding encoding = null) =>
+        public ZaabeeSerializer(Options options = null, Encoding encoding = null) =>
             (_options, _encoding) = (options, encoding ?? JilHelper.DefaultEncoding);
 
         public byte[] SerializeToBytes<T>(T t) =>

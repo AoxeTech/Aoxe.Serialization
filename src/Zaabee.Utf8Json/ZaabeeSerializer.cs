@@ -4,11 +4,11 @@ using Zaabee.Serializer.Abstractions;
 
 namespace Zaabee.Utf8Json
 {
-    public class Serializer : ITextSerializer
+    public class ZaabeeSerializer : ITextSerializer
     {
         private readonly IJsonFormatterResolver _resolver;
 
-        public Serializer(IJsonFormatterResolver resolver = null) =>
+        public ZaabeeSerializer(IJsonFormatterResolver resolver = null) =>
             _resolver = resolver;
 
         public byte[] SerializeToBytes<T>(T t) =>

@@ -1,20 +1,20 @@
 using System.IO;
 using Zaabee.Serializer.Abstractions;
 
-namespace Zaabee.ZeroFormatter
+namespace Zaabee.MsgPack
 {
-    public class Serializer : ISerializer
+    public class ZaabeeSerializer : IBytesSerializer
     {
         public byte[] SerializeToBytes<T>(T t) =>
-            ZeroSerializer.Serialize(t);
+            MsgPackSerializer.Serialize(t);
 
         public T DeserializeFromBytes<T>(byte[] bytes) =>
-            ZeroSerializer.Deserialize<T>(bytes);
+            MsgPackSerializer.Deserialize<T>(bytes);
 
         public Stream SerializeToStream<T>(T t) =>
-            ZeroSerializer.Pack(t);
+            MsgPackSerializer.Pack(t);
 
         public T DeserializeFromStream<T>(Stream stream) =>
-            ZeroSerializer.Unpack<T>(stream);
+            MsgPackSerializer.Unpack<T>(stream);
     }
 }
