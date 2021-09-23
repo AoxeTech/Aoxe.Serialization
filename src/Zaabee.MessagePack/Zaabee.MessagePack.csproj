@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;netcoreapp3.1;net5.0</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2021.6.0</PackageVersion>
-        <Version>2021.6.0</Version>
+        <PackageVersion>2021.6.2</PackageVersion>
+        <Version>2021.6.2</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/src/Zaabee.MessagePack</PackageProjectUrl>
@@ -15,7 +15,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MessagePack" Version="2.3.75" />
+        <PackageReference Include="MessagePack" Version="2.3.85" />
         <PackageReference Include="Zaabee.Extensions" Version="2021.5.0" />
         <PackageReference Include="Zaabee.Serializer.Abstractions" Version="2021.8.2" />
     </ItemGroup>
