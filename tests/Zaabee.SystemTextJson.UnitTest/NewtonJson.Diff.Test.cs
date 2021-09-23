@@ -73,13 +73,13 @@ namespace Zaabee.SystemTextJson.UnitTest
         [Description("测试反序列化数值字符串隐式转换为数值类型")]
         public void TestDeserializeNumber()
         {
-            var ajsonString = "{\"Number\":\"123\"}";
+            const string jsonString = "{\"Number\":\"123\"}";
 
-            var aJsonObject = Newtonsoft.Json.JsonConvert.DeserializeObject<TestClass>(ajsonString);
+            var aJsonObject = Newtonsoft.Json.JsonConvert.DeserializeObject<TestClass>(jsonString);
 
             // 报错，The JSON value could not be converted to System.Int32. Path: $.number | LineNumber: 0 | BytePositionInLine: 15
             Assert.Throws<System.Text.Json.JsonException>(() =>
-                System.Text.Json.JsonSerializer.Deserialize<TestClass>(ajsonString));
+                System.Text.Json.JsonSerializer.Deserialize<TestClass>(jsonString));
         }
 
         public class TestClass
