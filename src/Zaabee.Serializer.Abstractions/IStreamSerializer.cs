@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 
 namespace Zaabee.Serializer.Abstractions
@@ -6,5 +7,7 @@ namespace Zaabee.Serializer.Abstractions
     {
         Stream SerializeToStream<T>(T t);
         T DeserializeFromStream<T>(Stream stream);
+        Stream SerializeToStream(Type type, object obj);
+        object DeserializeFromStream(Type type, Stream stream);
     }
 }
