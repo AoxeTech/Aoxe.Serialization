@@ -11,8 +11,8 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Description>The wrappers and extension methods for ZeroFormatter</Description>
         <PackageTags>Zaabee;ZeroFormatter;serialize;deserialize</PackageTags>
-        <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
 	<ItemGroup>

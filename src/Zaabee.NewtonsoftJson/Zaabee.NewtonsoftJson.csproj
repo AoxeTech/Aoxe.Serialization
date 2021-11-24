@@ -11,8 +11,8 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Description>The wrappers and extensions methods base by Json.NET</Description>
         <PackageTags>Zaabee;Json;Json.NET;Newtonsoft.Json;serialize;deserialize</PackageTags>
-        <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>

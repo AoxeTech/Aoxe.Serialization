@@ -11,8 +11,8 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Description>The wrappers and extensions methods for MessagePack</Description>
         <PackageTags>Zaabee;MessagePack;serialize;deserialize</PackageTags>
-        <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>

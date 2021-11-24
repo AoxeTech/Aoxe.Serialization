@@ -11,8 +11,8 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Description>The abstractions for Zaabee.Serializers</Description>
         <PackageTags>Zaabee;Serializer;Abstractions</PackageTags>
-        <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
 </Project>
