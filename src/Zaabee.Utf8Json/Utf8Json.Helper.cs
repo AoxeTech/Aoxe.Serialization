@@ -1,9 +1,6 @@
-﻿using Utf8Json;
+﻿namespace Zaabee.Utf8Json;
 
-namespace Zaabee.Utf8Json
+public static partial class Utf8JsonHelper
 {
-    public static partial class Utf8JsonHelper
-    {
-        public static IJsonFormatterResolver DefaultJsonFormatterResolver { get; set; }
-    }
+    public static IJsonFormatterResolver DefaultJsonFormatterResolver { get; set; }
 }

@@ -11,13 +11,14 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Description>The wrappers and extensions methods for protobuf</Description>
         <PackageTags>Zaabee;Protobuf;Protobuf-net;serialize;deserialize</PackageTags>
+        <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="protobuf-net" Version="3.0.101" />
-        <PackageReference Include="Zaabee.Extensions" Version="2021.6.0" />
-        <PackageReference Include="Zaabee.Serializer.Abstractions" Version="2021.10.0" />
+        <PackageReference Include="Zaabee.Extensions" Version="2021.10.0" />
+        <PackageReference Include="Zaabee.Serializer.Abstractions" Version="2021.13.0" />
     </ItemGroup>
 
 </Project>
