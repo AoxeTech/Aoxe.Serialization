@@ -34,8 +34,8 @@ public static partial class BinaryHelper
     /// <returns></returns>
     [ObsoleteAttribute(@"BinaryFormatter serialization is obsolete and should not be used.
  See https://aka.ms/binaryformatter for more information.")]
-    public static TValue? Unpack<TValue>(Stream? stream) =>
-        stream.IsNullOrEmpty() ? default : BinarySerializer.Unpack<TValue>(stream!);
+    public static TValue Unpack<TValue>(Stream? stream) =>
+        stream.IsNullOrEmpty() ? default! : BinarySerializer.Unpack<TValue>(stream!);
 
     /// <summary>
     /// Deserializes a stream into an object graph.Will return null when the stream is null or empty.
@@ -44,6 +44,6 @@ public static partial class BinaryHelper
     /// <returns></returns>
     [ObsoleteAttribute(@"BinaryFormatter serialization is obsolete and should not be used.
  See https://aka.ms/binaryformatter for more information.")]
-    public static object? Unpack(Stream? stream) =>
-        stream.IsNullOrEmpty() ? null : BinarySerializer.Unpack(stream!);
+    public static object Unpack(Stream? stream) =>
+        stream.IsNullOrEmpty() ? default! : BinarySerializer.Unpack(stream!);
 }

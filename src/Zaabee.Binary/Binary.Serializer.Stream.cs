@@ -25,7 +25,7 @@ public static partial class BinarySerializer
     /// <param name="stream"></param>
     [ObsoleteAttribute(@"BinaryFormatter serialization is obsolete and should not be used.
  See https://aka.ms/binaryformatter for more information.")]
-    public static void Pack(object value, Stream? stream)
+    public static void Pack(object value, Stream stream)
     {
         _binaryFormatter ??= new BinaryFormatter();
         _binaryFormatter.Serialize(stream, value);
@@ -40,7 +40,7 @@ public static partial class BinarySerializer
     /// <returns></returns>
     [ObsoleteAttribute(@"BinaryFormatter serialization is obsolete and should not be used.
  See https://aka.ms/binaryformatter for more information.")]
-    public static TValue? Unpack<TValue>(Stream? stream) =>
+    public static TValue Unpack<TValue>(Stream stream) =>
         (TValue)Unpack(stream);
 
     /// <summary>
@@ -50,7 +50,7 @@ public static partial class BinarySerializer
     /// <returns></returns>
     [ObsoleteAttribute(@"BinaryFormatter serialization is obsolete and should not be used.
  See https://aka.ms/binaryformatter for more information.")]
-    public static object? Unpack(Stream? stream)
+    public static object Unpack(Stream stream)
     {
         _binaryFormatter ??= new BinaryFormatter();
         var result = _binaryFormatter.Deserialize(stream);

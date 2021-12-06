@@ -1,8 +1,3 @@
-using System;
-using System.IO;
-using TestModels;
-using Xunit;
-
 namespace Zaabee.Binary.UnitTest;
 
 [ObsoleteAttribute(@"BinaryFormatter serialization is obsolete and should not be used.
@@ -20,9 +15,9 @@ public partial class BinaryUnitTest
         var stream3 = new MemoryStream();
         stream3.PackBy(testModel);
 
-        var unPackResult1 = (TestModel)stream1.Unpack()!;
-        var unPackResult2 = (TestModel)stream2.Unpack()!;
-        var unPackResult3 = (TestModel)stream3.Unpack()!;
+        var unPackResult1 = (TestModel)stream1.Unpack();
+        var unPackResult2 = (TestModel)stream2.Unpack();
+        var unPackResult3 = (TestModel)stream3.Unpack();
 
         Assert.Equal(
             Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),

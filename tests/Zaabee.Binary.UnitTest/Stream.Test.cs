@@ -1,8 +1,3 @@
-using System;
-using System.IO;
-using TestModels;
-using Xunit;
-
 namespace Zaabee.Binary.UnitTest;
 
 public partial class BinaryUnitTest
@@ -18,9 +13,9 @@ public partial class BinaryUnitTest
         var stream3 = new MemoryStream();
         stream3.PackBy(testModel);
 
-        var unPackResult1 = stream1.Unpack<TestModel>()!;
-        var unPackResult2 = stream2.Unpack<TestModel>()!;
-        var unPackResult3 = stream3.Unpack<TestModel>()!;
+        var unPackResult1 = stream1.Unpack<TestModel>();
+        var unPackResult2 = stream2.Unpack<TestModel>();
+        var unPackResult3 = stream3.Unpack<TestModel>();
 
         Assert.Equal(
             Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
