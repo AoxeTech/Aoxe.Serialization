@@ -12,7 +12,7 @@ public static partial class MsgPackSerializer
     /// 	Failed to serialize object.
     /// </exception>
     /// <exception cref="T:System.NotSupportedException">
-    /// 	<typeparamref name="T" /> is not serializable even if it can be deserialized.
+    /// 	<typeparamref name="TValue" /> is not serializable even if it can be deserialized.
     /// </exception>
     /// <seealso cref="P:Capabilities" />
     public static async Task<MemoryStream> PackAsync<TValue>(TValue value)
@@ -36,7 +36,7 @@ public static partial class MsgPackSerializer
     /// 	Failed to serialize object.
     /// </exception>
     /// <exception cref="T:System.NotSupportedException">
-    /// 	<typeparamref name="T" /> is not serializable even if it can be deserialized.
+    /// 	<typeparamref name="TValue" /> is not serializable even if it can be deserialized.
     /// </exception>
     /// <seealso cref="P:Capabilities" />
     public static async Task PackAsync<TValue>(TValue value, Stream? stream)
@@ -64,7 +64,7 @@ public static partial class MsgPackSerializer
     /// 	Failed to deserialize object due to invalid stream.
     /// </exception>
     /// <exception cref="T:System.NotSupportedException">
-    /// 	<typeparamref name="T" /> is not serializable even if it can be serialized.
+    /// 	<typeparamref name="TValue" /> is not serializable even if it can be serialized.
     /// </exception>
     /// <seealso cref="P:Capabilities" />
     public static async Task<TValue> UnpackAsync<TValue>(Stream? stream)
