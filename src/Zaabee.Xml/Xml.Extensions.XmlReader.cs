@@ -2,9 +2,9 @@ namespace Zaabee.Xml;
 
 public static partial class XmlExtensions
 {
-    public static T ReadXml<T>(this XmlReader xmlReader) =>
-        XmlHelper.Deserialize<T>(xmlReader);
+    public static TValue? ReadXml<TValue>(this XmlReader xmlReader) =>
+        XmlHelper.Deserialize<TValue>(xmlReader);
 
-    public static object ReadXml(this XmlReader xmlReader, Type type) =>
+    public static object? ReadXml(this XmlReader xmlReader, Type type) =>
         XmlHelper.Deserialize(type, xmlReader);
 }

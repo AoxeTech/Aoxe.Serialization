@@ -5,29 +5,29 @@ public static partial class ZeroSerializer
     /// <summary>
     /// Serialize the specified generic instance to a bytes.
     /// </summary>
-    /// <param name="t"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <param name="value"></param>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static byte[] Serialize<T>(T t) =>
-        ZeroFormatterSerializer.Serialize(t);
+    public static byte[] Serialize<TValue>(TValue value) =>
+        ZeroFormatterSerializer.Serialize(value);
 
     /// <summary>
     /// Serialize the specified object to a bytes.
     /// </summary>
     /// <param name="type"></param>
-    /// <param name="obj"></param>
+    /// <param name="value"></param>
     /// <returns></returns>
-    public static byte[] Serialize(Type type, object obj) =>
-        ZeroFormatterSerializer.NonGeneric.Serialize(type, obj);
+    public static byte[] Serialize(Type type, object? value) =>
+        ZeroFormatterSerializer.NonGeneric.Serialize(type, value);
 
     /// <summary>
     /// Deserialize the bytes to an generic instance.
     /// </summary>
     /// <param name="bytes"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static T Deserialize<T>(byte[] bytes) =>
-        ZeroFormatterSerializer.Deserialize<T>(bytes);
+    public static TValue? Deserialize<TValue>(byte[] bytes) =>
+        ZeroFormatterSerializer.Deserialize<TValue>(bytes);
 
     /// <summary>
     /// Deserialize the bytes to an object.
@@ -35,6 +35,6 @@ public static partial class ZeroSerializer
     /// <param name="type"></param>
     /// <param name="bytes"></param>
     /// <returns></returns>
-    public static object Deserialize(Type type, byte[] bytes) =>
+    public static object? Deserialize(Type type, byte[] bytes) =>
         ZeroFormatterSerializer.NonGeneric.Deserialize(type, bytes);
 }

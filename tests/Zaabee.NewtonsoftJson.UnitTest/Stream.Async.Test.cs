@@ -13,7 +13,7 @@ namespace Zaabee.NewtonsoftJson.UnitTest
         public async Task StreamAsyncTest()
         {
             TestModel nullModel = null;
-            MemoryStream nullMs = null;
+            Stream nullMs = null;
             await nullModel.PackToAsync(nullMs);
             await nullMs.PackByAsync(nullModel);
             var emptyStream = await nullModel.ToStreamAsync();

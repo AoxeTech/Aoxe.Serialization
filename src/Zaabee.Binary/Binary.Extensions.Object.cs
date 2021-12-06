@@ -2,12 +2,18 @@ namespace Zaabee.Binary;
 
 public static partial class BinaryExtensions
 {
-    public static byte[] ToBytes(this object? obj) =>
-        BinaryHelper.Serialize(obj);
+    [ObsoleteAttribute(@"BinaryFormatter serialization is obsolete and should not be used.
+ See https://aka.ms/binaryformatter for more information.")]
+    public static byte[] ToBytes(this object? value) =>
+        BinaryHelper.Serialize(value);
 
-    public static MemoryStream ToStream(this object? obj) =>
-        BinaryHelper.Pack(obj);
+    [ObsoleteAttribute(@"BinaryFormatter serialization is obsolete and should not be used.
+ See https://aka.ms/binaryformatter for more information.")]
+    public static Stream ToStream(this object? value) =>
+        BinaryHelper.Pack(value);
 
-    public static void PackTo(this object? obj, Stream? stream) =>
-        BinaryHelper.Pack(obj, stream);
+    [ObsoleteAttribute(@"BinaryFormatter serialization is obsolete and should not be used.
+ See https://aka.ms/binaryformatter for more information.")]
+    public static void PackTo(this object? value, Stream? stream) =>
+        BinaryHelper.Pack(value, stream);
 }

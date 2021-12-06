@@ -2,19 +2,19 @@ namespace Zaabee.Jil;
 
 public static partial class JilHelper
 {
-    public static byte[] Serialize<T>(T? t, Options? options = null, Encoding? encoding = null) =>
-        JilSerializer.Serialize(t, options ?? DefaultOptions, encoding ?? DefaultEncoding);
+    public static byte[] Serialize<TValue>(TValue? value, Options? options = null, Encoding? encoding = null) =>
+        JilSerializer.Serialize(value, options ?? DefaultOptions, encoding ?? DefaultEncoding);
 
-    public static byte[] Serialize(object? obj, Options? options = null, Encoding? encoding = null) =>
-        JilSerializer.Serialize(obj, options ?? DefaultOptions, encoding ?? DefaultEncoding);
+    public static byte[] Serialize(object? value, Options? options = null, Encoding? encoding = null) =>
+        JilSerializer.Serialize(value, options ?? DefaultOptions, encoding ?? DefaultEncoding);
 
-    public static T? Deserialize<T>(byte[] bytes, Options? options = null, Encoding? encoding = null) =>
+    public static TValue? Deserialize<TValue>(byte[] bytes, Options? options = null, Encoding? encoding = null) =>
         bytes.IsNullOrEmpty()
-            ? (T?)typeof(T).GetDefaultValue()
-            : JilSerializer.Deserialize<T>(bytes, options ?? DefaultOptions, encoding ?? DefaultEncoding);
+            ? default
+            : JilSerializer.Deserialize<TValue>(bytes, options ?? DefaultOptions, encoding ?? DefaultEncoding);
 
     public static object? Deserialize(Type type, byte[] bytes, Options? options = null, Encoding? encoding = null) =>
         bytes.IsNullOrEmpty()
-            ? type.GetDefaultValue()
+            ? default
             : JilSerializer.Deserialize(type, bytes, options ?? DefaultOptions, encoding ?? DefaultEncoding);
 }

@@ -36,7 +36,7 @@ namespace Zaabee.MsgPack.UnitTest
                     unPackResult3.Gender));
 
             TestModel nullModel = null;
-            MemoryStream nullMs = null;
+            Stream nullMs = null;
             nullModel.PackTo(nullMs);
         }
     }

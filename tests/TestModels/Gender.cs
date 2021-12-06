@@ -1,8 +1,7 @@
-﻿namespace TestModels
+﻿namespace TestModels;
+
+public enum Gender
 {
-    public enum Gender
-    {
-        Male,
-        Female
-    }
+    Male,
+    Female
 }

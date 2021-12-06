@@ -2,46 +2,46 @@ namespace Zaabee.Utf8Json;
 
 public static partial class Utf8JsonHelper
 {
-    public static MemoryStream Pack<T>(T value, IJsonFormatterResolver resolver = null) =>
+    public static Stream Pack<TValue>(TValue value, IJsonFormatterResolver resolver = null) =>
         value is null
-            ? new MemoryStream()
+            ? Stream.Null
             : Utf8JsonSerializer.Pack(value, resolver ?? DefaultJsonFormatterResolver);
 
-    public static void Pack<T>(T value, Stream stream, IJsonFormatterResolver resolver = null)
+    public static void Pack<TValue>(TValue value, Stream? stream, IJsonFormatterResolver resolver = null)
     {
         if (value is null || stream is null) return;
         Utf8JsonSerializer.Pack(value, stream, resolver ?? DefaultJsonFormatterResolver);
     }
 
-    public static MemoryStream Pack(object obj, IJsonFormatterResolver resolver = null) =>
-        obj is null
-            ? new MemoryStream()
-            : Utf8JsonSerializer.Pack(obj, resolver ?? DefaultJsonFormatterResolver);
+    public static Stream Pack(object? value, IJsonFormatterResolver resolver = null) =>
+        value is null
+            ? Stream.Null
+            : Utf8JsonSerializer.Pack(value, resolver ?? DefaultJsonFormatterResolver);
 
-    public static void Pack(object obj, Stream stream, IJsonFormatterResolver resolver = null)
+    public static void Pack(object? value, Stream? stream, IJsonFormatterResolver resolver = null)
     {
-        if (obj is null || stream is null) return;
-        Utf8JsonSerializer.Pack(obj, stream, resolver ?? DefaultJsonFormatterResolver);
+        if (value is null || stream is null) return;
+        Utf8JsonSerializer.Pack(value, stream, resolver ?? DefaultJsonFormatterResolver);
     }
 
-    public static MemoryStream Pack(Type type, object obj, IJsonFormatterResolver resolver = null) =>
-        obj is null
-            ? new MemoryStream()
-            : Utf8JsonSerializer.Pack(type, obj, resolver ?? DefaultJsonFormatterResolver);
+    public static Stream Pack(Type type, object? value, IJsonFormatterResolver resolver = null) =>
+        value is null
+            ? Stream.Null
+            : Utf8JsonSerializer.Pack(type, value, resolver ?? DefaultJsonFormatterResolver);
 
-    public static void Pack(Type type, object obj, Stream stream, IJsonFormatterResolver resolver = null)
+    public static void Pack(Type type, object? value, Stream? stream, IJsonFormatterResolver resolver = null)
     {
-        if (obj is null || stream is null) return;
-        Utf8JsonSerializer.Pack(type, obj, stream, resolver ?? DefaultJsonFormatterResolver);
+        if (value is null || stream is null) return;
+        Utf8JsonSerializer.Pack(type, value, stream, resolver ?? DefaultJsonFormatterResolver);
     }
 
-    public static T Unpack<T>(Stream stream, IJsonFormatterResolver resolver = null) =>
+    public static TValue? Unpack<TValue>(Stream? stream, IJsonFormatterResolver resolver = null) =>
         stream.IsNullOrEmpty()
-            ? (T) typeof(T).GetDefaultValue()
-            : Utf8JsonSerializer.Unpack<T>(stream, resolver ?? DefaultJsonFormatterResolver);
+            ? default
+            : Utf8JsonSerializer.Unpack<TValue>(stream, resolver ?? DefaultJsonFormatterResolver);
 
-    public static object Unpack(Type type, Stream stream, IJsonFormatterResolver resolver = null) =>
+    public static object? Unpack(Type type, Stream? stream, IJsonFormatterResolver resolver = null) =>
         stream.IsNullOrEmpty()
-            ? type.GetDefaultValue()
+            ? default
             : Utf8JsonSerializer.Unpack(type, stream, resolver ?? DefaultJsonFormatterResolver);
 }

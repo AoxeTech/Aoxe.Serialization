@@ -8,31 +8,31 @@ namespace Zaabee.NewtonsoftJson
         /// <summary>
         /// Serializes the specified object to a JSON string using a type, formatting and <see cref="JsonSerializerSettings"/>.
         /// </summary>
-        /// <param name="t"></param>
+        /// <param name="value"></param>
         /// <param name="settings"></param>
         /// <returns></returns>
-        public static string SerializeToJson<T>(T t, JsonSerializerSettings settings) =>
-            JsonConvert.SerializeObject(t, typeof(T), settings);
+        public static string SerializeToJson<TValue>(TValue value, JsonSerializerSettings settings) =>
+            JsonConvert.SerializeObject(value, typeof(TValue), settings);
 
         /// <summary>
         /// Serializes the specified object to a JSON string using a type, formatting and <see cref="JsonSerializerSettings"/>.
         /// </summary>
         /// <param name="type"></param>
-        /// <param name="obj"></param>
+        /// <param name="value"></param>
         /// <param name="settings"></param>
         /// <returns></returns>
-        public static string SerializeToJson(Type type, object obj, JsonSerializerSettings settings) =>
-            JsonConvert.SerializeObject(obj, type, settings);
+        public static string SerializeToJson(Type type, object? value, JsonSerializerSettings settings) =>
+            JsonConvert.SerializeObject(value, type, settings);
 
         /// <summary>
         /// Deserializes the JSON to the specified .NET type using <see cref="JsonSerializerSettings"/>.
         /// </summary>
         /// <param name="json"></param>
         /// <param name="settings"></param>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
         /// <returns></returns>
-        public static T Deserialize<T>(string json, JsonSerializerSettings settings) =>
-            JsonConvert.DeserializeObject<T>(json, settings);
+        public static TValue? Deserialize<TValue>(string json, JsonSerializerSettings settings) =>
+            JsonConvert.DeserializeObject<TValue>(json, settings);
 
         /// <summary>
         /// Deserializes the JSON to the specified .NET type using <see cref="JsonSerializerSettings"/>.
@@ -41,7 +41,7 @@ namespace Zaabee.NewtonsoftJson
         /// <param name="json"></param>
         /// <param name="settings"></param>
         /// <returns></returns>
-        public static object Deserialize(Type type, string json, JsonSerializerSettings settings) =>
+        public static object? Deserialize(Type type, string json, JsonSerializerSettings settings) =>
             JsonConvert.DeserializeObject(json, type, settings);
     }
 }

@@ -1,14 +1,10 @@
-using System;
-using System.Xml;
+namespace Zaabee.DataContractSerializer;
 
-namespace Zaabee.DataContractSerializer
+public static partial class DataContractExtensions
 {
-    public static partial class DataContractExtensions
-    {
-        public static T ReadXml<T>(this XmlReader xmlReader) =>
-            DataContractHelper.Deserialize<T>(xmlReader);
+    public static TValue? ReadXml<TValue>(this XmlReader xmlReader) =>
+        DataContractHelper.Deserialize<TValue>(xmlReader);
 
-        public static object ReadXml(this XmlReader xmlReader, Type type) =>
-            DataContractHelper.Deserialize(type, xmlReader);
-    }
+    public static object? ReadXml(this XmlReader xmlReader, Type type) =>
+        DataContractHelper.Deserialize(type, xmlReader);
 }

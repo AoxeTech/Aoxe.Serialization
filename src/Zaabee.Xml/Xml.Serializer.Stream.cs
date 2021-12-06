@@ -8,43 +8,43 @@ public static partial class XmlSerializer
     /// <summary>
     /// Serializes the specified object and writes the XML document to a file using a memory stream.
     /// </summary>
-    /// <param name="t"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <param name="value"></param>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static MemoryStream Pack<T>(T t) =>
-        Pack(typeof(T), t);
+    public static Stream Pack<TValue>(TValue value) =>
+        Pack(typeof(TValue), value);
 
     /// <summary>
     /// Serializes the specified object and writes the XML document to a file using a memory stream.
     /// </summary>
     /// <param name="type"></param>
-    /// <param name="obj"></param>
+    /// <param name="value"></param>
     /// <returns></returns>
-    public static MemoryStream Pack(Type type, object obj)
+    public static Stream Pack(Type type, object? value)
     {
         var ms = new MemoryStream();
-        Pack(type, obj, ms);
+        Pack(type, value, ms);
         return ms;
     }
 
     /// <summary>
     /// Serializes the specified object and writes the XML document to a file using the specified stream.
     /// </summary>
-    /// <param name="t"></param>
+    /// <param name="value"></param>
     /// <param name="stream"></param>
-    /// <typeparam name="T"></typeparam>
-    public static void Pack<T>(T t, Stream stream) =>
-        Pack(typeof(T), t, stream);
+    /// <typeparam name="TValue"></typeparam>
+    public static void Pack<TValue>(TValue value, Stream? stream) =>
+        Pack(typeof(TValue), value, stream);
 
     /// <summary>
     /// Serializes the specified object and writes the XML document to a file using the specified stream.
     /// </summary>
     /// <param name="type"></param>
-    /// <param name="obj"></param>
+    /// <param name="value"></param>
     /// <param name="stream"></param>
-    public static void Pack(Type type, object obj, Stream stream)
+    public static void Pack(Type type, object? value, Stream? stream)
     {
-        GetSerializer(type).Serialize(stream, obj);
+        GetSerializer(type).Serialize(stream, value);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
@@ -52,10 +52,10 @@ public static partial class XmlSerializer
     /// Deserializes the XML document contained by the specified stream.
     /// </summary>
     /// <param name="stream"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static T Unpack<T>(Stream stream) =>
-        (T) Unpack(typeof(T), stream);
+    public static TValue? Unpack<TValue>(Stream? stream) =>
+        (TValue) Unpack(typeof(TValue), stream);
 
     /// <summary>
     /// Deserializes the XML document contained by the specified stream.
@@ -63,7 +63,7 @@ public static partial class XmlSerializer
     /// <param name="type"></param>
     /// <param name="stream"></param>
     /// <returns></returns>
-    public static object Unpack(Type type, Stream stream)
+    public static object? Unpack(Type type, Stream? stream)
     {
         var result = GetSerializer(type).Deserialize(stream);
         stream.TrySeek(0, SeekOrigin.Begin);

@@ -2,31 +2,31 @@ namespace Zaabee.Jil;
 
 public static partial class JilHelper
 {
-    public static MemoryStream Pack<T>(T? t, Options? options = null, Encoding? encoding = null) =>
-        JilSerializer.Pack(t, options ?? DefaultOptions, encoding ?? DefaultEncoding);
+    public static Stream Pack<TValue>(TValue? value, Options? options = null, Encoding? encoding = null) =>
+        JilSerializer.Pack(value, options ?? DefaultOptions, encoding ?? DefaultEncoding);
 
-    public static void Pack<T>(T? t, Stream? stream, Options? options = null, Encoding? encoding = null)
+    public static void Pack<TValue>(TValue? value, Stream? stream, Options? options = null, Encoding? encoding = null)
     {
         if (stream is null) return;
-        JilSerializer.Pack(t, stream, options ?? DefaultOptions, encoding ?? DefaultEncoding);
+        JilSerializer.Pack(value, stream, options ?? DefaultOptions, encoding ?? DefaultEncoding);
     }
 
-    public static MemoryStream Pack(object? obj, Options? options = null, Encoding? encoding = null) =>
-        JilSerializer.Pack(obj, options ?? DefaultOptions!, encoding ?? DefaultEncoding);
+    public static Stream Pack(object? value, Options? options = null, Encoding? encoding = null) =>
+        JilSerializer.Pack(value, options ?? DefaultOptions!, encoding ?? DefaultEncoding);
 
-    public static void Pack(object? obj, Stream? stream, Options? options = null, Encoding? encoding = null)
+    public static void Pack(object? value, Stream? stream, Options? options = null, Encoding? encoding = null)
     {
         if (stream is null) return;
-        JilSerializer.Pack(obj, stream, options ?? DefaultOptions, encoding ?? DefaultEncoding);
+        JilSerializer.Pack(value, stream, options ?? DefaultOptions, encoding ?? DefaultEncoding);
     }
 
-    public static T? Unpack<T>(Stream? stream, Options? options = null, Encoding? encoding = null) =>
-        stream.IsNullOrEmpty()
-            ? (T?)typeof(T).GetDefaultValue()
-            : JilSerializer.Unpack<T>(stream!, options ?? DefaultOptions, encoding ?? DefaultEncoding);
+    public static TValue? Unpack<TValue>(Stream? stream, Options? options = null, Encoding? encoding = null) =>
+        stream is null
+            ? default
+            : JilSerializer.Unpack<TValue>(stream!, options ?? DefaultOptions, encoding ?? DefaultEncoding);
 
     public static object? Unpack(Type type, Stream? stream, Options? options = null, Encoding? encoding = null) =>
-        stream.IsNullOrEmpty()
-            ? type.GetDefaultValue()
+        stream is null
+            ? default
             : JilSerializer.Unpack(type, stream!, options ?? DefaultOptions, encoding ?? DefaultEncoding);
 }

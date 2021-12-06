@@ -2,5 +2,5 @@
 
 public static partial class SystemTextJsonHelper
 {
-    public static JsonSerializerOptions DefaultJsonSerializerOptions { get; set; }
+    public static JsonSerializerOptions? DefaultJsonSerializerOptions { get; set; }
 }

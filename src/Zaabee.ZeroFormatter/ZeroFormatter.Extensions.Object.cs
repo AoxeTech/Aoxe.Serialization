@@ -2,21 +2,21 @@ namespace Zaabee.ZeroFormatter;
 
 public static partial class ZeroFormatterExtensions
 {
-    public static byte[] ToBytes<T>(this T t) =>
-        ZeroFormatterHelper.Serialize(t);
+    public static byte[] ToBytes<TValue>(this TValue value) =>
+        ZeroFormatterHelper.Serialize(value);
 
-    public static byte[] ToBytes(this object obj, Type type) =>
-        ZeroFormatterHelper.Serialize(type, obj);
+    public static byte[] ToBytes(this object? value, Type type) =>
+        ZeroFormatterHelper.Serialize(type, value);
 
-    public static MemoryStream ToStream<T>(this T t) =>
-        ZeroFormatterHelper.Pack(t);
+    public static Stream ToStream<TValue>(this TValue value) =>
+        ZeroFormatterHelper.Pack(value);
 
-    public static MemoryStream ToStream(this object obj, Type type) =>
-        ZeroFormatterHelper.Pack(type, obj);
+    public static Stream ToStream(this object? value, Type type) =>
+        ZeroFormatterHelper.Pack(type, value);
 
-    public static void PackTo<T>(this T t, Stream stream) =>
-        ZeroFormatterHelper.Pack(t, stream);
+    public static void PackTo<TValue>(this TValue value, Stream? stream) =>
+        ZeroFormatterHelper.Pack(value, stream);
 
-    public static void PackTo(this object obj, Type type, Stream stream) =>
-        ZeroFormatterHelper.Pack(type, obj, stream);
+    public static void PackTo(this object? value, Type type, Stream? stream) =>
+        ZeroFormatterHelper.Pack(type, value, stream);
 }

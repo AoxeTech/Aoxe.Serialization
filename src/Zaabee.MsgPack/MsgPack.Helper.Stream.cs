@@ -2,35 +2,35 @@ namespace Zaabee.MsgPack;
 
 public static partial class MsgPackHelper
 {
-    public static MemoryStream Pack<T>(T t) =>
-        t is null
-            ? new MemoryStream()
-            : MsgPackSerializer.Pack(t);
+    public static Stream Pack<TValue>(TValue value) =>
+        value is null
+            ? Stream.Null
+            : MsgPackSerializer.Pack(value);
 
-    public static void Pack<T>(T t, Stream stream)
+    public static void Pack<TValue>(TValue value, Stream? stream)
     {
-        if (t is null || stream is null) return;
-        MsgPackSerializer.Pack(t, stream);
+        if (value is null || stream is null) return;
+        MsgPackSerializer.Pack(value, stream);
     }
 
-    public static MemoryStream Pack(Type type, object obj) =>
-        obj is null
-            ? new MemoryStream()
-            : MsgPackSerializer.Pack(type, obj);
+    public static Stream Pack(Type type, object? value) =>
+        value is null
+            ? Stream.Null
+            : MsgPackSerializer.Pack(type, value);
 
-    public static void Pack(Type type, object obj, Stream stream)
+    public static void Pack(Type type, object? value, Stream? stream)
     {
-        if (obj is null || stream is null) return;
-        MsgPackSerializer.Pack(type, obj, stream);
+        if (value is null || stream is null) return;
+        MsgPackSerializer.Pack(type, value, stream);
     }
 
-    public static T Unpack<T>(Stream stream) =>
+    public static TValue? Unpack<TValue>(Stream? stream) =>
         stream.IsNullOrEmpty()
-            ? (T) typeof(T).GetDefaultValue()
-            : MsgPackSerializer.Unpack<T>(stream);
+            ? default
+            : MsgPackSerializer.Unpack<TValue>(stream);
 
-    public static object Unpack(Type type, Stream stream) =>
+    public static object? Unpack(Type type, Stream? stream) =>
         stream.IsNullOrEmpty()
-            ? type.GetDefaultValue()
+            ? default
             : MsgPackSerializer.Unpack(type, stream);
 }

@@ -2,21 +2,21 @@ namespace Zaabee.MsgPack;
 
 public static partial class MsgPackExtensions
 {
-    public static byte[] ToBytes<T>(this T t) =>
-        MsgPackHelper.Serialize(t);
+    public static byte[] ToBytes<TValue>(this TValue value) =>
+        MsgPackHelper.Serialize(value);
 
-    public static MemoryStream ToStream<T>(this T t) =>
-        MsgPackHelper.Pack(t);
+    public static Stream ToStream<TValue>(this TValue value) =>
+        MsgPackHelper.Pack(value);
 
-    public static void PackTo<T>(this T t, Stream stream) =>
-        MsgPackHelper.Pack(t, stream);
+    public static void PackTo<TValue>(this TValue value, Stream? stream) =>
+        MsgPackHelper.Pack(value, stream);
 
-    public static byte[] ToBytes(this object obj, Type type) =>
-        MsgPackHelper.Serialize(type, obj);
+    public static byte[] ToBytes(this object? value, Type type) =>
+        MsgPackHelper.Serialize(type, value);
 
-    public static MemoryStream ToStream(this object obj, Type type) =>
-        MsgPackHelper.Pack(type, obj);
+    public static Stream ToStream(this object? value, Type type) =>
+        MsgPackHelper.Pack(type, value);
 
-    public static void PackTo(this object obj, Type type, Stream stream) =>
-        MsgPackHelper.Pack(type, obj, stream);
+    public static void PackTo(this object? value, Type type, Stream? stream) =>
+        MsgPackHelper.Pack(type, value, stream);
 }

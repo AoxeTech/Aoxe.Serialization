@@ -7,19 +7,19 @@ namespace Zaabee.NewtonsoftJson
 {
     public static partial class NewtonsoftJsonExtensions
     {
-        public static void PackBy<T>(this Stream stream, T t, JsonSerializerSettings settings = null,
+        public static void PackBy<TValue>(this Stream? stream, TValue value, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
-            NewtonsoftJsonHelper.Pack(t, stream, settings, encoding);
+            NewtonsoftJsonHelper.Pack(value, stream, settings, encoding);
 
-        public static void PackBy(this Stream stream, Type type, object obj, JsonSerializerSettings settings = null,
+        public static void PackBy(this Stream? stream, Type type, object? value, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
-            NewtonsoftJsonHelper.Pack(type, obj, stream, settings, encoding);
+            NewtonsoftJsonHelper.Pack(type, value, stream, settings, encoding);
 
-        public static T Unpack<T>(this Stream stream, JsonSerializerSettings settings = null,
+        public static TValue? Unpack<TValue>(this Stream? stream, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
-            NewtonsoftJsonHelper.Unpack<T>(stream, settings, encoding);
+            NewtonsoftJsonHelper.Unpack<TValue>(stream, settings, encoding);
 
-        public static object Unpack(this Stream stream, Type type, JsonSerializerSettings settings = null,
+        public static object? Unpack(this Stream? stream, Type type, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
             NewtonsoftJsonHelper.Unpack(type, stream, settings, encoding);
     }

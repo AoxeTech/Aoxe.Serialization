@@ -60,7 +60,7 @@ namespace Zaabee.MessagePack.UnitTest
                     unPackResult6.Gender));
 
             TestModel nullModel = null;
-            MemoryStream nullMs = null;
+            Stream nullMs = null;
             nullModel.PackTo(nullMs);
         }
     }

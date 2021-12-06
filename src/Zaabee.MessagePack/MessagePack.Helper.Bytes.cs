@@ -2,27 +2,27 @@ namespace Zaabee.MessagePack;
 
 public static partial class MessagePackHelper
 {
-    public static byte[] Serialize<T>(T t, MessagePackSerializerOptions options = null,
+    public static byte[] Serialize<TValue>(TValue value, MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default) =>
-        t is null
+        value is null
             ? Array.Empty<byte>()
-            : MessagePackCSharpSerializer.Serialize(t, options ?? DefaultOptions, cancellationToken);
+            : MessagePackCSharpSerializer.Serialize(value, options ?? DefaultOptions, cancellationToken);
 
-    public static byte[] Serialize(Type type, object obj, MessagePackSerializerOptions options = null,
+    public static byte[] Serialize(Type type, object? value, MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default) =>
-        obj is null
+        value is null
             ? Array.Empty<byte>()
-            : MessagePackCSharpSerializer.Serialize(type, obj, options ?? DefaultOptions, cancellationToken);
+            : MessagePackCSharpSerializer.Serialize(type, value, options ?? DefaultOptions, cancellationToken);
 
-    public static T Deserialize<T>(ReadOnlyMemory<byte> bytes, MessagePackSerializerOptions options = null,
+    public static TValue? Deserialize<TValue>(ReadOnlyMemory<byte> bytes, MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default) =>
         bytes.IsEmpty
-            ? (T)typeof(T).GetDefaultValue()
-            : MessagePackCSharpSerializer.Deserialize<T>(bytes, options ?? DefaultOptions, cancellationToken);
+            ? default
+            : MessagePackCSharpSerializer.Deserialize<TValue>(bytes, options ?? DefaultOptions, cancellationToken);
 
-    public static object Deserialize(Type type, ReadOnlyMemory<byte> bytes,
+    public static object? Deserialize(Type type, ReadOnlyMemory<byte> bytes,
         MessagePackSerializerOptions options = null, CancellationToken cancellationToken = default) =>
         bytes.IsEmpty
-            ? type.GetDefaultValue()
+            ? default
             : MessagePackCSharpSerializer.Deserialize(type, bytes, options ?? DefaultOptions, cancellationToken);
 }

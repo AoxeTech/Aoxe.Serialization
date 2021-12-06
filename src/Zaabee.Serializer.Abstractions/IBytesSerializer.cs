@@ -6,17 +6,17 @@ public interface IBytesSerializer : IStreamSerializer
     /// If the value is null must return empty bytes.
     /// </summary>
     /// <param name="value"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    byte[] SerializeToBytes<T>(T value);
+    byte[] SerializeToBytes<TValue>(TValue? value);
 
     /// <summary>
     /// If the bytes is null or empty must return the default value of T.
     /// </summary>
     /// <param name="bytes"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    T? DeserializeFromBytes<T>(byte[]? bytes);
+    TValue? DeserializeFromBytes<TValue>(byte[]? bytes);
 
     /// <summary>
     /// If the value is null must return empty bytes.

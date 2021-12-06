@@ -2,15 +2,15 @@ namespace Zaabee.Xml;
 
 public static partial class XmlHelper
 {
-    public static void Serialize<T>(TextWriter textWriter, T t)
+    public static void Serialize<TValue>(TextWriter textWriter, TValue value)
     {
-        if (textWriter is null || t is null) return;
-        XmlSerializer.Serialize<T>(textWriter, t);
+        if (textWriter is null || value is null) return;
+        XmlSerializer.Serialize<TValue>(textWriter, value);
     }
 
-    public static void Serialize(Type type, TextWriter textWriter, object obj)
+    public static void Serialize(Type type, TextWriter textWriter, object? value)
     {
-        if (type is null || textWriter is null || obj is null) return;
-        XmlSerializer.Serialize(type, textWriter, obj);
+        if (type is null || textWriter is null || value is null) return;
+        XmlSerializer.Serialize(type, textWriter, value);
     }
 }

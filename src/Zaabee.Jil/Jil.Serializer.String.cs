@@ -9,12 +9,12 @@ public static partial class JilSerializer
     /// the produced JSON.  If omitted Options.Default is used, unless JSON.SetDefaultOptions(Options) has been
     /// called with a different Options object.
     /// </summary>
-    /// <param name="t"></param>
+    /// <param name="value"></param>
     /// <param name="options"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static string SerializeToJson<T>(T? t, Options? options) =>
-        JSON.Serialize(t, options);
+    public static string SerializeToJson<TValue>(TValue? value, Options? options) =>
+        JSON.Serialize(value, options);
 
     /// <summary>
     /// Serializes the given data, returning it as a string.
@@ -29,11 +29,11 @@ public static partial class JilSerializer
     /// Objects with participate in the DLR will be serialized appropriately, all other types
     /// will be serialized via reflection.
     /// </summary>
-    /// <param name="obj"></param>
+    /// <param name="value"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public static string SerializeToJson(object? obj, Options? options) =>
-        JSON.SerializeDynamic(obj, options);
+    public static string SerializeToJson(object? value, Options? options) =>
+        JSON.SerializeDynamic(value, options);
 
     /// <summary>
     /// Deserializes JSON from the given string.
@@ -44,10 +44,10 @@ public static partial class JilSerializer
     /// </summary>
     /// <param name="json"></param>
     /// <param name="options"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static T Deserialize<T>(string json, Options? options) =>
-        JSON.Deserialize<T>(json, options);
+    public static TValue? Deserialize<TValue>(string json, Options? options) =>
+        JSON.Deserialize<TValue>(json, options);
 
     /// <summary>
     /// Deserializes JSON from the given string as the passed type.
@@ -64,6 +64,6 @@ public static partial class JilSerializer
     /// <param name="json"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public static object Deserialize(Type type, string json, Options? options) =>
+    public static object? Deserialize(Type type, string json, Options? options) =>
         JSON.Deserialize(json, type, options);
 }

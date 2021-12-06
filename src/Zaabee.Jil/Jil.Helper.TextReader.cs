@@ -2,13 +2,13 @@ namespace Zaabee.Jil;
 
 public static partial class JilHelper
 {
-    public static T? Deserialize<T>(TextReader? reader, Options? options = null) =>
+    public static TValue? Deserialize<TValue>(TextReader? reader, Options? options = null) =>
         reader is null
             ? default
-            : JilSerializer.Deserialize<T>(reader, options ?? DefaultOptions);
+            : JilSerializer.Deserialize<TValue>(reader, options ?? DefaultOptions);
 
     public static object? Deserialize(Type type, TextReader? reader, Options? options = null) =>
         reader is null
-            ? type.GetDefaultValue()
+            ? default
             : JilSerializer.Deserialize(type, reader, options ?? DefaultOptions);
 }

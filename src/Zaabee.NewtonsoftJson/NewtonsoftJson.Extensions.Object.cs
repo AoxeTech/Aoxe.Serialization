@@ -7,33 +7,33 @@ namespace Zaabee.NewtonsoftJson
 {
     public static partial class NewtonsoftJsonExtensions
     {
-        public static string ToJson<T>(this T t, JsonSerializerSettings settings = null) =>
-            NewtonsoftJsonHelper.SerializeToJson(t, settings);
+        public static string ToJson<TValue>(this TValue value, JsonSerializerSettings settings = null) =>
+            NewtonsoftJsonHelper.SerializeToJson(value, settings);
 
-        public static string ToJson(this object obj, Type type, JsonSerializerSettings settings = null) =>
-            NewtonsoftJsonHelper.SerializeToJson(type, obj, settings);
+        public static string ToJson(this object? value, Type type, JsonSerializerSettings settings = null) =>
+            NewtonsoftJsonHelper.SerializeToJson(type, value, settings);
 
-        public static byte[] ToBytes<T>(this T t, JsonSerializerSettings settings = null, Encoding encoding = null) =>
-            NewtonsoftJsonHelper.Serialize(t, settings, encoding);
+        public static byte[] ToBytes<TValue>(this TValue value, JsonSerializerSettings settings = null, Encoding encoding = null) =>
+            NewtonsoftJsonHelper.Serialize(value, settings, encoding);
 
-        public static byte[] ToBytes(this object obj, Type type, JsonSerializerSettings settings = null,
+        public static byte[] ToBytes(this object? value, Type type, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
-            NewtonsoftJsonHelper.Serialize(type, obj, settings, encoding);
+            NewtonsoftJsonHelper.Serialize(type, value, settings, encoding);
 
-        public static MemoryStream ToStream<T>(this T t, JsonSerializerSettings settings = null,
+        public static Stream ToStream<TValue>(this TValue value, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
-            NewtonsoftJsonHelper.Pack(t, settings, encoding);
+            NewtonsoftJsonHelper.Pack(value, settings, encoding);
 
-        public static MemoryStream ToStream(this object obj, Type type, JsonSerializerSettings settings = null,
+        public static Stream ToStream(this object? value, Type type, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
-            NewtonsoftJsonHelper.Pack(type, obj, settings, encoding);
+            NewtonsoftJsonHelper.Pack(type, value, settings, encoding);
 
-        public static void PackTo<T>(this T t, Stream stream, JsonSerializerSettings settings = null,
+        public static void PackTo<TValue>(this TValue value, Stream? stream, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
-            NewtonsoftJsonHelper.Pack(t, stream, settings, encoding);
+            NewtonsoftJsonHelper.Pack(value, stream, settings, encoding);
 
-        public static void PackTo(this object obj, Type type, Stream stream, JsonSerializerSettings settings = null,
+        public static void PackTo(this object? value, Type type, Stream? stream, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
-            NewtonsoftJsonHelper.Pack(type, obj, stream, settings, encoding);
+            NewtonsoftJsonHelper.Pack(type, value, stream, settings, encoding);
     }
 }

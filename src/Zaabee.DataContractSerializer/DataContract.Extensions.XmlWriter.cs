@@ -1,14 +1,10 @@
-using System;
-using System.Xml;
+namespace Zaabee.DataContractSerializer;
 
-namespace Zaabee.DataContractSerializer
+public static partial class DataContractExtensions
 {
-    public static partial class DataContractExtensions
-    {
-        public static void WriteXml<T>(this XmlWriter xmlWriter, T t) =>
-            DataContractHelper.Serialize(xmlWriter, t);
+    public static void WriteXml<TValue>(this XmlWriter xmlWriter, TValue value) =>
+        DataContractHelper.Serialize(xmlWriter, value);
 
-        public static void WriteXml(this XmlWriter xmlWriter, Type type, object obj) =>
-            DataContractHelper.Serialize(type, xmlWriter, obj);
-    }
+    public static void WriteXml(this XmlWriter xmlWriter, Type type, object? value) =>
+        DataContractHelper.Serialize(type, xmlWriter, value);
 }

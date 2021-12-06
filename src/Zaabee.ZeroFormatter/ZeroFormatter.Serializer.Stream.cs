@@ -5,13 +5,13 @@ public static partial class ZeroSerializer
     /// <summary>
     /// Serializes the object to a memory stream and return it.
     /// </summary>
-    /// <param name="t"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <param name="value"></param>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static MemoryStream Pack<T>(T t)
+    public static Stream Pack<TValue>(TValue value)
     {
         var ms = new MemoryStream();
-        Pack(t, ms);
+        Pack(value, ms);
         return ms;
     }
 
@@ -19,24 +19,24 @@ public static partial class ZeroSerializer
     /// Serializes the object to a memory stream and return it.
     /// </summary>
     /// <param name="type"></param>
-    /// <param name="obj"></param>
+    /// <param name="value"></param>
     /// <returns></returns>
-    public static MemoryStream Pack(Type type, object obj)
+    public static Stream Pack(Type type, object? value)
     {
         var ms = new MemoryStream();
-        Pack(type, obj, ms);
+        Pack(type, value, ms);
         return ms;
     }
 
     /// <summary>
     /// Serializes the object to the stream,the stream will be try seek to the beginning position.
     /// </summary>
-    /// <param name="t"></param>
+    /// <param name="value"></param>
     /// <param name="stream"></param>
-    /// <typeparam name="T"></typeparam>
-    public static void Pack<T>(T t, Stream stream)
+    /// <typeparam name="TValue"></typeparam>
+    public static void Pack<TValue>(TValue value, Stream? stream)
     {
-        ZeroFormatterSerializer.Serialize(stream, t);
+        ZeroFormatterSerializer.Serialize(stream, value);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
@@ -44,11 +44,11 @@ public static partial class ZeroSerializer
     /// Serializes the object to the stream,the stream will be try seek to the beginning position.
     /// </summary>
     /// <param name="type"></param>
-    /// <param name="obj"></param>
+    /// <param name="value"></param>
     /// <param name="stream"></param>
-    public static void Pack(Type type, object obj, Stream stream)
+    public static void Pack(Type type, object? value, Stream? stream)
     {
-        ZeroFormatterSerializer.NonGeneric.Serialize(type, stream, obj);
+        ZeroFormatterSerializer.NonGeneric.Serialize(type, stream, value);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
@@ -56,11 +56,11 @@ public static partial class ZeroSerializer
     /// Deserializes from the specified stream,the stream will be try seek to the beginning position.
     /// </summary>
     /// <param name="stream"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static T Unpack<T>(Stream stream)
+    public static TValue? Unpack<TValue>(Stream? stream)
     {
-        var result = ZeroFormatterSerializer.Deserialize<T>(stream);
+        var result = ZeroFormatterSerializer.Deserialize<TValue>(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
     }
@@ -71,7 +71,7 @@ public static partial class ZeroSerializer
     /// <param name="type"></param>
     /// <param name="stream"></param>
     /// <returns></returns>
-    public static object Unpack(Type type, Stream stream)
+    public static object? Unpack(Type type, Stream? stream)
     {
         var result = ZeroFormatterSerializer.NonGeneric.Deserialize(type, stream);
         stream.TrySeek(0, SeekOrigin.Begin);

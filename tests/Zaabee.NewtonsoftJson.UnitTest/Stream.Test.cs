@@ -12,7 +12,7 @@ namespace Zaabee.NewtonsoftJson.UnitTest
         public void StreamTest()
         {
             TestModel nullModel = null;
-            MemoryStream nullMs = null;
+            Stream nullMs = null;
             nullModel.PackTo(nullMs);
             nullMs.PackBy(nullModel);
             var emptyStream = nullModel.ToStream();

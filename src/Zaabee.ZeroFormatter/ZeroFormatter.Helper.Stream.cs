@@ -2,30 +2,30 @@ namespace Zaabee.ZeroFormatter;
 
 public static partial class ZeroFormatterHelper
 {
-    public static MemoryStream Pack<T>(T t) => t is null ? new MemoryStream() : ZeroSerializer.Pack(t);
+    public static Stream Pack<TValue>(TValue value) => value is null ? Stream.Null : ZeroSerializer.Pack(value);
 
-    public static void Pack<T>(T t, Stream stream)
+    public static void Pack<TValue>(TValue value, Stream? stream)
     {
-        if (t is null || stream is null) return;
-        ZeroSerializer.Pack(t, stream);
+        if (value is null || stream is null) return;
+        ZeroSerializer.Pack(value, stream);
     }
 
-    public static MemoryStream Pack(Type type, object obj) =>
-        obj is null ? new MemoryStream() : ZeroSerializer.Pack(type, obj);
+    public static Stream Pack(Type type, object? value) =>
+        value is null ? Stream.Null : ZeroSerializer.Pack(type, value);
 
-    public static void Pack(Type type, object obj, Stream stream)
+    public static void Pack(Type type, object? value, Stream? stream)
     {
-        if (obj is null || stream is null) return;
-        ZeroSerializer.Pack(type, obj, stream);
+        if (value is null || stream is null) return;
+        ZeroSerializer.Pack(type, value, stream);
     }
 
-    public static T Unpack<T>(Stream stream) =>
+    public static TValue? Unpack<TValue>(Stream? stream) =>
         stream.IsNullOrEmpty()
-            ? (T) typeof(T).GetDefaultValue()
-            : ZeroSerializer.Unpack<T>(stream);
+            ? default
+            : ZeroSerializer.Unpack<TValue>(stream);
 
-    public static object Unpack(Type type, Stream stream) =>
+    public static object? Unpack(Type type, Stream? stream) =>
         stream.IsNullOrEmpty()
-            ? type.GetDefaultValue()
+            ? default
             : ZeroSerializer.Unpack(type, stream);
 }

@@ -14,48 +14,48 @@ public static partial class ProtobufSerializer
     /// <summary>
     /// Serialize the generic object to a memory stream.
     /// </summary>
-    /// <param name="t"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <param name="value"></param>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static MemoryStream Pack<T>(T t)
+    public static Stream Pack<TValue>(TValue value)
     {
         var ms = new MemoryStream();
-        Pack(t, ms);
+        Pack(value, ms);
         return ms;
     }
 
     /// <summary>
     /// Serialize the object to a memory stream.
     /// </summary>
-    /// <param name="obj"></param>
+    /// <param name="value"></param>
     /// <returns></returns>
-    public static MemoryStream Pack(object obj)
+    public static Stream Pack(object? value)
     {
         var ms = new MemoryStream();
-        Pack(obj, ms);
+        Pack(value, ms);
         return ms;
     }
 
     /// <summary>
     /// Serialize the generic object to the stream.
     /// </summary>
-    /// <param name="t"></param>
+    /// <param name="value"></param>
     /// <param name="stream"></param>
-    /// <typeparam name="T"></typeparam>
-    public static void Pack<T>(T t, Stream stream)
+    /// <typeparam name="TValue"></typeparam>
+    public static void Pack<TValue>(TValue value, Stream? stream)
     {
-        TypeModel.Serialize(stream, t);
+        TypeModel.Serialize(stream, value);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
     /// <summary>
     /// Serialize the object to the stream.
     /// </summary>
-    /// <param name="obj"></param>
+    /// <param name="value"></param>
     /// <param name="stream"></param>
-    public static void Pack(object obj, Stream stream)
+    public static void Pack(object? value, Stream? stream)
     {
-        TypeModel.Serialize(stream, obj);
+        TypeModel.Serialize(stream, value);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
@@ -63,11 +63,11 @@ public static partial class ProtobufSerializer
     /// Deserialize the stream to a generic object.
     /// </summary>
     /// <param name="stream"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static T Unpack<T>(Stream stream)
+    public static TValue? Unpack<TValue>(Stream? stream)
     {
-        var result = TypeModel.Deserialize<T>(stream);
+        var result = TypeModel.Deserialize<TValue>(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
     }
@@ -78,7 +78,7 @@ public static partial class ProtobufSerializer
     /// <param name="type"></param>
     /// <param name="stream"></param>
     /// <returns></returns>
-    public static object Unpack(Type type, Stream stream)
+    public static object? Unpack(Type type, Stream? stream)
     {
         var result = TypeModel.Deserialize(stream, null, type);
         stream.TrySeek(0, SeekOrigin.Begin);

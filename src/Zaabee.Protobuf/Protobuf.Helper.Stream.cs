@@ -2,35 +2,35 @@
 
 public static partial class ProtobufHelper
 {
-    public static MemoryStream Pack<T>(T t) =>
-        t is null
-            ? new MemoryStream()
-            : ProtobufSerializer.Pack(t);
+    public static Stream Pack<TValue>(TValue value) =>
+        value is null
+            ? Stream.Null
+            : ProtobufSerializer.Pack(value);
 
-    public static MemoryStream Pack(object obj) =>
-        obj is null
-            ? new MemoryStream()
-            : ProtobufSerializer.Pack(obj);
+    public static Stream Pack(object? value) =>
+        value is null
+            ? Stream.Null
+            : ProtobufSerializer.Pack(value);
 
-    public static void Pack<T>(T t, Stream stream)
+    public static void Pack<TValue>(TValue value, Stream? stream)
     {
-        if (t is not null && stream is not null)
-            ProtobufSerializer.Pack(t, stream);
+        if (value is not null && stream is not null)
+            ProtobufSerializer.Pack(value, stream);
     }
 
-    public static void Pack(object obj, Stream stream)
+    public static void Pack(object? value, Stream? stream)
     {
-        if (obj is not null && stream is not null)
-            ProtobufSerializer.Pack(obj, stream);
+        if (value is not null && stream is not null)
+            ProtobufSerializer.Pack(value, stream);
     }
 
-    public static T Unpack<T>(Stream stream) =>
+    public static TValue? Unpack<TValue>(Stream? stream) =>
         stream.IsNullOrEmpty()
-            ? (T) typeof(T).GetDefaultValue()
-            : ProtobufSerializer.Unpack<T>(stream);
+            ? default
+            : ProtobufSerializer.Unpack<TValue>(stream);
 
-    public static object Unpack(Type type, Stream stream) =>
+    public static object? Unpack(Type type, Stream? stream) =>
         stream.IsNullOrEmpty()
-            ? type.GetDefaultValue()
+            ? default
             : ProtobufSerializer.Unpack(type, stream);
 }

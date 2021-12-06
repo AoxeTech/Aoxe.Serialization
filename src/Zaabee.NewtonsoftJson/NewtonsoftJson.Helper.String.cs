@@ -6,20 +6,20 @@ namespace Zaabee.NewtonsoftJson
 {
     public static partial class NewtonsoftJsonHelper
     {
-        public static string SerializeToJson<T>(T t, JsonSerializerSettings settings = null) =>
-            NewtonsoftJsonSerializer.SerializeToJson(t, settings ?? DefaultSettings);
+        public static string SerializeToJson<TValue>(TValue value, JsonSerializerSettings settings = null) =>
+            NewtonsoftJsonSerializer.SerializeToJson(value, settings ?? DefaultSettings);
 
-        public static string SerializeToJson(Type type, object obj, JsonSerializerSettings settings = null) =>
-            NewtonsoftJsonSerializer.SerializeToJson(type, obj, settings ?? DefaultSettings);
+        public static string SerializeToJson(Type type, object? value, JsonSerializerSettings settings = null) =>
+            NewtonsoftJsonSerializer.SerializeToJson(type, value, settings ?? DefaultSettings);
 
-        public static T Deserialize<T>(string json, JsonSerializerSettings settings = null) =>
+        public static TValue? Deserialize<TValue>(string json, JsonSerializerSettings settings = null) =>
             json.IsNullOrWhiteSpace()
-                ? (T) typeof(T).GetDefaultValue()
-                : NewtonsoftJsonSerializer.Deserialize<T>(json, settings ?? DefaultSettings);
+                ? default
+                : NewtonsoftJsonSerializer.Deserialize<TValue>(json, settings ?? DefaultSettings);
 
-        public static object Deserialize(Type type, string json, JsonSerializerSettings settings = null) =>
+        public static object? Deserialize(Type type, string json, JsonSerializerSettings settings = null) =>
             json.IsNullOrWhiteSpace()
-                ? type.GetDefaultValue()
+                ? default
                 : NewtonsoftJsonSerializer.Deserialize(type, json, settings ?? DefaultSettings);
     }
 }

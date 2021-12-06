@@ -2,33 +2,44 @@
 
 public static partial class SystemTextJsonHelper
 {
-    public static Task<MemoryStream> PackAsync<T>(T value, JsonSerializerOptions options = null) =>
+    public static Task<MemoryStream> PackAsync<TValue>(TValue? value, JsonSerializerOptions? options = null,
+        CancellationToken cancellationToken = default) =>
         value is null
             ? Task.FromResult(new MemoryStream())
-            : SystemTextJsonSerializer.PackAsync(value, options ?? DefaultJsonSerializerOptions);
+            : SystemTextJsonSerializer.PackAsync(value, options ?? DefaultJsonSerializerOptions, cancellationToken);
 
-    public static Task<MemoryStream> PackAsync(Type type, object value, JsonSerializerOptions options = null) =>
+    public static Task<MemoryStream> PackAsync(Type type, object? value, JsonSerializerOptions? options = null,
+        CancellationToken cancellationToken = default) =>
         value is null
             ? Task.FromResult(new MemoryStream())
-            : SystemTextJsonSerializer.PackAsync(type, value, options ?? DefaultJsonSerializerOptions);
+            : SystemTextJsonSerializer.PackAsync(type, value, options ?? DefaultJsonSerializerOptions,
+                cancellationToken);
 
-    public static Task PackAsync<T>(T value, Stream stream, JsonSerializerOptions options = null) =>
+    public static Task PackAsync<TValue>(TValue? value, Stream? stream, JsonSerializerOptions? options = null,
+        CancellationToken cancellationToken = default) =>
         value is null || stream is null
             ? Task.CompletedTask
-            : SystemTextJsonSerializer.PackAsync(value, stream, options ?? DefaultJsonSerializerOptions);
+            : SystemTextJsonSerializer.PackAsync(value, stream, options ?? DefaultJsonSerializerOptions,
+                cancellationToken);
 
-    public static Task PackAsync(Type type, object value, Stream stream, JsonSerializerOptions options = null) =>
+    public static Task PackAsync(Type type, object? value, Stream? stream, JsonSerializerOptions? options = null,
+        CancellationToken cancellationToken = default) =>
         value is null || stream is null
             ? Task.CompletedTask
-            : SystemTextJsonSerializer.PackAsync(type, value, stream, options ?? DefaultJsonSerializerOptions);
+            : SystemTextJsonSerializer.PackAsync(type, value, stream, options ?? DefaultJsonSerializerOptions,
+                cancellationToken);
 
-    public static Task<T> UnpackAsync<T>(Stream stream, JsonSerializerOptions options = null) =>
-        stream.IsNullOrEmpty()
-            ? Task.FromResult((T)typeof(T).GetDefaultValue())
-            : SystemTextJsonSerializer.UnpackAsync<T>(stream, options ?? DefaultJsonSerializerOptions);
+    public static Task<TValue?> UnpackAsync<TValue>(Stream? stream, JsonSerializerOptions? options = null,
+        CancellationToken cancellationToken = default) =>
+        stream is null || stream.Length is 0
+            ? Task.FromResult(default(TValue?))
+            : SystemTextJsonSerializer.UnpackAsync<TValue>(stream!, options ?? DefaultJsonSerializerOptions,
+                cancellationToken);
 
-    public static Task<object> UnpackAsync(Type type, Stream stream, JsonSerializerOptions options = null) =>
-        stream.IsNullOrEmpty()
-            ? Task.FromResult(type.GetDefaultValue())
-            : SystemTextJsonSerializer.UnpackAsync(type, stream, options ?? DefaultJsonSerializerOptions);
+    public static Task<object?> UnpackAsync(Type type, Stream? stream, JsonSerializerOptions? options = null,
+        CancellationToken cancellationToken = default) =>
+        stream is null || stream.Length is 0
+            ? Task.FromResult(default(object?))
+            : SystemTextJsonSerializer.UnpackAsync(type, stream!, options ?? DefaultJsonSerializerOptions,
+                cancellationToken);
 }

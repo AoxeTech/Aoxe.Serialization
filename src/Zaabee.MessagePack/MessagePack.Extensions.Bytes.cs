@@ -2,11 +2,11 @@ namespace Zaabee.MessagePack;
 
 public static partial class MessagePackExtensions
 {
-    public static T FromBytes<T>(this byte[] bytes, MessagePackSerializerOptions options = null,
+    public static TValue? FromBytes<TValue>(this byte[] bytes, MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default) =>
-        MessagePackHelper.Deserialize<T>(bytes, options, cancellationToken);
+        MessagePackHelper.Deserialize<TValue>(bytes, options, cancellationToken);
 
-    public static object FromBytes(this byte[] bytes, Type type, MessagePackSerializerOptions options = null,
+    public static object? FromBytes(this byte[] bytes, Type type, MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default) =>
         MessagePackHelper.Deserialize(type, bytes, options, cancellationToken);
 }

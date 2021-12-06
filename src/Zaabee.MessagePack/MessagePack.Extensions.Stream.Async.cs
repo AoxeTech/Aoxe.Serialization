@@ -2,20 +2,20 @@ namespace Zaabee.MessagePack;
 
 public static partial class MessagePackExtensions
 {
-    public static Task PackByAsync<T>(this Stream stream, T t, MessagePackSerializerOptions options = null,
+    public static Task PackByAsync<TValue>(this Stream? stream, TValue value, MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default) =>
-        MessagePackHelper.PackAsync(t, stream, options, cancellationToken);
+        MessagePackHelper.PackAsync(value, stream, options, cancellationToken);
 
-    public static Task PackByAsync(this Stream stream, Type type, object obj,
+    public static Task PackByAsync(this Stream? stream, Type type, object? value,
         MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default) =>
-        MessagePackHelper.PackAsync(type, obj, stream, options, cancellationToken);
+        MessagePackHelper.PackAsync(type, value, stream, options, cancellationToken);
 
-    public static ValueTask<T> UnpackAsync<T>(this Stream stream, MessagePackSerializerOptions options = null,
+    public static ValueTask<TValue> UnpackAsync<TValue>(this Stream? stream, MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default) =>
-        MessagePackHelper.UnpackAsync<T>(stream, options, cancellationToken);
+        MessagePackHelper.UnpackAsync<TValue>(stream, options, cancellationToken);
 
-    public static ValueTask<object> UnpackAsync(this Stream stream, Type type,
+    public static ValueTask<object> UnpackAsync(this Stream? stream, Type type,
         MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default) =>
         MessagePackHelper.UnpackAsync(type, stream, options, cancellationToken);

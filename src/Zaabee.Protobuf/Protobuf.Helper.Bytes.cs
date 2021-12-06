@@ -2,23 +2,23 @@ namespace Zaabee.Protobuf;
 
 public static partial class ProtobufHelper
 {
-    public static byte[] Serialize<T>(T t) =>
-        t is null
+    public static byte[] Serialize<TValue>(TValue value) =>
+        value is null
             ? Array.Empty<byte>()
-            : ProtobufSerializer.Serialize(t);
+            : ProtobufSerializer.Serialize(value);
 
-    public static byte[] Serialize(object obj) =>
-        obj is null
+    public static byte[] Serialize(object? value) =>
+        value is null
             ? Array.Empty<byte>()
-            : ProtobufSerializer.Serialize(obj);
+            : ProtobufSerializer.Serialize(value);
 
-    public static T Deserialize<T>(byte[] bytes) =>
+    public static TValue? Deserialize<TValue>(byte[] bytes) =>
         bytes.IsNullOrEmpty()
-            ? (T) typeof(T).GetDefaultValue()
-            : ProtobufSerializer.Deserialize<T>(bytes);
+            ? default
+            : ProtobufSerializer.Deserialize<TValue>(bytes);
 
-    public static object Deserialize(Type type, byte[] bytes) =>
+    public static object? Deserialize(Type type, byte[] bytes) =>
         bytes.IsNullOrEmpty()
-            ? type.GetDefaultValue()
+            ? default
             : ProtobufSerializer.Deserialize(type, bytes);
 }

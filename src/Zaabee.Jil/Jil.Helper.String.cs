@@ -2,19 +2,19 @@ namespace Zaabee.Jil;
 
 public static partial class JilHelper
 {
-    public static string SerializeToJson<T>(T? t, Options? options = null) =>
-        JilSerializer.SerializeToJson(t, options ?? DefaultOptions);
+    public static string SerializeToJson<TValue>(TValue? value, Options? options = null) =>
+        JilSerializer.SerializeToJson(value, options ?? DefaultOptions);
 
-    public static T? Deserialize<T>(string? json, Options? options = null) =>
+    public static TValue? Deserialize<TValue>(string? json, Options? options = null) =>
         json.IsNullOrWhiteSpace()
             ? default
-            : JilSerializer.Deserialize<T>(json!, options ?? DefaultOptions);
+            : JilSerializer.Deserialize<TValue>(json!, options ?? DefaultOptions);
 
-    public static string SerializeToJson(object? obj, Options? options = null) =>
-        JilSerializer.SerializeToJson(obj, options ?? DefaultOptions);
+    public static string SerializeToJson(object? value, Options? options = null) =>
+        JilSerializer.SerializeToJson(value, options ?? DefaultOptions);
 
     public static object? Deserialize(Type type, string? json, Options? options = null) =>
         json.IsNullOrWhiteSpace()
-            ? type.GetDefaultValue()
+            ? default
             : JilSerializer.Deserialize(type, json!, options ?? DefaultOptions);
 }

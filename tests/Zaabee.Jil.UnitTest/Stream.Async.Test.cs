@@ -36,11 +36,6 @@ namespace Zaabee.Jil.UnitTest
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(unPackResult2.Id, unPackResult2.Age, unPackResult2.CreateTime, unPackResult2.Name,
                     unPackResult2.Gender));
-
-            TestModel nullModel = null;
-            MemoryStream nullMs = null;
-            await nullModel.PackToAsync(nullMs);
-            Assert.True((await nullModel.ToStreamAsync()).ToArray().IsNullOrEmpty());
         }
     }
 }

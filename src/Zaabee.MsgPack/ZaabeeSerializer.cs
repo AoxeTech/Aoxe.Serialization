@@ -2,27 +2,27 @@ namespace Zaabee.MsgPack;
 
 public class ZaabeeSerializer : IBytesSerializer
 {
-    public byte[] SerializeToBytes<T>(T t) =>
-        MsgPackSerializer.Serialize(t);
+    public byte[] SerializeToBytes<TValue>(TValue value) =>
+        MsgPackSerializer.Serialize(value);
 
-    public byte[] SerializeToBytes(Type type, object obj) =>
-        MsgPackSerializer.Serialize(type, obj);
+    public byte[] SerializeToBytes(Type type, object? value) =>
+        MsgPackSerializer.Serialize(type, value);
 
-    public T DeserializeFromBytes<T>(byte[] bytes) =>
-        MsgPackSerializer.Deserialize<T>(bytes);
+    public TValue DeserializeFromBytes<TValue>(byte[] bytes) =>
+        MsgPackSerializer.Deserialize<TValue>(bytes);
 
     public object DeserializeFromBytes(Type type, byte[] bytes) =>
         MsgPackSerializer.Deserialize(type, bytes);
 
-    public Stream SerializeToStream<T>(T t) =>
-        MsgPackSerializer.Pack(t);
+    public Stream? SerializeToStream<TValue>(TValue value) =>
+        MsgPackSerializer.Pack(value);
 
-    public Stream SerializeToStream(Type type, object obj) =>
-        MsgPackSerializer.Pack(type, obj);
+    public Stream? SerializeToStream(Type type, object? value) =>
+        MsgPackSerializer.Pack(type, value);
 
-    public T DeserializeFromStream<T>(Stream stream) =>
-        MsgPackSerializer.Unpack<T>(stream);
+    public TValue DeserializeFromStream<TValue>(Stream? stream) =>
+        MsgPackSerializer.Unpack<TValue>(stream);
 
-    public object DeserializeFromStream(Type type, Stream stream) =>
+    public object DeserializeFromStream(Type type, Stream? stream) =>
         MsgPackSerializer.Unpack(type, stream);
 }

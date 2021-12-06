@@ -6,9 +6,9 @@ public static partial class XmlSerializer
     /// Deserializes the XML document contained by the specified XmlReader.
     /// </summary>
     /// <param name="xmlReader"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static T Deserialize<T>(XmlReader xmlReader) => (T) Deserialize(typeof(T), xmlReader);
+    public static TValue? Deserialize<TValue>(XmlReader xmlReader) => (TValue) Deserialize(typeof(TValue), xmlReader);
 
     /// <summary>
     /// Deserializes the XML document contained by the specified XmlReader.
@@ -16,6 +16,6 @@ public static partial class XmlSerializer
     /// <param name="type"></param>
     /// <param name="xmlReader"></param>
     /// <returns></returns>
-    public static object Deserialize(Type type, XmlReader xmlReader) =>
+    public static object? Deserialize(Type type, XmlReader xmlReader) =>
         GetSerializer(type).Deserialize(xmlReader);
 }

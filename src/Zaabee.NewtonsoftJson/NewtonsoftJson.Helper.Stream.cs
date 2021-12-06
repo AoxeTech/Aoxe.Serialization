@@ -8,39 +8,39 @@ namespace Zaabee.NewtonsoftJson
 {
     public static partial class NewtonsoftJsonHelper
     {
-        public static MemoryStream Pack<T>(T t, JsonSerializerSettings settings = null, Encoding encoding = null) =>
-            t is null
-                ? new MemoryStream()
-                : NewtonsoftJsonSerializer.Pack(t, settings ?? DefaultSettings, encoding ?? DefaultEncoding);
+        public static Stream Pack<TValue>(TValue value, JsonSerializerSettings settings = null, Encoding encoding = null) =>
+            value is null
+                ? Stream.Null
+                : NewtonsoftJsonSerializer.Pack(value, settings ?? DefaultSettings, encoding ?? DefaultEncoding);
 
-        public static MemoryStream Pack(Type type, object obj, JsonSerializerSettings settings = null,
+        public static Stream Pack(Type type, object? value, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
-            obj is null
-                ? new MemoryStream()
-                : NewtonsoftJsonSerializer.Pack(type, obj, settings ?? DefaultSettings, encoding ?? DefaultEncoding);
+            value is null
+                ? Stream.Null
+                : NewtonsoftJsonSerializer.Pack(type, value, settings ?? DefaultSettings, encoding ?? DefaultEncoding);
 
-        public static void Pack<T>(T t, Stream stream, JsonSerializerSettings settings = null, Encoding encoding = null)
+        public static void Pack<TValue>(TValue value, Stream? stream, JsonSerializerSettings settings = null, Encoding encoding = null)
         {
-            if (t is null || stream is null) return;
-            NewtonsoftJsonSerializer.Pack(t, stream, settings ?? DefaultSettings, encoding ?? DefaultEncoding);
+            if (value is null || stream is null) return;
+            NewtonsoftJsonSerializer.Pack(value, stream, settings ?? DefaultSettings, encoding ?? DefaultEncoding);
         }
 
-        public static void Pack(Type type, object obj, Stream stream, JsonSerializerSettings settings = null,
+        public static void Pack(Type type, object? value, Stream? stream, JsonSerializerSettings settings = null,
             Encoding encoding = null)
         {
-            if (obj is null || stream is null) return;
-            NewtonsoftJsonSerializer.Pack(type, obj, stream, settings ?? DefaultSettings, encoding ?? DefaultEncoding);
+            if (value is null || stream is null) return;
+            NewtonsoftJsonSerializer.Pack(type, value, stream, settings ?? DefaultSettings, encoding ?? DefaultEncoding);
         }
 
-        public static T Unpack<T>(Stream stream, JsonSerializerSettings settings = null, Encoding encoding = null) =>
+        public static TValue? Unpack<TValue>(Stream? stream, JsonSerializerSettings settings = null, Encoding encoding = null) =>
             stream.IsNullOrEmpty()
-                ? (T) typeof(T).GetDefaultValue()
-                : NewtonsoftJsonSerializer.Unpack<T>(stream, settings ?? DefaultSettings, encoding ?? DefaultEncoding);
+                ? default
+                : NewtonsoftJsonSerializer.Unpack<TValue>(stream, settings ?? DefaultSettings, encoding ?? DefaultEncoding);
 
-        public static object Unpack(Type type, Stream stream, JsonSerializerSettings settings = null,
+        public static object? Unpack(Type type, Stream? stream, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
             stream.IsNullOrEmpty()
-                ? type.GetDefaultValue()
+                ? default
                 : NewtonsoftJsonSerializer.Unpack(type, stream, settings ?? DefaultSettings,
                     encoding ?? DefaultEncoding);
     }

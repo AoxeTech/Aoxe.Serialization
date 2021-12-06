@@ -2,7 +2,7 @@ namespace Zaabee.MsgPack;
 
 public static partial class MsgPackExtensions
 {
-    public static T FromBytes<T>(this byte[] bytes) => MsgPackHelper.Deserialize<T>(bytes);
+    public static TValue? FromBytes<TValue>(this byte[] bytes) => MsgPackHelper.Deserialize<TValue>(bytes);
 
-    public static object FromBytes(this byte[] bytes, Type type) => MsgPackHelper.Deserialize(type, bytes);
+    public static object? FromBytes(this byte[] bytes, Type type) => MsgPackHelper.Deserialize(type, bytes);
 }

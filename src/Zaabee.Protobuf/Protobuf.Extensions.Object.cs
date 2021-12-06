@@ -2,15 +2,15 @@
 
 public static partial class ProtobufExtensions
 {
-    public static byte[] ToBytes<T>(this T t) => ProtobufHelper.Serialize(t);
+    public static byte[] ToBytes<TValue>(this TValue value) => ProtobufHelper.Serialize(value);
 
-    public static byte[] ToBytes(this object obj) => ProtobufHelper.Serialize(obj);
+    public static byte[] ToBytes(this object? value) => ProtobufHelper.Serialize(value);
 
-    public static MemoryStream ToStream<T>(this T t) => ProtobufHelper.Pack(t);
+    public static Stream ToStream<TValue>(this TValue value) => ProtobufHelper.Pack(value);
 
-    public static MemoryStream ToStream(this object obj) => ProtobufHelper.Pack(obj);
+    public static Stream ToStream(this object? value) => ProtobufHelper.Pack(value);
 
-    public static void PackTo<T>(this T t, Stream stream) => ProtobufHelper.Pack(t, stream);
+    public static void PackTo<TValue>(this TValue value, Stream? stream) => ProtobufHelper.Pack(value, stream);
 
-    public static void PackTo(this object obj, Stream stream) => ProtobufHelper.Pack(obj, stream);
+    public static void PackTo(this object? value, Stream? stream) => ProtobufHelper.Pack(value, stream);
 }

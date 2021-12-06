@@ -5,8 +5,8 @@ public static partial class MsgPackSerializer
     /// <summary>
     /// Serializes specified object to the memory stream. />.
     /// </summary>
-    /// <param name="t"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <param name="value"></param>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
     /// <exception cref="T:System.Runtime.Serialization.SerializationException">
     /// 	Failed to serialize object.
@@ -15,10 +15,10 @@ public static partial class MsgPackSerializer
     /// 	<typeparamref name="T" /> is not serializable even if it can be deserialized.
     /// </exception>
     /// <seealso cref="P:Capabilities" />
-    public static MemoryStream Pack<T>(T t)
+    public static Stream Pack<TValue>(TValue value)
     {
         var ms = new MemoryStream();
-        Pack(t, ms);
+        Pack(value, ms);
         return ms;
     }
 
@@ -26,22 +26,22 @@ public static partial class MsgPackSerializer
     /// Serializes specified object to the memory stream with default <see cref="T:MsgPack.PackerCompatibilityOptions" />.
     /// </summary>
     /// <param name="type"></param>
-    /// <param name="obj"></param>
+    /// <param name="value"></param>
     /// <returns></returns>
     /// <exception cref="T:System.Runtime.Serialization.SerializationException">Failed to serialize <paramref name="obj" />. </exception>
-    public static MemoryStream Pack(Type type, object obj)
+    public static Stream Pack(Type type, object? value)
     {
         var ms = new MemoryStream();
-        Pack(type, obj, ms);
+        Pack(type, value, ms);
         return ms;
     }
 
     /// <summary>
     /// Serializes specified object to the <see cref="T:System.IO.Stream" />.
     /// </summary>
-    /// <param name="t"></param>
+    /// <param name="value"></param>
     /// <param name="stream"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     /// <exception cref="T:System.ArgumentNullException">
     /// 	<paramref name="stream" /> is <c>null</c>.
     /// </exception>
@@ -52,9 +52,9 @@ public static partial class MsgPackSerializer
     /// 	<typeparamref name="T" /> is not serializable even if it can be deserialized.
     /// </exception>
     /// <seealso cref="P:Capabilities" />
-    public static void Pack<T>(T t, Stream stream)
+    public static void Pack<TValue>(TValue value, Stream? stream)
     {
-        MessagePackSerializer.Get<T>().Pack(stream, t);
+        MessagePackSerializer.Get<TValue>().Pack(stream, value);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
@@ -62,13 +62,13 @@ public static partial class MsgPackSerializer
     /// Serializes specified object to the <see cref="T:System.IO.Stream" /> with default <see cref="T:MsgPack.PackerCompatibilityOptions" />.
     /// </summary>
     /// <param name="type"></param>
-    /// <param name="obj"></param>
+    /// <param name="value"></param>
     /// <param name="stream"></param>
     /// <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <c>null</c>. </exception>
     /// <exception cref="T:System.Runtime.Serialization.SerializationException">Failed to serialize <paramref name="obj" />. </exception>
-    public static void Pack(Type type, object obj, Stream stream)
+    public static void Pack(Type type, object? value, Stream? stream)
     {
-        MessagePackSerializer.Get(type).Pack(stream, obj);
+        MessagePackSerializer.Get(type).Pack(stream, value);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
@@ -76,7 +76,7 @@ public static partial class MsgPackSerializer
     /// Deserialize object from the <see cref="T:System.IO.Stream" />.
     /// </summary>
     /// <param name="stream"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
     /// <exception cref="T:System.ArgumentNullException">
     /// 	<paramref name="stream" /> is <c>null</c>.
@@ -94,9 +94,9 @@ public static partial class MsgPackSerializer
     /// 	<typeparamref name="T" /> is not serializable even if it can be serialized.
     /// </exception>
     /// <seealso cref="P:Capabilities" />
-    public static T Unpack<T>(Stream stream)
+    public static TValue? Unpack<TValue>(Stream? stream)
     {
-        var result = MessagePackSerializer.Get<T>().Unpack(stream);
+        var result = MessagePackSerializer.Get<TValue>().Unpack(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
     }
@@ -111,7 +111,7 @@ public static partial class MsgPackSerializer
     /// <exception cref="T:System.Runtime.Serialization.SerializationException">
     /// 	Failed to deserialize from <paramref name="stream" />.
     /// </exception>
-    public static object Unpack(Type type, Stream stream)
+    public static object? Unpack(Type type, Stream? stream)
     {
         var result = MessagePackSerializer.Get(type).Unpack(stream);
         stream.TrySeek(0, SeekOrigin.Begin);

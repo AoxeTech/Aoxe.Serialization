@@ -14,7 +14,7 @@ namespace Zaabee.SystemTextJson.UnitTest
             var type = typeof(TestModel);
 
             object nullModel = null;
-            MemoryStream nullMs = null;
+            Stream nullMs = null;
             nullModel.PackTo(type, nullMs);
             nullMs.PackBy(type, nullModel);
             var emptyStream = nullModel.ToStream();

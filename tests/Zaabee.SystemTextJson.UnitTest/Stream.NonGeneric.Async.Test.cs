@@ -15,7 +15,7 @@ namespace Zaabee.SystemTextJson.UnitTest
             var type = typeof(TestModel);
 
             object nullModel = null;
-            MemoryStream nullMs = null;
+            Stream nullMs = null;
             await nullModel.PackToAsync(type, nullMs);
             await nullMs.PackByAsync(type, nullModel);
             var emptyStream = await nullModel.ToStreamAsync();

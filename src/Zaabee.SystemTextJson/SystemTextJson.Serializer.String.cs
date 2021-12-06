@@ -5,12 +5,12 @@ public static partial class SystemTextJsonSerializer
     /// <summary>
     /// Convert the provided value into a <see cref="System.String"/>.
     /// </summary>
-    /// <param name="o"></param>
+    /// <param name="value"></param>
     /// <param name="options"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static string SerializeToJson<T>(T o, JsonSerializerOptions options) =>
-        JsonSerializer.Serialize(o, options);
+    public static string SerializeToJson<TValue>(TValue? value, JsonSerializerOptions? options) =>
+        JsonSerializer.Serialize(value, options);
 
     /// <summary>
     /// Convert the provided value into a <see cref="System.String"/>.
@@ -19,26 +19,18 @@ public static partial class SystemTextJsonSerializer
     /// <param name="value"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public static string SerializeToJson(Type type, object value, JsonSerializerOptions options) =>
+    public static string SerializeToJson(Type type, object? value, JsonSerializerOptions? options) =>
         JsonSerializer.Serialize(value, type, options);
 
     /// <summary>
-    /// Parse the text representing a single JSON value into a <typeparamref name="T"/>.
+    /// Parse the text representing a single JSON value into a <typeparamref name="TValue"/>.
     /// </summary>
     /// <param name="json"></param>
     /// <param name="options"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    /// <exception cref="System.ArgumentNullException">
-    /// Thrown if <paramref name="json"/> is null.
-    /// </exception>
-    /// <exception cref="JsonException">
-    /// Thrown when the JSON is invalid,
-    /// <typeparamref name="T"/> is not compatible with the JSON,
-    /// or when there is remaining data in the Stream.
-    /// </exception>
-    public static T Deserialize<T>(string json, JsonSerializerOptions options) =>
-        JsonSerializer.Deserialize<T>(json, options);
+    public static TValue? Deserialize<TValue>(string json, JsonSerializerOptions? options) =>
+        JsonSerializer.Deserialize<TValue>(json, options);
 
     /// <summary>
     /// Parse the text representing a single JSON value into a <paramref name="type"/>.
@@ -47,14 +39,6 @@ public static partial class SystemTextJsonSerializer
     /// <param name="json"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    /// <exception cref="System.ArgumentNullException">
-    /// Thrown if <paramref name="json"/> or <paramref name="type"/> is null.
-    /// </exception>
-    /// <exception cref="JsonException">
-    /// Thrown when the JSON is invalid,
-    /// the <paramref name="type"/> is not compatible with the JSON,
-    /// or when there is remaining data in the Stream.
-    /// </exception>
-    public static object Deserialize(Type type, string json, JsonSerializerOptions options) =>
+    public static object? Deserialize(Type type, string json, JsonSerializerOptions? options) =>
         JsonSerializer.Deserialize(json, type, options);
 }

@@ -1,30 +1,34 @@
-﻿using System;
-using System.IO;
-using System.Xml;
+﻿namespace Zaabee.DataContractSerializer;
 
-namespace Zaabee.DataContractSerializer
+public static partial class DataContractExtensions
 {
-    public static partial class DataContractExtensions
-    {
-        public static byte[] ToBytes<T>(this T t) => DataContractHelper.Serialize(t);
+    public static byte[] ToBytes<TValue>(this TValue value) =>
+        DataContractHelper.Serialize(value);
 
-        public static byte[] ToBytes(this object obj, Type type) => DataContractHelper.Serialize(type, obj);
+    public static byte[] ToBytes(this object? value, Type type) =>
+        DataContractHelper.Serialize(type, value);
 
-        public static MemoryStream ToStream<T>(this T t) => DataContractHelper.Pack(t);
+    public static Stream ToStream<TValue>(this TValue value) =>
+        DataContractHelper.Pack(value);
 
-        public static void PackTo<T>(this T t, Stream stream) => DataContractHelper.Pack(t, stream);
+    public static void PackTo<TValue>(this TValue value, Stream? stream) =>
+        DataContractHelper.Pack(value, stream);
 
-        public static void PackTo(this object obj, Type type, Stream stream) => DataContractHelper.Pack(type, obj, stream);
+    public static void PackTo(this object? value, Type type, Stream? stream) =>
+        DataContractHelper.Pack(type, value, stream);
 
-        public static MemoryStream Pack(this object obj, Type type) => DataContractHelper.Pack(type, obj);
+    public static Stream Pack(this object? value, Type type) =>
+        DataContractHelper.Pack(type, value);
 
-        public static string ToXml<T>(this T t) => DataContractHelper.SerializeToXml(t);
+    public static string ToXml<TValue>(this TValue value) =>
+        DataContractHelper.SerializeToXml(value);
 
-        public static string ToXml(this object obj, Type type) => DataContractHelper.SerializeToXml(type, obj);
+    public static string ToXml(this object? value, Type type) =>
+        DataContractHelper.SerializeToXml(type, value);
 
-        public static void ToXml<T>(this T t, XmlWriter xmlWriter) => DataContractHelper.Serialize(xmlWriter, t);
+    public static void ToXml<TValue>(this TValue value, XmlWriter xmlWriter) =>
+        DataContractHelper.Serialize(xmlWriter, value);
 
-        public static void ToXml(this object obj, Type type, XmlWriter xmlWriter) =>
-            DataContractHelper.Serialize(type, xmlWriter, obj);
-    }
+    public static void ToXml(this object? value, Type type, XmlWriter xmlWriter) =>
+        DataContractHelper.Serialize(type, xmlWriter, value);
 }

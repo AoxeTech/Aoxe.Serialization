@@ -8,20 +8,20 @@ namespace Zaabee.NewtonsoftJson
 {
     public static partial class NewtonsoftJsonExtensions
     {
-        public static Task<MemoryStream> ToStreamAsync<T>(this T t, JsonSerializerSettings settings = null,
+        public static Task<MemoryStream> ToStreamAsync<TValue>(this TValue value, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
-            NewtonsoftJsonHelper.PackAsync(t, settings, encoding);
+            NewtonsoftJsonHelper.PackAsync(value, settings, encoding);
 
-        public static Task<MemoryStream> ToStreamAsync(this object obj, Type type,
+        public static Task<MemoryStream> ToStreamAsync(this object? value, Type type,
             JsonSerializerSettings settings = null, Encoding encoding = null) =>
-            NewtonsoftJsonHelper.PackAsync(type, obj, settings, encoding);
+            NewtonsoftJsonHelper.PackAsync(type, value, settings, encoding);
 
-        public static Task PackToAsync<T>(this T t, Stream stream, JsonSerializerSettings settings = null,
+        public static Task PackToAsync<TValue>(this TValue value, Stream? stream, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
-            NewtonsoftJsonHelper.PackAsync(t, stream, settings, encoding);
+            NewtonsoftJsonHelper.PackAsync(value, stream, settings, encoding);
 
-        public static Task PackToAsync(this object obj, Type type, Stream stream,
+        public static Task PackToAsync(this object? value, Type type, Stream? stream,
             JsonSerializerSettings settings = null, Encoding encoding = null) =>
-            NewtonsoftJsonHelper.PackAsync(type, obj, stream, settings, encoding);
+            NewtonsoftJsonHelper.PackAsync(type, value, stream, settings, encoding);
     }
 }

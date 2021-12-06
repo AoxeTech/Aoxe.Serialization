@@ -5,56 +5,56 @@ public static partial class JilSerializer
     /// <summary>
     /// Serialize the object to string, encode it to bytes and write to the stream.
     /// </summary>
-    /// <param name="t"></param>
+    /// <param name="value"></param>
     /// <param name="options"></param>
     /// <param name="encoding"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static MemoryStream Pack<T>(T? t, Options? options, Encoding encoding)
+    public static Stream Pack<TValue>(TValue? value, Options? options, Encoding encoding)
     {
         var ms = new MemoryStream();
-        Pack(t, ms, options, encoding);
+        Pack(value, ms, options, encoding);
         return ms;
     }
 
     /// <summary>
     /// Serialize the object to string, encode it to bytes and write to the stream.
     /// </summary>
-    /// <param name="t"></param>
+    /// <param name="value"></param>
     /// <param name="stream"></param>
     /// <param name="options"></param>
     /// <param name="encoding"></param>
-    /// <typeparam name="T"></typeparam>
-    public static void Pack<T>(T? t, Stream stream, Options? options, Encoding encoding)
+    /// <typeparam name="TValue"></typeparam>
+    public static void Pack<TValue>(TValue? value, Stream? stream, Options? options, Encoding encoding)
     {
-        Serialize(t, options, encoding).WriteTo(stream);
+        Serialize(value, options, encoding).WriteTo(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
     /// <summary>
     /// Serialize the object to string, encode it to bytes and write to the stream.
     /// </summary>
-    /// <param name="obj"></param>
+    /// <param name="value"></param>
     /// <param name="options"></param>
     /// <param name="encoding"></param>
     /// <returns></returns>
-    public static MemoryStream Pack(object? obj, Options? options, Encoding encoding)
+    public static Stream Pack(object? value, Options? options, Encoding encoding)
     {
         var ms = new MemoryStream();
-        Pack(obj, ms, options, encoding);
+        Pack(value, ms, options, encoding);
         return ms;
     }
 
     /// <summary>
     /// Serialize the object to string, encode it to bytes and write to the stream.
     /// </summary>
-    /// <param name="obj"></param>
+    /// <param name="value"></param>
     /// <param name="stream"></param>
     /// <param name="options"></param>
     /// <param name="encoding"></param>
-    public static void Pack(object? obj, Stream stream, Options? options, Encoding encoding)
+    public static void Pack(object? value, Stream? stream, Options? options, Encoding encoding)
     {
-        Serialize(obj, options, encoding).WriteTo(stream);
+        Serialize(value, options, encoding).WriteTo(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
@@ -64,11 +64,11 @@ public static partial class JilSerializer
     /// <param name="stream"></param>
     /// <param name="options"></param>
     /// <param name="encoding"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static T Unpack<T>(Stream stream, Options? options, Encoding encoding)
+    public static TValue? Unpack<TValue>(Stream? stream, Options? options, Encoding encoding)
     {
-        var result = Deserialize<T>(encoding.GetString(stream.ReadToEnd()), options);
+        var result = Deserialize<TValue>(encoding.GetString(stream.ReadToEnd()), options);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
     }
@@ -81,7 +81,7 @@ public static partial class JilSerializer
     /// <param name="options"></param>
     /// <param name="encoding"></param>
     /// <returns></returns>
-    public static object Unpack(Type type, Stream stream, Options? options, Encoding encoding)
+    public static object? Unpack(Type type, Stream? stream, Options? options, Encoding encoding)
     {
         var result = Deserialize(type, encoding.GetString(stream.ReadToEnd()), options);
         stream.TrySeek(0, SeekOrigin.Begin);

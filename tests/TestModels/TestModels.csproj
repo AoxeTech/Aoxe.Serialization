@@ -12,6 +12,7 @@
         <PackageReference Include="ZeroFormatter" Version="1.6.4" Condition="'$(TargetFramework)'=='netstandard2.0'" />
         <PackageReference Include="Alexinea.ZeroFormatter" Version="1.6.4" Condition="'$(TargetFramework)' == 'netcoreapp3.1'" />
         <PackageReference Include="Alexinea.ZeroFormatter" Version="1.6.4" Condition="'$(TargetFramework)' == 'net5.0'" />
+        <PackageReference Include="Alexinea.ZeroFormatter" Version="1.6.4" Condition="'$(TargetFramework)' == 'net6.0'" />
     </ItemGroup>
 
 </Project>

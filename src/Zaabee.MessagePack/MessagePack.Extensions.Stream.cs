@@ -2,19 +2,19 @@ namespace Zaabee.MessagePack;
 
 public static partial class MessagePackExtensions
 {
-    public static void PackBy<T>(this Stream stream, T obj, MessagePackSerializerOptions options = null,
+    public static void PackBy<TValue>(this Stream? stream, TValue value, MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default) =>
-        MessagePackHelper.Pack(obj, stream, options, cancellationToken);
+        MessagePackHelper.Pack(value, stream, options, cancellationToken);
 
-    public static void PackBy(this Stream stream, Type type, object obj,
+    public static void PackBy(this Stream? stream, Type type, object? value,
         MessagePackSerializerOptions options = null, CancellationToken cancellationToken = default) =>
-        MessagePackHelper.Pack(type, obj, stream, options, cancellationToken);
+        MessagePackHelper.Pack(type, value, stream, options, cancellationToken);
 
-    public static T Unpack<T>(this Stream stream, MessagePackSerializerOptions options = null,
+    public static TValue? Unpack<TValue>(this Stream? stream, MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default) =>
-        MessagePackHelper.Unpack<T>(stream, options, cancellationToken);
+        MessagePackHelper.Unpack<TValue>(stream, options, cancellationToken);
 
-    public static object Unpack(this Stream stream, Type type, MessagePackSerializerOptions options = null,
+    public static object? Unpack(this Stream? stream, Type type, MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default) =>
         MessagePackHelper.Unpack(type, stream, options, cancellationToken);
 }

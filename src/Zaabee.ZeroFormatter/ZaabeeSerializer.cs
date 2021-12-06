@@ -2,27 +2,27 @@ namespace Zaabee.ZeroFormatter;
 
 public class ZaabeeSerializer : IBytesSerializer
 {
-    public byte[] SerializeToBytes<T>(T t) =>
-        ZeroSerializer.Serialize(t);
+    public byte[] SerializeToBytes<TValue>(TValue value) =>
+        ZeroSerializer.Serialize(value);
 
-    public byte[] SerializeToBytes(Type type, object obj) =>
-        ZeroSerializer.Serialize(type, obj);
+    public byte[] SerializeToBytes(Type type, object? value) =>
+        ZeroSerializer.Serialize(type, value);
 
-    public T DeserializeFromBytes<T>(byte[] bytes) =>
-        ZeroSerializer.Deserialize<T>(bytes);
+    public TValue DeserializeFromBytes<TValue>(byte[] bytes) =>
+        ZeroSerializer.Deserialize<TValue>(bytes);
 
     public object DeserializeFromBytes(Type type, byte[] bytes) =>
         ZeroSerializer.Deserialize(type, bytes);
 
-    public Stream SerializeToStream<T>(T t) =>
-        ZeroSerializer.Pack(t);
+    public Stream? SerializeToStream<TValue>(TValue value) =>
+        ZeroSerializer.Pack(value);
 
-    public Stream SerializeToStream(Type type, object obj) =>
-        ZeroSerializer.Pack(type, obj);
+    public Stream? SerializeToStream(Type type, object? value) =>
+        ZeroSerializer.Pack(type, value);
 
-    public T DeserializeFromStream<T>(Stream stream) =>
-        ZeroSerializer.Unpack<T>(stream);
+    public TValue DeserializeFromStream<TValue>(Stream? stream) =>
+        ZeroSerializer.Unpack<TValue>(stream);
 
-    public object DeserializeFromStream(Type type, Stream stream) =>
+    public object DeserializeFromStream(Type type, Stream? stream) =>
         ZeroSerializer.Unpack(type, stream);
 }

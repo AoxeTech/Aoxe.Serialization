@@ -1,37 +1,32 @@
-using System;
-using System.IO;
-using Zaabee.Extensions;
+namespace Zaabee.DataContractSerializer;
 
-namespace Zaabee.DataContractSerializer
+public static partial class DataContractHelper
 {
-    public static partial class DataContractHelper
+    public static void Pack<TValue>(TValue? value, Stream? stream)
     {
-        public static void Pack<T>(T t, Stream stream)
-        {
-            if (t is null || stream is null) return;
-            DataContractSerializer.Pack(t, stream);
-        }
-
-        public static void Pack(Type type, object obj, Stream stream)
-        {
-            if (type is null || obj is null || stream is null) return;
-            DataContractSerializer.Pack(type, obj, stream);
-        }
-        
-        public static MemoryStream Pack<T>(T t) =>
-            t is null ? new MemoryStream() : DataContractSerializer.Pack(t);
-        
-        public static MemoryStream Pack(Type type, object obj) =>
-            obj is null ? new MemoryStream() : DataContractSerializer.Pack(type, obj);
-        
-        public static T? Unpack<T>(Stream stream) =>
-            stream.IsNullOrEmpty()
-                ? (T) typeof(T).GetDefaultValue()
-                : DataContractSerializer.Unpack<T>(stream);
-        
-        public static object Unpack(Type type, Stream stream) =>
-            stream.IsNullOrEmpty()
-                ? type.GetDefaultValue()
-                : DataContractSerializer.Unpack(type, stream);
+        if (value is null || stream is null) return;
+        DataContractSerializer.Pack(value, stream);
     }
+
+    public static void Pack(Type type, object? value, Stream? stream)
+    {
+        if (value is null || stream is null) return;
+        DataContractSerializer.Pack(type, value, stream);
+    }
+
+    public static Stream Pack<TValue>(TValue? value) =>
+        value is null ? Stream.Null : DataContractSerializer.Pack(value);
+
+    public static Stream Pack(Type type, object? value) =>
+        value is null ? Stream.Null : DataContractSerializer.Pack(type, value);
+
+    public static TValue? Unpack<TValue>(Stream? stream) =>
+        stream.IsNullOrEmpty()
+            ? default
+            : DataContractSerializer.Unpack<TValue>(stream!);
+
+    public static object? Unpack(Type type, Stream? stream) =>
+        stream.IsNullOrEmpty()
+            ? default
+            : DataContractSerializer.Unpack(type, stream!);
 }

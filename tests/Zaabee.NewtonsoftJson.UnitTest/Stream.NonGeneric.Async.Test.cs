@@ -15,7 +15,7 @@ namespace Zaabee.NewtonsoftJson.UnitTest
             var type = typeof(TestModel);
 
             object nullModel = null;
-            MemoryStream nullMs = null;
+            Stream nullMs = null;
             await nullModel.PackToAsync(nullMs);
             await nullMs.PackByAsync(nullModel);
             await nullModel.PackToAsync(type, nullMs);

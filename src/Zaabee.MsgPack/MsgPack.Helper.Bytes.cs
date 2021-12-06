@@ -2,23 +2,23 @@ namespace Zaabee.MsgPack;
 
 public static partial class MsgPackHelper
 {
-    public static byte[] Serialize<T>(T t) =>
-        t is null
+    public static byte[] Serialize<TValue>(TValue value) =>
+        value is null
             ? Array.Empty<byte>()
-            : MsgPackSerializer.Serialize(t);
+            : MsgPackSerializer.Serialize(value);
 
-    public static byte[] Serialize(Type type, object obj) =>
-        obj is null
+    public static byte[] Serialize(Type type, object? value) =>
+        value is null
             ? Array.Empty<byte>()
-            : MsgPackSerializer.Serialize(type, obj);
+            : MsgPackSerializer.Serialize(type, value);
 
-    public static T Deserialize<T>(byte[] bytes) =>
+    public static TValue? Deserialize<TValue>(byte[] bytes) =>
         bytes.IsNullOrEmpty()
-            ? (T) typeof(T).GetDefaultValue()
-            : MsgPackSerializer.Deserialize<T>(bytes);
+            ? default
+            : MsgPackSerializer.Deserialize<TValue>(bytes);
 
-    public static object Deserialize(Type type, byte[] bytes) =>
+    public static object? Deserialize(Type type, byte[] bytes) =>
         bytes.IsNullOrEmpty()
-            ? type.GetDefaultValue()
+            ? default
             : MsgPackSerializer.Deserialize(type, bytes);
 }

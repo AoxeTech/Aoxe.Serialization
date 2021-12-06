@@ -2,33 +2,33 @@
 
 public static partial class JilExtensions
 {
-    public static byte[] ToBytes<T>(this T? t, Options? options = null, Encoding? encoding = null) =>
-        JilHelper.Serialize(t, options, encoding);
+    public static byte[] ToBytes<TValue>(this TValue? value, Options? options = null, Encoding? encoding = null) =>
+        JilHelper.Serialize(value, options, encoding);
 
-    public static MemoryStream ToStream<T>(this T? t, Options? options = null, Encoding? encoding = null) =>
-        JilHelper.Pack(t, options, encoding);
+    public static Stream ToStream<TValue>(this TValue? value, Options? options = null, Encoding? encoding = null) =>
+        JilHelper.Pack(value, options, encoding);
 
-    public static string ToJson<T>(this T? t, Options? options = null) =>
-        JilHelper.SerializeToJson(t, options);
+    public static string ToJson<TValue>(this TValue? value, Options? options = null) =>
+        JilHelper.SerializeToJson(value, options);
 
-    public static void ToJson<T>(this T? t, TextWriter output, Options? options = null) =>
-        JilHelper.Serialize(t, output, options);
+    public static void ToJson<TValue>(this TValue? value, TextWriter output, Options? options = null) =>
+        JilHelper.Serialize(value, output, options);
 
-    public static void PackTo<T>(this T? t, Stream stream, Options? options = null, Encoding? encoding = null) =>
-        JilHelper.Pack(t, stream, options, encoding);
+    public static void PackTo<TValue>(this TValue? value, Stream? stream, Options? options = null, Encoding? encoding = null) =>
+        JilHelper.Pack(value, stream, options, encoding);
 
-    public static byte[] ToBytes(this object? obj, Options? options = null, Encoding? encoding = null) =>
-        JilHelper.Serialize(obj, options, encoding);
+    public static byte[] ToBytes(this object? value, Options? options = null, Encoding? encoding = null) =>
+        JilHelper.Serialize(value, options, encoding);
 
-    public static MemoryStream ToStream(this object? obj, Options? options = null, Encoding? encoding = null) =>
-        JilHelper.Pack(obj, options, encoding);
+    public static Stream ToStream(this object? value, Options? options = null, Encoding? encoding = null) =>
+        JilHelper.Pack(value, options, encoding);
 
-    public static string ToJson(this object? obj, Options? options = null) =>
-        JilHelper.SerializeToJson(obj, options);
+    public static string ToJson(this object? value, Options? options = null) =>
+        JilHelper.SerializeToJson(value, options);
 
-    public static void PackTo(this object? obj, Stream stream, Options? options = null, Encoding? encoding = null) =>
-        JilHelper.Pack(obj, stream, options, encoding);
+    public static void PackTo(this object? value, Stream? stream, Options? options = null, Encoding? encoding = null) =>
+        JilHelper.Pack(value, stream, options, encoding);
 
-    public static void ToJson(this object? obj, TextWriter output, Options? options = null) =>
-        JilHelper.Serialize(obj, output, options);
+    public static void ToJson(this object? value, TextWriter output, Options? options = null) =>
+        JilHelper.Serialize(value, output, options);
 }

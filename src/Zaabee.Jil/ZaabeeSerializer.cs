@@ -8,7 +8,7 @@ public class ZaabeeSerializer : ITextSerializer
     public ZaabeeSerializer(Options? options = null, Encoding? encoding = null) =>
         (_options, _encoding) = (options, encoding ?? JilHelper.DefaultEncoding);
 
-    public byte[] SerializeToBytes<T>(T? value) =>
+    public byte[] SerializeToBytes<TValue>(TValue? value) =>
         value is null
             ? Array.Empty<byte>()
             : JilSerializer.Serialize(value, _options, _encoding);
@@ -18,17 +18,17 @@ public class ZaabeeSerializer : ITextSerializer
             ? Array.Empty<byte>()
             : JilSerializer.Serialize(value, _options, _encoding);
 
-    public T? DeserializeFromBytes<T>(byte[]? bytes) =>
+    public TValue? DeserializeFromBytes<TValue>(byte[]? bytes) =>
         bytes.IsNullOrEmpty()
-            ? (T?)typeof(T).GetDefaultValue()
-            : JilSerializer.Deserialize<T>(bytes!, _options, _encoding);
+            ? default
+            : JilSerializer.Deserialize<TValue>(bytes!, _options, _encoding);
 
     public object? DeserializeFromBytes(Type type, byte[]? bytes) =>
         bytes.IsNullOrEmpty()
-            ? type.GetDefaultValue()
+            ? default
             : JilSerializer.Deserialize(type, bytes!, _options, _encoding);
 
-    public string SerializeToString<T>(T? value) =>
+    public string SerializeToString<TValue>(TValue? value) =>
         value is null
             ? string.Empty
             : JilSerializer.SerializeToJson(value, _options);
@@ -38,33 +38,33 @@ public class ZaabeeSerializer : ITextSerializer
             ? string.Empty
             : JilSerializer.SerializeToJson(value, _options);
 
-    public T? DeserializeFromString<T>(string? text) =>
+    public TValue? DeserializeFromString<TValue>(string? text) =>
         text.IsNullOrWhiteSpace()
-            ? (T?)typeof(T).GetDefaultValue()
-            : JilSerializer.Deserialize<T>(text!, _options);
+            ? default
+            : JilSerializer.Deserialize<TValue>(text!, _options);
 
     public object? DeserializeFromString(Type type, string? text) =>
         text.IsNullOrWhiteSpace()
-            ? type.GetDefaultValue()
+            ? default
             : JilSerializer.Deserialize(type, text!, _options);
 
-    public Stream SerializeToStream<T>(T? value) =>
+    public Stream? SerializeToStream<TValue>(TValue? value) =>
         value is null
-            ? new MemoryStream()
+            ? Stream.Null
             : JilSerializer.Pack(value, _options, _encoding);
 
-    public Stream SerializeToStream(Type type, object? value) =>
+    public Stream? SerializeToStream(Type type, object? value) =>
         value is null
-            ? new MemoryStream()
+            ? Stream.Null
             : JilSerializer.Pack(value, _options, _encoding);
 
-    public T? DeserializeFromStream<T>(Stream? stream) =>
+    public TValue? DeserializeFromStream<TValue>(Stream? stream) =>
         stream.IsNullOrEmpty()
-            ? (T?)typeof(T).GetDefaultValue()
-            : JilSerializer.Unpack<T>(stream!, _options, _encoding);
+            ? default
+            : JilSerializer.Unpack<TValue>(stream!, _options, _encoding);
 
     public object? DeserializeFromStream(Type type, Stream? stream) =>
         stream.IsNullOrEmpty()
-            ? type.GetDefaultValue()
+            ? default
             : JilSerializer.Unpack(type, stream!, _options, _encoding);
 }

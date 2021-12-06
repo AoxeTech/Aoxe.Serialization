@@ -2,9 +2,9 @@ namespace Zaabee.Xml;
 
 public static partial class XmlHelper
 {
-    public static T Deserialize<T>(XmlReader xmlReader) =>
-        xmlReader is null ? (T) typeof(T).GetDefaultValue() : XmlSerializer.Deserialize<T>(xmlReader);
+    public static TValue? Deserialize<TValue>(XmlReader xmlReader) =>
+        xmlReader is null ? default : XmlSerializer.Deserialize<TValue>(xmlReader);
 
-    public static object Deserialize(Type type, XmlReader xmlReader) =>
+    public static object? Deserialize(Type type, XmlReader xmlReader) =>
         type is null || xmlReader is null ? null : XmlSerializer.Deserialize(type, xmlReader);
 }

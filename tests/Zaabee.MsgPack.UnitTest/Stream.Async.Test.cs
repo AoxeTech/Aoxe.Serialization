@@ -38,7 +38,7 @@ namespace Zaabee.MsgPack.UnitTest
                     unPackResult2.Gender));
 
             object nullModel = null;
-            MemoryStream nullMs = null;
+            Stream nullMs = null;
             await nullModel.PackToAsync(nullMs);
             Assert.True((await nullModel.ToStreamAsync()).ToArray().IsNullOrEmpty());
         }

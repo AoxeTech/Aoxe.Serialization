@@ -2,27 +2,27 @@ namespace Zaabee.MessagePack;
 
 public static partial class MessagePackExtensions
 {
-    public static byte[] ToBytes<T>(this T t, MessagePackSerializerOptions options = null,
+    public static byte[] ToBytes<TValue>(this TValue value, MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default) =>
-        MessagePackHelper.Serialize(t, options, cancellationToken);
+        MessagePackHelper.Serialize(value, options, cancellationToken);
 
-    public static MemoryStream ToStream<T>(this T t, MessagePackSerializerOptions options = null,
+    public static Stream ToStream<TValue>(this TValue value, MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default) =>
-        MessagePackHelper.Pack(t, options, cancellationToken);
+        MessagePackHelper.Pack(value, options, cancellationToken);
 
-    public static void PackTo<T>(this T t, Stream stream, MessagePackSerializerOptions options = null,
+    public static void PackTo<TValue>(this TValue value, Stream? stream, MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default) =>
-        MessagePackHelper.Pack(t, stream, options, cancellationToken);
+        MessagePackHelper.Pack(value, stream, options, cancellationToken);
 
-    public static byte[] ToBytes(this object obj, Type type, MessagePackSerializerOptions options = null,
+    public static byte[] ToBytes(this object? value, Type type, MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default) =>
-        MessagePackHelper.Serialize(type, obj, options, cancellationToken);
+        MessagePackHelper.Serialize(type, value, options, cancellationToken);
 
-    public static MemoryStream ToStream(this object obj, Type type, MessagePackSerializerOptions options = null,
+    public static Stream ToStream(this object? value, Type type, MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default) =>
-        MessagePackHelper.Pack(type, obj, options, cancellationToken);
+        MessagePackHelper.Pack(type, value, options, cancellationToken);
 
-    public static void PackTo(this object obj, Type type, Stream stream,
+    public static void PackTo(this object? value, Type type, Stream? stream,
         MessagePackSerializerOptions options = null, CancellationToken cancellationToken = default) =>
-        MessagePackHelper.Pack(type, obj, stream, options, cancellationToken);
+        MessagePackHelper.Pack(type, value, stream, options, cancellationToken);
 }

@@ -29,16 +29,16 @@ namespace Benchmark.Benchmarks
             Gender = Gender.Female
         };
 
-        private readonly Stream _binaryStream;
-        private readonly Stream _jilStream;
-        private readonly Stream _messagePackStream;
-        private readonly Stream _msgPackStream;
-        private readonly Stream _newtonsoftJsonStream;
-        private readonly Stream _protobufStream;
-        private readonly Stream _systemTextJsonStream;
-        private readonly Stream _utf8JsonStream;
-        private readonly Stream _xmlStream;
-        private readonly Stream _zeroFormatterStream;
+        private readonly Stream? _binaryStream;
+        private readonly Stream? _jilStream;
+        private readonly Stream? _messagePackStream;
+        private readonly Stream? _msgPackStream;
+        private readonly Stream? _newtonsoftJsonStream;
+        private readonly Stream? _protobufStream;
+        private readonly Stream? _systemTextJsonStream;
+        private readonly Stream? _utf8JsonStream;
+        private readonly Stream? _xmlStream;
+        private readonly Stream? _zeroFormatterStream;
 
         public FromStream()
         {

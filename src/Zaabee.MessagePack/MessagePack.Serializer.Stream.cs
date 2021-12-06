@@ -2,45 +2,45 @@ namespace Zaabee.MessagePack;
 
 public static partial class MessagePackCSharpSerializer
 {
-    public static MemoryStream Pack<T>(T t, MessagePackSerializerOptions options = null,
+    public static Stream Pack<TValue>(TValue value, MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default)
     {
         var ms = new MemoryStream();
-        Pack(t, ms, options, cancellationToken);
+        Pack(value, ms, options, cancellationToken);
         return ms;
     }
 
-    public static void Pack<T>(T t, Stream stream, MessagePackSerializerOptions options = null,
+    public static void Pack<TValue>(TValue value, Stream? stream, MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default)
     {
-        MessagePackSerializer.Serialize(stream, t, options, cancellationToken);
+        MessagePackSerializer.Serialize(stream, value, options, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
-    public static MemoryStream Pack(Type type, object obj, MessagePackSerializerOptions options = null,
+    public static Stream Pack(Type type, object? value, MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default)
     {
         var ms = new MemoryStream();
-        Pack(type, obj, ms, options, cancellationToken);
+        Pack(type, value, ms, options, cancellationToken);
         return ms;
     }
 
-    public static void Pack(Type type, object obj, Stream stream, MessagePackSerializerOptions options = null,
+    public static void Pack(Type type, object? value, Stream? stream, MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default)
     {
-        MessagePackSerializer.Serialize(type, stream, obj, options, cancellationToken);
+        MessagePackSerializer.Serialize(type, stream, value, options, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
-    public static T Unpack<T>(Stream stream, MessagePackSerializerOptions options = null,
+    public static TValue? Unpack<TValue>(Stream? stream, MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default)
     {
-        var result = MessagePackSerializer.Deserialize<T>(stream, options, cancellationToken);
+        var result = MessagePackSerializer.Deserialize<TValue>(stream, options, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
     }
 
-    public static object Unpack(Type type, Stream stream, MessagePackSerializerOptions options = null,
+    public static object? Unpack(Type type, Stream? stream, MessagePackSerializerOptions options = null,
         CancellationToken cancellationToken = default)
     {
         var result = MessagePackSerializer.Deserialize(type, stream, options, cancellationToken);

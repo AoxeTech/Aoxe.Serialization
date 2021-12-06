@@ -3,43 +3,43 @@ namespace Zaabee.Utf8Json;
 public static partial class Utf8JsonSerializer
 {
     /// <summary>
-    /// Serialize the obj to json string.
+    /// Serialize the value to json string.
     /// </summary>
     /// <param name="value"></param>
     /// <param name="resolver"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static string SerializeToJson<T>(T value, IJsonFormatterResolver resolver) =>
+    public static string SerializeToJson<TValue>(TValue value, IJsonFormatterResolver resolver) =>
         JsonSerializer.ToJsonString(value, resolver);
 
     /// <summary>
-    /// Serialize the obj to json string.
+    /// Serialize the value to json string.
     /// </summary>
-    /// <param name="obj"></param>
+    /// <param name="value"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static string SerializeToJson(object obj, IJsonFormatterResolver resolver) =>
-        JsonSerializer.NonGeneric.ToJsonString(obj, resolver);
+    public static string SerializeToJson(object? value, IJsonFormatterResolver resolver) =>
+        JsonSerializer.NonGeneric.ToJsonString(value, resolver);
 
     /// <summary>
-    /// Serialize the obj to json string.
+    /// Serialize the value to json string.
     /// </summary>
     /// <param name="type"></param>
-    /// <param name="obj"></param>
+    /// <param name="value"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static string SerializeToJson(Type type, object obj, IJsonFormatterResolver resolver) =>
-        JsonSerializer.NonGeneric.ToJsonString(type, obj, resolver);
+    public static string SerializeToJson(Type type, object? value, IJsonFormatterResolver resolver) =>
+        JsonSerializer.NonGeneric.ToJsonString(type, value, resolver);
 
     /// <summary>
     /// Deserialize the json to an instance of the <typeparamref name="T"/>.
     /// </summary>
     /// <param name="json"></param>
     /// <param name="resolver"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static T Deserialize<T>(string json, IJsonFormatterResolver resolver) =>
-        JsonSerializer.Deserialize<T>(json, resolver);
+    public static TValue? Deserialize<TValue>(string json, IJsonFormatterResolver resolver) =>
+        JsonSerializer.Deserialize<TValue>(json, resolver);
 
     /// <summary>
     /// Deserialize the json to an instance of the <paramref name="type"/>.
@@ -48,6 +48,6 @@ public static partial class Utf8JsonSerializer
     /// <param name="json"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static object Deserialize(Type type, string json, IJsonFormatterResolver resolver) =>
+    public static object? Deserialize(Type type, string json, IJsonFormatterResolver resolver) =>
         JsonSerializer.NonGeneric.Deserialize(type, json, resolver);
 }

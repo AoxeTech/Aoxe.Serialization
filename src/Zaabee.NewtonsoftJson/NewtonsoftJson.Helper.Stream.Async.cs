@@ -9,32 +9,32 @@ namespace Zaabee.NewtonsoftJson
 {
     public static partial class NewtonsoftJsonHelper
     {
-        public static Task<MemoryStream> PackAsync<T>(T t, JsonSerializerSettings settings = null,
+        public static Task<MemoryStream> PackAsync<TValue>(TValue value, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
-            t is null
+            value is null
                 ? Task.FromResult(new MemoryStream())
-                : NewtonsoftJsonSerializer.PackAsync(t, settings ?? DefaultSettings,
+                : NewtonsoftJsonSerializer.PackAsync(value, settings ?? DefaultSettings,
                     encoding ?? DefaultEncoding);
 
-        public static Task<MemoryStream> PackAsync(Type type, object obj, JsonSerializerSettings settings = null,
+        public static Task<MemoryStream> PackAsync(Type type, object? value, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
-            obj is null
+            value is null
                 ? Task.FromResult(new MemoryStream())
-                : NewtonsoftJsonSerializer.PackAsync(type, obj, settings ?? DefaultSettings,
+                : NewtonsoftJsonSerializer.PackAsync(type, value, settings ?? DefaultSettings,
                     encoding ?? DefaultEncoding);
 
-        public static Task PackAsync<T>(T t, Stream stream, JsonSerializerSettings settings = null,
+        public static Task PackAsync<TValue>(TValue value, Stream? stream, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
-            t is null || stream is null
+            value is null || stream is null
                 ? Task.CompletedTask
-                : NewtonsoftJsonSerializer.PackAsync(t, stream, settings ?? DefaultSettings,
+                : NewtonsoftJsonSerializer.PackAsync(value, stream, settings ?? DefaultSettings,
                     encoding ?? DefaultEncoding);
 
-        public static Task PackAsync(Type type, object obj, Stream stream, JsonSerializerSettings settings = null,
+        public static Task PackAsync(Type type, object? value, Stream? stream, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
-            obj is null || stream is null
+            value is null || stream is null
                 ? Task.CompletedTask
-                : NewtonsoftJsonSerializer.PackAsync(type, obj, stream, settings ?? DefaultSettings,
+                : NewtonsoftJsonSerializer.PackAsync(type, value, stream, settings ?? DefaultSettings,
                     encoding ?? DefaultEncoding);
 
         /// <summary>
@@ -43,13 +43,13 @@ namespace Zaabee.NewtonsoftJson
         /// <param name="stream"></param>
         /// <param name="settings"></param>
         /// <param name="encoding"></param>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
         /// <returns></returns>
-        public static Task<T> UnpackAsync<T>(Stream stream, JsonSerializerSettings settings = null,
+        public static Task<TValue> UnpackAsync<TValue>(Stream? stream, JsonSerializerSettings settings = null,
             Encoding encoding = null) =>
             stream.IsNullOrEmpty()
-                ? Task.FromResult((T)typeof(T).GetDefaultValue())
-                : NewtonsoftJsonSerializer.UnpackAsync<T>(stream, settings ?? DefaultSettings,
+                ? Task.FromResult(default(TValue))
+                : NewtonsoftJsonSerializer.UnpackAsync<TValue>(stream, settings ?? DefaultSettings,
                     encoding ?? DefaultEncoding);
 
         /// <summary>
@@ -60,10 +60,10 @@ namespace Zaabee.NewtonsoftJson
         /// <param name="settings"></param>
         /// <param name="encoding"></param>
         /// <returns></returns>
-        public static Task<object> UnpackAsync(Type type, Stream stream, JsonSerializerSettings settings = null,
-            Encoding encoding = null) =>
+        public static Task<object> UnpackAsync(Type type, Stream? stream, JsonSerializerSettings? settings = null,
+            Encoding? encoding = null) =>
             stream.IsNullOrEmpty()
-                ? Task.FromResult(type.GetDefaultValue())
+                ? Task.FromResult<object?>(default)
                 : NewtonsoftJsonSerializer.UnpackAsync(type, stream, settings ?? DefaultSettings,
                     encoding ?? DefaultEncoding);
     }

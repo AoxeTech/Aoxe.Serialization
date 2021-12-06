@@ -9,12 +9,12 @@ public static partial class JilSerializer
     /// the produced JSON.  If omitted Options.Default is used, unless JSON.SetDefaultOptions(Options) has been
     /// called with a different Options object.
     /// </summary>
-    /// <param name="t"></param>
+    /// <param name="value"></param>
     /// <param name="output"></param>
     /// <param name="options"></param>
-    /// <typeparam name="T"></typeparam>
-    public static void Serialize<T>(T? t, TextWriter output, Options? options) =>
-        JSON.Serialize(t, output, options);
+    /// <typeparam name="TValue"></typeparam>
+    public static void Serialize<TValue>(TValue? value, TextWriter output, Options? options) =>
+        JSON.Serialize(value, output, options);
 
     /// <summary>
     /// Serializes the given data to the provided TextWriter.
@@ -29,9 +29,9 @@ public static partial class JilSerializer
     /// Objects with participate in the DLR will be serialized appropriately, all other types
     /// will be serialized via reflection.
     /// </summary>
-    /// <param name="obj"></param>
+    /// <param name="value"></param>
     /// <param name="output"></param>
     /// <param name="options"></param>
-    public static void Serialize(object? obj, TextWriter output, Options? options) =>
-        JSON.SerializeDynamic(obj, output, options);
+    public static void Serialize(object? value, TextWriter output, Options? options) =>
+        JSON.SerializeDynamic(value, output, options);
 }

@@ -1,20 +1,16 @@
-using System;
-using System.IO;
+namespace Zaabee.DataContractSerializer;
 
-namespace Zaabee.DataContractSerializer
+public static partial class DataContractExtensions
 {
-    public static partial class DataContractExtensions
-    {
-        public static void PackBy<T>(this Stream stream, T t) =>
-            DataContractHelper.Pack(t, stream);
+    public static void PackBy<TValue>(this Stream? stream, TValue value) =>
+        DataContractHelper.Pack(value, stream);
 
-        public static void PackBy(this Stream stream, Type type, object obj) =>
-            DataContractHelper.Pack(type, obj, stream);
+    public static void PackBy(this Stream? stream, Type type, object? value) =>
+        DataContractHelper.Pack(type, value, stream);
 
-        public static T Unpack<T>(this Stream stream) =>
-            DataContractHelper.Unpack<T>(stream);
+    public static TValue? Unpack<TValue>(this Stream? stream) =>
+        DataContractHelper.Unpack<TValue>(stream);
 
-        public static object Unpack(this Stream stream, Type type) =>
-            DataContractHelper.Unpack(type, stream);
-    }
+    public static object? Unpack(this Stream? stream, Type type) =>
+        DataContractHelper.Unpack(type, stream);
 }

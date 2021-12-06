@@ -2,39 +2,39 @@ namespace Zaabee.Jil;
 
 public static partial class JilHelper
 {
-    public static Task<MemoryStream> PackAsync<T>(T? t, Options? options = null, Encoding? encoding = null,
+    public static Task<MemoryStream> PackAsync<TValue>(TValue? value, Options? options = null, Encoding? encoding = null,
         CancellationToken cancellationToken = default) =>
-        JilSerializer.PackAsync(t, options ?? DefaultOptions, encoding ?? DefaultEncoding, cancellationToken);
+        JilSerializer.PackAsync(value, options ?? DefaultOptions, encoding ?? DefaultEncoding, cancellationToken);
 
-    public static Task<MemoryStream> PackAsync(object? obj, Options? options = null, Encoding? encoding = null,
+    public static Task<MemoryStream> PackAsync(object? value, Options? options = null, Encoding? encoding = null,
         CancellationToken cancellationToken = default) =>
-        JilSerializer.PackAsync(obj, options ?? DefaultOptions, encoding ?? DefaultEncoding, cancellationToken);
+        JilSerializer.PackAsync(value, options ?? DefaultOptions, encoding ?? DefaultEncoding, cancellationToken);
 
-    public static Task PackAsync<T>(T? t, Stream? stream, Options? options = null, Encoding? encoding = null,
+    public static Task PackAsync<TValue>(TValue? value, Stream? stream, Options? options = null, Encoding? encoding = null,
         CancellationToken cancellationToken = default) =>
-        stream.IsNullOrEmpty()
+        stream is null
             ? Task.CompletedTask
-            : JilSerializer.PackAsync(t, stream!, options ?? DefaultOptions, encoding ?? DefaultEncoding,
+            : JilSerializer.PackAsync(value, stream!, options ?? DefaultOptions, encoding ?? DefaultEncoding,
                 cancellationToken);
 
-    public static Task PackAsync(object? obj, Stream? stream, Options? options = null, Encoding? encoding = null,
+    public static Task PackAsync(object? value, Stream? stream, Options? options = null, Encoding? encoding = null,
         CancellationToken cancellationToken = default) =>
-        stream.IsNullOrEmpty()
+        stream is null
             ? Task.CompletedTask
-            : JilSerializer.PackAsync(obj, stream!, options ?? DefaultOptions, encoding ?? DefaultEncoding,
+            : JilSerializer.PackAsync(value, stream!, options ?? DefaultOptions, encoding ?? DefaultEncoding,
                 cancellationToken);
 
-    public static async Task<T?> UnpackAsync<T>(Stream? stream, Options? options = null, Encoding? encoding = null,
+    public static async Task<TValue?> UnpackAsync<TValue>(Stream? stream, Options? options = null, Encoding? encoding = null,
         CancellationToken cancellationToken = default) =>
-        stream.IsNullOrEmpty()
-            ? (T?)typeof(T).GetDefaultValue()
-            : await JilSerializer.UnpackAsync<T>(stream!, options ?? DefaultOptions, encoding ?? DefaultEncoding,
+        stream is null
+            ? default
+            : await JilSerializer.UnpackAsync<TValue>(stream!, options ?? DefaultOptions, encoding ?? DefaultEncoding,
                 cancellationToken);
 
     public static async Task<object?> UnpackAsync(Type type, Stream? stream, Options? options = null,
         Encoding? encoding = null, CancellationToken cancellationToken = default) =>
-        stream.IsNullOrEmpty()
-            ? type.GetDefaultValue()
+        stream is null
+            ? default
             : await JilSerializer.UnpackAsync(type, stream!, options ?? DefaultOptions,
                 encoding ?? DefaultEncoding, cancellationToken);
 }

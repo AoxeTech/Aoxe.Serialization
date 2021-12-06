@@ -2,39 +2,39 @@ namespace Zaabee.Xml;
 
 public class ZaabeeSerializer : ITextSerializer
 {
-    public byte[] SerializeToBytes<T>(T t) =>
-        XmlSerializer.Serialize(typeof(T), t);
+    public byte[] SerializeToBytes<TValue>(TValue value) =>
+        XmlSerializer.Serialize(typeof(TValue), value);
 
-    public byte[] SerializeToBytes(Type type, object obj) =>
-        XmlSerializer.Serialize(type, obj);
+    public byte[] SerializeToBytes(Type type, object? value) =>
+        XmlSerializer.Serialize(type, value);
 
-    public T DeserializeFromBytes<T>(byte[] bytes) =>
-        XmlSerializer.Deserialize<T>(bytes);
+    public TValue DeserializeFromBytes<TValue>(byte[] bytes) =>
+        XmlSerializer.Deserialize<TValue>(bytes);
 
     public object DeserializeFromBytes(Type type, byte[] bytes) =>
         XmlSerializer.Deserialize(type, bytes);
 
-    public string SerializeToString<T>(T t) =>
-        XmlSerializer.SerializeToXml(t);
+    public string SerializeToString<TValue>(TValue value) =>
+        XmlSerializer.SerializeToXml(value);
 
-    public string SerializeToString(Type type, object obj) =>
-        XmlSerializer.SerializeToXml(type, obj);
+    public string SerializeToString(Type type, object? value) =>
+        XmlSerializer.SerializeToXml(type, value);
 
-    public T DeserializeFromString<T>(string text) =>
-        XmlSerializer.Deserialize<T>(text);
+    public TValue DeserializeFromString<TValue>(string text) =>
+        XmlSerializer.Deserialize<TValue>(text);
 
     public object DeserializeFromString(Type type, string text) =>
         XmlSerializer.Deserialize(type, text);
 
-    public Stream SerializeToStream<T>(T t) =>
-        XmlSerializer.Pack(t);
+    public Stream? SerializeToStream<TValue>(TValue value) =>
+        XmlSerializer.Pack(value);
 
-    public Stream SerializeToStream(Type type, object obj) =>
-        XmlSerializer.Pack(type, obj);
+    public Stream? SerializeToStream(Type type, object? value) =>
+        XmlSerializer.Pack(type, value);
 
-    public T DeserializeFromStream<T>(Stream stream) =>
-        XmlSerializer.Unpack<T>(stream);
+    public TValue DeserializeFromStream<TValue>(Stream? stream) =>
+        XmlSerializer.Unpack<TValue>(stream);
 
-    public object DeserializeFromStream(Type type, Stream stream) =>
+    public object DeserializeFromStream(Type type, Stream? stream) =>
         XmlSerializer.Unpack(type, stream);
 }

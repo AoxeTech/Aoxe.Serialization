@@ -2,23 +2,23 @@ namespace Zaabee.Utf8Json;
 
 public static partial class Utf8JsonExtensions
 {
-    public static Task<MemoryStream> ToStreamAsync<T>(this T t, IJsonFormatterResolver resolver = null) =>
-        Utf8JsonHelper.PackAsync(t, resolver);
+    public static Task<MemoryStream> ToStreamAsync<TValue>(this TValue value, IJsonFormatterResolver resolver = null) =>
+        Utf8JsonHelper.PackAsync(value, resolver);
 
-    public static Task<MemoryStream> ToStreamAsync(this object obj, IJsonFormatterResolver resolver = null) =>
-        Utf8JsonHelper.PackAsync(obj, resolver);
+    public static Task<MemoryStream> ToStreamAsync(this object? value, IJsonFormatterResolver resolver = null) =>
+        Utf8JsonHelper.PackAsync(value, resolver);
 
-    public static Task<MemoryStream> ToStreamAsync(this object obj, Type type,
+    public static Task<MemoryStream> ToStreamAsync(this object? value, Type type,
         IJsonFormatterResolver resolver = null) =>
-        Utf8JsonHelper.PackAsync(type, obj, resolver);
+        Utf8JsonHelper.PackAsync(type, value, resolver);
 
-    public static Task PackToAsync<T>(this T t, Stream stream, IJsonFormatterResolver resolver = null) =>
-        Utf8JsonHelper.PackAsync(t, stream, resolver);
+    public static Task PackToAsync<TValue>(this TValue value, Stream? stream, IJsonFormatterResolver resolver = null) =>
+        Utf8JsonHelper.PackAsync(value, stream, resolver);
 
-    public static Task PackToAsync(this object obj, Stream stream, IJsonFormatterResolver resolver = null) =>
-        Utf8JsonHelper.PackAsync(obj, stream, resolver);
+    public static Task PackToAsync(this object? value, Stream? stream, IJsonFormatterResolver resolver = null) =>
+        Utf8JsonHelper.PackAsync(value, stream, resolver);
 
-    public static Task PackToAsync(this object obj, Type type, Stream stream,
+    public static Task PackToAsync(this object? value, Type type, Stream? stream,
         IJsonFormatterResolver resolver = null) =>
-        Utf8JsonHelper.PackAsync(type, obj, stream, resolver);
+        Utf8JsonHelper.PackAsync(type, value, stream, resolver);
 }

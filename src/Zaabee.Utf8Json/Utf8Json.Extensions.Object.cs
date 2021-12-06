@@ -2,49 +2,49 @@ namespace Zaabee.Utf8Json;
 
 public static partial class Utf8JsonExtensions
 {
-    public static string ToJson<T>(this T t, IJsonFormatterResolver resolver = null) =>
-        Utf8JsonHelper.SerializeToJson(t, resolver);
+    public static string ToJson<TValue>(this TValue value, IJsonFormatterResolver resolver = null) =>
+        Utf8JsonHelper.SerializeToJson(value, resolver);
 
-    public static byte[] ToBytes<T>(this T t, IJsonFormatterResolver resolver = null) =>
-        Utf8JsonHelper.Serialize(t, resolver);
+    public static byte[] ToBytes<TValue>(this TValue value, IJsonFormatterResolver resolver = null) =>
+        Utf8JsonHelper.Serialize(value, resolver);
 
-    public static ArraySegment<byte> ToBytesUnsafe<T>(this T t, IJsonFormatterResolver resolver = null) =>
-        Utf8JsonHelper.SerializeUnsafe(t, resolver);
+    public static ArraySegment<byte> ToBytesUnsafe<TValue>(this TValue value, IJsonFormatterResolver resolver = null) =>
+        Utf8JsonHelper.SerializeUnsafe(value, resolver);
 
-    public static void PackTo<T>(this T t, Stream stream, IJsonFormatterResolver resolver = null) =>
-        Utf8JsonHelper.Pack(t, stream, resolver);
+    public static void PackTo<TValue>(this TValue value, Stream? stream, IJsonFormatterResolver resolver = null) =>
+        Utf8JsonHelper.Pack(value, stream, resolver);
 
-    public static MemoryStream ToStream<T>(this T t, IJsonFormatterResolver resolver = null) =>
-        Utf8JsonHelper.Pack(t, resolver);
+    public static Stream ToStream<TValue>(this TValue value, IJsonFormatterResolver resolver = null) =>
+        Utf8JsonHelper.Pack(value, resolver);
 
-    public static string ToJson(this object obj, IJsonFormatterResolver resolver = null) =>
-        Utf8JsonHelper.SerializeToJson(obj, resolver);
+    public static string ToJson(this object? value, IJsonFormatterResolver resolver = null) =>
+        Utf8JsonHelper.SerializeToJson(value, resolver);
 
-    public static string ToJson(this object obj, Type type, IJsonFormatterResolver resolver = null) =>
-        Utf8JsonHelper.SerializeToJson(type, obj, resolver);
+    public static string ToJson(this object? value, Type type, IJsonFormatterResolver resolver = null) =>
+        Utf8JsonHelper.SerializeToJson(type, value, resolver);
 
-    public static byte[] ToBytes(this object obj, IJsonFormatterResolver resolver = null) =>
-        Utf8JsonHelper.Serialize(obj, resolver);
+    public static byte[] ToBytes(this object? value, IJsonFormatterResolver resolver = null) =>
+        Utf8JsonHelper.Serialize(value, resolver);
 
-    public static byte[] ToBytes(this object obj, Type type, IJsonFormatterResolver resolver = null) =>
-        Utf8JsonHelper.Serialize(type, obj, resolver);
+    public static byte[] ToBytes(this object? value, Type type, IJsonFormatterResolver resolver = null) =>
+        Utf8JsonHelper.Serialize(type, value, resolver);
 
-    public static ArraySegment<byte> ToBytesUnsafe(this object obj, IJsonFormatterResolver resolver = null) =>
-        Utf8JsonHelper.SerializeUnsafe(obj, resolver);
+    public static ArraySegment<byte> ToBytesUnsafe(this object? value, IJsonFormatterResolver resolver = null) =>
+        Utf8JsonHelper.SerializeUnsafe(value, resolver);
 
-    public static ArraySegment<byte> ToBytesUnsafe(this object obj, Type type,
+    public static ArraySegment<byte> ToBytesUnsafe(this object? value, Type type,
         IJsonFormatterResolver resolver = null) =>
-        Utf8JsonHelper.SerializeUnsafe(type, obj, resolver);
+        Utf8JsonHelper.SerializeUnsafe(type, value, resolver);
 
-    public static MemoryStream ToStream(this object obj, IJsonFormatterResolver resolver = null) =>
-        Utf8JsonHelper.Pack(obj, resolver);
+    public static Stream ToStream(this object? value, IJsonFormatterResolver resolver = null) =>
+        Utf8JsonHelper.Pack(value, resolver);
 
-    public static MemoryStream ToStream(this object obj, Type type, IJsonFormatterResolver resolver = null) =>
-        Utf8JsonHelper.Pack(type, obj, resolver);
+    public static Stream ToStream(this object? value, Type type, IJsonFormatterResolver resolver = null) =>
+        Utf8JsonHelper.Pack(type, value, resolver);
 
-    public static void PackTo(this object obj, Stream stream, IJsonFormatterResolver resolver = null) =>
-        Utf8JsonHelper.Pack(obj, stream, resolver);
+    public static void PackTo(this object? value, Stream? stream, IJsonFormatterResolver resolver = null) =>
+        Utf8JsonHelper.Pack(value, stream, resolver);
 
-    public static void PackTo(this object obj, Type type, Stream stream, IJsonFormatterResolver resolver = null) =>
-        Utf8JsonHelper.Pack(type, obj, stream, resolver);
+    public static void PackTo(this object? value, Type type, Stream? stream, IJsonFormatterResolver resolver = null) =>
+        Utf8JsonHelper.Pack(type, value, stream, resolver);
 }

@@ -5,36 +5,36 @@ public static partial class ProtobufSerializer
     /// <summary>
     /// Serialize the object into a memory stream and return a bytes contains the stream contents.
     /// </summary>
-    /// <param name="t"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <param name="value"></param>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static byte[] Serialize<T>(T t)
+    public static byte[] Serialize<TValue>(TValue value)
     {
-        using var ms = Pack(t);
-        return ms.ToArray();
+        using var ms = Pack(value);
+        return ms.ReadToEnd();
     }
 
     /// <summary>
     /// Serialize the object into a memory stream and return a bytes contains the stream contents.
     /// </summary>
-    /// <param name="obj"></param>
+    /// <param name="value"></param>
     /// <returns></returns>
-    public static byte[] Serialize(object obj)
+    public static byte[] Serialize(object? value)
     {
-        using var ms = Pack(obj);
-        return ms.ToArray();
+        using var ms = Pack(value);
+        return ms.ReadToEnd();
     }
 
     /// <summary>
     /// Initializes a new memory stream based on the bytes and unpack it.
     /// </summary>
     /// <param name="bytes"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static T Deserialize<T>(byte[] bytes)
+    public static TValue? Deserialize<TValue>(byte[] bytes)
     {
         using var ms = new MemoryStream(bytes);
-        return Unpack<T>(ms);
+        return Unpack<TValue>(ms);
     }
 
     /// <summary>
@@ -43,7 +43,7 @@ public static partial class ProtobufSerializer
     /// <param name="type"></param>
     /// <param name="bytes"></param>
     /// <returns></returns>
-    public static object Deserialize(Type type, byte[] bytes)
+    public static object? Deserialize(Type type, byte[] bytes)
     {
         using var ms = new MemoryStream(bytes);
         return Unpack(type, ms);
