@@ -1,11 +1,9 @@
 namespace Zaabee.Binary.UnitTest;
 
-[ObsoleteAttribute(@"BinaryFormatter serialization is obsolete and should not be used.
- See https://aka.ms/binaryformatter for more information.")]
-public partial class BinaryUnitTest
+public partial class BinaryExtensionsUnitTest
 {
     [Fact]
-    public void StreamNonGenericTest()
+    public void ExtensionsStreamNonGenericTest()
     {
         var testModel = TestModelFactory.Create();
 
@@ -31,5 +29,37 @@ public partial class BinaryUnitTest
             Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
             Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
                 unPackResult3.Gender));
+    }
+
+    [Fact]
+    public void ExtensionsToStreamNonGenericNullTest()
+    {
+        TestModel? nullValue = null;
+        Assert.Equal(0, nullValue.ToStream().Length);
+    }
+
+    [Fact]
+    public void ExtensionsPackToNonGenericNullTest()
+    {
+        TestModel? nullValue = null;
+        var stream = new MemoryStream();
+        nullValue.PackTo(stream);
+        Assert.Equal(0, stream.Length);
+    }
+
+    [Fact]
+    public void ExtensionsPackByNonGenericNullTest()
+    {
+        TestModel? nullValue = null;
+        var stream = new MemoryStream();
+        stream.PackBy(nullValue);
+        Assert.Equal(0, stream.Length);
+    }
+
+    [Fact]
+    public void ExtensionsUnpackNonGenericNullTest()
+    {
+        MemoryStream? nullStream = null;
+        Assert.Null(nullStream.Unpack());
     }
 }

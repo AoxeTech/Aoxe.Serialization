@@ -25,7 +25,7 @@ public static partial class JilSerializer
     /// <param name="options"></param>
     /// <param name="encoding"></param>
     /// <typeparam name="TValue"></typeparam>
-    public static void Pack<TValue>(TValue? value, Stream? stream, Options? options, Encoding encoding)
+    public static void Pack<TValue>(TValue? value, Stream stream, Options? options, Encoding encoding)
     {
         Serialize(value, options, encoding).WriteTo(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
@@ -52,7 +52,7 @@ public static partial class JilSerializer
     /// <param name="stream"></param>
     /// <param name="options"></param>
     /// <param name="encoding"></param>
-    public static void Pack(object? value, Stream? stream, Options? options, Encoding encoding)
+    public static void Pack(object? value, Stream stream, Options? options, Encoding encoding)
     {
         Serialize(value, options, encoding).WriteTo(stream);
         stream.TrySeek(0, SeekOrigin.Begin);

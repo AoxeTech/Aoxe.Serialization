@@ -12,8 +12,8 @@ public static partial class MsgPackHelper
             ? Task.CompletedTask
             : MsgPackSerializer.PackAsync(value, stream);
 
-    public static Task<TValue> UnpackAsync<TValue>(Stream? stream) =>
+    public static async Task<TValue?> UnpackAsync<TValue>(Stream? stream) =>
         stream.IsNullOrEmpty()
-            ? Task.FromResult(default(TValue))
-            : MsgPackSerializer.UnpackAsync<TValue>(stream);
+            ? default
+            : await MsgPackSerializer.UnpackAsync<TValue>(stream!);
 }

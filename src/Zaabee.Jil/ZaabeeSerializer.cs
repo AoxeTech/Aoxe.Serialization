@@ -48,12 +48,12 @@ public class ZaabeeSerializer : ITextSerializer
             ? default
             : JilSerializer.Deserialize(type, text!, _options);
 
-    public Stream? SerializeToStream<TValue>(TValue? value) =>
+    public Stream SerializeToStream<TValue>(TValue? value) =>
         value is null
             ? Stream.Null
             : JilSerializer.Pack(value, _options, _encoding);
 
-    public Stream? SerializeToStream(Type type, object? value) =>
+    public Stream SerializeToStream(Type type, object? value) =>
         value is null
             ? Stream.Null
             : JilSerializer.Pack(value, _options, _encoding);

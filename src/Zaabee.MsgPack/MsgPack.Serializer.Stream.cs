@@ -15,7 +15,7 @@ public static partial class MsgPackSerializer
     /// 	<typeparamref name="TValue" /> is not serializable even if it can be deserialized.
     /// </exception>
     /// <seealso cref="P:Capabilities" />
-    public static Stream Pack<TValue>(TValue value)
+    public static Stream Pack<TValue>(TValue? value)
     {
         var ms = new MemoryStream();
         Pack(value, ms);
@@ -52,7 +52,7 @@ public static partial class MsgPackSerializer
     /// 	<typeparamref name="TValue" /> is not serializable even if it can be deserialized.
     /// </exception>
     /// <seealso cref="P:Capabilities" />
-    public static void Pack<TValue>(TValue value, Stream? stream)
+    public static void Pack<TValue>(TValue? value, Stream stream)
     {
         MessagePackSerializer.Get<TValue>().Pack(stream, value);
         stream.TrySeek(0, SeekOrigin.Begin);
@@ -66,7 +66,7 @@ public static partial class MsgPackSerializer
     /// <param name="stream"></param>
     /// <exception cref="T:System.ArgumentNullException"><paramref name="stream" /> is <c>null</c>. </exception>
     /// <exception cref="T:System.Runtime.Serialization.SerializationException">Failed to serialize <paramref name="value" />. </exception>
-    public static void Pack(Type type, object? value, Stream? stream)
+    public static void Pack(Type type, object? value, Stream stream)
     {
         MessagePackSerializer.Get(type).Pack(stream, value);
         stream.TrySeek(0, SeekOrigin.Begin);
@@ -94,7 +94,7 @@ public static partial class MsgPackSerializer
     /// 	<typeparamref name="TValue" /> is not serializable even if it can be serialized.
     /// </exception>
     /// <seealso cref="P:Capabilities" />
-    public static TValue? Unpack<TValue>(Stream? stream)
+    public static TValue? Unpack<TValue>(Stream stream)
     {
         var result = MessagePackSerializer.Get<TValue>().Unpack(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
@@ -111,7 +111,7 @@ public static partial class MsgPackSerializer
     /// <exception cref="T:System.Runtime.Serialization.SerializationException">
     /// 	Failed to deserialize from <paramref name="stream" />.
     /// </exception>
-    public static object? Unpack(Type type, Stream? stream)
+    public static object? Unpack(Type type, Stream stream)
     {
         var result = MessagePackSerializer.Get(type).Unpack(stream);
         stream.TrySeek(0, SeekOrigin.Begin);

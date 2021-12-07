@@ -61,7 +61,7 @@ public static partial class JilSerializer
     /// <param name="encoding"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task PackAsync(object? value, Stream? stream, Options? options, Encoding encoding,
+    public static async Task PackAsync(object? value, Stream stream, Options? options, Encoding encoding,
         CancellationToken cancellationToken = default)
     {
         await Serialize(value, options, encoding).WriteToAsync(stream, cancellationToken);

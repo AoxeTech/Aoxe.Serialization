@@ -1,27 +1,27 @@
 namespace Zaabee.Binary.UnitTest;
 
-public partial class BinaryUnitTest
+public partial class BinaryHelperUnitTest
 {
     [Fact]
-    public void BytesTest()
+    public void HelperBytesNonGenericTest()
     {
         var testModel = TestModelFactory.Create();
-        var bytes = testModel.ToBytes();
-        var result = bytes.FromBytes<TestModel>();
+        var bytes = BinaryHelper.Serialize(testModel);
+        var result = (TestModel)BinaryHelper.Deserialize(bytes);
         Assert.Equal(
             Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
             Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
     }
 
     [Fact]
-    public void SerializeNullTest()
+    public void HelperSerializeNonGenericNullTest()
     {
         Assert.Empty(BinaryHelper.Serialize(null));
     }
 
     [Fact]
-    public void DeserializeNullTest()
+    public void HelperDeserializeNonGenericNullTest()
     {
-        Assert.Null(BinaryHelper.Deserialize<TestModel>(null));
+        Assert.Null(BinaryHelper.Deserialize(null));
     }
 }

@@ -15,7 +15,7 @@ public static partial class MsgPackSerializer
     /// 	<typeparamref name="TValue" /> is not serializable even if it can be deserialized.
     /// </exception>
     /// <seealso cref="P:Capabilities" />
-    public static async Task<MemoryStream> PackAsync<TValue>(TValue value)
+    public static async Task<MemoryStream> PackAsync<TValue>(TValue? value)
     {
         var ms = new MemoryStream();
         await PackAsync(value, ms);
@@ -39,7 +39,7 @@ public static partial class MsgPackSerializer
     /// 	<typeparamref name="TValue" /> is not serializable even if it can be deserialized.
     /// </exception>
     /// <seealso cref="P:Capabilities" />
-    public static async Task PackAsync<TValue>(TValue value, Stream? stream)
+    public static async Task PackAsync<TValue>(TValue? value, Stream stream)
     {
         await MessagePackSerializer.Get<TValue>().PackAsync(stream, value);
         stream.TrySeek(0, SeekOrigin.Begin);
@@ -67,7 +67,7 @@ public static partial class MsgPackSerializer
     /// 	<typeparamref name="TValue" /> is not serializable even if it can be serialized.
     /// </exception>
     /// <seealso cref="P:Capabilities" />
-    public static async Task<TValue> UnpackAsync<TValue>(Stream? stream)
+    public static async Task<TValue> UnpackAsync<TValue>(Stream stream)
     {
         var result = await MessagePackSerializer.Get<TValue>().UnpackAsync(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
