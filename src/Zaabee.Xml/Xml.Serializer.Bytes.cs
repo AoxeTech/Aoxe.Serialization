@@ -8,7 +8,8 @@ public static partial class XmlSerializer
     /// <param name="value"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static byte[] Serialize<TValue>(TValue value) => Serialize(typeof(TValue), value);
+    public static byte[] Serialize<TValue>(TValue value) =>
+        Serialize(typeof(TValue), value);
 
     /// <summary>
     /// Serialize the object to a memory stream and return a bytes contain the stream content.
@@ -28,7 +29,8 @@ public static partial class XmlSerializer
     /// <param name="bytes"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? Deserialize<TValue>(byte[] bytes) => (TValue)Deserialize(typeof(TValue), bytes);
+    public static TValue? Deserialize<TValue>(byte[] bytes) =>
+        (TValue?)Deserialize(typeof(TValue), bytes);
 
     /// <summary>
     /// Initialize a memory stream by the bytes and deserialize it.

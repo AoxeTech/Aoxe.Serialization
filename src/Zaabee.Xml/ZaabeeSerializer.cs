@@ -35,12 +35,12 @@ public class ZaabeeSerializer : ITextSerializer
     public TValue? DeserializeFromString<TValue>(string? text) =>
         string.IsNullOrWhiteSpace(text)
             ? default
-            : XmlSerializer.Deserialize<TValue>(text);
+            : XmlSerializer.Deserialize<TValue>(text!);
 
     public object? DeserializeFromString(Type type, string? text) =>
         string.IsNullOrWhiteSpace(text)
             ? default
-            : XmlSerializer.Deserialize(type, text);
+            : XmlSerializer.Deserialize(type, text!);
 
     public Stream SerializeToStream<TValue>(TValue? value) =>
         value is null
@@ -55,10 +55,10 @@ public class ZaabeeSerializer : ITextSerializer
     public TValue? DeserializeFromStream<TValue>(Stream? stream) =>
         stream.IsNullOrEmpty()
             ? default
-            : XmlSerializer.Unpack<TValue>(stream);
+            : XmlSerializer.Unpack<TValue>(stream!);
 
     public object? DeserializeFromStream(Type type, Stream? stream) =>
         stream.IsNullOrEmpty()
             ? default
-            : XmlSerializer.Unpack(type, stream);
+            : XmlSerializer.Unpack(type, stream!);
 }

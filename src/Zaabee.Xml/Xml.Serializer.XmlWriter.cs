@@ -8,7 +8,7 @@ public static partial class XmlSerializer
     /// <param name="xmlWriter"></param>
     /// <param name="value"></param>
     /// <typeparam name="TValue"></typeparam>
-    public static void Serialize<TValue>(XmlWriter xmlWriter, TValue value) =>
+    public static void Serialize<TValue>(XmlWriter xmlWriter, TValue? value) =>
         Serialize(typeof(TValue), xmlWriter, value);
 
     /// <summary>

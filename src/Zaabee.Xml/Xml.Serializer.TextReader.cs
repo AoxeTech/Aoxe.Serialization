@@ -9,7 +9,7 @@ public static partial class XmlSerializer
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
     public static TValue? Deserialize<TValue>(TextReader textReader) =>
-        (TValue) Deserialize(typeof(TValue), textReader);
+        (TValue?) Deserialize(typeof(TValue), textReader);
 
     /// <summary>
     /// Deserializes the XML document contained by the specified TextReader.

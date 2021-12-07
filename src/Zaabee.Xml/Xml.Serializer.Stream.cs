@@ -33,7 +33,7 @@ public static partial class XmlSerializer
     /// <param name="value"></param>
     /// <param name="stream"></param>
     /// <typeparam name="TValue"></typeparam>
-    public static void Pack<TValue>(TValue value, Stream? stream) =>
+    public static void Pack<TValue>(TValue value, Stream stream) =>
         Pack(typeof(TValue), value, stream);
 
     /// <summary>
@@ -42,7 +42,7 @@ public static partial class XmlSerializer
     /// <param name="type"></param>
     /// <param name="value"></param>
     /// <param name="stream"></param>
-    public static void Pack(Type type, object? value, Stream? stream)
+    public static void Pack(Type type, object? value, Stream stream)
     {
         GetSerializer(type).Serialize(stream, value);
         stream.TrySeek(0, SeekOrigin.Begin);
@@ -54,8 +54,8 @@ public static partial class XmlSerializer
     /// <param name="stream"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? Unpack<TValue>(Stream? stream) =>
-        (TValue) Unpack(typeof(TValue), stream);
+    public static TValue? Unpack<TValue>(Stream stream) =>
+        (TValue?) Unpack(typeof(TValue), stream);
 
     /// <summary>
     /// Deserializes the XML document contained by the specified stream.
@@ -63,7 +63,7 @@ public static partial class XmlSerializer
     /// <param name="type"></param>
     /// <param name="stream"></param>
     /// <returns></returns>
-    public static object? Unpack(Type type, Stream? stream)
+    public static object? Unpack(Type type, Stream stream)
     {
         var result = GetSerializer(type).Deserialize(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
