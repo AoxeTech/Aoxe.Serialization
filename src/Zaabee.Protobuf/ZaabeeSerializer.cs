@@ -2,27 +2,43 @@ namespace Zaabee.Protobuf;
 
 public class ZaabeeSerializer : IBytesSerializer
 {
-    public byte[] SerializeToBytes<TValue>(TValue value) =>
-        ProtobufSerializer.Serialize(value);
+    public Stream SerializeToStream<TValue>(TValue? value) =>
+        value is null
+            ? Stream.Null
+            : ProtobufSerializer.Pack(value);
+
+    public TValue? DeserializeFromStream<TValue>(Stream? stream) =>
+        stream.IsNullOrEmpty()
+            ? default
+            : ProtobufSerializer.Unpack<TValue>(stream);
+
+    public Stream SerializeToStream(Type type, object? value) =>
+        value is null
+            ? Stream.Null
+            : ProtobufSerializer.Pack(value);
+
+    public object? DeserializeFromStream(Type type, Stream? stream) =>
+        stream.IsNullOrEmpty()
+            ? default
+            : ProtobufSerializer.Unpack(type, stream);
+
+    public byte[] SerializeToBytes<TValue>(TValue? value) =>
+        value is null
+            ? Array.Empty<byte>()
+            : ProtobufSerializer.Serialize<TValue>(value);
+
+    public TValue? DeserializeFromBytes<TValue>(byte[]? bytes) =>
+        bytes.IsNullOrEmpty()
+            ? default
+            : ProtobufSerializer.Deserialize<TValue>(bytes!);
 
     public byte[] SerializeToBytes(Type type, object? value) =>
-        ProtobufSerializer.Serialize(value);
+        value is null
+            ? Array.Empty<byte>()
+            : ProtobufSerializer.Serialize(value);
 
-    public TValue DeserializeFromBytes<TValue>(byte[] bytes) =>
-        ProtobufSerializer.Deserialize<TValue>(bytes);
-
-    public object DeserializeFromBytes(Type type, byte[] bytes) =>
-        ProtobufSerializer.Deserialize(type, bytes);
-
-    public Stream? SerializeToStream<TValue>(TValue value) =>
-        ProtobufSerializer.Pack(value);
-
-    public Stream? SerializeToStream(Type type, object? value) =>
-        ProtobufSerializer.Pack(value);
-
-    public TValue DeserializeFromStream<TValue>(Stream? stream) =>
-        ProtobufSerializer.Unpack<TValue>(stream);
-
-    public object DeserializeFromStream(Type type, Stream? stream) =>
-        ProtobufSerializer.Unpack(type, stream);
+    public object? DeserializeFromBytes(Type type, byte[]? bytes) =>
+        bytes.IsNullOrEmpty()
+            ? default
+            : ProtobufSerializer.Deserialize(type, bytes!);
 }

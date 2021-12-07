@@ -9,7 +9,7 @@ public static partial class Utf8JsonSerializer
     /// <param name="resolver"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static Stream Pack<TValue>(TValue value, IJsonFormatterResolver resolver)
+    public static Stream Pack<TValue>(TValue value, IJsonFormatterResolver? resolver)
     {
         var ms = new MemoryStream();
         Pack(value, ms, resolver);
@@ -22,7 +22,7 @@ public static partial class Utf8JsonSerializer
     /// <param name="value"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static Stream Pack(object? value, IJsonFormatterResolver resolver)
+    public static Stream Pack(object? value, IJsonFormatterResolver? resolver)
     {
         var ms = new MemoryStream();
         Pack(value, ms, resolver);
@@ -36,7 +36,7 @@ public static partial class Utf8JsonSerializer
     /// <param name="value"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static Stream Pack(Type type, object? value, IJsonFormatterResolver resolver)
+    public static Stream Pack(Type type, object? value, IJsonFormatterResolver? resolver)
     {
         var ms = new MemoryStream();
         Pack(type, value, ms, resolver);
@@ -50,7 +50,7 @@ public static partial class Utf8JsonSerializer
     /// <param name="stream"></param>
     /// <param name="resolver"></param>
     /// <typeparam name="TValue"></typeparam>
-    public static void Pack<TValue>(TValue value, Stream? stream, IJsonFormatterResolver resolver)
+    public static void Pack<TValue>(TValue value, Stream? stream, IJsonFormatterResolver? resolver)
     {
         JsonSerializer.Serialize(stream, value, resolver);
         stream.TrySeek(0, SeekOrigin.Begin);
@@ -62,7 +62,7 @@ public static partial class Utf8JsonSerializer
     /// <param name="value"></param>
     /// <param name="stream"></param>
     /// <param name="resolver"></param>
-    public static void Pack(object? value, Stream? stream, IJsonFormatterResolver resolver)
+    public static void Pack(object? value, Stream? stream, IJsonFormatterResolver? resolver)
     {
         JsonSerializer.NonGeneric.Serialize(stream, value, resolver);
         stream.TrySeek(0, SeekOrigin.Begin);
@@ -75,7 +75,7 @@ public static partial class Utf8JsonSerializer
     /// <param name="value"></param>
     /// <param name="stream"></param>
     /// <param name="resolver"></param>
-    public static void Pack(Type type, object? value, Stream? stream, IJsonFormatterResolver resolver)
+    public static void Pack(Type type, object? value, Stream? stream, IJsonFormatterResolver? resolver)
     {
         JsonSerializer.NonGeneric.Serialize(type, stream, value, resolver);
         stream.TrySeek(0, SeekOrigin.Begin);
@@ -89,7 +89,7 @@ public static partial class Utf8JsonSerializer
     /// <param name="resolver"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? Unpack<TValue>(Stream? stream, IJsonFormatterResolver resolver)
+    public static TValue? Unpack<TValue>(Stream? stream, IJsonFormatterResolver? resolver)
     {
         var result = JsonSerializer.Deserialize<TValue>(stream, resolver);
         stream.TrySeek(0, SeekOrigin.Begin);
@@ -104,7 +104,7 @@ public static partial class Utf8JsonSerializer
     /// <param name="stream"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static object? Unpack(Type type, Stream? stream, IJsonFormatterResolver resolver)
+    public static object? Unpack(Type type, Stream? stream, IJsonFormatterResolver? resolver)
     {
         var result = JsonSerializer.NonGeneric.Deserialize(type, stream, resolver);
         stream.TrySeek(0, SeekOrigin.Begin);

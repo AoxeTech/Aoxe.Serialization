@@ -16,7 +16,7 @@ namespace Zaabee.NewtonsoftJson
         /// <param name="encoding"></param>
         /// <typeparam name="TValue"></typeparam>
         /// <returns></returns>
-        public static Stream Pack<TValue>(TValue value, JsonSerializerSettings settings, Encoding encoding)
+        public static Stream Pack<TValue>(TValue value, JsonSerializerSettings? settings, Encoding encoding)
         {
             var ms = new MemoryStream();
             Pack(value, ms, settings, encoding);
@@ -31,7 +31,7 @@ namespace Zaabee.NewtonsoftJson
         /// <param name="settings"></param>
         /// <param name="encoding"></param>
         /// <returns></returns>
-        public static Stream Pack(Type type, object? value, JsonSerializerSettings settings, Encoding encoding)
+        public static Stream Pack(Type type, object? value, JsonSerializerSettings? settings, Encoding encoding)
         {
             var ms = new MemoryStream();
             Pack(type, value, ms, settings, encoding);
@@ -46,7 +46,7 @@ namespace Zaabee.NewtonsoftJson
         /// <param name="settings"></param>
         /// <param name="encoding"></param>
         /// <typeparam name="TValue"></typeparam>
-        public static void Pack<TValue>(TValue value, Stream? stream, JsonSerializerSettings settings, Encoding encoding)
+        public static void Pack<TValue>(TValue value, Stream? stream, JsonSerializerSettings? settings, Encoding encoding)
         {
             Serialize(value, settings, encoding).WriteTo(stream);
             stream.TrySeek(0, SeekOrigin.Begin);
@@ -60,7 +60,7 @@ namespace Zaabee.NewtonsoftJson
         /// <param name="stream"></param>
         /// <param name="settings"></param>
         /// <param name="encoding"></param>
-        public static void Pack(Type type, object? value, Stream? stream, JsonSerializerSettings settings,
+        public static void Pack(Type type, object? value, Stream? stream, JsonSerializerSettings? settings,
             Encoding encoding)
         {
             Serialize(type, value, settings, encoding).WriteTo(stream);
@@ -75,7 +75,7 @@ namespace Zaabee.NewtonsoftJson
         /// <param name="encoding"></param>
         /// <typeparam name="TValue"></typeparam>
         /// <returns></returns>
-        public static TValue? Unpack<TValue>(Stream? stream, JsonSerializerSettings settings, Encoding encoding) =>
+        public static TValue? Unpack<TValue>(Stream? stream, JsonSerializerSettings? settings, Encoding encoding) =>
             (TValue) Unpack(typeof(TValue), stream, settings, encoding);
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Zaabee.NewtonsoftJson
         /// <param name="settings"></param>
         /// <param name="encoding"></param>
         /// <returns></returns>
-        public static object? Unpack(Type type, Stream? stream, JsonSerializerSettings settings, Encoding encoding)
+        public static object? Unpack(Type type, Stream? stream, JsonSerializerSettings? settings, Encoding encoding)
         {
             var result = Deserialize(type, encoding.GetString(stream.ReadToEnd()), settings);
             stream.TrySeek(0, SeekOrigin.Begin);

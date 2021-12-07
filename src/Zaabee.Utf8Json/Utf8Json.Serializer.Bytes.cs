@@ -9,7 +9,7 @@ public static partial class Utf8JsonSerializer
     /// <param name="resolver"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static byte[] Serialize<TValue>(TValue value, IJsonFormatterResolver resolver) =>
+    public static byte[] Serialize<TValue>(TValue value, IJsonFormatterResolver? resolver) =>
         JsonSerializer.Serialize(value, resolver);
 
     /// <summary>
@@ -19,7 +19,7 @@ public static partial class Utf8JsonSerializer
     /// <param name="value"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static byte[] Serialize(Type type, object? value, IJsonFormatterResolver resolver) =>
+    public static byte[] Serialize(Type type, object? value, IJsonFormatterResolver? resolver) =>
         JsonSerializer.NonGeneric.Serialize(type, value, resolver);
 
     /// <summary>
@@ -28,7 +28,7 @@ public static partial class Utf8JsonSerializer
     /// <param name="value"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static byte[] Serialize(object? value, IJsonFormatterResolver resolver) =>
+    public static byte[] Serialize(object? value, IJsonFormatterResolver? resolver) =>
         JsonSerializer.NonGeneric.Serialize(value, resolver);
 
     /// <summary>
@@ -38,7 +38,7 @@ public static partial class Utf8JsonSerializer
     /// <param name="resolver"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static ArraySegment<byte> SerializeUnsafe<TValue>(TValue value, IJsonFormatterResolver resolver) =>
+    public static ArraySegment<byte> SerializeUnsafe<TValue>(TValue value, IJsonFormatterResolver? resolver) =>
         JsonSerializer.SerializeUnsafe(value, resolver);
 
     /// <summary>
@@ -48,7 +48,7 @@ public static partial class Utf8JsonSerializer
     /// <param name="value"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static ArraySegment<byte> SerializeUnsafe(Type type, object? value, IJsonFormatterResolver resolver) =>
+    public static ArraySegment<byte> SerializeUnsafe(Type type, object? value, IJsonFormatterResolver? resolver) =>
         JsonSerializer.NonGeneric.SerializeUnsafe(type, value, resolver);
 
     /// <summary>
@@ -57,7 +57,7 @@ public static partial class Utf8JsonSerializer
     /// <param name="value"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static ArraySegment<byte> SerializeUnsafe(object? value, IJsonFormatterResolver resolver) =>
+    public static ArraySegment<byte> SerializeUnsafe(object? value, IJsonFormatterResolver? resolver) =>
         JsonSerializer.NonGeneric.SerializeUnsafe(value, resolver);
 
     /// <summary>
@@ -67,7 +67,7 @@ public static partial class Utf8JsonSerializer
     /// <param name="resolver"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? Deserialize<TValue>(byte[] bytes, IJsonFormatterResolver resolver) =>
+    public static TValue? Deserialize<TValue>(byte[] bytes, IJsonFormatterResolver? resolver) =>
         JsonSerializer.Deserialize<TValue>(bytes, resolver);
 
     /// <summary>
@@ -77,6 +77,6 @@ public static partial class Utf8JsonSerializer
     /// <param name="bytes"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static object? Deserialize(Type type, byte[] bytes, IJsonFormatterResolver resolver) =>
+    public static object? Deserialize(Type type, byte[] bytes, IJsonFormatterResolver? resolver) =>
         JsonSerializer.NonGeneric.Deserialize(type, bytes, resolver);
 }

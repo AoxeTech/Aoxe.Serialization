@@ -1,13 +1,13 @@
 namespace Zaabee.SystemTextJson;
 
-public class ZaabeeSerializer : ITextSerializer
+public class  ZaabeeSerializer : ITextSerializer
 {
     private readonly JsonSerializerOptions? _options;
 
     public ZaabeeSerializer(JsonSerializerOptions? options = null) =>
         _options = options;
 
-    public Stream? SerializeToStream<TValue>(TValue? value) =>
+    public Stream SerializeToStream<TValue>(TValue? value) =>
         value is null
             ? Stream.Null
             : SystemTextJsonSerializer.Pack(value, _options);
@@ -17,7 +17,7 @@ public class ZaabeeSerializer : ITextSerializer
             ? default
             : SystemTextJsonSerializer.Unpack<TValue>(stream!, _options);
 
-    public Stream? SerializeToStream(Type type, object? value) =>
+    public Stream SerializeToStream(Type type, object? value) =>
         value is null
             ? Stream.Null
             : SystemTextJsonSerializer.Pack(type, value, _options);

@@ -42,15 +42,64 @@ public partial class SerializerTest
     public void ZeroFormatterStreamGenericTest() =>
         StreamGenericTest(new Zaabee.ZeroFormatter.ZaabeeSerializer());
 
+    [Fact]
+    public void BinaryStreamGenericNullTest() =>
+        StreamGenericNullTest(new Zaabee.Binary.ZaabeeSerializer());
+
+    [Fact]
+    public void JilStreamGenericNullTest() =>
+        StreamGenericNullTest(new Zaabee.Jil.ZaabeeSerializer());
+
+    [Fact]
+    public void MessagePackStreamGenericNullTest() =>
+        StreamGenericNullTest(new Zaabee.MessagePack.ZaabeeSerializer());
+
+    [Fact]
+    public void MsgPackStreamGenericNullTest() =>
+        StreamGenericNullTest(new Zaabee.MsgPack.ZaabeeSerializer());
+
+    [Fact]
+    public void NewtonsoftJsonStreamGenericNullTest() =>
+        StreamGenericNullTest(new Zaabee.NewtonsoftJson.ZaabeeSerializer());
+
+    [Fact]
+    public void ProtobufStreamGenericNullTest() =>
+        StreamGenericNullTest(new Zaabee.Protobuf.ZaabeeSerializer());
+
+    [Fact]
+    public void SystemTextJsonStreamGenericNullTest() =>
+        StreamGenericNullTest(new Zaabee.SystemTextJson.ZaabeeSerializer());
+
+    [Fact]
+    public void Utf8JsonStreamGenericNullTest() =>
+        StreamGenericNullTest(new Zaabee.Utf8Json.ZaabeeSerializer());
+
+    [Fact]
+    public void XmlStreamGenericNullTest() =>
+        StreamGenericNullTest(new Zaabee.Xml.ZaabeeSerializer());
+
+    [Fact]
+    public void ZeroFormatterStreamGenericNullTest() =>
+        StreamGenericNullTest(new Zaabee.ZeroFormatter.ZaabeeSerializer());
+
     private static void StreamGenericTest(IStreamSerializer serializer)
     {
         var model = TestModelFactory.Create();
-        var bytes = serializer.SerializeToStream(model);
-        var deserializeModel = serializer.DeserializeFromStream<TestModel>(bytes)!;
+        var stream = serializer.SerializeToStream(model);
+        var deserializeModel = serializer.DeserializeFromStream<TestModel>(stream)!;
 
         Assert.Equal(
             Tuple.Create(model.Id, model.Age, model.CreateTime, model.Name, model.Gender),
             Tuple.Create(deserializeModel.Id, deserializeModel.Age, deserializeModel.CreateTime,
                 deserializeModel.Name, deserializeModel.Gender));
+    }
+
+    private static void StreamGenericNullTest(IStreamSerializer serializer)
+    {
+        TestModel? model = null;
+        var stream = serializer.SerializeToStream(model);
+        Assert.Equal(0, stream.Length);
+        var deserializeModel = serializer.DeserializeFromStream<TestModel>(null);
+        Assert.Null(deserializeModel);
     }
 }

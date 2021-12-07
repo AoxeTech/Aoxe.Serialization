@@ -8,26 +8,42 @@ public class ZaabeeSerializer : IBytesSerializer
         _options = options;
 
     public byte[] SerializeToBytes<TValue>(TValue? value) =>
-        MessagePackCSharpSerializer.Serialize(value, _options);
+        value is null
+            ? Array.Empty<byte>()
+            : MessagePackCSharpSerializer.Serialize(value, _options);
 
     public byte[] SerializeToBytes(Type type, object? value) =>
-        MessagePackCSharpSerializer.Serialize(type, value, _options);
+        value is null
+            ? Array.Empty<byte>()
+            : MessagePackCSharpSerializer.Serialize(type, value, _options);
 
     public TValue? DeserializeFromBytes<TValue>(byte[]? bytes) =>
-        MessagePackCSharpSerializer.Deserialize<TValue>(bytes, _options);
+        bytes.IsNullOrEmpty()
+            ? default
+            : MessagePackCSharpSerializer.Deserialize<TValue>(bytes, _options);
 
     public object? DeserializeFromBytes(Type type, byte[]? bytes) =>
-        MessagePackCSharpSerializer.Deserialize(type, bytes, _options);
+        bytes.IsNullOrEmpty()
+            ? default
+            : MessagePackCSharpSerializer.Deserialize(type, bytes, _options);
 
     public Stream SerializeToStream<TValue>(TValue? value) =>
-        MessagePackCSharpSerializer.Pack(value, _options);
+        value is null
+            ? Stream.Null
+            : MessagePackCSharpSerializer.Pack(value, _options);
 
     public Stream SerializeToStream(Type type, object? value) =>
-        MessagePackCSharpSerializer.Pack(type, value, _options);
+        value is null
+            ? Stream.Null
+            : MessagePackCSharpSerializer.Pack(type, value, _options);
 
     public TValue? DeserializeFromStream<TValue>(Stream? stream) =>
-        MessagePackCSharpSerializer.Unpack<TValue>(stream, _options);
+        stream.IsNullOrEmpty()
+            ? default
+            : MessagePackCSharpSerializer.Unpack<TValue>(stream, _options);
 
     public object? DeserializeFromStream(Type type, Stream? stream) =>
-        MessagePackCSharpSerializer.Unpack(type, stream, _options);
+        stream.IsNullOrEmpty()
+            ? default
+            : MessagePackCSharpSerializer.Unpack(type, stream, _options);
 }

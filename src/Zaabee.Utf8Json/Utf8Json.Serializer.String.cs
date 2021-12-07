@@ -9,7 +9,7 @@ public static partial class Utf8JsonSerializer
     /// <param name="resolver"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static string SerializeToJson<TValue>(TValue value, IJsonFormatterResolver resolver) =>
+    public static string SerializeToJson<TValue>(TValue value, IJsonFormatterResolver? resolver) =>
         JsonSerializer.ToJsonString(value, resolver);
 
     /// <summary>
@@ -18,7 +18,7 @@ public static partial class Utf8JsonSerializer
     /// <param name="value"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static string SerializeToJson(object? value, IJsonFormatterResolver resolver) =>
+    public static string SerializeToJson(object? value, IJsonFormatterResolver? resolver) =>
         JsonSerializer.NonGeneric.ToJsonString(value, resolver);
 
     /// <summary>
@@ -28,7 +28,7 @@ public static partial class Utf8JsonSerializer
     /// <param name="value"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static string SerializeToJson(Type type, object? value, IJsonFormatterResolver resolver) =>
+    public static string SerializeToJson(Type type, object? value, IJsonFormatterResolver? resolver) =>
         JsonSerializer.NonGeneric.ToJsonString(type, value, resolver);
 
     /// <summary>
@@ -38,7 +38,7 @@ public static partial class Utf8JsonSerializer
     /// <param name="resolver"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? Deserialize<TValue>(string json, IJsonFormatterResolver resolver) =>
+    public static TValue? Deserialize<TValue>(string json, IJsonFormatterResolver? resolver) =>
         JsonSerializer.Deserialize<TValue>(json, resolver);
 
     /// <summary>
@@ -48,6 +48,6 @@ public static partial class Utf8JsonSerializer
     /// <param name="json"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static object? Deserialize(Type type, string json, IJsonFormatterResolver resolver) =>
+    public static object? Deserialize(Type type, string json, IJsonFormatterResolver? resolver) =>
         JsonSerializer.NonGeneric.Deserialize(type, json, resolver);
 }

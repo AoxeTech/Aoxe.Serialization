@@ -8,7 +8,7 @@ public interface IStreamSerializer
     /// <param name="value"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    Stream? SerializeToStream<TValue>(TValue? value);
+    Stream SerializeToStream<TValue>(TValue? value);
 
     /// <summary>
     /// If the stream is null or empty must return the default value of T.
@@ -24,7 +24,7 @@ public interface IStreamSerializer
     /// <param name="type"></param>
     /// <param name="value"></param>
     /// <returns></returns>
-    Stream? SerializeToStream(Type type, object? value);
+    Stream SerializeToStream(Type type, object? value);
 
     /// <summary>
     /// If the stream is null or empty must return the default value of the type.

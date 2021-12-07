@@ -11,7 +11,7 @@ namespace Zaabee.NewtonsoftJson
         /// <param name="value"></param>
         /// <param name="settings"></param>
         /// <returns></returns>
-        public static string SerializeToJson<TValue>(TValue value, JsonSerializerSettings settings) =>
+        public static string SerializeToJson<TValue>(TValue value, JsonSerializerSettings? settings) =>
             JsonConvert.SerializeObject(value, typeof(TValue), settings);
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace Zaabee.NewtonsoftJson
         /// <param name="value"></param>
         /// <param name="settings"></param>
         /// <returns></returns>
-        public static string SerializeToJson(Type type, object? value, JsonSerializerSettings settings) =>
+        public static string SerializeToJson(Type type, object? value, JsonSerializerSettings? settings) =>
             JsonConvert.SerializeObject(value, type, settings);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Zaabee.NewtonsoftJson
         /// <param name="settings"></param>
         /// <typeparam name="TValue"></typeparam>
         /// <returns></returns>
-        public static TValue? Deserialize<TValue>(string json, JsonSerializerSettings settings) =>
+        public static TValue? Deserialize<TValue>(string json, JsonSerializerSettings? settings) =>
             JsonConvert.DeserializeObject<TValue>(json, settings);
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Zaabee.NewtonsoftJson
         /// <param name="json"></param>
         /// <param name="settings"></param>
         /// <returns></returns>
-        public static object? Deserialize(Type type, string json, JsonSerializerSettings settings) =>
+        public static object? Deserialize(Type type, string json, JsonSerializerSettings? settings) =>
             JsonConvert.DeserializeObject(json, type, settings);
     }
 }
