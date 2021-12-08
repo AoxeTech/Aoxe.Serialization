@@ -2,7 +2,9 @@ namespace Zaabee.MsgPack;
 
 public static partial class MsgPackExtensions
 {
-    public static Task<MemoryStream> ToStreamAsync<TValue>(this TValue value) => MsgPackHelper.PackAsync(value);
+    public static async Task<MemoryStream> ToStreamAsync<TValue>(this TValue value) =>
+        await MsgPackHelper.PackAsync(value);
 
-    public static Task PackToAsync<TValue>(this TValue value, Stream? stream) => MsgPackHelper.PackAsync(value, stream);
+    public static async Task PackToAsync<TValue>(this TValue value, Stream? stream) =>
+        await MsgPackHelper.PackAsync(value, stream);
 }

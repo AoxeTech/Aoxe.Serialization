@@ -13,7 +13,7 @@ public static partial class JilSerializer
     /// <param name="output"></param>
     /// <param name="options"></param>
     /// <typeparam name="TValue"></typeparam>
-    public static void Serialize<TValue>(TValue? value, TextWriter output, Options? options) =>
+    public static void Serialize<TValue>(TValue? value, TextWriter output, Options? options = null) =>
         JSON.Serialize(value, output, options);
 
     /// <summary>
@@ -32,6 +32,6 @@ public static partial class JilSerializer
     /// <param name="value"></param>
     /// <param name="output"></param>
     /// <param name="options"></param>
-    public static void Serialize(object? value, TextWriter output, Options? options) =>
+    public static void Serialize(object? value, TextWriter output, Options? options = null) =>
         JSON.SerializeDynamic(value, output, options);
 }

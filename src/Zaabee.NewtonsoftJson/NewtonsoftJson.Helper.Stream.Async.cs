@@ -1,70 +1,64 @@
-﻿using System;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Zaabee.Extensions;
+﻿namespace Zaabee.NewtonsoftJson;
 
-namespace Zaabee.NewtonsoftJson
+public static partial class NewtonsoftJsonHelper
 {
-    public static partial class NewtonsoftJsonHelper
+    public static async Task<MemoryStream> PackAsync<TValue>(TValue value, JsonSerializerSettings? settings = null,
+        Encoding encoding = null) =>
+        value is null
+            ? new MemoryStream()
+            : await NewtonsoftJsonSerializer.PackAsync(value, encoding ?? DefaultEncoding, settings ?? DefaultSettings);
+
+    public static async Task<MemoryStream> PackAsync(Type type, object? value, JsonSerializerSettings? settings = null,
+        Encoding encoding = null) =>
+        value is null
+            ? new MemoryStream()
+            : await NewtonsoftJsonSerializer.PackAsync(type, value, encoding ?? DefaultEncoding,
+                settings ?? DefaultSettings);
+
+    public static async Task PackAsync<TValue>(TValue value, Stream? stream, JsonSerializerSettings? settings = null,
+        Encoding encoding = null)
     {
-        public static Task<MemoryStream> PackAsync<TValue>(TValue value, JsonSerializerSettings settings = null,
-            Encoding encoding = null) =>
-            value is null
-                ? Task.FromResult(new MemoryStream())
-                : NewtonsoftJsonSerializer.PackAsync(value, settings ?? DefaultSettings,
-                    encoding ?? DefaultEncoding);
-
-        public static Task<MemoryStream> PackAsync(Type type, object? value, JsonSerializerSettings settings = null,
-            Encoding encoding = null) =>
-            value is null
-                ? Task.FromResult(new MemoryStream())
-                : NewtonsoftJsonSerializer.PackAsync(type, value, settings ?? DefaultSettings,
-                    encoding ?? DefaultEncoding);
-
-        public static Task PackAsync<TValue>(TValue value, Stream? stream, JsonSerializerSettings settings = null,
-            Encoding encoding = null) =>
-            value is null || stream is null
-                ? Task.CompletedTask
-                : NewtonsoftJsonSerializer.PackAsync(value, stream, settings ?? DefaultSettings,
-                    encoding ?? DefaultEncoding);
-
-        public static Task PackAsync(Type type, object? value, Stream? stream, JsonSerializerSettings settings = null,
-            Encoding encoding = null) =>
-            value is null || stream is null
-                ? Task.CompletedTask
-                : NewtonsoftJsonSerializer.PackAsync(type, value, stream, settings ?? DefaultSettings,
-                    encoding ?? DefaultEncoding);
-
-        /// <summary>
-        /// Asynchronously read the stream to bytes, encode it to string and deserialize it.
-        /// </summary>
-        /// <param name="stream"></param>
-        /// <param name="settings"></param>
-        /// <param name="encoding"></param>
-        /// <typeparam name="TValue"></typeparam>
-        /// <returns></returns>
-        public static Task<TValue> UnpackAsync<TValue>(Stream? stream, JsonSerializerSettings settings = null,
-            Encoding encoding = null) =>
-            stream.IsNullOrEmpty()
-                ? Task.FromResult(default(TValue))
-                : NewtonsoftJsonSerializer.UnpackAsync<TValue>(stream, settings ?? DefaultSettings,
-                    encoding ?? DefaultEncoding);
-
-        /// <summary>
-        /// Asynchronously read the stream to bytes, encode it to string and deserialize it.
-        /// </summary>
-        /// <param name="type"></param>
-        /// <param name="stream"></param>
-        /// <param name="settings"></param>
-        /// <param name="encoding"></param>
-        /// <returns></returns>
-        public static Task<object> UnpackAsync(Type type, Stream? stream, JsonSerializerSettings? settings = null,
-            Encoding? encoding = null) =>
-            stream.IsNullOrEmpty()
-                ? Task.FromResult<object?>(default)
-                : NewtonsoftJsonSerializer.UnpackAsync(type, stream, settings ?? DefaultSettings,
-                    encoding ?? DefaultEncoding);
+        if (value is not null && stream is not null)
+            await NewtonsoftJsonSerializer.PackAsync(value, stream, encoding ?? DefaultEncoding,
+                settings ?? DefaultSettings);
     }
+
+    public static async Task PackAsync(Type type, object? value, Stream? stream,
+        JsonSerializerSettings? settings = null,
+        Encoding encoding = null)
+    {
+        if (value is not null && stream is not null)
+            await NewtonsoftJsonSerializer.PackAsync(type, value, stream, encoding ?? DefaultEncoding,
+                settings ?? DefaultSettings);
+    }
+
+    /// <summary>
+    /// Asynchronously read the stream to bytes, encode it to string and deserialize it.
+    /// </summary>
+    /// <param name="stream"></param>
+    /// <param name="settings"></param>
+    /// <param name="encoding"></param>
+    /// <typeparam name="TValue"></typeparam>
+    /// <returns></returns>
+    public static async Task<TValue?> UnpackAsync<TValue>(Stream? stream, JsonSerializerSettings? settings = null,
+        Encoding encoding = null) =>
+        stream.IsNullOrEmpty()
+            ? default
+            : await NewtonsoftJsonSerializer.UnpackAsync<TValue>(stream, encoding ?? DefaultEncoding,
+                settings ?? DefaultSettings);
+
+    /// <summary>
+    /// Asynchronously read the stream to bytes, encode it to string and deserialize it.
+    /// </summary>
+    /// <param name="type"></param>
+    /// <param name="stream"></param>
+    /// <param name="settings"></param>
+    /// <param name="encoding"></param>
+    /// <returns></returns>
+    public static async Task<object?> UnpackAsync(Type type, Stream? stream, JsonSerializerSettings? settings = null,
+        Encoding? encoding = null) =>
+        stream.IsNullOrEmpty()
+            ? default
+            : await NewtonsoftJsonSerializer.UnpackAsync(type, stream, encoding ?? DefaultEncoding,
+                settings ?? DefaultSettings);
 }

@@ -10,10 +10,10 @@ public static partial class JilSerializer
     /// <param name="encoding"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static Stream Pack<TValue>(TValue? value, Options? options, Encoding encoding)
+    public static Stream Pack<TValue>(TValue? value, Encoding encoding, Options? options = null)
     {
         var ms = new MemoryStream();
-        Pack(value, ms, options, encoding);
+        Pack(value, ms, encoding, options);
         return ms;
     }
 
@@ -25,9 +25,9 @@ public static partial class JilSerializer
     /// <param name="options"></param>
     /// <param name="encoding"></param>
     /// <typeparam name="TValue"></typeparam>
-    public static void Pack<TValue>(TValue? value, Stream stream, Options? options, Encoding encoding)
+    public static void Pack<TValue>(TValue? value, Stream stream, Encoding encoding, Options? options = null)
     {
-        Serialize(value, options, encoding).WriteTo(stream);
+        Serialize(value, encoding, options).WriteTo(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
@@ -38,10 +38,10 @@ public static partial class JilSerializer
     /// <param name="options"></param>
     /// <param name="encoding"></param>
     /// <returns></returns>
-    public static Stream Pack(object? value, Options? options, Encoding encoding)
+    public static Stream Pack(object? value, Encoding encoding, Options? options = null)
     {
         var ms = new MemoryStream();
-        Pack(value, ms, options, encoding);
+        Pack(value, ms, encoding, options);
         return ms;
     }
 
@@ -52,9 +52,9 @@ public static partial class JilSerializer
     /// <param name="stream"></param>
     /// <param name="options"></param>
     /// <param name="encoding"></param>
-    public static void Pack(object? value, Stream stream, Options? options, Encoding encoding)
+    public static void Pack(object? value, Stream stream, Encoding encoding, Options? options = null)
     {
-        Serialize(value, options, encoding).WriteTo(stream);
+        Serialize(value, encoding, options).WriteTo(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
@@ -66,7 +66,7 @@ public static partial class JilSerializer
     /// <param name="encoding"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? Unpack<TValue>(Stream? stream, Options? options, Encoding encoding)
+    public static TValue? Unpack<TValue>(Stream? stream, Encoding encoding, Options? options = null)
     {
         var result = Deserialize<TValue>(encoding.GetString(stream.ReadToEnd()), options);
         stream.TrySeek(0, SeekOrigin.Begin);
@@ -81,7 +81,7 @@ public static partial class JilSerializer
     /// <param name="options"></param>
     /// <param name="encoding"></param>
     /// <returns></returns>
-    public static object? Unpack(Type type, Stream? stream, Options? options, Encoding encoding)
+    public static object? Unpack(Type type, Stream? stream, Encoding encoding, Options? options = null)
     {
         var result = Deserialize(type, encoding.GetString(stream.ReadToEnd()), options);
         stream.TrySeek(0, SeekOrigin.Begin);

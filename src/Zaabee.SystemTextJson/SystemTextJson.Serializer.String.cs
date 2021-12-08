@@ -9,7 +9,7 @@ public static partial class SystemTextJsonSerializer
     /// <param name="options"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static string SerializeToJson<TValue>(TValue? value, JsonSerializerOptions? options) =>
+    public static string SerializeToJson<TValue>(TValue? value, JsonSerializerOptions? options = null) =>
         JsonSerializer.Serialize(value, options);
 
     /// <summary>
@@ -19,7 +19,7 @@ public static partial class SystemTextJsonSerializer
     /// <param name="value"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public static string SerializeToJson(Type type, object? value, JsonSerializerOptions? options) =>
+    public static string SerializeToJson(Type type, object? value, JsonSerializerOptions? options = null) =>
         JsonSerializer.Serialize(value, type, options);
 
     /// <summary>
@@ -29,7 +29,7 @@ public static partial class SystemTextJsonSerializer
     /// <param name="options"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? Deserialize<TValue>(string json, JsonSerializerOptions? options) =>
+    public static TValue? Deserialize<TValue>(string json, JsonSerializerOptions? options = null) =>
         JsonSerializer.Deserialize<TValue>(json, options);
 
     /// <summary>
@@ -39,6 +39,6 @@ public static partial class SystemTextJsonSerializer
     /// <param name="json"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public static object? Deserialize(Type type, string json, JsonSerializerOptions? options) =>
+    public static object? Deserialize(Type type, string json, JsonSerializerOptions? options = null) =>
         JsonSerializer.Deserialize(json, type, options);
 }

@@ -9,7 +9,7 @@ public static partial class SystemTextJsonSerializer
     /// <param name="options"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static Stream Pack<TValue>(TValue? value, JsonSerializerOptions? options)
+    public static Stream Pack<TValue>(TValue? value, JsonSerializerOptions? options = null)
     {
         var ms = new MemoryStream();
         Pack(value, ms, options);
@@ -23,7 +23,7 @@ public static partial class SystemTextJsonSerializer
     /// <param name="value"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public static Stream Pack(Type type, object? value, JsonSerializerOptions? options)
+    public static Stream Pack(Type type, object? value, JsonSerializerOptions? options = null)
     {
         var ms = new MemoryStream();
         Pack(type, value, ms, options);
@@ -37,11 +37,10 @@ public static partial class SystemTextJsonSerializer
     /// <param name="stream"></param>
     /// <param name="options"></param>
     /// <typeparam name="TValue"></typeparam>
-    public static void Pack<TValue>(TValue? value, Stream? stream, JsonSerializerOptions? options)
+    public static void Pack<TValue>(TValue? value, Stream stream, JsonSerializerOptions? options = null)
     {
-        var bytes = JsonSerializer.SerializeToUtf8Bytes(value, options);
-        stream.Write(bytes, 0, bytes.Length);
-        if (stream.CanSeek) stream.Seek(0, SeekOrigin.Begin);
+        JsonSerializer.Serialize<TValue>(stream, value, options);
+        stream.TrySeek(0, SeekOrigin.Begin);
     }
 
     /// <summary>
@@ -51,9 +50,9 @@ public static partial class SystemTextJsonSerializer
     /// <param name="value"></param>
     /// <param name="stream"></param>
     /// <param name="options"></param>
-    public static void Pack(Type type, object? value, Stream? stream, JsonSerializerOptions? options)
+    public static void Pack(Type type, object? value, Stream stream, JsonSerializerOptions? options = null)
     {
-        JsonSerializer.SerializeToUtf8Bytes(value, type, options).WriteTo(stream);
+        JsonSerializer.Serialize(stream, value, type, options);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
@@ -65,9 +64,9 @@ public static partial class SystemTextJsonSerializer
     /// <param name="options"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? Unpack<TValue>(Stream? stream, JsonSerializerOptions? options)
+    public static TValue? Unpack<TValue>(Stream stream, JsonSerializerOptions? options = null)
     {
-        var result = Deserialize<TValue>(stream.ReadToEnd(), options);
+        var result = JsonSerializer.Deserialize<TValue>(stream, options);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
     }
@@ -80,9 +79,9 @@ public static partial class SystemTextJsonSerializer
     /// <param name="stream"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public static object? Unpack(Type type, Stream? stream, JsonSerializerOptions? options)
+    public static object? Unpack(Type type, Stream stream, JsonSerializerOptions? options = null)
     {
-        var result = Deserialize(type, stream.ReadToEnd(), options);
+        var result = JsonSerializer.Deserialize(stream, type, options);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
     }

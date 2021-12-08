@@ -27,10 +27,10 @@ public static partial class MsgPackHelper
     public static TValue? Unpack<TValue>(Stream? stream) =>
         stream.IsNullOrEmpty()
             ? default
-            : MsgPackSerializer.Unpack<TValue>(stream);
+            : MsgPackSerializer.Unpack<TValue>(stream!);
 
     public static object? Unpack(Type type, Stream? stream) =>
         stream.IsNullOrEmpty()
             ? default
-            : MsgPackSerializer.Unpack(type, stream);
+            : MsgPackSerializer.Unpack(type, stream!);
 }

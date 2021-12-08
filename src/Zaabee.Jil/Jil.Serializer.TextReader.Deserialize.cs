@@ -13,7 +13,7 @@ public static partial class JilSerializer
     /// <param name="options"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? Deserialize<TValue>(TextReader reader, Options? options) =>
+    public static TValue? Deserialize<TValue>(TextReader reader, Options? options = null) =>
         JSON.Deserialize<TValue>(reader, options);
 
     /// <summary>
@@ -31,6 +31,6 @@ public static partial class JilSerializer
     /// <param name="reader"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public static object? Deserialize(Type type, TextReader reader, Options? options) =>
+    public static object? Deserialize(Type type, TextReader reader, Options? options = null) =>
         JSON.Deserialize(reader, type, options);
 }

@@ -11,11 +11,11 @@ public static partial class JilSerializer
     /// <param name="cancellationToken"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static async Task<MemoryStream> PackAsync<TValue>(TValue? value, Options? options, Encoding encoding,
+    public static async Task<MemoryStream> PackAsync<TValue>(TValue? value, Encoding encoding, Options? options = null,
         CancellationToken cancellationToken = default)
     {
         var ms = new MemoryStream();
-        await PackAsync(value, ms, options, encoding, cancellationToken);
+        await PackAsync(value, ms, encoding, options, cancellationToken);
         return ms;
     }
 
@@ -29,10 +29,10 @@ public static partial class JilSerializer
     /// <param name="cancellationToken"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static async Task PackAsync<TValue>(TValue? value, Stream stream, Options? options, Encoding encoding,
+    public static async Task PackAsync<TValue>(TValue? value, Stream stream, Encoding encoding, Options? options = null,
         CancellationToken cancellationToken = default)
     {
-        await Serialize(value, options, encoding).WriteToAsync(stream, cancellationToken);
+        await Serialize(value, encoding, options).WriteToAsync(stream, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
@@ -44,11 +44,11 @@ public static partial class JilSerializer
     /// <param name="encoding"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<MemoryStream> PackAsync(object? value, Options? options, Encoding encoding,
+    public static async Task<MemoryStream> PackAsync(object? value, Encoding encoding, Options? options = null,
         CancellationToken cancellationToken = default)
     {
         var ms = new MemoryStream();
-        await PackAsync(value, ms, options, encoding, cancellationToken);
+        await PackAsync(value, ms, encoding, options, cancellationToken);
         return ms;
     }
 
@@ -61,10 +61,10 @@ public static partial class JilSerializer
     /// <param name="encoding"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task PackAsync(object? value, Stream stream, Options? options, Encoding encoding,
+    public static async Task PackAsync(object? value, Stream stream, Encoding encoding, Options? options = null,
         CancellationToken cancellationToken = default)
     {
-        await Serialize(value, options, encoding).WriteToAsync(stream, cancellationToken);
+        await Serialize(value, encoding, options).WriteToAsync(stream, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
@@ -77,7 +77,7 @@ public static partial class JilSerializer
     /// <param name="cancellationToken"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static async Task<TValue?> UnpackAsync<TValue>(Stream? stream, Options? options, Encoding encoding,
+    public static async Task<TValue?> UnpackAsync<TValue>(Stream? stream, Encoding encoding, Options? options = null,
         CancellationToken cancellationToken = default)
     {
         var result = Deserialize<TValue>(encoding.GetString(await stream.ReadToEndAsync(cancellationToken)), options);
@@ -94,7 +94,7 @@ public static partial class JilSerializer
     /// <param name="encoding"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<object?> UnpackAsync(Type type, Stream? stream, Options? options, Encoding encoding,
+    public static async Task<object?> UnpackAsync(Type type, Stream? stream, Encoding encoding, Options? options = null,
         CancellationToken cancellationToken = default)
     {
         var result = Deserialize(type, encoding.GetString(await stream.ReadToEndAsync(cancellationToken)), options);

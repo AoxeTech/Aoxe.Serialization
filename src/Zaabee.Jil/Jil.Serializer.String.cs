@@ -13,7 +13,7 @@ public static partial class JilSerializer
     /// <param name="options"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static string SerializeToJson<TValue>(TValue? value, Options? options) =>
+    public static string SerializeToJson<TValue>(TValue? value, Options? options = null) =>
         JSON.Serialize(value, options);
 
     /// <summary>
@@ -32,7 +32,7 @@ public static partial class JilSerializer
     /// <param name="value"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public static string SerializeToJson(object? value, Options? options) =>
+    public static string SerializeToJson(object? value, Options? options = null) =>
         JSON.SerializeDynamic(value, options);
 
     /// <summary>
@@ -46,7 +46,7 @@ public static partial class JilSerializer
     /// <param name="options"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? Deserialize<TValue>(string json, Options? options) =>
+    public static TValue? Deserialize<TValue>(string json, Options? options = null) =>
         JSON.Deserialize<TValue>(json, options);
 
     /// <summary>
@@ -64,6 +64,6 @@ public static partial class JilSerializer
     /// <param name="json"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public static object? Deserialize(Type type, string json, Options? options) =>
+    public static object? Deserialize(Type type, string json, Options? options = null) =>
         JSON.Deserialize(json, type, options);
 }

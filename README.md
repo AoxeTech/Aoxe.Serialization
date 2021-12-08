@@ -1,12 +1,69 @@
 # Zaabee.Serializers
 
+---
+
 [![Build Status](https://dev.azure.com/Zaabee/Zaabee/_apis/build/status/Mutuduxf.Zaabee.Serializers?branchName=master)](https://dev.azure.com/Zaabee/Zaabee/_build/latest?definitionId=1&branchName=master)
 
-The wraps and extensions for serializers.
+The wraps and extensions for serializers. This repository supply three layers (Serializer/Helper/Extensions) for every serializer. It is also the serializer provider for all Zaabee technology stacks.
+
+- Serializer
+Unified code style and provide lack of features. It behaves the same as the original serializer.
+  - stream
+    - sync
+      - MemoryStream ToStream\<TValue\>(TValue? value)
+      - MemoryStream ToStream(Type type, object? value)
+      - void Pack\<TValue\>(TValue? value, Stream stream)
+      - void Pack(Type type, object? value, Stream stream)
+      - TValue? FromStream\<TValue\>(Stream stream)
+      - object? FromStream(Type type, Stream stream)
+    - asyc
+      - Task\<MemoryStream\> ToStreamAsync\<TValue\>(TValue? value)
+      - Task\<MemoryStream\> ToStreamAsync(Type type, object? value)
+      - Task PackAsync\<TValue\>(TValue? value, Stream stream)
+      - Task PackAsync(Type type, object? value, Stream stream)
+      - Task\<TValue?\> FromStreamAsync\<TValue\>(Stream stream)
+      - Task\<object?\> FromStreamAsync(Type type, Stream stream)
+  - bytes
+    - byte[] ToBytes\<TValue\>(TValue? value)
+    - byte[] ToBytes(Type type, object? value)
+    - TValue? FromBytes\<TValue\>(byte[] bytes)
+    - object? FromBytes(Type type, byte[] bytes)
+  - text
+    - json
+      - string ToJson\<TValue\>(TValue? value)
+      - string ToJson(Type type, object? value)
+      - TValue? FromJson\<TValue\>(string json)
+      - object? FromJson(Type type, string json)
+    - xml
+      - string ToXml\<TValue\>(TValue? value)
+      - string ToXml(Type type, object? value)
+      - TValue? FromXml\<TValue\>(string xml)
+      - object? FromXml(Type type, string xml)
+- Helper
+Base by serializer, support default value and null processing. In addition, it provides a unified null processing return value(Stream.Null/Array.Empty\<byte\>/string.Empty).
+- Extensions
+Supply Extension methods base by Helper.
+
+## Getting Started
+
+Use nuget to install the package which you want.
+
+```shell
+PM> Install-Package Zaabee.Binary
+PM> Install-Package Zaabee.Jil
+PM> Install-Package Zaabee.NewtonsoftJson
+PM> Install-Package Zaabee.MessagePack
+PM> Install-Package Zaabee.MsgPack
+PM> Install-Package Zaabee.Utf8Json
+PM> Install-Package Zaabee.Protobuf
+PM> Install-Package Zaabee.SystemTextJson
+PM> Install-Package Zaabee.Xml
+PM> Install-Package Zaabee.ZeroFormatter
+```
 
 ## [Zaabee.Binary](https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/src/Zaabee.Binary)
 
-Base by System.Runtime.Serialization.Formatters.Binary.BinaryFormatter,the first party BinaryFormatter from microsoft.
+Base by System.Runtime.Serialization.Formatters.Binary.BinaryFormatter, the first party BinaryFormatter from microsoft.
 
 ## [Zaabee.Jil](https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/src/Zaabee.Jil)
 

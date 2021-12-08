@@ -10,7 +10,7 @@ public static partial class SystemTextJsonSerializer
     /// <param name="cancellationToken"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static async Task<MemoryStream> PackAsync<TValue>(TValue? value, JsonSerializerOptions? options,
+    public static async Task<MemoryStream> PackAsync<TValue>(TValue? value, JsonSerializerOptions? options = null,
         CancellationToken cancellationToken = default)
     {
         var ms = new MemoryStream();
@@ -26,7 +26,7 @@ public static partial class SystemTextJsonSerializer
     /// <param name="options"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<MemoryStream> PackAsync(Type type, object? value, JsonSerializerOptions? options,
+    public static async Task<Stream> PackAsync(Type type, object? value, JsonSerializerOptions? options = null,
         CancellationToken cancellationToken = default)
     {
         var ms = new MemoryStream();
@@ -43,7 +43,7 @@ public static partial class SystemTextJsonSerializer
     /// <param name="cancellationToken"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static async Task PackAsync<TValue>(TValue? value, Stream? stream, JsonSerializerOptions? options,
+    public static async Task PackAsync<TValue>(TValue? value, Stream stream, JsonSerializerOptions? options = null,
         CancellationToken cancellationToken = default)
     {
         await JsonSerializer.SerializeAsync(stream, value, options, cancellationToken);
@@ -59,7 +59,7 @@ public static partial class SystemTextJsonSerializer
     /// <param name="options"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task PackAsync(Type type, object? value, Stream? stream, JsonSerializerOptions? options,
+    public static async Task PackAsync(Type type, object? value, Stream stream, JsonSerializerOptions? options = null,
         CancellationToken cancellationToken = default)
     {
         await JsonSerializer.SerializeAsync(stream, value, type, options, cancellationToken);
@@ -76,7 +76,7 @@ public static partial class SystemTextJsonSerializer
     /// <param name="cancellationToken"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static async Task<TValue?> UnpackAsync<TValue>(Stream? stream, JsonSerializerOptions? options,
+    public static async Task<TValue?> UnpackAsync<TValue>(Stream stream, JsonSerializerOptions? options = null,
         CancellationToken cancellationToken = default)
     {
         var result = await JsonSerializer.DeserializeAsync<TValue>(stream, options, cancellationToken);
@@ -93,7 +93,7 @@ public static partial class SystemTextJsonSerializer
     /// <param name="options"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<object?> UnpackAsync(Type type, Stream? stream, JsonSerializerOptions? options,
+    public static async Task<object?> UnpackAsync(Type type, Stream stream, JsonSerializerOptions? options = null,
         CancellationToken cancellationToken = default)
     {
         var result = await JsonSerializer.DeserializeAsync(stream, type, options, cancellationToken);

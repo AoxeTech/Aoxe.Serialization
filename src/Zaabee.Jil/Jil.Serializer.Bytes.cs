@@ -10,7 +10,7 @@ public static partial class JilSerializer
     /// <param name="encoding"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static byte[] Serialize<TValue>(TValue? value, Options? options, Encoding encoding) =>
+    public static byte[] Serialize<TValue>(TValue? value, Encoding encoding, Options? options = null) =>
         encoding.GetBytes(SerializeToJson(value, options));
 
     /// <summary>
@@ -20,7 +20,7 @@ public static partial class JilSerializer
     /// <param name="options"></param>
     /// <param name="encoding"></param>
     /// <returns></returns>
-    public static byte[] Serialize(object? value, Options? options, Encoding encoding) =>
+    public static byte[] Serialize(object? value, Encoding encoding, Options? options = null) =>
         encoding.GetBytes(SerializeToJson(value, options));
 
     /// <summary>
@@ -31,7 +31,7 @@ public static partial class JilSerializer
     /// <param name="encoding"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? Deserialize<TValue>(byte[] bytes, Options? options, Encoding encoding) =>
+    public static TValue? Deserialize<TValue>(byte[] bytes, Encoding encoding, Options? options = null) =>
         Deserialize<TValue>(encoding.GetString(bytes), options);
 
     /// <summary>
@@ -42,6 +42,6 @@ public static partial class JilSerializer
     /// <param name="options"></param>
     /// <param name="encoding"></param>
     /// <returns></returns>
-    public static object? Deserialize(Type type, byte[] bytes, Options? options, Encoding encoding) =>
+    public static object? Deserialize(Type type, byte[] bytes, Encoding encoding, Options? options = null) =>
         Deserialize(type, encoding.GetString(bytes), options);
 }
