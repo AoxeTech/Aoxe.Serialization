@@ -10,8 +10,10 @@ public static partial class BinarySerializer
     /// <returns></returns>
     [ObsoleteAttribute(@"BinaryFormatter serialization is obsolete and should not be used.
  See https://aka.ms/binaryformatter for more information.")]
-    public static TValue? FromBytes<TValue>(byte[] bytes) =>
-        (TValue?)FromBytes(bytes);
+    public static TValue? FromBytes<TValue>(byte[]? bytes) =>
+        bytes.IsNullOrEmpty()
+            ? default
+            : (TValue?)FromBytes(bytes);
 
     /// <summary>
     /// Initializes a new memory stream based on the bytes and unpack it.
@@ -20,9 +22,10 @@ public static partial class BinarySerializer
     /// <returns></returns>
     [ObsoleteAttribute(@"BinaryFormatter serialization is obsolete and should not be used.
  See https://aka.ms/binaryformatter for more information.")]
-    public static object? FromBytes(byte[] bytes)
+    public static object? FromBytes(byte[]? bytes)
     {
-        using var ms = new MemoryStream(bytes);
+        if (bytes.IsNullOrEmpty()) return default;
+        using var ms = new MemoryStream(bytes!);
         return FromStream(ms);
     }
 }

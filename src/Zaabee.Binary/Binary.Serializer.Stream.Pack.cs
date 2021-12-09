@@ -9,8 +9,9 @@ public static partial class BinarySerializer
     /// <param name="stream"></param>
     [ObsoleteAttribute(@"BinaryFormatter serialization is obsolete and should not be used.
  See https://aka.ms/binaryformatter for more information.")]
-    public static void Pack(object value, Stream stream)
+    public static void Pack(object? value, Stream? stream)
     {
+        if (value is null || stream is null) return;
         _binaryFormatter ??= new BinaryFormatter();
         _binaryFormatter.Serialize(stream, value);
         stream.TrySeek(0, SeekOrigin.Begin);

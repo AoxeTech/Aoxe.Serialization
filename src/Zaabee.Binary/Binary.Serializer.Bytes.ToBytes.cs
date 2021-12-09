@@ -9,6 +9,8 @@ public static partial class BinarySerializer
     /// <returns></returns>
     [ObsoleteAttribute(@"BinaryFormatter serialization is obsolete and should not be used.
  See https://aka.ms/binaryformatter for more information.")]
-    public static byte[] ToBytes(object value) =>
-        ToStream(value).ReadToEnd();
+    public static byte[] ToBytes(object? value) =>
+        value is null
+            ? Array.Empty<byte>()
+            : ToStream(value).ReadToEnd();
 }
