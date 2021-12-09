@@ -1,6 +1,6 @@
 namespace Zaabee.Binary;
 
-public static partial class BinarySerializer
+public static partial class BinaryHelper
 {
     /// <summary>
     /// Pack the object into a memory stream and return a bytes contains the stream contents.

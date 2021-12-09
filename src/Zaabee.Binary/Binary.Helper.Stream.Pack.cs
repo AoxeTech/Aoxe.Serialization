@@ -1,6 +1,6 @@
 namespace Zaabee.Binary;
 
-public static partial class BinarySerializer
+public static partial class BinaryHelper
 {
     /// <summary>
     /// Serializes the object, or graph of objects with the specified top (root), to the given stream.
