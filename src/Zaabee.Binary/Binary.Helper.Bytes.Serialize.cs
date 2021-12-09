@@ -7,5 +7,5 @@ public static partial class BinaryHelper
     public static byte[] Serialize(object? value) =>
         value is null
             ? Array.Empty<byte>()
-            : BinarySerializer.Serialize(value);
+            : BinarySerializer.ToBytes(value);
 }
