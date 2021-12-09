@@ -2,9 +2,32 @@ namespace Zaabee.Jil;
 
 public static partial class JilHelper
 {
-    public static Stream ToStream<TValue>(TValue? value, Options? options = null, Encoding? encoding = null) =>
-        JilSerializer.ToStream(value, encoding ?? DefaultEncoding, options ?? DefaultOptions);
+    /// <summary>
+    /// Serialize the object to string, encode it to bytes and write to the stream.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="options"></param>
+    /// <param name="encoding"></param>
+    /// <typeparam name="TValue"></typeparam>
+    /// <returns></returns>
+    public static MemoryStream ToStream<TValue>(TValue? value, Options? options = null, Encoding? encoding = null)
+    {
+        var ms = new MemoryStream();
+        Pack(value, ms, options, encoding);
+        return ms;
+    }
 
-    public static Stream ToStream(object? value, Options? options = null, Encoding? encoding = null) =>
-        JilSerializer.ToStream(value, encoding ?? DefaultEncoding, options ?? DefaultOptions);
+    /// <summary>
+    /// Serialize the object to string, encode it to bytes and write to the stream.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="options"></param>
+    /// <param name="encoding"></param>
+    /// <returns></returns>
+    public static MemoryStream ToStream(object? value, Options? options = null, Encoding? encoding = null)
+    {
+        var ms = new MemoryStream();
+        Pack(value, ms, options, encoding);
+        return ms;
+    }
 }
