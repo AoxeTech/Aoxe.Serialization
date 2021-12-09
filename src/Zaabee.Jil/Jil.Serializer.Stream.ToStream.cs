@@ -10,7 +10,7 @@ public static partial class JilSerializer
     /// <param name="encoding"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static Stream ToStream<TValue>(TValue? value, Encoding encoding, Options? options = null)
+    public static MemoryStream ToStream<TValue>(TValue? value, Encoding encoding, Options? options = null)
     {
         var ms = new MemoryStream();
         Pack(value, ms, encoding, options);
@@ -24,7 +24,7 @@ public static partial class JilSerializer
     /// <param name="options"></param>
     /// <param name="encoding"></param>
     /// <returns></returns>
-    public static Stream ToStream(object? value, Encoding encoding, Options? options = null)
+    public static MemoryStream ToStream(object? value, Encoding encoding, Options? options = null)
     {
         var ms = new MemoryStream();
         Pack(value, ms, encoding, options);
