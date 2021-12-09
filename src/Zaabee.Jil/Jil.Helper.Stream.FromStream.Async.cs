@@ -15,7 +15,7 @@ public static partial class JilHelper
         Encoding? encoding = null, CancellationToken cancellationToken = default)
     {
         if (stream is null) return default;
-        var json = (encoding ?? Encoding.UTF8).GetString(await stream.ReadToEndAsync(cancellationToken));
+        var json = GetString(encoding, await stream.ReadToEndAsync(cancellationToken));
         var result = FromJson<TValue>(json, options);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
@@ -34,7 +34,7 @@ public static partial class JilHelper
         Encoding? encoding = null, CancellationToken cancellationToken = default)
     {
         if (stream is null) return default;
-        var json = (encoding ?? Encoding.UTF8).GetString(await stream.ReadToEndAsync(cancellationToken));
+        var json = GetString(encoding, await stream.ReadToEndAsync(cancellationToken));
         var result = FromJson(type, json, options);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;

@@ -11,7 +11,7 @@ public static partial class JilHelper
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
     public static byte[] ToBytes<TValue>(TValue? value, Options? options = null, Encoding? encoding = null) =>
-        (encoding ?? Encoding.UTF8).GetBytes(ToJson(value, options));
+        GetBytes(encoding, ToJson(value, options));
 
     /// <summary>
     /// Serialize the object to json string and encode it into bytes used the encoding.
@@ -21,5 +21,5 @@ public static partial class JilHelper
     /// <param name="encoding"></param>
     /// <returns></returns>
     public static byte[] ToBytes(object? value, Options? options = null, Encoding? encoding = null) =>
-        (encoding ?? Encoding.UTF8).GetBytes(ToJson(value, options));
+        GetBytes(encoding, ToJson(value, options));
 }

@@ -13,7 +13,7 @@ public static partial class JilHelper
     public static TValue? FromBytes<TValue>(byte[]? bytes, Options? options = null, Encoding? encoding = null) =>
         bytes.IsNullOrEmpty()
             ? default
-            : FromJson<TValue>((encoding ?? Encoding.UTF8).GetString(bytes!), options);
+            : FromJson<TValue>(GetString(encoding, bytes!), options);
 
     /// <summary>
     /// Use encoding to decode the bytes into string and deserialize it.
@@ -26,5 +26,5 @@ public static partial class JilHelper
     public static object? FromBytes(Type type, byte[]? bytes, Options? options = null, Encoding? encoding = null) =>
         bytes.IsNullOrEmpty()
             ? default
-            : FromJson(type, (encoding ?? Encoding.UTF8).GetString(bytes!), options);
+            : FromJson(type, GetString(encoding, bytes!), options);
 }

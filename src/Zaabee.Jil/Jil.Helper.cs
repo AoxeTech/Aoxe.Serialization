@@ -2,11 +2,11 @@ namespace Zaabee.Jil;
 
 public static partial class JilHelper
 {
-    private static Encoding _defaultEncoding = Encoding.UTF8;
+    public static Encoding DefaultEncoding { get; set; } = Encoding.UTF8;
 
-    public static Encoding? DefaultEncoding
-    {
-        get => _defaultEncoding;
-        set => _defaultEncoding = value ?? _defaultEncoding;
-    }
+    private static string GetString(Encoding? encoding, byte[] bytes) =>
+        (encoding ?? DefaultEncoding).GetString(bytes);
+
+    private static byte[] GetBytes(Encoding? encoding, string text) =>
+        (encoding ?? DefaultEncoding).GetBytes(text);
 }
