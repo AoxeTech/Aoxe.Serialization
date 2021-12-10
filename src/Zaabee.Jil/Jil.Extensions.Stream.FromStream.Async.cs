@@ -2,11 +2,11 @@ namespace Zaabee.Jil;
 
 public static partial class JilExtensions
 {
-    public static async Task<TValue?> FromStreamAsync<TValue>(this Stream? stream, Options? options = null,
+    public static Task<TValue?> FromStreamAsync<TValue>(this Stream? stream, Options? options = null,
         Encoding? encoding = null) =>
-        await JilHelper.FromStreamAsync<TValue>(stream, options, encoding);
+        JilHelper.FromStreamAsync<TValue>(stream, options, encoding);
 
-    public static async Task<object?> FromStreamAsync(this Stream? stream, Type type, Options? options = null,
+    public static Task<object?> FromStreamAsync(this Stream? stream, Type type, Options? options = null,
         Encoding? encoding = null) =>
-        await JilHelper.FromStreamAsync(type, stream, options, encoding);
+        JilHelper.FromStreamAsync(type, stream, options, encoding);
 }
