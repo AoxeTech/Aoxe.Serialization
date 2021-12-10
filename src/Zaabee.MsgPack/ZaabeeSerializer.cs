@@ -5,40 +5,40 @@ public class ZaabeeSerializer : IBytesSerializer
     public byte[] SerializeToBytes<TValue>(TValue? value) =>
         value is null
             ? Array.Empty<byte>()
-            : MsgPackSerializer.Serialize(value);
+            : MsgPackHelper.ToBytes(value);
 
     public byte[] SerializeToBytes(Type type, object? value) =>
         value is null
             ? Array.Empty<byte>()
-            : MsgPackSerializer.Serialize(type, value);
+            : MsgPackHelper.ToBytes(type, value);
 
     public TValue? DeserializeFromBytes<TValue>(byte[]? bytes) =>
         bytes.IsNullOrEmpty()
             ? default
-            : MsgPackSerializer.Deserialize<TValue>(bytes!);
+            : MsgPackHelper.FromBytes<TValue>(bytes!);
 
     public object? DeserializeFromBytes(Type type, byte[]? bytes) =>
         bytes.IsNullOrEmpty()
             ? default
-            : MsgPackSerializer.Deserialize(type, bytes!);
+            : MsgPackHelper.FromBytes(type, bytes!);
 
     public Stream SerializeToStream<TValue>(TValue? value) =>
         value is null
             ? Stream.Null
-            : MsgPackSerializer.Pack(value);
+            : MsgPackHelper.ToStream(value);
 
     public Stream SerializeToStream(Type type, object? value) =>
         value is null
             ? Stream.Null
-            : MsgPackSerializer.Pack(type, value);
+            : MsgPackHelper.ToStream(type, value);
 
     public TValue? DeserializeFromStream<TValue>(Stream? stream) =>
         stream.IsNullOrEmpty()
             ? default
-            : MsgPackSerializer.Unpack<TValue>(stream!);
+            : MsgPackHelper.FromStream<TValue>(stream!);
 
     public object? DeserializeFromStream(Type type, Stream? stream) =>
         stream.IsNullOrEmpty()
             ? default
-            : MsgPackSerializer.Unpack(type, stream!);
+            : MsgPackHelper.FromStream(type, stream!);
 }
