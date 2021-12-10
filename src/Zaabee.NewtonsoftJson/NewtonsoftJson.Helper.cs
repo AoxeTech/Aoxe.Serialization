@@ -2,13 +2,11 @@
 
 public static partial class NewtonsoftJsonHelper
 {
-    private static Encoding _encoding = Encoding.UTF8;
+    public static Encoding DefaultEncoding { get; set; } = Encoding.UTF8;
 
-    public static Encoding DefaultEncoding
-    {
-        get => _encoding;
-        set => _encoding = value ?? _encoding;
-    }
+    private static string GetString(Encoding? encoding, byte[] bytes) =>
+        (encoding ?? DefaultEncoding).GetString(bytes);
 
-    public static JsonSerializerSettings DefaultSettings { get; set; }
+    private static byte[] GetBytes(Encoding? encoding, string text) =>
+        (encoding ?? DefaultEncoding).GetBytes(text);
 }
