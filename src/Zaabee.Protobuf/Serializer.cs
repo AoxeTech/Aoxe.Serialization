@@ -1,6 +1,6 @@
 namespace Zaabee.Protobuf;
 
-public class ZaabeeSerializer : IBytesSerializer
+public class Serializer : IBytesSerializer
 {
     public Stream SerializeToStream<TValue>(TValue? value) =>
         value is null
