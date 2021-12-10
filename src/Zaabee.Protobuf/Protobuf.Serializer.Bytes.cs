@@ -1,6 +1,6 @@
 namespace Zaabee.Protobuf;
 
-public static partial class ProtobufSerializer
+public static partial class ProtobufHelper
 {
     /// <summary>
     /// Serialize the object into a memory stream and return a bytes contains the stream contents.
@@ -8,9 +8,9 @@ public static partial class ProtobufSerializer
     /// <param name="value"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static byte[] Serialize<TValue>(TValue value)
+    public static byte[] ToBytes<TValue>(TValue? value)
     {
-        using var ms = Pack(value);
+        using var ms = ToStream(value);
         return ms.ReadToEnd();
     }
 
@@ -19,9 +19,9 @@ public static partial class ProtobufSerializer
     /// </summary>
     /// <param name="value"></param>
     /// <returns></returns>
-    public static byte[] Serialize(object? value)
+    public static byte[] ToBytes(object? value)
     {
-        using var ms = Pack(value);
+        using var ms = ToStream(value);
         return ms.ReadToEnd();
     }
 
@@ -31,10 +31,11 @@ public static partial class ProtobufSerializer
     /// <param name="bytes"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? Deserialize<TValue>(byte[] bytes)
+    public static TValue? FromBytes<TValue>(byte[] bytes)
     {
+        if (bytes.IsNullOrEmpty()) return default;
         using var ms = new MemoryStream(bytes);
-        return Unpack<TValue>(ms);
+        return FromStream<TValue>(ms);
     }
 
     /// <summary>
@@ -43,9 +44,10 @@ public static partial class ProtobufSerializer
     /// <param name="type"></param>
     /// <param name="bytes"></param>
     /// <returns></returns>
-    public static object? Deserialize(Type type, byte[] bytes)
+    public static object? FromBytes(Type type, byte[] bytes)
     {
+        if (bytes.IsNullOrEmpty()) return default;
         using var ms = new MemoryStream(bytes);
-        return Unpack(type, ms);
+        return FromStream(type, ms);
     }
 }
