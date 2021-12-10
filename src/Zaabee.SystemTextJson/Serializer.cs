@@ -1,10 +1,10 @@
 namespace Zaabee.SystemTextJson;
 
-public class  ZaabeeSerializer : ITextSerializer
+public class  Serializer : ITextSerializer
 {
     private readonly JsonSerializerOptions? _options;
 
-    public ZaabeeSerializer(JsonSerializerOptions? options = null) =>
+    public Serializer(JsonSerializerOptions? options = null) =>
         _options = options;
 
     public Stream SerializeToStream<TValue>(TValue? value) =>
