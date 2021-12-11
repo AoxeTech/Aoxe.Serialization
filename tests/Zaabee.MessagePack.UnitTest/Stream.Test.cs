@@ -25,13 +25,13 @@ namespace Zaabee.MessagePack.UnitTest
             var stream6 = new MemoryStream();
             stream6.PackBy(type, testModel);
 
-            var unPackResult1 = stream1.Unpack<TestModel>();
-            var unPackResult2 = stream2.Unpack<TestModel>();
-            var unPackResult3 = stream3.Unpack<TestModel>();
+            var unPackResult1 = stream1.FromStream<TestModel>();
+            var unPackResult2 = stream2.FromStream<TestModel>();
+            var unPackResult3 = stream3.FromStream<TestModel>();
 
-            var unPackResult4 = (TestModel)stream4.Unpack(type);
-            var unPackResult5 = (TestModel)stream5.Unpack(type);
-            var unPackResult6 = (TestModel)stream6.Unpack(type);
+            var unPackResult4 = (TestModel)stream4.FromStream(type);
+            var unPackResult5 = (TestModel)stream5.FromStream(type);
+            var unPackResult6 = (TestModel)stream6.FromStream(type);
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),

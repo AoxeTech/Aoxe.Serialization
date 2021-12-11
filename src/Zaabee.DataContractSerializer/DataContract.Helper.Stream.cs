@@ -2,6 +2,20 @@ namespace Zaabee.DataContractSerializer;
 
 public static partial class DataContractHelper
 {
+    public static MemoryStream ToStream<TValue>(TValue? value)
+    {
+        var ms = new MemoryStream();
+        DataContractSerializer.Pack(value, ms);
+        return ms;
+    }
+
+    public static MemoryStream ToStream(Type type, object? value)
+    {
+        var ms = new MemoryStream();
+        DataContractSerializer.Pack(type, value, ms);
+        return ms;
+    }
+
     public static void Pack<TValue>(TValue? value, Stream? stream)
     {
         if (value is null || stream is null) return;
@@ -13,12 +27,6 @@ public static partial class DataContractHelper
         if (value is null || stream is null) return;
         DataContractSerializer.Pack(type, value, stream);
     }
-
-    public static Stream Pack<TValue>(TValue? value) =>
-        value is null ? Stream.Null : DataContractSerializer.Pack(value);
-
-    public static Stream Pack(Type type, object? value) =>
-        value is null ? Stream.Null : DataContractSerializer.Pack(type, value);
 
     public static TValue? Unpack<TValue>(Stream? stream) =>
         stream.IsNullOrEmpty()

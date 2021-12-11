@@ -8,8 +8,8 @@ public partial class BinaryHelperUnitTest
     public void HelperBytesTest()
     {
         var testModel = TestModelFactory.Create();
-        var bytes = BinaryHelper.Serialize(testModel);
-        var result = (TestModel)BinaryHelper.Deserialize(bytes);
+        var bytes = BinaryHelper.ToBytes(testModel);
+        var result = (TestModel)BinaryHelper.FromBytes(bytes);
         Assert.Equal(
             Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
             Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
@@ -18,12 +18,12 @@ public partial class BinaryHelperUnitTest
     [Fact]
     public void HelperSerializeNullTest()
     {
-        Assert.Empty(BinaryHelper.Serialize(null));
+        Assert.Empty(BinaryHelper.ToBytes(null));
     }
 
     [Fact]
     public void HelperDeserializeNullTest()
     {
-        Assert.Null(BinaryHelper.Deserialize<TestModel>(null));
+        Assert.Null(BinaryHelper.FromBytes<TestModel>(null));
     }
 }

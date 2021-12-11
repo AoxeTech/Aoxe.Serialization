@@ -11,7 +11,7 @@ public static partial class DataContractSerializer
     /// <param name="value"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static Stream Pack<TValue>(TValue? value) =>
+    public static MemoryStream Pack<TValue>(TValue? value) =>
         Pack(typeof(TValue), value);
 
     /// <summary>
@@ -20,7 +20,7 @@ public static partial class DataContractSerializer
     /// <param name="type"></param>
     /// <param name="value"></param>
     /// <returns></returns>
-    public static Stream Pack(Type type, object? value)
+    public static MemoryStream Pack(Type type, object? value)
     {
         var ms = new MemoryStream();
         Pack(type, value, ms);
@@ -33,7 +33,7 @@ public static partial class DataContractSerializer
     /// <param name="value"></param>
     /// <param name="stream"></param>
     /// <typeparam name="TValue"></typeparam>
-    public static void Pack<TValue>(TValue? value, Stream stream) =>
+    public static void Pack<TValue>(TValue? value, Stream? stream) =>
         Pack(typeof(TValue), value, stream);
 
     /// <summary>
@@ -42,7 +42,7 @@ public static partial class DataContractSerializer
     /// <param name="type"></param>
     /// <param name="value"></param>
     /// <param name="stream"></param>
-    public static void Pack(Type type, object? value, Stream stream)
+    public static void Pack(Type type, object? value, Stream? stream)
     {
         GetSerializer(type).WriteObject(stream, value);
         stream.TrySeek(0, SeekOrigin.Begin);
@@ -54,7 +54,7 @@ public static partial class DataContractSerializer
     /// <param name="stream"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? Unpack<TValue>(Stream stream) =>
+    public static TValue? Unpack<TValue>(Stream? stream) =>
         (TValue?)Unpack(typeof(TValue), stream)!;
 
     /// <summary>
@@ -63,7 +63,7 @@ public static partial class DataContractSerializer
     /// <param name="type"></param>
     /// <param name="stream"></param>
     /// <returns></returns>
-    public static object? Unpack(Type type, Stream stream)
+    public static object? Unpack(Type type, Stream? stream)
     {
         var result = GetSerializer(type).ReadObject(stream);
         stream.TrySeek(0, SeekOrigin.Begin);

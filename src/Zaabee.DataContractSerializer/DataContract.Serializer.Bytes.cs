@@ -29,7 +29,7 @@ namespace Zaabee.DataContractSerializer
         /// <param name="bytes"></param>
         /// <typeparam name="TValue"></typeparam>
         /// <returns></returns>
-        public static TValue? Deserialize<TValue>(byte[] bytes) =>
+        public static TValue? Deserialize<TValue>(byte[]? bytes) =>
             (TValue?)Deserialize(typeof(TValue), bytes);
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Zaabee.DataContractSerializer
         /// <param name="type"></param>
         /// <param name="bytes"></param>
         /// <returns></returns>
-        public static object? Deserialize(Type type, byte[] bytes)
+        public static object? Deserialize(Type type, byte[]? bytes)
         {
             using var ms = new MemoryStream(bytes);
             return Unpack(type, ms);

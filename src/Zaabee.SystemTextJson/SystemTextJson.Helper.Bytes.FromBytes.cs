@@ -9,7 +9,7 @@ public static partial class SystemTextJsonHelper
     /// <param name="options"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? FromBytes<TValue>(ReadOnlySpan<byte> bytes, JsonSerializerOptions? options) =>
+    public static TValue? FromBytes<TValue>(ReadOnlySpan<byte> bytes, JsonSerializerOptions? options = null) =>
         JsonSerializer.Deserialize<TValue>(bytes, options);
 
     /// <summary>
@@ -19,6 +19,6 @@ public static partial class SystemTextJsonHelper
     /// <param name="bytes"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public static object? FromBytes(Type type, ReadOnlySpan<byte> bytes, JsonSerializerOptions? options) =>
+    public static object? FromBytes(Type type, ReadOnlySpan<byte> bytes, JsonSerializerOptions? options = null) =>
         JsonSerializer.Deserialize(bytes, type, options);
 }

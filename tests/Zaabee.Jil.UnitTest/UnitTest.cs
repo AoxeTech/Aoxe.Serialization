@@ -9,9 +9,7 @@ namespace Zaabee.Jil.UnitTest
         public void DefaultSetTest()
         {
             JilHelper.DefaultEncoding = Encoding.UTF32;
-            JilHelper.DefaultOptions = null;
             Assert.Equal(Encoding.UTF32, JilHelper.DefaultEncoding);
-            Assert.Null(JilHelper.DefaultOptions);
         }
     }
 }

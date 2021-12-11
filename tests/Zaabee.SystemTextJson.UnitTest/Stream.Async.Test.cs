@@ -18,7 +18,7 @@ namespace Zaabee.SystemTextJson.UnitTest
             await nullMs.PackByAsync(nullModel);
             var emptyStream = await nullModel.ToStreamAsync();
             Assert.True(emptyStream.IsNullOrEmpty());
-            nullModel = await emptyStream.UnpackAsync<TestModel>();
+            nullModel = await emptyStream.FromStreamAsync<TestModel>();
             Assert.Null(nullModel);
             
             var testModel = TestModelFactory.Create();
@@ -29,8 +29,8 @@ namespace Zaabee.SystemTextJson.UnitTest
             var stream2 = new MemoryStream();
             await stream2.PackByAsync(testModel);
 
-            var unPackResult0 = await stream0.UnpackAsync<TestModel>();
-            var unPackResult1 = await stream1.UnpackAsync<TestModel>();
+            var unPackResult0 = await stream0.FromStreamAsync<TestModel>();
+            var unPackResult1 = await stream1.FromStreamAsync<TestModel>();
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),

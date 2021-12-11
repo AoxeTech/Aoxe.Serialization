@@ -26,21 +26,21 @@ namespace Benchmark.Benchmarks
         };
 
         [Benchmark]
-        public async Task JilToStreamAsync() => await JilHelper.PackAsync(_testModel);
+        public async Task JilToStreamAsync() => await JilHelper.ToStreamAsync(_testModel);
 
         [Benchmark]
-        public async Task MessagePackToStreamAsync() => await MessagePackHelper.PackAsync(_testModel);
+        public async Task MessagePackToStreamAsync() => await MessagePackHelper.ToStreamAsync(_testModel);
 
         [Benchmark]
-        public async Task MsgPackToStreamAsync() => await MsgPackHelper.PackAsync(_testModel);
+        public async Task MsgPackToStreamAsync() => await MsgPackHelper.ToStreamAsync(_testModel);
 
         [Benchmark]
-        public async Task NewtonsoftJsonToStreamAsync() => await NewtonsoftJsonHelper.PackAsync(_testModel);
+        public async Task NewtonsoftJsonToStreamAsync() => await NewtonsoftJsonHelper.ToStreamAsync(_testModel);
 
         [Benchmark]
-        public async Task SystemTextJsonToStreamAsync() => await SystemTextJsonHelper.PackAsync(_testModel);
+        public async Task SystemTextJsonToStreamAsync() => await SystemTextJsonHelper.ToStreamAsync(_testModel);
 
         [Benchmark]
-        public async Task Utf8JsonToStreamAsync() => await Utf8JsonHelper.PackAsync(_testModel);
+        public async Task Utf8JsonToStreamAsync() => await Utf8JsonHelper.ToStreamAsync(_testModel);
     }
 }

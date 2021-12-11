@@ -29,33 +29,33 @@ namespace Benchmark.Benchmarks
         };
 
         [Benchmark]
-        public void BinaryToBytes() => BinaryHelper.Serialize(_testModel);
+        public void BinaryToBytes() => BinaryHelper.ToBytes(_testModel);
 
         [Benchmark]
-        public void JilToBytes() => JilHelper.Serialize(_testModel);
+        public void JilToBytes() => JilHelper.ToBytes(_testModel);
 
         [Benchmark]
-        public void MessagePackToBytes() => MessagePackHelper.Serialize(_testModel);
+        public void MessagePackToBytes() => MessagePackHelper.ToBytes(_testModel);
 
         [Benchmark]
-        public void MsgPackToBytes() => MsgPackHelper.Serialize(_testModel);
+        public void MsgPackToBytes() => MsgPackHelper.ToBytes(_testModel);
 
         [Benchmark]
-        public void NewtonsoftJsonToBytes() => NewtonsoftJsonHelper.Serialize(_testModel);
+        public void NewtonsoftJsonToBytes() => NewtonsoftJsonHelper.ToBytes(_testModel);
 
         [Benchmark]
-        public void ProtobufToBytes() => ProtobufHelper.Serialize(_testModel);
+        public void ProtobufToBytes() => ProtobufHelper.ToBytes(_testModel);
 
         [Benchmark]
-        public void SystemTextJsonToBytes() => SystemTextJsonHelper.Serialize(_testModel);
+        public void SystemTextJsonToBytes() => SystemTextJsonHelper.ToBytes(_testModel);
 
         [Benchmark]
-        public void Utf8JsonToBytes() => Utf8JsonHelper.Serialize(_testModel);
+        public void Utf8JsonToBytes() => Utf8JsonHelper.ToBytes(_testModel);
 
         [Benchmark]
-        public void XmlToBytes() => XmlHelper.Serialize(_testModel);
+        public void XmlToBytes() => XmlHelper.ToBytes(_testModel);
 
         [Benchmark]
-        public void ZeroFormatterToBytes() => ZeroFormatterHelper.Serialize(_testModel);
+        public void ZeroFormatterToBytes() => ZeroFormatterHelper.ToBytes(_testModel);
     }
 }

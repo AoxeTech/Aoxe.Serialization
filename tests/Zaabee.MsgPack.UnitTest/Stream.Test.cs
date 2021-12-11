@@ -18,9 +18,9 @@ namespace Zaabee.MsgPack.UnitTest
             var stream3 = new MemoryStream();
             stream3.PackBy(testModel);
 
-            var unPackResult1 = stream1.Unpack<TestModel>();
-            var unPackResult2 = stream2.Unpack<TestModel>();
-            var unPackResult3 = stream3.Unpack<TestModel>();
+            var unPackResult1 = stream1.FromStream<TestModel>();
+            var unPackResult2 = stream2.FromStream<TestModel>();
+            var unPackResult3 = stream3.FromStream<TestModel>();
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),

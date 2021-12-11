@@ -19,7 +19,7 @@ namespace Zaabee.SystemTextJson.UnitTest
             nullMs.PackBy(type, nullModel);
             var emptyStream = nullModel.ToStream();
             Assert.True(emptyStream.IsNullOrEmpty());
-            nullModel = emptyStream.Unpack(type);
+            nullModel = emptyStream.FromStream(type);
             Assert.Null(nullModel);
 
             object testModel = TestModelFactory.Create();
@@ -30,9 +30,9 @@ namespace Zaabee.SystemTextJson.UnitTest
             var stream3 = new MemoryStream();
             stream3.PackBy(type, testModel);
 
-            var unPackResult1 = (TestModel) stream1.Unpack(type);
-            var unPackResult2 = (TestModel) stream2.Unpack(type);
-            var unPackResult3 = (TestModel) stream3.Unpack(type);
+            var unPackResult1 = (TestModel) stream1.FromStream(type);
+            var unPackResult2 = (TestModel) stream2.FromStream(type);
+            var unPackResult3 = (TestModel) stream3.FromStream(type);
 
             Assert.Equal(
                 Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,

@@ -9,9 +9,7 @@ namespace Zaabee.NewtonsoftJson.UnitTest
         public void DefaultSetTest()
         {
             NewtonsoftJsonHelper.DefaultEncoding = Encoding.UTF32;
-            NewtonsoftJsonHelper.DefaultSettings = null;
             Assert.Equal(NewtonsoftJsonHelper.DefaultEncoding, Encoding.UTF32);
-            Assert.Null(NewtonsoftJsonHelper.DefaultSettings);
         }
     }
 }

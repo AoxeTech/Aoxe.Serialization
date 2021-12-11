@@ -31,7 +31,7 @@ namespace Zaabee.Jil.UnitTest
             using (var fs = new FileStream("TextWriterReaderNonGenericTest1.json", FileMode.Create))
             {
                 var writer = new StreamWriter(fs, Encoding.UTF8);
-                testModel.ToJson(writer);
+                testModel.Serialize(writer);
                 writer.Close();
             }
 

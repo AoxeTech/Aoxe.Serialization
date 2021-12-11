@@ -4,10 +4,10 @@
 
 [![Build Status](https://dev.azure.com/Zaabee/Zaabee/_apis/build/status/Mutuduxf.Zaabee.Serializers?branchName=master)](https://dev.azure.com/Zaabee/Zaabee/_build/latest?definitionId=1&branchName=master)
 
-The wraps and extensions for serializers. This repository supply three layers (Serializer/Helper/Extensions) for every serializer. It is also the serializer provider for all Zaabee technology stacks.
+The wraps and extensions for serializers. It is also the serializer provider for all Zaabee technology stacks.
 
 - Serializer
-Unified code style and provide lack of features. It behaves the same as the original serializer.
+Unified code style and provide lack of features. The default enconding is UTF-8.
   - stream
     - sync
       - MemoryStream ToStream\<TValue\>(TValue? value)

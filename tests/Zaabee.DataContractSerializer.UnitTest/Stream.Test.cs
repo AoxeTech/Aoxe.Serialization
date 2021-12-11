@@ -35,7 +35,7 @@ namespace Zaabee.DataContractSerializer.UnitTest
                 Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
                     unPackResult3.Gender));
             
-            Assert.Equal(0,DataContractHelper.Pack<TestModel>(null).Length);
+            Assert.Equal(0,DataContractHelper.ToStream<TestModel>(null).Length);
             Assert.Null(DataContractHelper.Unpack<TestModel>(null));
             var ms = new MemoryStream();
             DataContractHelper.Pack<TestModel>(null, ms);

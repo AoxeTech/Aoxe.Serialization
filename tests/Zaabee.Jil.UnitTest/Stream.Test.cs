@@ -18,9 +18,9 @@ namespace Zaabee.Jil.UnitTest
             var stream3 = new MemoryStream();
             stream3.PackBy(testModel);
 
-            var unPackResult1 = stream1.Unpack<TestModel>();
-            var unPackResult2 = stream2.Unpack<TestModel>();
-            var unPackResult3 = stream3.Unpack<TestModel>();
+            var unPackResult1 = stream1.FromStream<TestModel>();
+            var unPackResult2 = stream2.FromStream<TestModel>();
+            var unPackResult3 = stream3.FromStream<TestModel>();
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
@@ -36,7 +36,7 @@ namespace Zaabee.Jil.UnitTest
                     unPackResult3.Gender));
 
             JilHelper.Pack<TestModel>(null, stream1);
-            JilHelper.Pack(testModel, null, null);
+            JilHelper.ToStream(testModel, null, null);
         }
     }
 }

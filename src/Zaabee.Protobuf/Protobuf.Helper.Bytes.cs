@@ -31,10 +31,10 @@ public static partial class ProtobufHelper
     /// <param name="bytes"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? FromBytes<TValue>(byte[] bytes)
+    public static TValue? FromBytes<TValue>(byte[]? bytes)
     {
         if (bytes.IsNullOrEmpty()) return default;
-        using var ms = new MemoryStream(bytes);
+        using var ms = new MemoryStream(bytes!);
         return FromStream<TValue>(ms);
     }
 
@@ -44,10 +44,10 @@ public static partial class ProtobufHelper
     /// <param name="type"></param>
     /// <param name="bytes"></param>
     /// <returns></returns>
-    public static object? FromBytes(Type type, byte[] bytes)
+    public static object? FromBytes(Type type, byte[]? bytes)
     {
         if (bytes.IsNullOrEmpty()) return default;
-        using var ms = new MemoryStream(bytes);
+        using var ms = new MemoryStream(bytes!);
         return FromStream(type, ms);
     }
 }

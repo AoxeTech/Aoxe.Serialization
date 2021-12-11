@@ -18,9 +18,9 @@ namespace Zaabee.ZeroFormatter.UnitTest
             var stream3 = new MemoryStream();
             stream3.PackBy(testModel);
 
-            var unPackResult1 = stream1.Unpack<TestModel>();
-            var unPackResult2 = stream2.Unpack<TestModel>();
-            var unPackResult3 = stream3.Unpack<TestModel>();
+            var unPackResult1 = stream1.FromStream<TestModel>();
+            var unPackResult2 = stream2.FromStream<TestModel>();
+            var unPackResult3 = stream3.FromStream<TestModel>();
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
@@ -35,8 +35,8 @@ namespace Zaabee.ZeroFormatter.UnitTest
                 Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
                     unPackResult3.Gender));
             
-            Assert.Equal(0,ZeroFormatterHelper.Pack<TestModel>(null).Length);
-            Assert.Null(ZeroFormatterHelper.Unpack<TestModel>(null));
+            Assert.Equal(0,ZeroFormatterHelper.ToStream<TestModel>(null).Length);
+            Assert.Null(ZeroFormatterHelper.FromStream<TestModel>(null));
             var ms = new MemoryStream();
             ZeroFormatterHelper.Pack<TestModel>(null, ms);
             Assert.Equal(0,ms.Length);

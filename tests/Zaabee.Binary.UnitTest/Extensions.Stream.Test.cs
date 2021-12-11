@@ -13,9 +13,9 @@ public partial class BinaryExtensionsUnitTest
         var stream3 = new MemoryStream();
         stream3.PackBy(testModel);
 
-        var unPackResult1 = stream1.Unpack<TestModel>();
-        var unPackResult2 = stream2.Unpack<TestModel>();
-        var unPackResult3 = stream3.Unpack<TestModel>();
+        var unPackResult1 = stream1.FromStream<TestModel>();
+        var unPackResult2 = stream2.FromStream<TestModel>();
+        var unPackResult3 = stream3.FromStream<TestModel>();
 
         Assert.Equal(
             Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
@@ -30,8 +30,8 @@ public partial class BinaryExtensionsUnitTest
             Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
                 unPackResult3.Gender));
 
-        Assert.Equal(0, BinaryHelper.Pack(null).Length);
-        Assert.Null(BinaryHelper.Unpack<TestModel>(null));
+        Assert.Equal(0, BinaryHelper.ToStream(null).Length);
+        Assert.Null(BinaryHelper.FromStream<TestModel>(null));
         var ms = new MemoryStream();
         BinaryHelper.Pack(null, ms);
         Assert.Equal(0, ms.Length);
@@ -67,6 +67,6 @@ public partial class BinaryExtensionsUnitTest
     public void ExtensionsUnpackNullTest()
     { 
         MemoryStream? nullStream = null;
-        Assert.Null(nullStream.Unpack<TestModel>());
+        Assert.Null(nullStream.FromStream<TestModel>());
     }
 }

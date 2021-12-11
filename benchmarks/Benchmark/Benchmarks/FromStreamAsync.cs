@@ -45,26 +45,26 @@ namespace Benchmark.Benchmarks
 
         [Benchmark]
         public async Task JilFromStreamAsync() =>
-            await JilHelper.UnpackAsync<TestModel>(_jilStream);
+            await JilHelper.FromStreamAsync<TestModel>(_jilStream);
 
         [Benchmark]
         public async Task MessagePackFromStreamAsync() =>
-            await MessagePackHelper.UnpackAsync<TestModel>(_messagePackStream);
+            await MessagePackHelper.FromStreamAsync<TestModel>(_messagePackStream);
 
         [Benchmark]
         public async Task MsgPackFromStreamAsync() =>
-            await MsgPackHelper.UnpackAsync<TestModel>(_msgPackStream);
+            await MsgPackHelper.FromStreamAsync<TestModel>(_msgPackStream);
 
         [Benchmark]
         public async Task NewtonsoftJsonFromStreamAsync() =>
-            await NewtonsoftJsonHelper.UnpackAsync<TestModel>(_newtonsoftJsonStream);
+            await NewtonsoftJsonHelper.FromStreamAsync<TestModel>(_newtonsoftJsonStream);
 
         [Benchmark]
         public async Task SystemTextJsonFromStreamAsync() =>
-            await SystemTextJsonHelper.UnpackAsync<TestModel>(_systemTextJsonStream);
+            await SystemTextJsonHelper.FromStreamAsync<TestModel>(_systemTextJsonStream);
 
         [Benchmark]
         public async Task Utf8JsonFromStreamAsync() =>
-            await Utf8JsonHelper.UnpackAsync<TestModel>(_utf8JsonStream);
+            await Utf8JsonHelper.FromStreamAsync<TestModel>(_utf8JsonStream);
     }
 }

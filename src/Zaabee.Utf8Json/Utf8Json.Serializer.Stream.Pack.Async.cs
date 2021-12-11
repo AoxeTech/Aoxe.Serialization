@@ -10,7 +10,7 @@ public static partial class Utf8JsonHelper
     /// <param name="resolver"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static async Task PackAsync<TValue>(TValue? value, Stream? stream, IJsonFormatterResolver? resolver)
+    public static async Task PackAsync<TValue>(TValue? value, Stream? stream, IJsonFormatterResolver? resolver = null)
     {
         if (stream is null) return;
         await JsonSerializer.SerializeAsync(stream, value, resolver);
@@ -25,7 +25,7 @@ public static partial class Utf8JsonHelper
     /// <param name="stream"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static async Task PackAsync(Type type, object? value, Stream? stream, IJsonFormatterResolver? resolver)
+    public static async Task PackAsync(Type type, object? value, Stream? stream, IJsonFormatterResolver? resolver = null)
     {
         if (stream is null) return;
         await JsonSerializer.NonGeneric.SerializeAsync(type, stream, value, resolver);
@@ -39,7 +39,7 @@ public static partial class Utf8JsonHelper
     /// <param name="stream"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static async Task PackAsync(object? value, Stream? stream, IJsonFormatterResolver? resolver)
+    public static async Task PackAsync(object? value, Stream? stream, IJsonFormatterResolver? resolver = null)
     {
         if (stream is null) return;
         await JsonSerializer.NonGeneric.SerializeAsync(stream, value, resolver);

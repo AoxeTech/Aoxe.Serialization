@@ -10,9 +10,11 @@ public static partial class NewtonsoftJsonHelper
     /// <param name="encoding"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? FromBytes<TValue>(byte[] bytes, JsonSerializerSettings? settings = null,
+    public static TValue? FromBytes<TValue>(byte[]? bytes, JsonSerializerSettings? settings = null,
         Encoding? encoding = null) =>
-        (TValue?)FromBytes(typeof(TValue), bytes, settings, encoding);
+        bytes.IsNullOrEmpty()
+            ? default
+            : (TValue?)FromBytes(typeof(TValue), bytes, settings, encoding);
 
     /// <summary>
     /// Use encoding to decode the bytes into string and deserialize it.
@@ -22,7 +24,9 @@ public static partial class NewtonsoftJsonHelper
     /// <param name="settings"></param>
     /// <param name="encoding"></param>
     /// <returns></returns>
-    public static object? FromBytes(Type type, byte[] bytes, JsonSerializerSettings? settings = null,
+    public static object? FromBytes(Type type, byte[]? bytes, JsonSerializerSettings? settings = null,
         Encoding? encoding = null) =>
-        FromJson(type, GetString(encoding, bytes), settings);
+        bytes.IsNullOrEmpty()
+            ? default
+            : FromJson(type, GetString(encoding, bytes!), settings);
 }

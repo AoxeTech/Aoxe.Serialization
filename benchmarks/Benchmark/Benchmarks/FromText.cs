@@ -31,26 +31,26 @@ namespace Benchmark.Benchmarks
 
         public FromText()
         {
-            _jil = JilHelper.SerializeToJson(_testModel);
-            _newtonsoftJson = NewtonsoftJsonHelper.SerializeToJson(_testModel);
-            _systemTextJson = SystemTextJsonHelper.SerializeToJson(_testModel);
-            _utf8Json = Utf8JsonHelper.SerializeToJson(_testModel);
-            _xml = XmlHelper.SerializeToXml(_testModel);
+            _jil = JilHelper.ToJson(_testModel);
+            _newtonsoftJson = NewtonsoftJsonHelper.ToJson(_testModel);
+            _systemTextJson = SystemTextJsonHelper.ToJson(_testModel);
+            _utf8Json = Utf8JsonHelper.ToJson(_testModel);
+            _xml = XmlHelper.ToXml(_testModel);
         }
 
         [Benchmark]
-        public void JilFromText() => JilHelper.Deserialize<TestModel>(_jil);
+        public void JilFromText() => JilHelper.FromJson<TestModel>(_jil);
 
         [Benchmark]
-        public void NewtonsoftJsonFromText() => NewtonsoftJsonHelper.Deserialize<TestModel>(_newtonsoftJson);
+        public void NewtonsoftJsonFromText() => NewtonsoftJsonHelper.FromJson<TestModel>(_newtonsoftJson);
 
         [Benchmark]
-        public void SystemTextJsonFromText() => SystemTextJsonHelper.Deserialize<TestModel>(_systemTextJson);
+        public void SystemTextJsonFromText() => SystemTextJsonHelper.FromJson<TestModel>(_systemTextJson);
 
         [Benchmark]
-        public void Utf8JsonFromText() => Utf8JsonHelper.Deserialize<TestModel>(_utf8Json);
+        public void Utf8JsonFromText() => Utf8JsonHelper.FromJson<TestModel>(_utf8Json);
 
         [Benchmark]
-        public void XmlFromText() => XmlHelper.Deserialize<TestModel>(_xml);
+        public void XmlFromText() => XmlHelper.FromXml<TestModel>(_xml);
     }
 }

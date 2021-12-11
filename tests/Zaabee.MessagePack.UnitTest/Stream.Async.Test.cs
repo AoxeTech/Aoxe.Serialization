@@ -28,14 +28,14 @@ namespace Zaabee.MessagePack.UnitTest
             var stream4 = await testModel.ToStreamAsync();
             var stream5 = await testModel.ToStreamAsync(type);
 
-            var unPackResult0 = await stream0.UnpackAsync<TestModel>();
-            var unPackResult1 = await stream1.UnpackAsync<TestModel>();
+            var unPackResult0 = await stream0.FromStreamAsync<TestModel>();
+            var unPackResult1 = await stream1.FromStreamAsync<TestModel>();
 
-            var unPackResult2 = (TestModel)await stream2.UnpackAsync(type);
-            var unPackResult3 = (TestModel)await stream3.UnpackAsync(type);
+            var unPackResult2 = (TestModel)await stream2.FromStreamAsync(type);
+            var unPackResult3 = (TestModel)await stream3.FromStreamAsync(type);
 
-            var unPackResult4 = await stream4.UnpackAsync<TestModel>();
-            var unPackResult5 = (TestModel)await stream5.UnpackAsync(type);
+            var unPackResult4 = await stream4.FromStreamAsync<TestModel>();
+            var unPackResult5 = (TestModel)await stream5.FromStreamAsync(type);
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
@@ -67,7 +67,7 @@ namespace Zaabee.MessagePack.UnitTest
             object nullModel = null;
             Stream nullMs = null;
             await nullModel.PackToAsync(nullMs);
-            Assert.True((await nullModel.ToStreamAsync()).ToArray().IsNullOrEmpty());
+            Assert.True((await nullModel.ToStreamAsync()).IsNullOrEmpty());
         }
     }
 }

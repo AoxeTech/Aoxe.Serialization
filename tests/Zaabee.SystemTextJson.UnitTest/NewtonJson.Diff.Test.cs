@@ -1,26 +1,23 @@
 using System.ComponentModel;
+using System.Text.Json;
 using Xunit;
 
 namespace Zaabee.SystemTextJson.UnitTest
 {
     public class TestNewtonJsonDiff
     {
-        public TestNewtonJsonDiff()
+        private readonly JsonSerializerOptions _jsonSerializerOptions = new()
         {
-            SystemTextJsonHelper.DefaultJsonSerializerOptions =
-                new System.Text.Json.JsonSerializerOptions
-                {
-                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-                };
-        }
+            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+        };
 
         [Fact]
         [Description("测试数字序列化")]
         public void TestNumber()
         {
-            object jsonObject = new {number = 123.456};
+            object jsonObject = new { number = 123.456 };
             var aJsonString = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObject);
-            var bJsonString = SystemTextJsonHelper.SerializeToJson(jsonObject);
+            var bJsonString = SystemTextJsonHelper.ToJson(jsonObject, _jsonSerializerOptions);
 
             Assert.Equal(aJsonString, bJsonString);
         }
@@ -29,9 +26,9 @@ namespace Zaabee.SystemTextJson.UnitTest
         [Description("测试英文序列化")]
         public void TestEnglish()
         {
-            object jsonObject = new {English = "bla bla"};
+            object jsonObject = new { English = "bla bla" };
             var aJsonString = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObject);
-            var bJsonString = SystemTextJsonHelper.SerializeToJson(jsonObject);
+            var bJsonString = SystemTextJsonHelper.ToJson(jsonObject, _jsonSerializerOptions);
 
             Assert.Equal(aJsonString, bJsonString);
         }
@@ -40,9 +37,9 @@ namespace Zaabee.SystemTextJson.UnitTest
         [Description("测试中文序列化")]
         public void TestChinese()
         {
-            object jsonObject = new {chinese = "灰长标准的布咚发"};
+            object jsonObject = new { chinese = "灰长标准的布咚发" };
             var aJsonString = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObject);
-            var bJsonString = SystemTextJsonHelper.SerializeToJson(jsonObject);
+            var bJsonString = SystemTextJsonHelper.ToJson(jsonObject, _jsonSerializerOptions);
 
             Assert.Equal(aJsonString, bJsonString);
         }
@@ -51,9 +48,9 @@ namespace Zaabee.SystemTextJson.UnitTest
         [Description("测试英文符号")]
         public void TestEnglishSymbol()
         {
-            object jsonObject = new {symbol = @"~`!@#$%^&*()_-+={}[]:;'<>,.?/ "};
+            object jsonObject = new { symbol = @"~`!@#$%^&*()_-+={}[]:;'<>,.?/ " };
             var aJsonString = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObject);
-            var bJsonString = SystemTextJsonHelper.SerializeToJson(jsonObject);
+            var bJsonString = SystemTextJsonHelper.ToJson(jsonObject, _jsonSerializerOptions);
 
             Assert.Equal(aJsonString, bJsonString);
         }
@@ -62,9 +59,9 @@ namespace Zaabee.SystemTextJson.UnitTest
         [Description("测试中文符号")]
         public void TestChineseSymbol()
         {
-            object jsonObject = new {chinese_symbol = @"~·@#￥%……&*（）—-+=｛｝【】；：“”‘’《》，。？、"};
+            object jsonObject = new { chinese_symbol = @"~·@#￥%……&*（）—-+=｛｝【】；：“”‘’《》，。？、" };
             var aJsonString = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObject);
-            var bJsonString = SystemTextJsonHelper.SerializeToJson(jsonObject);
+            var bJsonString = SystemTextJsonHelper.ToJson(jsonObject, _jsonSerializerOptions);
 
             Assert.Equal(aJsonString, bJsonString);
         }

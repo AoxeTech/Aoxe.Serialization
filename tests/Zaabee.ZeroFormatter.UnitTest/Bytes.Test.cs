@@ -16,8 +16,8 @@ namespace Zaabee.ZeroFormatter.UnitTest
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
             
-            Assert.Empty(ZeroFormatterHelper.Serialize(typeof(TestModel),null));
-            Assert.Null(ZeroFormatterHelper.Deserialize<TestModel>(null));
+            Assert.Empty(ZeroFormatterHelper.ToBytes(typeof(TestModel),null));
+            Assert.Null(ZeroFormatterHelper.FromBytes<TestModel>(null));
         }
     }
 }

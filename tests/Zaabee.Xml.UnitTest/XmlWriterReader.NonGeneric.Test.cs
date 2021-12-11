@@ -32,7 +32,7 @@ namespace Zaabee.Xml.UnitTest
             using (var fs = new FileStream("XmlWriterReaderNonGenericTest0.xml", FileMode.Create))
             {
                 var writer = new XmlTextWriter(fs, Encoding.UTF8);
-                testModel.ToXml(typeof(TestModel), writer);
+                testModel.Serialize(typeof(TestModel), writer);
                 writer.Close();
             }
 

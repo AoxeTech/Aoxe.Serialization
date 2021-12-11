@@ -22,7 +22,7 @@ namespace Zaabee.Utf8Json.UnitTest
             await nullMs.PackByAsync(type, nullModel);
             var emptyStream = await nullModel.ToStreamAsync();
             Assert.True(emptyStream.IsNullOrEmpty());
-            nullModel = await emptyStream.UnpackAsync<object>();
+            nullModel = await emptyStream.FromStreamAsync<object>();
             Assert.Null(nullModel);
 
             object testModel = TestModelFactory.Create();
@@ -34,10 +34,10 @@ namespace Zaabee.Utf8Json.UnitTest
             var stream3 = new MemoryStream();
             await testModel.PackToAsync(stream3);
 
-            var unPackResult0 = (TestModel) await stream0.UnpackAsync(type);
-            var unPackResult1 = (TestModel) await stream1.UnpackAsync(type);
-            var unPackResult2 = (TestModel) await stream2.UnpackAsync(type);
-            var unPackResult3 = (TestModel) await stream3.UnpackAsync(type);
+            var unPackResult0 = (TestModel) await stream0.FromStreamAsync(type);
+            var unPackResult1 = (TestModel) await stream1.FromStreamAsync(type);
+            var unPackResult2 = (TestModel) await stream2.FromStreamAsync(type);
+            var unPackResult3 = (TestModel) await stream3.FromStreamAsync(type);
 
             Assert.Equal(
                 Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,

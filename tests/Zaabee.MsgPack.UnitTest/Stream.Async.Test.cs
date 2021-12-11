@@ -20,9 +20,9 @@ namespace Zaabee.MsgPack.UnitTest
             await stream1.PackByAsync(testModel);
             var stream2 = await testModel.ToStreamAsync();
 
-            var unPackResult0 = await stream0.UnpackAsync<TestModel>();
-            var unPackResult1 = await stream1.UnpackAsync<TestModel>();
-            var unPackResult2 = await stream2.UnpackAsync<TestModel>();
+            var unPackResult0 = await stream0.FromStreamAsync<TestModel>();
+            var unPackResult1 = await stream1.FromStreamAsync<TestModel>();
+            var unPackResult2 = await stream2.FromStreamAsync<TestModel>();
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),

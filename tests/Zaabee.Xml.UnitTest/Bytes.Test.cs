@@ -18,8 +18,8 @@ namespace Zaabee.Xml.UnitTest
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
             
-            Assert.Empty(XmlHelper.Serialize(typeof(TestModel),null));
-            Assert.Null(XmlHelper.Deserialize<TestModel>((byte[])null));
+            Assert.Empty(XmlHelper.ToBytes(typeof(TestModel),null));
+            Assert.Null(XmlHelper.FromBytes<TestModel>((byte[])null));
             Assert.Null(XmlHelper.Deserialize<TestModel>((TextReader)null));
             Assert.Null(XmlHelper.Deserialize<TestModel>((XmlReader)null));
         }

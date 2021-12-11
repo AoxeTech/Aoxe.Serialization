@@ -42,46 +42,46 @@ namespace Benchmark.Benchmarks
 
         public FromStream()
         {
-            _binaryStream = BinaryHelper.Pack(_testModel);
-            _jilStream = JilHelper.Pack(_testModel);
-            _messagePackStream = MessagePackHelper.Pack(_testModel);
-            _msgPackStream = MsgPackHelper.Pack(_testModel);
-            _newtonsoftJsonStream = NewtonsoftJsonHelper.Pack(_testModel);
-            _protobufStream = ProtobufHelper.Pack(_testModel);
-            _systemTextJsonStream = SystemTextJsonHelper.Pack(_testModel);
-            _utf8JsonStream = Utf8JsonHelper.Pack(_testModel);
-            _xmlStream = XmlHelper.Pack(_testModel);
-            _zeroFormatterStream = ZeroFormatterHelper.Pack(_testModel);
+            _binaryStream = BinaryHelper.ToStream(_testModel);
+            _jilStream = JilHelper.ToStream(_testModel);
+            _messagePackStream = MessagePackHelper.ToStream(_testModel);
+            _msgPackStream = MsgPackHelper.ToStream(_testModel);
+            _newtonsoftJsonStream = NewtonsoftJsonHelper.ToStream(_testModel);
+            _protobufStream = ProtobufHelper.ToStream(_testModel);
+            _systemTextJsonStream = SystemTextJsonHelper.ToStream(_testModel);
+            _utf8JsonStream = Utf8JsonHelper.ToStream(_testModel);
+            _xmlStream = XmlHelper.ToStream(_testModel);
+            _zeroFormatterStream = ZeroFormatterHelper.ToStream(_testModel);
         }
 
         [Benchmark]
-        public void BinaryFromStream() => BinaryHelper.Unpack<TestModel>(_binaryStream);
+        public void BinaryFromStream() => BinaryHelper.FromStream<TestModel>(_binaryStream);
 
         [Benchmark]
-        public void JilFromStream() => JilHelper.Unpack<TestModel>(_jilStream);
+        public void JilFromStream() => JilHelper.FromStream<TestModel>(_jilStream);
 
         [Benchmark]
-        public void MessagePackFromStream() => MessagePackHelper.Unpack<TestModel>(_messagePackStream);
+        public void MessagePackFromStream() => MessagePackHelper.FromStream<TestModel>(_messagePackStream);
 
         [Benchmark]
-        public void MsgPackFromStream() => MsgPackHelper.Unpack<TestModel>(_msgPackStream);
+        public void MsgPackFromStream() => MsgPackHelper.FromStream<TestModel>(_msgPackStream);
 
         [Benchmark]
-        public void NewtonsoftJsonFromStream() => NewtonsoftJsonHelper.Unpack<TestModel>(_newtonsoftJsonStream);
+        public void NewtonsoftJsonFromStream() => NewtonsoftJsonHelper.FromStream<TestModel>(_newtonsoftJsonStream);
 
         [Benchmark]
-        public void ProtobufFromStream() => ProtobufHelper.Unpack<TestModel>(_protobufStream);
+        public void ProtobufFromStream() => ProtobufHelper.FromStream<TestModel>(_protobufStream);
 
         [Benchmark]
-        public void SystemTextJsonFromStream() => SystemTextJsonHelper.Unpack<TestModel>(_systemTextJsonStream);
+        public void SystemTextJsonFromStream() => SystemTextJsonHelper.FromStream<TestModel>(_systemTextJsonStream);
 
         [Benchmark]
-        public void Utf8JsonFromStream() => Utf8JsonHelper.Unpack<TestModel>(_utf8JsonStream);
+        public void Utf8JsonFromStream() => Utf8JsonHelper.FromStream<TestModel>(_utf8JsonStream);
 
         [Benchmark]
-        public void XmlFromStream() => XmlHelper.Unpack<TestModel>(_xmlStream);
+        public void XmlFromStream() => XmlHelper.FromStream<TestModel>(_xmlStream);
 
         [Benchmark]
-        public void ZeroFormatterFromStream() => ZeroFormatterHelper.Unpack<TestModel>(_zeroFormatterStream);
+        public void ZeroFormatterFromStream() => ZeroFormatterHelper.FromStream<TestModel>(_zeroFormatterStream);
     }
 }

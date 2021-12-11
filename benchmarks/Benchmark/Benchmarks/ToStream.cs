@@ -19,7 +19,7 @@ namespace Benchmark.Benchmarks
     [MinColumn, MaxColumn, MeanColumn, MedianColumn]
     public class ToStream
     {
-        private readonly TestModel _testModel = new TestModel
+        private readonly TestModel _testModel = new()
         {
             Id = Guid.NewGuid(),
             Age = new Random().Next(0, 100),
@@ -29,33 +29,33 @@ namespace Benchmark.Benchmarks
         };
 
         [Benchmark]
-        public void BinaryToStream() => BinaryHelper.Pack(_testModel);
+        public void BinaryToStream() => BinaryHelper.ToStream(_testModel);
 
         [Benchmark]
-        public void JilToStream() => JilHelper.Pack(_testModel);
+        public void JilToStream() => JilHelper.ToStream(_testModel);
 
         [Benchmark]
-        public void MessagePackToStream() => MessagePackHelper.Pack(_testModel);
+        public void MessagePackToStream() => MessagePackHelper.ToStream(_testModel);
 
         [Benchmark]
-        public void MsgPackToStream() => MsgPackHelper.Pack(_testModel);
+        public void MsgPackToStream() => MsgPackHelper.ToStream(_testModel);
 
         [Benchmark]
-        public void NewtonsoftJsonToStream() => NewtonsoftJsonHelper.Pack(_testModel);
+        public void NewtonsoftJsonToStream() => NewtonsoftJsonHelper.ToStream(_testModel);
 
         [Benchmark]
-        public void ProtobufToStream() => ProtobufHelper.Pack(_testModel);
+        public void ProtobufToStream() => ProtobufHelper.ToStream(_testModel);
 
         [Benchmark]
-        public void SystemTextJsonToStream() => SystemTextJsonHelper.Pack(_testModel);
+        public void SystemTextJsonToStream() => SystemTextJsonHelper.ToStream(_testModel);
 
         [Benchmark]
-        public void Utf8JsonToStream() => Utf8JsonHelper.Pack(_testModel);
+        public void Utf8JsonToStream() => Utf8JsonHelper.ToStream(_testModel);
 
         [Benchmark]
-        public void XmlToStream() => XmlHelper.Pack(_testModel);
+        public void XmlToStream() => XmlHelper.ToStream(_testModel);
 
         [Benchmark]
-        public void ZeroFormatterToStream() => ZeroFormatterHelper.Pack(_testModel);
+        public void ZeroFormatterToStream() => ZeroFormatterHelper.ToStream(_testModel);
     }
 }

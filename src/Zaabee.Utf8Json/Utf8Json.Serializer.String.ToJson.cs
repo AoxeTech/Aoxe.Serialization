@@ -9,7 +9,7 @@ public static partial class Utf8JsonHelper
     /// <param name="resolver"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static string ToJson<TValue>(TValue? value, IJsonFormatterResolver? resolver) =>
+    public static string ToJson<TValue>(TValue? value, IJsonFormatterResolver? resolver = null) =>
         JsonSerializer.ToJsonString(value, resolver);
 
     /// <summary>
@@ -18,7 +18,7 @@ public static partial class Utf8JsonHelper
     /// <param name="value"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static string ToJson(object? value, IJsonFormatterResolver? resolver) =>
+    public static string ToJson(object? value, IJsonFormatterResolver? resolver = null) =>
         JsonSerializer.NonGeneric.ToJsonString(value, resolver);
 
     /// <summary>
@@ -28,6 +28,6 @@ public static partial class Utf8JsonHelper
     /// <param name="value"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static string ToJson(Type type, object? value, IJsonFormatterResolver? resolver) =>
+    public static string ToJson(Type type, object? value, IJsonFormatterResolver? resolver = null) =>
         JsonSerializer.NonGeneric.ToJsonString(type, value, resolver);
 }

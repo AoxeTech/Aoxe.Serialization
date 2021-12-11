@@ -11,7 +11,7 @@ public static partial class NewtonsoftJsonHelper
     /// <param name="encoding"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static async Task PackAsync<TValue>(TValue? value, Stream? stream, JsonSerializerSettings? settings,
+    public static async Task PackAsync<TValue>(TValue? value, Stream? stream, JsonSerializerSettings? settings = null,
         Encoding? encoding = null)
     {
         if (stream.IsNullOrEmpty()) return;
@@ -28,7 +28,7 @@ public static partial class NewtonsoftJsonHelper
     /// <param name="settings"></param>
     /// <param name="encoding"></param>
     /// <returns></returns>
-    public static async Task PackAsync(Type type, object? value, Stream? stream, JsonSerializerSettings? settings,
+    public static async Task PackAsync(Type type, object? value, Stream? stream, JsonSerializerSettings? settings = null,
         Encoding? encoding = null)
     {
         if (stream.IsNullOrEmpty()) return;

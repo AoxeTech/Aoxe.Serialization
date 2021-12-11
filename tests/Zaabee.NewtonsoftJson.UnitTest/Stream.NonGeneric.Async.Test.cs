@@ -22,7 +22,7 @@ namespace Zaabee.NewtonsoftJson.UnitTest
             await nullMs.PackByAsync(type, nullModel);
             var emptyStream = await nullModel.ToStreamAsync();
             Assert.True(emptyStream.IsNullOrEmpty());
-            nullModel = await emptyStream.UnpackAsync<object>();
+            nullModel = await emptyStream.FromStreamAsync<object>();
             Assert.Null(nullModel);
 
             object testModel = TestModelFactory.Create();
@@ -33,9 +33,9 @@ namespace Zaabee.NewtonsoftJson.UnitTest
             await stream1.PackByAsync(type, testModel);
             var stream2 = await testModel.ToStreamAsync(type);
 
-            var unPackResult0 = (TestModel) await stream0.UnpackAsync(type);
-            var unPackResult1 = (TestModel) await stream1.UnpackAsync(type);
-            var unPackResult2 = (TestModel) await stream2.UnpackAsync(type);
+            var unPackResult0 = (TestModel) await stream0.FromStreamAsync(type);
+            var unPackResult1 = (TestModel) await stream1.FromStreamAsync(type);
+            var unPackResult2 = (TestModel) await stream2.FromStreamAsync(type);
 
             Assert.Equal(
                 Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,

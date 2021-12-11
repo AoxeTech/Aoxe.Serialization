@@ -9,7 +9,7 @@ public static partial class DataContractSerializer
     /// <param name="value"></param>
     /// <param name="dataContractResolver"></param>
     /// <typeparam name="TValue"></typeparam>
-    public static void Serialize<TValue>(XmlDictionaryWriter xmlDictionaryWriter, TValue value,
+    public static void Serialize<TValue>(XmlDictionaryWriter xmlDictionaryWriter, TValue? value,
         DataContractResolver? dataContractResolver = null) =>
         Serialize(typeof(TValue), xmlDictionaryWriter, value, dataContractResolver);
 
@@ -20,7 +20,7 @@ public static partial class DataContractSerializer
     /// <param name="xmlDictionaryWriter"></param>
     /// <param name="value"></param>
     /// <param name="dataContractResolver"></param>
-    public static void Serialize(Type type, XmlDictionaryWriter xmlDictionaryWriter, object value,
+    public static void Serialize(Type type, XmlDictionaryWriter xmlDictionaryWriter, object? value,
         DataContractResolver? dataContractResolver = null) =>
         GetSerializer(type).WriteObject(xmlDictionaryWriter, value, dataContractResolver);
 }

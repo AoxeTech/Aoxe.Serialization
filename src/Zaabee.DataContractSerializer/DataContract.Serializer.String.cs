@@ -28,7 +28,7 @@ public static partial class DataContractSerializer
     /// <param name="xml"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? Deserialize<TValue>(string xml) =>
+    public static TValue? Deserialize<TValue>(string? xml) =>
         (TValue?)Deserialize(typeof(TValue), xml);
 
     /// <summary>
@@ -37,7 +37,7 @@ public static partial class DataContractSerializer
     /// <param name="type"></param>
     /// <param name="xml"></param>
     /// <returns></returns>
-    public static object? Deserialize(Type type, string xml)
+    public static object? Deserialize(Type type, string? xml)
     {
         using var ms = new MemoryStream(Encoding.UTF8.GetBytes(xml));
         return Unpack(type, ms);

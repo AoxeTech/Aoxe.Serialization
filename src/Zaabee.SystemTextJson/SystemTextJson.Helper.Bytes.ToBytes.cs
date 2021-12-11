@@ -9,7 +9,7 @@ public static partial class SystemTextJsonHelper
     /// <param name="options"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static byte[] ToBytes<TValue>(TValue? value, JsonSerializerOptions? options) =>
+    public static byte[] ToBytes<TValue>(TValue? value, JsonSerializerOptions? options = null) =>
         JsonSerializer.SerializeToUtf8Bytes(value, options);
 
     /// <summary>
@@ -19,6 +19,6 @@ public static partial class SystemTextJsonHelper
     /// <param name="value"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public static byte[] ToBytes(Type type, object? value, JsonSerializerOptions? options) =>
+    public static byte[] ToBytes(Type type, object? value, JsonSerializerOptions? options = null) =>
         JsonSerializer.SerializeToUtf8Bytes(value, type, options);
 }

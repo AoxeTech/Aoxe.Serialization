@@ -29,7 +29,7 @@ public partial class JilUnitTest
         using (var fs = new FileStream("TextWriterReaderTest1.json", FileMode.Create))
         {
             var writer = new StreamWriter(fs, Encoding.UTF8);
-            testModel.ToJson(writer);
+            testModel.Serialize(writer);
             writer.Close();
         }
         using (var fs = new FileStream("TextWriterReaderTest1.json", FileMode.Open))

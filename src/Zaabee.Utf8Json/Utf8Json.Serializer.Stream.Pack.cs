@@ -9,7 +9,7 @@ public static partial class Utf8JsonHelper
     /// <param name="stream"></param>
     /// <param name="resolver"></param>
     /// <typeparam name="TValue"></typeparam>
-    public static void Pack<TValue>(TValue? value, Stream? stream, IJsonFormatterResolver? resolver)
+    public static void Pack<TValue>(TValue? value, Stream? stream, IJsonFormatterResolver? resolver = null)
     {
         if (stream is null) return;
         JsonSerializer.Serialize(stream, value, resolver);
@@ -22,7 +22,7 @@ public static partial class Utf8JsonHelper
     /// <param name="value"></param>
     /// <param name="stream"></param>
     /// <param name="resolver"></param>
-    public static void Pack(object? value, Stream? stream, IJsonFormatterResolver? resolver)
+    public static void Pack(object? value, Stream? stream, IJsonFormatterResolver? resolver = null)
     {
         if (stream is null) return;
         JsonSerializer.NonGeneric.Serialize(stream, value, resolver);
@@ -36,7 +36,7 @@ public static partial class Utf8JsonHelper
     /// <param name="value"></param>
     /// <param name="stream"></param>
     /// <param name="resolver"></param>
-    public static void Pack(Type type, object? value, Stream? stream, IJsonFormatterResolver? resolver)
+    public static void Pack(Type type, object? value, Stream? stream, IJsonFormatterResolver? resolver = null)
     {
         if (stream is null) return;
         JsonSerializer.NonGeneric.Serialize(type, stream, value, resolver);

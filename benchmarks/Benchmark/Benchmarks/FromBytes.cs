@@ -41,46 +41,46 @@ namespace Benchmark.Benchmarks
 
         public FromBytes()
         {
-            _binaryBytes = BinaryHelper.Serialize(_testModel);
-            _jilBytes = JilHelper.Serialize(_testModel);
-            _messagePackBytes = MessagePackHelper.Serialize(_testModel);
-            _msgPackBytes = MsgPackHelper.Serialize(_testModel);
-            _newtonsoftJsonBytes = NewtonsoftJsonHelper.Serialize(_testModel);
-            _protobufBytes = ProtobufHelper.Serialize(_testModel);
-            _systemTextJsonBytes = SystemTextJsonHelper.Serialize(_testModel);
-            _utf8JsonBytes = Utf8JsonHelper.Serialize(_testModel);
-            _xmlBytes = XmlHelper.Serialize(_testModel);
-            _zeroFormatterBytes = ZeroFormatterHelper.Serialize(_testModel);
+            _binaryBytes = BinaryHelper.ToBytes(_testModel);
+            _jilBytes = JilHelper.ToBytes(_testModel);
+            _messagePackBytes = MessagePackHelper.ToBytes(_testModel);
+            _msgPackBytes = MsgPackHelper.ToBytes(_testModel);
+            _newtonsoftJsonBytes = NewtonsoftJsonHelper.ToBytes(_testModel);
+            _protobufBytes = ProtobufHelper.ToBytes(_testModel);
+            _systemTextJsonBytes = SystemTextJsonHelper.ToBytes(_testModel);
+            _utf8JsonBytes = Utf8JsonHelper.ToBytes(_testModel);
+            _xmlBytes = XmlHelper.ToBytes(_testModel);
+            _zeroFormatterBytes = ZeroFormatterHelper.ToBytes(_testModel);
         }
 
         [Benchmark]
-        public void BinaryFromBytes() => BinaryHelper.Deserialize<TestModel>(_binaryBytes);
+        public void BinaryFromBytes() => BinaryHelper.FromBytes<TestModel>(_binaryBytes);
 
         [Benchmark]
-        public void JilFromBytes() => JilHelper.Deserialize<TestModel>(_jilBytes);
+        public void JilFromBytes() => JilHelper.FromBytes<TestModel>(_jilBytes);
 
         [Benchmark]
-        public void MessagePackFromBytes() => MessagePackHelper.Deserialize<TestModel>(_messagePackBytes);
+        public void MessagePackFromBytes() => MessagePackHelper.FromBytes<TestModel>(_messagePackBytes);
 
         [Benchmark]
-        public void MsgPackFromBytes() => MsgPackHelper.Deserialize<TestModel>(_msgPackBytes);
+        public void MsgPackFromBytes() => MsgPackHelper.FromBytes<TestModel>(_msgPackBytes);
 
         [Benchmark]
-        public void NewtonsoftJsonFromBytes() => NewtonsoftJsonHelper.Deserialize<TestModel>(_newtonsoftJsonBytes);
+        public void NewtonsoftJsonFromBytes() => NewtonsoftJsonHelper.FromBytes<TestModel>(_newtonsoftJsonBytes);
 
         [Benchmark]
-        public void ProtobufFromBytes() => ProtobufHelper.Deserialize<TestModel>(_protobufBytes);
+        public void ProtobufFromBytes() => ProtobufHelper.FromBytes<TestModel>(_protobufBytes);
 
         [Benchmark]
-        public void SystemTextJsonFromBytes() => SystemTextJsonHelper.Deserialize<TestModel>(_systemTextJsonBytes);
+        public void SystemTextJsonFromBytes() => SystemTextJsonHelper.FromBytes<TestModel>(_systemTextJsonBytes);
 
         [Benchmark]
-        public void Utf8JsonFromBytes() => Utf8JsonHelper.Deserialize<TestModel>(_utf8JsonBytes);
+        public void Utf8JsonFromBytes() => Utf8JsonHelper.FromBytes<TestModel>(_utf8JsonBytes);
 
         [Benchmark]
-        public void XmlFromBytes() => XmlHelper.Deserialize<TestModel>(_xmlBytes);
+        public void XmlFromBytes() => XmlHelper.FromBytes<TestModel>(_xmlBytes);
 
         [Benchmark]
-        public void ZeroFormatterFromBytes() => ZeroFormatterHelper.Deserialize<TestModel>(_zeroFormatterBytes);
+        public void ZeroFormatterFromBytes() => ZeroFormatterHelper.FromBytes<TestModel>(_zeroFormatterBytes);
     }
 }
