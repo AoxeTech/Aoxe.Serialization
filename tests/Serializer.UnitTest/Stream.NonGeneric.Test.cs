@@ -4,83 +4,83 @@ public partial class SerializerTest
 {
     [Fact]
     public void BinaryStreamNonGenericTest() =>
-        StreamNonGenericTest(new Zaabee.Binary.ZaabeeSerializer());
+        StreamNonGenericTest(new Zaabee.Binary.Serializer());
 
     [Fact]
     public void JilStreamNonGenericTest() =>
-        StreamNonGenericTest(new Zaabee.Jil.ZaabeeSerializer());
+        StreamNonGenericTest(new Zaabee.Jil.Serializer());
 
     [Fact]
     public void MessagePackStreamNonGenericTest() =>
-        StreamNonGenericTest(new Zaabee.MessagePack.ZaabeeSerializer());
+        StreamNonGenericTest(new Zaabee.MessagePack.Serializer());
 
     [Fact]
     public void MsgPackStreamNonGenericTest() =>
-        StreamNonGenericTest(new Zaabee.MsgPack.ZaabeeSerializer());
+        StreamNonGenericTest(new Zaabee.MsgPack.Serializer());
 
     [Fact]
     public void NewtonsoftJsonStreamNonGenericTest() =>
-        StreamNonGenericTest(new Zaabee.NewtonsoftJson.ZaabeeSerializer());
+        StreamNonGenericTest(new Zaabee.NewtonsoftJson.Serializer());
 
     [Fact]
     public void ProtobufStreamNonGenericTest() =>
-        StreamNonGenericTest(new Zaabee.Protobuf.ZaabeeSerializer());
+        StreamNonGenericTest(new Zaabee.Protobuf.Serializer());
 
     [Fact]
     public void SystemTextJsonStreamNonGenericTest() =>
-        StreamNonGenericTest(new Zaabee.SystemTextJson.ZaabeeSerializer());
+        StreamNonGenericTest(new Zaabee.SystemTextJson.Serializer());
 
     [Fact]
     public void Utf8JsonStreamNonGenericTest() =>
-        StreamNonGenericTest(new Zaabee.Utf8Json.ZaabeeSerializer());
+        StreamNonGenericTest(new Zaabee.Utf8Json.Serializer());
 
     [Fact]
     public void XmlStreamNonGenericTest() =>
-        StreamNonGenericTest(new Zaabee.Xml.ZaabeeSerializer());
+        StreamNonGenericTest(new Zaabee.Xml.Serializer());
 
     [Fact]
     public void ZeroFormatterStreamNonGenericTest() =>
-        StreamNonGenericTest(new Zaabee.ZeroFormatter.ZaabeeSerializer());
+        StreamNonGenericTest(new Zaabee.ZeroFormatter.Serializer());
 
     [Fact]
     public void BinaryStreamNonGenericNullTest() =>
-        StreamNonGenericNullTest(new Zaabee.Binary.ZaabeeSerializer());
+        StreamNonGenericNullTest(new Zaabee.Binary.Serializer());
 
     [Fact]
     public void JilStreamNonGenericNullTest() =>
-        StreamNonGenericNullTest(new Zaabee.Jil.ZaabeeSerializer());
+        StreamNonGenericNullTest(new Zaabee.Jil.Serializer());
 
     [Fact]
     public void MessagePackStreamNonGenericNullTest() =>
-        StreamNonGenericNullTest(new Zaabee.MessagePack.ZaabeeSerializer());
+        StreamNonGenericNullTest(new Zaabee.MessagePack.Serializer());
 
     [Fact]
     public void MsgPackStreamNonGenericNullTest() =>
-        StreamNonGenericNullTest(new Zaabee.MsgPack.ZaabeeSerializer());
+        StreamNonGenericNullTest(new Zaabee.MsgPack.Serializer());
 
     [Fact]
     public void NewtonsoftJsonStreamNonGenericNullTest() =>
-        StreamNonGenericNullTest(new Zaabee.NewtonsoftJson.ZaabeeSerializer());
+        StreamNonGenericNullTest(new Zaabee.NewtonsoftJson.Serializer());
 
     [Fact]
     public void ProtobufStreamNonGenericNullTest() =>
-        StreamNonGenericNullTest(new Zaabee.Protobuf.ZaabeeSerializer());
+        StreamNonGenericNullTest(new Zaabee.Protobuf.Serializer());
 
     [Fact]
     public void SystemTextJsonStreamNonGenericNullTest() =>
-        StreamNonGenericNullTest(new Zaabee.SystemTextJson.ZaabeeSerializer());
+        StreamNonGenericNullTest(new Zaabee.SystemTextJson.Serializer());
 
     [Fact]
     public void Utf8JsonStreamNonGenericNullTest() =>
-        StreamNonGenericNullTest(new Zaabee.Utf8Json.ZaabeeSerializer());
+        StreamNonGenericNullTest(new Zaabee.Utf8Json.Serializer());
 
     [Fact]
     public void XmlStreamNonGenericNullTest() =>
-        StreamNonGenericNullTest(new Zaabee.Xml.ZaabeeSerializer());
+        StreamNonGenericNullTest(new Zaabee.Xml.Serializer());
 
     [Fact]
     public void ZeroFormatterStreamNonGenericNullTest() =>
-        StreamNonGenericNullTest(new Zaabee.ZeroFormatter.ZaabeeSerializer());
+        StreamNonGenericNullTest(new Zaabee.ZeroFormatter.Serializer());
 
     private static void StreamNonGenericTest(IStreamSerializer serializer)
     {

@@ -6,43 +6,43 @@ public partial class SerializerTest
 {
     [Fact]
     public void JilStringGenericTest() =>
-        StringGenericTest(new Zaabee.Jil.ZaabeeSerializer());
+        StringGenericTest(new Zaabee.Jil.Serializer());
 
     [Fact]
     public void NewtonsoftJsonStringGenericTest() =>
-        StringGenericTest(new Zaabee.NewtonsoftJson.ZaabeeSerializer());
+        StringGenericTest(new Zaabee.NewtonsoftJson.Serializer());
 
     [Fact]
     public void SystemTextJsonStringGenericTest() =>
-        StringGenericTest(new Zaabee.SystemTextJson.ZaabeeSerializer());
+        StringGenericTest(new Zaabee.SystemTextJson.Serializer());
 
     [Fact]
     public void Utf8JsonStringGenericTest() =>
-        StringGenericTest(new Zaabee.Utf8Json.ZaabeeSerializer());
+        StringGenericTest(new Zaabee.Utf8Json.Serializer());
 
     [Fact]
     public void XmlStringGenericTest() =>
-        StringGenericTest(new Zaabee.Xml.ZaabeeSerializer());
+        StringGenericTest(new Zaabee.Xml.Serializer());
 
     [Fact]
     public void JilStringGenericNullTest() =>
-        StringGenericNullTest(new Zaabee.Jil.ZaabeeSerializer());
+        StringGenericNullTest(new Zaabee.Jil.Serializer());
 
     [Fact]
     public void NewtonsoftJsonStringGenericNullTest() =>
-        StringGenericNullTest(new Zaabee.NewtonsoftJson.ZaabeeSerializer());
+        StringGenericNullTest(new Zaabee.NewtonsoftJson.Serializer());
 
     [Fact]
     public void SystemTextJsonStringGenericNullTest() =>
-        StringGenericNullTest(new Zaabee.SystemTextJson.ZaabeeSerializer());
+        StringGenericNullTest(new Zaabee.SystemTextJson.Serializer());
 
     [Fact]
     public void Utf8JsonStringGenericNullTest() =>
-        StringGenericNullTest(new Zaabee.Utf8Json.ZaabeeSerializer());
+        StringGenericNullTest(new Zaabee.Utf8Json.Serializer());
 
     [Fact]
     public void XmlStringGenericNullTest() =>
-        StringGenericNullTest(new Zaabee.Xml.ZaabeeSerializer());
+        StringGenericNullTest(new Zaabee.Xml.Serializer());
 
     private static void StringGenericTest(ITextSerializer serializer)
     {

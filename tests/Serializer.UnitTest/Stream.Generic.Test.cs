@@ -4,83 +4,83 @@ public partial class SerializerTest
 {
     [Fact]
     public void BinaryStreamGenericTest() =>
-        StreamGenericTest(new Zaabee.Binary.ZaabeeSerializer());
+        StreamGenericTest(new Zaabee.Binary.Serializer());
 
     [Fact]
     public void JilStreamGenericTest() =>
-        StreamGenericTest(new Zaabee.Jil.ZaabeeSerializer());
+        StreamGenericTest(new Zaabee.Jil.Serializer());
 
     [Fact]
     public void MessagePackStreamGenericTest() =>
-        StreamGenericTest(new Zaabee.MessagePack.ZaabeeSerializer());
+        StreamGenericTest(new Zaabee.MessagePack.Serializer());
 
     [Fact]
     public void MsgPackStreamGenericTest() =>
-        StreamGenericTest(new Zaabee.MsgPack.ZaabeeSerializer());
+        StreamGenericTest(new Zaabee.MsgPack.Serializer());
 
     [Fact]
     public void NewtonsoftJsonStreamGenericTest() =>
-        StreamGenericTest(new Zaabee.NewtonsoftJson.ZaabeeSerializer());
+        StreamGenericTest(new Zaabee.NewtonsoftJson.Serializer());
 
     [Fact]
     public void ProtobufStreamGenericTest() =>
-        StreamGenericTest(new Zaabee.Protobuf.ZaabeeSerializer());
+        StreamGenericTest(new Zaabee.Protobuf.Serializer());
 
     [Fact]
     public void SystemTextJsonStreamGenericTest() =>
-        StreamGenericTest(new Zaabee.SystemTextJson.ZaabeeSerializer());
+        StreamGenericTest(new Zaabee.SystemTextJson.Serializer());
 
     [Fact]
     public void Utf8JsonStreamGenericTest() =>
-        StreamGenericTest(new Zaabee.Utf8Json.ZaabeeSerializer());
+        StreamGenericTest(new Zaabee.Utf8Json.Serializer());
 
     [Fact]
     public void XmlStreamGenericTest() =>
-        StreamGenericTest(new Zaabee.Xml.ZaabeeSerializer());
+        StreamGenericTest(new Zaabee.Xml.Serializer());
 
     [Fact]
     public void ZeroFormatterStreamGenericTest() =>
-        StreamGenericTest(new Zaabee.ZeroFormatter.ZaabeeSerializer());
+        StreamGenericTest(new Zaabee.ZeroFormatter.Serializer());
 
     [Fact]
     public void BinaryStreamGenericNullTest() =>
-        StreamGenericNullTest(new Zaabee.Binary.ZaabeeSerializer());
+        StreamGenericNullTest(new Zaabee.Binary.Serializer());
 
     [Fact]
     public void JilStreamGenericNullTest() =>
-        StreamGenericNullTest(new Zaabee.Jil.ZaabeeSerializer());
+        StreamGenericNullTest(new Zaabee.Jil.Serializer());
 
     [Fact]
     public void MessagePackStreamGenericNullTest() =>
-        StreamGenericNullTest(new Zaabee.MessagePack.ZaabeeSerializer());
+        StreamGenericNullTest(new Zaabee.MessagePack.Serializer());
 
     [Fact]
     public void MsgPackStreamGenericNullTest() =>
-        StreamGenericNullTest(new Zaabee.MsgPack.ZaabeeSerializer());
+        StreamGenericNullTest(new Zaabee.MsgPack.Serializer());
 
     [Fact]
     public void NewtonsoftJsonStreamGenericNullTest() =>
-        StreamGenericNullTest(new Zaabee.NewtonsoftJson.ZaabeeSerializer());
+        StreamGenericNullTest(new Zaabee.NewtonsoftJson.Serializer());
 
     [Fact]
     public void ProtobufStreamGenericNullTest() =>
-        StreamGenericNullTest(new Zaabee.Protobuf.ZaabeeSerializer());
+        StreamGenericNullTest(new Zaabee.Protobuf.Serializer());
 
     [Fact]
     public void SystemTextJsonStreamGenericNullTest() =>
-        StreamGenericNullTest(new Zaabee.SystemTextJson.ZaabeeSerializer());
+        StreamGenericNullTest(new Zaabee.SystemTextJson.Serializer());
 
     [Fact]
     public void Utf8JsonStreamGenericNullTest() =>
-        StreamGenericNullTest(new Zaabee.Utf8Json.ZaabeeSerializer());
+        StreamGenericNullTest(new Zaabee.Utf8Json.Serializer());
 
     [Fact]
     public void XmlStreamGenericNullTest() =>
-        StreamGenericNullTest(new Zaabee.Xml.ZaabeeSerializer());
+        StreamGenericNullTest(new Zaabee.Xml.Serializer());
 
     [Fact]
     public void ZeroFormatterStreamGenericNullTest() =>
-        StreamGenericNullTest(new Zaabee.ZeroFormatter.ZaabeeSerializer());
+        StreamGenericNullTest(new Zaabee.ZeroFormatter.Serializer());
 
     private static void StreamGenericTest(IStreamSerializer serializer)
     {
