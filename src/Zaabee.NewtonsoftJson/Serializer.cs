@@ -1,11 +1,11 @@
 namespace Zaabee.NewtonsoftJson;
 
-public class ZaabeeSerializer : ITextSerializer
+public class Serializer : ITextSerializer
 {
     private readonly JsonSerializerSettings? _settings;
     private readonly Encoding? _encoding;
 
-    public ZaabeeSerializer(JsonSerializerSettings? settings = null, Encoding? encoding = null) =>
+    public Serializer(JsonSerializerSettings? settings = null, Encoding? encoding = null) =>
         (_settings, _encoding) = (settings, encoding);
 
     public byte[] SerializeToBytes<TValue>(TValue? value) =>

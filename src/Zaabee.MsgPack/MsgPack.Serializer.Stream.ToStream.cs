@@ -15,7 +15,7 @@ public static partial class MsgPackHelper
     /// 	<typeparamref name="TValue" /> is not serializable even if it can be deserialized.
     /// </exception>
     /// <seealso cref="P:Capabilities" />
-    public static Stream ToStream<TValue>(TValue? value)
+    public static MemoryStream ToStream<TValue>(TValue? value)
     {
         var ms = new MemoryStream();
         Pack(value, ms);
@@ -29,7 +29,7 @@ public static partial class MsgPackHelper
     /// <param name="value"></param>
     /// <returns></returns>
     /// <exception cref="T:System.Runtime.Serialization.SerializationException">Failed to serialize <paramref name="value" />. </exception>
-    public static Stream ToStream(Type type, object? value)
+    public static MemoryStream ToStream(Type type, object? value)
     {
         var ms = new MemoryStream();
         Pack(type, value, ms);

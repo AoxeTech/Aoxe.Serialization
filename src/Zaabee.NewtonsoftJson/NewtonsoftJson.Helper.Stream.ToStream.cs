@@ -10,7 +10,7 @@ public static partial class NewtonsoftJsonHelper
     /// <param name="encoding"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static Stream ToStream<TValue>(TValue? value, JsonSerializerSettings? settings = null,
+    public static MemoryStream ToStream<TValue>(TValue? value, JsonSerializerSettings? settings = null,
         Encoding? encoding = null)
     {
         var ms = new MemoryStream();
@@ -26,7 +26,7 @@ public static partial class NewtonsoftJsonHelper
     /// <param name="settings"></param>
     /// <param name="encoding"></param>
     /// <returns></returns>
-    public static Stream ToStream(Type type, object? value, JsonSerializerSettings? settings = null,
+    public static MemoryStream ToStream(Type type, object? value, JsonSerializerSettings? settings = null,
         Encoding? encoding = null)
     {
         var ms = new MemoryStream();

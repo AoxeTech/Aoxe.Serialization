@@ -1,6 +1,6 @@
 namespace Zaabee.MsgPack;
 
-public class ZaabeeSerializer : IBytesSerializer
+public class Serializer : IBytesSerializer
 {
     public byte[] SerializeToBytes<TValue>(TValue? value) =>
         value is null
