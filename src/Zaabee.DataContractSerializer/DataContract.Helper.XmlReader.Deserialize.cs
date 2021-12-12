@@ -1,6 +1,6 @@
 namespace Zaabee.DataContractSerializer;
 
-public static partial class DataContractSerializer
+public static partial class DataContractHelper
 {
     /// <summary>
     /// Deserializes the XML document contained by the specified XmlReader.
@@ -9,8 +9,10 @@ public static partial class DataContractSerializer
     /// <param name="verifyObjectName"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? Deserialize<TValue>(XmlReader xmlReader, bool verifyObjectName = true) =>
-        (TValue?)Deserialize(typeof(TValue), xmlReader, verifyObjectName);
+    public static TValue? Deserialize<TValue>(XmlReader? xmlReader, bool verifyObjectName = true) =>
+        xmlReader is null
+            ? default
+            : (TValue?)Deserialize(typeof(TValue), xmlReader, verifyObjectName);
 
     /// <summary>
     /// Deserializes the XML document contained by the specified XmlReader.
@@ -19,6 +21,8 @@ public static partial class DataContractSerializer
     /// <param name="xmlReader"></param>
     /// <param name="verifyObjectName"></param>
     /// <returns></returns>
-    public static object? Deserialize(Type type, XmlReader xmlReader, bool verifyObjectName = true) =>
-        GetSerializer(type).ReadObject(xmlReader, verifyObjectName);
+    public static object? Deserialize(Type type, XmlReader? xmlReader, bool verifyObjectName = true) =>
+        xmlReader is null
+            ? default
+            : GetSerializer(type).ReadObject(xmlReader, verifyObjectName);
 }

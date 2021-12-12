@@ -18,8 +18,8 @@ namespace Zaabee.DataContractSerializer.UnitTest
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
             
-            Assert.Empty(DataContractHelper.Serialize(typeof(TestModel),null));
-            Assert.Null(DataContractHelper.Deserialize(typeof(TestModel),(byte[])null));
+            Assert.Empty(DataContractHelper.ToBytes(typeof(TestModel),null));
+            Assert.Null(DataContractHelper.FromBytes(typeof(TestModel),(byte[])null));
             Assert.Null(DataContractHelper.Deserialize(typeof(TestModel),(XmlReader)null));
         }
     }
