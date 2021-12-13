@@ -28,7 +28,7 @@ Serializers can be divided into two categories:
     - XmlSerializer
     - DataContractSerializer
 
-Though some old serializers does not support stream, the modern serializers do, so all zaabee serializers can use them. And the text serializers support text on this base.
+Though some old serializers does not support stream, the zaabee serializers will supply the lack. And the text serializers will support text on this base.
 
 ## Explain
 
@@ -78,7 +78,7 @@ Supply Extension methods base by Helper. Also it supports generic type and non-g
   - String
     - FromJson/FromXml
 - Serializer
-Implement Zaabee.Serializer.Abstractions, The Zaabee technology stacks uses this class to serialize and deserialize. It will return Array.Empty\<byte\>()/string.Empty/Stream.Null if the value is null.
+Implement Zaabee.Serializer.Abstractions, The Zaabee technology stacks use this class to serialize and deserialize. It will return Array.Empty\<byte\>()/string.Empty/Stream.Null if the value is null.
   - Stream
     - stream ToStream\<TValue\>(TValue? value)
     - TValue? FromStream\<TValue\>(Stream? stream)
