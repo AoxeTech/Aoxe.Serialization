@@ -8,7 +8,7 @@ The wraps and extensions for serializers. It is also the serializer provider for
 
 ## Project meaning
 
-There are many different serializers in the world, they have different features and limitations. This project allows you to use difference serializers in the same way.
+There are many different serializers in the world, they have different features and limitations. This project allows you to use difference serializers in the same way. Also it set nullable and default value for all serializers.
 
 - Helper
 Unified code style and provide lack of features. The default enconding is UTF-8.
@@ -16,33 +16,33 @@ Unified code style and provide lack of features. The default enconding is UTF-8.
     - sync
       - MemoryStream ToStream\<TValue\>(TValue? value)
       - MemoryStream ToStream(Type type, object? value)
-      - void Pack\<TValue\>(TValue? value, Stream stream)
-      - void Pack(Type type, object? value, Stream stream)
-      - TValue? FromStream\<TValue\>(Stream stream)
-      - object? FromStream(Type type, Stream stream)
+      - void Pack\<TValue\>(TValue? value, Stream? stream)
+      - void Pack(Type type, object? value, Stream? stream)
+      - TValue? FromStream\<TValue\>(Stream? stream)
+      - object? FromStream(Type type, Stream? stream)
     - asyc
       - Task\<MemoryStream\> ToStreamAsync\<TValue\>(TValue? value)
       - Task\<MemoryStream\> ToStreamAsync(Type type, object? value)
-      - Task PackAsync\<TValue\>(TValue? value, Stream stream)
-      - Task PackAsync(Type type, object? value, Stream stream)
-      - Task\<TValue?\> FromStreamAsync\<TValue\>(Stream stream)
-      - Task\<object?\> FromStreamAsync(Type type, Stream stream)
+      - Task PackAsync\<TValue\>(TValue? value, Stream? stream)
+      - Task PackAsync(Type type, object? value, Stream? stream)
+      - Task\<TValue?\> FromStreamAsync\<TValue\>(Stream? stream)
+      - Task\<object?\> FromStreamAsync(Type type, Stream? stream)
   - bytes
     - byte[] ToBytes\<TValue\>(TValue? value)
     - byte[] ToBytes(Type type, object? value)
-    - TValue? FromBytes\<TValue\>(byte[] bytes)
-    - object? FromBytes(Type type, byte[] bytes)
+    - TValue? FromBytes\<TValue\>(byte[]? bytes)
+    - object? FromBytes(Type type, byte[]? bytes)
   - text
     - json
       - string ToJson\<TValue\>(TValue? value)
       - string ToJson(Type type, object? value)
-      - TValue? FromJson\<TValue\>(string json)
-      - object? FromJson(Type type, string json)
+      - TValue? FromJson\<TValue\>(string? json)
+      - object? FromJson(Type type, string? json)
     - xml
       - string ToXml\<TValue\>(TValue? value)
       - string ToXml(Type type, object? value)
-      - TValue? FromXml\<TValue\>(string xml)
-      - object? FromXml(Type type, string xml)
+      - TValue? FromXml\<TValue\>(string? xml)
+      - object? FromXml(Type type, string? xml)
 - Extensions
 Supply Extension methods base by Helper. Also it supports generic type and non-generic type.
   - Bytes
@@ -50,13 +50,30 @@ Supply Extension methods base by Helper. Also it supports generic type and non-g
   - Object
     - PackTo
     - ToBytes
-    - ToJson
+    - ToJson/ToXml
     - ToStream
   - Stream
     - FromStream
     - PackBy
   - String
     - FromJson/FromXml
+- Serializer
+The Zaabee technology stacks uses this class to serialize and deserialize. It will return Array.Empty\<byte\>()/string.Empty/Stream.Null if the value is null.
+  - Stream
+    - stream ToStream\<TValue\>(TValue? value)
+    - TValue? FromStream\<TValue\>(Stream? stream)
+    - stream ToStream(Type type, object? value)
+    - object? FromStream(Type type, Stream? stream)
+  - Bytes
+    - byte[] ToBytes\<TValue\>(TValue? value)
+    - TValue? FromBytes\<TValue\>(byte[]? bytes)
+    - byte[] ToBytes(Type type, object? value)
+    - object? FromBytes(Type type, byte[]? bytes)
+  - Text
+    - string ToText\<TValue\>(TValue? value)
+    - TValue? FromText\<TValue\>(string? text)
+    - string ToText(Type type, object? value)
+    - object? FromText(Type type, string? text)
 
 ## Getting Started
 

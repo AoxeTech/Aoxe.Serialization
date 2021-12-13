@@ -8,62 +8,62 @@ public class Serializer : ITextSerializer
     public Serializer(JsonSerializerSettings? settings = null, Encoding? encoding = null) =>
         (_settings, _encoding) = (settings, encoding);
 
-    public byte[] SerializeToBytes<TValue>(TValue? value) =>
+    public byte[] ToBytes<TValue>(TValue? value) =>
         value is null
             ? Array.Empty<byte>()
             : NewtonsoftJsonHelper.ToBytes(value, _settings, _encoding);
 
-    public byte[] SerializeToBytes(Type type, object? value) =>
+    public byte[] ToBytes(Type type, object? value) =>
         value is null
             ? Array.Empty<byte>()
             : NewtonsoftJsonHelper.ToBytes(type, value, _settings, _encoding);
 
-    public TValue? DeserializeFromBytes<TValue>(byte[]? bytes) =>
+    public TValue? FromBytes<TValue>(byte[]? bytes) =>
         bytes.IsNullOrEmpty()
             ? default
             : NewtonsoftJsonHelper.FromBytes<TValue>(bytes!, _settings, _encoding);
 
-    public object? DeserializeFromBytes(Type type, byte[]? bytes) =>
+    public object? FromBytes(Type type, byte[]? bytes) =>
         bytes.IsNullOrEmpty()
             ? default
             : NewtonsoftJsonHelper.FromBytes(type, bytes!, _settings, _encoding);
 
-    public string SerializeToString<TValue>(TValue? value) =>
+    public string ToText<TValue>(TValue? value) =>
         value is null
             ? string.Empty
             : NewtonsoftJsonHelper.ToJson(value, _settings);
 
-    public string SerializeToString(Type type, object? value) =>
+    public string ToText(Type type, object? value) =>
         value is null
             ? string.Empty
             : NewtonsoftJsonHelper.ToJson(type, value, _settings);
 
-    public TValue? DeserializeFromString<TValue>(string? text) =>
+    public TValue? FromText<TValue>(string? text) =>
         string.IsNullOrWhiteSpace(text)
             ? default
-            : NewtonsoftJsonHelper.FromJson<TValue>(text!, _settings);
+            : NewtonsoftJsonHelper.FromJson<TValue>(text, _settings);
 
-    public object? DeserializeFromString(Type type, string? text) =>
+    public object? FromText(Type type, string? text) =>
         string.IsNullOrWhiteSpace(text)
             ? default
-            : NewtonsoftJsonHelper.FromJson(type, text!, _settings);
+            : NewtonsoftJsonHelper.FromJson(type, text, _settings);
 
-    public Stream SerializeToStream<TValue>(TValue? value) =>
+    public Stream ToStream<TValue>(TValue? value) =>
         value is null
             ? Stream.Null
             : NewtonsoftJsonHelper.ToStream(value, _settings, _encoding);
 
-    public Stream SerializeToStream(Type type, object? value) =>
+    public Stream ToStream(Type type, object? value) =>
         value is null
             ? Stream.Null
             : NewtonsoftJsonHelper.ToStream(type, value, _settings, _encoding);
 
-    public TValue? DeserializeFromStream<TValue>(Stream? stream) =>
+    public TValue? FromStream<TValue>(Stream? stream) =>
         stream.IsNullOrEmpty()
             ? default
             : NewtonsoftJsonHelper.FromStream<TValue>(stream, _settings, _encoding);
 
-    public object? DeserializeFromStream(Type type, Stream? stream) =>
+    public object? FromStream(Type type, Stream? stream) =>
         stream.IsNullOrEmpty()
             ? default
             : NewtonsoftJsonHelper.FromStream(type, stream, _settings, _encoding);

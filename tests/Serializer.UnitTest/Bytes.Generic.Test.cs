@@ -85,8 +85,8 @@ public partial class SerializerTest
     private static void BytesGenericTest(IBytesSerializer serializer)
     {
         var model = TestModelFactory.Create();
-        var bytes = serializer.SerializeToBytes(model);
-        var deserializeModel = serializer.DeserializeFromBytes<TestModel>(bytes)!;
+        var bytes = serializer.ToBytes(model);
+        var deserializeModel = serializer.FromBytes<TestModel>(bytes)!;
 
         Assert.Equal(
             Tuple.Create(model.Id, model.Age, model.CreateTime, model.Name, model.Gender),
@@ -97,9 +97,9 @@ public partial class SerializerTest
     private static void BytesGenericNullTest(IBytesSerializer serializer)
     {
         TestModel? model = null;
-        var bytes = serializer.SerializeToBytes(model);
+        var bytes = serializer.ToBytes(model);
         Assert.Empty(bytes);
-        var deserializeModel = serializer.DeserializeFromBytes<TestModel>(null);
+        var deserializeModel = serializer.FromBytes<TestModel>(null);
         Assert.Null(deserializeModel);
     }
 }

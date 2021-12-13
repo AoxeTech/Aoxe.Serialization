@@ -86,8 +86,8 @@ public partial class SerializerTest
     {
         var model = TestModelFactory.Create();
         var type = typeof(TestModel);
-        var bytes = serializer.SerializeToBytes(type, model);
-        var deserializeModel = (TestModel)serializer.DeserializeFromBytes(type, bytes)!;
+        var bytes = serializer.ToBytes(type, model);
+        var deserializeModel = (TestModel)serializer.FromBytes(type, bytes)!;
 
         Assert.Equal(
             Tuple.Create(model.Id, model.Age, model.CreateTime, model.Name, model.Gender),
@@ -98,9 +98,9 @@ public partial class SerializerTest
     private static void BytesNonGenericNullTest(IBytesSerializer serializer)
     {
         var type = typeof(TestModel);
-        var bytes = serializer.SerializeToBytes(type, null);
+        var bytes = serializer.ToBytes(type, null);
         Assert.Empty(bytes);
-        var deserializeModel = serializer.DeserializeFromBytes(type, null);
+        var deserializeModel = serializer.FromBytes(type, null);
         Assert.Null(deserializeModel);
     }
 }

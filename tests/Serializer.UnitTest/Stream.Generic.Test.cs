@@ -85,8 +85,8 @@ public partial class SerializerTest
     private static void StreamGenericTest(IStreamSerializer serializer)
     {
         var model = TestModelFactory.Create();
-        var stream = serializer.SerializeToStream(model);
-        var deserializeModel = serializer.DeserializeFromStream<TestModel>(stream)!;
+        var stream = serializer.ToStream(model);
+        var deserializeModel = serializer.FromStream<TestModel>(stream)!;
 
         Assert.Equal(
             Tuple.Create(model.Id, model.Age, model.CreateTime, model.Name, model.Gender),
@@ -97,9 +97,9 @@ public partial class SerializerTest
     private static void StreamGenericNullTest(IStreamSerializer serializer)
     {
         TestModel? model = null;
-        var stream = serializer.SerializeToStream(model);
+        var stream = serializer.ToStream(model);
         Assert.Equal(0, stream.Length);
-        var deserializeModel = serializer.DeserializeFromStream<TestModel>(null);
+        var deserializeModel = serializer.FromStream<TestModel>(null);
         Assert.Null(deserializeModel);
     }
 }

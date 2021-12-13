@@ -8,7 +8,7 @@ public interface ITextSerializer : IBytesSerializer
     /// <param name="value"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    string SerializeToString<TValue>(TValue? value);
+    string ToText<TValue>(TValue? value);
 
     /// <summary>
     /// If the text is null or white space must return the default value of T.
@@ -16,7 +16,7 @@ public interface ITextSerializer : IBytesSerializer
     /// <param name="text"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    TValue? DeserializeFromString<TValue>(string? text);
+    TValue? FromText<TValue>(string? text);
 
     /// <summary>
     /// If the value is null must return a string.Empty.
@@ -24,7 +24,7 @@ public interface ITextSerializer : IBytesSerializer
     /// <param name="type"></param>
     /// <param name="value"></param>
     /// <returns></returns>
-    string SerializeToString(Type type, object? value);
+    string ToText(Type type, object? value);
 
     /// <summary>
     /// If the string is null or white space must return the default value of the type.
@@ -32,5 +32,5 @@ public interface ITextSerializer : IBytesSerializer
     /// <param name="type"></param>
     /// <param name="text"></param>
     /// <returns></returns>
-    object? DeserializeFromString(Type type, string? text);
+    object? FromText(Type type, string? text);
 }

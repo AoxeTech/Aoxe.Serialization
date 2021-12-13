@@ -2,62 +2,62 @@ namespace Zaabee.Xml;
 
 public class Serializer : ITextSerializer
 {
-    public byte[] SerializeToBytes<TValue>(TValue? value) =>
+    public byte[] ToBytes<TValue>(TValue? value) =>
         value is null
             ? Array.Empty<byte>()
             : XmlHelper.ToBytes(value);
 
-    public byte[] SerializeToBytes(Type type, object? value) =>
+    public byte[] ToBytes(Type type, object? value) =>
         value is null
             ? Array.Empty<byte>()
             : XmlHelper.ToBytes(type, value);
 
-    public TValue? DeserializeFromBytes<TValue>(byte[]? bytes) =>
+    public TValue? FromBytes<TValue>(byte[]? bytes) =>
         bytes.IsNullOrEmpty()
             ? default
             : XmlHelper.FromBytes<TValue>(bytes!);
 
-    public object? DeserializeFromBytes(Type type, byte[]? bytes) =>
+    public object? FromBytes(Type type, byte[]? bytes) =>
         bytes.IsNullOrEmpty()
             ? default
             : XmlHelper.FromBytes(type, bytes!);
 
-    public string SerializeToString<TValue>(TValue? value) =>
+    public string ToText<TValue>(TValue? value) =>
         value is null
             ? string.Empty
             : XmlHelper.ToXml(value);
 
-    public string SerializeToString(Type type, object? value) =>
+    public string ToText(Type type, object? value) =>
         value is null
             ? string.Empty
             : XmlHelper.ToXml(type, value);
 
-    public TValue? DeserializeFromString<TValue>(string? text) =>
+    public TValue? FromText<TValue>(string? text) =>
         string.IsNullOrWhiteSpace(text)
             ? default
-            : XmlHelper.FromXml<TValue>(text!);
+            : XmlHelper.FromXml<TValue>(text);
 
-    public object? DeserializeFromString(Type type, string? text) =>
+    public object? FromText(Type type, string? text) =>
         string.IsNullOrWhiteSpace(text)
             ? default
-            : XmlHelper.FromXml(type, text!);
+            : XmlHelper.FromXml(type, text);
 
-    public Stream SerializeToStream<TValue>(TValue? value) =>
+    public Stream ToStream<TValue>(TValue? value) =>
         value is null
             ? Stream.Null
             : XmlHelper.ToStream(value);
 
-    public Stream SerializeToStream(Type type, object? value) =>
+    public Stream ToStream(Type type, object? value) =>
         value is null
             ? Stream.Null
             : XmlHelper.ToStream(type, value);
 
-    public TValue? DeserializeFromStream<TValue>(Stream? stream) =>
+    public TValue? FromStream<TValue>(Stream? stream) =>
         stream.IsNullOrEmpty()
             ? default
             : XmlHelper.FromStream<TValue>(stream!);
 
-    public object? DeserializeFromStream(Type type, Stream? stream) =>
+    public object? FromStream(Type type, Stream? stream) =>
         stream.IsNullOrEmpty()
             ? default
             : XmlHelper.FromStream(type, stream!);

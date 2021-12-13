@@ -8,7 +8,7 @@ public interface IBytesSerializer : IStreamSerializer
     /// <param name="value"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    byte[] SerializeToBytes<TValue>(TValue? value);
+    byte[] ToBytes<TValue>(TValue? value);
 
     /// <summary>
     /// If the bytes is null or empty must return the default value of T.
@@ -16,7 +16,7 @@ public interface IBytesSerializer : IStreamSerializer
     /// <param name="bytes"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    TValue? DeserializeFromBytes<TValue>(byte[]? bytes);
+    TValue? FromBytes<TValue>(byte[]? bytes);
 
     /// <summary>
     /// If the value is null must return empty bytes.
@@ -24,7 +24,7 @@ public interface IBytesSerializer : IStreamSerializer
     /// <param name="type"></param>
     /// <param name="value"></param>
     /// <returns></returns>
-    byte[] SerializeToBytes(Type type, object? value);
+    byte[] ToBytes(Type type, object? value);
 
     /// <summary>
     /// If the bytes is null or empty must return the default value of the type.
@@ -32,5 +32,5 @@ public interface IBytesSerializer : IStreamSerializer
     /// <param name="type"></param>
     /// <param name="bytes"></param>
     /// <returns></returns>
-    object? DeserializeFromBytes(Type type, byte[]? bytes);
+    object? FromBytes(Type type, byte[]? bytes);
 }

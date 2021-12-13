@@ -2,42 +2,42 @@ namespace Zaabee.ZeroFormatter;
 
 public class Serializer : IBytesSerializer
 {
-    public byte[] SerializeToBytes<TValue>(TValue? value) =>
+    public byte[] ToBytes<TValue>(TValue? value) =>
         value is null
             ? Array.Empty<byte>()
             : ZeroFormatterHelper.ToBytes(value);
 
-    public byte[] SerializeToBytes(Type type, object? value) =>
+    public byte[] ToBytes(Type type, object? value) =>
         value is null
             ? Array.Empty<byte>()
             : ZeroFormatterHelper.ToBytes(type, value);
 
-    public TValue? DeserializeFromBytes<TValue>(byte[]? bytes) =>
+    public TValue? FromBytes<TValue>(byte[]? bytes) =>
         bytes.IsNullOrEmpty()
             ? default
             : ZeroFormatterHelper.FromBytes<TValue>(bytes!);
 
-    public object? DeserializeFromBytes(Type type, byte[]? bytes) =>
+    public object? FromBytes(Type type, byte[]? bytes) =>
         bytes.IsNullOrEmpty()
             ? default
             : ZeroFormatterHelper.FromBytes(type, bytes!);
 
-    public Stream SerializeToStream<TValue>(TValue? value) =>
+    public Stream ToStream<TValue>(TValue? value) =>
         value is null
             ? Stream.Null
             : ZeroFormatterHelper.ToStream(value);
 
-    public Stream SerializeToStream(Type type, object? value) =>
+    public Stream ToStream(Type type, object? value) =>
         value is null
             ? Stream.Null
             : ZeroFormatterHelper.ToStream(type, value);
 
-    public TValue? DeserializeFromStream<TValue>(Stream? stream) =>
+    public TValue? FromStream<TValue>(Stream? stream) =>
         stream.IsNullOrEmpty()
             ? default
             : ZeroFormatterHelper.FromStream<TValue>(stream);
 
-    public object? DeserializeFromStream(Type type, Stream? stream) =>
+    public object? FromStream(Type type, Stream? stream) =>
         stream.IsNullOrEmpty()
             ? default
             : ZeroFormatterHelper.FromStream(type, stream);

@@ -47,8 +47,8 @@ public partial class SerializerTest
     private static void StringGenericTest(ITextSerializer serializer)
     {
         var model = TestModelFactory.Create();
-        var bytes = serializer.SerializeToString(model);
-        var deserializeModel = serializer.DeserializeFromString<TestModel>(bytes)!;
+        var bytes = serializer.ToText(model);
+        var deserializeModel = serializer.FromText<TestModel>(bytes)!;
 
         Assert.Equal(
             Tuple.Create(model.Id, model.Age, model.CreateTime, model.Name, model.Gender),
@@ -59,9 +59,9 @@ public partial class SerializerTest
     private static void StringGenericNullTest(ITextSerializer serializer)
     {
         TestModel? model = null;
-        var text = serializer.SerializeToString(model);
+        var text = serializer.ToText(model);
         Assert.Empty(text);
-        var deserializeModel = serializer.DeserializeFromString<TestModel>(null);
+        var deserializeModel = serializer.FromText<TestModel>(null);
         Assert.Null(deserializeModel);
     }
 }
