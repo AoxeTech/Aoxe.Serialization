@@ -1,9 +1,9 @@
-namespace Zaabee.Binary.UnitTest;
+namespace Zaabee.ZeroFormatter.UnitTest;
 
 public partial class BinaryExtensionsUnitTest
 {
     [Fact]
-    public void ExtensionsStreamNonGenericTest()
+    public void ExtensionsStreamTest()
     {
         var testModel = TestModelFactory.Create();
 
@@ -13,9 +13,9 @@ public partial class BinaryExtensionsUnitTest
         var stream3 = new MemoryStream();
         stream3.PackBy(testModel);
 
-        var unPackResult1 = (TestModel)stream1.FromStream()!;
-        var unPackResult2 = (TestModel)stream2.FromStream()!;
-        var unPackResult3 = (TestModel)stream3.FromStream()!;
+        var unPackResult1 = stream1.FromStream<TestModel>()!;
+        var unPackResult2 = stream2.FromStream<TestModel>()!;
+        var unPackResult3 = stream3.FromStream<TestModel>()!;
 
         Assert.Equal(
             Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
@@ -32,34 +32,32 @@ public partial class BinaryExtensionsUnitTest
     }
 
     [Fact]
-    public void ExtensionsToStreamNonGenericNullTest()
+    public void ExtensionsToStreamNullTest()
     {
         TestModel? nullValue = null;
-        Assert.Equal(0, nullValue.ToStream().Length);
+        var stream = nullValue.ToStream();
     }
 
     [Fact]
-    public void ExtensionsPackToNonGenericNullTest()
+    public void ExtensionsPackToNullTest()
     {
         TestModel? nullValue = null;
         var stream = new MemoryStream();
-        nullValue.PackTo(stream);
-        Assert.Equal(0, stream.Length);
+        nullValue.PackTo(typeof(TestModel), stream);
     }
 
     [Fact]
-    public void ExtensionsPackByNonGenericNullTest()
+    public void ExtensionsPackByNullTest()
     {
         TestModel? nullValue = null;
         var stream = new MemoryStream();
         stream.PackBy(nullValue);
-        Assert.Equal(0, stream.Length);
     }
 
     [Fact]
-    public void ExtensionsUnpackNonGenericNullTest()
+    public void ExtensionsUnpackNullTest()
     {
         MemoryStream? nullStream = null;
-        Assert.Null(nullStream.FromStream());
+        Assert.Null(nullStream.FromStream<TestModel>());
     }
 }

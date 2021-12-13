@@ -6,8 +6,8 @@ public partial class BinaryHelperUnitTest
     public void HelperStreamTest()
     {
         var testModel = TestModelFactory.Create();
-        var stream = BinaryHelper.ToStream(testModel);
-        var unPackResult = stream.FromStream<TestModel>();
+        var stream = testModel.ToStream();
+        var unPackResult = stream.FromStream<TestModel>()!;
 
         Assert.Equal(
             Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),

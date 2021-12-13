@@ -1,4 +1,4 @@
-namespace Zaabee.Binary.UnitTest;
+namespace Zaabee.ZeroFormatter.UnitTest;
 
 public partial class BinaryExtensionsUnitTest
 {
@@ -7,15 +7,15 @@ public partial class BinaryExtensionsUnitTest
     {
         var testModel = TestModelFactory.Create();
 
-        var stream1 = testModel.ToStream();
+        var stream1 = testModel.ToStream(typeof(TestModel));
         var stream2 = new MemoryStream();
-        testModel.PackTo(stream2);
+        testModel.PackTo(typeof(TestModel), stream2);
         var stream3 = new MemoryStream();
-        stream3.PackBy(testModel);
+        stream3.PackBy(typeof(TestModel), testModel);
 
-        var unPackResult1 = (TestModel)stream1.FromStream()!;
-        var unPackResult2 = (TestModel)stream2.FromStream()!;
-        var unPackResult3 = (TestModel)stream3.FromStream()!;
+        var unPackResult1 = (TestModel)stream1.FromStream(typeof(TestModel))!;
+        var unPackResult2 = (TestModel)stream2.FromStream(typeof(TestModel))!;
+        var unPackResult3 = (TestModel)stream3.FromStream(typeof(TestModel))!;
 
         Assert.Equal(
             Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
@@ -35,7 +35,7 @@ public partial class BinaryExtensionsUnitTest
     public void ExtensionsToStreamNonGenericNullTest()
     {
         TestModel? nullValue = null;
-        Assert.Equal(0, nullValue.ToStream().Length);
+        var stream = nullValue.ToStream(typeof(TestModel));
     }
 
     [Fact]
@@ -43,8 +43,7 @@ public partial class BinaryExtensionsUnitTest
     {
         TestModel? nullValue = null;
         var stream = new MemoryStream();
-        nullValue.PackTo(stream);
-        Assert.Equal(0, stream.Length);
+        nullValue.PackTo(typeof(TestModel), stream);
     }
 
     [Fact]
@@ -52,14 +51,13 @@ public partial class BinaryExtensionsUnitTest
     {
         TestModel? nullValue = null;
         var stream = new MemoryStream();
-        stream.PackBy(nullValue);
-        Assert.Equal(0, stream.Length);
+        stream.PackBy(typeof(TestModel), nullValue);
     }
 
     [Fact]
     public void ExtensionsUnpackNonGenericNullTest()
     {
         MemoryStream? nullStream = null;
-        Assert.Null(nullStream.FromStream());
+        Assert.Null(nullStream.FromStream(typeof(TestModel)));
     }
 }

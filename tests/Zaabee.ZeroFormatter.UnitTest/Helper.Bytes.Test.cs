@@ -1,15 +1,13 @@
-namespace Zaabee.Binary.UnitTest;
+namespace Zaabee.ZeroFormatter.UnitTest;
 
-[ObsoleteAttribute(@"BinaryFormatter serialization is obsolete and should not be used.
- See https://aka.ms/binaryformatter for more information.")]
 public partial class BinaryHelperUnitTest
 {
     [Fact]
     public void HelperBytesTest()
     {
         var testModel = TestModelFactory.Create();
-        var bytes = testModel.ToBytes();
-        var result = (TestModel)BinaryHelper.FromBytes(bytes)!;
+        var bytes = ZeroFormatterHelper.ToBytes(testModel);
+        var result = (TestModel)ZeroFormatterHelper.FromBytes(typeof(TestModel), bytes)!;
         Assert.Equal(
             Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
             Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
@@ -18,12 +16,12 @@ public partial class BinaryHelperUnitTest
     [Fact]
     public void HelperSerializeNullTest()
     {
-        Assert.Empty(BinaryHelper.ToBytes(null));
+        var bytes = ZeroFormatterHelper.ToBytes(typeof(TestModel), null);
     }
 
     [Fact]
     public void HelperDeserializeNullTest()
     {
-        Assert.Null(BinaryHelper.FromBytes<TestModel>(null));
+        Assert.Null(ZeroFormatterHelper.FromBytes<TestModel>(null));
     }
 }
