@@ -18,11 +18,9 @@ namespace Zaabee.MsgPack.UnitTest
             await testModel.PackToAsync(stream0);
             var stream1 = new FileStream(".\\StreamTest1",FileMode.Create);
             await stream1.PackByAsync(testModel);
-            var stream2 = await testModel.ToStreamAsync();
 
             var unPackResult0 = await stream0.FromStreamAsync<TestModel>();
             var unPackResult1 = await stream1.FromStreamAsync<TestModel>();
-            var unPackResult2 = await stream2.FromStreamAsync<TestModel>();
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
@@ -32,15 +30,11 @@ namespace Zaabee.MsgPack.UnitTest
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
                 Tuple.Create(unPackResult1.Id, unPackResult1.Age, unPackResult1.CreateTime, unPackResult1.Name,
                     unPackResult1.Gender));
-            Assert.Equal(
-                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-                Tuple.Create(unPackResult2.Id, unPackResult2.Age, unPackResult2.CreateTime, unPackResult2.Name,
-                    unPackResult2.Gender));
 
             object nullModel = null;
             Stream nullMs = null;
             await nullModel.PackToAsync(nullMs);
-            Assert.True((await nullModel.ToStreamAsync()).ToArray().IsNullOrEmpty());
+            Assert.True(nullModel.ToStream().ToArray().IsNullOrEmpty());
         }
     }
 }

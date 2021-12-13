@@ -6,9 +6,31 @@
 
 The wraps and extensions for serializers. It is also the serializer provider for all Zaabee technology stacks.
 
-## Project meaning
+## Purpose
 
 There are many different serializers in the world, they have different features and limitations. This project allows you to use difference serializers in the same way. Also it set nullable and default value for all serializers.
+
+Serializers can be divided into two categories:
+
+- Binary serializers
+  - BinaryFormatter
+  - MessagePack
+  - MsgPack.Cli
+  - protobuf-net
+  - ZeroFormatter
+- Text serializers
+  - Json
+    - Jil
+    - Newtonsoft.Json
+    - System.Text.Json
+    - Utf8Json
+  - Xml
+    - XmlSerializer
+    - DataContractSerializer
+
+Though some old serializers does not support stream, the modern serializers do, so all zaabee serializers can use them. And the text serializers support text on this base.
+
+## Explain
 
 - Helper
 Unified code style and provide lack of features. The default enconding is UTF-8.
@@ -21,8 +43,6 @@ Unified code style and provide lack of features. The default enconding is UTF-8.
       - TValue? FromStream\<TValue\>(Stream? stream)
       - object? FromStream(Type type, Stream? stream)
     - asyc
-      - Task\<MemoryStream\> ToStreamAsync\<TValue\>(TValue? value)
-      - Task\<MemoryStream\> ToStreamAsync(Type type, object? value)
       - Task PackAsync\<TValue\>(TValue? value, Stream? stream)
       - Task PackAsync(Type type, object? value, Stream? stream)
       - Task\<TValue?\> FromStreamAsync\<TValue\>(Stream? stream)
@@ -58,7 +78,7 @@ Supply Extension methods base by Helper. Also it supports generic type and non-g
   - String
     - FromJson/FromXml
 - Serializer
-The Zaabee technology stacks uses this class to serialize and deserialize. It will return Array.Empty\<byte\>()/string.Empty/Stream.Null if the value is null.
+Implement Zaabee.Serializer.Abstractions, The Zaabee technology stacks uses this class to serialize and deserialize. It will return Array.Empty\<byte\>()/string.Empty/Stream.Null if the value is null.
   - Stream
     - stream ToStream\<TValue\>(TValue? value)
     - TValue? FromStream\<TValue\>(Stream? stream)

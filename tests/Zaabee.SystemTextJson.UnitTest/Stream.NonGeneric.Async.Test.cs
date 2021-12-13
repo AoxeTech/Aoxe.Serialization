@@ -18,27 +18,17 @@ namespace Zaabee.SystemTextJson.UnitTest
             Stream nullMs = null;
             await nullModel.PackToAsync(type, nullMs);
             await nullMs.PackByAsync(type, nullModel);
-            var emptyStream = await nullModel.ToStreamAsync();
-            Assert.True(emptyStream.IsNullOrEmpty());
-            nullModel = await emptyStream.FromStreamAsync(type);
             Assert.Null(nullModel);
             
             object testModel = TestModelFactory.Create();
 
-            var stream0 = await testModel.ToStreamAsync(type);
             var stream1 = new FileStream(".\\StreamNonGenericTest1", FileMode.Create);
             await testModel.PackToAsync(type, stream1);
             var stream2 = new MemoryStream();
             await stream2.PackByAsync(type, testModel);
 
-            var unPackResult0 = (TestModel) await stream0.FromStreamAsync(type);
             var unPackResult1 = (TestModel) await stream1.FromStreamAsync(type);
 
-            Assert.Equal(
-                Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
-                    ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),
-                Tuple.Create(unPackResult0.Id, unPackResult0.Age, unPackResult0.CreateTime, unPackResult0.Name,
-                    unPackResult0.Gender));
             Assert.Equal(
                 Tuple.Create(((TestModel) testModel).Id, ((TestModel) testModel).Age,
                     ((TestModel) testModel).CreateTime, ((TestModel) testModel).Name, ((TestModel) testModel).Gender),

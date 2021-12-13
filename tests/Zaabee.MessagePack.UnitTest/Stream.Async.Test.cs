@@ -25,17 +25,11 @@ namespace Zaabee.MessagePack.UnitTest
             var stream3 = new FileStream(".\\StreamTest3", FileMode.Create);
             await stream3.PackByAsync(type, testModel);
 
-            var stream4 = await testModel.ToStreamAsync();
-            var stream5 = await testModel.ToStreamAsync(type);
-
             var unPackResult0 = await stream0.FromStreamAsync<TestModel>();
             var unPackResult1 = await stream1.FromStreamAsync<TestModel>();
 
             var unPackResult2 = (TestModel)await stream2.FromStreamAsync(type);
             var unPackResult3 = (TestModel)await stream3.FromStreamAsync(type);
-
-            var unPackResult4 = await stream4.FromStreamAsync<TestModel>();
-            var unPackResult5 = (TestModel)await stream5.FromStreamAsync(type);
 
             Assert.Equal(
                 Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
@@ -55,19 +49,10 @@ namespace Zaabee.MessagePack.UnitTest
                 Tuple.Create(unPackResult3.Id, unPackResult3.Age, unPackResult3.CreateTime, unPackResult3.Name,
                     unPackResult3.Gender));
 
-            Assert.Equal(
-                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-                Tuple.Create(unPackResult4.Id, unPackResult4.Age, unPackResult4.CreateTime, unPackResult4.Name,
-                    unPackResult4.Gender));
-            Assert.Equal(
-                Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-                Tuple.Create(unPackResult5.Id, unPackResult5.Age, unPackResult5.CreateTime, unPackResult5.Name,
-                    unPackResult5.Gender));
-
             object nullModel = null;
             Stream nullMs = null;
             await nullModel.PackToAsync(nullMs);
-            Assert.True((await nullModel.ToStreamAsync()).IsNullOrEmpty());
+            Assert.True(nullModel.ToStream().IsNullOrEmpty());
         }
     }
 }
