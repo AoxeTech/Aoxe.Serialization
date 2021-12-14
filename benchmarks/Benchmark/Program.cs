@@ -1,19 +1,15 @@
-﻿using System;
-using BenchmarkDotNet.Running;
+﻿namespace Benchmark;
 
-namespace Benchmark
+class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        var assembly = typeof(TestModel).Assembly;
+        var summaries = BenchmarkRunner.Run(assembly);
+        foreach (var summary in summaries)
         {
-            var assembly = typeof(TestModel).Assembly;
-            var summaries = BenchmarkRunner.Run(assembly);
-            foreach (var summary in summaries)
-            {
-                Console.WriteLine(summary.ResultsDirectoryPath);
-                Console.WriteLine(string.Join("\r\n", summary.Reports));
-            }
+            Console.WriteLine(summary.ResultsDirectoryPath);
+            Console.WriteLine(string.Join("\r\n", summary.Reports));
         }
     }
 }
