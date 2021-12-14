@@ -8,13 +8,14 @@ public static partial class NewtonsoftJsonHelper
     /// <param name="stream"></param>
     /// <param name="settings"></param>
     /// <param name="encoding"></param>
+    /// <param name="cancellationToken"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
     public static async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, JsonSerializerSettings? settings = null,
-        Encoding? encoding = null) =>
+        Encoding? encoding = null, CancellationToken cancellationToken = default) =>
         stream.IsNullOrEmpty()
             ? default
-            : (TValue?)await FromStreamAsync(typeof(TValue), stream, settings, encoding);
+            : (TValue?)await FromStreamAsync(typeof(TValue), stream, settings, encoding, cancellationToken);
 
     /// <summary>
     /// Read the stream to bytes asynchronously, encode it to string and deserialize it.
@@ -23,12 +24,14 @@ public static partial class NewtonsoftJsonHelper
     /// <param name="stream"></param>
     /// <param name="settings"></param>
     /// <param name="encoding"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
     public static async Task<object?> FromStreamAsync(Type type, Stream? stream,
-        JsonSerializerSettings? settings = null, Encoding? encoding = null)
+        JsonSerializerSettings? settings = null, Encoding? encoding = null,
+        CancellationToken cancellationToken = default)
     {
         if (stream.IsNullOrEmpty()) return default;
-        var result = FromJson(type, GetString(encoding, await stream.ReadToEndAsync()), settings);
+        var result = FromJson(type, GetString(encoding, await stream.ReadToEndAsync(cancellationToken)), settings);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
     }

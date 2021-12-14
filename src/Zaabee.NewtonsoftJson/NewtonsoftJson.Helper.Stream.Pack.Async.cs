@@ -9,13 +9,14 @@ public static partial class NewtonsoftJsonHelper
     /// <param name="stream"></param>
     /// <param name="settings"></param>
     /// <param name="encoding"></param>
+    /// <param name="cancellationToken"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
     public static async Task PackAsync<TValue>(TValue? value, Stream? stream, JsonSerializerSettings? settings = null,
-        Encoding? encoding = null)
+        Encoding? encoding = null, CancellationToken cancellationToken = default)
     {
         if (stream.IsNullOrEmpty()) return;
-        await ToBytes(value, settings, encoding).WriteToAsync(stream!, CancellationToken.None);
+        await ToBytes(value, settings, encoding).WriteToAsync(stream!, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
@@ -27,12 +28,14 @@ public static partial class NewtonsoftJsonHelper
     /// <param name="stream"></param>
     /// <param name="settings"></param>
     /// <param name="encoding"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task PackAsync(Type type, object? value, Stream? stream, JsonSerializerSettings? settings = null,
-        Encoding? encoding = null)
+    public static async Task PackAsync(Type type, object? value, Stream? stream,
+        JsonSerializerSettings? settings = null, Encoding? encoding = null,
+        CancellationToken cancellationToken = default)
     {
         if (stream.IsNullOrEmpty()) return;
-        await ToBytes(type, value, settings, encoding).WriteToAsync(stream!, CancellationToken.None);
+        await ToBytes(type, value, settings, encoding).WriteToAsync(stream!, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 }
