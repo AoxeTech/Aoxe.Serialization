@@ -58,6 +58,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.DataContractSerializ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.DataContractSerializer.UnitTest", "tests\Zaabee.DataContractSerializer.UnitTest\Zaabee.DataContractSerializer.UnitTest.csproj", "{0A2706EB-7967-48B2-915A-ABAC575BA81A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeTimer", "benchmarks\CodeTimer\CodeTimer.csproj", "{01CE259B-7653-427C-A92C-41600FBD068D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,6 +92,7 @@ Global
 		{FFCEA7ED-4D1F-4C7C-9F1C-7E838EA49997} = {27F442D2-123E-43B6-AC3A-EFCFF0B4C598}
 		{B2330C72-C1DB-44FB-BD58-21D849ECC919} = {788742B9-1878-4A60-B381-A60F4E43F907}
 		{0A2706EB-7967-48B2-915A-ABAC575BA81A} = {27F442D2-123E-43B6-AC3A-EFCFF0B4C598}
+		{01CE259B-7653-427C-A92C-41600FBD068D} = {90DB4B57-6A0D-41E0-91E4-1505A822AD16}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{DC489EBA-145D-4FEF-A6A8-D397A3BE8477}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -196,5 +199,9 @@ Global
 		{0A2706EB-7967-48B2-915A-ABAC575BA81A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A2706EB-7967-48B2-915A-ABAC575BA81A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A2706EB-7967-48B2-915A-ABAC575BA81A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01CE259B-7653-427C-A92C-41600FBD068D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01CE259B-7653-427C-A92C-41600FBD068D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01CE259B-7653-427C-A92C-41600FBD068D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01CE259B-7653-427C-A92C-41600FBD068D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

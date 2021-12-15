@@ -1,4 +1,4 @@
-namespace Benchmark;
+namespace CodeTimer;
 
 public enum Gender
 {
