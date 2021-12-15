@@ -10,7 +10,7 @@ public static partial class ProtobufHelper
     /// <typeparam name="TValue"></typeparam>
     public static void Pack<TValue>(TValue? value, Stream? stream)
     {
-        if (stream.IsNullOrEmpty()) return;
+        if (stream is null) return;
         TypeModel.Serialize(stream, value);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
@@ -22,7 +22,7 @@ public static partial class ProtobufHelper
     /// <param name="stream"></param>
     public static void Pack(object? value, Stream? stream)
     {
-        if (stream.IsNullOrEmpty()) return;
+        if (stream is null) return;
         TypeModel.Serialize(stream, value);
         stream.TrySeek(0, SeekOrigin.Begin);
     }

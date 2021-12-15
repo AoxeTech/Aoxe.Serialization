@@ -15,8 +15,8 @@ public static partial class NewtonsoftJsonHelper
     public static async Task PackAsync<TValue>(TValue? value, Stream? stream, JsonSerializerSettings? settings = null,
         Encoding? encoding = null, CancellationToken cancellationToken = default)
     {
-        if (stream.IsNullOrEmpty()) return;
-        await ToBytes(value, settings, encoding).WriteToAsync(stream!, cancellationToken);
+        if (stream is null) return;
+        await ToBytes(value, settings, encoding).WriteToAsync(stream, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
@@ -34,8 +34,8 @@ public static partial class NewtonsoftJsonHelper
         JsonSerializerSettings? settings = null, Encoding? encoding = null,
         CancellationToken cancellationToken = default)
     {
-        if (stream.IsNullOrEmpty()) return;
-        await ToBytes(type, value, settings, encoding).WriteToAsync(stream!, cancellationToken);
+        if (stream is null) return;
+        await ToBytes(type, value, settings, encoding).WriteToAsync(stream, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 }

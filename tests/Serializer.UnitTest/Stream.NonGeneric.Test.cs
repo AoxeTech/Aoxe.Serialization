@@ -5,6 +5,10 @@ public partial class SerializerTest
     [Fact]
     public void BinaryStreamNonGenericTest() =>
         StreamNonGenericTest(new Zaabee.Binary.Serializer());
+    
+    [Fact]
+    public void DataContractStreamNonGenericTest() =>
+        StreamNonGenericTest(new Zaabee.DataContractSerializer.Serializer());
 
     [Fact]
     public void JilStreamNonGenericTest() =>

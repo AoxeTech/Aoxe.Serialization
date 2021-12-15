@@ -13,8 +13,8 @@ public static partial class NewtonsoftJsonHelper
     public static void Pack<TValue>(TValue? value, Stream? stream, JsonSerializerSettings? settings = null,
         Encoding? encoding = null)
     {
-        if (stream.IsNullOrEmpty()) return;
-        ToBytes(value, settings, encoding).WriteTo(stream!);
+        if (stream is null) return;
+        ToBytes(value, settings, encoding).WriteTo(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
@@ -29,8 +29,8 @@ public static partial class NewtonsoftJsonHelper
     public static void Pack(Type type, object? value, Stream? stream, JsonSerializerSettings? settings = null,
         Encoding? encoding = null)
     {
-        if (stream.IsNullOrEmpty()) return;
-        ToBytes(type, value, settings, encoding).WriteTo(stream!);
+        if (stream is null) return;
+        ToBytes(type, value, settings, encoding).WriteTo(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 }

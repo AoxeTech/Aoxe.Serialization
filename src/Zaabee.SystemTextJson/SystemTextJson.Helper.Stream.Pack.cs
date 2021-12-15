@@ -11,8 +11,8 @@ public static partial class SystemTextJsonHelper
     /// <typeparam name="TValue"></typeparam>
     public static void Pack<TValue>(TValue? value, Stream? stream, JsonSerializerOptions? options = null)
     {
-        if (stream.IsNullOrEmpty()) return;
-        JsonSerializer.Serialize(stream!, value, options);
+        if (stream is null) return;
+        JsonSerializer.Serialize(stream, value, options);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
@@ -25,8 +25,8 @@ public static partial class SystemTextJsonHelper
     /// <param name="options"></param>
     public static void Pack(Type type, object? value, Stream? stream, JsonSerializerOptions? options = null)
     {
-        if (stream.IsNullOrEmpty()) return;
-        JsonSerializer.Serialize(stream!, value, type, options);
+        if (stream is null) return;
+        JsonSerializer.Serialize(stream, value, type, options);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 }

@@ -1,9 +1,11 @@
-using System.Linq.Expressions;
-
 namespace Serializer.UnitTest;
 
 public partial class SerializerTest
 {
+    [Fact]
+    public void DataContractStringGenericTest() =>
+        StringGenericTest(new Zaabee.DataContractSerializer.Serializer());
+    
     [Fact]
     public void JilStringGenericTest() =>
         StringGenericTest(new Zaabee.Jil.Serializer());

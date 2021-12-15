@@ -14,8 +14,8 @@ public static partial class SystemTextJsonHelper
     public static async Task PackAsync<TValue>(TValue? value, Stream? stream, JsonSerializerOptions? options = null,
         CancellationToken cancellationToken = default)
     {
-        if (stream.IsNullOrEmpty()) return;
-        await JsonSerializer.SerializeAsync(stream!, value, options, cancellationToken);
+        if (stream is null) return;
+        await JsonSerializer.SerializeAsync(stream, value, options, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
@@ -31,8 +31,8 @@ public static partial class SystemTextJsonHelper
     public static async Task PackAsync(Type type, object? value, Stream? stream, JsonSerializerOptions? options = null,
         CancellationToken cancellationToken = default)
     {
-        if (stream.IsNullOrEmpty()) return;
-        await JsonSerializer.SerializeAsync(stream!, value, type, options, cancellationToken);
+        if (stream is null) return;
+        await JsonSerializer.SerializeAsync(stream, value, type, options, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 }
