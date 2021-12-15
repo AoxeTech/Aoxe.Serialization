@@ -22,7 +22,8 @@ public static partial class ProtobufHelper
     /// <param name="stream"></param>
     public static void Pack(object? value, Stream? stream)
     {
-        if (stream is null) return;
+        // Cause the protobuf-net will run value.GetType() so this value can not be null.
+        if (value is null || stream is null) return;
         TypeModel.Serialize(stream, value);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
