@@ -2,7 +2,7 @@ namespace Serializer.UnitTest;
 
 public partial class SerializerTest
 {
-    [Fact]
+    [Fact, Obsolete]
     public void BinaryStreamGenericTest() =>
         StreamGenericTest(new Zaabee.Binary.Serializer());
     
@@ -46,7 +46,7 @@ public partial class SerializerTest
     public void ZeroFormatterStreamGenericTest() =>
         StreamGenericTest(new Zaabee.ZeroFormatter.Serializer());
 
-    [Fact]
+    [Fact, Obsolete]
     public void BinaryStreamGenericNullTest() =>
         StreamGenericNullTest(new Zaabee.Binary.Serializer());
 

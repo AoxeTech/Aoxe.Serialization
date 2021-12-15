@@ -1,4 +1,4 @@
-namespace Zaabee.ZeroFormatter.UnitTest;
+namespace Zaabee.Xml.UnitTest;
 
 public partial class ExtensionsTest
 {

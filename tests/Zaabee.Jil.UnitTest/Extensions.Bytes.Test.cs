@@ -1,4 +1,4 @@
-namespace Zaabee.ZeroFormatter.UnitTest;
+namespace Zaabee.Jil.UnitTest;
 
 public partial class ExtensionsTest
 {
@@ -25,7 +25,7 @@ public partial class ExtensionsTest
     public void NonGenericTypeBytesTest()
     {
         object testModel = TestModelFactory.Create();
-        var bytes = testModel.ToBytes(typeof(TestModel));
+        var bytes = testModel.ToBytes();
         var result = (TestModel)bytes.FromBytes(typeof(TestModel))!;
         Assert.Equal(
             Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
@@ -37,7 +37,7 @@ public partial class ExtensionsTest
     public void NonGenericTypeBytesNullTest()
     {
         object? nullModel = null;
-        var emptyBytes = nullModel.ToBytes(typeof(TestModel));
+        var emptyBytes = nullModel.ToBytes();
         Assert.Null(Array.Empty<byte>().FromBytes(typeof(TestModel)));
     }
 }

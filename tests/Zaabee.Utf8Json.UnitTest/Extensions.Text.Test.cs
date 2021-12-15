@@ -1,32 +1,32 @@
-namespace Zaabee.ZeroFormatter.UnitTest;
+namespace Zaabee.Utf8Json.UnitTest;
 
 public partial class ExtensionsTest
 {
     [Fact]
-    public void GenericTypeBytesTest()
+    public void GenericTypeJsonTest()
     {
         var testModel = TestModelFactory.Create();
-        var bytes = testModel.ToBytes();
-        var result = bytes.FromBytes<TestModel>()!;
+        var json = testModel.ToJson();
+        var result = json.FromJson<TestModel>()!;
         Assert.Equal(
             Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
             Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
     }
 
     [Fact]
-    public void GenericTypeBytesNullTest()
+    public void GenericTypeJsonNullTest()
     {
         TestModel? nullModel = null;
-        var emptyBytes = nullModel.ToBytes();
-        Assert.Null(Array.Empty<byte>().FromBytes<TestModel>());
+        var emptyJson = nullModel.ToJson();
+        Assert.Null(emptyJson.FromJson<TestModel>());
     }
 
     [Fact]
-    public void NonGenericTypeBytesTest()
+    public void NonGenericTypeJsonTest()
     {
         object testModel = TestModelFactory.Create();
-        var bytes = testModel.ToBytes(typeof(TestModel));
-        var result = (TestModel)bytes.FromBytes(typeof(TestModel))!;
+        var json = testModel.ToJson(typeof(TestModel));
+        var result = (TestModel)json.FromJson(typeof(TestModel))!;
         Assert.Equal(
             Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
                 ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
@@ -34,10 +34,10 @@ public partial class ExtensionsTest
     }
 
     [Fact]
-    public void NonGenericTypeBytesNullTest()
+    public void NonGenericTypeJsonNullTest()
     {
         object? nullModel = null;
-        var emptyBytes = nullModel.ToBytes(typeof(TestModel));
-        Assert.Null(Array.Empty<byte>().FromBytes(typeof(TestModel)));
+        var emptyJson = nullModel.ToJson(typeof(TestModel));
+        Assert.Null(emptyJson.FromJson(typeof(TestModel)));
     }
 }

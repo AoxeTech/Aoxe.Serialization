@@ -1,4 +1,4 @@
-namespace Zaabee.ZeroFormatter.UnitTest;
+namespace Zaabee.Protobuf.UnitTest;
 
 public partial class ExtensionsTest
 {
@@ -51,15 +51,15 @@ public partial class ExtensionsTest
     {
         object testModel = TestModelFactory.Create();
 
-        var stream0 = testModel.ToStream(typeof(TestModel));
+        var stream0 = testModel.ToStream();
         var result0 = (TestModel)stream0.FromStream(typeof(TestModel))!;
 
         var stream1 = new MemoryStream();
-        testModel.PackTo(typeof(TestModel), stream1);
+        testModel.PackTo(stream1);
         var result1 = (TestModel)stream1.FromStream(typeof(TestModel))!;
 
         var stream2 = new MemoryStream();
-        stream2.PackBy(typeof(TestModel), testModel);
+        stream2.PackBy(testModel);
         var result2 = (TestModel)stream2.FromStream(typeof(TestModel))!;
 
         Assert.Equal(
@@ -83,12 +83,12 @@ public partial class ExtensionsTest
     {
         object? nullModel = null;
 
-        var emptyStream = nullModel.ToStream(typeof(TestModel));
+        var emptyStream = nullModel.ToStream();
         Assert.Null(emptyStream.FromStream(typeof(TestModel)));
 
         MemoryStream? nullStream = null;
-        nullStream.PackBy(typeof(TestModel), nullModel);
-        nullModel.PackTo(typeof(TestModel), nullStream);
+        nullStream.PackBy(nullModel);
+        nullModel.PackTo(nullStream);
 
         Stream.Null.FromStream(typeof(TestModel));
     }

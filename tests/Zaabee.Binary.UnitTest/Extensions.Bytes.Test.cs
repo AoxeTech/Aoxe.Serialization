@@ -1,11 +1,9 @@
 namespace Zaabee.Binary.UnitTest;
 
-[ObsoleteAttribute(@"BinaryFormatter serialization is obsolete and should not be used.
- See https://aka.ms/binaryformatter for more information.")]
-public partial class BinaryExtensionsUnitTest
+public partial class ExtensionsTest
 {
     [Fact]
-    public void ExtensionsBytesTest()
+    public void GenericTypeBytesTest()
     {
         var testModel = TestModelFactory.Create();
         var bytes = testModel.ToBytes();
@@ -16,16 +14,30 @@ public partial class BinaryExtensionsUnitTest
     }
 
     [Fact]
-    public void ExtensionsSerializeNullTest()
+    public void GenericTypeBytesNullTest()
     {
-        TestModel? nullValue = null;
-        Assert.Empty(nullValue.ToBytes());
+        TestModel? nullModel = null;
+        var emptyBytes = nullModel.ToBytes();
+        Assert.Null(Array.Empty<byte>().FromBytes<TestModel>());
     }
 
     [Fact]
-    public void ExtensionsDeserializeNullTest()
+    public void NonGenericTypeBytesTest()
     {
-        byte[]? nullBytes = null;
-        Assert.Null(nullBytes.FromBytes<TestModel>());
+        object testModel = TestModelFactory.Create();
+        var bytes = testModel.ToBytes();
+        var result = (TestModel)bytes.FromBytes()!;
+        Assert.Equal(
+            Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
+                ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
+            Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+    }
+
+    [Fact]
+    public void NonGenericTypeBytesNullTest()
+    {
+        object? nullModel = null;
+        var emptyBytes = nullModel.ToBytes();
+        Assert.Null(emptyBytes.FromBytes());
     }
 }

@@ -1,32 +1,32 @@
-namespace Zaabee.ZeroFormatter.UnitTest;
+namespace Zaabee.Xml.UnitTest;
 
 public partial class ExtensionsTest
 {
     [Fact]
-    public void GenericTypeBytesTest()
+    public void GenericTypeXmlTest()
     {
         var testModel = TestModelFactory.Create();
-        var bytes = testModel.ToBytes();
-        var result = bytes.FromBytes<TestModel>()!;
+        var xml = testModel.ToXml();
+        var result = xml.FromXml<TestModel>()!;
         Assert.Equal(
             Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
             Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
     }
 
     [Fact]
-    public void GenericTypeBytesNullTest()
+    public void GenericTypeXmlNullTest()
     {
         TestModel? nullModel = null;
-        var emptyBytes = nullModel.ToBytes();
-        Assert.Null(Array.Empty<byte>().FromBytes<TestModel>());
+        var emptyXml = nullModel.ToXml();
+        Assert.Null(emptyXml.FromXml<TestModel>());
     }
 
     [Fact]
-    public void NonGenericTypeBytesTest()
+    public void NonGenericTypeXmlTest()
     {
         object testModel = TestModelFactory.Create();
-        var bytes = testModel.ToBytes(typeof(TestModel));
-        var result = (TestModel)bytes.FromBytes(typeof(TestModel))!;
+        var xml = testModel.ToXml(typeof(TestModel));
+        var result = (TestModel)xml.FromXml(typeof(TestModel))!;
         Assert.Equal(
             Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
                 ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
@@ -34,10 +34,10 @@ public partial class ExtensionsTest
     }
 
     [Fact]
-    public void NonGenericTypeBytesNullTest()
+    public void NonGenericTypeXmlNullTest()
     {
         object? nullModel = null;
-        var emptyBytes = nullModel.ToBytes(typeof(TestModel));
-        Assert.Null(Array.Empty<byte>().FromBytes(typeof(TestModel)));
+        var emptyXml = nullModel.ToXml(typeof(TestModel));
+        Assert.Null(emptyXml.FromXml(typeof(TestModel)));
     }
 }
