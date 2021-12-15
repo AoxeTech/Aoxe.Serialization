@@ -20,7 +20,6 @@ namespace Zaabee.NewtonsoftJson.UnitTest
             nullModel.PackTo(type, nullMs);
             nullMs.PackBy(type, nullModel);
             var emptyStream = nullModel.ToStream();
-            Assert.True(emptyStream.IsNullOrEmpty());
             nullModel = emptyStream.FromStream<object>();
             Assert.Null(nullModel);
 

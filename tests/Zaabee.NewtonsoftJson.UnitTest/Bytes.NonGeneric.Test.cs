@@ -10,10 +10,9 @@ namespace Zaabee.NewtonsoftJson.UnitTest
         [Fact]
         public void BytesNonGenericTest()
         {
-            object nullModel = null;
-            var emptyBytes = nullModel.ToBytes();
-            Assert.True(emptyBytes.IsNullOrEmpty());
-            nullModel = emptyBytes.FromBytes<object>();
+            object? nullModel = null;
+            var emptyBytes = nullModel.ToBytes(typeof(TestModel));
+            nullModel = emptyBytes.FromBytes(typeof(TestModel));
             Assert.Null(nullModel);
 
             object testModel = TestModelFactory.Create();

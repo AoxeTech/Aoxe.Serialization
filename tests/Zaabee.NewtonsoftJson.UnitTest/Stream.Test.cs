@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using TestModels;
 using Xunit;
-using Zaabee.Extensions;
 
 namespace Zaabee.NewtonsoftJson.UnitTest
 {
@@ -16,7 +15,6 @@ namespace Zaabee.NewtonsoftJson.UnitTest
             nullModel.PackTo(nullMs);
             nullMs.PackBy(nullModel);
             var emptyStream = nullModel.ToStream();
-            Assert.True(emptyStream.IsNullOrEmpty());
             nullModel = emptyStream.FromStream<TestModel>();
             Assert.Null(nullModel);
 
