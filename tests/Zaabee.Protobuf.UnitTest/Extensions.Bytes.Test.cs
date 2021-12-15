@@ -17,7 +17,7 @@ public partial class ExtensionsTest
     public void GenericTypeBytesNullTest()
     {
         TestModel? nullModel = null;
-        var emptyBytes = nullModel.ToBytes();
+        Assert.Null(nullModel.ToBytes().FromBytes<TestModel>());
         Assert.Null(Array.Empty<byte>().FromBytes<TestModel>());
     }
 
@@ -37,7 +37,7 @@ public partial class ExtensionsTest
     public void NonGenericTypeBytesNullTest()
     {
         object? nullModel = null;
-        var emptyBytes = nullModel.ToBytes();
+        Assert.Null(nullModel.ToBytes().FromBytes<TestModel>());
         Assert.Null(Array.Empty<byte>().FromBytes(typeof(TestModel)));
     }
 }
