@@ -3,20 +3,20 @@ namespace Zaabee.DataContractSerializer.UnitTest;
 public partial class XmlUnitTest
 {
     [Fact]
-    public void XmlWriterReaderNonGenericTest()
+    public void XmlDictionaryWriterReaderNonGenericTest()
     {
         var testModel = TestModelFactory.Create();
         TestModel result0;
         using (var fs = new FileStream("XmlWriterReaderNonGenericTest0.xml", FileMode.Create))
         {
-            var writer = new XmlTextWriter(fs, Encoding.UTF8);
+            var writer = XmlDictionaryWriter.CreateDictionaryWriter(new XmlTextWriter(fs, Encoding.UTF8));
             writer.WriteXml(typeof(TestModel), testModel);
             writer.Close();
         }
 
         using (var fs = new FileStream("XmlWriterReaderNonGenericTest0.xml", FileMode.Open))
         {
-            var reader = new XmlTextReader(fs);
+            var reader = XmlDictionaryReader.CreateDictionaryReader(new XmlTextReader(fs));
             result0 = (TestModel)reader.ReadXml(typeof(TestModel))!;
             reader.Close();
         }
@@ -24,14 +24,14 @@ public partial class XmlUnitTest
         TestModel result1;
         using (var fs = new FileStream("XmlWriterReaderNonGenericTest0.xml", FileMode.Create))
         {
-            var writer = new XmlTextWriter(fs, Encoding.UTF8);
+            var writer = XmlDictionaryWriter.CreateDictionaryWriter(new XmlTextWriter(fs, Encoding.UTF8));
             testModel.Serialize(typeof(TestModel), writer);
             writer.Close();
         }
 
         using (var fs = new FileStream("XmlWriterReaderNonGenericTest0.xml", FileMode.Open))
         {
-            var reader = new XmlTextReader(fs);
+            var reader = XmlDictionaryReader.CreateDictionaryReader(new XmlTextReader(fs));
             result1 = (TestModel)reader.ReadXml(typeof(TestModel))!;
             reader.Close();
         }
@@ -45,11 +45,11 @@ public partial class XmlUnitTest
     }
 
     [Fact]
-    public void XmlWriterReaderNonGenericNullTest()
+    public void XmlDictionaryWriterReaderNonGenericNullTest()
     {
         TestModel? testModel = null;
-        XmlWriter? write = null;
-        XmlReader? reader = null;
+        XmlDictionaryWriter? write = null;
+        XmlDictionaryReader? reader = null;
         testModel.Serialize(typeof(TestModel), write);
         write.WriteXml(typeof(TestModel), testModel);
         reader.ReadXml(typeof(TestModel));

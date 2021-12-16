@@ -17,8 +17,10 @@ public partial class ExtensionsTest
     public void GenericTypeXmlNullTest()
     {
         TestModel? nullModel = null;
+        string? nullXml = null;
         var emptyXml = nullModel.ToXml();
         Assert.Null(emptyXml.FromXml<TestModel>());
+        Assert.Null(nullXml.FromXml<TestModel>());
     }
 
     [Fact]
@@ -37,7 +39,9 @@ public partial class ExtensionsTest
     public void NonGenericTypeXmlNullTest()
     {
         object? nullModel = null;
+        string? nullXml = null;
         var emptyXml = nullModel.ToXml(typeof(TestModel));
         Assert.Null(emptyXml.FromXml(typeof(TestModel)));
+        Assert.Null(nullXml.FromXml(typeof(TestModel)));
     }
 }
