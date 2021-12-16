@@ -4,7 +4,9 @@ public partial class Runner
 {
     public void FromBytes(int iteration)
     {
+#pragma warning disable CS0618
         var binaryBytes = BinaryHelper.ToBytes(_testModel);
+#pragma warning restore CS0618
         var dataContractBytes = DataContractHelper.ToBytes(_testModel);
         var jilBytes = JilHelper.ToBytes(_testModel);
         var messagePackBytes = MessagePackHelper.ToBytes(_testModel);
@@ -21,7 +23,9 @@ public partial class Runner
         Zaabee.CodeTimer.CodeTimer.Initialize();
 
         Zaabee.CodeTimer.CodeTimer.Time("BinaryHelper", iteration,
+#pragma warning disable CS0618
             () => BinaryHelper.FromBytes<TestModel>(binaryBytes));
+#pragma warning restore CS0618
         Zaabee.CodeTimer.CodeTimer.Time("DataContractHelper", iteration,
             () => DataContractHelper.FromBytes<TestModel>(dataContractBytes));
         Zaabee.CodeTimer.CodeTimer.Time("JilHelper", iteration,

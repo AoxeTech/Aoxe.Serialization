@@ -28,7 +28,9 @@ public class FromBytes
 
     public FromBytes()
     {
+#pragma warning disable CS0618
         _binaryBytes = BinaryHelper.ToBytes(_testModel);
+#pragma warning restore CS0618
         _dataContractBytes = DataContractHelper.ToBytes(_testModel);
         _jilBytes = JilHelper.ToBytes(_testModel);
         _messagePackBytes = MessagePackHelper.ToBytes(_testModel);
@@ -41,7 +43,7 @@ public class FromBytes
         _zeroFormatterBytes = ZeroFormatterHelper.ToBytes(_testModel);
     }
 
-    [Benchmark]
+    [Benchmark,Obsolete]
     public void BinaryFromBytes() => BinaryHelper.FromBytes<TestModel>(_binaryBytes);
 
     [Benchmark]

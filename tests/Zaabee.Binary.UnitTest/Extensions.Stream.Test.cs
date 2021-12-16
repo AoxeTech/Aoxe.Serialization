@@ -1,5 +1,6 @@
 namespace Zaabee.Binary.UnitTest;
 
+[Obsolete]
 public partial class ExtensionsTest
 {
     [Fact]

@@ -1,9 +1,3 @@
-using System;
-using System.IO;
-using System.Text;
-using TestModels;
-using Xunit;
-
 namespace Zaabee.Jil.UnitTest;
 
 public partial class JilUnitTest
@@ -22,7 +16,7 @@ public partial class JilUnitTest
         using (var fs = new FileStream("TextWriterReaderTest0.json", FileMode.Open))
         {
             var reader = new StreamReader(fs, Encoding.UTF8);
-            result0 = reader.ReadJson<TestModel>();
+            result0 = reader.ReadJson<TestModel>()!;
             reader.Close();
         }
         TestModel result1;
@@ -35,7 +29,7 @@ public partial class JilUnitTest
         using (var fs = new FileStream("TextWriterReaderTest1.json", FileMode.Open))
         {
             var reader = new StreamReader(fs, Encoding.UTF8);
-            result1 = reader.ReadJson<TestModel>();
+            result1 = reader.ReadJson<TestModel>()!;
             reader.Close();
         }
 

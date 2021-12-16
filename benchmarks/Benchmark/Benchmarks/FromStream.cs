@@ -28,7 +28,9 @@ public class FromStream
 
     public FromStream()
     {
+#pragma warning disable CS0618
         _binaryStream = BinaryHelper.ToStream(_testModel);
+#pragma warning restore CS0618
         _dataContractStream = DataContractHelper.ToStream(_testModel);
         _jilStream = JilHelper.ToStream(_testModel);
         _messagePackStream = MessagePackHelper.ToStream(_testModel);
@@ -41,7 +43,7 @@ public class FromStream
         _zeroFormatterStream = ZeroFormatterHelper.ToStream(_testModel);
     }
 
-    [Benchmark]
+    [Benchmark,Obsolete]
     public void BinaryFromStream() => BinaryHelper.FromStream<TestModel>(_binaryStream);
 
     [Benchmark]

@@ -1,6 +1,3 @@
-using System.Text;
-using System.Xml;
-
 namespace Zaabee.DataContractSerializer.UnitTest;
 
 public partial class XmlUnitTest
@@ -20,7 +17,7 @@ public partial class XmlUnitTest
         using (var fs = new FileStream("XmlWriterReaderTest0.xml", FileMode.Open))
         {
             var reader = new XmlTextReader(fs);
-            result0 = reader.ReadXml<TestModel>();
+            result0 = reader.ReadXml<TestModel>()!;
             reader.Close();
         }
 
@@ -35,7 +32,7 @@ public partial class XmlUnitTest
         using (var fs = new FileStream("XmlWriterReaderTest1.xml", FileMode.Open))
         {
             var reader = new XmlTextReader(fs);
-            result1 = reader.ReadXml<TestModel>();
+            result1 = reader.ReadXml<TestModel>()!;
             reader.Close();
         }
 

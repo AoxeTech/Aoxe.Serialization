@@ -1,15 +1,11 @@
-using System.Text;
-using Xunit;
+namespace Zaabee.Jil.UnitTest;
 
-namespace Zaabee.Jil.UnitTest
+public class UnitTest
 {
-    public class UnitTest
+    [Fact]
+    public void DefaultSetTest()
     {
-        [Fact]
-        public void DefaultSetTest()
-        {
-            JilHelper.DefaultEncoding = Encoding.UTF32;
-            Assert.Equal(Encoding.UTF32, JilHelper.DefaultEncoding);
-        }
+        JilHelper.DefaultEncoding = Encoding.UTF32;
+        Assert.Equal(Encoding.UTF32, JilHelper.DefaultEncoding);
     }
 }

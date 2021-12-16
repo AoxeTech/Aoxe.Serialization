@@ -4,7 +4,9 @@ public partial class Runner
 {
     public void FromStream(int iteration)
     {
+#pragma warning disable CS0618
         var binaryStream = BinaryHelper.ToStream(_testModel);
+#pragma warning restore CS0618
         var dataContractStream = DataContractHelper.ToStream(_testModel);
         var jilStream = JilHelper.ToStream(_testModel);
         var messagePackStream = MessagePackHelper.ToStream(_testModel);
@@ -21,7 +23,9 @@ public partial class Runner
         Zaabee.CodeTimer.CodeTimer.Initialize();
 
         Zaabee.CodeTimer.CodeTimer.Time("BinaryHelper", iteration,
+#pragma warning disable CS0618
             () => BinaryHelper.FromStream<TestModel>(binaryStream));
+#pragma warning restore CS0618
         Zaabee.CodeTimer.CodeTimer.Time("DataContractHelper", iteration,
             () => DataContractHelper.FromStream<TestModel>(dataContractStream));
         Zaabee.CodeTimer.CodeTimer.Time("JilHelper", iteration,
