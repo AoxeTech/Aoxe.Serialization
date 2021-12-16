@@ -13,12 +13,14 @@ public partial class JilUnitTest
             writer.WriteJson(testModel);
             writer.Close();
         }
+
         using (var fs = new FileStream("TextWriterReaderTest0.json", FileMode.Open))
         {
             var reader = new StreamReader(fs, Encoding.UTF8);
             result0 = reader.ReadJson<TestModel>()!;
             reader.Close();
         }
+
         TestModel result1;
         using (var fs = new FileStream("TextWriterReaderTest1.json", FileMode.Create))
         {
@@ -26,6 +28,7 @@ public partial class JilUnitTest
             testModel.Serialize(writer);
             writer.Close();
         }
+
         using (var fs = new FileStream("TextWriterReaderTest1.json", FileMode.Open))
         {
             var reader = new StreamReader(fs, Encoding.UTF8);
@@ -41,7 +44,6 @@ public partial class JilUnitTest
             Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
             Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
 
-
         using (var fs = new FileStream("TextWriterReaderTest.json", FileMode.Create))
         {
             var writer = new StreamWriter(fs, Encoding.UTF8);
@@ -49,5 +51,16 @@ public partial class JilUnitTest
             JilHelper.Serialize(null, writer);
             writer.Close();
         }
+    }
+
+    [Fact]
+    public void TextWriterReaderNullTest()
+    {
+        var testModel = TestModelFactory.Create();
+        StreamWriter? writer = null;
+        StreamReader? reader = null;
+        testModel.Serialize(writer);
+        writer.WriteJson(testModel);
+        reader.ReadJson<TestModel>();
     }
 }
