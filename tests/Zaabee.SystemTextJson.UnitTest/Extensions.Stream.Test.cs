@@ -1,4 +1,4 @@
-namespace Zaabee.SystemTextJson.UnitTest;
+namespace  Zaabee.SystemTextJson.UnitTest;
 
 public partial class ExtensionsTest
 {

@@ -17,8 +17,10 @@ public partial class ExtensionsTest
     public void GenericTypeJsonNullTest()
     {
         TestModel? nullModel = null;
+        string? nullJson = null;
         var emptyJson = nullModel.ToJson();
         Assert.Null(emptyJson.FromJson<TestModel>());
+        Assert.Null(nullJson.FromJson<TestModel>());
     }
 
     [Fact]
@@ -37,7 +39,9 @@ public partial class ExtensionsTest
     public void NonGenericTypeJsonNullTest()
     {
         object? nullModel = null;
+        string? nullJson = null;
         var emptyJson = nullModel.ToJson();
         Assert.Null(emptyJson.FromJson(typeof(TestModel)));
+        Assert.Null(nullJson.FromJson(typeof(TestModel)));
     }
 }
