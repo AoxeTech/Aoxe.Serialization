@@ -159,13 +159,56 @@ Fastest C# Serializer and Infinitely Fast Deserializer for .NET, .NET Core and U
 
 ## Benchmark
 
+```shell
 BenchmarkDotNet=v0.13.1, OS=Windows 10.0.19043.1348 (21H1/May2021Update)
 Intel Core i7-6600U CPU 2.60GHz (Skylake), 1 CPU, 4 logical and 2 physical cores
 .NET SDK=6.0.100
   [Host]     : .NET 6.0.0 (6.0.21.52210), X64 RyuJIT
   Job-JQVSJZ : .NET 6.0.0 (6.0.21.52210), X64 RyuJIT
+```
 
 IterationCount=1000  RunStrategy=Monitoring
+
+### Stream
+
+|                 Method |      Mean |    Error |    StdDev |    Median |       Min |         Max | Allocated |
+|----------------------- |----------:|---------:|----------:|----------:|----------:|------------:|----------:|
+|         BinaryToStream |  70.52 μs | 2.609 μs | 24.999 μs |  67.00 μs | 27.500 μs |   244.50 μs |   7,512 B |
+|   DataContractToStream |  44.09 μs | 2.307 μs | 22.101 μs |  43.65 μs | 11.800 μs |   359.40 μs |   3,736 B |
+|            JilToStream |  18.38 μs | 0.800 μs |  7.668 μs |  17.20 μs |  5.800 μs |   103.50 μs |   1,800 B |
+|    MessagePackToStream |  26.36 μs | 1.254 μs | 12.018 μs |  24.50 μs | 10.600 μs |   201.40 μs |     536 B |
+|        MsgPackToStream |  26.25 μs | 1.302 μs | 12.479 μs |  23.90 μs | 10.900 μs |   137.10 μs |   1,104 B |
+| NewtonsoftJsonToStream |  36.70 μs | 1.559 μs | 14.939 μs |  34.40 μs | 10.800 μs |   158.30 μs |   2,616 B |
+|       ProtobufToStream |  23.12 μs | 1.175 μs | 11.262 μs |  21.80 μs |  5.500 μs |   137.10 μs |     536 B |
+| SystemTextJsonToStream |  37.86 μs | 1.429 μs | 13.695 μs |  35.10 μs | 18.100 μs |   137.90 μs |   1,120 B |
+|       Utf8JsonToStream |  18.41 μs | 0.925 μs |  8.862 μs |  16.90 μs |  6.500 μs |   103.70 μs |     824 B |
+|            XmlToStream | 132.42 μs | 9.742 μs | 93.341 μs | 123.00 μs | 66.800 μs | 2,847.40 μs |  11,688 B |
+|  ZeroFormatterToStream |  11.49 μs | 0.639 μs |  6.123 μs |  10.20 μs |  4.500 μs |    72.20 μs |   2,008 B |
+
+|                   Method |       Mean |      Error |     StdDev |     Median |       Min |         Max | Allocated |
+|------------------------- |-----------:|-----------:|-----------:|-----------:|----------:|------------:|----------:|
+|         BinaryFromStream |  72.575 μs |  3.0032 μs |  28.776 μs |  67.700 μs | 36.700 μs |   355.00 μs |  10,464 B |
+|   DataContractFromStream |  59.453 μs |  2.4639 μs |  23.608 μs |  53.750 μs | 27.700 μs |   213.60 μs |  13,144 B |
+|            JilFromStream |  20.869 μs |  0.8528 μs |   8.172 μs |  20.150 μs |  9.400 μs |   128.20 μs |   1,336 B |
+|    MessagePackFromStream |  28.271 μs |  1.4564 μs |  13.955 μs |  26.400 μs | 13.400 μs |   241.90 μs |     808 B |
+|        MsgPackFromStream |  34.679 μs |  2.0772 μs |  19.903 μs |  30.600 μs | 16.900 μs |   478.50 μs |     736 B |
+| NewtonsoftJsonFromStream |  55.694 μs |  2.5697 μs |  24.623 μs |  50.600 μs | 27.100 μs |   273.10 μs |   4,016 B |
+|       ProtobufFromStream |  21.398 μs |  1.2391 μs |  11.873 μs |  18.600 μs |  9.800 μs |   182.20 μs |     472 B |
+| SystemTextJsonFromStream |  38.016 μs |  2.2859 μs |  21.903 μs |  35.600 μs | 13.700 μs |   341.20 μs |     760 B |
+|       Utf8JsonFromStream |  18.984 μs |  0.7084 μs |   6.788 μs |  18.500 μs | 11.900 μs |    96.90 μs |     760 B |
+|            XmlFromStream | 141.412 μs | 17.8892 μs | 171.411 μs | 126.900 μs | 71.500 μs | 5,316.50 μs |  10,496 B |
+|  ZeroFormatterFromStream |   8.388 μs |  0.4612 μs |   4.420 μs |   7.800 μs |  3.300 μs |    51.30 μs |     664 B |
+
+### FileStream Async
+
+|                        Method |     Mean |    Error |    StdDev |   Median |       Min |         Max | Allocated |
+|------------------------------ |---------:|---------:|----------:|---------:|----------:|------------:|----------:|
+|            JilFromStreamAsync | 170.1 μs |  5.24 μs |  50.23 μs | 159.5 μs | 102.60 μs |    617.2 μs |      3 KB |
+|    MessagePackFromStreamAsync | 170.6 μs |  6.67 μs |  63.90 μs | 158.4 μs |  91.90 μs |  1,732.8 μs |      2 KB |
+|        MsgPackFromStreamAsync | 117.4 μs | 14.92 μs | 142.94 μs | 105.8 μs |  58.30 μs |  4,444.7 μs |      5 KB |
+| NewtonsoftJsonFromStreamAsync | 213.2 μs |  6.24 μs |  59.82 μs | 198.7 μs | 132.80 μs |    899.7 μs |      6 KB |
+| SystemTextJsonFromStreamAsync | 186.3 μs | 37.60 μs | 360.30 μs | 162.2 μs | 102.80 μs | 10,735.9 μs |      3 KB |
+|       Utf8JsonFromStreamAsync | 143.0 μs |  5.72 μs |  54.82 μs | 133.8 μs |  89.70 μs |  1,074.8 μs |      2 KB |
 
 ### Bytes
 
@@ -216,44 +259,3 @@ IterationCount=1000  RunStrategy=Monitoring
 | SystemTextJsonFromText |  37.96 μs | 1.862 μs | 17.846 μs |  37.50 μs | 12.000 μs | 213.90 μs |     760 B |
 |       Utf8JsonFromText |  22.12 μs | 1.099 μs | 10.533 μs |  20.50 μs | 12.100 μs | 191.20 μs |     912 B |
 |            XmlFromText | 145.97 μs | 5.193 μs | 49.755 μs | 133.60 μs | 70.000 μs | 473.50 μs |  10,888 B |
-
-### Stream
-
-|                 Method |      Mean |    Error |    StdDev |    Median |       Min |         Max | Allocated |
-|----------------------- |----------:|---------:|----------:|----------:|----------:|------------:|----------:|
-|         BinaryToStream |  70.52 μs | 2.609 μs | 24.999 μs |  67.00 μs | 27.500 μs |   244.50 μs |   7,512 B |
-|   DataContractToStream |  44.09 μs | 2.307 μs | 22.101 μs |  43.65 μs | 11.800 μs |   359.40 μs |   3,736 B |
-|            JilToStream |  18.38 μs | 0.800 μs |  7.668 μs |  17.20 μs |  5.800 μs |   103.50 μs |   1,800 B |
-|    MessagePackToStream |  26.36 μs | 1.254 μs | 12.018 μs |  24.50 μs | 10.600 μs |   201.40 μs |     536 B |
-|        MsgPackToStream |  26.25 μs | 1.302 μs | 12.479 μs |  23.90 μs | 10.900 μs |   137.10 μs |   1,104 B |
-| NewtonsoftJsonToStream |  36.70 μs | 1.559 μs | 14.939 μs |  34.40 μs | 10.800 μs |   158.30 μs |   2,616 B |
-|       ProtobufToStream |  23.12 μs | 1.175 μs | 11.262 μs |  21.80 μs |  5.500 μs |   137.10 μs |     536 B |
-| SystemTextJsonToStream |  37.86 μs | 1.429 μs | 13.695 μs |  35.10 μs | 18.100 μs |   137.90 μs |   1,120 B |
-|       Utf8JsonToStream |  18.41 μs | 0.925 μs |  8.862 μs |  16.90 μs |  6.500 μs |   103.70 μs |     824 B |
-|            XmlToStream | 132.42 μs | 9.742 μs | 93.341 μs | 123.00 μs | 66.800 μs | 2,847.40 μs |  11,688 B |
-|  ZeroFormatterToStream |  11.49 μs | 0.639 μs |  6.123 μs |  10.20 μs |  4.500 μs |    72.20 μs |   2,008 B |
-
-|                   Method |       Mean |      Error |     StdDev |     Median |       Min |         Max | Allocated |
-|------------------------- |-----------:|-----------:|-----------:|-----------:|----------:|------------:|----------:|
-|         BinaryFromStream |  72.575 μs |  3.0032 μs |  28.776 μs |  67.700 μs | 36.700 μs |   355.00 μs |  10,464 B |
-|   DataContractFromStream |  59.453 μs |  2.4639 μs |  23.608 μs |  53.750 μs | 27.700 μs |   213.60 μs |  13,144 B |
-|            JilFromStream |  20.869 μs |  0.8528 μs |   8.172 μs |  20.150 μs |  9.400 μs |   128.20 μs |   1,336 B |
-|    MessagePackFromStream |  28.271 μs |  1.4564 μs |  13.955 μs |  26.400 μs | 13.400 μs |   241.90 μs |     808 B |
-|        MsgPackFromStream |  34.679 μs |  2.0772 μs |  19.903 μs |  30.600 μs | 16.900 μs |   478.50 μs |     736 B |
-| NewtonsoftJsonFromStream |  55.694 μs |  2.5697 μs |  24.623 μs |  50.600 μs | 27.100 μs |   273.10 μs |   4,016 B |
-|       ProtobufFromStream |  21.398 μs |  1.2391 μs |  11.873 μs |  18.600 μs |  9.800 μs |   182.20 μs |     472 B |
-| SystemTextJsonFromStream |  38.016 μs |  2.2859 μs |  21.903 μs |  35.600 μs | 13.700 μs |   341.20 μs |     760 B |
-|       Utf8JsonFromStream |  18.984 μs |  0.7084 μs |   6.788 μs |  18.500 μs | 11.900 μs |    96.90 μs |     760 B |
-|            XmlFromStream | 141.412 μs | 17.8892 μs | 171.411 μs | 126.900 μs | 71.500 μs | 5,316.50 μs |  10,496 B |
-|  ZeroFormatterFromStream |   8.388 μs |  0.4612 μs |   4.420 μs |   7.800 μs |  3.300 μs |    51.30 μs |     664 B |
-
-### FileStream Async
-
-|                        Method |     Mean |    Error |    StdDev |   Median |       Min |         Max | Allocated |
-|------------------------------ |---------:|---------:|----------:|---------:|----------:|------------:|----------:|
-|            JilFromStreamAsync | 170.1 μs |  5.24 μs |  50.23 μs | 159.5 μs | 102.60 μs |    617.2 μs |      3 KB |
-|    MessagePackFromStreamAsync | 170.6 μs |  6.67 μs |  63.90 μs | 158.4 μs |  91.90 μs |  1,732.8 μs |      2 KB |
-|        MsgPackFromStreamAsync | 117.4 μs | 14.92 μs | 142.94 μs | 105.8 μs |  58.30 μs |  4,444.7 μs |      5 KB |
-| NewtonsoftJsonFromStreamAsync | 213.2 μs |  6.24 μs |  59.82 μs | 198.7 μs | 132.80 μs |    899.7 μs |      6 KB |
-| SystemTextJsonFromStreamAsync | 186.3 μs | 37.60 μs | 360.30 μs | 162.2 μs | 102.80 μs | 10,735.9 μs |      3 KB |
-|       Utf8JsonFromStreamAsync | 143.0 μs |  5.72 μs |  54.82 μs | 133.8 μs |  89.70 μs |  1,074.8 μs |      2 KB |
