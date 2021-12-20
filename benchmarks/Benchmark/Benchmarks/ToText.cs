@@ -1,7 +1,7 @@
 namespace Benchmark.Benchmarks;
 
 [MemoryDiagnoser]
-[SimpleJob(RunStrategy.Monitoring, targetCount: 1000)]
+[SimpleJob()]
 [MinColumn, MaxColumn, MeanColumn, MedianColumn]
 public class ToText
 {

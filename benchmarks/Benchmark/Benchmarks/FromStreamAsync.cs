@@ -1,7 +1,7 @@
 namespace Benchmark.Benchmarks;
 
 [MemoryDiagnoser]
-[SimpleJob(RunStrategy.Monitoring, targetCount: 1000)]
+[SimpleJob()]
 [MinColumn, MaxColumn, MeanColumn, MedianColumn]
 public class FromStreamAsync
 {
@@ -13,7 +13,7 @@ public class FromStreamAsync
         Name = "apple",
         Gender = Gender.Female
     };
-    
+
     private readonly FileStream _jilStream = new (".\\JilStream", FileMode.Create);
     private readonly FileStream _messagePackStream = new (".\\MessagePackStream", FileMode.Create);
     private readonly FileStream _msgPackStream = new (".\\MsgPackStream", FileMode.Create);
