@@ -40,9 +40,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.Xml.UnitTest", "test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.ZeroFormatter.UnitTest", "tests\Zaabee.ZeroFormatter.UnitTest\Zaabee.ZeroFormatter.UnitTest.csproj", "{69823E1C-9A95-4FA8-BD3C-234208A323E9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "benchmarks", "benchmarks", "{90DB4B57-6A0D-41E0-91E4-1505A822AD16}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "perf", "perf", "{90DB4B57-6A0D-41E0-91E4-1505A822AD16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benchmark", "benchmarks\Benchmark\Benchmark.csproj", "{35FF82EA-937C-4FBE-B6EA-2B73B360F365}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benchmark", "perf\Benchmark\Benchmark.csproj", "{35FF82EA-937C-4FBE-B6EA-2B73B360F365}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestModels", "tests\TestModels\TestModels.csproj", "{8E52BA25-0F76-432E-94BF-8F9DC1723979}"
 EndProject
@@ -58,7 +58,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.DataContractSerializ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.DataContractSerializer.UnitTest", "tests\Zaabee.DataContractSerializer.UnitTest\Zaabee.DataContractSerializer.UnitTest.csproj", "{0A2706EB-7967-48B2-915A-ABAC575BA81A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeTimer", "benchmarks\CodeTimer\CodeTimer.csproj", "{01CE259B-7653-427C-A92C-41600FBD068D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeTimer", "perf\CodeTimer\CodeTimer.csproj", "{01CE259B-7653-427C-A92C-41600FBD068D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
