@@ -1,7 +1,7 @@
 namespace Benchmark.Benchmarks;
 
 [MemoryDiagnoser]
-[SimpleJob()]
+[SimpleJob]
 [MinColumn, MaxColumn, MeanColumn, MedianColumn]
 public class FromBytes
 {
