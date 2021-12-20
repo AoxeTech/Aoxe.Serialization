@@ -1,9 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-
-using CodeTimer.Runner;
-
-Trace.Listeners.Add(new ConsoleTraceListener());
+﻿Trace.Listeners.Add(new ConsoleTraceListener());
 
 var runner = new Runner();
 runner.FromBytes(100000);

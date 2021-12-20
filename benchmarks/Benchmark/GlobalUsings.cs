@@ -18,3 +18,4 @@ global using Zaabee.Protobuf;
 global using Zaabee.ZeroFormatter;
 global using System.IO;
 global using System.Threading.Tasks;
+global using Benchmark;
