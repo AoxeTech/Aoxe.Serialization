@@ -159,7 +159,7 @@ Fastest C# Serializer and Infinitely Fast Deserializer for .NET, .NET Core and U
 
 ## Benchmark
 
-```shell
+```ini
 BenchmarkDotNet=v0.13.1, OS=Windows 10.0.19043.1415 (21H1/May2021Update)
 Intel Core i7-6600U CPU 2.60GHz (Skylake), 1 CPU, 4 logical and 2 physical cores
 .NET SDK=6.0.100
