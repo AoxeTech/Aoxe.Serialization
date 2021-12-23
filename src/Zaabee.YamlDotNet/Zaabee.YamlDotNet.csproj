@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>2022.1.0</PackageVersion>
+        <Version>2022.1.0</Version>
+        <Authors>Mutuduxf</Authors>
+        <Company>Mutuduxf</Company>
+        <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Description>The abstractions for Zaabee.Serializers</Description>
+        <PackageTags>Zaabee;Serializer;Abstractions</PackageTags>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="YamlDotNet" Version="11.2.1" />
+    </ItemGroup>
+
+</Project>
