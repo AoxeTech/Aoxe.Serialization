@@ -44,4 +44,15 @@ public partial class ExtensionsTest
         Assert.Null(Array.Empty<byte>().FromBytes(typeof(TestModel)));
         Assert.Null(nullBytes.FromBytes(typeof(TestModel)));
     }
+
+    [Fact]
+    public void ObjectBytesTest()
+    {
+        var testModel = TestModelFactory.Create();
+        var bytes = ((object)testModel).ToBytes();
+        var result = bytes.FromBytes<TestModel>()!;
+        Assert.Equal(
+            Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+            Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+    }
 }

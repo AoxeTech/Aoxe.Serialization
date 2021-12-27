@@ -92,4 +92,51 @@ public partial class ExtensionsTest
 
         await Stream.Null.FromStreamAsync(typeof(TestModel));
     }
+
+    [Fact]
+    public async Task ObjectStreamAsyncTest()
+    {
+        object testModel = TestModelFactory.Create();
+
+        var stream0 = testModel.ToStream();
+        var result0 = (TestModel)(await stream0.FromStreamAsync(typeof(TestModel)))!;
+
+        var stream1 = new MemoryStream();
+        await testModel.PackToAsync(stream1);
+        var result1 = (TestModel)(await stream1.FromStreamAsync(typeof(TestModel)))!;
+
+        var stream2 = new MemoryStream();
+        await stream2.PackByAsync(testModel);
+        var result2 = (TestModel)(await stream2.FromStreamAsync(typeof(TestModel)))!;
+
+        Assert.Equal(
+            Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
+                ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
+            Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
+
+        Assert.Equal(
+            Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
+                ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
+            Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
+
+        Assert.Equal(
+            Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
+                ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
+            Tuple.Create(result2.Id, result2.Age, result2.CreateTime, result2.Name, result2.Gender));
+    }
+
+    [Fact]
+    public async Task ObjectStreamAsyncNullTest()
+    {
+        object? nullModel = null;
+
+        var emptyStream = nullModel.ToStream();
+        Assert.Null(await emptyStream.FromStreamAsync(typeof(TestModel)));
+
+        MemoryStream? nullStream = null;
+        await nullStream.PackByAsync(nullModel);
+        await nullModel.PackToAsync(nullStream);
+
+        await Stream.Null.FromStreamAsync(typeof(TestModel));
+    }
 }

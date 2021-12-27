@@ -44,4 +44,26 @@ public partial class ExtensionsTest
         Assert.Null(emptyJson.FromJson(typeof(TestModel)));
         Assert.Null(nullJson.FromJson(typeof(TestModel)));
     }
+
+    [Fact]
+    public void ObjectJsonTest()
+    {
+        object testModel = TestModelFactory.Create();
+        var json = testModel.ToJson();
+        var result = (TestModel)json.FromJson(typeof(TestModel))!;
+        Assert.Equal(
+            Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
+                ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
+            Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+    }
+
+    [Fact]
+    public void ObjectJsonNullTest()
+    {
+        object? nullModel = null;
+        string? nullJson = null;
+        var emptyJson = nullModel.ToJson();
+        Assert.Null(emptyJson.FromJson(typeof(TestModel)));
+        Assert.Null(nullJson.FromJson(typeof(TestModel)));
+    }
 }

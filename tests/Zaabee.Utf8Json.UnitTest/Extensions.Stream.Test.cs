@@ -92,4 +92,51 @@ public partial class ExtensionsTest
 
         Stream.Null.FromStream(typeof(TestModel));
     }
+
+    [Fact]
+    public void ObjectStreamTest()
+    {
+        object testModel = TestModelFactory.Create();
+
+        var stream0 = testModel.ToStream();
+        var result0 = (TestModel)stream0.FromStream(typeof(TestModel))!;
+
+        var stream1 = new MemoryStream();
+        testModel.PackTo(stream1);
+        var result1 = (TestModel)stream1.FromStream(typeof(TestModel))!;
+
+        var stream2 = new MemoryStream();
+        stream2.PackBy(testModel);
+        var result2 = (TestModel)stream2.FromStream(typeof(TestModel))!;
+
+        Assert.Equal(
+            Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
+                ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
+            Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
+
+        Assert.Equal(
+            Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
+                ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
+            Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
+
+        Assert.Equal(
+            Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
+                ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
+            Tuple.Create(result2.Id, result2.Age, result2.CreateTime, result2.Name, result2.Gender));
+    }
+
+    [Fact]
+    public void ObjectStreamNullTest()
+    {
+        object? nullModel = null;
+
+        var emptyStream = nullModel.ToStream();
+        Assert.Null(emptyStream.FromStream(typeof(TestModel)));
+
+        MemoryStream? nullStream = null;
+        nullStream.PackBy(nullModel);
+        nullModel.PackTo(nullStream);
+
+        Stream.Null.FromStream(typeof(TestModel));
+    }
 }
