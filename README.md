@@ -32,8 +32,7 @@ Though some serializers does not support stream or bytes, the zaabee serializers
 
 ## Explain
 
-- Helper
-  Unified code style and provide lack of features. The default enconding is UTF-8.
+- Helper: Unified code style and provide lack of features. The default enconding is UTF-8.
   - stream
     - sync
       - MemoryStream ToStream\<TValue\>(TValue? value)
@@ -63,8 +62,7 @@ Though some serializers does not support stream or bytes, the zaabee serializers
       - string ToXml(Type type, object? value)
       - TValue? FromXml\<TValue\>(string? xml)
       - object? FromXml(Type type, string? xml)
-- Extensions
-  Supply Extension methods base by Helper. Also it supports generic type and non-generic type.
+- Extensions: Supply Extension methods base by Helper. Also it supports generic type and non-generic type.
   - Bytes
     - FromBytes
   - Object
