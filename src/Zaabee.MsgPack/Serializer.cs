@@ -13,14 +13,14 @@ public class Serializer : IBytesSerializer
             : MsgPackHelper.ToBytes(type, value);
 
     public TValue? FromBytes<TValue>(byte[]? bytes) =>
-        bytes.IsNullOrEmpty()
+        bytes is null || bytes.Length is 0
             ? default
-            : MsgPackHelper.FromBytes<TValue>(bytes!);
+            : MsgPackHelper.FromBytes<TValue>(bytes);
 
     public object? FromBytes(Type type, byte[]? bytes) =>
-        bytes.IsNullOrEmpty()
+        bytes is null || bytes.Length is 0
             ? default
-            : MsgPackHelper.FromBytes(type, bytes!);
+            : MsgPackHelper.FromBytes(type, bytes);
 
     public Stream ToStream<TValue>(TValue? value) =>
         value is null
@@ -33,12 +33,12 @@ public class Serializer : IBytesSerializer
             : MsgPackHelper.ToStream(type, value);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
-        stream.IsNullOrEmpty()
+        stream is null || stream.CanSeek && stream.Length is 0
             ? default
-            : MsgPackHelper.FromStream<TValue>(stream!);
+            : MsgPackHelper.FromStream<TValue>(stream);
 
     public object? FromStream(Type type, Stream? stream) =>
-        stream.IsNullOrEmpty()
+        stream is null || stream.CanSeek && stream.Length is 0
             ? default
-            : MsgPackHelper.FromStream(type, stream!);
+            : MsgPackHelper.FromStream(type, stream);
 }

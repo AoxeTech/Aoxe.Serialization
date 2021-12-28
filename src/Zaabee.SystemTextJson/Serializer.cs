@@ -13,9 +13,9 @@ public class  Serializer : ITextSerializer
             : SystemTextJsonHelper.ToStream(value, _options);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
-        stream.IsNullOrEmpty()
+        stream is null || stream.CanSeek && stream.Length is 0
             ? default
-            : SystemTextJsonHelper.FromStream<TValue>(stream!, _options);
+            : SystemTextJsonHelper.FromStream<TValue>(stream, _options);
 
     public Stream ToStream(Type type, object? value) =>
         value is null
@@ -23,9 +23,9 @@ public class  Serializer : ITextSerializer
             : SystemTextJsonHelper.ToStream(type, value, _options);
 
     public object? FromStream(Type type, Stream? stream) =>
-        stream.IsNullOrEmpty()
+        stream is null || stream.CanSeek && stream.Length is 0
             ? default
-            : SystemTextJsonHelper.FromStream(type, stream!, _options);
+            : SystemTextJsonHelper.FromStream(type, stream, _options);
 
     public byte[] ToBytes<TValue>(TValue? value) =>
         value is null
@@ -33,7 +33,7 @@ public class  Serializer : ITextSerializer
             : SystemTextJsonHelper.ToBytes(value, _options);
 
     public TValue? FromBytes<TValue>(byte[]? bytes) =>
-        bytes.IsNullOrEmpty()
+        bytes is null || bytes.Length is 0
             ? default
             : SystemTextJsonHelper.FromBytes<TValue>(bytes, _options);
 
@@ -43,7 +43,7 @@ public class  Serializer : ITextSerializer
             : SystemTextJsonHelper.ToBytes(type, value, _options);
 
     public object? FromBytes(Type type, byte[]? bytes) =>
-        bytes.IsNullOrEmpty()
+        bytes is null || bytes.Length is 0
             ? default
             : SystemTextJsonHelper.FromBytes(type, bytes, _options);
 

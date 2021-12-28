@@ -20,6 +20,6 @@ public static partial class DataContractHelper
     public static string ToXml(Type type, object? value)
     {
         using var ms = ToStream(type, value);
-        return Encoding.UTF8.GetString(ms.ReadToEnd());
+        return Encoding.UTF8.GetString(ms.ToArray());
     }
 }

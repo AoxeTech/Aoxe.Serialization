@@ -11,7 +11,7 @@ public static partial class MsgPackHelper
     public static byte[] ToBytes<TValue>(TValue? value)
     {
         using var ms = ToStream(value);
-        return ms.ReadToEnd();
+        return ms.ToArray();
     }
 
     /// <summary>
@@ -23,6 +23,6 @@ public static partial class MsgPackHelper
     public static byte[] ToBytes(Type type, object? value)
     {
         using var ms = ToStream(type, value);
-        return ms.ReadToEnd();
+        return ms.ToArray();
     }
 }

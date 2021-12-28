@@ -11,7 +11,7 @@ public static partial class BinaryHelper
     [ObsoleteAttribute(@"BinaryFormatter serialization is obsolete and should not be used.
  See https://aka.ms/binaryformatter for more information.")]
     public static TValue? FromBytes<TValue>(byte[]? bytes) =>
-        bytes.IsNullOrEmpty()
+        bytes is null || bytes.Length is 0
             ? default
             : (TValue?)FromBytes(bytes);
 
@@ -24,8 +24,8 @@ public static partial class BinaryHelper
  See https://aka.ms/binaryformatter for more information.")]
     public static object? FromBytes(byte[]? bytes)
     {
-        if (bytes.IsNullOrEmpty()) return default;
-        using var ms = new MemoryStream(bytes!);
+        if (bytes is null || bytes.Length is 0) return default;
+        using var ms = new MemoryStream(bytes);
         return FromStream(ms);
     }
 }

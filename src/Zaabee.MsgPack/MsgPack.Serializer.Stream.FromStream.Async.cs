@@ -30,7 +30,7 @@ public static partial class MsgPackHelper
     public static async Task<TValue?> FromStreamAsync<TValue>(Stream? stream,
         CancellationToken cancellationToken = default)
     {
-        if (stream.IsNullOrEmpty()) return default;
+        if (stream is null || stream.CanSeek && stream.Length is 0) return default;
         var result = await MessagePackSerializer.Get<TValue>().UnpackAsync(stream, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;

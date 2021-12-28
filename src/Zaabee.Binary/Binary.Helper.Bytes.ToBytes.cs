@@ -12,5 +12,5 @@ public static partial class BinaryHelper
     public static byte[] ToBytes(object? value) =>
         value is null
             ? Array.Empty<byte>()
-            : ToStream(value).ReadToEnd();
+            : ToStream(value).ToArray();
 }

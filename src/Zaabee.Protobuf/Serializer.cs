@@ -8,7 +8,7 @@ public class Serializer : IBytesSerializer
             : ProtobufHelper.ToStream(value);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
-        stream.IsNullOrEmpty()
+        stream is null || stream.CanSeek && stream.Length is 0
             ? default
             : ProtobufHelper.FromStream<TValue>(stream);
 
@@ -18,19 +18,19 @@ public class Serializer : IBytesSerializer
             : ProtobufHelper.ToStream(value);
 
     public object? FromStream(Type type, Stream? stream) =>
-        stream.IsNullOrEmpty()
+        stream is null || stream.CanSeek && stream.Length is 0
             ? default
             : ProtobufHelper.FromStream(type, stream);
 
     public byte[] ToBytes<TValue>(TValue? value) =>
         value is null
             ? Array.Empty<byte>()
-            : ProtobufHelper.ToBytes<TValue>(value);
+            : ProtobufHelper.ToBytes(value);
 
     public TValue? FromBytes<TValue>(byte[]? bytes) =>
-        bytes.IsNullOrEmpty()
+        bytes is null || bytes.Length is 0
             ? default
-            : ProtobufHelper.FromBytes<TValue>(bytes!);
+            : ProtobufHelper.FromBytes<TValue>(bytes);
 
     public byte[] ToBytes(Type type, object? value) =>
         value is null
@@ -38,7 +38,7 @@ public class Serializer : IBytesSerializer
             : ProtobufHelper.ToBytes(value);
 
     public object? FromBytes(Type type, byte[]? bytes) =>
-        bytes.IsNullOrEmpty()
+        bytes is null || bytes.Length is 0
             ? default
-            : ProtobufHelper.FromBytes(type, bytes!);
+            : ProtobufHelper.FromBytes(type, bytes);
 }

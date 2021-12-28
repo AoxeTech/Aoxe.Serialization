@@ -12,7 +12,7 @@ public static partial class NewtonsoftJsonHelper
     /// <returns></returns>
     public static TValue? FromBytes<TValue>(byte[]? bytes, JsonSerializerSettings? settings = null,
         Encoding? encoding = null) =>
-        bytes.IsNullOrEmpty()
+        bytes is null || bytes.Length is 0
             ? default
             : (TValue?)FromBytes(typeof(TValue), bytes, settings, encoding);
 
@@ -26,7 +26,7 @@ public static partial class NewtonsoftJsonHelper
     /// <returns></returns>
     public static object? FromBytes(Type type, byte[]? bytes, JsonSerializerSettings? settings = null,
         Encoding? encoding = null) =>
-        bytes.IsNullOrEmpty()
+        bytes is null || bytes.Length is 0
             ? default
-            : FromJson(type, GetString(encoding, bytes!), settings);
+            : FromJson(type, GetString(encoding, bytes), settings);
 }

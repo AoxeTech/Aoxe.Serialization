@@ -9,7 +9,7 @@ public static partial class XmlHelper
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
     public static TValue? FromStream<TValue>(Stream? stream) =>
-        stream.IsNullOrEmpty()
+        stream is null || stream.CanSeek && stream.Length is 0
             ? default
             : (TValue?)FromStream(typeof(TValue), stream);
 
@@ -21,8 +21,8 @@ public static partial class XmlHelper
     /// <returns></returns>
     public static object? FromStream(Type type, Stream? stream)
     {
-        if (stream.IsNullOrEmpty()) return default;
-        var result = GetSerializer(type).Deserialize(stream!);
+        if (stream is null || stream.CanSeek && stream.Length is 0) return default;
+        var result = GetSerializer(type).Deserialize(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
     }

@@ -11,7 +11,7 @@ public static partial class ProtobufHelper
     public static byte[] ToBytes<TValue>(TValue? value)
     {
         using var ms = ToStream(value);
-        return ms.ReadToEnd();
+        return ms.ToArray();
     }
 
     /// <summary>
@@ -22,7 +22,7 @@ public static partial class ProtobufHelper
     public static byte[] ToBytes(object? value)
     {
         using var ms = ToStream(value);
-        return ms.ReadToEnd();
+        return ms.ToArray();
     }
 
     /// <summary>
@@ -33,8 +33,8 @@ public static partial class ProtobufHelper
     /// <returns></returns>
     public static TValue? FromBytes<TValue>(byte[]? bytes)
     {
-        if (bytes.IsNullOrEmpty()) return default;
-        using var ms = new MemoryStream(bytes!);
+        if (bytes is null || bytes.Length is 0) return default;
+        using var ms = new MemoryStream(bytes);
         return FromStream<TValue>(ms);
     }
 
@@ -46,8 +46,8 @@ public static partial class ProtobufHelper
     /// <returns></returns>
     public static object? FromBytes(Type type, byte[]? bytes)
     {
-        if (bytes.IsNullOrEmpty()) return default;
-        using var ms = new MemoryStream(bytes!);
+        if (bytes is null || bytes.Length is 0) return default;
+        using var ms = new MemoryStream(bytes);
         return FromStream(type, ms);
     }
 }

@@ -11,9 +11,9 @@ public static partial class JilHelper
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
     public static TValue? FromBytes<TValue>(byte[]? bytes, Options? options = null, Encoding? encoding = null) =>
-        bytes.IsNullOrEmpty()
+        bytes is null || bytes.Length is 0
             ? default
-            : FromJson<TValue>(GetString(encoding, bytes!), options);
+            : FromJson<TValue>(GetString(encoding, bytes), options);
 
     /// <summary>
     /// Use encoding to decode the bytes into string and deserialize it.
@@ -24,7 +24,7 @@ public static partial class JilHelper
     /// <param name="encoding"></param>
     /// <returns></returns>
     public static object? FromBytes(Type type, byte[]? bytes, Options? options = null, Encoding? encoding = null) =>
-        bytes.IsNullOrEmpty()
+        bytes is null || bytes.Length is 0
             ? default
-            : FromJson(type, GetString(encoding, bytes!), options);
+            : FromJson(type, GetString(encoding, bytes), options);
 }

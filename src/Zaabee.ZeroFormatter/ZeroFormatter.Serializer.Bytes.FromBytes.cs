@@ -9,7 +9,7 @@ public static partial class ZeroFormatterHelper
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
     public static TValue? FromBytes<TValue>(byte[]? bytes) =>
-        bytes.IsNullOrEmpty()
+        bytes is null || bytes.Length is 0
             ? default
             : ZeroFormatterSerializer.Deserialize<TValue>(bytes);
 
@@ -20,7 +20,7 @@ public static partial class ZeroFormatterHelper
     /// <param name="bytes"></param>
     /// <returns></returns>
     public static object? FromBytes(Type type, byte[]? bytes) =>
-        bytes.IsNullOrEmpty()
+        bytes is null || bytes.Length is 0
             ? default
             : ZeroFormatterSerializer.NonGeneric.Deserialize(type, bytes);
 }

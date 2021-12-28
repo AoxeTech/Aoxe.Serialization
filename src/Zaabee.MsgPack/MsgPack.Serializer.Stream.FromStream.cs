@@ -26,7 +26,7 @@ public static partial class MsgPackHelper
     /// <seealso cref="P:Capabilities" />
     public static TValue? FromStream<TValue>(Stream? stream)
     {
-        if (stream.IsNullOrEmpty()) return default;
+        if (stream is null || stream.CanSeek && stream.Length is 0) return default;
         var result = MessagePackSerializer.Get<TValue>().Unpack(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
@@ -44,7 +44,7 @@ public static partial class MsgPackHelper
     /// </exception>
     public static object? FromStream(Type type, Stream? stream)
     {
-        if (stream.IsNullOrEmpty()) return default;
+        if (stream is null || stream.CanSeek && stream.Length is 0) return default;
         var result = MessagePackSerializer.Get(type).Unpack(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;

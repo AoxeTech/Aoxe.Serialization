@@ -20,6 +20,6 @@ public static partial class DataContractHelper
     public static byte[] ToBytes(Type type, object? value)
     {
         using var ms = ToStream(type, value);
-        return ms.ReadToEnd();
+        return ms.ToArray();
     }
 }

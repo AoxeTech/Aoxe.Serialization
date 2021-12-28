@@ -12,7 +12,7 @@ public static partial class NewtonsoftJsonHelper
     /// <returns></returns>
     public static TValue? FromStream<TValue>(Stream? stream, JsonSerializerSettings? settings = null,
         Encoding? encoding = null) =>
-        stream.IsNullOrEmpty()
+        stream is null || stream.CanSeek && stream.Length is 0
             ? default
             : (TValue?)FromStream(typeof(TValue), stream, settings, encoding);
 
@@ -27,7 +27,7 @@ public static partial class NewtonsoftJsonHelper
     public static object? FromStream(Type type, Stream? stream, JsonSerializerSettings? settings = null,
         Encoding? encoding = null)
     {
-        if (stream.IsNullOrEmpty()) return default;
+        if (stream is null || stream.CanSeek && stream.Length is 0) return default;
         var result = FromJson(type, GetString(encoding, stream.ReadToEnd()), settings);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;

@@ -19,14 +19,14 @@ public class Serializer : ITextSerializer
             : NewtonsoftJsonHelper.ToBytes(type, value, _settings, _encoding);
 
     public TValue? FromBytes<TValue>(byte[]? bytes) =>
-        bytes.IsNullOrEmpty()
+        bytes is null || bytes.Length is 0
             ? default
-            : NewtonsoftJsonHelper.FromBytes<TValue>(bytes!, _settings, _encoding);
+            : NewtonsoftJsonHelper.FromBytes<TValue>(bytes, _settings, _encoding);
 
     public object? FromBytes(Type type, byte[]? bytes) =>
-        bytes.IsNullOrEmpty()
+        bytes is null || bytes.Length is 0
             ? default
-            : NewtonsoftJsonHelper.FromBytes(type, bytes!, _settings, _encoding);
+            : NewtonsoftJsonHelper.FromBytes(type, bytes, _settings, _encoding);
 
     public string ToText<TValue>(TValue? value) =>
         value is null
@@ -59,12 +59,12 @@ public class Serializer : ITextSerializer
             : NewtonsoftJsonHelper.ToStream(type, value, _settings, _encoding);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
-        stream.IsNullOrEmpty()
+        stream is null || stream.CanSeek && stream.Length is 0
             ? default
             : NewtonsoftJsonHelper.FromStream<TValue>(stream, _settings, _encoding);
 
     public object? FromStream(Type type, Stream? stream) =>
-        stream.IsNullOrEmpty()
+        stream is null || stream.CanSeek && stream.Length is 0
             ? default
             : NewtonsoftJsonHelper.FromStream(type, stream, _settings, _encoding);
 }

@@ -13,14 +13,14 @@ public class Serializer : ITextSerializer
             :  DataContractHelper.ToBytes(type, value);
 
     public TValue? FromBytes<TValue>(byte[]? bytes) =>
-        bytes.IsNullOrEmpty()
+        bytes is null || bytes.Length is 0
             ? default
-            :  DataContractHelper.FromBytes<TValue>(bytes!);
+            :  DataContractHelper.FromBytes<TValue>(bytes);
 
     public object? FromBytes(Type type, byte[]? bytes) =>
-        bytes.IsNullOrEmpty()
+        bytes is null || bytes.Length is 0
             ? default
-            :  DataContractHelper.FromBytes(type, bytes!);
+            :  DataContractHelper.FromBytes(type, bytes);
 
     public string ToText<TValue>(TValue? value) =>
         value is null
@@ -53,12 +53,12 @@ public class Serializer : ITextSerializer
             :  DataContractHelper.ToStream(type, value);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
-        stream.IsNullOrEmpty()
+        stream is null || stream.CanSeek && stream.Length is 0
             ? default
-            :  DataContractHelper.FromStream<TValue>(stream!);
+            :  DataContractHelper.FromStream<TValue>(stream);
 
     public object? FromStream(Type type, Stream? stream) =>
-        stream.IsNullOrEmpty()
+        stream is null || stream.CanSeek && stream.Length is 0
             ? default
-            :  DataContractHelper.FromStream(type, stream!);
+            :  DataContractHelper.FromStream(type, stream);
 }
