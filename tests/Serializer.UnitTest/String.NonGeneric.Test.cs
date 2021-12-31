@@ -5,7 +5,7 @@ public partial class SerializerTest
     [Fact]
     public void DataContractStringNonGenericTest() =>
         StringNonGenericTest(new Zaabee.DataContractSerializer.Serializer());
-    
+
     [Fact]
     public void JilStringNonGenericTest() =>
         StringNonGenericTest(new Zaabee.Jil.Serializer());

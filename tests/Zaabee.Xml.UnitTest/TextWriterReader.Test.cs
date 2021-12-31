@@ -46,9 +46,9 @@ public partial class XmlUnitTest
             Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
             Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
 
-        XmlHelper.Serialize((XmlWriter?) null, testModel);
-        XmlHelper.Serialize((TextWriter?) null, testModel);
-        XmlHelper.Serialize(typeof(TestModel), (XmlWriter?) null, testModel);
-        XmlHelper.Serialize(typeof(TestModel), (TextWriter?) null, testModel);
+        XmlHelper.Serialize((XmlWriter?)null, testModel);
+        XmlHelper.Serialize((TextWriter?)null, testModel);
+        XmlHelper.Serialize(typeof(TestModel), (XmlWriter?)null, testModel);
+        XmlHelper.Serialize(typeof(TestModel), (TextWriter?)null, testModel);
     }
 }

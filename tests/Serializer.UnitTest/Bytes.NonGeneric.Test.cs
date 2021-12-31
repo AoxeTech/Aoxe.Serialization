@@ -5,7 +5,7 @@ public partial class SerializerTest
     [Fact, Obsolete]
     public void BinaryBytesNonGenericTest() =>
         BytesNonGenericTest(new Zaabee.Binary.Serializer());
-    
+
     [Fact]
     public void DataContractBytesNonGenericTest() =>
         BytesNonGenericTest(new Zaabee.DataContractSerializer.Serializer());

@@ -14,12 +14,12 @@ public class FromStreamAsync
         Gender = Gender.Female
     };
 
-    private readonly FileStream _jilStream = new (".\\JilStream", FileMode.Create);
-    private readonly FileStream _messagePackStream = new (".\\MessagePackStream", FileMode.Create);
-    private readonly FileStream _msgPackStream = new (".\\MsgPackStream", FileMode.Create);
-    private readonly FileStream _newtonsoftJsonStream = new (".\\NewtonsoftJsonStream", FileMode.Create);
-    private readonly FileStream _systemTextJsonStream = new (".\\SystemTextJsonStream", FileMode.Create);
-    private readonly FileStream _utf8JsonStream = new (".\\Utf8JsonStream", FileMode.Create);
+    private readonly FileStream _jilStream = new(".\\JilStream", FileMode.Create);
+    private readonly FileStream _messagePackStream = new(".\\MessagePackStream", FileMode.Create);
+    private readonly FileStream _msgPackStream = new(".\\MsgPackStream", FileMode.Create);
+    private readonly FileStream _newtonsoftJsonStream = new(".\\NewtonsoftJsonStream", FileMode.Create);
+    private readonly FileStream _systemTextJsonStream = new(".\\SystemTextJsonStream", FileMode.Create);
+    private readonly FileStream _utf8JsonStream = new(".\\Utf8JsonStream", FileMode.Create);
 
     public FromStreamAsync()
     {

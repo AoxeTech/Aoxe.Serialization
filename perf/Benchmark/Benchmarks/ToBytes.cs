@@ -14,7 +14,7 @@ public class ToBytes
         Gender = Gender.Female
     };
 
-    [Benchmark,Obsolete]
+    [Benchmark, Obsolete]
     public void BinaryToBytes() => BinaryHelper.ToBytes(_testModel);
 
     [Benchmark]

@@ -32,7 +32,7 @@ public partial class Runner
             () => XmlHelper.ToStream(_testModel));
         Zaabee.CodeTimer.CodeTimer.Time("ZeroFormatterHelper", iteration,
             () => ZeroFormatterHelper.ToStream(_testModel));
-        
+
         Console.WriteLine("ToStream complete!");
     }
 }

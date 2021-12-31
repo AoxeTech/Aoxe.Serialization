@@ -17,7 +17,7 @@ public partial class XmlUnitTest
         using (var fs = new FileStream("TextWriterReaderNonGenericTest0.xml", FileMode.Open))
         {
             var reader = new StreamReader(fs, Encoding.UTF8);
-            result0 = (TestModel) reader.ReadXml(typeof(TestModel))!;
+            result0 = (TestModel)reader.ReadXml(typeof(TestModel))!;
             reader.Close();
         }
 
@@ -32,7 +32,7 @@ public partial class XmlUnitTest
         using (var fs = new FileStream("TextWriterReaderNonGenericTest1.xml", FileMode.Open))
         {
             var reader = new StreamReader(fs, Encoding.UTF8);
-            result1 = (TestModel) reader.ReadXml(typeof(TestModel))!;
+            result1 = (TestModel)reader.ReadXml(typeof(TestModel))!;
             reader.Close();
         }
 

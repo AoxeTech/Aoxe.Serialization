@@ -17,7 +17,7 @@ public partial class Runner
         var utf8JsonBytes = Utf8JsonHelper.ToBytes(_testModel);
         var xmlBytes = XmlHelper.ToBytes(_testModel);
         var zeroFormatterBytes = ZeroFormatterHelper.ToBytes(_testModel);
-        
+
         Console.WriteLine("FromBytes go!");
 
         Zaabee.CodeTimer.CodeTimer.Initialize();
@@ -46,7 +46,7 @@ public partial class Runner
             () => XmlHelper.FromBytes<TestModel>(xmlBytes));
         Zaabee.CodeTimer.CodeTimer.Time("ZeroFormatterHelper", iteration,
             () => ZeroFormatterHelper.FromBytes<TestModel>(zeroFormatterBytes));
-        
+
         Console.WriteLine("FromBytes complete!");
     }
 }

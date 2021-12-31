@@ -32,7 +32,7 @@ public partial class Runner
             () => XmlHelper.ToBytes(_testModel));
         Zaabee.CodeTimer.CodeTimer.Time("ZeroFormatterHelper", iteration,
             () => ZeroFormatterHelper.ToBytes(_testModel));
-        
+
         Console.WriteLine("ToBytes complete!");
     }
 }

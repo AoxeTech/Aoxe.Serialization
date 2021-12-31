@@ -1,4 +1,4 @@
-namespace  Zaabee.Jil;
+namespace Zaabee.Jil;
 
 public static partial class JilHelper
 {

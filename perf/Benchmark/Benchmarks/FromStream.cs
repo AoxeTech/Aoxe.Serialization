@@ -43,7 +43,7 @@ public class FromStream
         _zeroFormatterStream = ZeroFormatterHelper.ToStream(_testModel);
     }
 
-    [Benchmark,Obsolete]
+    [Benchmark, Obsolete]
     public void BinaryFromStream() => BinaryHelper.FromStream<TestModel>(_binaryStream);
 
     [Benchmark]

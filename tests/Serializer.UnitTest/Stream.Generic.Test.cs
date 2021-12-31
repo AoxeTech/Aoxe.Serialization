@@ -5,7 +5,7 @@ public partial class SerializerTest
     [Fact, Obsolete]
     public void BinaryStreamGenericTest() =>
         StreamGenericTest(new Zaabee.Binary.Serializer());
-    
+
     [Fact]
     public void DataContractStreamGenericTest() =>
         StreamGenericTest(new Zaabee.DataContractSerializer.Serializer());

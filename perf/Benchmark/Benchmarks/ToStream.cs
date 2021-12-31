@@ -14,7 +14,7 @@ public class ToStream
         Gender = Gender.Female
     };
 
-    [Benchmark,Obsolete]
+    [Benchmark, Obsolete]
     public void BinaryToStream() => BinaryHelper.ToStream(_testModel);
 
     [Benchmark]

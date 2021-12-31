@@ -17,7 +17,7 @@ public partial class Runner
         var utf8JsonStream = Utf8JsonHelper.ToStream(_testModel);
         var xmlStream = XmlHelper.ToStream(_testModel);
         var zeroFormatterStream = ZeroFormatterHelper.ToStream(_testModel);
-        
+
         Console.WriteLine("FromStream go!");
 
         Zaabee.CodeTimer.CodeTimer.Initialize();
@@ -46,7 +46,7 @@ public partial class Runner
             () => XmlHelper.FromStream<TestModel>(xmlStream));
         Zaabee.CodeTimer.CodeTimer.Time("ZeroFormatterHelper", iteration,
             () => ZeroFormatterHelper.FromStream<TestModel>(zeroFormatterStream));
-        
+
         Console.WriteLine("FromStream complete!");
     }
 }

@@ -1,6 +1,6 @@
 namespace Zaabee.SystemTextJson;
 
-public class  Serializer : ITextSerializer
+public class Serializer : ITextSerializer
 {
     private readonly JsonSerializerOptions? _options;
 

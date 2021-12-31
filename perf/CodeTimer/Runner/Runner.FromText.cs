@@ -10,7 +10,7 @@ public partial class Runner
         var systemTextJsonJson = SystemTextJsonHelper.ToJson(_testModel);
         var utf8JsonJson = Utf8JsonHelper.ToJson(_testModel);
         var xml = XmlHelper.ToXml(_testModel);
-        
+
         Console.WriteLine("FromText go!");
 
         Zaabee.CodeTimer.CodeTimer.Initialize();
@@ -27,7 +27,7 @@ public partial class Runner
             () => Utf8JsonHelper.FromJson<TestModel>(utf8JsonJson));
         Zaabee.CodeTimer.CodeTimer.Time("XmlHelper", iteration,
             () => XmlHelper.FromXml<TestModel>(xml));
-        
+
         Console.WriteLine("FromText complete!");
     }
 }

@@ -10,7 +10,7 @@ public static partial class DataContractHelper
     /// <returns></returns>
     public static TValue? FromBytes<TValue>(byte[]? bytes) =>
         bytes is null || bytes.Length is 0
-            ?default:
+            ? default :
             (TValue?)FromBytes(typeof(TValue), bytes);
 
     /// <summary>

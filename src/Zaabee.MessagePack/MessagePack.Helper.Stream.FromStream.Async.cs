@@ -1,4 +1,4 @@
-namespace  Zaabee.MessagePack;
+namespace Zaabee.MessagePack;
 
 public static partial class MessagePackHelper
 {

@@ -43,7 +43,7 @@ public class FromBytes
         _zeroFormatterBytes = ZeroFormatterHelper.ToBytes(_testModel);
     }
 
-    [Benchmark,Obsolete]
+    [Benchmark, Obsolete]
     public void BinaryFromBytes() => BinaryHelper.FromBytes<TestModel>(_binaryBytes);
 
     [Benchmark]
