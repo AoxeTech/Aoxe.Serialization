@@ -46,46 +46,6 @@ public partial class SerializerTest
     public void ZeroFormatterBytesGenericTest() =>
         BytesGenericTest(new Zaabee.ZeroFormatter.Serializer());
 
-    [Fact, Obsolete]
-    public void BinaryBytesGenericNullTest() =>
-        BytesGenericNullTest(new Zaabee.Binary.Serializer());
-
-    [Fact]
-    public void JilBytesGenericNullTest() =>
-        BytesGenericNullTest(new Zaabee.Jil.Serializer());
-
-    [Fact]
-    public void MessagePackBytesGenericNullTest() =>
-        BytesGenericNullTest(new Zaabee.MessagePack.Serializer());
-
-    [Fact]
-    public void MsgPackBytesGenericNullTest() =>
-        BytesGenericNullTest(new Zaabee.MsgPack.Serializer());
-
-    [Fact]
-    public void NewtonsoftJsonBytesGenericNullTest() =>
-        BytesGenericNullTest(new Zaabee.NewtonsoftJson.Serializer());
-
-    [Fact]
-    public void ProtobufBytesGenericNullTest() =>
-        BytesGenericNullTest(new Zaabee.Protobuf.Serializer());
-
-    [Fact]
-    public void SystemTextJsonBytesGenericNullTest() =>
-        BytesGenericNullTest(new Zaabee.SystemTextJson.Serializer());
-
-    [Fact]
-    public void Utf8JsonBytesGenericNullTest() =>
-        BytesGenericNullTest(new Zaabee.Utf8Json.Serializer());
-
-    [Fact]
-    public void XmlBytesGenericNullTest() =>
-        BytesGenericNullTest(new Zaabee.Xml.Serializer());
-
-    [Fact]
-    public void ZeroFormatterBytesGenericNullTest() =>
-        BytesGenericNullTest(new Zaabee.ZeroFormatter.Serializer());
-
     private static void BytesGenericTest(IBytesSerializer serializer)
     {
         var model = TestModelFactory.Create();
@@ -96,14 +56,5 @@ public partial class SerializerTest
             Tuple.Create(model.Id, model.Age, model.CreateTime, model.Name, model.Gender),
             Tuple.Create(deserializeModel.Id, deserializeModel.Age, deserializeModel.CreateTime,
                 deserializeModel.Name, deserializeModel.Gender));
-    }
-
-    private static void BytesGenericNullTest(IBytesSerializer serializer)
-    {
-        TestModel? model = null;
-        var bytes = serializer.ToBytes(model);
-        Assert.Empty(bytes);
-        var deserializeModel = serializer.FromBytes<TestModel>(null);
-        Assert.Null(deserializeModel);
     }
 }

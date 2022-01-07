@@ -26,26 +26,6 @@ public partial class SerializerTest
     public void XmlStringNonGenericTest() =>
         StringNonGenericTest(new Zaabee.Xml.Serializer());
 
-    [Fact]
-    public void JilStringNonGenericNullTest() =>
-        StringNonGenericNullTest(new Zaabee.Jil.Serializer());
-
-    [Fact]
-    public void NewtonsoftJsonStringNonGenericNullTest() =>
-        StringNonGenericNullTest(new Zaabee.NewtonsoftJson.Serializer());
-
-    [Fact]
-    public void SystemTextJsonStringNonGenericNullTest() =>
-        StringNonGenericNullTest(new Zaabee.SystemTextJson.Serializer());
-
-    [Fact]
-    public void Utf8JsonStringNonGenericNullTest() =>
-        StringNonGenericNullTest(new Zaabee.Utf8Json.Serializer());
-
-    [Fact]
-    public void XmlStringNonGenericNullTest() =>
-        StringNonGenericNullTest(new Zaabee.Xml.Serializer());
-
     private static void StringNonGenericTest(ITextSerializer serializer)
     {
         var model = TestModelFactory.Create();
@@ -57,14 +37,5 @@ public partial class SerializerTest
             Tuple.Create(model.Id, model.Age, model.CreateTime, model.Name, model.Gender),
             Tuple.Create(deserializeModel.Id, deserializeModel.Age, deserializeModel.CreateTime,
                 deserializeModel.Name, deserializeModel.Gender));
-    }
-
-    private static void StringNonGenericNullTest(ITextSerializer serializer)
-    {
-        var type = typeof(TestModel);
-        var text = serializer.ToText(type, null);
-        Assert.Empty(text);
-        var deserializeModel = serializer.FromText(type, null);
-        Assert.Null(deserializeModel);
     }
 }
