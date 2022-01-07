@@ -1,46 +1,46 @@
-namespace Serializer.UnitTest;
+namespace Zaabee.Serializer.UnitTest;
 
 public partial class SerializerTest
 {
     [Fact, Obsolete]
     public void BinaryStreamGenericNullTest() =>
-        StreamGenericNullTest(new Zaabee.Binary.Serializer());
+        StreamGenericNullTest(new Binary.Serializer());
 
     [Fact]
     public void JilStreamGenericNullTest() =>
-        StreamGenericNullTest(new Zaabee.Jil.Serializer());
+        StreamGenericNullTest(new Jil.Serializer());
 
     [Fact]
     public void MessagePackStreamGenericNullTest() =>
-        StreamGenericNullTest(new Zaabee.MessagePack.Serializer());
+        StreamGenericNullTest(new MessagePack.Serializer());
 
     [Fact]
     public void MsgPackStreamGenericNullTest() =>
-        StreamGenericNullTest(new Zaabee.MsgPack.Serializer());
+        StreamGenericNullTest(new MsgPack.Serializer());
 
     [Fact]
     public void NewtonsoftJsonStreamGenericNullTest() =>
-        StreamGenericNullTest(new Zaabee.NewtonsoftJson.Serializer());
+        StreamGenericNullTest(new NewtonsoftJson.Serializer());
 
     [Fact]
     public void ProtobufStreamGenericNullTest() =>
-        StreamGenericNullTest(new Zaabee.Protobuf.Serializer());
+        StreamGenericNullTest(new Protobuf.Serializer());
 
     [Fact]
     public void SystemTextJsonStreamGenericNullTest() =>
-        StreamGenericNullTest(new Zaabee.SystemTextJson.Serializer());
+        StreamGenericNullTest(new SystemTextJson.Serializer());
 
     [Fact]
     public void Utf8JsonStreamGenericNullTest() =>
-        StreamGenericNullTest(new Zaabee.Utf8Json.Serializer());
+        StreamGenericNullTest(new Utf8Json.Serializer());
 
     [Fact]
     public void XmlStreamGenericNullTest() =>
-        StreamGenericNullTest(new Zaabee.Xml.Serializer());
+        StreamGenericNullTest(new Xml.Serializer());
 
     [Fact]
     public void ZeroFormatterStreamGenericNullTest() =>
-        StreamGenericNullTest(new Zaabee.ZeroFormatter.Serializer());
+        StreamGenericNullTest(new ZeroFormatter.Serializer());
 
     private static void StreamGenericNullTest(IStreamSerializer serializer)
     {

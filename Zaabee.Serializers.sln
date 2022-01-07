@@ -48,7 +48,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestModels", "tests\TestMod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.Serializer.Abstractions", "src\Zaabee.Serializer.Abstractions\Zaabee.Serializer.Abstractions.csproj", "{12DC7AB7-49EA-4A17-B693-CCAE289BDA53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serializer.UnitTest", "tests\Serializer.UnitTest\Serializer.UnitTest.csproj", "{7E985718-5D73-450D-AAD9-D14A2FBD5DE8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.Serializer.UnitTest", "tests\Zaabee.Serializer.UnitTest\Zaabee.Serializer.UnitTest.csproj", "{7E985718-5D73-450D-AAD9-D14A2FBD5DE8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.MessagePack", "src\Zaabee.MessagePack\Zaabee.MessagePack.csproj", "{6007BBFE-8ABD-4F2C-809D-90DFC7443EDE}"
 EndProject

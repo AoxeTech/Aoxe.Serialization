@@ -1,46 +1,46 @@
-namespace Serializer.UnitTest;
+namespace Zaabee.Serializer.UnitTest;
 
 public partial class SerializerTest
 {
     [Fact, Obsolete]
     public void BinaryBytesGenericNullTest() =>
-        BytesGenericNullTest(new Zaabee.Binary.Serializer());
+        BytesGenericNullTest(new Binary.Serializer());
 
     [Fact]
     public void JilBytesGenericNullTest() =>
-        BytesGenericNullTest(new Zaabee.Jil.Serializer());
+        BytesGenericNullTest(new Jil.Serializer());
 
     [Fact]
     public void MessagePackBytesGenericNullTest() =>
-        BytesGenericNullTest(new Zaabee.MessagePack.Serializer());
+        BytesGenericNullTest(new MessagePack.Serializer());
 
     [Fact]
     public void MsgPackBytesGenericNullTest() =>
-        BytesGenericNullTest(new Zaabee.MsgPack.Serializer());
+        BytesGenericNullTest(new MsgPack.Serializer());
 
     [Fact]
     public void NewtonsoftJsonBytesGenericNullTest() =>
-        BytesGenericNullTest(new Zaabee.NewtonsoftJson.Serializer());
+        BytesGenericNullTest(new NewtonsoftJson.Serializer());
 
     [Fact]
     public void ProtobufBytesGenericNullTest() =>
-        BytesGenericNullTest(new Zaabee.Protobuf.Serializer());
+        BytesGenericNullTest(new Protobuf.Serializer());
 
     [Fact]
     public void SystemTextJsonBytesGenericNullTest() =>
-        BytesGenericNullTest(new Zaabee.SystemTextJson.Serializer());
+        BytesGenericNullTest(new SystemTextJson.Serializer());
 
     [Fact]
     public void Utf8JsonBytesGenericNullTest() =>
-        BytesGenericNullTest(new Zaabee.Utf8Json.Serializer());
+        BytesGenericNullTest(new Utf8Json.Serializer());
 
     [Fact]
     public void XmlBytesGenericNullTest() =>
-        BytesGenericNullTest(new Zaabee.Xml.Serializer());
+        BytesGenericNullTest(new Xml.Serializer());
 
     [Fact]
     public void ZeroFormatterBytesGenericNullTest() =>
-        BytesGenericNullTest(new Zaabee.ZeroFormatter.Serializer());
+        BytesGenericNullTest(new ZeroFormatter.Serializer());
 
     private static void BytesGenericNullTest(IBytesSerializer serializer)
     {

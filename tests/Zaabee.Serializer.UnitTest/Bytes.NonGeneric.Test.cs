@@ -1,50 +1,50 @@
-namespace Serializer.UnitTest;
+namespace Zaabee.Serializer.UnitTest;
 
 public partial class SerializerTest
 {
     [Fact, Obsolete]
     public void BinaryBytesNonGenericTest() =>
-        BytesNonGenericTest(new Zaabee.Binary.Serializer());
+        BytesNonGenericTest(new Binary.Serializer());
 
     [Fact]
     public void DataContractBytesNonGenericTest() =>
-        BytesNonGenericTest(new Zaabee.DataContractSerializer.Serializer());
+        BytesNonGenericTest(new DataContractSerializer.Serializer());
 
     [Fact]
     public void JilBytesNonGenericTest() =>
-        BytesNonGenericTest(new Zaabee.Jil.Serializer());
+        BytesNonGenericTest(new Jil.Serializer());
 
     [Fact]
     public void MessagePackBytesNonGenericTest() =>
-        BytesNonGenericTest(new Zaabee.MessagePack.Serializer());
+        BytesNonGenericTest(new MessagePack.Serializer());
 
     [Fact]
     public void MsgPackBytesNonGenericTest() =>
-        BytesNonGenericTest(new Zaabee.MsgPack.Serializer());
+        BytesNonGenericTest(new MsgPack.Serializer());
 
     [Fact]
     public void NewtonsoftJsonBytesNonGenericTest() =>
-        BytesNonGenericTest(new Zaabee.NewtonsoftJson.Serializer());
+        BytesNonGenericTest(new NewtonsoftJson.Serializer());
 
     [Fact]
     public void ProtobufBytesNonGenericTest() =>
-        BytesNonGenericTest(new Zaabee.Protobuf.Serializer());
+        BytesNonGenericTest(new Protobuf.Serializer());
 
     [Fact]
     public void SystemTextJsonBytesNonGenericTest() =>
-        BytesNonGenericTest(new Zaabee.SystemTextJson.Serializer());
+        BytesNonGenericTest(new SystemTextJson.Serializer());
 
     [Fact]
     public void Utf8JsonBytesNonGenericTest() =>
-        BytesNonGenericTest(new Zaabee.Utf8Json.Serializer());
+        BytesNonGenericTest(new Utf8Json.Serializer());
 
     [Fact]
     public void XmlBytesNonGenericTest() =>
-        BytesNonGenericTest(new Zaabee.Xml.Serializer());
+        BytesNonGenericTest(new Xml.Serializer());
 
     [Fact]
     public void ZeroFormatterBytesNonGenericTest() =>
-        BytesNonGenericTest(new Zaabee.ZeroFormatter.Serializer());
+        BytesNonGenericTest(new ZeroFormatter.Serializer());
 
     private static void BytesNonGenericTest(IBytesSerializer serializer)
     {

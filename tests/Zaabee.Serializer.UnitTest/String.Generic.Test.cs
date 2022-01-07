@@ -1,30 +1,30 @@
-namespace Serializer.UnitTest;
+namespace Zaabee.Serializer.UnitTest;
 
 public partial class SerializerTest
 {
     [Fact]
     public void DataContractStringGenericTest() =>
-        StringGenericTest(new Zaabee.DataContractSerializer.Serializer());
+        StringGenericTest(new DataContractSerializer.Serializer());
 
     [Fact]
     public void JilStringGenericTest() =>
-        StringGenericTest(new Zaabee.Jil.Serializer());
+        StringGenericTest(new Jil.Serializer());
 
     [Fact]
     public void NewtonsoftJsonStringGenericTest() =>
-        StringGenericTest(new Zaabee.NewtonsoftJson.Serializer());
+        StringGenericTest(new NewtonsoftJson.Serializer());
 
     [Fact]
     public void SystemTextJsonStringGenericTest() =>
-        StringGenericTest(new Zaabee.SystemTextJson.Serializer());
+        StringGenericTest(new SystemTextJson.Serializer());
 
     [Fact]
     public void Utf8JsonStringGenericTest() =>
-        StringGenericTest(new Zaabee.Utf8Json.Serializer());
+        StringGenericTest(new Utf8Json.Serializer());
 
     [Fact]
     public void XmlStringGenericTest() =>
-        StringGenericTest(new Zaabee.Xml.Serializer());
+        StringGenericTest(new Xml.Serializer());
 
     private static void StringGenericTest(ITextSerializer serializer)
     {

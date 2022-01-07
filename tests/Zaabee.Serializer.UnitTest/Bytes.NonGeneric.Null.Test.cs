@@ -1,46 +1,46 @@
-namespace Serializer.UnitTest;
+namespace Zaabee.Serializer.UnitTest;
 
 public partial class SerializerTest
 {
     [Fact, Obsolete]
     public void BinaryBytesNonGenericNullTest() =>
-        BytesNonGenericNullTest(new Zaabee.Binary.Serializer());
+        BytesNonGenericNullTest(new Binary.Serializer());
 
     [Fact]
     public void JilBytesNonGenericNullTest() =>
-        BytesNonGenericNullTest(new Zaabee.Jil.Serializer());
+        BytesNonGenericNullTest(new Jil.Serializer());
 
     [Fact]
     public void MessagePackBytesNonGenericNullTest() =>
-        BytesNonGenericNullTest(new Zaabee.MessagePack.Serializer());
+        BytesNonGenericNullTest(new MessagePack.Serializer());
 
     [Fact]
     public void MsgPackBytesNonGenericNullTest() =>
-        BytesNonGenericNullTest(new Zaabee.MsgPack.Serializer());
+        BytesNonGenericNullTest(new MsgPack.Serializer());
 
     [Fact]
     public void NewtonsoftJsonBytesNonGenericNullTest() =>
-        BytesNonGenericNullTest(new Zaabee.NewtonsoftJson.Serializer());
+        BytesNonGenericNullTest(new NewtonsoftJson.Serializer());
 
     [Fact]
     public void ProtobufBytesNonGenericNullTest() =>
-        BytesNonGenericNullTest(new Zaabee.Protobuf.Serializer());
+        BytesNonGenericNullTest(new Protobuf.Serializer());
 
     [Fact]
     public void SystemTextJsonBytesNonGenericNullTest() =>
-        BytesNonGenericNullTest(new Zaabee.SystemTextJson.Serializer());
+        BytesNonGenericNullTest(new SystemTextJson.Serializer());
 
     [Fact]
     public void Utf8JsonBytesNonGenericNullTest() =>
-        BytesNonGenericNullTest(new Zaabee.Utf8Json.Serializer());
+        BytesNonGenericNullTest(new Utf8Json.Serializer());
 
     [Fact]
     public void XmlBytesNonGenericNullTest() =>
-        BytesNonGenericNullTest(new Zaabee.Xml.Serializer());
+        BytesNonGenericNullTest(new Xml.Serializer());
 
     [Fact]
     public void ZeroFormatterBytesNonGenericNullTest() =>
-        BytesNonGenericNullTest(new Zaabee.ZeroFormatter.Serializer());
+        BytesNonGenericNullTest(new ZeroFormatter.Serializer());
 
     private static void BytesNonGenericNullTest(IBytesSerializer serializer)
     {
