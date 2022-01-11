@@ -8,14 +8,10 @@ public class Serializer : ITextSerializer
         _resolver = resolver;
 
     public byte[] ToBytes<TValue>(TValue? value) =>
-        value is null
-            ? Array.Empty<byte>()
-            : Utf8JsonHelper.ToBytes(value, _resolver);
+        Utf8JsonHelper.ToBytes(value, _resolver);
 
     public byte[] ToBytes(Type type, object? value) =>
-        value is null
-            ? Array.Empty<byte>()
-            : Utf8JsonHelper.ToBytes(type, value, _resolver);
+        Utf8JsonHelper.ToBytes(type, value, _resolver);
 
     public TValue? FromBytes<TValue>(byte[]? bytes) =>
         bytes is null || bytes.Length is 0
@@ -28,14 +24,10 @@ public class Serializer : ITextSerializer
             : Utf8JsonHelper.FromBytes(type, bytes, _resolver);
 
     public string ToText<TValue>(TValue? value) =>
-        value is null
-            ? string.Empty
-            : Utf8JsonHelper.ToJson(value, _resolver);
+        Utf8JsonHelper.ToJson(value, _resolver);
 
     public string ToText(Type type, object? value) =>
-        value is null
-            ? string.Empty
-            : Utf8JsonHelper.ToJson(type, value, _resolver);
+        Utf8JsonHelper.ToJson(type, value, _resolver);
 
     public TValue? FromText<TValue>(string? text) =>
         string.IsNullOrWhiteSpace(text)
@@ -48,14 +40,10 @@ public class Serializer : ITextSerializer
             : Utf8JsonHelper.FromJson(type, text, _resolver);
 
     public Stream ToStream<TValue>(TValue? value) =>
-        value is null
-            ? Stream.Null
-            : Utf8JsonHelper.ToStream(value, _resolver);
+        Utf8JsonHelper.ToStream(value, _resolver);
 
     public Stream ToStream(Type type, object? value) =>
-        value is null
-            ? Stream.Null
-            : Utf8JsonHelper.ToStream(type, value, _resolver);
+        Utf8JsonHelper.ToStream(type, value, _resolver);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
         stream is null || stream.CanSeek && stream.Length is 0

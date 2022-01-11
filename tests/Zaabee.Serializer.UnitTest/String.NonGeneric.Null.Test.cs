@@ -30,8 +30,7 @@ public partial class SerializerTest
     {
         var type = typeof(TestModel);
         var text = serializer.ToText(type, null);
-        Assert.Empty(text);
-        var deserializeModel = serializer.FromText(type, null);
+        var deserializeModel = serializer.FromText(type, text);
         Assert.Null(deserializeModel);
     }
 }

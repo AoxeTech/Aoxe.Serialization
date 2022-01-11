@@ -9,14 +9,10 @@ public class Serializer : ITextSerializer
         (_options, _encoding) = (options, encoding);
 
     public byte[] ToBytes<TValue>(TValue? value) =>
-        value is null
-            ? Array.Empty<byte>()
-            : JilHelper.ToBytes(value, _options, _encoding);
+        JilHelper.ToBytes(value, _options, _encoding);
 
     public byte[] ToBytes(Type type, object? value) =>
-        value is null
-            ? Array.Empty<byte>()
-            : JilHelper.ToBytes(value, _options, _encoding);
+        JilHelper.ToBytes(value, _options, _encoding);
 
     public TValue? FromBytes<TValue>(byte[]? bytes) =>
         bytes is null || bytes.Length is 0
@@ -29,14 +25,10 @@ public class Serializer : ITextSerializer
             : JilHelper.FromBytes(type, bytes!, _options, _encoding);
 
     public string ToText<TValue>(TValue? value) =>
-        value is null
-            ? string.Empty
-            : JilHelper.ToJson(value, _options);
+        JilHelper.ToJson(value, _options);
 
     public string ToText(Type type, object? value) =>
-        value is null
-            ? string.Empty
-            : JilHelper.ToJson(value, _options);
+        JilHelper.ToJson(value, _options);
 
     public TValue? FromText<TValue>(string? text) =>
         text.IsNullOrWhiteSpace()
@@ -49,14 +41,10 @@ public class Serializer : ITextSerializer
             : JilHelper.FromJson(type, text, _options);
 
     public Stream ToStream<TValue>(TValue? value) =>
-        value is null
-            ? Stream.Null
-            : JilHelper.ToStream(value, _options, _encoding);
+        JilHelper.ToStream(value, _options, _encoding);
 
     public Stream ToStream(Type type, object? value) =>
-        value is null
-            ? Stream.Null
-            : JilHelper.ToStream(value, _options, _encoding);
+        JilHelper.ToStream(value, _options, _encoding);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
         stream is null || stream.CanSeek && stream.Length is 0

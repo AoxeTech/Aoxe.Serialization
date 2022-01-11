@@ -46,8 +46,7 @@ public partial class SerializerTest
     {
         TestModel? model = null;
         var bytes = serializer.ToBytes(model);
-        Assert.Empty(bytes);
-        var deserializeModel = serializer.FromBytes<TestModel>(null);
+        var deserializeModel = serializer.FromBytes<TestModel>(bytes);
         Assert.Null(deserializeModel);
     }
 }

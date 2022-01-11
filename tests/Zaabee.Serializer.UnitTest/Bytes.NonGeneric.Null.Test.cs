@@ -46,8 +46,7 @@ public partial class SerializerTest
     {
         var type = typeof(TestModel);
         var bytes = serializer.ToBytes(type, null);
-        Assert.Empty(bytes);
-        var deserializeModel = serializer.FromBytes(type, null);
+        var deserializeModel = serializer.FromBytes(type, bytes);
         Assert.Null(deserializeModel);
     }
 }

@@ -46,8 +46,7 @@ public partial class SerializerTest
     {
         TestModel? model = null;
         var stream = serializer.ToStream(model);
-        Assert.Equal(0, stream.Length);
-        var deserializeModel = serializer.FromStream<TestModel>(null);
+        var deserializeModel = serializer.FromStream<TestModel>(stream);
         Assert.Null(deserializeModel);
     }
 }

@@ -8,14 +8,10 @@ public class Serializer : IBytesSerializer
         _options = options;
 
     public byte[] ToBytes<TValue>(TValue? value) =>
-        value is null
-            ? Array.Empty<byte>()
-            : MessagePackHelper.ToBytes(value, _options);
+        MessagePackHelper.ToBytes(value, _options);
 
     public byte[] ToBytes(Type type, object? value) =>
-        value is null
-            ? Array.Empty<byte>()
-            : MessagePackHelper.ToBytes(type, value, _options);
+        MessagePackHelper.ToBytes(type, value, _options);
 
     public TValue? FromBytes<TValue>(byte[]? bytes) =>
         bytes is null || bytes.Length is 0
@@ -28,14 +24,10 @@ public class Serializer : IBytesSerializer
             : MessagePackHelper.FromBytes(type, bytes, _options);
 
     public Stream ToStream<TValue>(TValue? value) =>
-        value is null
-            ? Stream.Null
-            : MessagePackHelper.ToStream(value, _options);
+        MessagePackHelper.ToStream(value, _options);
 
     public Stream ToStream(Type type, object? value) =>
-        value is null
-            ? Stream.Null
-            : MessagePackHelper.ToStream(type, value, _options);
+        MessagePackHelper.ToStream(type, value, _options);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
         stream is null || stream.CanSeek && stream.Length is 0
