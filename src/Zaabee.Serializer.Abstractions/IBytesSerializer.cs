@@ -3,7 +3,7 @@ namespace Zaabee.Serializer.Abstractions;
 public interface IBytesSerializer : IStreamSerializer
 {
     /// <summary>
-    /// If the value is null must return empty bytes.
+    /// Serialize to bytes.
     /// </summary>
     /// <param name="value"></param>
     /// <typeparam name="TValue"></typeparam>
@@ -11,7 +11,7 @@ public interface IBytesSerializer : IStreamSerializer
     byte[] ToBytes<TValue>(TValue? value);
 
     /// <summary>
-    /// If the bytes is null or empty must return the default value of T.
+    /// If the bytes is null or empty will return the default value of T.
     /// </summary>
     /// <param name="bytes"></param>
     /// <typeparam name="TValue"></typeparam>
@@ -19,7 +19,7 @@ public interface IBytesSerializer : IStreamSerializer
     TValue? FromBytes<TValue>(byte[]? bytes);
 
     /// <summary>
-    /// If the value is null must return empty bytes.
+    /// Serialize to bytes.
     /// </summary>
     /// <param name="type"></param>
     /// <param name="value"></param>
@@ -27,7 +27,7 @@ public interface IBytesSerializer : IStreamSerializer
     byte[] ToBytes(Type type, object? value);
 
     /// <summary>
-    /// If the bytes is null or empty must return the default value of the type.
+    /// If the bytes is null or empty will return the default value of the type.
     /// </summary>
     /// <param name="type"></param>
     /// <param name="bytes"></param>
