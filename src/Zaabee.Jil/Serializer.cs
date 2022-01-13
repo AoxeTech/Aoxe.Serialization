@@ -17,12 +17,12 @@ public class Serializer : ITextSerializer
     public TValue? FromBytes<TValue>(byte[]? bytes) =>
         bytes is null || bytes.Length is 0
             ? default
-            : JilHelper.FromBytes<TValue>(bytes!, _options, _encoding);
+            : JilHelper.FromBytes<TValue>(bytes, _options, _encoding);
 
     public object? FromBytes(Type type, byte[]? bytes) =>
         bytes is null || bytes.Length is 0
             ? default
-            : JilHelper.FromBytes(type, bytes!, _options, _encoding);
+            : JilHelper.FromBytes(type, bytes, _options, _encoding);
 
     public string ToText<TValue>(TValue? value) =>
         JilHelper.ToJson(value, _options);
@@ -49,10 +49,10 @@ public class Serializer : ITextSerializer
     public TValue? FromStream<TValue>(Stream? stream) =>
         stream is null || stream.CanSeek && stream.Length is 0
             ? default
-            : JilHelper.FromStream<TValue>(stream!, _options, _encoding);
+            : JilHelper.FromStream<TValue>(stream, _options, _encoding);
 
     public object? FromStream(Type type, Stream? stream) =>
         stream is null || stream.CanSeek && stream.Length is 0
             ? default
-            : JilHelper.FromStream(type, stream!, _options, _encoding);
+            : JilHelper.FromStream(type, stream, _options, _encoding);
 }
