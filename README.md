@@ -76,7 +76,7 @@ Though some serializers does not support stream or bytes, the zaabee serializers
   - String
     - FromJson/FromXml
 - Serializer
-  Implement Zaabee.Serializer.Abstractions, The Zaabee technology stacks use this class to serialize and deserialize. It will return Array.Empty\<byte\>()/string.Empty/Stream.Null if the value is null.
+  Implement Zaabee.Serializer.Abstractions, The Zaabee technology stacks use this library to serialize and deserialize.
   - Stream
     - stream ToStream\<TValue\>(TValue? value)
     - TValue? FromStream\<TValue\>(Stream? stream)
