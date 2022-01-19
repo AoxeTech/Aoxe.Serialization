@@ -3,7 +3,7 @@ namespace Zaabee.Utf8Json;
 public static partial class Utf8JsonHelper
 {
     /// <summary>
-    /// Deserialize the json to an instance of the <typeparamref name="T"/>.
+    /// Deserialize the json to an instance of the <typeparamref name="TValue"/>.
     /// </summary>
     /// <param name="json"></param>
     /// <param name="resolver"></param>
