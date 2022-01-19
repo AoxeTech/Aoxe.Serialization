@@ -11,7 +11,7 @@ public static partial class YamlDotNetHelper
     public static TValue? FromYaml<TValue>(string? yaml) =>
         string.IsNullOrWhiteSpace(yaml)
             ? default
-            : Deserializer.Deserialize<TValue>(yaml);
+            : Deserializer.Deserialize<TValue>(yaml!);
 
     /// <summary>
     /// Deserialize the yaml string to an instance of the <paramref name="type"/>.
@@ -22,5 +22,5 @@ public static partial class YamlDotNetHelper
     public static object? FromYaml(Type type, string? yaml) =>
         string.IsNullOrWhiteSpace(yaml)
             ? default
-            : Deserializer.Deserialize(yaml, type);
+            : Deserializer.Deserialize(yaml!, type);
 }

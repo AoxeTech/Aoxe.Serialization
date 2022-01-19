@@ -2,6 +2,6 @@ namespace Zaabee.YamlDotNet;
 
 public static partial class YamlDotNetExtensions
 {
-    public static void PackBy<TValue>(this Stream? stream, TValue? value, Encoding? encoding = null) =>
+    public static void PackBy(this Stream? stream, object? value, Encoding? encoding = null) =>
         YamlDotNetHelper.Pack(value, stream, encoding);
 }

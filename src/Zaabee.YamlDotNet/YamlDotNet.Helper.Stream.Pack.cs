@@ -3,7 +3,7 @@ namespace Zaabee.YamlDotNet;
 public static partial class YamlDotNetHelper
 {
     /// <summary>
-    /// Convert the provided value to yaml text and write it to the <see cref="System.IO.Stream"/>.
+    /// Serialize the value to yaml text and write it to the <see cref="System.IO.Stream"/>.
     /// </summary>
     /// <param name="value"></param>
     /// <param name="stream"></param>
