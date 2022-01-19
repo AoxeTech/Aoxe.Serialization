@@ -3,32 +3,32 @@ namespace Zaabee.YamlDotNet.UnitTest;
 public partial class ExtensionsTest
 {
     [Fact]
-    public void GenericTypeJsonTest()
+    public void GenericTypeYamlTest()
     {
         var testModel = TestModelFactory.Create();
-        var json = testModel.ToYaml();
-        var result = json.FromYaml<TestModel>()!;
+        var yaml = testModel.ToYaml();
+        var result = yaml.FromYaml<TestModel>()!;
         Assert.Equal(
             Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
             Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
     }
 
     [Fact]
-    public void GenericTypeJsonNullTest()
+    public void GenericTypeYamlNullTest()
     {
         TestModel? nullModel = null;
-        string? nullJson = null;
-        var emptyJson = nullModel.ToYaml();
-        Assert.Null(emptyJson.FromYaml<TestModel>());
-        Assert.Null(nullJson.FromYaml<TestModel>());
+        string? nullYaml = null;
+        var emptyYaml = nullModel.ToYaml();
+        Assert.Null(emptyYaml.FromYaml<TestModel>());
+        Assert.Null(nullYaml.FromYaml<TestModel>());
     }
 
     [Fact]
-    public void NonGenericTypeJsonTest()
+    public void NonGenericTypeYamlTest()
     {
         object testModel = TestModelFactory.Create();
-        var json = testModel.ToYaml();
-        var result = (TestModel)json.FromYaml(typeof(TestModel))!;
+        var yaml = testModel.ToYaml();
+        var result = (TestModel)yaml.FromYaml(typeof(TestModel))!;
         Assert.Equal(
             Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
                 ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
@@ -36,21 +36,21 @@ public partial class ExtensionsTest
     }
 
     [Fact]
-    public void NonGenericTypeJsonNullTest()
+    public void NonGenericTypeYamlNullTest()
     {
         object? nullModel = null;
-        string? nullJson = null;
-        var emptyJson = nullModel.ToYaml();
-        Assert.Null(emptyJson.FromYaml(typeof(TestModel)));
-        Assert.Null(nullJson.FromYaml(typeof(TestModel)));
+        string? nullYaml = null;
+        var emptyYaml = nullModel.ToYaml();
+        Assert.Null(emptyYaml.FromYaml(typeof(TestModel)));
+        Assert.Null(nullYaml.FromYaml(typeof(TestModel)));
     }
 
     [Fact]
-    public void ObjectJsonTest()
+    public void ObjectYamlTest()
     {
         object testModel = TestModelFactory.Create();
-        var json = testModel.ToYaml();
-        var result = (TestModel)json.FromYaml(typeof(TestModel))!;
+        var yaml = testModel.ToYaml();
+        var result = (TestModel)yaml.FromYaml(typeof(TestModel))!;
         Assert.Equal(
             Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
                 ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
@@ -58,12 +58,12 @@ public partial class ExtensionsTest
     }
 
     [Fact]
-    public void ObjectJsonNullTest()
+    public void ObjectYamlNullTest()
     {
         object? nullModel = null;
-        string? nullJson = null;
-        var emptyJson = nullModel.ToYaml();
-        Assert.Null(emptyJson.FromYaml(typeof(TestModel)));
-        Assert.Null(nullJson.FromYaml(typeof(TestModel)));
+        string? nullYaml = null;
+        var emptyYaml = nullModel.ToYaml();
+        Assert.Null(emptyYaml.FromYaml(typeof(TestModel)));
+        Assert.Null(nullYaml.FromYaml(typeof(TestModel)));
     }
 }

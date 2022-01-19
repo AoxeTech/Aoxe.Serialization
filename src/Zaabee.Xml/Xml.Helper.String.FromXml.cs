@@ -22,7 +22,7 @@ public static partial class XmlHelper
     public static object? FromXml(Type type, string? xml)
     {
         if (string.IsNullOrWhiteSpace(xml)) return default;
-        using var ms = new MemoryStream(Encoding.UTF8.GetBytes(xml));
+        using var ms = Encoding.UTF8.GetBytes(xml).ToMemoryStream();
         return FromStream(type, ms);
     }
 }

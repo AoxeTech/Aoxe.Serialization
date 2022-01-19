@@ -25,7 +25,7 @@ public static partial class BinaryHelper
     public static object? FromBytes(byte[]? bytes)
     {
         if (bytes is null || bytes.Length is 0) return default;
-        using var ms = new MemoryStream(bytes);
+        using var ms = bytes.ToMemoryStream();
         return FromStream(ms);
     }
 }

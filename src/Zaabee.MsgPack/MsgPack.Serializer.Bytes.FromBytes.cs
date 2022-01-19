@@ -11,7 +11,7 @@ public static partial class MsgPackHelper
     public static TValue? FromBytes<TValue>(byte[]? bytes)
     {
         if (bytes is null || bytes.Length is 0) return default;
-        using var ms = new MemoryStream(bytes);
+        using var ms = bytes.ToMemoryStream();
         return FromStream<TValue>(ms);
     }
 
@@ -24,7 +24,7 @@ public static partial class MsgPackHelper
     public static object? FromBytes(Type type, byte[]? bytes)
     {
         if (bytes is null || bytes.Length is 0) return default;
-        using var ms = new MemoryStream(bytes);
+        using var ms = bytes.ToMemoryStream();
         return FromStream(type, ms);
     }
 }

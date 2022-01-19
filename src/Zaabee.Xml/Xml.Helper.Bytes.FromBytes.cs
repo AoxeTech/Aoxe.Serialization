@@ -22,7 +22,7 @@ public static partial class XmlHelper
     public static object? FromBytes(Type type, byte[]? bytes)
     {
         if (bytes is null) return default;
-        using var ms = new MemoryStream(bytes);
+        using var ms = bytes.ToMemoryStream();
         return FromStream(type, ms);
     }
 }
