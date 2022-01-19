@@ -28,7 +28,7 @@ public static partial class NewtonsoftJsonHelper
         Encoding? encoding = null)
     {
         if (stream is null || stream.CanSeek && stream.Length is 0) return default;
-        var result = FromJson(type, GetString(encoding, stream.ReadToEnd()), settings);
+        var result = FromJson(type, stream.ReadToEnd().GetString(encoding), settings);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
     }

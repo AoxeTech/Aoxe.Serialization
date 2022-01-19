@@ -28,5 +28,5 @@ public static partial class NewtonsoftJsonHelper
         Encoding? encoding = null) =>
         bytes is null || bytes.Length is 0
             ? default
-            : FromJson(type, GetString(encoding, bytes), settings);
+            : FromJson(type, bytes.GetString(encoding), settings);
 }

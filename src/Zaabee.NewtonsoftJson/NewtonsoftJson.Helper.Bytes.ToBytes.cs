@@ -11,7 +11,7 @@ public static partial class NewtonsoftJsonHelper
     /// <returns></returns>
     public static byte[] ToBytes<TValue>(TValue? value, JsonSerializerSettings? settings = null,
         Encoding? encoding = null) =>
-        GetBytes(encoding, ToJson(value, settings));
+        ToJson(value, settings).GetBytes(encoding);
 
     /// <summary>
     /// Serialize the object to json string and encode it into bytes used the encoding.
@@ -23,5 +23,5 @@ public static partial class NewtonsoftJsonHelper
     /// <returns></returns>
     public static byte[] ToBytes(Type type, object? value, JsonSerializerSettings? settings = null,
         Encoding? encoding = null) =>
-        GetBytes(encoding, ToJson(type, value, settings));
+        ToJson(type, value, settings).GetBytes(encoding);
 }
