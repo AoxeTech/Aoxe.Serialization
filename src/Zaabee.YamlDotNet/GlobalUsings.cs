@@ -1,6 +1,3 @@
-namespace Zaabee.YamlDotNet;
-
-public class GlobalUsings
-{
-
-}
+global using YamlDotNet.Serialization;
+global using Zaabee.Extensions;
+global using System.Text;
