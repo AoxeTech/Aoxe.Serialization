@@ -24,12 +24,16 @@ public partial class Runner
             () => NewtonsoftJsonHelper.ToStream(_testModel));
         Zaabee.CodeTimer.CodeTimer.Time("ProtobufHelper", iteration,
             () => ProtobufHelper.ToStream(_testModel));
+        Zaabee.CodeTimer.CodeTimer.Time("SharpYamlHelper", iteration,
+            () => SharpYamlHelper.ToStream(_testModel));
         Zaabee.CodeTimer.CodeTimer.Time("SystemTextJsonHelper", iteration,
             () => SystemTextJsonHelper.ToStream(_testModel));
         Zaabee.CodeTimer.CodeTimer.Time("Utf8JsonHelper", iteration,
             () => Utf8JsonHelper.ToStream(_testModel));
         Zaabee.CodeTimer.CodeTimer.Time("XmlHelper", iteration,
             () => XmlHelper.ToStream(_testModel));
+        Zaabee.CodeTimer.CodeTimer.Time("YamlDotNetHelper", iteration,
+            () => YamlDotNetHelper.ToStream(_testModel));
         Zaabee.CodeTimer.CodeTimer.Time("ZeroFormatterHelper", iteration,
             () => ZeroFormatterHelper.ToStream(_testModel));
 

@@ -13,6 +13,8 @@ global using Zaabee.MessagePack;
 global using Zaabee.MsgPack;
 global using Zaabee.Protobuf;
 global using Zaabee.ZeroFormatter;
+global using Zaabee.SharpYaml;
+global using Zaabee.YamlDotNet;
 global using System.Threading.Tasks;
 global using System.Diagnostics;
 global using CodeTimer.Runner;

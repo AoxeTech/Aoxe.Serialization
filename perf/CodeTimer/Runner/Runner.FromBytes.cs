@@ -13,9 +13,11 @@ public partial class Runner
         var msgPackBytes = MsgPackHelper.ToBytes(_testModel);
         var newtonsoftJsonBytes = NewtonsoftJsonHelper.ToBytes(_testModel);
         var protobufBytes = ProtobufHelper.ToBytes(_testModel);
+        var sharpYamlBytes = SharpYamlHelper.ToBytes(_testModel);
         var systemTextJsonBytes = SystemTextJsonHelper.ToBytes(_testModel);
         var utf8JsonBytes = Utf8JsonHelper.ToBytes(_testModel);
         var xmlBytes = XmlHelper.ToBytes(_testModel);
+        var yamlDotNetBytes = YamlDotNetHelper.ToBytes(_testModel);
         var zeroFormatterBytes = ZeroFormatterHelper.ToBytes(_testModel);
 
         Console.WriteLine("FromBytes go!");
@@ -38,12 +40,16 @@ public partial class Runner
             () => NewtonsoftJsonHelper.FromBytes<TestModel>(newtonsoftJsonBytes));
         Zaabee.CodeTimer.CodeTimer.Time("ProtobufHelper", iteration,
             () => ProtobufHelper.FromBytes<TestModel>(protobufBytes));
+        Zaabee.CodeTimer.CodeTimer.Time("SharpYamlHelper", iteration,
+            () => SharpYamlHelper.FromBytes<TestModel>(sharpYamlBytes));
         Zaabee.CodeTimer.CodeTimer.Time("SystemTextJsonHelper", iteration,
             () => SystemTextJsonHelper.FromBytes<TestModel>(systemTextJsonBytes));
         Zaabee.CodeTimer.CodeTimer.Time("Utf8JsonHelper", iteration,
             () => Utf8JsonHelper.FromBytes<TestModel>(utf8JsonBytes));
         Zaabee.CodeTimer.CodeTimer.Time("XmlHelper", iteration,
             () => XmlHelper.FromBytes<TestModel>(xmlBytes));
+        Zaabee.CodeTimer.CodeTimer.Time("YamlDotNetHelper", iteration,
+            () => YamlDotNetHelper.FromBytes<TestModel>(yamlDotNetBytes));
         Zaabee.CodeTimer.CodeTimer.Time("ZeroFormatterHelper", iteration,
             () => ZeroFormatterHelper.FromBytes<TestModel>(zeroFormatterBytes));
 
