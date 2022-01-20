@@ -15,17 +15,17 @@ public partial class Runner
 
         Zaabee.CodeTimer.CodeTimer.Initialize();
 
-        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("JilHelper", iteration,
+        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("JilHelper FromStreamAsync", iteration,
             async () => await JilHelper.FromStreamAsync<TestModel>(jilStreamAsync)));
-        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("MessagePackHelper", iteration,
+        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("MessagePackHelper FromStreamAsync", iteration,
             async () => await MessagePackHelper.FromStreamAsync<TestModel>(messagePackStreamAsync)));
-        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("MsgPackHelper", iteration,
+        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("MsgPackHelper FromStreamAsync", iteration,
             async () => await MsgPackHelper.FromStreamAsync<TestModel>(msgPackStreamAsync)));
-        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("NewtonsoftJsonHelper", iteration,
+        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("NewtonsoftJsonHelper FromStreamAsync", iteration,
             async () => await NewtonsoftJsonHelper.FromStreamAsync<TestModel>(newtonsoftJsonStreamAsync)));
-        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("SystemTextJsonHelper", iteration,
+        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("SystemTextJsonHelper FromStreamAsync", iteration,
             async () => await SystemTextJsonHelper.FromStreamAsync<TestModel>(systemTextJsonStreamAsync)));
-        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("Utf8JsonHelper", iteration,
+        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("Utf8JsonHelper FromStreamAsync", iteration,
             async () => await Utf8JsonHelper.FromStreamAsync<TestModel>(utf8JsonStreamAsync)));
 
         Console.WriteLine("\r\nFromStreamAsync complete!\r\n");
