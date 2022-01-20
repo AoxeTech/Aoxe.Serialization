@@ -24,35 +24,35 @@ public partial class Runner
 
         Zaabee.CodeTimer.CodeTimer.Initialize();
 
-        Zaabee.CodeTimer.CodeTimer.Time("BinaryHelper", iteration,
+        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("BinaryHelper", iteration,
 #pragma warning disable CS0618
-            () => BinaryHelper.FromBytes<TestModel>(binaryBytes));
+            () => BinaryHelper.FromBytes<TestModel>(binaryBytes)));
 #pragma warning restore CS0618
-        Zaabee.CodeTimer.CodeTimer.Time("DataContractHelper", iteration,
-            () => DataContractHelper.FromBytes<TestModel>(dataContractBytes));
-        Zaabee.CodeTimer.CodeTimer.Time("JilHelper", iteration,
-            () => JilHelper.FromBytes<TestModel>(jilBytes));
-        Zaabee.CodeTimer.CodeTimer.Time("MessagePackHelper", iteration,
-            () => MessagePackHelper.FromBytes<TestModel>(messagePackBytes));
-        Zaabee.CodeTimer.CodeTimer.Time("MsgPackHelper", iteration,
-            () => MsgPackHelper.FromBytes<TestModel>(msgPackBytes));
-        Zaabee.CodeTimer.CodeTimer.Time("NewtonsoftJsonHelper", iteration,
-            () => NewtonsoftJsonHelper.FromBytes<TestModel>(newtonsoftJsonBytes));
-        Zaabee.CodeTimer.CodeTimer.Time("ProtobufHelper", iteration,
-            () => ProtobufHelper.FromBytes<TestModel>(protobufBytes));
-        Zaabee.CodeTimer.CodeTimer.Time("SharpYamlHelper", iteration,
-            () => SharpYamlHelper.FromBytes<TestModel>(sharpYamlBytes));
-        Zaabee.CodeTimer.CodeTimer.Time("SystemTextJsonHelper", iteration,
-            () => SystemTextJsonHelper.FromBytes<TestModel>(systemTextJsonBytes));
-        Zaabee.CodeTimer.CodeTimer.Time("Utf8JsonHelper", iteration,
-            () => Utf8JsonHelper.FromBytes<TestModel>(utf8JsonBytes));
-        Zaabee.CodeTimer.CodeTimer.Time("XmlHelper", iteration,
-            () => XmlHelper.FromBytes<TestModel>(xmlBytes));
-        Zaabee.CodeTimer.CodeTimer.Time("YamlDotNetHelper", iteration,
-            () => YamlDotNetHelper.FromBytes<TestModel>(yamlDotNetBytes));
-        Zaabee.CodeTimer.CodeTimer.Time("ZeroFormatterHelper", iteration,
-            () => ZeroFormatterHelper.FromBytes<TestModel>(zeroFormatterBytes));
-
-        Console.WriteLine("FromBytes complete!");
+        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("DataContractHelper", iteration,
+            () => DataContractHelper.FromBytes<TestModel>(dataContractBytes)));
+        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("JilHelper", iteration,
+            () => JilHelper.FromBytes<TestModel>(jilBytes)));
+        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("MessagePackHelper", iteration,
+            () => MessagePackHelper.FromBytes<TestModel>(messagePackBytes)));
+        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("MsgPackHelper", iteration,
+            () => MsgPackHelper.FromBytes<TestModel>(msgPackBytes)));
+        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("NewtonsoftJsonHelper", iteration,
+            () => NewtonsoftJsonHelper.FromBytes<TestModel>(newtonsoftJsonBytes)));
+        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("ProtobufHelper", iteration,
+            () => ProtobufHelper.FromBytes<TestModel>(protobufBytes)));
+        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("SharpYamlHelper", iteration,
+            () => SharpYamlHelper.FromBytes<TestModel>(sharpYamlBytes)));
+        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("SystemTextJsonHelper", iteration,
+            () => SystemTextJsonHelper.FromBytes<TestModel>(systemTextJsonBytes)));
+        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("Utf8JsonHelper", iteration,
+            () => Utf8JsonHelper.FromBytes<TestModel>(utf8JsonBytes)));
+        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("XmlHelper", iteration,
+            () => XmlHelper.FromBytes<TestModel>(xmlBytes)));
+        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("YamlDotNetHelper", iteration,
+            () => YamlDotNetHelper.FromBytes<TestModel>(yamlDotNetBytes)));
+        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("ZeroFormatterHelper", iteration,
+            () => ZeroFormatterHelper.FromBytes<TestModel>(zeroFormatterBytes)));
+        
+        Console.WriteLine("\r\nFromBytes complete!\r\n");
     }
 }

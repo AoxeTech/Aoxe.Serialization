@@ -15,6 +15,7 @@ global using Zaabee.Protobuf;
 global using Zaabee.ZeroFormatter;
 global using Zaabee.SharpYaml;
 global using Zaabee.YamlDotNet;
+global using Zaabee.CodeTimer;
 global using System.Threading.Tasks;
 global using System.Diagnostics;
 global using CodeTimer.Runner;
