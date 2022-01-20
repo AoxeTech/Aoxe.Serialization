@@ -1,3 +1,6 @@
+using Zaabee.SharpYaml;
+using Zaabee.YamlDotNet;
+
 namespace Benchmark.Benchmarks;
 
 [MemoryDiagnoser]
@@ -21,9 +24,11 @@ public class FromStream
     private readonly Stream _msgPackStream;
     private readonly Stream _newtonsoftJsonStream;
     private readonly Stream _protobufStream;
+    private readonly Stream _sharpYamlStream;
     private readonly Stream _systemTextJsonStream;
     private readonly Stream _utf8JsonStream;
     private readonly Stream _xmlStream;
+    private readonly Stream _yamlDotNetStream;
     private readonly Stream _zeroFormatterStream;
 
     public FromStream()
@@ -37,9 +42,11 @@ public class FromStream
         _msgPackStream = MsgPackHelper.ToStream(_testModel);
         _newtonsoftJsonStream = NewtonsoftJsonHelper.ToStream(_testModel);
         _protobufStream = ProtobufHelper.ToStream(_testModel);
+        _sharpYamlStream = SharpYamlHelper.ToStream(_testModel);
         _systemTextJsonStream = SystemTextJsonHelper.ToStream(_testModel);
         _utf8JsonStream = Utf8JsonHelper.ToStream(_testModel);
         _xmlStream = XmlHelper.ToStream(_testModel);
+        _yamlDotNetStream = YamlDotNetHelper.ToStream(_testModel);
         _zeroFormatterStream = ZeroFormatterHelper.ToStream(_testModel);
     }
 
@@ -65,6 +72,9 @@ public class FromStream
     public void ProtobufFromStream() => ProtobufHelper.FromStream<TestModel>(_protobufStream);
 
     [Benchmark]
+    public void SharpYamlFromStream() => SharpYamlHelper.FromStream<TestModel>(_sharpYamlStream);
+
+    [Benchmark]
     public void SystemTextJsonFromStream() => SystemTextJsonHelper.FromStream<TestModel>(_systemTextJsonStream);
 
     [Benchmark]
@@ -72,6 +82,9 @@ public class FromStream
 
     [Benchmark]
     public void XmlFromStream() => XmlHelper.FromStream<TestModel>(_xmlStream);
+
+    [Benchmark]
+    public void YamlDotNetFromStream() => YamlDotNetHelper.FromStream<TestModel>(_yamlDotNetStream);
 
     [Benchmark]
     public void ZeroFormatterFromStream() => ZeroFormatterHelper.FromStream<TestModel>(_zeroFormatterStream);

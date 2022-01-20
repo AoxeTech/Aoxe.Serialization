@@ -1,3 +1,6 @@
+using Zaabee.SharpYaml;
+using Zaabee.YamlDotNet;
+
 namespace Benchmark.Benchmarks;
 
 [MemoryDiagnoser]
@@ -17,18 +20,22 @@ public class FromText
     private readonly string _dataContract;
     private readonly string _jil;
     private readonly string _newtonsoftJson;
+    private readonly string _sharpYaml;
     private readonly string _systemTextJson;
     private readonly string _utf8Json;
     private readonly string _xml;
+    private readonly string _yamlDotNet;
 
     public FromText()
     {
         _dataContract = DataContractHelper.ToXml(_testModel);
         _jil = JilHelper.ToJson(_testModel);
         _newtonsoftJson = NewtonsoftJsonHelper.ToJson(_testModel);
+        _sharpYaml = SharpYamlHelper.ToYaml(_testModel);
         _systemTextJson = SystemTextJsonHelper.ToJson(_testModel);
         _utf8Json = Utf8JsonHelper.ToJson(_testModel);
         _xml = XmlHelper.ToXml(_testModel);
+        _yamlDotNet = YamlDotNetHelper.ToYaml(_testModel);
     }
 
     [Benchmark]
@@ -41,6 +48,9 @@ public class FromText
     public void NewtonsoftJsonFromText() => NewtonsoftJsonHelper.FromJson<TestModel>(_newtonsoftJson);
 
     [Benchmark]
+    public void SharpYamlFromText() => SharpYamlHelper.FromYaml<TestModel>(_sharpYaml);
+
+    [Benchmark]
     public void SystemTextJsonFromText() => SystemTextJsonHelper.FromJson<TestModel>(_systemTextJson);
 
     [Benchmark]
@@ -48,4 +58,7 @@ public class FromText
 
     [Benchmark]
     public void XmlFromText() => XmlHelper.FromXml<TestModel>(_xml);
+
+    [Benchmark]
+    public void YamlDotNetFromText() => YamlDotNetHelper.FromYaml<TestModel>(_yamlDotNet);
 }

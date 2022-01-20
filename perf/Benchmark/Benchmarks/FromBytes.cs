@@ -1,3 +1,6 @@
+using Zaabee.SharpYaml;
+using Zaabee.YamlDotNet;
+
 namespace Benchmark.Benchmarks;
 
 [MemoryDiagnoser]
@@ -21,9 +24,11 @@ public class FromBytes
     private readonly byte[] _msgPackBytes;
     private readonly byte[] _newtonsoftJsonBytes;
     private readonly byte[] _protobufBytes;
+    private readonly byte[] _sharpYamlBytes;
     private readonly byte[] _systemTextJsonBytes;
     private readonly byte[] _utf8JsonBytes;
     private readonly byte[] _xmlBytes;
+    private readonly byte[] _yamlDotNet;
     private readonly byte[] _zeroFormatterBytes;
 
     public FromBytes()
@@ -37,9 +42,11 @@ public class FromBytes
         _msgPackBytes = MsgPackHelper.ToBytes(_testModel);
         _newtonsoftJsonBytes = NewtonsoftJsonHelper.ToBytes(_testModel);
         _protobufBytes = ProtobufHelper.ToBytes(_testModel);
+        _sharpYamlBytes = SharpYamlHelper.ToBytes(_testModel);
         _systemTextJsonBytes = SystemTextJsonHelper.ToBytes(_testModel);
         _utf8JsonBytes = Utf8JsonHelper.ToBytes(_testModel);
         _xmlBytes = XmlHelper.ToBytes(_testModel);
+        _yamlDotNet = YamlDotNetHelper.ToBytes(_testModel);
         _zeroFormatterBytes = ZeroFormatterHelper.ToBytes(_testModel);
     }
 
@@ -65,6 +72,9 @@ public class FromBytes
     public void ProtobufFromBytes() => ProtobufHelper.FromBytes<TestModel>(_protobufBytes);
 
     [Benchmark]
+    public void SharpYamlFromBytes() => SharpYamlHelper.FromBytes<TestModel>(_sharpYamlBytes);
+
+    [Benchmark]
     public void SystemTextJsonFromBytes() => SystemTextJsonHelper.FromBytes<TestModel>(_systemTextJsonBytes);
 
     [Benchmark]
@@ -72,6 +82,9 @@ public class FromBytes
 
     [Benchmark]
     public void XmlFromBytes() => XmlHelper.FromBytes<TestModel>(_xmlBytes);
+
+    [Benchmark]
+    public void YamlDotNetFromBytes() => YamlDotNetHelper.FromBytes<TestModel>(_yamlDotNet);
 
     [Benchmark]
     public void ZeroFormatterFromBytes() => ZeroFormatterHelper.FromBytes<TestModel>(_zeroFormatterBytes);

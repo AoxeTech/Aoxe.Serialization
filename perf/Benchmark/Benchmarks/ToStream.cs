@@ -1,3 +1,6 @@
+using Zaabee.SharpYaml;
+using Zaabee.YamlDotNet;
+
 namespace Benchmark.Benchmarks;
 
 [MemoryDiagnoser]
@@ -36,6 +39,9 @@ public class ToStream
     public void ProtobufToStream() => ProtobufHelper.ToStream(_testModel);
 
     [Benchmark]
+    public void SharpYamlToStream() => SharpYamlHelper.ToStream(_testModel);
+
+    [Benchmark]
     public void SystemTextJsonToStream() => SystemTextJsonHelper.ToStream(_testModel);
 
     [Benchmark]
@@ -43,6 +49,9 @@ public class ToStream
 
     [Benchmark]
     public void XmlToStream() => XmlHelper.ToStream(_testModel);
+
+    [Benchmark]
+    public void YamlDotNetToStream() => YamlDotNetHelper.ToStream(_testModel);
 
     [Benchmark]
     public void ZeroFormatterToStream() => ZeroFormatterHelper.ToStream(_testModel);

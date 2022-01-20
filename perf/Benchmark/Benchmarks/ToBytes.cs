@@ -1,3 +1,6 @@
+using Zaabee.SharpYaml;
+using Zaabee.YamlDotNet;
+
 namespace Benchmark.Benchmarks;
 
 [MemoryDiagnoser]
@@ -36,6 +39,9 @@ public class ToBytes
     public void ProtobufToBytes() => ProtobufHelper.ToBytes(_testModel);
 
     [Benchmark]
+    public void SharpYamlToBytes() => SharpYamlHelper.ToBytes(_testModel);
+
+    [Benchmark]
     public void SystemTextJsonToBytes() => SystemTextJsonHelper.ToBytes(_testModel);
 
     [Benchmark]
@@ -43,6 +49,9 @@ public class ToBytes
 
     [Benchmark]
     public void XmlToBytes() => XmlHelper.ToBytes(_testModel);
+
+    [Benchmark]
+    public void YamlDotNetToBytes() => YamlDotNetHelper.ToBytes(_testModel);
 
     [Benchmark]
     public void ZeroFormatterToBytes() => ZeroFormatterHelper.ToBytes(_testModel);

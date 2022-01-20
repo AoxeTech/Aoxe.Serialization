@@ -1,3 +1,6 @@
+using Zaabee.SharpYaml;
+using Zaabee.YamlDotNet;
+
 namespace Benchmark.Benchmarks;
 
 [MemoryDiagnoser]
@@ -24,6 +27,9 @@ public class ToText
     public void NewtonsoftJsonToText() => NewtonsoftJsonHelper.ToJson(_testModel);
 
     [Benchmark]
+    public void SharpYamlToText() => SharpYamlHelper.ToYaml(_testModel);
+
+    [Benchmark]
     public void SystemTextJsonToText() => SystemTextJsonHelper.ToJson(_testModel);
 
     [Benchmark]
@@ -31,4 +37,7 @@ public class ToText
 
     [Benchmark]
     public void XmlToText() => XmlHelper.ToXml(_testModel);
+
+    [Benchmark]
+    public void YamlDotNetToText() => YamlDotNetHelper.ToYaml(_testModel);
 }

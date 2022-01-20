@@ -27,6 +27,9 @@ Serializers can be divided into two categories:
   - Xml
     - XmlSerializer
     - DataContractSerializer
+  - Yaml
+    - SharpYaml
+    - YamlDotNet
 
 Though some serializers does not support stream or bytes, the zaabee serializers will supply the lack. And the text serializers will support text on this base.
 
@@ -62,19 +65,24 @@ Though some serializers does not support stream or bytes, the zaabee serializers
       - string ToXml(Type type, object? value)
       - TValue? FromXml\<TValue\>(string? xml)
       - object? FromXml(Type type, string? xml)
+    - yaml
+      - string ToYaml\<TValue\>(TValue? value)
+      - string ToYaml(Type type, object? value)
+      - TValue? FromYaml\<TValue\>(string? xml)
+      - object? FromYaml(Type type, string? xml)
 - Extensions: Supply Extension methods base by Helper. Also it supports generic type and non-generic type.
   - Bytes
     - FromBytes
   - Object
     - PackTo
     - ToBytes
-    - ToJson/ToXml
+    - ToJson/ToXml/ToYaml
     - ToStream
   - Stream
     - FromStream
     - PackBy
   - String
-    - FromJson/FromXml
+    - FromJson/FromXml/FromYaml
 - Serializer
   Implement Zaabee.Serializer.Abstractions, The Zaabee technology stacks use this library to serialize and deserialize.
   - Stream
@@ -106,8 +114,10 @@ PM> Install-Package Zaabee.MessagePack
 PM> Install-Package Zaabee.MsgPack
 PM> Install-Package Zaabee.Utf8Json
 PM> Install-Package Zaabee.Protobuf
+PM> Install-Package Zaabee.SharpYaml
 PM> Install-Package Zaabee.SystemTextJson
 PM> Install-Package Zaabee.Xml
+PM> Install-Package Zaabee.YamlDotNet
 PM> Install-Package Zaabee.ZeroFormatter
 ```
 
@@ -143,6 +153,10 @@ Definitely Fastest and Zero Allocation JSON Serializer for C#(NET, .NET Core, Un
 
 protobuf-net is a contract based serializer for .NET code, that happens to write data in the "protocol buffers" serialization format engineered by Google. The API, however, is very different to Google's, and follows typical .NET patterns (it is broadly comparable, in usage, to XmlSerializer, DataContractSerializer, etc). It should work for most .NET languages that write standard types and can use attributes.
 
+### [Zaabee.SharpYaml](https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/src/Zaabee.SharpYaml)
+
+SharpYaml is a .NET library that provides a YAML parser and serialization engine for .NET objects, compatible with CoreCLR.
+
 ### [Zaabee.SystemTextJson](https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/src/Zaabee.SystemTextJson)
 
 The System.Text.Json namespace provides high-performance, low-allocating, and standards-compliant capabilities to process JavaScript Object Notation (JSON), which includes serializing objects to JSON text and deserializing JSON text to objects, with UTF-8 support built-in. It also provides types to read and write JSON text encoded as UTF-8, and to create an in-memory document object model (DOM) for random access of the JSON elements within a structured view of the data.
@@ -150,6 +164,12 @@ The System.Text.Json namespace provides high-performance, low-allocating, and st
 ### [Zaabee.Xml](https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/src/Zaabee.Xml)
 
 Serializes and deserializes objects into and from XML documents. The XmlSerializer enables you to control how objects are encoded into XML.
+
+### [Zaabee.YamlDotNet](https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/src/Zaabee.YamlDotNet)
+
+YamlDotNet is a YAML library for netstandard and other .NET runtimes.
+
+YamlDotNet provides low level parsing and emitting of YAML as well as a high level object model similar to XmlDocument. A serialization library is also included that allows to read and write objects from and to YAML streams.
 
 ### [Zaabee.ZeroFormatter](https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/src/Zaabee.ZeroFormatter)
 
@@ -169,91 +189,103 @@ IterationCount=1000  RunStrategy=Monitoring
 
 ### Stream
 
-|                 Method |        Mean |     Error |    StdDev |      Median |         Min |         Max |  Gen 0 | Allocated |
-|----------------------- |------------:|----------:|----------:|------------:|------------:|------------:|-------:|----------:|
-|         BinaryToStream | 11,169.2 ns | 219.05 ns | 377.85 ns | 11,179.7 ns | 10,383.5 ns | 12,087.7 ns | 3.1128 |   6,529 B |
-|   DataContractToStream |  2,997.2 ns |  67.87 ns | 194.74 ns |  2,944.2 ns |  2,666.4 ns |  3,539.0 ns | 1.6022 |   3,352 B |
-|            JilToStream |    951.1 ns |  25.16 ns |  67.15 ns |    947.0 ns |    746.6 ns |  1,181.4 ns | 0.6771 |   1,416 B |
-|    MessagePackToStream |    575.9 ns |  11.41 ns |  24.57 ns |    572.8 ns |    535.5 ns |    631.1 ns | 0.1640 |     344 B |
-|        MsgPackToStream |    717.9 ns |  13.85 ns |  19.87 ns |    708.5 ns |    694.9 ns |    762.7 ns | 0.3672 |     768 B |
-| NewtonsoftJsonToStream |  1,590.2 ns |  31.73 ns |  76.64 ns |  1,578.3 ns |  1,427.5 ns |  1,769.1 ns | 1.0662 |   2,232 B |
-|       ProtobufToStream |    536.0 ns |  10.63 ns |  18.90 ns |    529.2 ns |    511.4 ns |    579.8 ns | 0.1640 |     344 B |
-| SystemTextJsonToStream |    764.8 ns |  14.42 ns |  16.03 ns |    763.9 ns |    736.8 ns |    795.7 ns | 0.2365 |     496 B |
-|       Utf8JsonToStream |    518.3 ns |  10.13 ns |  17.47 ns |    513.9 ns |    491.6 ns |    568.8 ns | 0.1640 |     344 B |
-|            XmlToStream | 13,902.5 ns | 353.22 ns | 996.26 ns | 13,709.4 ns | 12,540.8 ns | 16,888.5 ns | 5.2795 |  11,060 B |
-|  ZeroFormatterToStream |    343.3 ns |   6.86 ns |  17.84 ns |    339.2 ns |    308.0 ns |    383.6 ns | 0.7300 |   1,528 B |
+|                 Method |         Mean |       Error |      StdDev |       Median |         Min |          Max |   Gen 0 | Allocated |
+|----------------------- |-------------:|------------:|------------:|-------------:|------------:|-------------:|--------:|----------:|
+|         BinaryToStream |   8,190.0 ns |   157.04 ns |   209.65 ns |   8,170.8 ns |  7,845.7 ns |   8,585.7 ns |  3.1128 |   6,529 B |
+|   DataContractToStream |   2,058.2 ns |    39.39 ns |    75.89 ns |   2,046.5 ns |  1,950.2 ns |   2,278.7 ns |  1.6022 |   3,352 B |
+|            JilToStream |     688.1 ns |    16.42 ns |    47.37 ns |     671.9 ns |    618.4 ns |     824.7 ns |  0.6771 |   1,416 B |
+|    MessagePackToStream |     532.4 ns |    11.31 ns |    31.91 ns |     522.9 ns |    488.8 ns |     634.6 ns |  0.1640 |     344 B |
+|        MsgPackToStream |     697.4 ns |    14.06 ns |    38.73 ns |     690.7 ns |    633.5 ns |     819.9 ns |  0.3672 |     768 B |
+| NewtonsoftJsonToStream |   1,582.8 ns |    38.42 ns |   112.07 ns |   1,581.7 ns |  1,408.9 ns |   1,850.4 ns |  1.0662 |   2,232 B |
+|       ProtobufToStream |     582.2 ns |    24.77 ns |    70.26 ns |     564.4 ns |    500.1 ns |     770.2 ns |  0.1640 |     344 B |
+|      SharpYamlToStream | 110,214.1 ns | 2,443.57 ns | 7,011.06 ns | 109,428.0 ns | 96,962.8 ns | 127,875.2 ns | 13.1836 |  27,634 B |
+| SystemTextJsonToStream |     709.6 ns |    15.97 ns |    46.32 ns |     705.8 ns |    633.5 ns |     819.7 ns |  0.2365 |     496 B |
+|       Utf8JsonToStream |     507.1 ns |    11.07 ns |    31.60 ns |     496.1 ns |    463.0 ns |     596.3 ns |  0.1640 |     344 B |
+|            XmlToStream |  12,136.9 ns |   256.15 ns |   722.47 ns |  11,919.8 ns | 11,217.4 ns |  14,458.4 ns |  5.2795 |  11,060 B |
+|     YamlDotNetToStream |  35,182.8 ns | 1,013.38 ns | 2,956.09 ns |  34,156.0 ns | 31,821.5 ns |  43,367.9 ns |  6.2256 |  13,133 B |
+|  ZeroFormatterToStream |     328.4 ns |     8.40 ns |    23.82 ns |     321.8 ns |    294.6 ns |     403.5 ns |  0.7300 |   1,528 B |
 
-|                   Method |        Mean |     Error |    StdDev |      Median |         Min |         Max |  Gen 0 | Allocated |
-|------------------------- |------------:|----------:|----------:|------------:|------------:|------------:|-------:|----------:|
-|         BinaryFromStream | 12,303.7 ns | 218.31 ns | 364.75 ns | 12,234.8 ns | 11,749.7 ns | 13,101.4 ns | 4.6692 |   9,792 B |
-|   DataContractFromStream |  6,819.1 ns | 129.39 ns | 121.03 ns |  6,846.4 ns |  6,454.6 ns |  6,994.8 ns | 6.1111 |  12,808 B |
-|            JilFromStream |    647.6 ns |  12.81 ns |  28.91 ns |    643.1 ns |    603.2 ns |    720.5 ns | 0.2937 |     616 B |
-|    MessagePackFromStream |    519.7 ns |  10.21 ns |  15.59 ns |    515.0 ns |    499.8 ns |    558.2 ns | 0.0420 |      88 B |
-|        MsgPackFromStream |  1,084.8 ns |  20.46 ns |  45.33 ns |  1,074.0 ns |  1,023.1 ns |  1,205.7 ns | 0.3510 |     736 B |
-| NewtonsoftJsonFromStream |  3,378.2 ns |  66.33 ns | 119.62 ns |  3,335.6 ns |  3,228.4 ns |  3,646.1 ns | 1.5945 |   3,344 B |
-|       ProtobufFromStream |    507.8 ns |   9.18 ns |   7.17 ns |    506.5 ns |    499.2 ns |    519.5 ns | 0.0420 |      88 B |
-| SystemTextJsonFromStream |  1,202.7 ns |  23.61 ns |  47.70 ns |  1,198.0 ns |  1,117.5 ns |  1,306.8 ns | 0.0420 |      88 B |
-|       Utf8JsonFromStream |    815.7 ns |  14.67 ns |  36.53 ns |    809.7 ns |    739.0 ns |    916.2 ns | 0.0420 |      88 B |
-|            XmlFromStream | 18,056.3 ns | 355.13 ns | 725.43 ns | 17,772.6 ns | 17,015.0 ns | 19,784.7 ns | 4.5471 |   9,531 B |
-|  ZeroFormatterFromStream |    117.9 ns |   2.38 ns |   2.84 ns |    118.1 ns |    114.1 ns |    126.3 ns | 0.1338 |     280 B |
+|                   Method |        Mean |     Error |    StdDev |      Median |         Min |         Max |   Gen 0 | Allocated |
+|------------------------- |------------:|----------:|----------:|------------:|------------:|------------:|--------:|----------:|
+|         BinaryFromStream | 11,159.5 ns | 198.71 ns | 185.87 ns | 11,208.8 ns | 10,781.8 ns | 11,462.8 ns |  4.6692 |   9,792 B |
+|   DataContractFromStream |  6,268.8 ns | 119.46 ns | 132.78 ns |  6,259.5 ns |  6,080.0 ns |  6,598.7 ns |  6.1111 |  12,808 B |
+|            JilFromStream |    574.1 ns |  10.62 ns |   8.87 ns |    572.5 ns |    558.4 ns |    593.2 ns |  0.2937 |     616 B |
+|    MessagePackFromStream |    475.2 ns |   9.53 ns |  12.06 ns |    470.6 ns |    461.2 ns |    504.2 ns |  0.0420 |      88 B |
+|        MsgPackFromStream |  1,104.5 ns |  20.46 ns |  18.14 ns |  1,104.1 ns |  1,076.7 ns |  1,135.0 ns |  0.3510 |     736 B |
+| NewtonsoftJsonFromStream |  3,048.0 ns |  35.90 ns |  39.90 ns |  3,040.4 ns |  2,994.5 ns |  3,116.4 ns |  1.5945 |   3,344 B |
+|       ProtobufFromStream |    480.2 ns |   9.38 ns |   9.21 ns |    478.6 ns |    470.2 ns |    505.8 ns |  0.0420 |      88 B |
+|      SharpYamlFromStream |  5,799.9 ns | 115.86 ns | 190.37 ns |  5,754.6 ns |  5,499.8 ns |  6,354.9 ns |  3.0746 |   6,440 B |
+| SystemTextJsonFromStream |  1,082.6 ns |  22.46 ns |  65.52 ns |  1,058.7 ns |  1,010.4 ns |  1,249.0 ns |  0.0420 |      88 B |
+|       Utf8JsonFromStream |    755.2 ns |  14.94 ns |  26.55 ns |    744.8 ns |    720.3 ns |    811.0 ns |  0.0420 |      88 B |
+|            XmlFromStream | 16,172.1 ns | 320.79 ns | 284.37 ns | 16,097.3 ns | 15,857.4 ns | 16,776.6 ns |  4.5471 |   9,531 B |
+|     YamlDotNetFromStream | 23,973.1 ns | 472.19 ns | 597.16 ns | 23,921.1 ns | 22,945.1 ns | 25,278.0 ns | 11.0474 |  23,138 B |
+|  ZeroFormatterFromStream |    120.8 ns |   2.04 ns |   2.50 ns |    121.0 ns |    115.7 ns |    126.2 ns |  0.1338 |     280 B |
 
 ### FileStream Async
 
-|                        Method |     Mean |    Error |   StdDev |    Median |       Min |      Max |  Gen 0 | Allocated |
-|------------------------------ |---------:|---------:|---------:|----------:|----------:|---------:|-------:|----------:|
-|            JilFromStreamAsync | 39.06 μs | 0.362 μs | 0.339 μs | 39.046 μs | 38.271 μs | 39.64 μs | 0.7935 |   1,731 B |
-|    MessagePackFromStreamAsync | 49.22 μs | 0.967 μs | 1.668 μs | 49.537 μs | 44.573 μs | 52.07 μs | 0.2441 |     572 B |
-|        MsgPackFromStreamAsync | 10.01 μs | 0.190 μs | 0.169 μs |  9.977 μs |  9.733 μs | 10.40 μs | 1.6785 |   3,512 B |
-| NewtonsoftJsonFromStreamAsync | 64.14 μs | 1.357 μs | 4.002 μs | 65.349 μs | 54.389 μs | 70.97 μs | 2.3193 |   4,635 B |
-| SystemTextJsonFromStreamAsync | 36.96 μs | 0.722 μs | 1.013 μs | 37.002 μs | 34.618 μs | 38.70 μs | 0.4272 |     980 B |
-|       Utf8JsonFromStreamAsync | 34.68 μs | 0.541 μs | 0.506 μs | 34.796 μs | 33.127 μs | 35.24 μs | 0.3052 |     658 B |
+|                        Method |      Mean |     Error |    StdDev |       Min |      Max |    Median |  Gen 0 | Allocated |
+|------------------------------ |----------:|----------:|----------:|----------:|---------:|----------:|-------:|----------:|
+|            JilFromStreamAsync | 37.639 μs | 0.3318 μs | 0.3104 μs | 37.210 μs | 38.23 μs | 37.731 μs | 0.7935 |   1,726 B |
+|    MessagePackFromStreamAsync | 48.675 μs | 0.9557 μs | 1.9085 μs | 42.430 μs | 51.67 μs | 49.239 μs | 0.2441 |     583 B |
+|        MsgPackFromStreamAsync |  9.364 μs | 0.1846 μs | 0.2400 μs |  9.020 μs | 10.01 μs |  9.311 μs | 1.6785 |   3,512 B |
+| NewtonsoftJsonFromStreamAsync | 67.747 μs | 1.3427 μs | 3.2684 μs | 56.948 μs | 72.29 μs | 68.219 μs | 2.3193 |   4,654 B |
+| SystemTextJsonFromStreamAsync | 34.850 μs | 0.3215 μs | 0.2850 μs | 34.321 μs | 35.38 μs | 34.898 μs | 0.4272 |     977 B |
+|       Utf8JsonFromStreamAsync | 32.602 μs | 0.4081 μs | 0.3618 μs | 32.031 μs | 33.22 μs | 32.593 μs | 0.3052 |     660 B |
 
 ### Bytes
 
-|                Method |        Mean |     Error |      StdDev |      Median |         Min |         Max |  Gen 0 | Allocated |
-|---------------------- |------------:|----------:|------------:|------------:|------------:|------------:|-------:|----------:|
-|         BinaryToBytes |  9,676.7 ns | 293.75 ns |   838.08 ns |  9,519.4 ns |  8,169.2 ns | 12,024.5 ns | 3.3264 |   6,994 B |
-|   DataContractToBytes |  2,889.4 ns | 142.37 ns |   408.48 ns |  2,804.3 ns |  2,304.5 ns |  4,069.2 ns | 1.8845 |   3,944 B |
-|            JilToBytes |    744.7 ns |  22.71 ns |    64.05 ns |    730.6 ns |    644.6 ns |    935.7 ns | 0.5121 |   1,072 B |
-|    MessagePackToBytes |    325.0 ns |  11.80 ns |    33.08 ns |    316.5 ns |    278.9 ns |    419.7 ns | 0.0381 |      80 B |
-|        MsgPackToBytes |  1,111.9 ns | 122.06 ns |   359.88 ns |    946.4 ns |    711.8 ns |  1,971.0 ns | 0.3977 |     832 B |
-| NewtonsoftJsonToBytes |  2,031.9 ns |  59.39 ns |   166.54 ns |  2,002.9 ns |  1,744.0 ns |  2,514.5 ns | 0.9003 |   1,888 B |
-|       ProtobufToBytes |    792.4 ns |  16.39 ns |    46.49 ns |    790.3 ns |    721.1 ns |    953.8 ns | 0.1945 |     408 B |
-| SystemTextJsonToBytes |    876.7 ns |  20.79 ns |    59.31 ns |    864.6 ns |    764.4 ns |  1,029.8 ns | 0.1411 |     296 B |
-|       Utf8JsonToBytes |    685.3 ns |  39.09 ns |   115.25 ns |    641.9 ns |    532.9 ns |  1,023.7 ns | 0.0725 |     152 B |
-|            XmlToBytes | 19,995.6 ns | 759.93 ns | 2,240.68 ns | 19,934.7 ns | 15,149.3 ns | 24,367.4 ns | 5.4321 |  11,396 B |
-|  ZeroFormatterToBytes |    328.6 ns |   8.84 ns |    25.65 ns |    320.7 ns |    277.5 ns |    396.7 ns | 0.5660 |   1,184 B |
+|                Method |         Mean |       Error |      StdDev |         Min |          Max |       Median |   Gen 0 | Allocated |
+|---------------------- |-------------:|------------:|------------:|------------:|-------------:|-------------:|--------:|----------:|
+|         BinaryToBytes |   8,109.8 ns |   161.08 ns |   225.81 ns |  7,753.6 ns |   8,606.4 ns |   8,069.5 ns |  3.3417 |   6,994 B |
+|   DataContractToBytes |   2,110.5 ns |    40.45 ns |    49.67 ns |  2,043.1 ns |   2,250.6 ns |   2,103.8 ns |  1.8845 |   3,944 B |
+|            JilToBytes |     580.3 ns |    10.76 ns |     9.54 ns |    566.7 ns |     597.5 ns |     579.0 ns |  0.5121 |   1,072 B |
+|    MessagePackToBytes |     265.4 ns |     5.11 ns |     7.96 ns |    254.3 ns |     288.2 ns |     263.9 ns |  0.0381 |      80 B |
+|        MsgPackToBytes |     678.4 ns |    12.08 ns |    10.09 ns |    658.8 ns |     698.5 ns |     676.9 ns |  0.3977 |     832 B |
+| NewtonsoftJsonToBytes |   1,429.4 ns |    41.02 ns |   116.35 ns |  1,284.3 ns |   1,756.7 ns |   1,408.8 ns |  0.9022 |   1,888 B |
+|       ProtobufToBytes |     641.7 ns |    24.99 ns |    71.29 ns |    552.5 ns |     839.2 ns |     628.5 ns |  0.1945 |     408 B |
+|      SharpYamlToBytes | 105,588.3 ns | 2,098.50 ns | 5,226.01 ns | 94,862.1 ns | 121,006.5 ns | 105,616.1 ns | 13.1836 |  27,818 B |
+| SystemTextJsonToBytes |     587.0 ns |    14.16 ns |    40.39 ns |    533.8 ns |     689.3 ns |     576.4 ns |  0.1411 |     296 B |
+|       Utf8JsonToBytes |     441.6 ns |     8.78 ns |    13.41 ns |    419.8 ns |     468.2 ns |     439.8 ns |  0.0725 |     152 B |
+|            XmlToBytes |  11,763.2 ns |   234.23 ns |   320.61 ns | 11,222.2 ns |  12,430.0 ns |  11,722.0 ns |  5.4321 |  11,396 B |
+|     YamlDotNetToBytes |  33,598.7 ns |   663.66 ns | 1,013.48 ns | 31,665.0 ns |  36,160.8 ns |  33,397.7 ns |  6.2256 |  13,069 B |
+|  ZeroFormatterToBytes |     219.1 ns |     3.60 ns |     7.43 ns |    207.6 ns |     240.3 ns |     217.5 ns |  0.5660 |   1,184 B |
 
-|                  Method |        Mean |       Error |      StdDev |      Median |         Min |         Max |  Gen 0 | Allocated |
-|------------------------ |------------:|------------:|------------:|------------:|------------:|------------:|-------:|----------:|
-|         BinaryFromBytes | 12,666.7 ns |   250.40 ns |   500.08 ns | 12,459.5 ns | 12,029.0 ns | 13,855.3 ns | 4.6997 |   9,856 B |
-|   DataContractFromBytes |  7,231.5 ns |   143.05 ns |   279.01 ns |  7,164.5 ns |  6,852.5 ns |  7,975.3 ns | 6.1417 |  12,872 B |
-|            JilFromBytes | 25,137.6 ns | 1,798.35 ns | 5,101.62 ns | 24,500.0 ns | 15,300.0 ns | 39,400.0 ns |      - |   1,128 B |
-|    MessagePackFromBytes |    516.4 ns |    12.92 ns |    36.44 ns |    507.9 ns |    456.5 ns |    626.8 ns | 0.0420 |      88 B |
-|        MsgPackFromBytes |  1,275.6 ns |    25.22 ns |    65.10 ns |  1,265.9 ns |  1,162.3 ns |  1,470.8 ns | 0.3815 |     800 B |
-| NewtonsoftJsonFromBytes |  3,606.3 ns |    71.73 ns |   160.44 ns |  3,576.1 ns |  3,383.9 ns |  4,051.4 ns | 1.5259 |   3,200 B |
-|       ProtobufFromBytes |    726.9 ns |    14.28 ns |    21.37 ns |    721.3 ns |    693.4 ns |    769.4 ns | 0.0839 |     176 B |
-| SystemTextJsonFromBytes |  1,012.8 ns |    20.23 ns |    42.67 ns |    997.8 ns |    946.5 ns |  1,114.7 ns | 0.0420 |      88 B |
-|       Utf8JsonFromBytes |    803.0 ns |    15.91 ns |    24.29 ns |    802.5 ns |    751.4 ns |    853.4 ns | 0.0420 |      88 B |
-|            XmlFromBytes | 18,814.4 ns |   343.81 ns |   535.27 ns | 18,704.1 ns | 18,052.1 ns | 20,310.0 ns | 4.5776 |   9,595 B |
-|  ZeroFormatterFromBytes |    129.6 ns |     2.63 ns |     6.41 ns |    128.2 ns |    119.3 ns |    145.0 ns | 0.1338 |     280 B |
+|                  Method |          Mean |        Error |       StdDev |        Median |           Min |          Max |   Gen 0 | Allocated |
+|------------------------ |--------------:|-------------:|-------------:|--------------:|--------------:|-------------:|--------:|----------:|
+|         BinaryFromBytes |  11,284.25 ns |   225.665 ns |   285.394 ns |  11,226.93 ns |  10,958.17 ns |  12,059.0 ns |  4.6997 |   9,856 B |
+|   DataContractFromBytes |   6,188.18 ns |   123.414 ns |   103.056 ns |   6,189.96 ns |   6,036.78 ns |   6,415.4 ns |  6.1493 |  12,872 B |
+|            JilFromBytes |     570.55 ns |    11.235 ns |    21.375 ns |     560.37 ns |     545.17 ns |     637.0 ns |  0.2213 |     464 B |
+|    MessagePackFromBytes |     430.13 ns |     8.529 ns |    14.939 ns |     422.20 ns |     407.96 ns |     472.0 ns |  0.0420 |      88 B |
+|        MsgPackFromBytes |   1,101.17 ns |    18.170 ns |    19.442 ns |   1,099.26 ns |   1,071.76 ns |   1,136.5 ns |  0.3815 |     800 B |
+| NewtonsoftJsonFromBytes |   2,944.52 ns |    45.944 ns |    49.159 ns |   2,951.07 ns |   2,860.15 ns |   3,047.5 ns |  1.5259 |   3,200 B |
+|       ProtobufFromBytes |     641.06 ns |    11.469 ns |    22.906 ns |     632.32 ns |     617.37 ns |     708.2 ns |  0.0839 |     176 B |
+|      SharpYamlFromBytes | 116,275.03 ns | 2,279.274 ns | 3,119.896 ns | 115,529.63 ns | 110,813.89 ns | 124,096.5 ns | 14.4043 |  30,249 B |
+| SystemTextJsonFromBytes |     844.24 ns |    14.197 ns |    11.855 ns |     841.62 ns |     827.14 ns |     869.3 ns |  0.0420 |      88 B |
+|       Utf8JsonFromBytes |     688.51 ns |    13.249 ns |    12.393 ns |     684.46 ns |     670.07 ns |     712.8 ns |  0.0420 |      88 B |
+|            XmlFromBytes |  16,222.13 ns |   232.034 ns |   193.759 ns |  16,271.15 ns |  15,880.48 ns |  16,496.3 ns |  4.5776 |   9,595 B |
+|     YamlDotNetFromBytes |  23,928.67 ns |   465.417 ns |   588.604 ns |  23,656.92 ns |  23,131.42 ns |  25,392.4 ns | 10.9863 |  22,986 B |
+|  ZeroFormatterFromBytes |      97.10 ns |     1.940 ns |     2.782 ns |      96.47 ns |      92.77 ns |     103.2 ns |  0.1339 |     280 B |
 
 ### Text
 
-|               Method |        Mean |     Error |    StdDev |         Min |         Max |      Median |  Gen 0 | Allocated |
-|--------------------- |------------:|----------:|----------:|------------:|------------:|------------:|-------:|----------:|
-|   DataContractToText |  2,761.5 ns |  57.37 ns | 164.61 ns |  2,512.4 ns |  3,213.8 ns |  2,725.1 ns | 2.4338 |   5,104 B |
-|            JilToText |    615.8 ns |  12.21 ns |  19.72 ns |    588.6 ns |    668.1 ns |    611.3 ns | 0.4396 |     920 B |
-| NewtonsoftJsonToText |  1,410.8 ns |  28.04 ns |  60.36 ns |  1,305.3 ns |  1,566.3 ns |  1,396.8 ns | 0.8335 |   1,744 B |
-| SystemTextJsonToText |    726.9 ns |  13.75 ns |  26.48 ns |    658.7 ns |    792.1 ns |    726.8 ns | 0.1945 |     408 B |
-|       Utf8JsonToText |    515.7 ns |   8.51 ns |   7.55 ns |    504.3 ns |    530.7 ns |    515.1 ns | 0.1259 |     264 B |
-|            XmlToText | 13,829.3 ns | 275.35 ns | 725.37 ns | 12,341.0 ns | 15,702.0 ns | 13,742.1 ns | 5.7373 |  12,028 B |
+|               Method |         Mean |       Error |       StdDev |       Median |         Min |          Max |   Gen 0 | Allocated |
+|--------------------- |-------------:|------------:|-------------:|-------------:|------------:|-------------:|--------:|----------:|
+|   DataContractToText |   2,585.6 ns |    70.55 ns |    204.67 ns |   2,504.4 ns |  2,328.8 ns |   3,184.0 ns |  2.4376 |   5,104 B |
+|            JilToText |     539.2 ns |    13.26 ns |     38.24 ns |     525.6 ns |    487.0 ns |     641.7 ns |  0.4396 |     920 B |
+| NewtonsoftJsonToText |   1,413.8 ns |    48.20 ns |    138.30 ns |   1,377.7 ns |  1,201.8 ns |   1,805.4 ns |  0.8335 |   1,744 B |
+|      SharpYamlToText | 110,423.5 ns | 4,647.67 ns | 12,565.24 ns | 106,247.5 ns | 94,687.3 ns | 157,092.9 ns | 12.2070 |  25,960 B |
+| SystemTextJsonToText |     613.6 ns |    12.19 ns |     29.90 ns |     603.3 ns |    580.4 ns |     700.2 ns |  0.1945 |     408 B |
+|       Utf8JsonToText |     484.7 ns |     8.58 ns |     12.03 ns |     479.5 ns |    467.4 ns |     519.8 ns |  0.1259 |     264 B |
+|            XmlToText |  12,154.2 ns |   242.43 ns |    355.36 ns |  12,117.0 ns | 11,635.7 ns |  12,956.9 ns |  5.7373 |  12,028 B |
+|     YamlDotNetToText |  32,803.9 ns |   585.82 ns |  1,085.86 ns |  32,734.7 ns | 31,166.0 ns |  35,379.7 ns |  6.1646 |  12,917 B |
 
-|                 Method |        Mean |     Error |      StdDev |      Median |         Min |         Max |  Gen 0 | Allocated |
-|----------------------- |------------:|----------:|------------:|------------:|------------:|------------:|-------:|----------:|
-|   DataContractFromText |  7,008.6 ns | 140.20 ns |   252.80 ns |  6,968.6 ns |  6,585.5 ns |  7,506.4 ns | 6.4240 |  13,464 B |
-|            JilFromText |    530.7 ns |  11.07 ns |    31.76 ns |    520.6 ns |    485.9 ns |    618.4 ns | 0.0877 |     184 B |
-| NewtonsoftJsonFromText |  3,427.3 ns | 101.94 ns |   284.18 ns |  3,376.5 ns |  2,910.8 ns |  4,203.8 ns | 1.4038 |   2,944 B |
-| SystemTextJsonFromText |  1,179.4 ns |  23.40 ns |    65.62 ns |  1,175.0 ns |  1,068.7 ns |  1,331.5 ns | 0.0420 |      88 B |
-|       Utf8JsonFromText |    899.2 ns |  22.12 ns |    60.56 ns |    877.8 ns |    823.1 ns |  1,096.9 ns | 0.1144 |     240 B |
-|            XmlFromText | 20,156.5 ns | 438.35 ns | 1,243.51 ns | 19,843.2 ns | 18,048.7 ns | 24,317.1 ns | 4.7302 |   9,932 B |
+|                 Method |         Mean |       Error |      StdDev |       Median |          Min |          Max |   Gen 0 | Allocated |
+|----------------------- |-------------:|------------:|------------:|-------------:|-------------:|-------------:|--------:|----------:|
+|   DataContractFromText |   6,335.4 ns |    72.27 ns |    60.35 ns |   6,360.3 ns |   6,204.3 ns |   6,410.1 ns |  6.4240 |  13,464 B |
+|            JilFromText |     448.4 ns |     7.73 ns |     8.60 ns |     444.9 ns |     437.5 ns |     471.9 ns |  0.0877 |     184 B |
+| NewtonsoftJsonFromText |   2,879.9 ns |    56.89 ns |   132.99 ns |   2,827.6 ns |   2,694.1 ns |   3,189.2 ns |  1.4038 |   2,944 B |
+|      SharpYamlFromText | 111,579.6 ns | 2,206.33 ns | 3,864.22 ns | 109,914.7 ns | 105,527.9 ns | 119,206.3 ns | 12.6953 |  26,871 B |
+| SystemTextJsonFromText |     993.4 ns |    19.84 ns |    45.59 ns |     978.4 ns |     929.3 ns |   1,106.3 ns |  0.0420 |      88 B |
+|       Utf8JsonFromText |     769.6 ns |    13.77 ns |    12.21 ns |     768.6 ns |     750.2 ns |     789.2 ns |  0.1144 |     240 B |
+|            XmlFromText |  16,828.9 ns |   328.74 ns |   558.22 ns |  16,649.0 ns |  16,119.8 ns |  18,143.3 ns |  4.7302 |   9,924 B |
+|     YamlDotNetFromText |  23,825.1 ns |   422.22 ns |   352.57 ns |  23,836.4 ns |  23,255.6 ns |  24,382.4 ns | 10.8643 |  22,722 B |
