@@ -31,6 +31,10 @@ public partial class SerializerTest
         BytesNonGenericTest(new Protobuf.Serializer());
 
     [Fact]
+    public void SharpYamlBytesNonGenericTest() =>
+        BytesNonGenericTest(new SharpYaml.Serializer());
+
+    [Fact]
     public void SystemTextJsonBytesNonGenericTest() =>
         BytesNonGenericTest(new SystemTextJson.Serializer());
 
@@ -41,6 +45,10 @@ public partial class SerializerTest
     [Fact]
     public void XmlBytesNonGenericTest() =>
         BytesNonGenericTest(new Xml.Serializer());
+
+    [Fact]
+    public void YamlDotNetBytesNonGenericTest() =>
+        BytesNonGenericTest(new YamlDotNet.Serializer());
 
     [Fact]
     public void ZeroFormatterBytesNonGenericTest() =>
@@ -55,7 +63,7 @@ public partial class SerializerTest
 
         Assert.Equal(
             Tuple.Create(model.Id, model.Age, model.CreateTime, model.Name, model.Gender),
-            Tuple.Create(deserializeModel.Id, deserializeModel.Age, deserializeModel.CreateTime,
+            Tuple.Create(deserializeModel.Id, deserializeModel.Age, deserializeModel.CreateTime.ToUniversalTime(),
                 deserializeModel.Name, deserializeModel.Gender));
     }
 }

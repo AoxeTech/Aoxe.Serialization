@@ -27,6 +27,10 @@ public partial class SerializerTest
         BytesGenericNullTest(new Protobuf.Serializer());
 
     [Fact]
+    public void SharpYamlBytesGenericNullTest() =>
+        BytesGenericNullTest(new SharpYaml.Serializer());
+
+    [Fact]
     public void SystemTextJsonBytesGenericNullTest() =>
         BytesGenericNullTest(new SystemTextJson.Serializer());
 
@@ -37,6 +41,10 @@ public partial class SerializerTest
     [Fact]
     public void XmlBytesGenericNullTest() =>
         BytesGenericNullTest(new Xml.Serializer());
+
+    [Fact]
+    public void YamlDotNetBytesGenericNullTest() =>
+        BytesGenericNullTest(new YamlDotNet.Serializer());
 
     [Fact]
     public void ZeroFormatterBytesGenericNullTest() =>

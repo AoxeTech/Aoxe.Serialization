@@ -31,6 +31,10 @@ public partial class SerializerTest
         StreamGenericTest(new Protobuf.Serializer());
 
     [Fact]
+    public void SharpYamlStreamGenericTest() =>
+        StreamGenericTest(new SharpYaml.Serializer());
+
+    [Fact]
     public void SystemTextJsonStreamGenericTest() =>
         StreamGenericTest(new SystemTextJson.Serializer());
 
@@ -41,6 +45,10 @@ public partial class SerializerTest
     [Fact]
     public void XmlStreamGenericTest() =>
         StreamGenericTest(new Xml.Serializer());
+
+    [Fact]
+    public void YamlDotNetStreamGenericTest() =>
+        StreamGenericTest(new YamlDotNet.Serializer());
 
     [Fact]
     public void ZeroFormatterStreamGenericTest() =>
@@ -54,7 +62,7 @@ public partial class SerializerTest
 
         Assert.Equal(
             Tuple.Create(model.Id, model.Age, model.CreateTime, model.Name, model.Gender),
-            Tuple.Create(deserializeModel.Id, deserializeModel.Age, deserializeModel.CreateTime,
+            Tuple.Create(deserializeModel.Id, deserializeModel.Age, deserializeModel.CreateTime.ToUniversalTime(),
                 deserializeModel.Name, deserializeModel.Gender));
     }
 }
