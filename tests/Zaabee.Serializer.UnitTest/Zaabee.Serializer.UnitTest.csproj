@@ -25,9 +25,11 @@
         <ProjectReference Include="..\..\src\Zaabee.MsgPack\Zaabee.MsgPack.csproj" />
         <ProjectReference Include="..\..\src\Zaabee.NewtonsoftJson\Zaabee.NewtonsoftJson.csproj" />
         <ProjectReference Include="..\..\src\Zaabee.Protobuf\Zaabee.Protobuf.csproj" />
+        <ProjectReference Include="..\..\src\Zaabee.SharpYaml\Zaabee.SharpYaml.csproj" />
         <ProjectReference Include="..\..\src\Zaabee.SystemTextJson\Zaabee.SystemTextJson.csproj" />
         <ProjectReference Include="..\..\src\Zaabee.Utf8Json\Zaabee.Utf8Json.csproj" />
         <ProjectReference Include="..\..\src\Zaabee.Xml\Zaabee.Xml.csproj" />
+        <ProjectReference Include="..\..\src\Zaabee.YamlDotNet\Zaabee.YamlDotNet.csproj" />
         <ProjectReference Include="..\..\src\Zaabee.ZeroFormatter\Zaabee.ZeroFormatter.csproj" />
         <ProjectReference Include="..\TestModels\TestModels.csproj" />
     </ItemGroup>

@@ -1,6 +1,6 @@
 namespace Zaabee.Xml;
 
-public class Serializer : ITextSerializer
+public class Serializer : IXmlSerializer
 {
     public byte[] ToBytes<TValue>(TValue? value) =>
         XmlHelper.ToBytes(value);
@@ -49,4 +49,20 @@ public class Serializer : ITextSerializer
         stream is null || stream.CanSeek && stream.Length is 0
             ? default
             : XmlHelper.FromStream(type, stream);
+
+    public string ToXml<TValue>(TValue? value) =>
+        XmlHelper.ToXml(value);
+
+    public TValue? FromXml<TValue>(string? xml) =>
+        string.IsNullOrWhiteSpace(xml)
+            ? default
+            : XmlHelper.FromXml<TValue>(xml);
+
+    public string ToXml(Type type, object? value) =>
+        XmlHelper.ToXml(type, value);
+
+    public object? FromXml(Type type, string? xml) =>
+        string.IsNullOrWhiteSpace(xml)
+            ? default
+            : XmlHelper.FromXml(type, xml);
 }

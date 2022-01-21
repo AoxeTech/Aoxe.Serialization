@@ -1,6 +1,6 @@
 namespace Zaabee.SystemTextJson;
 
-public class Serializer : ITextSerializer
+public class Serializer : IJsonSerializer
 {
     private readonly JsonSerializerOptions? _options;
 
@@ -43,7 +43,7 @@ public class Serializer : ITextSerializer
         SystemTextJsonHelper.ToJson(value, _options);
 
     public TValue? FromText<TValue>(string? text) =>
-        text.IsNullOrWhiteSpace()
+        string.IsNullOrWhiteSpace(text)
             ? default
             : SystemTextJsonHelper.FromJson<TValue>(text, _options);
 
@@ -51,7 +51,23 @@ public class Serializer : ITextSerializer
         SystemTextJsonHelper.ToJson(type, value, _options);
 
     public object? FromText(Type type, string? text) =>
-        text.IsNullOrWhiteSpace()
+        string.IsNullOrWhiteSpace(text)
             ? default
             : SystemTextJsonHelper.FromJson(type, text, _options);
+
+    public string ToJson<TValue>(TValue? value) =>
+        SystemTextJsonHelper.ToJson(value, _options);
+
+    public TValue? FromJson<TValue>(string? json) =>
+        string.IsNullOrWhiteSpace(json)
+            ? default
+            : SystemTextJsonHelper.FromJson<TValue>(json, _options);
+
+    public string ToJson(Type type, object? value) =>
+        SystemTextJsonHelper.ToJson(type, value, _options);
+
+    public object? FromJson(Type type, string? json) =>
+        string.IsNullOrWhiteSpace(json)
+            ? default
+            : SystemTextJsonHelper.FromJson(type, json, _options);
 }

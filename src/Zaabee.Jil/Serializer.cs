@@ -1,6 +1,6 @@
 namespace Zaabee.Jil;
 
-public class Serializer : ITextSerializer
+public class Serializer : IJsonSerializer
 {
     private readonly Options? _options;
     private readonly Encoding? _encoding;
@@ -55,4 +55,20 @@ public class Serializer : ITextSerializer
         stream is null || stream.CanSeek && stream.Length is 0
             ? default
             : JilHelper.FromStream(type, stream, _options, _encoding);
+
+    public string ToJson<TValue>(TValue? value) =>
+        JilHelper.ToJson(value, _options);
+
+    public TValue? FromJson<TValue>(string? json) =>
+        json.IsNullOrWhiteSpace()
+            ? default
+            : JilHelper.FromJson<TValue>(json, _options);
+
+    public string ToJson(Type type, object? value) =>
+        JilHelper.ToJson(value, _options);
+
+    public object? FromJson(Type type, string? json) =>
+        json.IsNullOrWhiteSpace()
+            ? default
+            : JilHelper.FromJson(type, json, _options);
 }

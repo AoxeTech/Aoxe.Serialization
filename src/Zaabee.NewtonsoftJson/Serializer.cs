@@ -1,6 +1,6 @@
 namespace Zaabee.NewtonsoftJson;
 
-public class Serializer : ITextSerializer
+public class Serializer : IJsonSerializer
 {
     private readonly JsonSerializerSettings? _settings;
     private readonly Encoding? _encoding;
@@ -55,4 +55,20 @@ public class Serializer : ITextSerializer
         stream is null || stream.CanSeek && stream.Length is 0
             ? default
             : NewtonsoftJsonHelper.FromStream(type, stream, _settings, _encoding);
+
+    public string ToJson<TValue>(TValue? value) =>
+        NewtonsoftJsonHelper.ToJson(value, _settings);
+
+    public TValue? FromJson<TValue>(string? json) =>
+        string.IsNullOrWhiteSpace(json)
+            ? default
+            : NewtonsoftJsonHelper.FromJson<TValue>(json, _settings);
+
+    public string ToJson(Type type, object? value) =>
+        NewtonsoftJsonHelper.ToJson(type, value, _settings);
+
+    public object? FromJson(Type type, string? json) =>
+        string.IsNullOrWhiteSpace(json)
+            ? default
+            : NewtonsoftJsonHelper.FromJson(type, json, _settings);
 }

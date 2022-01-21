@@ -1,6 +1,6 @@
 namespace Zaabee.Utf8Json;
 
-public class Serializer : ITextSerializer
+public class Serializer : IJsonSerializer
 {
     private readonly IJsonFormatterResolver? _resolver;
 
@@ -54,4 +54,20 @@ public class Serializer : ITextSerializer
         stream is null || stream.CanSeek && stream.Length is 0
             ? default
             : Utf8JsonHelper.FromStream(type, stream, _resolver);
+
+    public string ToJson<TValue>(TValue? value) =>
+        Utf8JsonHelper.ToJson(value, _resolver);
+
+    public TValue? FromJson<TValue>(string? json) =>
+        string.IsNullOrWhiteSpace(json)
+            ? default
+            : Utf8JsonHelper.FromJson<TValue>(json, _resolver);
+
+    public string ToJson(Type type, object? value) =>
+        Utf8JsonHelper.ToJson(type, value, _resolver);
+
+    public object? FromJson(Type type, string? json) =>
+        string.IsNullOrWhiteSpace(json)
+            ? default
+            : Utf8JsonHelper.FromJson(type, json, _resolver);
 }
