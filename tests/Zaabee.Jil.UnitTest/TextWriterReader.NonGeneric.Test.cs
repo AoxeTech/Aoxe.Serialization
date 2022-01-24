@@ -38,12 +38,12 @@ public partial class JilUnitTest
 
         Assert.Equal(
             Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
-                ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
+                ((TestModel)testModel).CreateTime.ToUniversalTime(), ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
             Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
 
         Assert.Equal(
             Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
-                ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
+                ((TestModel)testModel).CreateTime.ToUniversalTime(), ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
             Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
     }
 

@@ -20,15 +20,15 @@ public partial class ExtensionsTest
 
         Assert.Equal(
             Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-            Tuple.Create(result0.Id, result0.Age, result0.CreateTime.ToUniversalTime(), result0.Name, result0.Gender));
+            Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
 
         Assert.Equal(
             Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-            Tuple.Create(result1.Id, result1.Age, result1.CreateTime.ToUniversalTime(), result1.Name, result1.Gender));
+            Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
 
         Assert.Equal(
             Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-            Tuple.Create(result2.Id, result2.Age, result2.CreateTime.ToUniversalTime(), result2.Name, result2.Gender));
+            Tuple.Create(result2.Id, result2.Age, result2.CreateTime, result2.Name, result2.Gender));
     }
 
     [Fact]
@@ -65,17 +65,17 @@ public partial class ExtensionsTest
         Assert.Equal(
             Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
                 ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
-            Tuple.Create(result0.Id, result0.Age, result0.CreateTime.ToUniversalTime(), result0.Name, result0.Gender));
+            Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
 
         Assert.Equal(
             Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
                 ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
-            Tuple.Create(result1.Id, result1.Age, result1.CreateTime.ToUniversalTime(), result1.Name, result1.Gender));
+            Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
 
         Assert.Equal(
             Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
                 ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
-            Tuple.Create(result2.Id, result2.Age, result2.CreateTime.ToUniversalTime(), result2.Name, result2.Gender));
+            Tuple.Create(result2.Id, result2.Age, result2.CreateTime, result2.Name, result2.Gender));
     }
 
     [Fact]
@@ -112,17 +112,17 @@ public partial class ExtensionsTest
         Assert.Equal(
             Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
                 ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
-            Tuple.Create(result0.Id, result0.Age, result0.CreateTime.ToUniversalTime(), result0.Name, result0.Gender));
+            Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
 
         Assert.Equal(
             Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
                 ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
-            Tuple.Create(result1.Id, result1.Age, result1.CreateTime.ToUniversalTime(), result1.Name, result1.Gender));
+            Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
 
         Assert.Equal(
             Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
                 ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
-            Tuple.Create(result2.Id, result2.Age, result2.CreateTime.ToUniversalTime(), result2.Name, result2.Gender));
+            Tuple.Create(result2.Id, result2.Age, result2.CreateTime, result2.Name, result2.Gender));
     }
 
     [Fact]

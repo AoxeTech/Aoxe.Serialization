@@ -10,7 +10,7 @@ public partial class ExtensionsTest
         var result = bytes.FromBytes<TestModel>()!;
         Assert.Equal(
             Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-            Tuple.Create(result.Id, result.Age, result.CreateTime.ToUniversalTime(), result.Name, result.Gender));
+            Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
     }
 
     [Fact]
@@ -32,7 +32,7 @@ public partial class ExtensionsTest
         Assert.Equal(
             Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
                 ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
-            Tuple.Create(result.Id, result.Age, result.CreateTime.ToUniversalTime(), result.Name, result.Gender));
+            Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
     }
 
     [Fact]
@@ -53,6 +53,6 @@ public partial class ExtensionsTest
         var result = bytes.FromBytes<TestModel>()!;
         Assert.Equal(
             Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-            Tuple.Create(result.Id, result.Age, result.CreateTime.ToUniversalTime(), result.Name, result.Gender));
+            Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
     }
 }

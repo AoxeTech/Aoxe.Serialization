@@ -8,7 +8,7 @@ public static class TestModelFactory
     {
         Id = Guid.NewGuid(),
         Age = new Random().Next(0, 100),
-        CreateTime = new DateTime(2017, 1, 1).ToUniversalTime(),
+        CreateTime = new DateTime(2000, 1, 1),
         Name = "apple",
         Gender = Gender.Female
     };

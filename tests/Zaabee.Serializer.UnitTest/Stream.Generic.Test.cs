@@ -12,7 +12,7 @@ public partial class SerializerTest
 
     [Fact]
     public void JilStreamGenericTest() =>
-        StreamGenericTest(new Jil.Serializer());
+        StreamGenericTest(new Jil.Serializer(Options.ISO8601Utc));
 
     [Fact]
     public void MessagePackStreamGenericTest() =>
@@ -62,7 +62,7 @@ public partial class SerializerTest
 
         Assert.Equal(
             Tuple.Create(model.Id, model.Age, model.CreateTime, model.Name, model.Gender),
-            Tuple.Create(deserializeModel.Id, deserializeModel.Age, deserializeModel.CreateTime.ToUniversalTime(),
+            Tuple.Create(deserializeModel.Id, deserializeModel.Age, deserializeModel.CreateTime,
                 deserializeModel.Name, deserializeModel.Gender));
     }
 }

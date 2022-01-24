@@ -37,11 +37,13 @@ public partial class JilUnitTest
         }
 
         Assert.Equal(
-            Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+            Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime.ToUniversalTime(), testModel.Name,
+                testModel.Gender),
             Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
 
         Assert.Equal(
-            Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
+            Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime.ToUniversalTime(), testModel.Name,
+                testModel.Gender),
             Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
 
         using (var fs = new FileStream("TextWriterReaderTest.json", FileMode.Create))

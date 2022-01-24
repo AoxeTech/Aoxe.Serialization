@@ -8,7 +8,7 @@ public partial class SerializerTest
 
     [Fact]
     public void JilTextGenericTest() =>
-        TextGenericTest(new Jil.Serializer());
+        TextGenericTest(new Jil.Serializer(Options.ISO8601Utc));
 
     [Fact]
     public void NewtonsoftJsonTextGenericTest() =>
@@ -42,7 +42,7 @@ public partial class SerializerTest
 
         Assert.Equal(
             Tuple.Create(model.Id, model.Age, model.CreateTime, model.Name, model.Gender),
-            Tuple.Create(deserializeModel.Id, deserializeModel.Age, deserializeModel.CreateTime.ToUniversalTime(),
+            Tuple.Create(deserializeModel.Id, deserializeModel.Age, deserializeModel.CreateTime,
                 deserializeModel.Name, deserializeModel.Gender));
     }
 }
