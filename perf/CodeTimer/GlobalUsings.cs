@@ -17,4 +17,5 @@ global using Zaabee.SharpYaml;
 global using Zaabee.YamlDotNet;
 global using System.Threading.Tasks;
 global using System.Diagnostics;
-global using CodeTimer.Runner;
+global using Zaabee.CodeTimer;
+global using CodeTimer.Cases;

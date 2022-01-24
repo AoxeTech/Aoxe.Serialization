@@ -1,6 +1,6 @@
-namespace CodeTimer.Runner;
+namespace CodeTimer.Cases;
 
-public partial class Runner
+public partial class Case
 {
        public void FromStream(int iteration)
        {
@@ -22,35 +22,35 @@ public partial class Runner
 
               Console.WriteLine("FromStream go!");
 
-              Zaabee.CodeTimer.CodeTimer.Initialize();
+              Runner.Initialize();
 
-              Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("BinaryHelper FromStream", iteration,
+              Console.WriteLine(Runner.Time("BinaryHelper FromStream", iteration,
 #pragma warning disable CS0618
                      () => BinaryHelper.FromStream<TestModel>(binaryStream)));
 #pragma warning restore CS0618
-              Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("DataContractHelper FromStream", iteration,
+              Console.WriteLine(Runner.Time("DataContractHelper FromStream", iteration,
                      () => DataContractHelper.FromStream<TestModel>(dataContractStream)));
-              Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("JilHelper FromStream", iteration,
+              Console.WriteLine(Runner.Time("JilHelper FromStream", iteration,
                      () => JilHelper.FromStream<TestModel>(jilStream)));
-              Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("MessagePackHelper FromStream", iteration,
+              Console.WriteLine(Runner.Time("MessagePackHelper FromStream", iteration,
                      () => MessagePackHelper.FromStream<TestModel>(messagePackStream)));
-              Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("MsgPackHelper FromStream", iteration,
+              Console.WriteLine(Runner.Time("MsgPackHelper FromStream", iteration,
                      () => MsgPackHelper.FromStream<TestModel>(msgPackStream)));
-              Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("NewtonsoftJsonHelper FromStream", iteration,
+              Console.WriteLine(Runner.Time("NewtonsoftJsonHelper FromStream", iteration,
                      () => NewtonsoftJsonHelper.FromStream<TestModel>(newtonsoftJsonStream)));
-              Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("ProtobufHelper FromStream", iteration,
+              Console.WriteLine(Runner.Time("ProtobufHelper FromStream", iteration,
                      () => ProtobufHelper.FromStream<TestModel>(protobufStream)));
-              Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("SharpYamlHelper FromStream", iteration,
+              Console.WriteLine(Runner.Time("SharpYamlHelper FromStream", iteration,
                      () => SharpYamlHelper.FromStream<TestModel>(sharpYamlStream)));
-              Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("SystemTextJsonHelper FromStream", iteration,
+              Console.WriteLine(Runner.Time("SystemTextJsonHelper FromStream", iteration,
                      () => SystemTextJsonHelper.FromStream<TestModel>(systemTextJsonStream)));
-              Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("Utf8JsonHelper FromStream", iteration,
+              Console.WriteLine(Runner.Time("Utf8JsonHelper FromStream", iteration,
                      () => Utf8JsonHelper.FromStream<TestModel>(utf8JsonStream)));
-              Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("XmlHelper FromStream", iteration,
+              Console.WriteLine(Runner.Time("XmlHelper FromStream", iteration,
                      () => XmlHelper.FromStream<TestModel>(xmlStream)));
-              Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("YamlDotNetHelper FromStream", iteration,
+              Console.WriteLine(Runner.Time("YamlDotNetHelper FromStream", iteration,
                      () => YamlDotNetHelper.FromStream<TestModel>(yamlDotNetStream)));
-              Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("ZeroFormatterHelper FromStream", iteration,
+              Console.WriteLine(Runner.Time("ZeroFormatterHelper FromStream", iteration,
                      () => ZeroFormatterHelper.FromStream<TestModel>(zeroFormatterStream)));
 
               Console.WriteLine("\r\nFromStream complete!\r\n");

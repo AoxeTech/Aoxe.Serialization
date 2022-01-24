@@ -1,6 +1,6 @@
-namespace CodeTimer.Runner;
+namespace CodeTimer.Cases;
 
-public partial class Runner
+public partial class Case
 {
     public void FromText(int iteration)
     {
@@ -15,23 +15,23 @@ public partial class Runner
 
         Console.WriteLine("FromText go!");
 
-        Zaabee.CodeTimer.CodeTimer.Initialize();
+        Runner.Initialize();
 
-        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("DataContractHelper FromText", iteration,
+        Console.WriteLine(Runner.Time("DataContractHelper FromText", iteration,
             () => DataContractHelper.FromXml<TestModel>(dataContractXml)));
-        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("JilHelper FromText", iteration,
+        Console.WriteLine(Runner.Time("JilHelper FromText", iteration,
             () => JilHelper.FromJson<TestModel>(jilJson)));
-        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("NewtonsoftJsonHelper FromText", iteration,
+        Console.WriteLine(Runner.Time("NewtonsoftJsonHelper FromText", iteration,
             () => NewtonsoftJsonHelper.FromJson<TestModel>(newtonsoftJsonJson)));
-        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("SharpYamlHelper FromText", iteration,
+        Console.WriteLine(Runner.Time("SharpYamlHelper FromText", iteration,
             () => SharpYamlHelper.FromYaml<TestModel>(sharpYamlText)));
-        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("SystemTextJsonHelper FromText", iteration,
+        Console.WriteLine(Runner.Time("SystemTextJsonHelper FromText", iteration,
             () => SystemTextJsonHelper.FromJson<TestModel>(systemTextJsonJson)));
-        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("Utf8JsonHelper FromText", iteration,
+        Console.WriteLine(Runner.Time("Utf8JsonHelper FromText", iteration,
             () => Utf8JsonHelper.FromJson<TestModel>(utf8JsonJson)));
-        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("XmlHelper FromText", iteration,
+        Console.WriteLine(Runner.Time("XmlHelper FromText", iteration,
             () => XmlHelper.FromXml<TestModel>(xml)));
-        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("YamlDotNetHelper FromText", iteration,
+        Console.WriteLine(Runner.Time("YamlDotNetHelper FromText", iteration,
             () => YamlDotNetHelper.FromYaml<TestModel>(yamlDotNetText)));
 
         Console.WriteLine("\r\nFromText complete!\r\n");

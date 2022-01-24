@@ -1,6 +1,6 @@
-namespace CodeTimer.Runner;
+namespace CodeTimer.Cases;
 
-public partial class Runner
+public partial class Case
 {
     public Task FromStreamAsync(int iteration)
     {
@@ -13,19 +13,19 @@ public partial class Runner
 
         Console.WriteLine("FromStreamAsync go!");
 
-        Zaabee.CodeTimer.CodeTimer.Initialize();
+        Runner.Initialize();
 
-        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("JilHelper FromStreamAsync", iteration,
+        Console.WriteLine(Runner.Time("JilHelper FromStreamAsync", iteration,
             async () => await JilHelper.FromStreamAsync<TestModel>(jilStreamAsync)));
-        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("MessagePackHelper FromStreamAsync", iteration,
+        Console.WriteLine(Runner.Time("MessagePackHelper FromStreamAsync", iteration,
             async () => await MessagePackHelper.FromStreamAsync<TestModel>(messagePackStreamAsync)));
-        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("MsgPackHelper FromStreamAsync", iteration,
+        Console.WriteLine(Runner.Time("MsgPackHelper FromStreamAsync", iteration,
             async () => await MsgPackHelper.FromStreamAsync<TestModel>(msgPackStreamAsync)));
-        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("NewtonsoftJsonHelper FromStreamAsync", iteration,
+        Console.WriteLine(Runner.Time("NewtonsoftJsonHelper FromStreamAsync", iteration,
             async () => await NewtonsoftJsonHelper.FromStreamAsync<TestModel>(newtonsoftJsonStreamAsync)));
-        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("SystemTextJsonHelper FromStreamAsync", iteration,
+        Console.WriteLine(Runner.Time("SystemTextJsonHelper FromStreamAsync", iteration,
             async () => await SystemTextJsonHelper.FromStreamAsync<TestModel>(systemTextJsonStreamAsync)));
-        Console.WriteLine(Zaabee.CodeTimer.CodeTimer.Time("Utf8JsonHelper FromStreamAsync", iteration,
+        Console.WriteLine(Runner.Time("Utf8JsonHelper FromStreamAsync", iteration,
             async () => await Utf8JsonHelper.FromStreamAsync<TestModel>(utf8JsonStreamAsync)));
 
         Console.WriteLine("\r\nFromStreamAsync complete!\r\n");

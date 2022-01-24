@@ -1,6 +1,6 @@
-namespace CodeTimer.Runner;
+namespace CodeTimer.Cases;
 
-public partial class Runner
+public partial class Case
 {
     private readonly TestModel _testModel = new()
     {
