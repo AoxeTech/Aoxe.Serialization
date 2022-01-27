@@ -3,11 +3,11 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2022.9.0</PackageVersion>
-        <Version>2022.9.0</Version>
+        <PackageVersion>2022.10.0</PackageVersion>
+        <Version>2022.10.0</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
-        <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Serializers/tree/master/src/Zaabee.NewtonsoftJson</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/PicoHex/Zaabee.Serializers/tree/master/src/Zaabee.NewtonsoftJson</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Description>The wrappers and extensions methods base by Json.NET</Description>
         <PackageTags>Zaabee;Json;Json.NET;Newtonsoft.Json;serialize;deserialize</PackageTags>
@@ -17,8 +17,8 @@
 
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-        <PackageReference Include="Zaabee.Extensions" Version="2022.6.2" />
-        <PackageReference Include="Zaabee.Serializer.Abstractions" Version="2022.3.0" />
+        <PackageReference Include="Zaabee.Extensions" Version="2022.8.0" />
+        <PackageReference Include="Zaabee.Serializer.Abstractions" Version="2022.4.0" />
     </ItemGroup>
 
 </Project>
