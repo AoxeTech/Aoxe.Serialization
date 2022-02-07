@@ -7,7 +7,7 @@ public class Serializer : IJsonSerializer
     public Serializer(JsonSerializerOptions? options = null) =>
         _options = options;
 
-    public Stream ToStream<TValue>(TValue? value) =>
+    public MemoryStream ToStream<TValue>(TValue? value) =>
         SystemTextJsonHelper.ToStream(value, _options);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
@@ -15,7 +15,7 @@ public class Serializer : IJsonSerializer
             ? default
             : SystemTextJsonHelper.FromStream<TValue>(stream, _options);
 
-    public Stream ToStream(Type type, object? value) =>
+    public MemoryStream ToStream(Type type, object? value) =>
         SystemTextJsonHelper.ToStream(type, value, _options);
 
     public object? FromStream(Type type, Stream? stream) =>

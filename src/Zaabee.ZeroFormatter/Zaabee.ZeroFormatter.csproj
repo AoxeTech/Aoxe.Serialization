@@ -3,8 +3,8 @@
     <PropertyGroup>
 	    <TargetFrameworks>netstandard2.0;netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2022.10.0</PackageVersion>
-        <Version>2022.10.0</Version>
+        <PackageVersion>2022.12.0</PackageVersion>
+        <Version>2022.12.0</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/PicoHex/Zaabee.Serializers/tree/master/src/Zaabee.ZeroFormatter</PackageProjectUrl>
@@ -21,7 +21,7 @@
 		<PackageReference Include="Alexinea.ZeroFormatter" Version="1.6.4" Condition="'$(TargetFramework)' == 'netcoreapp3.1'" />
         <PackageReference Include="Alexinea.ZeroFormatter" Version="1.6.4" Condition="'$(TargetFramework)' == 'net5.0'" />
         <PackageReference Include="Alexinea.ZeroFormatter" Version="1.6.4" Condition="'$(TargetFramework)' == 'net6.0'" />
-        <PackageReference Include="Zaabee.Serializer.Abstractions" Version="2022.4.0" />
+        <PackageReference Include="Zaabee.Serializer.Abstractions" Version="2022.6.0" />
 	</ItemGroup>
 
 </Project>

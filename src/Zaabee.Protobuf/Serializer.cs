@@ -2,7 +2,7 @@ namespace Zaabee.Protobuf;
 
 public class Serializer : IBytesSerializer
 {
-    public Stream ToStream<TValue>(TValue? value) =>
+    public MemoryStream ToStream<TValue>(TValue? value) =>
         ProtobufHelper.ToStream(value);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
@@ -10,7 +10,7 @@ public class Serializer : IBytesSerializer
             ? default
             : ProtobufHelper.FromStream<TValue>(stream);
 
-    public Stream ToStream(Type type, object? value) =>
+    public MemoryStream ToStream(Type type, object? value) =>
         ProtobufHelper.ToStream(value);
 
     public object? FromStream(Type type, Stream? stream) =>

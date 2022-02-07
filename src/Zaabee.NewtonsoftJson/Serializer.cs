@@ -40,10 +40,10 @@ public class Serializer : IJsonSerializer
             ? default
             : NewtonsoftJsonHelper.FromJson(type, text, _settings);
 
-    public Stream ToStream<TValue>(TValue? value) =>
+    public MemoryStream ToStream<TValue>(TValue? value) =>
         NewtonsoftJsonHelper.ToStream(value, _settings, _encoding);
 
-    public Stream ToStream(Type type, object? value) =>
+    public MemoryStream ToStream(Type type, object? value) =>
         NewtonsoftJsonHelper.ToStream(type, value, _settings, _encoding);
 
     public TValue? FromStream<TValue>(Stream? stream) =>

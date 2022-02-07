@@ -23,10 +23,10 @@ public class Serializer : IBytesSerializer
             ? default
             : MessagePackHelper.FromBytes(type, bytes, _options);
 
-    public Stream ToStream<TValue>(TValue? value) =>
+    public MemoryStream ToStream<TValue>(TValue? value) =>
         MessagePackHelper.ToStream(value, _options);
 
-    public Stream ToStream(Type type, object? value) =>
+    public MemoryStream ToStream(Type type, object? value) =>
         MessagePackHelper.ToStream(type, value, _options);
 
     public TValue? FromStream<TValue>(Stream? stream) =>

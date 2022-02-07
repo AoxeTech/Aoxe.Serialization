@@ -9,7 +9,7 @@ public class Serializer : IYamlSerializer
         _encoding = encoding;
     }
 
-    public Stream ToStream<TValue>(TValue? value) =>
+    public MemoryStream ToStream<TValue>(TValue? value) =>
         YamlDotNetHelper.ToStream(value, _encoding);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
@@ -17,7 +17,7 @@ public class Serializer : IYamlSerializer
             ? default
             : YamlDotNetHelper.FromStream<TValue>(stream, _encoding);
 
-    public Stream ToStream(Type type, object? value) =>
+    public MemoryStream ToStream(Type type, object? value) =>
         YamlDotNetHelper.ToStream(value, _encoding);
 
     public object? FromStream(Type type, Stream? stream) =>

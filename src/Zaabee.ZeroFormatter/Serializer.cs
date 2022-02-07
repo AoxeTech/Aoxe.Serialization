@@ -18,10 +18,10 @@ public class Serializer : IBytesSerializer
             ? default
             : ZeroFormatterHelper.FromBytes(type, bytes);
 
-    public Stream ToStream<TValue>(TValue? value) =>
+    public MemoryStream ToStream<TValue>(TValue? value) =>
         ZeroFormatterHelper.ToStream(value);
 
-    public Stream ToStream(Type type, object? value) =>
+    public MemoryStream ToStream(Type type, object? value) =>
         ZeroFormatterHelper.ToStream(type, value);
 
     public TValue? FromStream<TValue>(Stream? stream) =>

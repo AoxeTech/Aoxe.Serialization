@@ -34,10 +34,10 @@ public class Serializer : IXmlSerializer
             ? default
             : DataContractHelper.FromXml(type, text);
 
-    public Stream ToStream<TValue>(TValue? value) =>
+    public MemoryStream ToStream<TValue>(TValue? value) =>
         DataContractHelper.ToStream(value);
 
-    public Stream ToStream(Type type, object? value) =>
+    public MemoryStream ToStream(Type type, object? value) =>
         DataContractHelper.ToStream(type, value);
 
     public TValue? FromStream<TValue>(Stream? stream) =>

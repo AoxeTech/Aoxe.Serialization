@@ -39,10 +39,10 @@ public class Serializer : IJsonSerializer
             ? default
             : Utf8JsonHelper.FromJson(type, text, _resolver);
 
-    public Stream ToStream<TValue>(TValue? value) =>
+    public MemoryStream ToStream<TValue>(TValue? value) =>
         Utf8JsonHelper.ToStream(value, _resolver);
 
-    public Stream ToStream(Type type, object? value) =>
+    public MemoryStream ToStream(Type type, object? value) =>
         Utf8JsonHelper.ToStream(type, value, _resolver);
 
     public TValue? FromStream<TValue>(Stream? stream) =>

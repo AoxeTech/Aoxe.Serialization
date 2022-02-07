@@ -2,7 +2,7 @@ namespace Zaabee.SharpYaml;
 
 public class Serializer : IYamlSerializer
 {
-    public Stream ToStream<TValue>(TValue? value) =>
+    public MemoryStream ToStream<TValue>(TValue? value) =>
         SharpYamlHelper.ToStream(value);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
@@ -10,7 +10,7 @@ public class Serializer : IYamlSerializer
             ? default
             : SharpYamlHelper.FromStream<TValue>(stream);
 
-    public Stream ToStream(Type type, object? value) =>
+    public MemoryStream ToStream(Type type, object? value) =>
         SharpYamlHelper.ToStream(type, value);
 
     public object? FromStream(Type type, Stream? stream) =>

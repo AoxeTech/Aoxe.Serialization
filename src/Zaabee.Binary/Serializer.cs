@@ -4,7 +4,7 @@ namespace Zaabee.Binary;
  See https://aka.ms/binaryformatter for more information.")]
 public class Serializer : IBytesSerializer
 {
-    public Stream ToStream<TValue>(TValue? value) =>
+    public MemoryStream ToStream<TValue>(TValue? value) =>
         BinaryHelper.ToStream(value);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
@@ -12,7 +12,7 @@ public class Serializer : IBytesSerializer
             ? default
             : BinaryHelper.FromStream<TValue>(stream);
 
-    public Stream ToStream(Type type, object? value) =>
+    public MemoryStream ToStream(Type type, object? value) =>
         BinaryHelper.ToStream(value);
 
     public object? FromStream(Type type, Stream? stream) =>

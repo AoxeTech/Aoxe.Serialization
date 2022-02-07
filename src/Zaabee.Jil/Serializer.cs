@@ -40,10 +40,10 @@ public class Serializer : IJsonSerializer
             ? default
             : JilHelper.FromJson(type, text, _options);
 
-    public Stream ToStream<TValue>(TValue? value) =>
+    public MemoryStream ToStream<TValue>(TValue? value) =>
         JilHelper.ToStream(value, _options, _encoding);
 
-    public Stream ToStream(Type type, object? value) =>
+    public MemoryStream ToStream(Type type, object? value) =>
         JilHelper.ToStream(value, _options, _encoding);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
