@@ -56,18 +56,14 @@ public class Serializer : IJsonSerializer
             : SystemTextJsonHelper.FromJson(type, text, _options);
 
     public string ToJson<TValue>(TValue? value) =>
-        SystemTextJsonHelper.ToJson(value, _options);
+        ToText(value);
 
     public TValue? FromJson<TValue>(string? json) =>
-        string.IsNullOrWhiteSpace(json)
-            ? default
-            : SystemTextJsonHelper.FromJson<TValue>(json, _options);
+        FromText<TValue>(json);
 
     public string ToJson(Type type, object? value) =>
-        SystemTextJsonHelper.ToJson(type, value, _options);
+        ToText(type, value);
 
     public object? FromJson(Type type, string? json) =>
-        string.IsNullOrWhiteSpace(json)
-            ? default
-            : SystemTextJsonHelper.FromJson(type, json, _options);
+        FromText(type, json);
 }

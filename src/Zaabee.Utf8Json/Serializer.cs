@@ -56,18 +56,14 @@ public class Serializer : IJsonSerializer
             : Utf8JsonHelper.FromStream(type, stream, _resolver);
 
     public string ToJson<TValue>(TValue? value) =>
-        Utf8JsonHelper.ToJson(value, _resolver);
+        ToText(value);
 
     public TValue? FromJson<TValue>(string? json) =>
-        string.IsNullOrWhiteSpace(json)
-            ? default
-            : Utf8JsonHelper.FromJson<TValue>(json, _resolver);
+        FromText<TValue>(json);
 
     public string ToJson(Type type, object? value) =>
-        Utf8JsonHelper.ToJson(type, value, _resolver);
+        ToText(type, value);
 
     public object? FromJson(Type type, string? json) =>
-        string.IsNullOrWhiteSpace(json)
-            ? default
-            : Utf8JsonHelper.FromJson(type, json, _resolver);
+        FromText(type, json);
 }

@@ -51,18 +51,14 @@ public class Serializer : IXmlSerializer
             : DataContractHelper.FromStream(type, stream);
 
     public string ToXml<TValue>(TValue? value) =>
-        DataContractHelper.ToXml(value);
+        ToText(value);
 
     public TValue? FromXml<TValue>(string? xml) =>
-        string.IsNullOrWhiteSpace(xml)
-            ? default
-            : DataContractHelper.FromXml<TValue>(xml);
+        FromText<TValue>(xml);
 
     public string ToXml(Type type, object? value) =>
-        DataContractHelper.ToXml(type, value);
+        ToText(type, value);
 
     public object? FromXml(Type type, string? xml) =>
-        string.IsNullOrWhiteSpace(xml)
-            ? default
-            : DataContractHelper.FromXml(type, xml);
+        FromText(type, xml);
 }

@@ -57,18 +57,14 @@ public class Serializer : IJsonSerializer
             : NewtonsoftJsonHelper.FromStream(type, stream, _settings, _encoding);
 
     public string ToJson<TValue>(TValue? value) =>
-        NewtonsoftJsonHelper.ToJson(value, _settings);
+        ToText(value);
 
     public TValue? FromJson<TValue>(string? json) =>
-        string.IsNullOrWhiteSpace(json)
-            ? default
-            : NewtonsoftJsonHelper.FromJson<TValue>(json, _settings);
+        FromText<TValue>(json);
 
     public string ToJson(Type type, object? value) =>
-        NewtonsoftJsonHelper.ToJson(type, value, _settings);
+        ToText(type, value);
 
     public object? FromJson(Type type, string? json) =>
-        string.IsNullOrWhiteSpace(json)
-            ? default
-            : NewtonsoftJsonHelper.FromJson(type, json, _settings);
+        FromText(type, json);
 }

@@ -57,18 +57,14 @@ public class Serializer : IJsonSerializer
             : JilHelper.FromStream(type, stream, _options, _encoding);
 
     public string ToJson<TValue>(TValue? value) =>
-        JilHelper.ToJson(value, _options);
+        ToText(value);
 
     public TValue? FromJson<TValue>(string? json) =>
-        json.IsNullOrWhiteSpace()
-            ? default
-            : JilHelper.FromJson<TValue>(json, _options);
+        FromText<TValue>(json);
 
     public string ToJson(Type type, object? value) =>
-        JilHelper.ToJson(value, _options);
+        ToText(type, value);
 
     public object? FromJson(Type type, string? json) =>
-        json.IsNullOrWhiteSpace()
-            ? default
-            : JilHelper.FromJson(type, json, _options);
+        FromText(type, json);
 }
