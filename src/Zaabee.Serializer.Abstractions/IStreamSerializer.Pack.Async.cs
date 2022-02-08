@@ -3,20 +3,22 @@ namespace Zaabee.Serializer.Abstractions;
 public partial interface IStreamSerializerAsync
 {
     /// <summary>
-    /// If the stream is null or empty will return the default value of T.
+    /// Serialize the value and pack to the stream.
     /// </summary>
+    /// <param name="value"></param>
     /// <param name="stream"></param>
     /// <param name="cancellationToken"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default);
+    Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// If the stream is null or empty will return the default value of the type.
+    /// Serialize the value and pack to the stream.
     /// </summary>
     /// <param name="type"></param>
+    /// <param name="value"></param>
     /// <param name="stream"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<object?> FromStreamAsync(Type type, Stream? stream, CancellationToken cancellationToken = default);
+    Task PackAsync(Type type, object? value, Stream? stream, CancellationToken cancellationToken = default);
 }
