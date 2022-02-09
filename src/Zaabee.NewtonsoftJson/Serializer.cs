@@ -1,6 +1,6 @@
 namespace Zaabee.NewtonsoftJson;
 
-public class Serializer : IJsonSerializer
+public class Serializer : IJsonSerializer, IStreamSerializerAsync
 {
     private readonly JsonSerializerSettings? _settings;
     private readonly Encoding? _encoding;
@@ -67,4 +67,22 @@ public class Serializer : IJsonSerializer
 
     public object? FromJson(Type type, string? json) =>
         FromText(type, json);
+
+    public async Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
+        await NewtonsoftJsonHelper.PackAsync(value, stream, _settings, _encoding, cancellationToken);
+
+    public async Task PackAsync(Type type, object? value, Stream? stream,
+        CancellationToken cancellationToken = default) =>
+        await NewtonsoftJsonHelper.PackAsync(value, stream, _settings, _encoding, cancellationToken);
+
+    public async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
+        stream is null || stream.CanSeek && stream.Length is 0
+            ? default
+            : await NewtonsoftJsonHelper.FromStreamAsync<TValue>(stream, _settings, _encoding, cancellationToken);
+
+    public async Task<object?> FromStreamAsync(Type type, Stream? stream,
+        CancellationToken cancellationToken = default) =>
+        stream is null || stream.CanSeek && stream.Length is 0
+            ? default
+            : await NewtonsoftJsonHelper.FromStreamAsync(type, stream, _settings, _encoding, cancellationToken);
 }

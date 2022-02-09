@@ -1,6 +1,6 @@
 namespace Zaabee.MsgPack;
 
-public class Serializer : IBytesSerializer
+public class Serializer : IBytesSerializer, IStreamSerializerAsync
 {
     public byte[] ToBytes<TValue>(TValue? value) =>
         MsgPackHelper.ToBytes(value);
@@ -33,4 +33,22 @@ public class Serializer : IBytesSerializer
         stream is null || stream.CanSeek && stream.Length is 0
             ? default
             : MsgPackHelper.FromStream(type, stream);
+
+    public async Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
+        await MsgPackHelper.PackAsync(value, stream, cancellationToken);
+
+    public async Task PackAsync(Type type, object? value, Stream? stream,
+        CancellationToken cancellationToken = default) =>
+        await MsgPackHelper.PackAsync(type, value, stream, PackerCompatibilityOptions.None, cancellationToken);
+
+    public async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
+        stream is null || stream.CanSeek && stream.Length is 0
+            ? default
+            : await MsgPackHelper.FromStreamAsync<TValue>(stream, cancellationToken);
+
+    public async Task<object?> FromStreamAsync(Type type, Stream? stream,
+        CancellationToken cancellationToken = default) =>
+        stream is null || stream.CanSeek && stream.Length is 0
+            ? default
+            : await MsgPackHelper.FromStreamAsync(type, stream, cancellationToken);
 }

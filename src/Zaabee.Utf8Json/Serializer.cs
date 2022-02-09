@@ -1,6 +1,6 @@
 namespace Zaabee.Utf8Json;
 
-public class Serializer : IJsonSerializer
+public class Serializer : IJsonSerializer, IStreamSerializerAsync
 {
     private readonly IJsonFormatterResolver? _resolver;
 
@@ -66,4 +66,22 @@ public class Serializer : IJsonSerializer
 
     public object? FromJson(Type type, string? json) =>
         FromText(type, json);
+
+    public async Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
+        await Utf8JsonHelper.PackAsync(value, stream, _resolver);
+
+    public async Task PackAsync(Type type, object? value, Stream? stream,
+        CancellationToken cancellationToken = default) =>
+        await Utf8JsonHelper.PackAsync(value, stream, _resolver);
+
+    public async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
+        stream is null || stream.CanSeek && stream.Length is 0
+            ? default
+            : await Utf8JsonHelper.FromStreamAsync<TValue>(stream, _resolver);
+
+    public async Task<object?> FromStreamAsync(Type type, Stream? stream,
+        CancellationToken cancellationToken = default) =>
+        stream is null || stream.CanSeek && stream.Length is 0
+            ? default
+            : await Utf8JsonHelper.FromStreamAsync(type, stream, _resolver);
 }

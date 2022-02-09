@@ -1,6 +1,6 @@
 namespace Zaabee.SystemTextJson;
 
-public class Serializer : IJsonSerializer
+public class Serializer : IJsonSerializer, IStreamSerializerAsync
 {
     private readonly JsonSerializerOptions? _options;
 
@@ -66,4 +66,22 @@ public class Serializer : IJsonSerializer
 
     public object? FromJson(Type type, string? json) =>
         FromText(type, json);
+
+    public async Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
+        await SystemTextJsonHelper.PackAsync(value, stream, _options, cancellationToken);
+
+    public async Task PackAsync(Type type, object? value, Stream? stream,
+        CancellationToken cancellationToken = default) =>
+        await SystemTextJsonHelper.PackAsync(value, stream, _options, cancellationToken);
+
+    public async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
+        stream is null || stream.CanSeek && stream.Length is 0
+            ? default
+            : await SystemTextJsonHelper.FromStreamAsync<TValue>(stream, _options, cancellationToken);
+
+    public async Task<object?> FromStreamAsync(Type type, Stream? stream,
+        CancellationToken cancellationToken = default) =>
+        stream is null || stream.CanSeek && stream.Length is 0
+            ? default
+            : await SystemTextJsonHelper.FromStreamAsync(type, stream, _options, cancellationToken);
 }

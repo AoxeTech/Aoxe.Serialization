@@ -63,8 +63,8 @@ public partial class SerializerTest
     private static void StreamNonGenericTest(IStreamSerializer serializer, TestModel model)
     {
         var type = typeof(TestModel);
-        var bytes = serializer.ToStream(type, model);
-        var deserializeModel = (TestModel)serializer.FromStream(type, bytes)!;
+        var ms = serializer.ToStream(type, model);
+        var deserializeModel = (TestModel)serializer.FromStream(type, ms)!;
 
         Assert.Equal(
             Tuple.Create(model.Id, model.Age, model.CreateTime, model.Name, model.Gender),

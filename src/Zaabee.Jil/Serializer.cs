@@ -1,6 +1,6 @@
 namespace Zaabee.Jil;
 
-public class Serializer : IJsonSerializer
+public class Serializer : IJsonSerializer, IStreamSerializerAsync
 {
     private readonly Options? _options;
     private readonly Encoding? _encoding;
@@ -67,4 +67,22 @@ public class Serializer : IJsonSerializer
 
     public object? FromJson(Type type, string? json) =>
         FromText(type, json);
+
+    public async Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
+        await JilHelper.PackAsync(value, stream, _options, _encoding, cancellationToken);
+
+    public async Task PackAsync(Type type, object? value, Stream? stream,
+        CancellationToken cancellationToken = default) =>
+        await JilHelper.PackAsync(value, stream, _options, _encoding, cancellationToken);
+
+    public async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
+        stream is null || stream.CanSeek && stream.Length is 0
+            ? default
+            : await JilHelper.FromStreamAsync<TValue>(stream, _options, _encoding, cancellationToken);
+
+    public async Task<object?> FromStreamAsync(Type type, Stream? stream,
+        CancellationToken cancellationToken = default) =>
+        stream is null || stream.CanSeek && stream.Length is 0
+            ? default
+            : await JilHelper.FromStreamAsync(type, stream, _options, _encoding, cancellationToken);
 }

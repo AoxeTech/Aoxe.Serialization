@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2022.14.0</PackageVersion>
-        <Version>2022.14.0</Version>
+        <PackageVersion>2022.16.0</PackageVersion>
+        <Version>2022.16.0</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/PicoHex/Zaabee.Serializers/tree/master/src/Zaabee.Utf8Json</PackageProjectUrl>
@@ -18,7 +18,7 @@
     <ItemGroup>
         <PackageReference Include="Utf8Json" Version="1.3.7" />
         <PackageReference Include="Zaabee.Extensions" Version="2022.8.0" />
-        <PackageReference Include="Zaabee.Serializer.Abstractions" Version="2022.6.0" />
+        <PackageReference Include="Zaabee.Serializer.Abstractions" Version="2022.14.0" />
     </ItemGroup>
 
 </Project>
