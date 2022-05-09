@@ -1,37 +1,33 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <TargetFrameworks>net48;netcoreapp3.1;net6.0;net7.0</TargetFrameworks>
-        <IsPackable>false</IsPackable>
-        <LangVersion>latest</LangVersion>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
-
-    <ItemGroup>
-        <PackageReference Include="coverlet.collector" Version="3.1.2">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
-        <PackageReference Include="xunit" Version="2.4.1" />
-        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\..\src\Zaabee.Binary\Zaabee.Binary.csproj" />
-        <ProjectReference Include="..\..\src\Zaabee.DataContractSerializer\Zaabee.DataContractSerializer.csproj" />
-        <ProjectReference Include="..\..\src\Zaabee.Jil\Zaabee.Jil.csproj" />
-        <ProjectReference Include="..\..\src\Zaabee.MessagePack\Zaabee.MessagePack.csproj" />
-        <ProjectReference Include="..\..\src\Zaabee.MsgPack\Zaabee.MsgPack.csproj" />
-        <ProjectReference Include="..\..\src\Zaabee.NewtonsoftJson\Zaabee.NewtonsoftJson.csproj" />
-        <ProjectReference Include="..\..\src\Zaabee.Protobuf\Zaabee.Protobuf.csproj" />
-        <ProjectReference Include="..\..\src\Zaabee.SharpYaml\Zaabee.SharpYaml.csproj" />
-        <ProjectReference Include="..\..\src\Zaabee.SystemTextJson\Zaabee.SystemTextJson.csproj" />
-        <ProjectReference Include="..\..\src\Zaabee.Utf8Json\Zaabee.Utf8Json.csproj" />
-        <ProjectReference Include="..\..\src\Zaabee.Xml\Zaabee.Xml.csproj" />
-        <ProjectReference Include="..\..\src\Zaabee.YamlDotNet\Zaabee.YamlDotNet.csproj" />
-        <ProjectReference Include="..\..\src\Zaabee.ZeroFormatter\Zaabee.ZeroFormatter.csproj" />
-        <ProjectReference Include="..\TestModels\TestModels.csproj" />
-    </ItemGroup>
-
+	<PropertyGroup>
+		<TargetFrameworks>net48;netcoreapp3.1;net6.0;net7.0</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="coverlet.collector" Version="3.1.2">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0"/>
+		<PackageReference Include="xunit" Version="2.4.1"/>
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.5"/>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\src\Zaabee.Binary\Zaabee.Binary.csproj"/>
+		<ProjectReference Include="..\..\src\Zaabee.DataContractSerializer\Zaabee.DataContractSerializer.csproj"/>
+		<ProjectReference Include="..\..\src\Zaabee.Jil\Zaabee.Jil.csproj"/>
+		<ProjectReference Include="..\..\src\Zaabee.MessagePack\Zaabee.MessagePack.csproj"/>
+		<ProjectReference Include="..\..\src\Zaabee.MsgPack\Zaabee.MsgPack.csproj"/>
+		<ProjectReference Include="..\..\src\Zaabee.NewtonsoftJson\Zaabee.NewtonsoftJson.csproj"/>
+		<ProjectReference Include="..\..\src\Zaabee.Protobuf\Zaabee.Protobuf.csproj"/>
+		<ProjectReference Include="..\..\src\Zaabee.SharpYaml\Zaabee.SharpYaml.csproj"/>
+		<ProjectReference Include="..\..\src\Zaabee.SystemTextJson\Zaabee.SystemTextJson.csproj"/>
+		<ProjectReference Include="..\..\src\Zaabee.Utf8Json\Zaabee.Utf8Json.csproj"/>
+		<ProjectReference Include="..\..\src\Zaabee.Xml\Zaabee.Xml.csproj"/>
+		<ProjectReference Include="..\..\src\Zaabee.YamlDotNet\Zaabee.YamlDotNet.csproj"/>
+		<ProjectReference Include="..\..\src\Zaabee.ZeroFormatter\Zaabee.ZeroFormatter.csproj"/>
+		<ProjectReference Include="..\TestModels\TestModels.csproj"/>
+	</ItemGroup>
 </Project>
