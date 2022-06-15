@@ -1,24 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2022.16.2</PackageVersion>
-        <Version>2022.16.2</Version>
-        <Authors>Mutuduxf</Authors>
-        <Company>Mutuduxf</Company>
-        <PackageProjectUrl>https://github.com/PicoHex/Zaabee.Serializers/tree/master/src/Zaabee.MessagePack</PackageProjectUrl>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <Description>The wrappers and extensions methods for MessagePack</Description>
-        <PackageTags>Zaabee;MessagePack;serialize;deserialize</PackageTags>
-        <LangVersion>latest</LangVersion>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
-
-    <ItemGroup>
-        <PackageReference Include="MessagePack" Version="2.3.85" />
-        <PackageReference Include="Zaabee.Extensions" Version="2022.8.2" />
-        <PackageReference Include="Zaabee.Serializer.Abstractions" Version="2022.14.0" />
-    </ItemGroup>
-
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageVersion>2022.16.2.2</PackageVersion>
+		<Version>2022.16.2.2</Version>
+		<Authors>Mutuduxf</Authors>
+		<Company>Mutuduxf</Company>
+		<PackageProjectUrl>https://github.com/PicoHex/Zaabee.Serializers/tree/master/src/Zaabee.MessagePack</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Description>The wrappers and extensions methods for MessagePack</Description>
+		<PackageTags>Zaabee;MessagePack;serialize;deserialize</PackageTags>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="MessagePack" Version="2.3.112"/>
+		<PackageReference Include="Zaabee.Extensions" Version="2022.8.2"/>
+		<PackageReference Include="Zaabee.Serializer.Abstractions" Version="2022.14.0"/>
+	</ItemGroup>
 </Project>
