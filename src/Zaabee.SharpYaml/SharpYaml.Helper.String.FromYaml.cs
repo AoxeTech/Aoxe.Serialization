@@ -11,7 +11,7 @@ public static partial class SharpYamlHelper
     public static TValue? FromYaml<TValue>(string? yaml) =>
         string.IsNullOrWhiteSpace(yaml)
             ? default
-            : new global::SharpYaml.Serialization.Serializer().Deserialize<TValue>(yaml);
+            : new global::SharpYaml.Serialization.Serializer().Deserialize<TValue>(yaml!);
 
     /// <summary>
     /// Deserialize the yaml string to an instance of the <paramref name="type"/>.
@@ -22,5 +22,5 @@ public static partial class SharpYamlHelper
     public static object? FromYaml(Type type, string? yaml) =>
         string.IsNullOrWhiteSpace(yaml)
             ? default
-            : new global::SharpYaml.Serialization.Serializer().Deserialize(yaml, type);
+            : new global::SharpYaml.Serialization.Serializer().Deserialize(yaml!, type);
 }
