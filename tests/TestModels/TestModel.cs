@@ -1,9 +1,4 @@
-﻿using System;
-using MessagePack;
-using ProtoBuf;
-using ZeroFormatter;
-
-namespace TestModels;
+﻿namespace TestModels;
 
 [MessagePackObject]
 [Serializable]
