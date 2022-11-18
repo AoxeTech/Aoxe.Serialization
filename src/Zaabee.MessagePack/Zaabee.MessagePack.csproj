@@ -2,8 +2,8 @@
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;netcoreapp3.1;net6.0</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageVersion>2022.16.2.4</PackageVersion>
-		<Version>2022.16.2.4</Version>
+		<PackageVersion>2022.16.2.6</PackageVersion>
+		<Version>2022.16.2.6</Version>
 		<Authors>Mutuduxf</Authors>
 		<Company>Mutuduxf</Company>
 		<PackageProjectUrl>https://github.com/PicoHex/Zaabee.Serializers/tree/master/src/Zaabee.MessagePack</PackageProjectUrl>
@@ -14,8 +14,8 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="MessagePack" Version="2.4.35"/>
-		<PackageReference Include="Zaabee.Extensions" Version="2022.8.2"/>
-		<PackageReference Include="Zaabee.Serializer.Abstractions" Version="2022.14.0"/>
+		<PackageReference Include="MessagePack" Version="2.4.35" />
+		<PackageReference Include="Zaabee.Extensions" Version="2022.8.2.2" />
+		<PackageReference Include="Zaabee.Serializer.Abstractions" Version="2022.14.0" />
 	</ItemGroup>
 </Project>

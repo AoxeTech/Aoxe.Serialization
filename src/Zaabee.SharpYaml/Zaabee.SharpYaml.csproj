@@ -2,8 +2,8 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageVersion>2022.16.4.6</PackageVersion>
-		<Version>2022.16.4.6</Version>
+		<PackageVersion>2022.16.4.8</PackageVersion>
+		<Version>2022.16.4.8</Version>
 		<Authors>Mutuduxf</Authors>
 		<Company>Mutuduxf</Company>
 		<PackageProjectUrl>https://github.com/PicoHex/Zaabee.Serializers/tree/master/src/Zaabee.SharpYaml</PackageProjectUrl>
@@ -15,7 +15,7 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Zaabee.Extensions" Version="2022.8.2" />
+		<PackageReference Include="Zaabee.Extensions" Version="2022.8.2.2" />
 		<PackageReference Include="Zaabee.Serializer.Abstractions" Version="2022.14.0" />
 		<PackageReference Include="SharpYaml" Version="2.1.0" />
 	</ItemGroup>
