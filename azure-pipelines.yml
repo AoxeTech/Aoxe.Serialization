@@ -25,7 +25,7 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: '6.0.x'
+    version: '7.0.x'
     includePreviewVersions: true # Required for preview versions
 
 - task: DotNetCoreCLI@2
