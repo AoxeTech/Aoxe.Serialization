@@ -36,13 +36,10 @@ public partial class SerializerTest
 
     private static void TextGenericTest(ITextSerializer serializer)
     {
-        var model = TestModelFactory.Create();
+        var model = TestModelHelper.Create();
         var text = serializer.ToText(model);
         var deserializeModel = serializer.FromText<TestModel>(text)!;
-
-        Assert.Equal(
-            Tuple.Create(model.Id, model.Age, model.CreateTime, model.Name, model.Gender),
-            Tuple.Create(deserializeModel.Id, deserializeModel.Age, deserializeModel.CreateTime,
-                deserializeModel.Name, deserializeModel.Gender));
+        
+        Assert.True(TestModelHelper.CompareTestModel(model, deserializeModel));
     }
 }

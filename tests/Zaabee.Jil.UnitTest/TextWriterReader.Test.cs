@@ -5,7 +5,7 @@ public partial class JilUnitTest
     [Fact]
     public void TextWriterReaderTest()
     {
-        var testModel = TestModelFactory.Create();
+        var testModel = TestModelHelper.Create();
         TestModel result0;
         using (var fs = new FileStream("TextWriterReaderTest0.json", FileMode.Create))
         {
@@ -36,15 +36,8 @@ public partial class JilUnitTest
             reader.Close();
         }
 
-        Assert.Equal(
-            Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime.ToUniversalTime(), testModel.Name,
-                testModel.Gender),
-            Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
-
-        Assert.Equal(
-            Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime.ToUniversalTime(), testModel.Name,
-                testModel.Gender),
-            Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
+        Assert.True(TestModelHelper.CompareTestModel(testModel, result0));
+        Assert.True(TestModelHelper.CompareTestModel(testModel, result1));
 
         using (var fs = new FileStream("TextWriterReaderTest.json", FileMode.Create))
         {
@@ -58,7 +51,7 @@ public partial class JilUnitTest
     [Fact]
     public void TextWriterReaderNullTest()
     {
-        var testModel = TestModelFactory.Create();
+        var testModel = TestModelHelper.Create();
         StreamWriter? writer = null;
         StreamReader? reader = null;
         testModel.Serialize(writer);

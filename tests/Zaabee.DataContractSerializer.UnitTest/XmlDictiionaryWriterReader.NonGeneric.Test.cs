@@ -5,7 +5,7 @@ public partial class XmlUnitTest
     [Fact]
     public void XmlDictionaryWriterReaderNonGenericTest()
     {
-        var testModel = TestModelFactory.Create();
+        var testModel = TestModelHelper.Create();
         TestModel result0;
         using (var fs = new FileStream("XmlWriterReaderNonGenericTest0.xml", FileMode.Create))
         {
@@ -35,13 +35,9 @@ public partial class XmlUnitTest
             result1 = (TestModel)reader.ReadXml(typeof(TestModel))!;
             reader.Close();
         }
-
-        Assert.Equal(
-            Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-            Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
-        Assert.Equal(
-            Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-            Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
+        
+        Assert.True(TestModelHelper.CompareTestModel(testModel, result0));
+        Assert.True(TestModelHelper.CompareTestModel(testModel, result1));
     }
 
     [Fact]

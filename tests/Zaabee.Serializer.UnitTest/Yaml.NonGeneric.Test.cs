@@ -12,14 +12,11 @@ public partial class SerializerTest
 
     private static void YamlNonGenericTest(IYamlSerializer serializer)
     {
-        var model = TestModelFactory.Create();
+        var model = TestModelHelper.Create();
         var type = typeof(TestModel);
         var yaml = serializer.ToYaml(type, model);
         var deserializeModel = (TestModel)serializer.FromYaml(type, yaml)!;
-
-        Assert.Equal(
-            Tuple.Create(model.Id, model.Age, model.CreateTime, model.Name, model.Gender),
-            Tuple.Create(deserializeModel.Id, deserializeModel.Age, deserializeModel.CreateTime,
-                deserializeModel.Name, deserializeModel.Gender));
+        
+        Assert.True(TestModelHelper.CompareTestModel(model, deserializeModel));
     }
 }

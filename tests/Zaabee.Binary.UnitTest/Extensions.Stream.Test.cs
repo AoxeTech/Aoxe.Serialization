@@ -6,7 +6,7 @@ public partial class ExtensionsTest
     [Fact]
     public void GenericTypeStreamTest()
     {
-        var testModel = TestModelFactory.Create();
+        var testModel = TestModelHelper.Create();
 
         var stream0 = testModel.ToStream();
         var result0 = stream0.FromStream<TestModel>()!;
@@ -18,18 +18,10 @@ public partial class ExtensionsTest
         var stream2 = new MemoryStream();
         stream2.PackBy(testModel);
         var result2 = stream2.FromStream<TestModel>()!;
-
-        Assert.Equal(
-            Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-            Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
-
-        Assert.Equal(
-            Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-            Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
-
-        Assert.Equal(
-            Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime, testModel.Name, testModel.Gender),
-            Tuple.Create(result2.Id, result2.Age, result2.CreateTime, result2.Name, result2.Gender));
+        
+        Assert.True(TestModelHelper.CompareTestModel(testModel, result0));
+        Assert.True(TestModelHelper.CompareTestModel(testModel, result1));
+        Assert.True(TestModelHelper.CompareTestModel(testModel, result2));
     }
 
     [Fact]
@@ -50,7 +42,7 @@ public partial class ExtensionsTest
     [Fact]
     public void NonGenericTypeStreamTest()
     {
-        object testModel = TestModelFactory.Create();
+        object testModel = TestModelHelper.Create();
 
         var stream0 = testModel.ToStream();
         var result0 = (TestModel)stream0.FromStream()!;
@@ -62,21 +54,10 @@ public partial class ExtensionsTest
         var stream2 = new MemoryStream();
         stream2.PackBy(testModel);
         var result2 = (TestModel)stream2.FromStream()!;
-
-        Assert.Equal(
-            Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
-                ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
-            Tuple.Create(result0.Id, result0.Age, result0.CreateTime, result0.Name, result0.Gender));
-
-        Assert.Equal(
-            Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
-                ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
-            Tuple.Create(result1.Id, result1.Age, result1.CreateTime, result1.Name, result1.Gender));
-
-        Assert.Equal(
-            Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
-                ((TestModel)testModel).CreateTime, ((TestModel)testModel).Name, ((TestModel)testModel).Gender),
-            Tuple.Create(result2.Id, result2.Age, result2.CreateTime, result2.Name, result2.Gender));
+        
+        Assert.True(TestModelHelper.CompareTestModel((TestModel)testModel, result0));
+        Assert.True(TestModelHelper.CompareTestModel((TestModel)testModel, result1));
+        Assert.True(TestModelHelper.CompareTestModel((TestModel)testModel, result2));
     }
 
     [Fact]

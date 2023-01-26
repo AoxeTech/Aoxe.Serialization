@@ -68,6 +68,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.YamlDotNet.UnitTest"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.SharpYaml.UnitTest", "tests\Zaabee.SharpYaml.UnitTest\Zaabee.SharpYaml.UnitTest.csproj", "{E324D14F-A88F-48F3-8569-ABF7F1E1D885}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datatable.UnitTest", "tests\Datatable.UnitTest\Datatable.UnitTest.csproj", "{B46C6D9A-BB3B-4ECF-B2DE-9DFDB6A8E7B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,7 @@ Global
 		{41961119-A52F-44A0-9DA7-A73D9C4AC1C3} = {788742B9-1878-4A60-B381-A60F4E43F907}
 		{8E122516-EDCA-44C3-8A3E-30849E28E8EF} = {27F442D2-123E-43B6-AC3A-EFCFF0B4C598}
 		{E324D14F-A88F-48F3-8569-ABF7F1E1D885} = {27F442D2-123E-43B6-AC3A-EFCFF0B4C598}
+		{B46C6D9A-BB3B-4ECF-B2DE-9DFDB6A8E7B4} = {27F442D2-123E-43B6-AC3A-EFCFF0B4C598}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{DC489EBA-145D-4FEF-A6A8-D397A3BE8477}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -231,5 +234,9 @@ Global
 		{E324D14F-A88F-48F3-8569-ABF7F1E1D885}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E324D14F-A88F-48F3-8569-ABF7F1E1D885}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E324D14F-A88F-48F3-8569-ABF7F1E1D885}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B46C6D9A-BB3B-4ECF-B2DE-9DFDB6A8E7B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B46C6D9A-BB3B-4ECF-B2DE-9DFDB6A8E7B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B46C6D9A-BB3B-4ECF-B2DE-9DFDB6A8E7B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B46C6D9A-BB3B-4ECF-B2DE-9DFDB6A8E7B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -5,13 +5,11 @@ public partial class ExtensionsTest
     [Fact]
     public void GenericTypeJsonTest()
     {
-        var testModel = TestModelFactory.Create();
+        var testModel = TestModelHelper.Create();
         var json = testModel.ToJson();
         var result = json.FromJson<TestModel>()!;
-        Assert.Equal(
-            Tuple.Create(testModel.Id, testModel.Age, testModel.CreateTime.ToUniversalTime(), testModel.Name,
-                testModel.Gender),
-            Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+        
+        Assert.True(TestModelHelper.CompareTestModel(testModel, result));
     }
 
     [Fact]
@@ -27,14 +25,11 @@ public partial class ExtensionsTest
     [Fact]
     public void NonGenericTypeJsonTest()
     {
-        object testModel = TestModelFactory.Create();
+        object testModel = TestModelHelper.Create();
         var json = testModel.ToJson();
         var result = (TestModel)json.FromJson(typeof(TestModel))!;
-        Assert.Equal(
-            Tuple.Create(((TestModel)testModel).Id, ((TestModel)testModel).Age,
-                ((TestModel)testModel).CreateTime.ToUniversalTime(), ((TestModel)testModel).Name,
-                ((TestModel)testModel).Gender),
-            Tuple.Create(result.Id, result.Age, result.CreateTime, result.Name, result.Gender));
+        
+        Assert.True(TestModelHelper.CompareTestModel((TestModel)testModel, result));
     }
 
     [Fact]

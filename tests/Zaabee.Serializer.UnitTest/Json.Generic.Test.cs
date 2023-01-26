@@ -20,13 +20,10 @@ public partial class SerializerTest
 
     private static void JsonGenericTest(IJsonSerializer serializer)
     {
-        var model = TestModelFactory.Create();
+        var model = TestModelHelper.Create();
         var json = serializer.ToJson(model);
         var deserializeModel = serializer.FromJson<TestModel>(json)!;
-
-        Assert.Equal(
-            Tuple.Create(model.Id, model.Age, model.CreateTime, model.Name, model.Gender),
-            Tuple.Create(deserializeModel.Id, deserializeModel.Age, deserializeModel.CreateTime,
-                deserializeModel.Name, deserializeModel.Gender));
+        
+        Assert.True(TestModelHelper.CompareTestModel(model, deserializeModel));
     }
 }
