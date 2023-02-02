@@ -102,13 +102,13 @@ public class DateTimeTest
     {
         var dateTimeBytes = bytesSerializer.ToBytes(dateTime);
         var dateTimeResult = bytesSerializer.FromBytes<DateTime>(dateTimeBytes)!;
-        Assert.Equal(dateTime, dateTimeResult);
+        Assert.Equal(new DateTimeOffset(dateTime), new DateTimeOffset(dateTimeResult));
     }
 
     private static void DateTimeToTextTest(ITextSerializer textSerializer, DateTime dateTime)
     {
         var dateTimeText = textSerializer.ToText(dateTime);
         var dateTimeResult = textSerializer.FromText<DateTime>(dateTimeText)!;
-        Assert.Equal(dateTime, dateTimeResult);
+        Assert.Equal(new DateTimeOffset(dateTime), new DateTimeOffset(dateTimeResult));
     }
 }
