@@ -59,7 +59,7 @@ public partial class SerializerTest
         var type = typeof(TestModel);
         var ms = serializer.ToStream(type, model);
         var deserializeModel = (TestModel)serializer.FromStream(type, ms)!;
-        
-        Assert.True(TestModelHelper.CompareTestModel(model, deserializeModel));
+
+        TestModelHelper.AssertEqual(model, deserializeModel);
     }
 }

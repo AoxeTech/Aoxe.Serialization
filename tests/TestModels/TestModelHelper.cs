@@ -1,3 +1,5 @@
+using Xunit;
+
 namespace TestModels;
 
 public static class TestModelHelper
@@ -19,13 +21,22 @@ public static class TestModelHelper
             Gender = Gender.Female
         }).ToList();
 
-    public static bool CompareTestModel(TestModel first, TestModel second) =>
-        first.Id == second.Id
-        && first.Age == second.Age
-        && first.Name == second.Name
-        && first.Gender == second.Gender;
-
-    public static bool CompareTestModels(IList<TestModel> first, IList<TestModel> second) =>
-        first.Count == second.Count
-        && first.All(p => second.Any(q => CompareTestModel(p, q)));
+    public static void AssertEqual(TestModel? first, TestModel? second)
+    {
+        Assert.NotNull(first);
+        Assert.NotNull(second);
+        Assert.Equal(first.Id, second.Id);
+        Assert.Equal(first.Age, second.Age);
+        Assert.Equal(first.Name, second.Name);
+        Assert.Equal(first.Gender, second.Gender);
+    }
+    
+    public static void AssertEqual(IList<TestModel>? first, IList<TestModel>? second)
+    {
+        Assert.NotNull(first);
+        Assert.NotNull(second);
+        Assert.Equal(first.Count, second.Count);
+        for (var i = 0; i < first.Count; i++)
+            AssertEqual(first[i], second[i]);
+    }
 }

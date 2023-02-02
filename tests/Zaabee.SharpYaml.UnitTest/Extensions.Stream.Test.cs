@@ -18,9 +18,9 @@ public partial class ExtensionsTest
         stream2.PackBy(testModel);
         var result2 = stream2.FromStream<TestModel>()!;
         
-        Assert.True(TestModelHelper.CompareTestModel(testModel, result0));
-        Assert.True(TestModelHelper.CompareTestModel(testModel, result1));
-        Assert.True(TestModelHelper.CompareTestModel(testModel, result2));
+        TestModelHelper.AssertEqual(testModel, result0);
+        TestModelHelper.AssertEqual(testModel, result1);
+        TestModelHelper.AssertEqual(testModel, result2);
     }
 
     [Fact]
@@ -54,9 +54,9 @@ public partial class ExtensionsTest
         stream2.PackBy(typeof(TestModel), testModel);
         var result2 = (TestModel)stream2.FromStream(typeof(TestModel))!;
         
-        Assert.True(TestModelHelper.CompareTestModel((TestModel)testModel, result0));
-        Assert.True(TestModelHelper.CompareTestModel((TestModel)testModel, result1));
-        Assert.True(TestModelHelper.CompareTestModel((TestModel)testModel, result2));
+        TestModelHelper.AssertEqual((TestModel)testModel, result0);
+        TestModelHelper.AssertEqual((TestModel)testModel, result1);
+        TestModelHelper.AssertEqual((TestModel)testModel, result2);
     }
 
     [Fact]
@@ -90,9 +90,9 @@ public partial class ExtensionsTest
         stream2.PackBy(typeof(TestModel), testModel);
         var result2 = (TestModel)stream2.FromStream(typeof(TestModel))!;
         
-        Assert.True(TestModelHelper.CompareTestModel((TestModel)testModel, result0));
-        Assert.True(TestModelHelper.CompareTestModel((TestModel)testModel, result1));
-        Assert.True(TestModelHelper.CompareTestModel((TestModel)testModel, result2));
+        TestModelHelper.AssertEqual((TestModel)testModel, result0);
+        TestModelHelper.AssertEqual((TestModel)testModel, result1);
+        TestModelHelper.AssertEqual((TestModel)testModel, result2);
     }
 
     [Fact]

@@ -68,7 +68,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.YamlDotNet.UnitTest"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.SharpYaml.UnitTest", "tests\Zaabee.SharpYaml.UnitTest\Zaabee.SharpYaml.UnitTest.csproj", "{E324D14F-A88F-48F3-8569-ABF7F1E1D885}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datatable.UnitTest", "tests\Datatable.UnitTest\Datatable.UnitTest.csproj", "{B46C6D9A-BB3B-4ECF-B2DE-9DFDB6A8E7B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Types.UnitTest", "tests\Types.UnitTest\Types.UnitTest.csproj", "{B46C6D9A-BB3B-4ECF-B2DE-9DFDB6A8E7B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

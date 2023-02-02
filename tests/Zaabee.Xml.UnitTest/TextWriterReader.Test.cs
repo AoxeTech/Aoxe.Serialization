@@ -36,8 +36,8 @@ public partial class XmlUnitTest
             reader.Close();
         }
         
-        Assert.True(TestModelHelper.CompareTestModel(testModel, result0));
-        Assert.True(TestModelHelper.CompareTestModel(testModel, result1));
+        TestModelHelper.AssertEqual(testModel, result0);
+        TestModelHelper.AssertEqual(testModel, result1);
 
         XmlHelper.Serialize((XmlWriter?)null, testModel);
         XmlHelper.Serialize((TextWriter?)null, testModel);

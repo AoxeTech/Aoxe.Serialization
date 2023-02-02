@@ -58,6 +58,6 @@ public partial class SerializerTest
     {
         var bytes = serializer.ToBytes(model);
         var deserializeModel = serializer.FromBytes<TestModel>(bytes)!;
-        Assert.True(TestModelHelper.CompareTestModel(model, deserializeModel));
+        TestModelHelper.AssertEqual(model, deserializeModel);
     }
 }

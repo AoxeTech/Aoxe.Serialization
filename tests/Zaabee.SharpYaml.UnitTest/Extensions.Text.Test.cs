@@ -9,7 +9,7 @@ public partial class ExtensionsTest
         var yaml = testModel.ToYaml();
         var result = yaml.FromYaml<TestModel>()!;
         
-        Assert.True(TestModelHelper.CompareTestModel(testModel, result));
+        TestModelHelper.AssertEqual(testModel, result);
     }
 
     [Fact]
@@ -29,7 +29,7 @@ public partial class ExtensionsTest
         var yaml = testModel.ToYaml(typeof(TestModel));
         var result = (TestModel)yaml.FromYaml(typeof(TestModel))!;
         
-        Assert.True(TestModelHelper.CompareTestModel((TestModel)testModel, result));
+        TestModelHelper.AssertEqual((TestModel)testModel, result);
     }
 
     [Fact]
@@ -49,7 +49,7 @@ public partial class ExtensionsTest
         var yaml = testModel.ToYaml();
         var result = (TestModel)yaml.FromYaml(typeof(TestModel))!;
         
-        Assert.True(TestModelHelper.CompareTestModel((TestModel)testModel, result));
+        TestModelHelper.AssertEqual((TestModel)testModel, result);
     }
 
     [Fact]

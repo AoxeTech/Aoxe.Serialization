@@ -59,6 +59,6 @@ public partial class SerializerTest
         var stream = serializer.ToStream(model);
         var deserializeModel = serializer.FromStream<TestModel>(stream)!;
 
-        Assert.True(TestModelHelper.CompareTestModel(model, deserializeModel));
+        TestModelHelper.AssertEqual(model, deserializeModel);
     }
 }

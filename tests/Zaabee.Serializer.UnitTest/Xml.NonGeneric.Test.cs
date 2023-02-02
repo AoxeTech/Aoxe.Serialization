@@ -17,6 +17,6 @@ public partial class SerializerTest
         var xml = serializer.ToXml(type, model);
         var deserializeModel = (TestModel)serializer.FromXml(type, xml)!;
         
-        Assert.True(TestModelHelper.CompareTestModel(model, deserializeModel));
+        TestModelHelper.AssertEqual(model, deserializeModel);
     }
 }

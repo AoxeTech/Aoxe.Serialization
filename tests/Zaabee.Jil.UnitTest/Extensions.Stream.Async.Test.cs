@@ -18,9 +18,9 @@ public partial class ExtensionsTest
         await stream2.PackByAsync(testModel);
         var result2 = (await stream2.FromStreamAsync<TestModel>())!;
         
-        Assert.True(TestModelHelper.CompareTestModel(testModel, result0));
-        Assert.True(TestModelHelper.CompareTestModel(testModel, result1));
-        Assert.True(TestModelHelper.CompareTestModel(testModel, result2));
+        TestModelHelper.AssertEqual(testModel, result0);
+        TestModelHelper.AssertEqual(testModel, result1);
+        TestModelHelper.AssertEqual(testModel, result2);
     }
 
     [Fact]
@@ -54,9 +54,9 @@ public partial class ExtensionsTest
         await stream2.PackByAsync(testModel);
         var result2 = (TestModel)(await stream2.FromStreamAsync(typeof(TestModel)))!;
         
-        Assert.True(TestModelHelper.CompareTestModel((TestModel)testModel, result0));
-        Assert.True(TestModelHelper.CompareTestModel((TestModel)testModel, result1));
-        Assert.True(TestModelHelper.CompareTestModel((TestModel)testModel, result2));
+        TestModelHelper.AssertEqual((TestModel)testModel, result0);
+        TestModelHelper.AssertEqual((TestModel)testModel, result1);
+        TestModelHelper.AssertEqual((TestModel)testModel, result2);
     }
 
     [Fact]
