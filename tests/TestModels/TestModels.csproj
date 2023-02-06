@@ -8,7 +8,7 @@
 		<PackageReference Include="MessagePack.Annotations" Version="2.4.59" />
 		<PackageReference Include="protobuf-net.Core" Version="3.1.33" />
 		<PackageReference Include="xunit.assert" Version="2.4.2" />
-		<PackageReference Include="Zaabee.Extensions" Version="2022.11.1" />
+		<PackageReference Include="Zaabee.Extensions" Version="2023.1.0" />
 		<PackageReference Include="ZeroFormatter" Version="1.6.4" Condition="'$(TargetFramework)'=='netstandard2.0'" />
 		<PackageReference Include="Alexinea.ZeroFormatter" Version="1.6.4" Condition="'$(TargetFramework)' == 'net6.0'" />
 		<PackageReference Include="Alexinea.ZeroFormatter" Version="1.6.4" Condition="'$(TargetFramework)' == 'net7.0'" />

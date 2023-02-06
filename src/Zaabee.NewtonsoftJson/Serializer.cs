@@ -47,12 +47,12 @@ public class Serializer : IJsonSerializer, IStreamSerializerAsync
         NewtonsoftJsonHelper.ToStream(type, value, _settings, _encoding);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : NewtonsoftJsonHelper.FromStream<TValue>(stream, _settings, _encoding);
 
     public object? FromStream(Type type, Stream? stream) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : NewtonsoftJsonHelper.FromStream(type, stream, _settings, _encoding);
 
@@ -76,13 +76,13 @@ public class Serializer : IJsonSerializer, IStreamSerializerAsync
         await NewtonsoftJsonHelper.PackAsync(value, stream, _settings, _encoding, cancellationToken);
 
     public async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : await NewtonsoftJsonHelper.FromStreamAsync<TValue>(stream, _settings, _encoding, cancellationToken);
 
     public async Task<object?> FromStreamAsync(Type type, Stream? stream,
         CancellationToken cancellationToken = default) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : await NewtonsoftJsonHelper.FromStreamAsync(type, stream, _settings, _encoding, cancellationToken);
 }

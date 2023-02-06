@@ -41,12 +41,12 @@ public class Serializer : IXmlSerializer
         DataContractHelper.ToStream(type, value);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : DataContractHelper.FromStream<TValue>(stream);
 
     public object? FromStream(Type type, Stream? stream) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : DataContractHelper.FromStream(type, stream);
 

@@ -30,12 +30,12 @@ public class Serializer : IBytesSerializer, IStreamSerializerAsync
         MessagePackHelper.ToStream(type, value, _options);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : MessagePackHelper.FromStream<TValue>(stream, _options);
 
     public object? FromStream(Type type, Stream? stream) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : MessagePackHelper.FromStream(type, stream, _options);
 
@@ -47,13 +47,13 @@ public class Serializer : IBytesSerializer, IStreamSerializerAsync
         await MessagePackHelper.PackAsync(type, value, stream, _options, cancellationToken);
 
     public async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : await MessagePackHelper.FromStreamAsync<TValue>(stream, _options, cancellationToken);
 
     public async Task<object?> FromStreamAsync(Type type, Stream? stream,
         CancellationToken cancellationToken = default) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : await MessagePackHelper.FromStreamAsync(type, stream, _options, cancellationToken);
 }

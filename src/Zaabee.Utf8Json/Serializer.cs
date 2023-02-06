@@ -46,12 +46,12 @@ public class Serializer : IJsonSerializer, IStreamSerializerAsync
         Utf8JsonHelper.ToStream(type, value, _resolver);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : Utf8JsonHelper.FromStream<TValue>(stream, _resolver);
 
     public object? FromStream(Type type, Stream? stream) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : Utf8JsonHelper.FromStream(type, stream, _resolver);
 
@@ -75,13 +75,13 @@ public class Serializer : IJsonSerializer, IStreamSerializerAsync
         await Utf8JsonHelper.PackAsync(value, stream, _resolver);
 
     public async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : await Utf8JsonHelper.FromStreamAsync<TValue>(stream, _resolver);
 
     public async Task<object?> FromStreamAsync(Type type, Stream? stream,
         CancellationToken cancellationToken = default) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : await Utf8JsonHelper.FromStreamAsync(type, stream, _resolver);
 }

@@ -47,12 +47,12 @@ public class Serializer : IJsonSerializer, IStreamSerializerAsync
         JilHelper.ToStream(value, _options, _encoding);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : JilHelper.FromStream<TValue>(stream, _options, _encoding);
 
     public object? FromStream(Type type, Stream? stream) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : JilHelper.FromStream(type, stream, _options, _encoding);
 
@@ -75,14 +75,16 @@ public class Serializer : IJsonSerializer, IStreamSerializerAsync
         CancellationToken cancellationToken = default) =>
         await JilHelper.PackAsync(value, stream, _options, _encoding, cancellationToken);
 
-    public async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+    public async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default)
+    {
+        return stream is null or { CanSeek: true, Length: 0 }
             ? default
             : await JilHelper.FromStreamAsync<TValue>(stream, _options, _encoding, cancellationToken);
+    }
 
     public async Task<object?> FromStreamAsync(Type type, Stream? stream,
         CancellationToken cancellationToken = default) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : await JilHelper.FromStreamAsync(type, stream, _options, _encoding, cancellationToken);
 }

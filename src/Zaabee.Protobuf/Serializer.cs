@@ -6,7 +6,7 @@ public class Serializer : IBytesSerializer
         ProtobufHelper.ToStream(value);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : ProtobufHelper.FromStream<TValue>(stream);
 
@@ -14,7 +14,7 @@ public class Serializer : IBytesSerializer
         ProtobufHelper.ToStream(value);
 
     public object? FromStream(Type type, Stream? stream) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : ProtobufHelper.FromStream(type, stream);
 

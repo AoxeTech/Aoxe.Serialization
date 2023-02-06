@@ -11,7 +11,7 @@ public class Serializer : IJsonSerializer, IStreamSerializerAsync
         SystemTextJsonHelper.ToStream(value, _options);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : SystemTextJsonHelper.FromStream<TValue>(stream, _options);
 
@@ -19,7 +19,7 @@ public class Serializer : IJsonSerializer, IStreamSerializerAsync
         SystemTextJsonHelper.ToStream(type, value, _options);
 
     public object? FromStream(Type type, Stream? stream) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : SystemTextJsonHelper.FromStream(type, stream, _options);
 
@@ -75,13 +75,13 @@ public class Serializer : IJsonSerializer, IStreamSerializerAsync
         await SystemTextJsonHelper.PackAsync(value, stream, _options, cancellationToken);
 
     public async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : await SystemTextJsonHelper.FromStreamAsync<TValue>(stream, _options, cancellationToken);
 
     public async Task<object?> FromStreamAsync(Type type, Stream? stream,
         CancellationToken cancellationToken = default) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : await SystemTextJsonHelper.FromStreamAsync(type, stream, _options, cancellationToken);
 }

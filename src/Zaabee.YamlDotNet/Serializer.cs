@@ -13,7 +13,7 @@ public class Serializer : IYamlSerializer
         YamlDotNetHelper.ToStream(value, _encoding);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : YamlDotNetHelper.FromStream<TValue>(stream, _encoding);
 
@@ -21,7 +21,7 @@ public class Serializer : IYamlSerializer
         YamlDotNetHelper.ToStream(value, _encoding);
 
     public object? FromStream(Type type, Stream? stream) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : YamlDotNetHelper.FromStream(type, stream, _encoding);
 
