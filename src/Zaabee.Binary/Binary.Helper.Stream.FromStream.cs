@@ -11,7 +11,7 @@ public static partial class BinaryHelper
     [ObsoleteAttribute(@"BinaryFormatter serialization is obsolete and should not be used.
  See https://aka.ms/binaryformatter for more information.")]
     public static TValue? FromStream<TValue>(Stream? stream) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
             : (TValue?)FromStream(stream);
 
@@ -24,7 +24,7 @@ public static partial class BinaryHelper
  See https://aka.ms/binaryformatter for more information.")]
     public static object? FromStream(Stream? stream)
     {
-        if (stream is null || stream.CanSeek && stream.Length is 0) return default;
+        if (stream is null or { CanSeek: true, Length: 0 }) return default;
         _binaryFormatter ??= new BinaryFormatter();
         var result = _binaryFormatter.Deserialize(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
