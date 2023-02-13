@@ -14,7 +14,7 @@ public static partial class NewtonsoftJsonHelper
         Encoding? encoding = null)
     {
         if (stream is null) return;
-        ToBytes(value, settings, encoding).WriteTo(stream);
+        ToBytes(value, settings, encoding ?? DefaultEncoding).WriteTo(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
@@ -30,7 +30,7 @@ public static partial class NewtonsoftJsonHelper
         Encoding? encoding = null)
     {
         if (stream is null) return;
-        ToBytes(type, value, settings, encoding).WriteTo(stream);
+        ToBytes(type, value, settings, encoding ?? DefaultEncoding).WriteTo(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 }

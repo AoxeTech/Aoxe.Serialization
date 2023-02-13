@@ -14,8 +14,8 @@ public static partial class JilHelper
     public static async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, Options? options = null,
         Encoding? encoding = null, CancellationToken cancellationToken = default)
     {
-        if (stream is null || stream.CanSeek && stream.Length is 0) return default;
-        var json = (await stream.ReadToEndAsync(cancellationToken)).GetString(encoding);
+        if (stream is null or { CanSeek: true, Length: 0 }) return default;
+        var json = (await stream.ReadToEndAsync(cancellationToken)).GetString(encoding ?? DefaultEncoding);
         var result = FromJson<TValue>(json, options);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
@@ -33,8 +33,8 @@ public static partial class JilHelper
     public static async Task<object?> FromStreamAsync(Type type, Stream? stream, Options? options = null,
         Encoding? encoding = null, CancellationToken cancellationToken = default)
     {
-        if (stream is null || stream.CanSeek && stream.Length is 0) return default;
-        var json = (await stream.ReadToEndAsync(cancellationToken)).GetString(encoding);
+        if (stream is null or { CanSeek: true, Length: 0 }) return default;
+        var json = (await stream.ReadToEndAsync(cancellationToken)).GetString(encoding ?? DefaultEncoding);
         var result = FromJson(type, json, options);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;

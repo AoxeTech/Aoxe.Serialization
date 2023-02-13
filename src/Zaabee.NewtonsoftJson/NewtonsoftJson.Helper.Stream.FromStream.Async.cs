@@ -13,9 +13,10 @@ public static partial class NewtonsoftJsonHelper
     /// <returns></returns>
     public static async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, JsonSerializerSettings? settings = null,
         Encoding? encoding = null, CancellationToken cancellationToken = default) =>
-        stream is null || stream.CanSeek && stream.Length is 0
+        stream is null or { CanSeek: true, Length: 0 }
             ? default
-            : (TValue?)await FromStreamAsync(typeof(TValue), stream, settings, encoding, cancellationToken);
+            : (TValue?)await FromStreamAsync(typeof(TValue), stream, settings, encoding ?? DefaultEncoding,
+                cancellationToken);
 
     /// <summary>
     /// Read the stream to bytes asynchronously, encode it to string and deserialize it.
@@ -30,8 +31,9 @@ public static partial class NewtonsoftJsonHelper
         JsonSerializerSettings? settings = null, Encoding? encoding = null,
         CancellationToken cancellationToken = default)
     {
-        if (stream is null || stream.CanSeek && stream.Length is 0) return default;
-        var result = FromJson(type, (await stream.ReadToEndAsync(cancellationToken)).GetString(encoding), settings);
+        if (stream is null or { CanSeek: true, Length: 0 }) return default;
+        var result = FromJson(type,
+            (await stream.ReadToEndAsync(cancellationToken)).GetString(encoding ?? DefaultEncoding), settings);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
     }

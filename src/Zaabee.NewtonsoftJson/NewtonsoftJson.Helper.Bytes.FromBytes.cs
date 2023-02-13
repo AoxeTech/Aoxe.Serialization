@@ -14,7 +14,7 @@ public static partial class NewtonsoftJsonHelper
         Encoding? encoding = null) =>
         bytes is null || bytes.Length is 0
             ? default
-            : (TValue?)FromBytes(typeof(TValue), bytes, settings, encoding);
+            : (TValue?)FromBytes(typeof(TValue), bytes, settings, encoding ?? DefaultEncoding);
 
     /// <summary>
     /// Use encoding to decode the bytes into string and deserialize it.
@@ -28,5 +28,5 @@ public static partial class NewtonsoftJsonHelper
         Encoding? encoding = null) =>
         bytes is null || bytes.Length is 0
             ? default
-            : FromJson(type, bytes.GetString(encoding), settings);
+            : FromJson(type, bytes.GetString(encoding ?? DefaultEncoding), settings);
 }

@@ -14,7 +14,7 @@ public static partial class NewtonsoftJsonHelper
         Encoding? encoding = null)
     {
         var ms = new MemoryStream();
-        Pack(value, ms, settings, encoding);
+        Pack(value, ms, settings, encoding ?? DefaultEncoding);
         return ms;
     }
 
@@ -30,7 +30,7 @@ public static partial class NewtonsoftJsonHelper
         Encoding? encoding = null)
     {
         var ms = new MemoryStream();
-        Pack(type, value, ms, settings, encoding);
+        Pack(type, value, ms, settings, encoding ?? DefaultEncoding);
         return ms;
     }
 }
