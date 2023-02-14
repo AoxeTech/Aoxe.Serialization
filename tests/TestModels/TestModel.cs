@@ -1,5 +1,8 @@
 ﻿namespace TestModels;
 
+#if !NETSTANDARD2_0
+[MemoryPackable]
+#endif
 [MessagePackObject]
 [Serializable]
 [ProtoContract]

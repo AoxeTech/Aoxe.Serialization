@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.1;net7.0</TargetFrameworks>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>2023.1.1</PackageVersion>
+        <Version>2023.1.1</Version>
+        <Authors>Mutuduxf</Authors>
+        <Company>Mutuduxf</Company>
+        <PackageProjectUrl>https://github.com/PicoHex/Zaabee.Serializers/tree/master/src/Zaabee.MemoryPack</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Description>The wrappers and extension methods for MemoryPack</Description>
+        <PackageTags>Zaabee;MemoryPack;serialize;deserialize</PackageTags>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MemoryPack" Version="1.9.13" />
+        <PackageReference Include="Zaabee.Extensions" Version="2023.1.0" />
+        <PackageReference Include="Zaabee.Memory.Extensions" Version="2023.2.0" />
+    </ItemGroup>
+
+</Project>
