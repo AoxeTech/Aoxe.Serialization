@@ -14,6 +14,12 @@ public partial class SerializerTest
     public void JilStreamGenericTest() =>
         StreamGenericTest(new Jil.Serializer(Options.ISO8601Utc), TestModelHelper.Create());
 
+#if !NET48
+    [Fact]
+    public void MemoryPackStreamGenericTest() =>
+        StreamGenericTest(new MemoryPack.Serializer(), TestModelHelper.Create());
+#endif
+
     [Fact]
     public void MessagePackStreamGenericTest() =>
         StreamGenericTest(new MessagePack.Serializer(), TestModelHelper.Create());

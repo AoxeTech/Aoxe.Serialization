@@ -14,6 +14,12 @@ public partial class SerializerTest
     public void JilBytesNonGenericTest() =>
         BytesNonGenericTest(new Jil.Serializer(Options.ISO8601Utc), TestModelHelper.Create());
 
+#if !NET48
+    [Fact]
+    public void MemoryPackBytesNonGenericTest() =>
+        BytesNonGenericTest(new MemoryPack.Serializer(), TestModelHelper.Create());
+#endif
+
     [Fact]
     public void MessagePackBytesNonGenericTest() =>
         BytesNonGenericTest(new MessagePack.Serializer(), TestModelHelper.Create());

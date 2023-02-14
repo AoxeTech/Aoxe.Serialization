@@ -10,6 +10,12 @@ public partial class SerializerTest
     public void JilBytesNonGenericNullTest() =>
         BytesNonGenericNullTest(new Jil.Serializer());
 
+#if !NET48
+    [Fact]
+    public void MemoryPackBytesNonGenericNullTest() =>
+        BytesNonGenericNullTest(new MemoryPack.Serializer());
+#endif
+
     [Fact]
     public void MessagePackBytesNonGenericNullTest() =>
         BytesNonGenericNullTest(new MessagePack.Serializer());

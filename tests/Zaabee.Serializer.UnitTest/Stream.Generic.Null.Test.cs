@@ -10,6 +10,12 @@ public partial class SerializerTest
     public void JilStreamGenericNullTest() =>
         StreamGenericNullTest(new Jil.Serializer());
 
+#if !NET48
+    [Fact]
+    public void MemoryPackStreamGenericNullTest() =>
+        StreamGenericNullTest(new MemoryPack.Serializer());
+#endif
+
     [Fact]
     public void MessagePackStreamGenericNullTest() =>
         StreamGenericNullTest(new MessagePack.Serializer());

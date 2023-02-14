@@ -6,6 +6,12 @@ public partial class SerializerTest
     public async Task JilStreamGenericAsyncTest() =>
         await StreamGenericAsyncTest(new Jil.Serializer(Options.ISO8601Utc), TestModelHelper.Create());
 
+#if !NET48
+    [Fact]
+    public async Task MemoryPackStreamGenericAsyncTest() =>
+        await StreamGenericAsyncTest(new MemoryPack.Serializer(), TestModelHelper.Create());
+#endif
+
     [Fact]
     public async Task MessagePackStreamGenericAsyncTest() =>
         await StreamGenericAsyncTest(new MessagePack.Serializer(), TestModelHelper.Create());
