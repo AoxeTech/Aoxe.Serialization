@@ -16,6 +16,8 @@ public partial class Case
             () => DataContractHelper.ToStream(_testModel)));
         Console.WriteLine(Runner.Time("JilHelper ToStream", iteration,
             () => JilHelper.ToStream(_testModel)));
+        Console.WriteLine(Runner.Time("MemoryPackHelper ToStream", iteration,
+            () => MemoryPackHelper.ToStream(_testModel)));
         Console.WriteLine(Runner.Time("MessagePackHelper ToStream", iteration,
             () => MessagePackHelper.ToStream(_testModel)));
         Console.WriteLine(Runner.Time("MsgPackHelper ToStream", iteration,

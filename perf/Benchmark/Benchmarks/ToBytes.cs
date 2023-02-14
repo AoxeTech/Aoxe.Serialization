@@ -1,6 +1,3 @@
-using Zaabee.SharpYaml;
-using Zaabee.YamlDotNet;
-
 namespace Benchmark.Benchmarks;
 
 [MemoryDiagnoser]
@@ -25,6 +22,9 @@ public class ToBytes
 
     [Benchmark]
     public void JilToBytes() => JilHelper.ToBytes(_testModel);
+
+    [Benchmark]
+    public void MemoryPackToBytes() => MemoryPackHelper.ToBytes(_testModel);
 
     [Benchmark]
     public void MessagePackToBytes() => MessagePackHelper.ToBytes(_testModel);

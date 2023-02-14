@@ -1,10 +1,11 @@
 namespace CodeTimer;
 
+[MemoryPackable()]
 [MessagePackObject]
 [Serializable]
 [ProtoContract]
 [ZeroFormattable]
-public class TestModel
+public partial class TestModel
 {
     [Key(0)] [ProtoMember(1)] [Index(0)] public virtual Guid Id { get; set; }
     [Key(1)] [ProtoMember(2)] [Index(1)] public virtual int Age { get; set; }

@@ -1,6 +1,3 @@
-using Zaabee.SharpYaml;
-using Zaabee.YamlDotNet;
-
 namespace Benchmark.Benchmarks;
 
 [MemoryDiagnoser]
@@ -25,6 +22,9 @@ public class ToStream
 
     [Benchmark]
     public void JilToStream() => JilHelper.ToStream(_testModel);
+
+    [Benchmark]
+    public void MemoryPackToStream() => MemoryPackHelper.ToStream(_testModel);
 
     [Benchmark]
     public void MessagePackToStream() => MessagePackHelper.ToStream(_testModel);

@@ -16,6 +16,7 @@
       <ProjectReference Include="..\..\src\Zaabee.Binary\Zaabee.Binary.csproj" />
       <ProjectReference Include="..\..\src\Zaabee.DataContractSerializer\Zaabee.DataContractSerializer.csproj" />
       <ProjectReference Include="..\..\src\Zaabee.Jil\Zaabee.Jil.csproj" />
+      <ProjectReference Include="..\..\src\Zaabee.MemoryPack\Zaabee.MemoryPack.csproj" />
       <ProjectReference Include="..\..\src\Zaabee.MessagePack\Zaabee.MessagePack.csproj" />
       <ProjectReference Include="..\..\src\Zaabee.MsgPack\Zaabee.MsgPack.csproj" />
       <ProjectReference Include="..\..\src\Zaabee.NewtonsoftJson\Zaabee.NewtonsoftJson.csproj" />

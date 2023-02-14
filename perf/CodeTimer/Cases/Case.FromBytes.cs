@@ -9,6 +9,7 @@ public partial class Case
 #pragma warning restore CS0618
         var dataContractBytes = DataContractHelper.ToBytes<TestModel>(_testModel);
         var jilBytes = JilHelper.ToBytes<TestModel>(_testModel);
+        var memoryPackBytes = MemoryPackHelper.ToBytes<TestModel>(_testModel);
         var messagePackBytes = MessagePackHelper.ToBytes<TestModel>(_testModel);
         var msgPackBytes = MsgPackHelper.ToBytes<TestModel>(_testModel);
         var newtonsoftJsonBytes = NewtonsoftJsonHelper.ToBytes<TestModel>(_testModel);
@@ -32,6 +33,8 @@ public partial class Case
             () => DataContractHelper.FromBytes<TestModel>(dataContractBytes)));
         Console.WriteLine(Runner.Time("JilHelper FromBytes", iteration,
             () => JilHelper.FromBytes<TestModel>(jilBytes)));
+        Console.WriteLine(Runner.Time("MemoryPackHelper FromBytes", iteration,
+            () => MemoryPackHelper.FromBytes<TestModel>(memoryPackBytes)));
         Console.WriteLine(Runner.Time("MessagePackHelper FromBytes", iteration,
             () => MessagePackHelper.FromBytes<TestModel>(messagePackBytes)));
         Console.WriteLine(Runner.Time("MsgPackHelper FromBytes", iteration,

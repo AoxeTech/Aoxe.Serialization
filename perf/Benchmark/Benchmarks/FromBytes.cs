@@ -1,6 +1,3 @@
-using Zaabee.SharpYaml;
-using Zaabee.YamlDotNet;
-
 namespace Benchmark.Benchmarks;
 
 [MemoryDiagnoser]
@@ -20,6 +17,7 @@ public class FromBytes
     private readonly byte[] _binaryBytes;
     private readonly byte[] _dataContractBytes;
     private readonly byte[] _jilBytes;
+    private readonly byte[] _memoryPackBytes;
     private readonly byte[] _messagePackBytes;
     private readonly byte[] _msgPackBytes;
     private readonly byte[] _newtonsoftJsonBytes;
@@ -38,6 +36,7 @@ public class FromBytes
 #pragma warning restore CS0618
         _dataContractBytes = DataContractHelper.ToBytes(_testModel);
         _jilBytes = JilHelper.ToBytes(_testModel);
+        _memoryPackBytes = MemoryPackHelper.ToBytes(_testModel);
         _messagePackBytes = MessagePackHelper.ToBytes(_testModel);
         _msgPackBytes = MsgPackHelper.ToBytes(_testModel);
         _newtonsoftJsonBytes = NewtonsoftJsonHelper.ToBytes(_testModel);
@@ -58,6 +57,9 @@ public class FromBytes
 
     [Benchmark]
     public void JilFromBytes() => JilHelper.FromBytes<TestModel>(_jilBytes);
+    
+    [Benchmark]
+    public void MemoryPackFromBytes() => MemoryPackHelper.FromBytes<TestModel>(_memoryPackBytes);
 
     [Benchmark]
     public void MessagePackFromBytes() => MessagePackHelper.FromBytes<TestModel>(_messagePackBytes);

@@ -15,6 +15,7 @@ public class FromStreamAsync
     };
 
     private readonly FileStream _jilStream = new(".\\JilStream", FileMode.Create);
+    private readonly FileStream _memoryPackStream = new(".\\MemoryPackStream", FileMode.Create);
     private readonly FileStream _messagePackStream = new(".\\MessagePackStream", FileMode.Create);
     private readonly FileStream _msgPackStream = new(".\\MsgPackStream", FileMode.Create);
     private readonly FileStream _newtonsoftJsonStream = new(".\\NewtonsoftJsonStream", FileMode.Create);
@@ -24,6 +25,7 @@ public class FromStreamAsync
     public FromStreamAsync()
     {
         JilHelper.Pack(_testModel, _jilStream);
+        MemoryPackHelper.Pack(_testModel, _memoryPackStream);
         MessagePackHelper.Pack(_testModel, _messagePackStream);
         MsgPackHelper.Pack(_testModel, _msgPackStream);
         NewtonsoftJsonHelper.Pack(_testModel, _newtonsoftJsonStream);
@@ -35,6 +37,10 @@ public class FromStreamAsync
     public async Task JilFromStreamAsync() =>
         await JilHelper.FromStreamAsync<TestModel>(_jilStream);
 
+    [Benchmark]
+    public async Task MemoryPackFromStreamAsync() =>
+        await MemoryPackHelper.FromStreamAsync<TestModel>(_memoryPackStream);
+    
     [Benchmark]
     public async Task MessagePackFromStreamAsync() =>
         await MessagePackHelper.FromStreamAsync<TestModel>(_messagePackStream);

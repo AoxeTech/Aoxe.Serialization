@@ -16,6 +16,8 @@ public partial class Case
             () => DataContractHelper.ToBytes(_testModel)));
         Console.WriteLine(Runner.Time("JilHelper ToBytes", iteration,
             () => JilHelper.ToBytes(_testModel)));
+        Console.WriteLine(Runner.Time("MemoryPackHelper ToBytes", iteration,
+            () => MemoryPackHelper.ToBytes(_testModel)));
         Console.WriteLine(Runner.Time("MessagePackHelper ToBytes", iteration,
             () => MessagePackHelper.ToBytes(_testModel)));
         Console.WriteLine(Runner.Time("MsgPackHelper ToBytes", iteration,

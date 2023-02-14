@@ -1,6 +1,3 @@
-using Zaabee.SharpYaml;
-using Zaabee.YamlDotNet;
-
 namespace Benchmark.Benchmarks;
 
 [MemoryDiagnoser]
@@ -20,6 +17,7 @@ public class FromStream
     private readonly Stream _binaryStream;
     private readonly Stream _dataContractStream;
     private readonly Stream _jilStream;
+    private readonly Stream _memoryPackStream;
     private readonly Stream _messagePackStream;
     private readonly Stream _msgPackStream;
     private readonly Stream _newtonsoftJsonStream;
@@ -38,6 +36,7 @@ public class FromStream
 #pragma warning restore CS0618
         _dataContractStream = DataContractHelper.ToStream(_testModel);
         _jilStream = JilHelper.ToStream(_testModel);
+        _memoryPackStream = MemoryPackHelper.ToStream(_testModel);
         _messagePackStream = MessagePackHelper.ToStream(_testModel);
         _msgPackStream = MsgPackHelper.ToStream(_testModel);
         _newtonsoftJsonStream = NewtonsoftJsonHelper.ToStream(_testModel);
@@ -59,6 +58,9 @@ public class FromStream
     [Benchmark]
     public void JilFromStream() => JilHelper.FromStream<TestModel>(_jilStream);
 
+    [Benchmark]
+    public void MemoryPackFromStream() => MemoryPackHelper.FromStream<TestModel>(_memoryPackStream);
+    
     [Benchmark]
     public void MessagePackFromStream() => MessagePackHelper.FromStream<TestModel>(_messagePackStream);
 

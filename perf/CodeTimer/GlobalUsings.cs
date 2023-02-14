@@ -19,3 +19,5 @@ global using System.Threading.Tasks;
 global using System.Diagnostics;
 global using Zaabee.CodeTimer;
 global using CodeTimer.Cases;
+global using MemoryPack;
+global using Zaabee.MemoryPack;

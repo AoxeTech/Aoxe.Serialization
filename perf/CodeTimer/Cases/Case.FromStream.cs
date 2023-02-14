@@ -9,6 +9,7 @@ public partial class Case
 #pragma warning restore CS0618
               var dataContractStream = DataContractHelper.ToStream(_testModel);
               var jilStream = JilHelper.ToStream(_testModel);
+              var memoryPackStream = MemoryPackHelper.ToStream(_testModel);
               var messagePackStream = MessagePackHelper.ToStream(_testModel);
               var msgPackStream = MsgPackHelper.ToStream(_testModel);
               var newtonsoftJsonStream = NewtonsoftJsonHelper.ToStream(_testModel);
@@ -32,6 +33,8 @@ public partial class Case
                      () => DataContractHelper.FromStream<TestModel>(dataContractStream)));
               Console.WriteLine(Runner.Time("JilHelper FromStream", iteration,
                      () => JilHelper.FromStream<TestModel>(jilStream)));
+              Console.WriteLine(Runner.Time("MemoryPackHelper FromStream", iteration,
+                     () => MemoryPackHelper.FromStream<TestModel>(memoryPackStream)));
               Console.WriteLine(Runner.Time("MessagePackHelper FromStream", iteration,
                      () => MessagePackHelper.FromStream<TestModel>(messagePackStream)));
               Console.WriteLine(Runner.Time("MsgPackHelper FromStream", iteration,
