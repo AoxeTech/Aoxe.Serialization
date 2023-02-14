@@ -8,7 +8,7 @@ public partial class MemoryPackHelper
         MemoryPackSerializerOptions? options = null)
     {
         if (stream is null) return;
-        var bufferWriter = new ArrayBufferWriter<byte>(99999);
+        var bufferWriter = new ArrayBufferWriter<byte>();
         MemoryPackSerializer.Serialize(bufferWriter, value, options);
         stream.Write(bufferWriter.WrittenSpan);
         stream.TrySeek(0, SeekOrigin.Begin);
@@ -21,7 +21,7 @@ public partial class MemoryPackHelper
         MemoryPackSerializerOptions? options = null)
     {
         if (stream is null) return;
-        var bufferWriter = new ArrayBufferWriter<byte>(99999);
+        var bufferWriter = new ArrayBufferWriter<byte>();
         MemoryPackSerializer.Serialize(type, bufferWriter, value, options);
         stream.Write(bufferWriter.WrittenSpan);
         stream.TrySeek(0, SeekOrigin.Begin);

@@ -2,16 +2,14 @@ namespace Zaabee.MemoryPack;
 
 public static partial class MemoryPackExtensions
 {
-    public static void PackTo<TValue>(
+    public static MemoryStream ToStream<TValue>(
         this TValue? value,
-        Stream? stream,
         MemoryPackSerializerOptions? options = null) =>
-        MemoryPackHelper.Pack(value, stream, options);
+        MemoryPackHelper.ToStream(value, options);
 
-    public static void PackTo(
+    public static MemoryStream ToStream(
         this object? value,
         Type type,
-        Stream? stream,
         MemoryPackSerializerOptions? options = null) =>
-        MemoryPackHelper.Pack(type, value, stream, options);
+        MemoryPackHelper.ToStream(type, value, options);
 }
