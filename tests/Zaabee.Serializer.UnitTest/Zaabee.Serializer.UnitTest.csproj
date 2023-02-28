@@ -10,7 +10,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
 		<PackageReference Include="xunit" Version="2.4.2" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.5" />
 	</ItemGroup>
@@ -18,7 +18,7 @@
 		<ProjectReference Include="..\..\src\Zaabee.Binary\Zaabee.Binary.csproj" />
 		<ProjectReference Include="..\..\src\Zaabee.DataContractSerializer\Zaabee.DataContractSerializer.csproj" />
 		<ProjectReference Include="..\..\src\Zaabee.Jil\Zaabee.Jil.csproj" />
-		<ProjectReference Include="..\..\src\Zaabee.MemoryPack\Zaabee.MemoryPack.csproj" Condition="'$(TargetFramework)'!='net48'"  />
+		<ProjectReference Include="..\..\src\Zaabee.MemoryPack\Zaabee.MemoryPack.csproj" Condition="'$(TargetFramework)'!='net48'" />
 		<ProjectReference Include="..\..\src\Zaabee.MessagePack\Zaabee.MessagePack.csproj" />
 		<ProjectReference Include="..\..\src\Zaabee.MsgPack\Zaabee.MsgPack.csproj" />
 		<ProjectReference Include="..\..\src\Zaabee.NewtonsoftJson\Zaabee.NewtonsoftJson.csproj" />
