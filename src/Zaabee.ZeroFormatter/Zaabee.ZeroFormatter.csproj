@@ -3,11 +3,11 @@
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;net6.0;net7.0</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2023.1.0</PackageVersion>
-        <Version>2023.1.0</Version>
+        <PackageVersion>2023.1.1</PackageVersion>
+        <Version>2023.1.1</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
-        <PackageProjectUrl>https://github.com/PicoHex/Zaabee.Serializers/tree/master/src/Zaabee.ZeroFormatter</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/PicoHex/Zaabee.Serialization</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Description>The wrappers and extension methods for ZeroFormatter</Description>
         <PackageTags>Zaabee;ZeroFormatter;serialize;deserialize</PackageTags>
@@ -19,7 +19,7 @@
 		<PackageReference Include="Zaabee.Extensions" Version="2023.1.0" />
 		<PackageReference Include="ZeroFormatter" Version="1.6.4" Condition="'$(TargetFramework)'=='netstandard2.0'" />
         <PackageReference Include="Alexinea.ZeroFormatter" Version="1.6.4" Condition="'$(TargetFramework)'!='netstandard2.0'" />
-        <PackageReference Include="Zaabee.Serializer.Abstractions" Version="2023.1.0" />
+        <PackageReference Include="Zaabee.Serializer.Abstractions" Version="2023.1.1" />
 	</ItemGroup>
 
 </Project>
