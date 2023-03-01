@@ -13,7 +13,7 @@ public static partial class Utf8JsonHelper
     /// <returns></returns>
     public static async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, IJsonFormatterResolver? resolver = null)
     {
-        if (stream is null || stream.CanSeek && stream.Length is 0) return default;
+        if (stream is null or { CanSeek: true, Length: 0 }) return default;
         var result = await JsonSerializer.DeserializeAsync<TValue>(stream, resolver);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
@@ -30,7 +30,7 @@ public static partial class Utf8JsonHelper
     public static async Task<object?> FromStreamAsync(Type type, Stream? stream,
         IJsonFormatterResolver? resolver = null)
     {
-        if (stream is null || stream.CanSeek && stream.Length is 0) return default;
+        if (stream is null or { CanSeek: true, Length: 0 }) return default;
         var result = await JsonSerializer.NonGeneric.DeserializeAsync(type, stream, resolver);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;

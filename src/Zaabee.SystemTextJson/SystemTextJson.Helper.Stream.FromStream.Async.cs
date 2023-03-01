@@ -15,7 +15,7 @@ public static partial class SystemTextJsonHelper
     public static async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, JsonSerializerOptions? options = null,
         CancellationToken cancellationToken = default)
     {
-        if (stream is null || stream.CanSeek && stream.Length is 0) return default;
+        if (stream is null or { CanSeek: true, Length: 0 }) return default;
         var result = await JsonSerializer.DeserializeAsync<TValue>(stream, options, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
@@ -33,7 +33,7 @@ public static partial class SystemTextJsonHelper
     public static async Task<object?> FromStreamAsync(Type type, Stream? stream, JsonSerializerOptions? options = null,
         CancellationToken cancellationToken = default)
     {
-        if (stream is null || stream.CanSeek && stream.Length is 0) return default;
+        if (stream is null or { CanSeek: true, Length: 0 }) return default;
         var result = await JsonSerializer.DeserializeAsync(stream, type, options, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;

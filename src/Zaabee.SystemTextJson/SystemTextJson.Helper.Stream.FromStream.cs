@@ -12,7 +12,7 @@ public static partial class SystemTextJsonHelper
     /// <returns></returns>
     public static TValue? FromStream<TValue>(Stream? stream, JsonSerializerOptions? options = null)
     {
-        if (stream is null || stream.CanSeek && stream.Length is 0) return default;
+        if (stream is null or { CanSeek: true, Length: 0 }) return default;
         var result = JsonSerializer.Deserialize<TValue>(stream, options);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
@@ -28,7 +28,7 @@ public static partial class SystemTextJsonHelper
     /// <returns></returns>
     public static object? FromStream(Type type, Stream? stream, JsonSerializerOptions? options = null)
     {
-        if (stream is null || stream.CanSeek && stream.Length is 0) return default;
+        if (stream is null or { CanSeek: true, Length: 0 }) return default;
         var result = JsonSerializer.Deserialize(stream, type, options);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;

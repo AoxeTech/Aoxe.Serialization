@@ -28,7 +28,7 @@ public static partial class MsgPackHelper
     public static async Task<TValue?> FromStreamAsync<TValue>(Stream? stream,
         CancellationToken cancellationToken = default)
     {
-        if (stream is null || stream.CanSeek && stream.Length is 0) return default;
+        if (stream is null or { CanSeek: true, Length: 0 }) return default;
         var result = await MessagePackSerializer.Get<TValue>().UnpackAsync(stream, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
@@ -64,7 +64,7 @@ public static partial class MsgPackHelper
     public static async Task<object?> FromStreamAsync(Type type, Stream? stream,
         CancellationToken cancellationToken = default)
     {
-        if (stream is null || stream.CanSeek && stream.Length is 0) return default;
+        if (stream is null or { CanSeek: true, Length: 0 }) return default;
         var unpacker = Unpacker.Create(stream);
         await unpacker.ReadAsync(cancellationToken);
         var result = await MessagePackSerializer.Get(type).UnpackFromAsync(unpacker, cancellationToken);
