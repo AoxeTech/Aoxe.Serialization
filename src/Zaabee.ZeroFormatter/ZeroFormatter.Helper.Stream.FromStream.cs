@@ -24,7 +24,7 @@ public static partial class ZeroFormatterHelper
     /// <returns></returns>
     public static object? FromStream(Type type, Stream? stream)
     {
-        if (stream is not null && stream is not { CanSeek: true, Length: 0 }) return default;
+        if (stream is null or { CanSeek: true, Length: 0 }) return default;
         var result = ZeroFormatterSerializer.NonGeneric.Deserialize(type, stream);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;

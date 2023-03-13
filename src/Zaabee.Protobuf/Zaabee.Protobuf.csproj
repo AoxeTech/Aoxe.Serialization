@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net6.0;net7.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net6.0;net7.0;net8.0</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageVersion>2023.1.4</PackageVersion>
-		<Version>2023.1.4</Version>
+		<PackageVersion>2023.1.5</PackageVersion>
+		<Version>2023.1.5</Version>
 		<Authors>Mutuduxf</Authors>
 		<Company>Mutuduxf</Company>
 		<PackageProjectUrl>https://github.com/PicoHex/Zaabee.Serialization</PackageProjectUrl>
@@ -16,8 +16,8 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<PackageReference Include="protobuf-net" Version="3.2.8" />
-		<PackageReference Include="Zaabee.Extensions" Version="2023.1.0" />
+		<PackageReference Include="protobuf-net" Version="3.2.12" />
+		<PackageReference Include="Zaabee.Extensions" Version="2023.1.1" />
 		<PackageReference Include="Zaabee.Serializer.Abstractions" Version="2023.1.1" />
 	</ItemGroup>
 	

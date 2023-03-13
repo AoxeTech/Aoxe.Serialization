@@ -71,6 +71,7 @@ public partial class ExtensionsTest
         nullStream.PackBy(typeof(TestModel), nullModel);
         nullModel.PackTo(typeof(TestModel), nullStream);
 
-        Stream.Null.FromStream(typeof(TestModel));
+        nullStream = null;
+        nullStream.FromStream(typeof(TestModel));
     }
 }
