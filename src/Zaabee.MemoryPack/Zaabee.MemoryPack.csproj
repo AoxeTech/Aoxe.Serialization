@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2023.1.3</PackageVersion>
-        <Version>2023.1.3</Version>
+        <PackageVersion>2023.1.4</PackageVersion>
+        <Version>2023.1.4</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/PicoHex/Zaabee.Serialization</PackageProjectUrl>
@@ -19,7 +19,7 @@
     <ItemGroup>
         <PackageReference Include="MemoryPack" Version="1.9.13" />
         <PackageReference Include="Zaabee.Extensions" Version="2023.1.2" />
-        <PackageReference Include="Zaabee.Memory.Extensions" Version="2023.2.1" />
+        <PackageReference Include="Zaabee.Memory.Extensions" Version="2023.2.2" />
         <PackageReference Include="Zaabee.Serializer.Abstractions" Version="2023.1.1" />
     </ItemGroup>
 
