@@ -1,6 +1,6 @@
 namespace Zaabee.Jil;
 
-public class Serializer : IJsonSerializer, IStreamSerializerAsync
+public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
 {
     private readonly Options? _options;
     private readonly Encoding? _encoding;

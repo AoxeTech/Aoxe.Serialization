@@ -1,6 +1,6 @@
 namespace Zaabee.Protobuf;
 
-public class Serializer : IBytesSerializer
+public sealed class Serializer : IBytesSerializer
 {
     public MemoryStream ToStream<TValue>(TValue? value) =>
         ProtobufHelper.ToStream(value);

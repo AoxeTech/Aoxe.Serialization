@@ -1,6 +1,6 @@
 namespace Zaabee.MsgPack;
 
-public class Serializer : IBytesSerializer, IStreamSerializerAsync
+public sealed class Serializer : IBytesSerializer, IStreamSerializerAsync
 {
     public byte[] ToBytes<TValue>(TValue? value) =>
         MsgPackHelper.ToBytes(value);

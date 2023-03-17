@@ -1,6 +1,6 @@
 namespace Zaabee.MemoryPack;
 
-public class Serializer : IBytesSerializer, IStreamSerializerAsync
+public sealed class Serializer : IBytesSerializer, IStreamSerializerAsync
 {
     private readonly MemoryPackSerializerOptions? _options;
 

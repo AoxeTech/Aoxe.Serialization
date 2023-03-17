@@ -1,6 +1,6 @@
 namespace Zaabee.YamlDotNet;
 
-public class Serializer : IYamlSerializer
+public sealed class Serializer : IYamlSerializer
 {
     private readonly Encoding? _encoding;
 

@@ -1,6 +1,6 @@
 namespace Zaabee.ZeroFormatter;
 
-public class Serializer : IBytesSerializer
+public sealed class Serializer : IBytesSerializer
 {
     public byte[] ToBytes<TValue>(TValue? value) =>
         ZeroFormatterHelper.ToBytes(value);

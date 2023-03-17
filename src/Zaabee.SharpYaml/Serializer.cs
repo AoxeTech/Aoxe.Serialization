@@ -1,6 +1,6 @@
 namespace Zaabee.SharpYaml;
 
-public class Serializer : IYamlSerializer
+public sealed class Serializer : IYamlSerializer
 {
     public MemoryStream ToStream<TValue>(TValue? value) =>
         SharpYamlHelper.ToStream(value);

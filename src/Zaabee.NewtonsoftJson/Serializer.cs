@@ -1,6 +1,6 @@
 namespace Zaabee.NewtonsoftJson;
 
-public class Serializer : IJsonSerializer, IStreamSerializerAsync
+public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
 {
     private readonly JsonSerializerSettings? _settings;
     private readonly Encoding? _encoding;

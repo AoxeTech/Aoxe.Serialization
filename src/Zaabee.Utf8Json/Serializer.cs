@@ -1,6 +1,6 @@
 namespace Zaabee.Utf8Json;
 
-public class Serializer : IJsonSerializer, IStreamSerializerAsync
+public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
 {
     private readonly IJsonFormatterResolver? _resolver;
 

@@ -1,6 +1,6 @@
 namespace Zaabee.Xml;
 
-public class Serializer : IXmlSerializer
+public sealed class Serializer : IXmlSerializer
 {
     public byte[] ToBytes<TValue>(TValue? value) =>
         XmlHelper.ToBytes(value);

@@ -3,14 +3,15 @@
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;net6.0;net7.0;net8.0</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2023.1.4</PackageVersion>
-        <Version>2023.1.4</Version>
+        <PackageVersion>2023.2.0</PackageVersion>
+        <Version>2023.2.0</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/PicoHex/Zaabee.Serialization</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Description>The wrappers and extensions methods for Jil</Description>
         <PackageTags>Zaabee;Json;Jil;serialize;deserialize</PackageTags>
+        <ImplicitUsings>enable</ImplicitUsings>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
     </PropertyGroup>
