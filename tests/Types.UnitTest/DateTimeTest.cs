@@ -51,7 +51,9 @@ public class DateTimeTest
 
     [Fact]
     public void JilLocalTimeTest() =>
-        DateTimeToTextTest(new Zaabee.Jil.Serializer(new Options(dateFormat: DateTimeFormat.ISO8601, unspecifiedDateTimeKindBehavior: UnspecifiedDateTimeKindBehavior.IsLocal)), _localTime);
+        DateTimeToTextTest(
+            new Zaabee.Jil.Serializer(new Options(dateFormat: DateTimeFormat.ISO8601,
+                unspecifiedDateTimeKindBehavior: UnspecifiedDateTimeKindBehavior.IsLocal)), _localTime);
 
     [Fact]
     public void JilUtcTimeTest() =>
@@ -96,7 +98,6 @@ public class DateTimeTest
     [Fact]
     public void DataContractSerializerUtcTimeTest() =>
         DateTimeToTextTest(new Zaabee.DataContractSerializer.Serializer(), _utcTime);
-
 
     private static void DateTimeToBytesTest(IBytesSerializer bytesSerializer, DateTime dateTime)
     {
