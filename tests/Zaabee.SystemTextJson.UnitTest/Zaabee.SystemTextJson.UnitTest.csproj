@@ -16,7 +16,7 @@
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.5" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\Zaabee.SystemTextJson\Zaabee.SystemTextJson.csproj" />
+		<ProjectReference Include="..\..\src\TextSerializers\JsonSerializers\Zaabee.SystemTextJson\Zaabee.SystemTextJson.csproj" />
 		<ProjectReference Include="..\TestModels\TestModels.csproj" />
 	</ItemGroup>
 </Project>

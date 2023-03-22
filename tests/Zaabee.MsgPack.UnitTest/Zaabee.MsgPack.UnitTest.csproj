@@ -15,7 +15,7 @@
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.5" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\Zaabee.MsgPack\Zaabee.MsgPack.csproj" />
+		<ProjectReference Include="..\..\src\BinarySerializers\Zaabee.MsgPack\Zaabee.MsgPack.csproj" />
 		<ProjectReference Include="..\TestModels\TestModels.csproj" />
 	</ItemGroup>
 </Project>

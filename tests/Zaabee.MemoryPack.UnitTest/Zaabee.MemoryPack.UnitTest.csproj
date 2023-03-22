@@ -22,7 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\Zaabee.MemoryPack\Zaabee.MemoryPack.csproj" />
+      <ProjectReference Include="..\..\src\BinarySerializers\Zaabee.MemoryPack\Zaabee.MemoryPack.csproj" />
       <ProjectReference Include="..\TestModels\TestModels.csproj" />
     </ItemGroup>
 

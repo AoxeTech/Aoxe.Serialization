@@ -18,7 +18,7 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\Zaabee.DataContractSerializer\Zaabee.DataContractSerializer.csproj" />
+		<ProjectReference Include="..\..\src\TextSerializers\XmlSerializers\Zaabee.DataContractSerializer\Zaabee.DataContractSerializer.csproj" />
 		<ProjectReference Include="..\TestModels\TestModels.csproj" />
 	</ItemGroup>
 </Project>

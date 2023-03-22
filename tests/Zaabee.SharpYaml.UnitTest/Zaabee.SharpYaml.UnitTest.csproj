@@ -19,7 +19,7 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\Zaabee.SharpYaml\Zaabee.SharpYaml.csproj" />
+		<ProjectReference Include="..\..\src\TextSerializers\YamlSerializers\Zaabee.SharpYaml\Zaabee.SharpYaml.csproj" />
 		<ProjectReference Include="..\TestModels\TestModels.csproj" />
 	</ItemGroup>
 </Project>
