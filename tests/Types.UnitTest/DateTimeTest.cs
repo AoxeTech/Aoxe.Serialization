@@ -15,6 +15,16 @@ public class DateTimeTest
     public void BinaryFormatterUtcTimeTest() =>
         DateTimeToBytesTest(new Zaabee.Binary.Serializer(), _utcTime);
 
+#if !NET48
+    [Fact]
+    public void MemoryPackLocalTimeTest() =>
+        DateTimeToBytesTest(new Zaabee.MemoryPack.Serializer(), _localTime);
+
+    [Fact]
+    public void MemoryPackUtcTimeTest() =>
+        DateTimeToBytesTest(new Zaabee.MemoryPack.Serializer(), _utcTime);
+#endif
+
     [Fact]
     public void MessagePackLocalTimeTest() =>
         DateTimeToBytesTest(new Zaabee.MessagePack.Serializer(), _localTime);

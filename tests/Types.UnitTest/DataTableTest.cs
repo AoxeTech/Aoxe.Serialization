@@ -7,6 +7,12 @@ public class DataTableTest
     public void BinaryFormatterTest() =>
         DatatableToBytesTest(new Zaabee.Binary.Serializer());
 
+#if !NET48
+    [Fact]
+    public void MemoryPackTest() =>
+        DatatableToBytesTest(new Zaabee.MemoryPack.Serializer());
+#endif
+
     [Fact]
     public void MessagePackTest() =>
         DatatableToBytesTest(new Zaabee.MessagePack.Serializer());
