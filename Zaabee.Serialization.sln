@@ -88,6 +88,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.SharpYaml", "src\Tex
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.YamlDotNet", "src\TextSerializers\YamlSerializers\Zaabee.YamlDotNet\Zaabee.YamlDotNet.csproj", "{4CC5C7C3-10FD-4E3A-8BF1-D437017C5006}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.SpanJson", "src\TextSerializers\JsonSerializers\Zaabee.SpanJson\Zaabee.SpanJson.csproj", "{E864A4D6-EB46-4C7E-AC5B-4A8E8DF116C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.SpanJson.UnitTest", "tests\Zaabee.SpanJson.UnitTest\Zaabee.SpanJson.UnitTest.csproj", "{F2315864-8038-4568-B226-AAE42EB0B728}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +139,8 @@ Global
 		{288C3B38-2EE3-4ED8-AAF2-372F96DBC8A0} = {64D8B9A0-8355-4CE4-819E-A5D27F2121FE}
 		{13FA7FF5-9B3D-4CAE-A42F-DE1944C9A01E} = {AE3DD2C0-41C1-424E-ABA1-89EFE9DB2530}
 		{4CC5C7C3-10FD-4E3A-8BF1-D437017C5006} = {AE3DD2C0-41C1-424E-ABA1-89EFE9DB2530}
+		{E864A4D6-EB46-4C7E-AC5B-4A8E8DF116C5} = {96DA79BF-DFC4-4318-A9BA-C23A4A589BDC}
+		{F2315864-8038-4568-B226-AAE42EB0B728} = {27F442D2-123E-43B6-AC3A-EFCFF0B4C598}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{EBF8B223-5B18-4034-8E9D-ACE5565AF9B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -273,5 +279,13 @@ Global
 		{4CC5C7C3-10FD-4E3A-8BF1-D437017C5006}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CC5C7C3-10FD-4E3A-8BF1-D437017C5006}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CC5C7C3-10FD-4E3A-8BF1-D437017C5006}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E864A4D6-EB46-4C7E-AC5B-4A8E8DF116C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E864A4D6-EB46-4C7E-AC5B-4A8E8DF116C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E864A4D6-EB46-4C7E-AC5B-4A8E8DF116C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E864A4D6-EB46-4C7E-AC5B-4A8E8DF116C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2315864-8038-4568-B226-AAE42EB0B728}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2315864-8038-4568-B226-AAE42EB0B728}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2315864-8038-4568-B226-AAE42EB0B728}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2315864-8038-4568-B226-AAE42EB0B728}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
