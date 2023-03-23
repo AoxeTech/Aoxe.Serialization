@@ -42,6 +42,9 @@ public class ToBytes
     public void SharpYamlToBytes() => SharpYamlHelper.ToBytes(_testModel);
 
     [Benchmark]
+    public void SpanJsonToBytes() => SpanJsonHelper.ToBytes(_testModel);
+
+    [Benchmark]
     public void SystemTextJsonToBytes() => SystemTextJsonHelper.ToBytes(_testModel);
 
     [Benchmark]

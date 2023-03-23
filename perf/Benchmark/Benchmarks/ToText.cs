@@ -27,6 +27,9 @@ public class ToText
     public void SharpYamlToText() => SharpYamlHelper.ToYaml(_testModel);
 
     [Benchmark]
+    public void SpanJsonToText() => SpanJsonHelper.ToJson(_testModel);
+
+    [Benchmark]
     public void SystemTextJsonToText() => SystemTextJsonHelper.ToJson(_testModel);
 
     [Benchmark]

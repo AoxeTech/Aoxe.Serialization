@@ -23,6 +23,7 @@ public class FromBytes
     private readonly byte[] _newtonsoftJsonBytes;
     private readonly byte[] _protobufBytes;
     private readonly byte[] _sharpYamlBytes;
+    private readonly byte[] _spanJsonBytes;
     private readonly byte[] _systemTextJsonBytes;
     private readonly byte[] _utf8JsonBytes;
     private readonly byte[] _xmlBytes;
@@ -42,6 +43,7 @@ public class FromBytes
         _newtonsoftJsonBytes = NewtonsoftJsonHelper.ToBytes(_testModel);
         _protobufBytes = ProtobufHelper.ToBytes(_testModel);
         _sharpYamlBytes = SharpYamlHelper.ToBytes(_testModel);
+        _spanJsonBytes = SpanJsonHelper.ToBytes(_testModel);
         _systemTextJsonBytes = SystemTextJsonHelper.ToBytes(_testModel);
         _utf8JsonBytes = Utf8JsonHelper.ToBytes(_testModel);
         _xmlBytes = XmlHelper.ToBytes(_testModel);
@@ -75,6 +77,9 @@ public class FromBytes
 
     [Benchmark]
     public void SharpYamlFromBytes() => SharpYamlHelper.FromBytes<TestModel>(_sharpYamlBytes);
+
+    [Benchmark]
+    public void SpanJsonFromBytes() => SpanJsonHelper.FromBytes<TestModel>(_spanJsonBytes);
 
     [Benchmark]
     public void SystemTextJsonFromBytes() => SystemTextJsonHelper.FromBytes<TestModel>(_systemTextJsonBytes);

@@ -23,6 +23,7 @@ public class FromStream
     private readonly Stream _newtonsoftJsonStream;
     private readonly Stream _protobufStream;
     private readonly Stream _sharpYamlStream;
+    private readonly Stream _spanJsonStream;
     private readonly Stream _systemTextJsonStream;
     private readonly Stream _utf8JsonStream;
     private readonly Stream _xmlStream;
@@ -42,6 +43,7 @@ public class FromStream
         _newtonsoftJsonStream = NewtonsoftJsonHelper.ToStream(_testModel);
         _protobufStream = ProtobufHelper.ToStream(_testModel);
         _sharpYamlStream = SharpYamlHelper.ToStream(_testModel);
+        _spanJsonStream = SpanJsonHelper.ToStream(_testModel);
         _systemTextJsonStream = SystemTextJsonHelper.ToStream(_testModel);
         _utf8JsonStream = Utf8JsonHelper.ToStream(_testModel);
         _xmlStream = XmlHelper.ToStream(_testModel);
@@ -75,6 +77,9 @@ public class FromStream
 
     [Benchmark]
     public void SharpYamlFromStream() => SharpYamlHelper.FromStream<TestModel>(_sharpYamlStream);
+
+    [Benchmark]
+    public void SpanJsonFromStream() => SpanJsonHelper.FromStream<TestModel>(_spanJsonStream);
 
     [Benchmark]
     public void SystemTextJsonFromStream() => SystemTextJsonHelper.FromStream<TestModel>(_systemTextJsonStream);

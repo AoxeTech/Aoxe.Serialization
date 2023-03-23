@@ -42,6 +42,9 @@ public class ToStream
     public void SharpYamlToStream() => SharpYamlHelper.ToStream(_testModel);
 
     [Benchmark]
+    public void SpanJsonToStream() => SpanJsonHelper.ToStream(_testModel);
+
+    [Benchmark]
     public void SystemTextJsonToStream() => SystemTextJsonHelper.ToStream(_testModel);
 
     [Benchmark]

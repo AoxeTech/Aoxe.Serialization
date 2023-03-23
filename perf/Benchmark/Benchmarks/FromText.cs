@@ -18,6 +18,7 @@ public class FromText
     private readonly string _jil;
     private readonly string _newtonsoftJson;
     private readonly string _sharpYaml;
+    private readonly string _spanJson;
     private readonly string _systemTextJson;
     private readonly string _utf8Json;
     private readonly string _xml;
@@ -29,6 +30,7 @@ public class FromText
         _jil = JilHelper.ToJson(_testModel);
         _newtonsoftJson = NewtonsoftJsonHelper.ToJson(_testModel);
         _sharpYaml = SharpYamlHelper.ToYaml(_testModel);
+        _spanJson = SpanJsonHelper.ToJson(_testModel);
         _systemTextJson = SystemTextJsonHelper.ToJson(_testModel);
         _utf8Json = Utf8JsonHelper.ToJson(_testModel);
         _xml = XmlHelper.ToXml(_testModel);
@@ -46,6 +48,9 @@ public class FromText
 
     [Benchmark]
     public void SharpYamlFromText() => SharpYamlHelper.FromYaml<TestModel>(_sharpYaml);
+
+    [Benchmark]
+    public void SpanJsonFromText() => SpanJsonHelper.FromJson<TestModel>(_spanJson);
 
     [Benchmark]
     public void SystemTextJsonFromText() => SystemTextJsonHelper.FromJson<TestModel>(_systemTextJson);
