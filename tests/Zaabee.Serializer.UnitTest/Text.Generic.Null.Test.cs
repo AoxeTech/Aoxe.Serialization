@@ -18,6 +18,12 @@ public partial class SerializerTest
     public void SharpYamlTextGenericNullTest() =>
         TextGenericNullTest(new SharpYaml.Serializer());
 
+#if !NET48
+    [Fact]
+    public void SpanJsonTextGenericNullTest() =>
+        TextGenericNullTest(new SpanJson.Serializer());
+#endif
+
     [Fact]
     public void SystemTextJsonTextGenericNullTest() =>
         TextGenericNullTest(new SystemTextJson.Serializer());

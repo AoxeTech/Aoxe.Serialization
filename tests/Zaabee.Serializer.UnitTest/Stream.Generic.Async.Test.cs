@@ -24,6 +24,12 @@ public partial class SerializerTest
     public async Task NewtonsoftJsonStreamGenericAsyncTest() =>
         await StreamGenericAsyncTest(new NewtonsoftJson.Serializer(), TestModelHelper.Create());
 
+#if !NET48
+    [Fact]
+    public async Task SpanJsonStreamGenericAsyncTest() =>
+        await StreamGenericAsyncTest(new SpanJson.Serializer(), TestModelHelper.Create());
+#endif
+
     [Fact]
     public async Task SystemTextJsonStreamGenericAsyncTest() =>
         await StreamGenericAsyncTest(new SystemTextJson.Serializer(), TestModelHelper.Create());

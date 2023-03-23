@@ -40,6 +40,12 @@ public partial class SerializerTest
     public void SharpYamlBytesNonGenericTest() =>
         BytesNonGenericTest(new SharpYaml.Serializer(), TestModelHelper.Create());
 
+#if !NET48
+    [Fact]
+    public void SpanJsonBytesNonGenericTest() =>
+        BytesNonGenericTest(new SpanJson.Serializer(), TestModelHelper.Create());
+#endif
+
     [Fact]
     public void SystemTextJsonBytesNonGenericTest() =>
         BytesNonGenericTest(new SystemTextJson.Serializer(), TestModelHelper.Create());

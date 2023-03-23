@@ -24,6 +24,12 @@ public partial class SerializerTest
     public async Task NewtonsoftJsonStreamNonGenericNullAsyncTest() =>
         await StreamNonGenericNullAsyncTest(new NewtonsoftJson.Serializer());
 
+#if !NET48
+    [Fact]
+    public async Task SpanJsonStreamNonGenericNullAsyncTest() =>
+        await StreamNonGenericNullAsyncTest(new SpanJson.Serializer());
+#endif
+
     [Fact]
     public async Task SystemTextJsonStreamNonGenericNullAsyncTest() =>
         await StreamNonGenericNullAsyncTest(new SystemTextJson.Serializer());

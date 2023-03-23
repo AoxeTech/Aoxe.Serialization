@@ -10,6 +10,12 @@ public partial class SerializerTest
     public void NewtonsoftJsonJsonGenericTest() =>
         JsonGenericTest(new NewtonsoftJson.Serializer());
 
+#if !NET48
+    [Fact]
+    public void SpanJsonJsonGenericTest() =>
+        JsonGenericTest(new SpanJson.Serializer());
+#endif
+
     [Fact]
     public void SystemTextJsonJsonGenericTest() =>
         JsonGenericTest(new SystemTextJson.Serializer());
