@@ -23,6 +23,7 @@ Serializers can be divided into two categories:
   - Json
     - Jil
     - Newtonsoft.Json
+    - SpanJson
     - System.Text.Json
     - Utf8Json
   - Xml
@@ -119,6 +120,7 @@ PM> Install-Package Zaabee.NewtonsoftJson
 PM> Install-Package Zaabee.Utf8Json
 PM> Install-Package Zaabee.Protobuf
 PM> Install-Package Zaabee.SharpYaml
+PM> Install-Package Zaabee.SpanJson
 PM> Install-Package Zaabee.SystemTextJson
 PM> Install-Package Zaabee.Xml
 PM> Install-Package Zaabee.YamlDotNet
@@ -164,6 +166,10 @@ protobuf-net is a contract based serializer for .NET code, that happens to write
 ### Zaabee.SharpYaml
 
 SharpYaml is a .NET library that provides a YAML parser and serialization engine for .NET objects, compatible with CoreCLR.
+
+### Zaabee.SpanJson
+
+SpanJson is a JSON serializer for .NET Core 6.0+.
 
 ### Zaabee.SystemTextJson
 
