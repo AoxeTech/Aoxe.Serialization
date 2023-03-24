@@ -37,6 +37,12 @@ public class DataTableTest
     public void NewtonsoftJsonTest() =>
         DatatableToTextTest(new Zaabee.NewtonsoftJson.Serializer());
 
+#if !NET48
+    [Fact]
+    public void SpanJsonTest() =>
+        DatatableToTextTest(new Zaabee.SpanJson.Serializer());
+#endif
+
     [Fact]
     public void SystemTextJsonTest() =>
         DatatableToTextTest(new Zaabee.SystemTextJson.Serializer());

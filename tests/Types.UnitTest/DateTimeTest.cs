@@ -75,6 +75,16 @@ public class DateTimeTest
     public void NewtonsoftJsonUtcTimeTest() =>
         DateTimeToTextTest(new Zaabee.NewtonsoftJson.Serializer(), _utcTime);
 
+#if !NET48
+    [Fact]
+    public void SpanJsonLocalTimeTest() =>
+        DateTimeToTextTest(new Zaabee.SpanJson.Serializer(), _localTime);
+
+    [Fact]
+    public void SpanJsonUtcTimeTest() =>
+        DateTimeToTextTest(new Zaabee.SpanJson.Serializer(), _utcTime);
+#endif
+
     [Fact]
     public void SystemTextJsonLocalTimeTest() =>
         DateTimeToTextTest(new Zaabee.SystemTextJson.Serializer(), _localTime);
