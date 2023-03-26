@@ -1,29 +1,28 @@
 namespace Zaabee.Serializer.Abstractions;
 
-public partial interface IYamlSerializer : ITextSerializer
+public partial interface IIniSerializer
 {
 }
 
-
-public static partial class YamlSerializerExtension
+public static partial class IniSerializerExtension
 {
     /// <summary>
-    /// Serialize to yaml.
+    /// Serialize to ini.
     /// </summary>
     /// <param name="serializer"></param>
     /// <param name="value"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static string ToYaml<TValue>(this IYamlSerializer serializer, TValue? value) =>
+    public static string ToIni<TValue>(this IIniSerializer serializer, TValue? value) =>
         serializer.ToText(value);
 
     /// <summary>
-    /// Serialize to yaml.
+    /// Serialize to ini.
     /// </summary>
     /// <param name="serializer"></param>
     /// <param name="type"></param>
     /// <param name="value"></param>
     /// <returns></returns>
-    public static string ToYaml(this IYamlSerializer serializer, Type type, object? value) =>
+    public static string ToIni(this IIniSerializer serializer, Type type, object? value) =>
         serializer.ToText(type, value);
 }

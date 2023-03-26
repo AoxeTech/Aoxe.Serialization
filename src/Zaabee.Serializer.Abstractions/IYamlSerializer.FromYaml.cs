@@ -2,19 +2,27 @@ namespace Zaabee.Serializer.Abstractions;
 
 public partial interface IYamlSerializer
 {
+}
+
+public static partial class YamlSerializerExtension
+{
     /// <summary>
     /// If the yaml is null or white space will return the default value of T.
     /// </summary>
+    /// <param name="serializer"></param>
     /// <param name="yaml"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    TValue? FromYaml<TValue>(string? yaml);
+    public static TValue? FromYaml<TValue>(this IYamlSerializer serializer, string? yaml) =>
+        serializer.FromText<TValue>(yaml);
 
     /// <summary>
-    /// If the string is null or white space will return the default value of the type.
+    /// If the yaml is null or white space will return the default value of the type.
     /// </summary>
+    /// <param name="serializer"></param>
     /// <param name="type"></param>
     /// <param name="yaml"></param>
     /// <returns></returns>
-    object? FromYaml(Type type, string? yaml);
+    public static object? FromYaml(this IYamlSerializer serializer, Type type, string? yaml) =>
+        serializer.FromText(type, yaml);
 }
