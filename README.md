@@ -48,7 +48,7 @@ Though some serializers does not support stream or bytes, the zaabee serializers
       - void Pack(Type type, object? value, Stream? stream)
       - TValue? FromStream\<TValue\>(Stream? stream)
       - object? FromStream(Type type, Stream? stream)
-    - asyc
+    - async
       - Task PackAsync\<TValue\>(TValue? value, Stream? stream)
       - Task PackAsync(Type type, object? value, Stream? stream)
       - Task\<TValue?\> FromStreamAsync\<TValue\>(Stream? stream)
