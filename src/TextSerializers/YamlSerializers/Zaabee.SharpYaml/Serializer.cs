@@ -49,16 +49,4 @@ public sealed class Serializer : IYamlSerializer
         string.IsNullOrWhiteSpace(text)
             ? default
             : SharpYamlHelper.FromYaml(type, text);
-
-    public string ToYaml<TValue>(TValue? value) =>
-        ToText(value);
-
-    public TValue? FromYaml<TValue>(string? yaml) =>
-        FromText<TValue>(yaml);
-
-    public string ToYaml(Type type, object? value) =>
-        ToText(type, value);
-
-    public object? FromYaml(Type type, string? yaml) =>
-        FromText(type, yaml);
 }

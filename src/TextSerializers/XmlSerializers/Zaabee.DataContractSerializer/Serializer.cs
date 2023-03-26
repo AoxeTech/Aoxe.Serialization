@@ -49,16 +49,4 @@ public sealed class Serializer : IXmlSerializer
         stream is null or { CanSeek: true, Length: 0 }
             ? default
             : DataContractHelper.FromStream(type, stream);
-
-    public string ToXml<TValue>(TValue? value) =>
-        ToText(value);
-
-    public TValue? FromXml<TValue>(string? xml) =>
-        FromText<TValue>(xml);
-
-    public string ToXml(Type type, object? value) =>
-        ToText(type, value);
-
-    public object? FromXml(Type type, string? xml) =>
-        FromText(type, xml);
 }

@@ -56,18 +56,6 @@ public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
             ? default
             : NewtonsoftJsonHelper.FromStream(type, stream, _settings, _encoding);
 
-    public string ToJson<TValue>(TValue? value) =>
-        ToText(value);
-
-    public TValue? FromJson<TValue>(string? json) =>
-        FromText<TValue>(json);
-
-    public string ToJson(Type type, object? value) =>
-        ToText(type, value);
-
-    public object? FromJson(Type type, string? json) =>
-        FromText(type, json);
-
     public async Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
         await NewtonsoftJsonHelper.PackAsync(value, stream, _settings, _encoding, cancellationToken);
 

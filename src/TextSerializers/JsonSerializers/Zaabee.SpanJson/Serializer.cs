@@ -50,18 +50,6 @@ public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
             ? default
             : SpanJsonHelper.FromStream(type, stream);
 
-    public string ToJson<TValue>(TValue? value) =>
-        ToText(value);
-
-    public TValue? FromJson<TValue>(string? json) =>
-        FromText<TValue>(json);
-
-    public string ToJson(Type type, object? value) =>
-        ToText(type, value);
-
-    public object? FromJson(Type type, string? json) =>
-        FromText(type, json);
-
     public async Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
         await SpanJsonHelper.PackAsync(value, stream, cancellationToken);
 

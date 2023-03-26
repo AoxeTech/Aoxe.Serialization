@@ -56,16 +56,4 @@ public sealed class Serializer : IYamlSerializer
         string.IsNullOrWhiteSpace(text)
             ? default
             : YamlDotNetHelper.FromYaml(type, text);
-
-    public string ToYaml<TValue>(TValue? value) =>
-        ToText(value);
-
-    public TValue? FromYaml<TValue>(string? yaml) =>
-        FromText<TValue>(yaml);
-
-    public string ToYaml(Type type, object? value) =>
-        ToText(value);
-
-    public object? FromYaml(Type type, string? yaml) =>
-        FromText(type, yaml);
 }
