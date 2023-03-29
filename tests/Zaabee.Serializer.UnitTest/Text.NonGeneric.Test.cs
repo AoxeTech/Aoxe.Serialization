@@ -7,6 +7,10 @@ public partial class SerializerTest
         TextNonGenericTest(new DataContractSerializer.Serializer());
 
     [Fact]
+    public void IniTextNonGenericTest() =>
+        TextNonGenericTest(new Ini.Serializer());
+
+    [Fact]
     public void JilTextNonGenericTest() =>
         TextNonGenericTest(new Jil.Serializer(Options.ISO8601Utc));
 

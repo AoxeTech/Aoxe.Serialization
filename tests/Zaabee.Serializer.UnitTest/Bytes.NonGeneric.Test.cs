@@ -11,6 +11,10 @@ public partial class SerializerTest
         BytesNonGenericTest(new DataContractSerializer.Serializer(), TestModelHelper.Create());
 
     [Fact]
+    public void IniBytesNonGenericTest() =>
+        BytesNonGenericTest(new Ini.Serializer(), TestModelHelper.Create());
+
+    [Fact]
     public void JilBytesNonGenericTest() =>
         BytesNonGenericTest(new Jil.Serializer(Options.ISO8601Utc), TestModelHelper.Create());
 

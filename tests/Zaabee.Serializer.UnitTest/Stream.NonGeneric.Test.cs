@@ -7,6 +7,10 @@ public partial class SerializerTest
         StreamNonGenericTest(new Binary.Serializer(), TestModelHelper.Create());
 
     [Fact]
+    public void IniStreamNonGenericTest() =>
+        StreamNonGenericTest(new Ini.Serializer(), TestModelHelper.Create());
+
+    [Fact]
     public void DataContractStreamNonGenericTest() =>
         StreamNonGenericTest(new DataContractSerializer.Serializer(), TestModelHelper.Create());
 

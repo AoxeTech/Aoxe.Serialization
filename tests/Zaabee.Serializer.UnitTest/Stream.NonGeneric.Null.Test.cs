@@ -7,6 +7,10 @@ public partial class SerializerTest
         StreamNonGenericNullTest(new Binary.Serializer());
 
     [Fact]
+    public void IniStreamNonGenericNullTest() =>
+        StreamNonGenericNullTest(new Ini.Serializer());
+
+    [Fact]
     public void JilStreamNonGenericNullTest() =>
         StreamNonGenericNullTest(new Jil.Serializer());
 

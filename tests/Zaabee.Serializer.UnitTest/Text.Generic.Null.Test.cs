@@ -7,6 +7,10 @@ public partial class SerializerTest
         TextGenericNullTest(new DataContractSerializer.Serializer());
 
     [Fact]
+    public void IniTextGenericNullTest() =>
+        TextGenericNullTest(new Ini.Serializer());
+
+    [Fact]
     public void JilTextGenericNullTest() =>
         TextGenericNullTest(new Jil.Serializer());
 

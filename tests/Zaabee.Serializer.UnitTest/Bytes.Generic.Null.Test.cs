@@ -7,6 +7,10 @@ public partial class SerializerTest
         BytesGenericNullTest(new Binary.Serializer());
 
     [Fact]
+    public void IniBytesGenericNullTest() =>
+        BytesGenericNullTest(new Ini.Serializer());
+
+    [Fact]
     public void JilBytesGenericNullTest() =>
         BytesGenericNullTest(new Jil.Serializer());
 
@@ -36,7 +40,7 @@ public partial class SerializerTest
     public void SharpYamlBytesGenericNullTest() =>
         BytesGenericNullTest(new SharpYaml.Serializer());
 
-#if  !NET48
+#if !NET48
     [Fact]
     public void SpanJsonBytesGenericNullTest() =>
         BytesGenericNullTest(new SpanJson.Serializer());

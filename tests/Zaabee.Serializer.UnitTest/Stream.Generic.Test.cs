@@ -11,6 +11,10 @@ public partial class SerializerTest
         StreamGenericTest(new DataContractSerializer.Serializer(), TestModelHelper.Create());
 
     [Fact]
+    public void IniStreamGenericTest() =>
+        StreamGenericTest(new Ini.Serializer(), TestModelHelper.Create());
+
+    [Fact]
     public void JilStreamGenericTest() =>
         StreamGenericTest(new Jil.Serializer(Options.ISO8601Utc), TestModelHelper.Create());
 

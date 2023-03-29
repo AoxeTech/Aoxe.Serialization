@@ -7,6 +7,10 @@ public partial class SerializerTest
         BytesNonGenericNullTest(new Binary.Serializer());
 
     [Fact]
+    public void IniBytesNonGenericNullTest() =>
+        BytesNonGenericNullTest(new Ini.Serializer());
+
+    [Fact]
     public void JilBytesNonGenericNullTest() =>
         BytesNonGenericNullTest(new Jil.Serializer());
 
