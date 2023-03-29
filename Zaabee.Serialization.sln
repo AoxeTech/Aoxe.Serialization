@@ -100,6 +100,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.Ini", "src\TextSeria
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.Ini.UnitTest", "tests\Zaabee.Ini.UnitTest\Zaabee.Ini.UnitTest.csproj", "{D9BAC9AF-4308-4AE1-904A-7A7AA9334C35}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.Tommy", "src\TextSerializers\TomlSerializers\Zaabee.Tommy\Zaabee.Tommy.csproj", "{4C56E2E3-50C8-4090-BA55-DAB20C61FF8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.Tomlet", "src\TextSerializers\TomlSerializers\Zaabee.Tomlet\Zaabee.Tomlet.csproj", "{08B316D1-B6F2-4AE1-A0DC-3C75E36B0B0A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +157,8 @@ Global
 		{8650EBEE-39BA-4E03-A8EE-B5D73C0E2323} = {27F442D2-123E-43B6-AC3A-EFCFF0B4C598}
 		{F6C8B265-EC23-418A-B94D-B68B92CA383C} = {FCF03E38-1EC7-4A8F-8B14-CAB674C17920}
 		{D9BAC9AF-4308-4AE1-904A-7A7AA9334C35} = {27F442D2-123E-43B6-AC3A-EFCFF0B4C598}
+		{4C56E2E3-50C8-4090-BA55-DAB20C61FF8E} = {87105D7B-F933-46DA-8BEA-AF8BAF48B4AB}
+		{08B316D1-B6F2-4AE1-A0DC-3C75E36B0B0A} = {87105D7B-F933-46DA-8BEA-AF8BAF48B4AB}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{EBF8B223-5B18-4034-8E9D-ACE5565AF9B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -315,5 +321,13 @@ Global
 		{D9BAC9AF-4308-4AE1-904A-7A7AA9334C35}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9BAC9AF-4308-4AE1-904A-7A7AA9334C35}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9BAC9AF-4308-4AE1-904A-7A7AA9334C35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C56E2E3-50C8-4090-BA55-DAB20C61FF8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C56E2E3-50C8-4090-BA55-DAB20C61FF8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C56E2E3-50C8-4090-BA55-DAB20C61FF8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C56E2E3-50C8-4090-BA55-DAB20C61FF8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08B316D1-B6F2-4AE1-A0DC-3C75E36B0B0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08B316D1-B6F2-4AE1-A0DC-3C75E36B0B0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08B316D1-B6F2-4AE1-A0DC-3C75E36B0B0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08B316D1-B6F2-4AE1-A0DC-3C75E36B0B0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
