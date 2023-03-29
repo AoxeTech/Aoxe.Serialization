@@ -1,6 +1,4 @@
-using Zaabee.Ini;
-
-namespace Zaabee.Utf8Json.UnitTest;
+namespace Zaabee.Ini.UnitTest;
 
 public partial class ExtensionsTest
 {
