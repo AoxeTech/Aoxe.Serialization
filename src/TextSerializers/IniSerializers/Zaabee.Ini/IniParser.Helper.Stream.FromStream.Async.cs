@@ -7,13 +7,17 @@ public static partial class IniParserHelper
     /// </summary>
     /// <param name="stream"></param>
     /// <param name="encoding"></param>
+    /// <param name="cancellationToken"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? FromStream<TValue>(Stream? stream, Encoding? encoding = null)
+    public static async Task<TValue?> FromStreamAsync<TValue>(
+        Stream? stream,
+        Encoding? encoding = null,
+        CancellationToken cancellationToken = default)
     {
         if (stream is null or { CanSeek: true, Length: 0 })
             return default;
-        var obj = FromStream(typeof(TValue), stream, encoding);
+        var obj = await FromStreamAsync(typeof(TValue), stream, encoding, cancellationToken);
         return obj is null ? default : (TValue)obj;
     }
 
@@ -23,12 +27,17 @@ public static partial class IniParserHelper
     /// <param name="type"></param>
     /// <param name="stream"></param>
     /// <param name="encoding"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static object? FromStream(Type type, Stream? stream, Encoding? encoding = null)
+    public static async Task<object?> FromStreamAsync(
+        Type type,
+        Stream? stream,
+        Encoding? encoding = null,
+        CancellationToken cancellationToken = default)
     {
         if (stream is null or { CanSeek: true, Length: 0 }) return default;
         var parser = new IniDataParser();
-        var bytes = stream.ReadToEnd();
+        var bytes = await stream.ReadToEndAsync(cancellationToken);
         var iniData = parser.Parse((encoding ?? DefaultEncoding).GetString(bytes));
 
         var obj = Activator.CreateInstance(type);

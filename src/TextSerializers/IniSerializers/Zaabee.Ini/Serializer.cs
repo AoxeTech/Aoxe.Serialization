@@ -1,6 +1,6 @@
 namespace Zaabee.Ini;
 
-public class Serializer : IIniSerializer
+public class Serializer : IIniSerializer, IStreamSerializerAsync
 {
     private readonly Encoding? _encoding;
 
@@ -56,4 +56,24 @@ public class Serializer : IIniSerializer
         stream is null or { CanSeek: true, Length: 0 }
             ? default
             : IniParserHelper.FromStream(type, stream, _encoding);
+
+    public async Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
+        await IniParserHelper.PackAsync(value, stream, _encoding, cancellationToken);
+
+    public async Task PackAsync(Type type, object? value, Stream? stream,
+        CancellationToken cancellationToken = default) =>
+        await IniParserHelper.PackAsync(value, stream, _encoding, cancellationToken);
+
+    public async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default)
+    {
+        return stream is null or { CanSeek: true, Length: 0 }
+            ? default
+            : await IniParserHelper.FromStreamAsync<TValue>(stream, _encoding, cancellationToken);
+    }
+
+    public async Task<object?> FromStreamAsync(Type type, Stream? stream,
+        CancellationToken cancellationToken = default) =>
+        stream is null or { CanSeek: true, Length: 0 }
+            ? default
+            : await IniParserHelper.FromStreamAsync(type, stream, _encoding, cancellationToken);
 }

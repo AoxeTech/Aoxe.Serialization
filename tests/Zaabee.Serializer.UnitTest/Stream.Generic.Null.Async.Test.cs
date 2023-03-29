@@ -3,6 +3,10 @@ namespace Zaabee.Serializer.UnitTest;
 public partial class SerializerTest
 {
     [Fact]
+    public async Task IniStreamGenericNullAsyncTest() =>
+        await StreamGenericNullAsyncTest(new Ini.Serializer());
+
+    [Fact]
     public async Task JilStreamGenericNullAsyncTest() =>
         await StreamGenericNullAsyncTest(new Jil.Serializer(Options.ISO8601Utc));
 
