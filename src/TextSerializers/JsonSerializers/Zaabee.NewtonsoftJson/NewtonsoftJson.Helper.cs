@@ -2,5 +2,5 @@
 
 public static partial class NewtonsoftJsonHelper
 {
-    public static Encoding DefaultEncoding { get; set; } = Encoding.UTF8;
+    public static readonly Encoding DefaultEncoding = Encoding.UTF8;
 }
