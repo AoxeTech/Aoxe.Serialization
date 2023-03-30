@@ -41,6 +41,12 @@ public class Serializer : IIniSerializer, IStreamSerializerAsync
             ? default
             : IniParserHelper.FromIni(type, text);
 
+    public void Pack<TValue>(TValue? value, Stream? stream) =>
+        IniParserHelper.Pack(value, stream, _encoding);
+
+    public void Pack(Type type, object? value, Stream? stream) =>
+        IniParserHelper.Pack(type, value, stream, _encoding);
+
     public MemoryStream ToStream<TValue>(TValue? value) =>
         IniParserHelper.ToStream(value, _encoding);
 

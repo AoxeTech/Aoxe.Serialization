@@ -18,6 +18,12 @@ public sealed class Serializer : IBytesSerializer
             ? default
             : ZeroFormatterHelper.FromBytes(type, bytes);
 
+    public void Pack<TValue>(TValue? value, Stream? stream) =>
+        ZeroFormatterHelper.Pack(value, stream);
+
+    public void Pack(Type type, object? value, Stream? stream) =>
+        ZeroFormatterHelper.Pack(type, value, stream);
+
     public MemoryStream ToStream<TValue>(TValue? value) =>
         ZeroFormatterHelper.ToStream(value);
 

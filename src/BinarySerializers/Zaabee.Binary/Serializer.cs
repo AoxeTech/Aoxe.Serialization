@@ -1,9 +1,15 @@
 namespace Zaabee.Binary;
 
-[ObsoleteAttribute(@"BinaryFormatter serialization is obsolete and should not be used.
+[Obsolete(@"BinaryFormatter serialization is obsolete and should not be used.
  See https://aka.ms/binaryformatter for more information.")]
 public sealed class Serializer : IBytesSerializer
 {
+    public void Pack<TValue>(TValue? value, Stream? stream) =>
+        BinaryHelper.Pack(value, stream);
+
+    public void Pack(Type type, object? value, Stream? stream) =>
+        BinaryHelper.Pack(value, stream);
+
     public MemoryStream ToStream<TValue>(TValue? value) =>
         BinaryHelper.ToStream(value);
 

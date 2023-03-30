@@ -39,6 +39,12 @@ public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
             ? default
             : Utf8JsonHelper.FromJson(type, text, _resolver);
 
+    public void Pack<TValue>(TValue? value, Stream? stream) =>
+        Utf8JsonHelper.Pack(value, stream, _resolver);
+
+    public void Pack(Type type, object? value, Stream? stream) =>
+        Utf8JsonHelper.Pack(type, value, stream, _resolver);
+
     public MemoryStream ToStream<TValue>(TValue? value) =>
         Utf8JsonHelper.ToStream(value, _resolver);
 

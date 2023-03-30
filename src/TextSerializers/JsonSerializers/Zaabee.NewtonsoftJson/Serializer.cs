@@ -40,6 +40,12 @@ public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
             ? default
             : NewtonsoftJsonHelper.FromJson(type, text, _settings);
 
+    public void Pack<TValue>(TValue? value, Stream? stream) =>
+        NewtonsoftJsonHelper.Pack(value, stream, _settings, _encoding);
+
+    public void Pack(Type type, object? value, Stream? stream) =>
+        NewtonsoftJsonHelper.Pack(type, value, stream, _settings, _encoding);
+
     public MemoryStream ToStream<TValue>(TValue? value) =>
         NewtonsoftJsonHelper.ToStream(value, _settings, _encoding);
 

@@ -40,6 +40,12 @@ public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
             ? default
             : JilHelper.FromJson(type, text, _options);
 
+    public void Pack<TValue>(TValue? value, Stream? stream) =>
+        JilHelper.Pack(value, stream, _options, _encoding);
+
+    public void Pack(Type type, object? value, Stream? stream) =>
+        JilHelper.Pack(value, stream, _options, _encoding);
+
     public MemoryStream ToStream<TValue>(TValue? value) =>
         JilHelper.ToStream(value, _options, _encoding);
 

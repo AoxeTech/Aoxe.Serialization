@@ -5,6 +5,12 @@ public sealed class Serializer : IYamlSerializer
     public MemoryStream ToStream<TValue>(TValue? value) =>
         SharpYamlHelper.ToStream(value);
 
+    public void Pack<TValue>(TValue? value, Stream? stream) =>
+        SharpYamlHelper.Pack(value, stream);
+
+    public void Pack(Type type, object? value, Stream? stream) =>
+        SharpYamlHelper.Pack(type, value, stream);
+
     public TValue? FromStream<TValue>(Stream? stream) =>
         stream is null or { CanSeek: true, Length: 0 }
             ? default

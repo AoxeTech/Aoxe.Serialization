@@ -72,9 +72,13 @@ public partial class SerializerTest
 
     private static void StreamGenericTest(IStreamSerializer serializer, TestModel model)
     {
-        var stream = serializer.ToStream(model);
-        var deserializeModel = serializer.FromStream<TestModel>(stream)!;
+        var stream0 = serializer.ToStream(model);
+        var stream1 = new MemoryStream();
+        serializer.Pack(model, stream1);
+        var deserializeModel0 = serializer.FromStream<TestModel>(stream0)!;
+        var deserializeModel1 = serializer.FromStream<TestModel>(stream1)!;
 
-        TestModelHelper.AssertEqual(model, deserializeModel);
+        TestModelHelper.AssertEqual(model, deserializeModel0);
+        TestModelHelper.AssertEqual(model, deserializeModel1);
     }
 }

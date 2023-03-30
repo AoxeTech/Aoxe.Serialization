@@ -29,6 +29,12 @@ public sealed class Serializer : IBytesSerializer, IStreamSerializerAsync
     public MemoryStream ToStream(Type type, object? value) =>
         MessagePackHelper.ToStream(type, value, _options);
 
+    public void Pack<TValue>(TValue? value, Stream? stream) =>
+        MessagePackHelper.Pack(value, stream);
+
+    public void Pack(Type type, object? value, Stream? stream) =>
+        MessagePackHelper.Pack(type, value, stream);
+
     public TValue? FromStream<TValue>(Stream? stream) =>
         stream is null or { CanSeek: true, Length: 0 }
             ? default

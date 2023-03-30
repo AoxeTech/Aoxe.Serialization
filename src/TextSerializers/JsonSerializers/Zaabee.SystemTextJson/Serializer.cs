@@ -10,6 +10,12 @@ public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
     public MemoryStream ToStream<TValue>(TValue? value) =>
         SystemTextJsonHelper.ToStream(value, _options);
 
+    public void Pack<TValue>(TValue? value, Stream? stream) =>
+        SystemTextJsonHelper.Pack(value, stream, _options);
+
+    public void Pack(Type type, object? value, Stream? stream) =>
+        SystemTextJsonHelper.Pack(type, value, stream, _options);
+
     public TValue? FromStream<TValue>(Stream? stream) =>
         stream is null or { CanSeek: true, Length: 0 }
             ? default

@@ -34,6 +34,12 @@ public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
             ? default
             : SpanJsonHelper.FromJson(type, text);
 
+    public void Pack<TValue>(TValue? value, Stream? stream) =>
+        SpanJsonHelper.Pack(value, stream);
+
+    public void Pack(Type type, object? value, Stream? stream) =>
+        SpanJsonHelper.Pack(value, stream);
+
     public MemoryStream ToStream<TValue>(TValue? value) =>
         SpanJsonHelper.ToStream(value);
 

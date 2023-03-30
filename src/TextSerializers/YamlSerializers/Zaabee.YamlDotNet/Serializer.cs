@@ -9,6 +9,12 @@ public sealed class Serializer : IYamlSerializer
         _encoding = encoding;
     }
 
+    public void Pack<TValue>(TValue? value, Stream? stream) =>
+        YamlDotNetHelper.Pack(value, stream, _encoding);
+
+    public void Pack(Type type, object? value, Stream? stream) =>
+        YamlDotNetHelper.Pack(value, stream, _encoding);
+
     public MemoryStream ToStream<TValue>(TValue? value) =>
         YamlDotNetHelper.ToStream(value, _encoding);
 

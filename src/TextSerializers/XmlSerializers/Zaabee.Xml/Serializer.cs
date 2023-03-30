@@ -34,6 +34,12 @@ public sealed class Serializer : IXmlSerializer
             ? default
             : XmlHelper.FromXml(type, text);
 
+    public void Pack<TValue>(TValue? value, Stream? stream) =>
+        XmlHelper.Pack(value, stream);
+
+    public void Pack(Type type, object? value, Stream? stream) =>
+        XmlHelper.Pack(type, value, stream);
+
     public MemoryStream ToStream<TValue>(TValue? value) =>
         XmlHelper.ToStream(value);
 
