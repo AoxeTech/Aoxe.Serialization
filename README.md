@@ -4,7 +4,7 @@
 
 [![Build Status](https://dev.azure.com/Zaabee/Zaabee.Serialization/_apis/build/status/Mutuduxf.Zaabee.Serialization?branchName=master)](https://dev.azure.com/Zaabee/Zaabee.Serialization/_build/latest?definitionId=1&branchName=master)
 
-The wraps and extensions for serializers. It is also the serializer provider for all Zaabee technology stacks like configuration, cache, queue, rpc, etc.
+Provide an easy way to use serializations. It is also the serializer provider for all Zaabee technology stacks like configuration, cache, queue, rpc, etc.
 
 ## Why use Zaabee.Serialization?
 
