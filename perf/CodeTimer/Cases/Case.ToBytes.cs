@@ -8,10 +8,6 @@ public partial class Case
 
         Runner.Initialize();
 
-        Console.WriteLine(Runner.Time("BinaryHelper ToBytes", iteration,
-#pragma warning disable CS0618
-            () => BinaryHelper.ToBytes(_testModel)));
-#pragma warning restore CS0618
         Console.WriteLine(Runner.Time("DataContractHelper ToBytes", iteration,
             () => DataContractHelper.ToBytes(_testModel)));
         Console.WriteLine(Runner.Time("JilHelper ToBytes", iteration,

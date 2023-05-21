@@ -7,11 +7,7 @@ public partial class Case
         Console.WriteLine("ToStream go!");
 
         Runner.Initialize();
-
-        Console.WriteLine(Runner.Time("BinaryHelper ToStream", iteration,
-#pragma warning disable CS0618
-            () => BinaryHelper.ToStream(_testModel)));
-#pragma warning restore CS0618
+        
         Console.WriteLine(Runner.Time("DataContractHelper ToStream", iteration,
             () => DataContractHelper.ToStream(_testModel)));
         Console.WriteLine(Runner.Time("JilHelper ToStream", iteration,

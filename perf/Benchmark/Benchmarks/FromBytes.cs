@@ -14,7 +14,6 @@ public class FromBytes
         Gender = Gender.Female
     };
 
-    private readonly byte[] _binaryBytes;
     private readonly byte[] _dataContractBytes;
     private readonly byte[] _jilBytes;
     private readonly byte[] _memoryPackBytes;
@@ -32,9 +31,6 @@ public class FromBytes
 
     public FromBytes()
     {
-#pragma warning disable CS0618
-        _binaryBytes = BinaryHelper.ToBytes(_testModel);
-#pragma warning restore CS0618
         _dataContractBytes = DataContractHelper.ToBytes(_testModel);
         _jilBytes = JilHelper.ToBytes(_testModel);
         _memoryPackBytes = MemoryPackHelper.ToBytes(_testModel);
@@ -50,9 +46,6 @@ public class FromBytes
         _yamlDotNet = YamlDotNetHelper.ToBytes(_testModel);
         _zeroFormatterBytes = ZeroFormatterHelper.ToBytes(_testModel);
     }
-
-    [Benchmark, Obsolete]
-    public void BinaryFromBytes() => BinaryHelper.FromBytes<TestModel>(_binaryBytes);
 
     [Benchmark]
     public void DataContractFromBytes() => DataContractHelper.FromBytes<TestModel>(_dataContractBytes);

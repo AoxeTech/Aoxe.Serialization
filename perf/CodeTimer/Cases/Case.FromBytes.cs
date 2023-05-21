@@ -4,9 +4,6 @@ public partial class Case
 {
     public void FromBytes(int iteration)
     {
-#pragma warning disable CS0618
-        var binaryBytes = BinaryHelper.ToBytes(_testModel);
-#pragma warning restore CS0618
         var dataContractBytes = DataContractHelper.ToBytes<TestModel>(_testModel);
         var jilBytes = JilHelper.ToBytes<TestModel>(_testModel);
         var memoryPackBytes = MemoryPackHelper.ToBytes<TestModel>(_testModel);
@@ -25,10 +22,6 @@ public partial class Case
         
         Runner.Initialize();
 
-        Console.WriteLine(Runner.Time("BinaryHelper FromBytes", iteration,
-#pragma warning disable CS0618
-            () => BinaryHelper.FromBytes<TestModel>(binaryBytes)));
-#pragma warning restore CS0618
         Console.WriteLine(Runner.Time("DataContractHelper FromBytes", iteration,
             () => DataContractHelper.FromBytes<TestModel>(dataContractBytes)));
         Console.WriteLine(Runner.Time("JilHelper FromBytes", iteration,

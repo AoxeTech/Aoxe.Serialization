@@ -4,9 +4,6 @@ public partial class Case
 {
        public void FromStream(int iteration)
        {
-#pragma warning disable CS0618
-              var binaryStream = BinaryHelper.ToStream(_testModel);
-#pragma warning restore CS0618
               var dataContractStream = DataContractHelper.ToStream(_testModel);
               var jilStream = JilHelper.ToStream(_testModel);
               var memoryPackStream = MemoryPackHelper.ToStream(_testModel);
@@ -24,11 +21,7 @@ public partial class Case
               Console.WriteLine("FromStream go!");
 
               Runner.Initialize();
-
-              Console.WriteLine(Runner.Time("BinaryHelper FromStream", iteration,
-#pragma warning disable CS0618
-                     () => BinaryHelper.FromStream<TestModel>(binaryStream)));
-#pragma warning restore CS0618
+              
               Console.WriteLine(Runner.Time("DataContractHelper FromStream", iteration,
                      () => DataContractHelper.FromStream<TestModel>(dataContractStream)));
               Console.WriteLine(Runner.Time("JilHelper FromStream", iteration,

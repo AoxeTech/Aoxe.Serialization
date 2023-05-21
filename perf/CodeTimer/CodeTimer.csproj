@@ -13,7 +13,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\BinarySerializers\Zaabee.Binary\Zaabee.Binary.csproj" />
         <ProjectReference Include="..\..\src\BinarySerializers\Zaabee.MemoryPack\Zaabee.MemoryPack.csproj"  Condition="'$(TargetFramework)'!='net48'"/>
         <ProjectReference Include="..\..\src\BinarySerializers\Zaabee.MessagePack\Zaabee.MessagePack.csproj" />
         <ProjectReference Include="..\..\src\BinarySerializers\Zaabee.MsgPack\Zaabee.MsgPack.csproj" />

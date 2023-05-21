@@ -5,16 +5,6 @@ public class DateTimeTest
     private readonly DateTime _localTime = new(2000, 1, 1, 0, 0, 0, DateTimeKind.Local);
     private readonly DateTime _utcTime = new(2000, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
-    [Fact]
-    [Obsolete("Obsolete")]
-    public void BinaryFormatterLocalTimeTest() =>
-        DateTimeToBytesTest(new Zaabee.Binary.Serializer(), _localTime);
-
-    [Fact]
-    [Obsolete("Obsolete")]
-    public void BinaryFormatterUtcTimeTest() =>
-        DateTimeToBytesTest(new Zaabee.Binary.Serializer(), _utcTime);
-
 #if !NET48
     [Fact]
     public void MemoryPackLocalTimeTest() =>

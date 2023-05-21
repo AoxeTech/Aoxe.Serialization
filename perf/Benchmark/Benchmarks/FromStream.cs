@@ -14,7 +14,6 @@ public class FromStream
         Gender = Gender.Female
     };
 
-    private readonly Stream _binaryStream;
     private readonly Stream _dataContractStream;
     private readonly Stream _jilStream;
     private readonly Stream _memoryPackStream;
@@ -32,9 +31,6 @@ public class FromStream
 
     public FromStream()
     {
-#pragma warning disable CS0618
-        _binaryStream = BinaryHelper.ToStream(_testModel);
-#pragma warning restore CS0618
         _dataContractStream = DataContractHelper.ToStream(_testModel);
         _jilStream = JilHelper.ToStream(_testModel);
         _memoryPackStream = MemoryPackHelper.ToStream(_testModel);
@@ -50,9 +46,6 @@ public class FromStream
         _yamlDotNetStream = YamlDotNetHelper.ToStream(_testModel);
         _zeroFormatterStream = ZeroFormatterHelper.ToStream(_testModel);
     }
-
-    [Benchmark, Obsolete]
-    public void BinaryFromStream() => BinaryHelper.FromStream<TestModel>(_binaryStream);
 
     [Benchmark]
     public void DataContractFromStream() => DataContractHelper.FromStream<TestModel>(_dataContractStream);

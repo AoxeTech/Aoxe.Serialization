@@ -2,11 +2,6 @@ namespace Types.UnitTest;
 
 public class DataTableTest
 {
-    [Fact]
-    [Obsolete("Obsolete")]
-    public void BinaryFormatterTest() =>
-        DatatableToBytesTest(new Zaabee.Binary.Serializer());
-
 #if !NET48
     [Fact]
     public void MemoryPackTest() =>

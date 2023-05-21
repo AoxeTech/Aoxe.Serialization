@@ -8,7 +8,6 @@ global using Zaabee.NewtonsoftJson;
 global using Zaabee.SystemTextJson;
 global using Zaabee.Utf8Json;
 global using Zaabee.Xml;
-global using Zaabee.Binary;
 global using Zaabee.MessagePack;
 global using Zaabee.MsgPack;
 global using Zaabee.Protobuf;
