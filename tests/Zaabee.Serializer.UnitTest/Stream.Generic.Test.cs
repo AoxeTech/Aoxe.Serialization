@@ -2,10 +2,6 @@ namespace Zaabee.Serializer.UnitTest;
 
 public partial class SerializerTest
 {
-    [Fact, Obsolete]
-    public void BinaryStreamGenericTest() =>
-        StreamGenericTest(new Binary.Serializer(), TestModelHelper.Create());
-
     [Fact]
     public void DataContractStreamGenericTest() =>
         StreamGenericTest(new DataContractSerializer.Serializer(), TestModelHelper.Create());

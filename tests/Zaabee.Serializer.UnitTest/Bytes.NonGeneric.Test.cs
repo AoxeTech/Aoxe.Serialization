@@ -2,10 +2,6 @@ namespace Zaabee.Serializer.UnitTest;
 
 public partial class SerializerTest
 {
-    [Fact, Obsolete]
-    public void BinaryBytesNonGenericTest() =>
-        BytesNonGenericTest(new Binary.Serializer(), TestModelHelper.Create());
-
     [Fact]
     public void DataContractBytesNonGenericTest() =>
         BytesNonGenericTest(new DataContractSerializer.Serializer(), TestModelHelper.Create());
