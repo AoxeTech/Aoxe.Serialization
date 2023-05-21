@@ -13,7 +13,6 @@ There are many different serializers in the world, they have different features 
 Serializers can be divided into two categories:
 
 - Binary serializers
-  - BinaryFormatter
   - MemoryPack
   - MessagePack
   - MsgPack.Cli
@@ -114,7 +113,6 @@ Though some serializers does not support stream or bytes, the zaabee serializers
 Use nuget to install the package which you want.
 
 ```shell
-PM> Install-Package Zaabee.Binary
 PM> Install-Package Zaabee.DataContractSerializer
 PM> Install-Package Zaabee.Jil
 PM> Install-Package Zaabee.MemoryPack
@@ -130,10 +128,6 @@ PM> Install-Package Zaabee.Xml
 PM> Install-Package Zaabee.YamlDotNet
 PM> Install-Package Zaabee.ZeroFormatter
 ```
-
-### Zaabee.Binary
-
-Base by System.Runtime.Serialization.Formatters.Binary.BinaryFormatter, the first party BinaryFormatter from microsoft.
 
 ### Zaabee.DataContractSerializer
 
@@ -237,7 +231,6 @@ IterationCount=1000  RunStrategy=Monitoring
 
 |                Method |         Mean |      Error |       StdDev |          Min |          Max |       Median |   Gen0 |   Gen1 | Allocated |
 |---------------------- |-------------:|-----------:|-------------:|-------------:|-------------:|-------------:|-------:|-------:|----------:|
-|         BinaryToBytes |  4,978.41 ns |  98.857 ns |   147.964 ns |  4,760.98 ns |  5,324.66 ns |  5,006.58 ns | 0.8316 | 0.0153 |    6992 B |
 |   DataContractToBytes |  1,252.09 ns |  23.989 ns |    25.668 ns |  1,210.03 ns |  1,298.81 ns |  1,252.81 ns | 0.4406 | 0.0019 |    3688 B |
 |            JilToBytes |    302.13 ns |   5.805 ns |     7.549 ns |    286.12 ns |    317.62 ns |    301.55 ns | 0.1278 |      - |    1072 B |
 |     MemoryPackToBytes |     78.66 ns |   1.410 ns |     1.319 ns |     76.82 ns |     81.54 ns |     78.57 ns | 0.0086 |      - |      72 B |
@@ -257,7 +250,6 @@ IterationCount=1000  RunStrategy=Monitoring
 
 |                  Method |         Mean |        Error |       StdDev |          Min |          Max |       Median |   Gen0 |   Gen1 | Allocated |
 |------------------------ |-------------:|-------------:|-------------:|-------------:|-------------:|-------------:|-------:|-------:|----------:|
-|         BinaryFromBytes |  6,819.96 ns |   135.290 ns |   379.367 ns |  6,288.23 ns |  7,789.82 ns |  6,756.83 ns | 1.1749 | 0.0305 |    9856 B |
 |   DataContractFromBytes |  3,363.75 ns |    65.633 ns |    67.400 ns |  3,167.38 ns |  3,429.84 ns |  3,386.18 ns | 1.5259 | 0.0458 |   12784 B |
 |            JilFromBytes |    347.16 ns |     6.752 ns |     9.898 ns |    332.28 ns |    365.02 ns |    347.02 ns | 0.0553 |      - |     464 B |
 |     MemoryPackFromBytes |     67.12 ns |     1.002 ns |     0.937 ns |     64.73 ns |     68.27 ns |     67.50 ns | 0.0105 |      - |      88 B |
@@ -277,7 +269,6 @@ IterationCount=1000  RunStrategy=Monitoring
 
 |                 Method |        Mean |     Error |    StdDev |         Min |         Max |      Median |   Gen0 |   Gen1 | Allocated |
 |----------------------- |------------:|----------:|----------:|------------:|------------:|------------:|-------:|-------:|----------:|
-|         BinaryToStream |  4,562.7 ns |  87.71 ns | 101.01 ns |  4,438.4 ns |  4,764.7 ns |  4,540.8 ns | 0.7782 | 0.0076 |    6528 B |
 |   DataContractToStream |  1,096.6 ns |   8.77 ns |   7.77 ns |  1,087.3 ns |  1,109.1 ns |  1,096.1 ns | 0.3700 |      - |    3096 B |
 |            JilToStream |    326.7 ns |   6.40 ns |  10.51 ns |    295.5 ns |    345.3 ns |    329.4 ns | 0.1693 |      - |    1416 B |
 |     MemoryPackToStream |    127.6 ns |   2.56 ns |   3.75 ns |    113.2 ns |    133.2 ns |    127.6 ns | 0.0782 |      - |     656 B |
@@ -297,7 +288,6 @@ IterationCount=1000  RunStrategy=Monitoring
 
 |                   Method |         Mean |      Error |     StdDev |          Min |          Max |       Median |   Gen0 |   Gen1 | Allocated |
 |------------------------- |-------------:|-----------:|-----------:|-------------:|-------------:|-------------:|-------:|-------:|----------:|
-|         BinaryFromStream |  6,598.06 ns |  46.455 ns |  36.269 ns |  6,507.32 ns |  6,643.95 ns |  6,601.07 ns | 1.1673 | 0.0305 |    9792 B |
 |   DataContractFromStream |  3,524.49 ns |  90.853 ns | 263.581 ns |  3,097.38 ns |  4,245.22 ns |  3,472.83 ns | 1.5182 | 0.0458 |   12720 B |
 |            JilFromStream |    409.97 ns |   8.046 ns |   9.265 ns |    398.62 ns |    432.47 ns |    407.50 ns | 0.0734 |      - |     616 B |
 |     MemoryPackFromStream |     91.12 ns |   1.854 ns |   2.345 ns |     87.44 ns |     96.13 ns |     90.82 ns | 0.0191 |      - |     160 B |
