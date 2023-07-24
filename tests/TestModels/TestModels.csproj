@@ -6,7 +6,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="MemoryPack" Version="1.9.16" Condition="'$(TargetFramework)'!='netstandard2.0'" />
-		<PackageReference Include="MessagePack.Annotations" Version="2.5.108" />
+		<PackageReference Include="MessagePack.Annotations" Version="2.5.124" />
 		<PackageReference Include="protobuf-net.Core" Version="3.2.26" />
 		<PackageReference Include="xunit.assert" Version="2.5.0" />
 		<PackageReference Include="Zaabee.Extensions" Version="2023.1.2" />
