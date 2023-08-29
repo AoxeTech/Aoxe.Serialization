@@ -7,7 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="FlatSharp" Version="6.3.5" />
+      <PackageReference Include="FlatSharp.Compiler" Version="7.2.3">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
     </ItemGroup>
 
 </Project>
