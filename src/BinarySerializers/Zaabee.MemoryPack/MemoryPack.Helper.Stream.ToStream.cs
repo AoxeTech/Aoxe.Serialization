@@ -1,6 +1,6 @@
 namespace Zaabee.MemoryPack;
 
-public partial class MemoryPackHelper
+public static partial class MemoryPackHelper
 {
     public static MemoryStream ToStream<TValue>(
         TValue? value,

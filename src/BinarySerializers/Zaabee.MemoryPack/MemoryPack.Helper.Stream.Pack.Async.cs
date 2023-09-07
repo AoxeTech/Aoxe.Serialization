@@ -1,6 +1,6 @@
 namespace Zaabee.MemoryPack;
 
-public partial class MemoryPackHelper
+public static partial class MemoryPackHelper
 {
     public static async Task PackAsync<TValue>(TValue? value, Stream? stream,
         MemoryPackSerializerOptions? options = null, CancellationToken cancellationToken = default)

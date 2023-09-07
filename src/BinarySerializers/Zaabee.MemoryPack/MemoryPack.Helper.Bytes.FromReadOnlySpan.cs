@@ -1,6 +1,6 @@
 namespace Zaabee.MemoryPack;
 
-public partial class MemoryPackHelper
+public static partial class MemoryPackHelper
 {
     public static TValue? FromBytes<TValue>(
         ReadOnlySpan<byte> bytes,

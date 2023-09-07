@@ -15,8 +15,7 @@ public static partial class IniParserHelper
         Encoding? encoding = null,
         CancellationToken cancellationToken = default)
     {
-        if (stream is null or { CanSeek: true, Length: 0 })
-            return default;
+        if (stream is null or { CanSeek: true, Length: 0 }) return default;
         var obj = await FromStreamAsync(typeof(TValue), stream, encoding, cancellationToken);
         return obj is null ? default : (TValue)obj;
     }

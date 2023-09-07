@@ -17,7 +17,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Zaabee.Extensions" Version="2023.2.0" />
+        <PackageReference Include="Zaabee.Extensions" Version="2023.4.0" />
         <PackageReference Include="Zaabee.Serializer.Abstractions" Version="2023.3.0" />
         <PackageReference Include="YamlDotNet" Version="13.3.1" />
     </ItemGroup>
