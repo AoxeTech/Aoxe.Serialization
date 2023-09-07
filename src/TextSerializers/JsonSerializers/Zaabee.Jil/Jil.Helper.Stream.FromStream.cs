@@ -13,7 +13,7 @@ public static partial class JilHelper
     public static TValue? FromStream<TValue>(Stream? stream, Options? options = null, Encoding? encoding = null)
     {
         if (stream is null or { CanSeek: true, Length: 0 }) return default;
-        var result = FromJson<TValue>(stream.ReadToEnd().GetString(encoding ?? DefaultEncoding), options);
+        var result = FromJson<TValue>(stream.ReadToEnd().GetString(encoding ?? Defaults.Utf8Encoding), options);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
     }
@@ -29,7 +29,7 @@ public static partial class JilHelper
     public static object? FromStream(Type type, Stream? stream, Options? options = null, Encoding? encoding = null)
     {
         if (stream is null or { CanSeek: true, Length: 0 }) return default;
-        var result = FromJson(type, stream.ReadToEnd().GetString(encoding ?? DefaultEncoding), options);
+        var result = FromJson(type, stream.ReadToEnd().GetString(encoding ?? Defaults.Utf8Encoding), options);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
     }

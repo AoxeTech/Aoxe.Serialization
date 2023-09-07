@@ -37,7 +37,7 @@ public static partial class IniParserHelper
         if (stream is null or { CanSeek: true, Length: 0 }) return default;
         var parser = new IniDataParser();
         var bytes = await stream.ReadToEndAsync(cancellationToken);
-        var iniData = parser.Parse((encoding ?? DefaultEncoding).GetString(bytes));
+        var iniData = parser.Parse((encoding ?? Defaults.Utf8Encoding).GetString(bytes));
 
         var obj = Activator.CreateInstance(type);
         var properties = type.GetProperties();

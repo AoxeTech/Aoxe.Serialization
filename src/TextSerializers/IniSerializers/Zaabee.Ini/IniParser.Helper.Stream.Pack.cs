@@ -43,7 +43,7 @@ public static partial class IniParserHelper
             var propValue = property.GetValue(value)?.ToString() ?? "";
             data[sectionName][propertyName] = propValue;
         }
-        var bytes = (encoding ?? DefaultEncoding).GetBytes(data.ToString());
+        var bytes = (encoding ?? Defaults.Utf8Encoding).GetBytes(data.ToString());
 #if NETSTANDARD2_0
         stream.Write(bytes, 0, bytes.Length);
 #else

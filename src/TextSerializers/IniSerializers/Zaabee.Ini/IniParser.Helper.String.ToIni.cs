@@ -10,7 +10,7 @@ public static partial class IniParserHelper
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
     public static string ToIni<TValue>(TValue? value, Encoding? encoding = null) =>
-        (encoding ?? DefaultEncoding).GetString(ToBytes(value));
+        (encoding ?? Defaults.Utf8Encoding).GetString(ToBytes(value));
 
     /// <summary>
     /// Serialize to ini.
@@ -19,7 +19,7 @@ public static partial class IniParserHelper
     /// <param name="encoding"></param>
     /// <returns></returns>
     public static string ToIni(object? value, Encoding? encoding = null) =>
-        (encoding ?? DefaultEncoding).GetString(ToBytes(value));
+        (encoding ?? Defaults.Utf8Encoding).GetString(ToBytes(value));
 
     /// <summary>
     /// Serialize to ini.
@@ -29,5 +29,5 @@ public static partial class IniParserHelper
     /// <param name="encoding"></param>
     /// <returns></returns>
     public static string ToIni(Type type, object? value, Encoding? encoding = null) =>
-        (encoding ?? DefaultEncoding).GetString(ToBytes(type, value));
+        (encoding ?? Defaults.Utf8Encoding).GetString(ToBytes(type, value));
 }

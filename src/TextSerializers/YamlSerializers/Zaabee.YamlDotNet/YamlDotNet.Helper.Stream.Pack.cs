@@ -12,10 +12,10 @@ public static partial class YamlDotNetHelper
     {
         if (stream is null) return;
 #if NETSTANDARD2_0
-        var bytes = ToBytes(value, encoding ?? DefaultEncoding);
+        var bytes = ToBytes(value, encoding ?? Defaults.Utf8Encoding);
         stream.Write(bytes, 0, bytes.Length);
 #else
-        stream.Write(ToBytes(value, encoding ?? DefaultEncoding));
+        stream.Write(ToBytes(value, encoding ?? Defaults.Utf8Encoding));
 #endif
         stream.TrySeek(0, SeekOrigin.Begin);
     }

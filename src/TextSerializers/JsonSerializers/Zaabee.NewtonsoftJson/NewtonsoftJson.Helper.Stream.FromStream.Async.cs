@@ -18,7 +18,7 @@ public static partial class NewtonsoftJsonHelper
         CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
             ? default
-            : (TValue?)await FromStreamAsync(typeof(TValue), stream, settings, encoding ?? DefaultEncoding,
+            : (TValue?)await FromStreamAsync(typeof(TValue), stream, settings, encoding ?? Defaults.Utf8Encoding,
                 cancellationToken);
 
     /// <summary>
@@ -39,7 +39,7 @@ public static partial class NewtonsoftJsonHelper
     {
         if (stream is null or { CanSeek: true, Length: 0 }) return default;
         var bytes = await stream.ReadToEndAsync(cancellationToken);
-        var result = FromJson(type, bytes.GetString(encoding ?? DefaultEncoding), settings);
+        var result = FromJson(type, bytes.GetString(encoding ?? Defaults.Utf8Encoding), settings);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
     }

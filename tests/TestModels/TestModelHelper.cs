@@ -6,7 +6,7 @@ public static class TestModelHelper
 {
     public static TestModel Create() => new()
     {
-        Id = Guid.NewGuid(),
+        Id = new Random().Next(0, 100),
         Age = new Random().Next(0, 100),
         Name = "apple",
         Gender = Gender.Female
@@ -15,7 +15,7 @@ public static class TestModelHelper
     public static List<TestModel> Create(int quantity) =>
         quantity.Range(0).Select(_ => new TestModel
         {
-            Id = Guid.NewGuid(),
+            Id = new Random().Next(0, 100),
             Age = new Random().Next(0, 100),
             Name = "apple",
             Gender = Gender.Female

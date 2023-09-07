@@ -9,5 +9,5 @@ public static partial class YamlDotNetHelper
     /// <param name="encoding"></param>
     /// <returns></returns>
     public static MemoryStream ToStream(object? value, Encoding? encoding = null) =>
-        new(ToBytes(value, encoding ?? DefaultEncoding));
+        new(ToBytes(value, encoding ?? Defaults.Utf8Encoding));
 }

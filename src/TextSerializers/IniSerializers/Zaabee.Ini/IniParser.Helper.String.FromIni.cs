@@ -12,7 +12,7 @@ public static partial class IniParserHelper
     public static TValue? FromIni<TValue>(string? ini, Encoding? encoding = null) =>
         ini.IsNullOrWhiteSpace()
             ? default
-            : FromBytes<TValue>((encoding ?? DefaultEncoding).GetBytes(ini!));
+            : FromBytes<TValue>((encoding ?? Defaults.Utf8Encoding).GetBytes(ini!));
 
     /// <summary>
     /// Deserialize from ini.
@@ -24,5 +24,5 @@ public static partial class IniParserHelper
     public static object? FromIni(Type type, string? ini, Encoding? encoding = null) =>
         ini.IsNullOrWhiteSpace()
             ? default
-            : FromBytes(type, (encoding ?? DefaultEncoding).GetBytes(ini!));
+            : FromBytes(type, (encoding ?? Defaults.Utf8Encoding).GetBytes(ini!));
 }

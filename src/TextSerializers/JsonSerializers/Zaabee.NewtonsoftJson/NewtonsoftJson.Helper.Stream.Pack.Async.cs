@@ -16,7 +16,7 @@ public static partial class NewtonsoftJsonHelper
         Encoding? encoding = null, CancellationToken cancellationToken = default)
     {
         if (stream is null) return;
-        await ToBytes(value, settings, encoding ?? DefaultEncoding).WriteToAsync(stream, cancellationToken);
+        await ToBytes(value, settings, encoding ?? Defaults.Utf8Encoding).WriteToAsync(stream, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
@@ -35,7 +35,7 @@ public static partial class NewtonsoftJsonHelper
         CancellationToken cancellationToken = default)
     {
         if (stream is null) return;
-        await ToBytes(type, value, settings, encoding ?? DefaultEncoding).WriteToAsync(stream, cancellationToken);
+        await ToBytes(type, value, settings, encoding ?? Defaults.Utf8Encoding).WriteToAsync(stream, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 }

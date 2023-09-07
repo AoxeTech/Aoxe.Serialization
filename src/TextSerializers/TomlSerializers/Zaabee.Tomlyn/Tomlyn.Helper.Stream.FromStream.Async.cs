@@ -21,7 +21,7 @@ public static partial class TomlynHelper
         where TValue : class, new()
     {
         if (stream is null or { CanSeek: true, Length: 0 }) return default;
-        var toml = (await stream.ReadToEndAsync(cancellationToken)).GetString(encoding ?? DefaultEncoding);
+        var toml = (await stream.ReadToEndAsync(cancellationToken)).GetString(encoding ?? Defaults.Utf8Encoding);
         var result = FromToml<TValue>(toml, sourcePath, tomlModelOptions);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
@@ -44,7 +44,7 @@ public static partial class TomlynHelper
         CancellationToken cancellationToken = default)
     {
         if (stream is null or { CanSeek: true, Length: 0 }) return default;
-        var toml = (await stream.ReadToEndAsync(cancellationToken)).GetString(encoding ?? DefaultEncoding);
+        var toml = (await stream.ReadToEndAsync(cancellationToken)).GetString(encoding ?? Defaults.Utf8Encoding);
         var result = FromToml(toml, sourcePath, tomlModelOptions);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
