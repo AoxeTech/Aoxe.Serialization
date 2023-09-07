@@ -3,6 +3,10 @@ namespace Zaabee.Serializer.UnitTest;
 public partial class SerializerTest
 {
     [Fact]
+    public void DataContractBytesNonGenericNullTest() =>
+        BytesNonGenericNullTest(new DataContractSerializer.Serializer());
+
+    [Fact]
     public void IniBytesNonGenericNullTest() =>
         BytesNonGenericNullTest(new Ini.Serializer());
 

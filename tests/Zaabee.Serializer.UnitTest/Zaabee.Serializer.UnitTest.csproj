@@ -29,6 +29,9 @@
 		<ProjectReference Include="..\..\src\TextSerializers\JsonSerializers\Zaabee.SpanJson\Zaabee.SpanJson.csproj" Condition="'$(TargetFramework)'!='net48'" />
 		<ProjectReference Include="..\..\src\TextSerializers\JsonSerializers\Zaabee.SystemTextJson\Zaabee.SystemTextJson.csproj" />
 		<ProjectReference Include="..\..\src\TextSerializers\JsonSerializers\Zaabee.Utf8Json\Zaabee.Utf8Json.csproj" />
+		<ProjectReference Include="..\..\src\TextSerializers\TomlSerializers\Zaabee.Tomlet\Zaabee.Tomlet.csproj" />
+		<ProjectReference Include="..\..\src\TextSerializers\TomlSerializers\Zaabee.Tomlyn\Zaabee.Tomlyn.csproj" />
+		<ProjectReference Include="..\..\src\TextSerializers\TomlSerializers\Zaabee.Tommy\Zaabee.Tommy.csproj" />
 		<ProjectReference Include="..\..\src\TextSerializers\XmlSerializers\Zaabee.DataContractSerializer\Zaabee.DataContractSerializer.csproj" />
 		<ProjectReference Include="..\..\src\TextSerializers\XmlSerializers\Zaabee.Xml\Zaabee.Xml.csproj" />
 		<ProjectReference Include="..\..\src\TextSerializers\YamlSerializers\Zaabee.SharpYaml\Zaabee.SharpYaml.csproj" />

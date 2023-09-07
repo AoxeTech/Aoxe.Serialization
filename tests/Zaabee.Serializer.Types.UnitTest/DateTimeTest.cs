@@ -1,4 +1,4 @@
-namespace Types.UnitTest;
+namespace Zaabee.Serializer.Types.UnitTest;
 
 public class DateTimeTest
 {
