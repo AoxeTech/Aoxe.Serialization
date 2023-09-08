@@ -61,21 +61,27 @@ public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
             ? default
             : SystemTextJsonHelper.FromJson(type, text, _options);
 
-    public async Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
-        await SystemTextJsonHelper.PackAsync(value, stream, _options, cancellationToken);
-
-    public async Task PackAsync(Type type, object? value, Stream? stream,
+    public Task PackAsync<TValue>(
+        TValue? value,
+        Stream? stream,
         CancellationToken cancellationToken = default) =>
-        await SystemTextJsonHelper.PackAsync(value, stream, _options, cancellationToken);
+        SystemTextJsonHelper.PackAsync(value, stream, _options, cancellationToken);
 
-    public async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
+    public Task PackAsync(
+        Type type,
+        object? value,
+        Stream? stream,
+        CancellationToken cancellationToken = default) =>
+        SystemTextJsonHelper.PackAsync(value, stream, _options, cancellationToken);
+
+    public Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
-            ? default
-            : await SystemTextJsonHelper.FromStreamAsync<TValue>(stream, _options, cancellationToken);
+            ? Task.FromResult(default(TValue?))
+            : SystemTextJsonHelper.FromStreamAsync<TValue>(stream, _options, cancellationToken);
 
-    public async Task<object?> FromStreamAsync(Type type, Stream? stream,
+    public Task<object?> FromStreamAsync(Type type, Stream? stream,
         CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
-            ? default
-            : await SystemTextJsonHelper.FromStreamAsync(type, stream, _options, cancellationToken);
+            ? Task.FromResult(default(object?))
+            : SystemTextJsonHelper.FromStreamAsync(type, stream, _options, cancellationToken);
 }

@@ -10,7 +10,7 @@ public static partial class IniParserHelper
     /// <param name="cancellationToken"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static async Task<TValue?> FromStreamAsync<TValue>(
+    public static async ValueTask<TValue?> FromStreamAsync<TValue>(
         Stream? stream,
         Encoding? encoding = null,
         CancellationToken cancellationToken = default)
@@ -28,7 +28,7 @@ public static partial class IniParserHelper
     /// <param name="encoding"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<object?> FromStreamAsync(
+    public static async ValueTask<object?> FromStreamAsync(
         Type type,
         Stream? stream,
         Encoding? encoding = null,

@@ -2,7 +2,7 @@ namespace Zaabee.MemoryPack;
 
 public static partial class MemoryPackHelper
 {
-    public static async Task PackAsync<TValue>(TValue? value, Stream? stream,
+    public static async ValueTask PackAsync<TValue>(TValue? value, Stream? stream,
         MemoryPackSerializerOptions? options = null, CancellationToken cancellationToken = default)
     {
         if (stream is null) return;
@@ -10,7 +10,7 @@ public static partial class MemoryPackHelper
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
-    public static async Task PackAsync(Type type, object? value, Stream? stream,
+    public static async ValueTask PackAsync(Type type, object? value, Stream? stream,
         MemoryPackSerializerOptions? options = null, CancellationToken cancellationToken = default)
     {
         if (stream is null) return;

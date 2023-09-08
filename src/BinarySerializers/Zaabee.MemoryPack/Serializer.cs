@@ -45,21 +45,21 @@ public sealed class Serializer : IBytesSerializer, IStreamSerializerAsync
             ? default
             : MemoryPackHelper.FromStream(type, stream, _options);
 
-    public async Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
-        await MemoryPackHelper.PackAsync(value, stream, _options, cancellationToken);
+    public Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
+        MemoryPackHelper.PackAsync(value, stream, _options, cancellationToken).AsTask();
 
-    public async Task PackAsync(Type type, object? value, Stream? stream,
+    public Task PackAsync(Type type, object? value, Stream? stream,
         CancellationToken cancellationToken = default) =>
-        await MemoryPackHelper.PackAsync(type, value, stream, _options, cancellationToken);
+        MemoryPackHelper.PackAsync(type, value, stream, _options, cancellationToken).AsTask();
 
-    public async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
+    public Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
-            ? default
-            : await MemoryPackHelper.FromStreamAsync<TValue>(stream, _options, cancellationToken);
+            ? Task.FromResult(default(TValue?))
+            : MemoryPackHelper.FromStreamAsync<TValue>(stream, _options, cancellationToken).AsTask();
 
-    public async Task<object?> FromStreamAsync(Type type, Stream? stream,
+    public Task<object?> FromStreamAsync(Type type, Stream? stream,
         CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
-            ? default
-            : await MemoryPackHelper.FromStreamAsync(type, stream, _options, cancellationToken);
+            ? Task.FromResult(default(object?))
+            : MemoryPackHelper.FromStreamAsync(type, stream, _options, cancellationToken).AsTask();
 }

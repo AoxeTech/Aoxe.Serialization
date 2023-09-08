@@ -56,21 +56,21 @@ public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
             ? default
             : SpanJsonHelper.FromStream(type, stream);
 
-    public async Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
-        await SpanJsonHelper.PackAsync(value, stream, cancellationToken);
+    public Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
+        SpanJsonHelper.PackAsync(value, stream, cancellationToken);
 
-    public async Task PackAsync(Type type, object? value, Stream? stream,
+    public Task PackAsync(Type type, object? value, Stream? stream,
         CancellationToken cancellationToken = default) =>
-        await SpanJsonHelper.PackAsync(value, stream, cancellationToken);
+        SpanJsonHelper.PackAsync(value, stream, cancellationToken);
 
-    public async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
+    public Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
-            ? default
-            : await SpanJsonHelper.FromStreamAsync<TValue>(stream, cancellationToken);
+            ? Task.FromResult(default(TValue?))
+            : SpanJsonHelper.FromStreamAsync<TValue>(stream, cancellationToken);
 
-    public async Task<object?> FromStreamAsync(Type type, Stream? stream,
+    public Task<object?> FromStreamAsync(Type type, Stream? stream,
         CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
-            ? default
-            : await SpanJsonHelper.FromStreamAsync(type, stream, cancellationToken);
+            ? Task.FromResult(default(object?))
+            : SpanJsonHelper.FromStreamAsync(type, stream, cancellationToken);
 }

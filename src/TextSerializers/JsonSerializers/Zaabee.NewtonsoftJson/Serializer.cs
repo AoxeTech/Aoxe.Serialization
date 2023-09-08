@@ -62,21 +62,21 @@ public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
             ? default
             : NewtonsoftJsonHelper.FromStream(type, stream, _settings, _encoding);
 
-    public async Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
-        await NewtonsoftJsonHelper.PackAsync(value, stream, _settings, _encoding, cancellationToken);
+    public Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
+        NewtonsoftJsonHelper.PackAsync(value, stream, _settings, _encoding, cancellationToken);
 
-    public async Task PackAsync(Type type, object? value, Stream? stream,
+    public Task PackAsync(Type type, object? value, Stream? stream,
         CancellationToken cancellationToken = default) =>
-        await NewtonsoftJsonHelper.PackAsync(value, stream, _settings, _encoding, cancellationToken);
+        NewtonsoftJsonHelper.PackAsync(value, stream, _settings, _encoding, cancellationToken);
 
-    public async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
+    public Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
-            ? default
-            : await NewtonsoftJsonHelper.FromStreamAsync<TValue>(stream, _settings, _encoding, cancellationToken);
+            ? Task.FromResult(default(TValue?))
+            : NewtonsoftJsonHelper.FromStreamAsync<TValue>(stream, _settings, _encoding, cancellationToken);
 
-    public async Task<object?> FromStreamAsync(Type type, Stream? stream,
+    public Task<object?> FromStreamAsync(Type type, Stream? stream,
         CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
-            ? default
-            : await NewtonsoftJsonHelper.FromStreamAsync(type, stream, _settings, _encoding, cancellationToken);
+            ? Task.FromResult(default(object?))
+            : NewtonsoftJsonHelper.FromStreamAsync(type, stream, _settings, _encoding, cancellationToken);
 }

@@ -10,7 +10,7 @@ public static partial class IniParserHelper
     /// <param name="encoding"></param>
     /// <param name="cancellationToken"></param>
     /// <typeparam name="TValue"></typeparam>
-    public static Task PackAsync<TValue>(
+    public static ValueTask PackAsync<TValue>(
         TValue? value,
         Stream? stream = null,
         Encoding? encoding = null,
@@ -24,14 +24,14 @@ public static partial class IniParserHelper
     /// <param name="stream"></param>
     /// <param name="encoding"></param>
     /// <param name="cancellationToken"></param>
-    public static async Task PackAsync(
+    public static ValueTask PackAsync(
         object? value,
         Stream? stream = null,
         Encoding? encoding = null,
         CancellationToken cancellationToken = default)
     {
-        if (stream is null || value is null) return;
-        await PackAsync(value.GetType(), value, stream, encoding, cancellationToken);
+        if (stream is null || value is null) return default;
+        return PackAsync(value.GetType(), value, stream, encoding, cancellationToken);
     }
 
     /// <summary>
@@ -42,7 +42,7 @@ public static partial class IniParserHelper
     /// <param name="stream"></param>
     /// <param name="encoding"></param>
     /// <param name="cancellationToken"></param>
-    public static async Task PackAsync(
+    public static async ValueTask PackAsync(
         Type type,
         object? value,
         Stream? stream = null,

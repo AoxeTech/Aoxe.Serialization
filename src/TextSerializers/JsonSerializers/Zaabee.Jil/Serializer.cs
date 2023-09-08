@@ -62,23 +62,23 @@ public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
             ? default
             : JilHelper.FromStream(type, stream, _options, _encoding);
 
-    public async Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
-        await JilHelper.PackAsync(value, stream, _options, _encoding, cancellationToken);
+    public Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
+        JilHelper.PackAsync(value, stream, _options, _encoding, cancellationToken);
 
-    public async Task PackAsync(Type type, object? value, Stream? stream,
+    public Task PackAsync(Type type, object? value, Stream? stream,
         CancellationToken cancellationToken = default) =>
-        await JilHelper.PackAsync(value, stream, _options, _encoding, cancellationToken);
+        JilHelper.PackAsync(value, stream, _options, _encoding, cancellationToken);
 
-    public async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default)
-    {
-        return stream is null or { CanSeek: true, Length: 0 }
-            ? default
-            : await JilHelper.FromStreamAsync<TValue>(stream, _options, _encoding, cancellationToken);
-    }
-
-    public async Task<object?> FromStreamAsync(Type type, Stream? stream,
+    public Task<TValue?> FromStreamAsync<TValue>(
+        Stream? stream,
         CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
-            ? default
-            : await JilHelper.FromStreamAsync(type, stream, _options, _encoding, cancellationToken);
+            ? Task.FromResult(default(TValue?))
+            : JilHelper.FromStreamAsync<TValue>(stream, _options, _encoding, cancellationToken);
+
+    public Task<object?> FromStreamAsync(Type type, Stream? stream,
+        CancellationToken cancellationToken = default) =>
+        stream is null or { CanSeek: true, Length: 0 }
+            ? Task.FromResult(default(object?))
+            : JilHelper.FromStreamAsync(type, stream, _options, _encoding, cancellationToken);
 }

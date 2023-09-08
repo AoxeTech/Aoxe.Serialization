@@ -63,23 +63,25 @@ public sealed class Serializer : IIniSerializer, IStreamSerializerAsync
             ? default
             : IniParserHelper.FromStream(type, stream, _encoding);
 
-    public async Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
-        await IniParserHelper.PackAsync(value, stream, _encoding, cancellationToken);
+    public Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
+        IniParserHelper.PackAsync(value, stream, _encoding, cancellationToken).AsTask();
 
-    public async Task PackAsync(Type type, object? value, Stream? stream,
+    public Task PackAsync(Type type, object? value, Stream? stream,
         CancellationToken cancellationToken = default) =>
-        await IniParserHelper.PackAsync(value, stream, _encoding, cancellationToken);
+        IniParserHelper.PackAsync(value, stream, _encoding, cancellationToken).AsTask();
 
-    public async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default)
-    {
-        return stream is null or { CanSeek: true, Length: 0 }
-            ? default
-            : await IniParserHelper.FromStreamAsync<TValue>(stream, _encoding, cancellationToken);
-    }
-
-    public async Task<object?> FromStreamAsync(Type type, Stream? stream,
+    public Task<TValue?> FromStreamAsync<TValue>(
+        Stream? stream,
         CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
-            ? default
-            : await IniParserHelper.FromStreamAsync(type, stream, _encoding, cancellationToken);
+        ? Task.FromResult(default(TValue?))
+        : IniParserHelper.FromStreamAsync<TValue>(stream, _encoding, cancellationToken).AsTask();
+
+    public Task<object?> FromStreamAsync(
+        Type type,
+        Stream? stream,
+        CancellationToken cancellationToken = default) =>
+        stream is null or { CanSeek: true, Length: 0 }
+            ? Task.FromResult(default(object?))
+            : IniParserHelper.FromStreamAsync(type, stream, _encoding, cancellationToken).AsTask();
 }
