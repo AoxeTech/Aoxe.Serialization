@@ -10,7 +10,7 @@ public partial interface IStreamSerializerAsync
     /// <param name="cancellationToken"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default);
+    ValueTask PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Serialize the value and pack to the stream.
@@ -20,5 +20,5 @@ public partial interface IStreamSerializerAsync
     /// <param name="stream"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task PackAsync(Type type, object? value, Stream? stream, CancellationToken cancellationToken = default);
+    ValueTask PackAsync(Type type, object? value, Stream? stream, CancellationToken cancellationToken = default);
 }
