@@ -12,7 +12,7 @@ public static partial class JilHelper
     /// <param name="cancellationToken"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static async Task PackAsync<TValue>(TValue? value, Stream? stream = null, Options? options = null,
+    public static async ValueTask PackAsync<TValue>(TValue? value, Stream? stream = null, Options? options = null,
         Encoding? encoding = null, CancellationToken cancellationToken = default)
     {
         if (stream is null) return;
@@ -29,7 +29,7 @@ public static partial class JilHelper
     /// <param name="encoding"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task PackAsync(object? value, Stream? stream = null, Options? options = null,
+    public static async ValueTask PackAsync(object? value, Stream? stream = null, Options? options = null,
         Encoding? encoding = null, CancellationToken cancellationToken = default)
     {
         if (stream is null) return;

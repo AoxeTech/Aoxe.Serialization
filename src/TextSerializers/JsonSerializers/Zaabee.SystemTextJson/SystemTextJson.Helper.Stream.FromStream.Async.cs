@@ -12,7 +12,7 @@ public static partial class SystemTextJsonHelper
     /// <param name="cancellationToken"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static async Task<TValue?> FromStreamAsync<TValue>(Stream? stream, JsonSerializerOptions? options = null,
+    public static async ValueTask<TValue?> FromStreamAsync<TValue>(Stream? stream, JsonSerializerOptions? options = null,
         CancellationToken cancellationToken = default)
     {
         if (stream is null or { CanSeek: true, Length: 0 }) return default;
@@ -30,7 +30,7 @@ public static partial class SystemTextJsonHelper
     /// <param name="options"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<object?> FromStreamAsync(Type type, Stream? stream, JsonSerializerOptions? options = null,
+    public static async ValueTask<object?> FromStreamAsync(Type type, Stream? stream, JsonSerializerOptions? options = null,
         CancellationToken cancellationToken = default)
     {
         if (stream is null or { CanSeek: true, Length: 0 }) return default;

@@ -20,7 +20,7 @@ public static partial class MsgPackHelper
     /// 	<typeparamref name="TValue" /> is not serializable even if it can be deserialized.
     /// </exception>
     /// <seealso cref="P:Capabilities" />
-    public static async Task PackAsync<TValue>(TValue? value, Stream? stream,
+    public static async ValueTask PackAsync<TValue>(TValue? value, Stream? stream,
         CancellationToken cancellationToken = default)
     {
         if (stream is null) return;
@@ -44,7 +44,7 @@ public static partial class MsgPackHelper
     /// 	Failed to serialize object.
     /// </exception>
     /// <seealso cref="P:Capabilities" />
-    public static async Task PackAsync(Type type, object? value, Stream? stream,
+    public static async ValueTask PackAsync(Type type, object? value, Stream? stream,
         PackerCompatibilityOptions packerCompatibilityOptions = PackerCompatibilityOptions.None,
         CancellationToken cancellationToken = default)
     {

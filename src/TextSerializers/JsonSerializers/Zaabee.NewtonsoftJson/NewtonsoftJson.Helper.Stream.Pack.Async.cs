@@ -12,7 +12,7 @@ public static partial class NewtonsoftJsonHelper
     /// <param name="cancellationToken"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static async Task PackAsync<TValue>(TValue? value, Stream? stream, JsonSerializerSettings? settings = null,
+    public static async ValueTask PackAsync<TValue>(TValue? value, Stream? stream, JsonSerializerSettings? settings = null,
         Encoding? encoding = null, CancellationToken cancellationToken = default)
     {
         if (stream is null) return;
@@ -30,7 +30,7 @@ public static partial class NewtonsoftJsonHelper
     /// <param name="encoding"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task PackAsync(Type type, object? value, Stream? stream,
+    public static async ValueTask PackAsync(Type type, object? value, Stream? stream,
         JsonSerializerSettings? settings = null, Encoding? encoding = null,
         CancellationToken cancellationToken = default)
     {

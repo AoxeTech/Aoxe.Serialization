@@ -11,7 +11,7 @@ public static partial class NewtonsoftJsonHelper
     /// <param name="cancellationToken"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static async Task<TValue?> FromStreamAsync<TValue>(
+    public static async ValueTask<TValue?> FromStreamAsync<TValue>(
         Stream? stream,
         JsonSerializerSettings? settings = null,
         Encoding? encoding = null,
@@ -30,7 +30,7 @@ public static partial class NewtonsoftJsonHelper
     /// <param name="encoding"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<object?> FromStreamAsync(
+    public static async ValueTask<object?> FromStreamAsync(
         Type type,
         Stream? stream,
         JsonSerializerSettings? settings = null,

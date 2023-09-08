@@ -11,7 +11,7 @@ public static partial class SystemTextJsonHelper
     /// <param name="cancellationToken"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static async Task PackAsync<TValue>(TValue? value, Stream? stream, JsonSerializerOptions? options = null,
+    public static async ValueTask PackAsync<TValue>(TValue? value, Stream? stream, JsonSerializerOptions? options = null,
         CancellationToken cancellationToken = default)
     {
         if (stream is null) return;
@@ -28,7 +28,7 @@ public static partial class SystemTextJsonHelper
     /// <param name="options"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task PackAsync(Type type, object? value, Stream? stream, JsonSerializerOptions? options = null,
+    public static async ValueTask PackAsync(Type type, object? value, Stream? stream, JsonSerializerOptions? options = null,
         CancellationToken cancellationToken = default)
     {
         if (stream is null) return;

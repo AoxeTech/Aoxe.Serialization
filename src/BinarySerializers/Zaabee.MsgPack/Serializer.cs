@@ -40,21 +40,21 @@ public sealed class Serializer : IBytesSerializer, IStreamSerializerAsync
             ? default
             : MsgPackHelper.FromStream(type, stream);
 
-    public Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
+    public ValueTask PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
         MsgPackHelper.PackAsync(value, stream, cancellationToken);
 
-    public Task PackAsync(Type type, object? value, Stream? stream,
+    public ValueTask PackAsync(Type type, object? value, Stream? stream,
         CancellationToken cancellationToken = default) =>
         MsgPackHelper.PackAsync(type, value, stream, PackerCompatibilityOptions.None, cancellationToken);
 
-    public Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
+    public ValueTask<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
-            ? Task.FromResult(default(TValue?))
+            ? new ValueTask<TValue?>(default(TValue?))
             : MsgPackHelper.FromStreamAsync<TValue>(stream, cancellationToken);
 
-    public Task<object?> FromStreamAsync(Type type, Stream? stream,
+    public ValueTask<object?> FromStreamAsync(Type type, Stream? stream,
         CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
-            ? Task.FromResult(default(object?))
+            ? new ValueTask<object?>(default(object?))
             : MsgPackHelper.FromStreamAsync(type, stream, cancellationToken);
 }

@@ -12,7 +12,7 @@ public static partial class TomlynHelper
     /// <param name="sourcePath"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static async Task<TValue?> FromStreamAsync<TValue>(
+    public static async ValueTask<TValue?> FromStreamAsync<TValue>(
         Stream? stream,
         string? sourcePath = null,
         TomlModelOptions? tomlModelOptions = null,
@@ -36,7 +36,7 @@ public static partial class TomlynHelper
     /// <param name="encoding"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<TomlTable?> FromStreamAsync(
+    public static async ValueTask<TomlTable?> FromStreamAsync(
         Stream? stream,
         string? sourcePath = null,
         TomlModelOptions? tomlModelOptions = null,

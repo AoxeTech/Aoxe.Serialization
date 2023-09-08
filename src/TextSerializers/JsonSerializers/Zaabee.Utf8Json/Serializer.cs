@@ -61,27 +61,27 @@ public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
             ? default
             : Utf8JsonHelper.FromStream(type, stream, _resolver);
 
-    public Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
+    public ValueTask PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
         Utf8JsonHelper.PackAsync(value, stream, _resolver);
 
-    public Task PackAsync(Type type,
+    public ValueTask PackAsync(Type type,
         object? value,
         Stream? stream,
         CancellationToken cancellationToken = default) =>
         Utf8JsonHelper.PackAsync(value, stream, _resolver);
 
-    public Task<TValue?> FromStreamAsync<TValue>(
+    public ValueTask<TValue?> FromStreamAsync<TValue>(
         Stream? stream,
         CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
-            ? Task.FromResult(default(TValue))
+            ? new ValueTask<TValue?>(default(TValue?))
             : Utf8JsonHelper.FromStreamAsync<TValue>(stream, _resolver);
 
-    public Task<object?> FromStreamAsync(
+    public ValueTask<object?> FromStreamAsync(
         Type type,
         Stream? stream,
         CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
-            ? Task.FromResult(default(object))
+            ? new ValueTask<object?>(default(object?))
             : Utf8JsonHelper.FromStreamAsync(type, stream, _resolver);
 }

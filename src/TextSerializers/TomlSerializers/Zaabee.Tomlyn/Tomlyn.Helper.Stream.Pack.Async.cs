@@ -11,7 +11,7 @@ public static partial class TomlynHelper
     /// <param name="encoding"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task PackAsync(
+    public static async ValueTask PackAsync(
         object? value,
         Stream? stream = null,
         TomlModelOptions? tomlModelOptions = null,

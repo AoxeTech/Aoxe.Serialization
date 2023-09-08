@@ -2,7 +2,7 @@ namespace Zaabee.Tomlyn;
 
 public static partial class TomlynExtensions
 {
-    public static Task<TValue?> FromStreamAsync<TValue>(
+    public static ValueTask<TValue?> FromStreamAsync<TValue>(
         this Stream? stream,
         string? sourcePath = null,
         TomlModelOptions? tomlModelOptions = null,
@@ -12,7 +12,7 @@ public static partial class TomlynExtensions
         TomlynHelper.FromStreamAsync<TValue>(stream, sourcePath, tomlModelOptions, encoding,
             cancellationToken: cancellationToken);
 
-    public static Task<TomlTable?> FromStreamAsync(
+    public static ValueTask<TomlTable?> FromStreamAsync(
         this Stream? stream,
         string? sourcePath = null,
         TomlModelOptions? tomlModelOptions = null,

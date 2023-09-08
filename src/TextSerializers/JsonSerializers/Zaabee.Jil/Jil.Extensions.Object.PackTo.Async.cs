@@ -2,7 +2,7 @@ namespace Zaabee.Jil;
 
 public static partial class JilExtensions
 {
-    public static Task PackToAsync<TValue>(
+    public static ValueTask PackToAsync<TValue>(
         this TValue? value,
         Stream? stream,
         Options? options = null,
@@ -10,7 +10,7 @@ public static partial class JilExtensions
         CancellationToken cancellationToken = default) =>
         JilHelper.PackAsync(value, stream, options, encoding, cancellationToken);
 
-    public static Task PackToAsync(
+    public static ValueTask PackToAsync(
         this object? value,
         Stream? stream,
         Options? options = null,

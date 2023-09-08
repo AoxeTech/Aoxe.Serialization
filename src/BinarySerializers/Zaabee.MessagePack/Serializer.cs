@@ -45,21 +45,21 @@ public sealed class Serializer : IBytesSerializer, IStreamSerializerAsync
             ? default
             : MessagePackHelper.FromStream(type, stream, _options);
 
-    public Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
-        MessagePackHelper.PackAsync(value, stream, _options, cancellationToken).AsTask();
+    public ValueTask PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
+        MessagePackHelper.PackAsync(value, stream, _options, cancellationToken);
 
-    public Task PackAsync(Type type, object? value, Stream? stream,
+    public ValueTask PackAsync(Type type, object? value, Stream? stream,
         CancellationToken cancellationToken = default) =>
-        MessagePackHelper.PackAsync(type, value, stream, _options, cancellationToken).AsTask();
+        MessagePackHelper.PackAsync(type, value, stream, _options, cancellationToken);
 
-    public Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
+    public ValueTask<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
-            ? Task.FromResult(default(TValue?))
-            : MessagePackHelper.FromStreamAsync<TValue>(stream, _options, cancellationToken).AsTask();
+            ? new ValueTask<TValue?>(default(TValue?))
+            : MessagePackHelper.FromStreamAsync<TValue>(stream, _options, cancellationToken);
 
-    public Task<object?> FromStreamAsync(Type type, Stream? stream,
+    public ValueTask<object?> FromStreamAsync(Type type, Stream? stream,
         CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
-            ? Task.FromResult(default(object?))
-            : MessagePackHelper.FromStreamAsync(type, stream, _options, cancellationToken).AsTask();
+            ? new ValueTask<object?>(default(object?))
+            : MessagePackHelper.FromStreamAsync(type, stream, _options, cancellationToken);
 }

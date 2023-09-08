@@ -2,7 +2,7 @@ namespace Zaabee.Tomlyn;
 
 public static partial class TomlynExtensions
 {
-    public static Task PackByAsync(
+    public static ValueTask PackByAsync(
         this Stream? stream,
         object? value,
         TomlModelOptions? tomlModelOptions = null,

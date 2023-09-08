@@ -2,7 +2,7 @@ namespace Zaabee.SpanJson;
 
 public static partial class SpanJsonHelper
 {
-    public static async Task PackAsync<TValue>(
+    public static async ValueTask PackAsync<TValue>(
         TValue? value,
         Stream? stream,
         CancellationToken cancellationToken = default)
@@ -12,7 +12,7 @@ public static partial class SpanJsonHelper
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
-    public static async Task PackAsync(
+    public static async ValueTask PackAsync(
         object? value,
         Stream? stream,
         CancellationToken cancellationToken = default)

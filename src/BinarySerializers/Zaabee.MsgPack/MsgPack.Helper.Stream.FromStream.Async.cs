@@ -25,7 +25,7 @@ public static partial class MsgPackHelper
     /// 	<typeparamref name="TValue" /> is not serializable even if it can be serialized.
     /// </exception>
     /// <seealso cref="P:Capabilities" />
-    public static async Task<TValue?> FromStreamAsync<TValue>(Stream? stream,
+    public static async ValueTask<TValue?> FromStreamAsync<TValue>(Stream? stream,
         CancellationToken cancellationToken = default)
     {
         if (stream is null or { CanSeek: true, Length: 0 }) return default;
@@ -61,7 +61,7 @@ public static partial class MsgPackHelper
     /// 	Or, you will get a default value of the object.
     /// </remarks>
     /// <seealso cref="P:MsgPack.Serialization.MessagePackSerializer.Capabilities" />
-    public static async Task<object?> FromStreamAsync(Type type, Stream? stream,
+    public static async ValueTask<object?> FromStreamAsync(Type type, Stream? stream,
         CancellationToken cancellationToken = default)
     {
         if (stream is null or { CanSeek: true, Length: 0 }) return default;

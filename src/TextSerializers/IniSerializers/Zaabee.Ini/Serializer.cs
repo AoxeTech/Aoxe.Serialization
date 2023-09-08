@@ -63,25 +63,25 @@ public sealed class Serializer : IIniSerializer, IStreamSerializerAsync
             ? default
             : IniParserHelper.FromStream(type, stream, _encoding);
 
-    public Task PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
-        IniParserHelper.PackAsync(value, stream, _encoding, cancellationToken).AsTask();
+    public ValueTask PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
+        IniParserHelper.PackAsync(value, stream, _encoding, cancellationToken);
 
-    public Task PackAsync(Type type, object? value, Stream? stream,
+    public ValueTask PackAsync(Type type, object? value, Stream? stream,
         CancellationToken cancellationToken = default) =>
-        IniParserHelper.PackAsync(value, stream, _encoding, cancellationToken).AsTask();
+        IniParserHelper.PackAsync(value, stream, _encoding, cancellationToken);
 
-    public Task<TValue?> FromStreamAsync<TValue>(
+    public ValueTask<TValue?> FromStreamAsync<TValue>(
         Stream? stream,
         CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
-        ? Task.FromResult(default(TValue?))
-        : IniParserHelper.FromStreamAsync<TValue>(stream, _encoding, cancellationToken).AsTask();
+            ? new ValueTask<TValue?>(default(TValue?))
+        : IniParserHelper.FromStreamAsync<TValue>(stream, _encoding, cancellationToken);
 
-    public Task<object?> FromStreamAsync(
+    public ValueTask<object?> FromStreamAsync(
         Type type,
         Stream? stream,
         CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
-            ? Task.FromResult(default(object?))
-            : IniParserHelper.FromStreamAsync(type, stream, _encoding, cancellationToken).AsTask();
+            ? new ValueTask<object?>(default(object?))
+            : IniParserHelper.FromStreamAsync(type, stream, _encoding, cancellationToken);
 }

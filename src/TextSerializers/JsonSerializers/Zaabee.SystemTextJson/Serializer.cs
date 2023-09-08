@@ -61,27 +61,27 @@ public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
             ? default
             : SystemTextJsonHelper.FromJson(type, text, _options);
 
-    public Task PackAsync<TValue>(
+    public ValueTask PackAsync<TValue>(
         TValue? value,
         Stream? stream,
         CancellationToken cancellationToken = default) =>
         SystemTextJsonHelper.PackAsync(value, stream, _options, cancellationToken);
 
-    public Task PackAsync(
+    public ValueTask PackAsync(
         Type type,
         object? value,
         Stream? stream,
         CancellationToken cancellationToken = default) =>
         SystemTextJsonHelper.PackAsync(value, stream, _options, cancellationToken);
 
-    public Task<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
+    public ValueTask<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
-            ? Task.FromResult(default(TValue?))
+            ? new ValueTask<TValue?>(default(TValue?))
             : SystemTextJsonHelper.FromStreamAsync<TValue>(stream, _options, cancellationToken);
 
-    public Task<object?> FromStreamAsync(Type type, Stream? stream,
+    public ValueTask<object?> FromStreamAsync(Type type, Stream? stream,
         CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
-            ? Task.FromResult(default(object?))
+            ? new ValueTask<object?>(default(object?))
             : SystemTextJsonHelper.FromStreamAsync(type, stream, _options, cancellationToken);
 }
