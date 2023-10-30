@@ -1,6 +1,6 @@
 namespace Zaabee.NetJson;
 
-public static partial class Utf8JsonHelper
+public static partial class NetJsonHelper
 {
     /// <summary>
     /// Asynchronously reads the UTF-8 encoded text representing a single JSON value into an instance of a type

@@ -19,6 +19,7 @@ global using System.Threading.Tasks;
 global using Benchmark;
 global using MemoryPack;
 global using Zaabee.MemoryPack;
+global using Zaabee.NetJson;
 global using Zaabee.SharpYaml;
 global using Zaabee.SpanJson;
 global using Zaabee.YamlDotNet;

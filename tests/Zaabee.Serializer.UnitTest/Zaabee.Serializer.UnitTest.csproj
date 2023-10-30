@@ -11,8 +11,8 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
-		<PackageReference Include="xunit" Version="2.5.1" />
-		<PackageReference Include="xunit.runner.visualstudio" Version="2.5.1">
+		<PackageReference Include="xunit" Version="2.5.3" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.5.3">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
@@ -25,6 +25,7 @@
 		<ProjectReference Include="..\..\src\BinarySerializers\Zaabee.ZeroFormatter\Zaabee.ZeroFormatter.csproj" />
 		<ProjectReference Include="..\..\src\TextSerializers\IniSerializers\Zaabee.Ini\Zaabee.Ini.csproj" />
 		<ProjectReference Include="..\..\src\TextSerializers\JsonSerializers\Zaabee.Jil\Zaabee.Jil.csproj" />
+		<ProjectReference Include="..\..\src\TextSerializers\JsonSerializers\Zaabee.NetJson\Zaabee.NetJson.csproj" />
 		<ProjectReference Include="..\..\src\TextSerializers\JsonSerializers\Zaabee.NewtonsoftJson\Zaabee.NewtonsoftJson.csproj" />
 		<ProjectReference Include="..\..\src\TextSerializers\JsonSerializers\Zaabee.SpanJson\Zaabee.SpanJson.csproj" Condition="'$(TargetFramework)'!='net48'" />
 		<ProjectReference Include="..\..\src\TextSerializers\JsonSerializers\Zaabee.SystemTextJson\Zaabee.SystemTextJson.csproj" />

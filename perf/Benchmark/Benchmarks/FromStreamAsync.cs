@@ -19,6 +19,7 @@ public class FromStreamAsync
     private readonly FileStream _messagePackStream = new(".\\MessagePackStream", FileMode.Create);
     private readonly FileStream _msgPackStream = new(".\\MsgPackStream", FileMode.Create);
     private readonly FileStream _newtonsoftJsonStream = new(".\\NewtonsoftJsonStream", FileMode.Create);
+    private readonly FileStream _netJsonStream = new(".\\NetJsonStream", FileMode.Create);
     private readonly FileStream _spanJsonStream = new (".\\SpanJsonStream", FileMode.Create);
     private readonly FileStream _systemTextJsonStream = new(".\\SystemTextJsonStream", FileMode.Create);
     private readonly FileStream _utf8JsonStream = new(".\\Utf8JsonStream", FileMode.Create);
@@ -29,6 +30,7 @@ public class FromStreamAsync
         MemoryPackHelper.Pack(_testModel, _memoryPackStream);
         MessagePackHelper.Pack(_testModel, _messagePackStream);
         MsgPackHelper.Pack(_testModel, _msgPackStream);
+        NetJsonHelper.Pack(_testModel, _netJsonStream);
         NewtonsoftJsonHelper.Pack(_testModel, _newtonsoftJsonStream);
         SpanJsonHelper.Pack(_testModel, _spanJsonStream);
         SystemTextJsonHelper.Pack(_testModel, _systemTextJsonStream);
@@ -50,6 +52,10 @@ public class FromStreamAsync
     [Benchmark]
     public async Task MsgPackFromStreamAsync() =>
         await MsgPackHelper.FromStreamAsync<TestModel>(_msgPackStream);
+
+    [Benchmark]
+    public async Task NetJsonFromStreamAsync() =>
+        await NetJsonHelper.FromStreamAsync<TestModel>(_netJsonStream);
 
     [Benchmark]
     public async Task NewtonsoftJsonFromStreamAsync() =>

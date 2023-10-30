@@ -67,7 +67,7 @@ public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
 
     public ValueTask PackAsync(Type type, object? value, Stream? stream,
         CancellationToken cancellationToken = default) =>
-        NewtonsoftJsonHelper.PackAsync(value, stream, _settings, _encoding, cancellationToken);
+        NewtonsoftJsonHelper.PackAsync(type, value, stream, _settings, _encoding, cancellationToken);
 
     public ValueTask<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }

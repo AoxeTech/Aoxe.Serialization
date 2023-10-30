@@ -1,6 +1,6 @@
 namespace Zaabee.NetJson;
 
-public static partial class Utf8JsonHelper
+public static partial class NetJsonHelper
 {
     /// <summary>
     /// Serialize the value to json string.
@@ -19,7 +19,9 @@ public static partial class Utf8JsonHelper
     /// <param name="settings"></param>
     /// <returns></returns>
     public static string ToJson(object? value, NetJSONSettings? settings = null) =>
-        NetJSON.NetJSON.SerializeObject(value, settings ?? NetJSONSettings.CurrentSettings);
+        value is null
+            ? "null"
+            : NetJSON.NetJSON.SerializeObject(value, settings ?? NetJSONSettings.CurrentSettings);
 
     /// <summary>
     /// Serialize the value to json string.

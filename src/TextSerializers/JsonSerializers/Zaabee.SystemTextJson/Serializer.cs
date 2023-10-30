@@ -72,7 +72,7 @@ public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
         object? value,
         Stream? stream,
         CancellationToken cancellationToken = default) =>
-        SystemTextJsonHelper.PackAsync(value, stream, _options, cancellationToken);
+        SystemTextJsonHelper.PackAsync(type, value, stream, _options, cancellationToken);
 
     public ValueTask<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }

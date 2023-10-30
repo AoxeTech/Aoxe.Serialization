@@ -1,6 +1,6 @@
 namespace Zaabee.NetJson;
 
-public static partial class Utf8JsonHelper
+public static partial class NetJsonHelper
 {
     /// <summary>
     /// Convert the provided value to UTF-8 encoded JSON text and write it to the <see cref="System.IO.Stream"/>.

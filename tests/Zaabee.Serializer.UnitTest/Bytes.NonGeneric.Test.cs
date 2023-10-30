@@ -29,6 +29,10 @@ public partial class SerializerTest
         BytesNonGenericTest(new MsgPack.Serializer(), TestModelHelper.Create());
 
     [Fact]
+    public void NetJsonBytesNonGenericTest() =>
+        BytesNonGenericTest(new NetJson.Serializer(), TestModelHelper.Create());
+
+    [Fact]
     public void NewtonsoftJsonBytesNonGenericTest() =>
         BytesNonGenericTest(new NewtonsoftJson.Serializer(), TestModelHelper.Create());
 

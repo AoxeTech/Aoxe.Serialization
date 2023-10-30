@@ -68,7 +68,7 @@ public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
         object? value,
         Stream? stream,
         CancellationToken cancellationToken = default) =>
-        Utf8JsonHelper.PackAsync(value, stream, _resolver);
+        Utf8JsonHelper.PackAsync(type, value, stream, _resolver);
 
     public ValueTask<TValue?> FromStreamAsync<TValue>(
         Stream? stream,

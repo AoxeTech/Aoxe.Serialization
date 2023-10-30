@@ -100,6 +100,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.Tommy", "src\TextSer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.Tomlet", "src\TextSerializers\TomlSerializers\Zaabee.Tomlet\Zaabee.Tomlet.csproj", "{08B316D1-B6F2-4AE1-A0DC-3C75E36B0B0A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.NetJson", "src\TextSerializers\JsonSerializers\Zaabee.NetJson\Zaabee.NetJson.csproj", "{E23B0531-35F2-4B90-A338-338C6BE9057F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.NetJson.UnitTest", "tests\Zaabee.NetJson.UnitTest\Zaabee.NetJson.UnitTest.csproj", "{995875CB-C836-40D7-AE7D-9BA32BB5C6C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +157,8 @@ Global
 		{D9BAC9AF-4308-4AE1-904A-7A7AA9334C35} = {27F442D2-123E-43B6-AC3A-EFCFF0B4C598}
 		{4C56E2E3-50C8-4090-BA55-DAB20C61FF8E} = {87105D7B-F933-46DA-8BEA-AF8BAF48B4AB}
 		{08B316D1-B6F2-4AE1-A0DC-3C75E36B0B0A} = {87105D7B-F933-46DA-8BEA-AF8BAF48B4AB}
+		{E23B0531-35F2-4B90-A338-338C6BE9057F} = {96DA79BF-DFC4-4318-A9BA-C23A4A589BDC}
+		{995875CB-C836-40D7-AE7D-9BA32BB5C6C8} = {27F442D2-123E-43B6-AC3A-EFCFF0B4C598}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B42A3EA0-D986-4E04-B65A-23D1001C844F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -315,5 +321,13 @@ Global
 		{08B316D1-B6F2-4AE1-A0DC-3C75E36B0B0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08B316D1-B6F2-4AE1-A0DC-3C75E36B0B0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08B316D1-B6F2-4AE1-A0DC-3C75E36B0B0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E23B0531-35F2-4B90-A338-338C6BE9057F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E23B0531-35F2-4B90-A338-338C6BE9057F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E23B0531-35F2-4B90-A338-338C6BE9057F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E23B0531-35F2-4B90-A338-338C6BE9057F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{995875CB-C836-40D7-AE7D-9BA32BB5C6C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{995875CB-C836-40D7-AE7D-9BA32BB5C6C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{995875CB-C836-40D7-AE7D-9BA32BB5C6C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{995875CB-C836-40D7-AE7D-9BA32BB5C6C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

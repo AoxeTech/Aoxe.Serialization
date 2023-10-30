@@ -25,6 +25,10 @@ public partial class SerializerTest
         await StreamGenericAsyncTest(new MsgPack.Serializer(), TestModelHelper.Create());
 
     [Fact]
+    public async Task NetJsonStreamGenericAsyncTest() =>
+        await StreamGenericAsyncTest(new NetJson.Serializer(), TestModelHelper.Create());
+
+    [Fact]
     public async Task NewtonsoftJsonStreamGenericAsyncTest() =>
         await StreamGenericAsyncTest(new NewtonsoftJson.Serializer(), TestModelHelper.Create());
 

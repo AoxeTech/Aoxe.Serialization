@@ -29,6 +29,10 @@ public partial class SerializerTest
         StreamGenericNullTest(new NewtonsoftJson.Serializer());
 
     [Fact]
+    public void NetJsonStreamGenericNullTest() =>
+        StreamGenericNullTest(new NetJson.Serializer());
+
+    [Fact]
     public void ProtobufStreamGenericNullTest() =>
         StreamGenericNullTest(new Protobuf.Serializer());
 

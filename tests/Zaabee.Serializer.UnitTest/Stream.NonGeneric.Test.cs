@@ -29,6 +29,10 @@ public partial class SerializerTest
         StreamNonGenericTest(new MsgPack.Serializer(), TestModelHelper.Create());
 
     [Fact]
+    public void NetJsonStreamNonGenericTest() =>
+        StreamNonGenericTest(new NetJson.Serializer(), TestModelHelper.Create());
+
+    [Fact]
     public void NewtonsoftJsonStreamNonGenericTest() =>
         StreamNonGenericTest(new NewtonsoftJson.Serializer(), TestModelHelper.Create());
 

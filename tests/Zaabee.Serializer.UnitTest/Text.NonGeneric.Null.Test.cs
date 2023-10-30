@@ -15,6 +15,10 @@ public partial class SerializerTest
         TextNonGenericNullTest(new Jil.Serializer());
 
     [Fact]
+    public void NetJsonTextNonGenericNullTest() =>
+        TextNonGenericNullTest(new NetJson.Serializer());
+
+    [Fact]
     public void NewtonsoftJsonTextNonGenericNullTest() =>
         TextNonGenericNullTest(new NewtonsoftJson.Serializer());
 

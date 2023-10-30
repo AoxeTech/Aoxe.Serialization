@@ -30,6 +30,9 @@ public class ToBytes
     public void MsgPackToBytes() => MsgPackHelper.ToBytes(_testModel);
 
     [Benchmark]
+    public void NetJsonToBytes() => NetJsonHelper.ToBytes(_testModel);
+
+    [Benchmark]
     public void NewtonsoftJsonToBytes() => NewtonsoftJsonHelper.ToBytes(_testModel);
 
     [Benchmark]

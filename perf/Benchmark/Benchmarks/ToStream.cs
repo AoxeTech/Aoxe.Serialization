@@ -30,6 +30,9 @@ public class ToStream
     public void MsgPackToStream() => MsgPackHelper.ToStream(_testModel);
 
     [Benchmark]
+    public void NetJsonToStream() => NetJsonHelper.ToStream(_testModel);
+
+    [Benchmark]
     public void NewtonsoftJsonToStream() => NewtonsoftJsonHelper.ToStream(_testModel);
 
     [Benchmark]

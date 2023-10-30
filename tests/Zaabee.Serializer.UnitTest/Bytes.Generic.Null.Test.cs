@@ -29,6 +29,10 @@ public partial class SerializerTest
         BytesGenericNullTest(new MsgPack.Serializer());
 
     [Fact]
+    public void NetJsonBytesGenericNullTest() =>
+        BytesGenericNullTest(new NetJson.Serializer());
+
+    [Fact]
     public void NewtonsoftJsonBytesGenericNullTest() =>
         BytesGenericNullTest(new NewtonsoftJson.Serializer());
 

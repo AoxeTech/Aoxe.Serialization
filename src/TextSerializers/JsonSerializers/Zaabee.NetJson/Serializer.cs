@@ -2,80 +2,80 @@ namespace Zaabee.NetJson;
 
 public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
 {
-    private readonly IJsonFormatterResolver? _resolver;
+    private readonly NetJSONSettings? _settings;
 
-    public Serializer(IJsonFormatterResolver? resolver = null) =>
-        _resolver = resolver;
+    public Serializer(NetJSONSettings? settings = null) =>
+        _settings = settings;
 
     public byte[] ToBytes<TValue>(TValue? value) =>
-        Utf8JsonHelper.ToBytes(value, _resolver);
+        NetJsonHelper.ToBytes(value, _settings);
 
     public byte[] ToBytes(Type type, object? value) =>
-        Utf8JsonHelper.ToBytes(type, value, _resolver);
+        NetJsonHelper.ToBytes(type, value, _settings);
 
     public TValue? FromBytes<TValue>(byte[]? bytes) =>
         bytes is null || bytes.Length is 0
             ? default
-            : Utf8JsonHelper.FromBytes<TValue>(bytes, _resolver);
+            : NetJsonHelper.FromBytes<TValue>(bytes, _settings);
 
     public object? FromBytes(Type type, byte[]? bytes) =>
         bytes is null || bytes.Length is 0
             ? default
-            : Utf8JsonHelper.FromBytes(type, bytes, _resolver);
+            : NetJsonHelper.FromBytes(type, bytes, _settings);
 
     public string ToText<TValue>(TValue? value) =>
-        Utf8JsonHelper.ToJson(value, _resolver);
+        NetJsonHelper.ToJson(value, _settings);
 
     public string ToText(Type type, object? value) =>
-        Utf8JsonHelper.ToJson(type, value, _resolver);
+        NetJsonHelper.ToJson(type, value, _settings);
 
     public TValue? FromText<TValue>(string? text) =>
         string.IsNullOrWhiteSpace(text)
             ? default
-            : Utf8JsonHelper.FromJson<TValue>(text, _resolver);
+            : NetJsonHelper.FromJson<TValue>(text, _settings);
 
     public object? FromText(Type type, string? text) =>
         string.IsNullOrWhiteSpace(text)
             ? default
-            : Utf8JsonHelper.FromJson(type, text, _resolver);
+            : NetJsonHelper.FromJson(type, text, _settings);
 
     public void Pack<TValue>(TValue? value, Stream? stream) =>
-        Utf8JsonHelper.Pack(value, stream, _resolver);
+        NetJsonHelper.Pack(value, stream, _settings);
 
     public void Pack(Type type, object? value, Stream? stream) =>
-        Utf8JsonHelper.Pack(type, value, stream, _resolver);
+        NetJsonHelper.Pack(type, value, stream, _settings);
 
     public MemoryStream ToStream<TValue>(TValue? value) =>
-        Utf8JsonHelper.ToStream(value, _resolver);
+        NetJsonHelper.ToStream(value, _settings);
 
     public MemoryStream ToStream(Type type, object? value) =>
-        Utf8JsonHelper.ToStream(type, value, _resolver);
+        NetJsonHelper.ToStream(type, value, _settings);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
         stream is null or { CanSeek: true, Length: 0 }
             ? default
-            : Utf8JsonHelper.FromStream<TValue>(stream, _resolver);
+            : NetJsonHelper.FromStream<TValue>(stream, _settings);
 
     public object? FromStream(Type type, Stream? stream) =>
         stream is null or { CanSeek: true, Length: 0 }
             ? default
-            : Utf8JsonHelper.FromStream(type, stream, _resolver);
+            : NetJsonHelper.FromStream(type, stream, _settings);
 
     public ValueTask PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
-        Utf8JsonHelper.PackAsync(value, stream, _resolver);
+        NetJsonHelper.PackAsync(value, stream, _settings);
 
     public ValueTask PackAsync(Type type,
         object? value,
         Stream? stream,
         CancellationToken cancellationToken = default) =>
-        Utf8JsonHelper.PackAsync(value, stream, _resolver);
+        NetJsonHelper.PackAsync(type, value, stream, _settings);
 
     public ValueTask<TValue?> FromStreamAsync<TValue>(
         Stream? stream,
         CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
             ? new ValueTask<TValue?>(default(TValue?))
-            : Utf8JsonHelper.FromStreamAsync<TValue>(stream, _resolver);
+            : NetJsonHelper.FromStreamAsync<TValue>(stream, _settings, cancellationToken);
 
     public ValueTask<object?> FromStreamAsync(
         Type type,
@@ -83,5 +83,5 @@ public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
         CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
             ? new ValueTask<object?>(default(object?))
-            : Utf8JsonHelper.FromStreamAsync(type, stream, _resolver);
+            : NetJsonHelper.FromStreamAsync(type, stream, _settings, cancellationToken);
 }

@@ -7,6 +7,10 @@ public partial class SerializerTest
         JsonGenericNullTest(new Jil.Serializer());
 
     [Fact]
+    public void NetJsonJsonGenericNullTest() =>
+        JsonGenericNullTest(new NetJson.Serializer());
+
+    [Fact]
     public void NewtonsoftJsonJsonGenericNullTest() =>
         JsonGenericNullTest(new NewtonsoftJson.Serializer());
 

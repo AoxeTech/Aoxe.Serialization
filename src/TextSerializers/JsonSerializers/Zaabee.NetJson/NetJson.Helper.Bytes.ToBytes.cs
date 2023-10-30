@@ -1,6 +1,6 @@
 namespace Zaabee.NetJson;
 
-public static partial class Utf8JsonHelper
+public static partial class NetJsonHelper
 {
     /// <summary>
     /// Serialize to binary with specified settings.

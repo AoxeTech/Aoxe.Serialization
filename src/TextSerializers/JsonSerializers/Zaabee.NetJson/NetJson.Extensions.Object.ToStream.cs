@@ -1,13 +1,13 @@
 namespace Zaabee.NetJson;
 
-public static partial class Utf8JsonExtensions
+public static partial class NetJsonExtensions
 {
     public static MemoryStream ToStream<TValue>(this TValue? value, NetJSONSettings? settings = null) =>
-        Utf8JsonHelper.ToStream(value, settings);
+        NetJsonHelper.ToStream(value, settings);
 
     public static MemoryStream ToStream(this object? value, NetJSONSettings? settings = null) =>
-        Utf8JsonHelper.ToStream(value, settings);
+        NetJsonHelper.ToStream(value, settings);
 
     public static MemoryStream ToStream(this object? value, Type type, NetJSONSettings? settings = null) =>
-        Utf8JsonHelper.ToStream(type, value, settings);
+        NetJsonHelper.ToStream(type, value, settings);
 }

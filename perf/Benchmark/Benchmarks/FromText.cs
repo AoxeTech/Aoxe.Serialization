@@ -16,6 +16,7 @@ public class FromText
 
     private readonly string _dataContract;
     private readonly string _jil;
+    private readonly string _netJson;
     private readonly string _newtonsoftJson;
     private readonly string _sharpYaml;
     private readonly string _spanJson;
@@ -28,6 +29,7 @@ public class FromText
     {
         _dataContract = DataContractHelper.ToXml(_testModel);
         _jil = JilHelper.ToJson(_testModel);
+        _netJson = NetJsonHelper.ToJson(_testModel);
         _newtonsoftJson = NewtonsoftJsonHelper.ToJson(_testModel);
         _sharpYaml = SharpYamlHelper.ToYaml(_testModel);
         _spanJson = SpanJsonHelper.ToJson(_testModel);
@@ -42,6 +44,9 @@ public class FromText
 
     [Benchmark]
     public void JilFromText() => JilHelper.FromJson<TestModel>(_jil);
+
+    [Benchmark]
+    public void NetJsonFromText() => NetJsonHelper.FromJson<TestModel>(_netJson);
 
     [Benchmark]
     public void NewtonsoftJsonFromText() => NewtonsoftJsonHelper.FromJson<TestModel>(_newtonsoftJson);

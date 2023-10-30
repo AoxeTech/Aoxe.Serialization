@@ -19,6 +19,7 @@ public class FromBytes
     private readonly byte[] _memoryPackBytes;
     private readonly byte[] _messagePackBytes;
     private readonly byte[] _msgPackBytes;
+    private readonly byte[] _netJsonBytes;
     private readonly byte[] _newtonsoftJsonBytes;
     private readonly byte[] _protobufBytes;
     private readonly byte[] _sharpYamlBytes;
@@ -36,6 +37,7 @@ public class FromBytes
         _memoryPackBytes = MemoryPackHelper.ToBytes(_testModel);
         _messagePackBytes = MessagePackHelper.ToBytes(_testModel);
         _msgPackBytes = MsgPackHelper.ToBytes(_testModel);
+        _netJsonBytes = NetJsonHelper.ToBytes(_testModel);
         _newtonsoftJsonBytes = NewtonsoftJsonHelper.ToBytes(_testModel);
         _protobufBytes = ProtobufHelper.ToBytes(_testModel);
         _sharpYamlBytes = SharpYamlHelper.ToBytes(_testModel);
@@ -61,6 +63,9 @@ public class FromBytes
 
     [Benchmark]
     public void MsgPackFromBytes() => MsgPackHelper.FromBytes<TestModel>(_msgPackBytes);
+
+    [Benchmark]
+    public void NetJsonFromBytes() => NetJsonHelper.FromBytes<TestModel>(_netJsonBytes);
 
     [Benchmark]
     public void NewtonsoftJsonFromBytes() => NewtonsoftJsonHelper.FromBytes<TestModel>(_newtonsoftJsonBytes);

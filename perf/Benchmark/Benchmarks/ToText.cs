@@ -21,6 +21,9 @@ public class ToText
     public void JilToText() => JilHelper.ToJson(_testModel);
 
     [Benchmark]
+    public void NetJsonToText() => NetJsonHelper.ToJson(_testModel);
+
+    [Benchmark]
     public void NewtonsoftJsonToText() => NewtonsoftJsonHelper.ToJson(_testModel);
 
     [Benchmark]

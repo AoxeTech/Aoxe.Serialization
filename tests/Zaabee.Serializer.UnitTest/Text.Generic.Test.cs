@@ -15,6 +15,10 @@ public partial class SerializerTest
         TextGenericTest(new Jil.Serializer(Options.ISO8601Utc));
 
     [Fact]
+    public void NetJsonTextGenericTest() =>
+        TextGenericTest(new NetJson.Serializer());
+
+    [Fact]
     public void NewtonsoftJsonTextGenericTest() =>
         TextGenericTest(new NewtonsoftJson.Serializer());
 

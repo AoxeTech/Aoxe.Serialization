@@ -1,6 +1,6 @@
 namespace Zaabee.NetJson;
 
-public static partial class Utf8JsonHelper
+public static partial class NetJsonHelper
 {
     /// <summary>
     /// Deserialize the json to an instance of the <typeparamref name="TValue"/>.
@@ -10,7 +10,7 @@ public static partial class Utf8JsonHelper
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
     public static TValue? FromJson<TValue>(string? json, NetJSONSettings? settings = null) =>
-        string.IsNullOrWhiteSpace(json)
+        string.IsNullOrWhiteSpace(json) || json is "null"
             ? default
             : NetJSON.NetJSON.Deserialize<TValue>(json, settings ?? NetJSONSettings.CurrentSettings);
 
@@ -22,7 +22,7 @@ public static partial class Utf8JsonHelper
     /// <param name="settings"></param>
     /// <returns></returns>
     public static object? FromJson(Type type, string? json, NetJSONSettings? settings = null) =>
-        string.IsNullOrWhiteSpace(json)
+        string.IsNullOrWhiteSpace(json) || json is "null"
             ? default
             : NetJSON.NetJSON.Deserialize(type, json, settings ?? NetJSONSettings.CurrentSettings);
 }

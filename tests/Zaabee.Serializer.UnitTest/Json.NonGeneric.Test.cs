@@ -7,6 +7,10 @@ public partial class SerializerTest
         JsonNonGenericTest(new Jil.Serializer(Options.ISO8601Utc));
 
     [Fact]
+    public void NetJsonJsonNonGenericTest() =>
+        JsonNonGenericTest(new NetJson.Serializer());
+
+    [Fact]
     public void NewtonsoftJsonJsonNonGenericTest() =>
         JsonNonGenericTest(new NewtonsoftJson.Serializer());
 

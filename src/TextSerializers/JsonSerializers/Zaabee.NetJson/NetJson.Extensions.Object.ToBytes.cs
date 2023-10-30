@@ -1,13 +1,13 @@
 namespace Zaabee.NetJson;
 
-public static partial class Utf8JsonExtensions
+public static partial class NetJsonExtensions
 {
     public static byte[] ToBytes<TValue>(this TValue? value, NetJSONSettings? settings = null) =>
-        Utf8JsonHelper.ToBytes(value, settings);
+        NetJsonHelper.ToBytes(value, settings);
 
     public static byte[] ToBytes(this object? value, NetJSONSettings? settings = null) =>
-        Utf8JsonHelper.ToBytes(value, settings);
+        NetJsonHelper.ToBytes(value, settings);
 
     public static byte[] ToBytes(this object? value, Type type, NetJSONSettings? settings = null) =>
-        Utf8JsonHelper.ToBytes(type, value, settings);
+        NetJsonHelper.ToBytes(type, value, settings);
 }

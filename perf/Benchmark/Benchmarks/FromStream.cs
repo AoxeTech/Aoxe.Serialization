@@ -20,6 +20,7 @@ public class FromStream
     private readonly Stream _messagePackStream;
     private readonly Stream _msgPackStream;
     private readonly Stream _newtonsoftJsonStream;
+    private readonly Stream _netJsonStream;
     private readonly Stream _protobufStream;
     private readonly Stream _sharpYamlStream;
     private readonly Stream _spanJsonStream;
@@ -36,6 +37,7 @@ public class FromStream
         _memoryPackStream = MemoryPackHelper.ToStream(_testModel);
         _messagePackStream = MessagePackHelper.ToStream(_testModel);
         _msgPackStream = MsgPackHelper.ToStream(_testModel);
+        _netJsonStream = NetJsonHelper.ToStream(_testModel);
         _newtonsoftJsonStream = NewtonsoftJsonHelper.ToStream(_testModel);
         _protobufStream = ProtobufHelper.ToStream(_testModel);
         _sharpYamlStream = SharpYamlHelper.ToStream(_testModel);
@@ -61,6 +63,9 @@ public class FromStream
 
     [Benchmark]
     public void MsgPackFromStream() => MsgPackHelper.FromStream<TestModel>(_msgPackStream);
+
+    [Benchmark]
+    public void NetJsonFromStream() => NetJsonHelper.FromStream<TestModel>(_netJsonStream);
 
     [Benchmark]
     public void NewtonsoftJsonFromStream() => NewtonsoftJsonHelper.FromStream<TestModel>(_newtonsoftJsonStream);

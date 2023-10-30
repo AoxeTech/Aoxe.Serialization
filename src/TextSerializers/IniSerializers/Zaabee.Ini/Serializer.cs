@@ -13,7 +13,7 @@ public sealed class Serializer : IIniSerializer, IStreamSerializerAsync
         IniParserHelper.ToBytes(value, _encoding);
 
     public byte[] ToBytes(Type type, object? value) =>
-        IniParserHelper.ToBytes(value, _encoding);
+        IniParserHelper.ToBytes(type, value, _encoding);
 
     public TValue? FromBytes<TValue>(byte[]? bytes) =>
         bytes is null || bytes.Length is 0
@@ -29,7 +29,7 @@ public sealed class Serializer : IIniSerializer, IStreamSerializerAsync
         IniParserHelper.ToIni(value);
 
     public string ToText(Type type, object? value) =>
-        IniParserHelper.ToIni(value);
+        IniParserHelper.ToIni(type, value);
 
     public TValue? FromText<TValue>(string? text) =>
         text.IsNullOrWhiteSpace()
@@ -51,7 +51,7 @@ public sealed class Serializer : IIniSerializer, IStreamSerializerAsync
         IniParserHelper.ToStream(value, _encoding);
 
     public MemoryStream ToStream(Type type, object? value) =>
-        IniParserHelper.ToStream(value, _encoding);
+        IniParserHelper.ToStream(type, value, _encoding);
 
     public TValue? FromStream<TValue>(Stream? stream) =>
         stream is null or { CanSeek: true, Length: 0 }
@@ -68,14 +68,14 @@ public sealed class Serializer : IIniSerializer, IStreamSerializerAsync
 
     public ValueTask PackAsync(Type type, object? value, Stream? stream,
         CancellationToken cancellationToken = default) =>
-        IniParserHelper.PackAsync(value, stream, _encoding, cancellationToken);
+        IniParserHelper.PackAsync(type, value, stream, _encoding, cancellationToken);
 
     public ValueTask<TValue?> FromStreamAsync<TValue>(
         Stream? stream,
         CancellationToken cancellationToken = default) =>
         stream is null or { CanSeek: true, Length: 0 }
             ? new ValueTask<TValue?>(default(TValue?))
-        : IniParserHelper.FromStreamAsync<TValue>(stream, _encoding, cancellationToken);
+            : IniParserHelper.FromStreamAsync<TValue>(stream, _encoding, cancellationToken);
 
     public ValueTask<object?> FromStreamAsync(
         Type type,
