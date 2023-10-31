@@ -130,6 +130,7 @@ PM> Install-Package Zaabee.MemoryPack
 PM> Install-Package Zaabee.MessagePack
 PM> Install-Package Zaabee.MsgPack
 PM> Install-Package Zaabee.NewtonsoftJson
+PM> Install-Package Zaabee.NetJson
 PM> Install-Package Zaabee.Utf8Json
 PM> Install-Package Zaabee.Protobuf
 PM> Install-Package Zaabee.SharpYaml
@@ -160,11 +161,11 @@ The extremely fast MessagePack serializer for C#. It is 10x faster than MsgPack-
 
 MessagePack implementation for Common Language Infrastructure / msgpack.org[C#]
 
-### Zaabee.NewtonsoftJson
+### Zaabee.NetJson
 
 Faster than Any Binary?
 
-### Zaabee.NetJson
+### Zaabee.NewtonsoftJson
 
 Json.NET is a popular high-performance JSON framework for .NET [https://www.newtonsoft.com/json](https://www.newtonsoft.com/json)
 
