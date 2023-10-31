@@ -8,8 +8,7 @@ public static class TestModelHelper
     {
         Id = new Random().Next(0, 100),
         Age = new Random().Next(0, 100),
-        Name = "apple",
-        Gender = Gender.Female
+        Name = "apple"
     };
 
     public static List<TestModel> Create(int quantity) =>
@@ -17,8 +16,7 @@ public static class TestModelHelper
         {
             Id = new Random().Next(0, 100),
             Age = new Random().Next(0, 100),
-            Name = "apple",
-            Gender = Gender.Female
+            Name = "apple"
         }).ToList();
 
     public static void AssertEqual(TestModel? first, TestModel? second)
@@ -28,7 +26,6 @@ public static class TestModelHelper
         Assert.Equal(first.Id, second.Id);
         Assert.Equal(first.Age, second.Age);
         Assert.Equal(first.Name, second.Name);
-        Assert.Equal(first.Gender, second.Gender);
     }
     
     public static void AssertEqual(IList<TestModel>? first, IList<TestModel>? second)
