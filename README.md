@@ -10,7 +10,7 @@ Provide an easy way to use serializations. It is also the serializer provider fo
 
 There are many different serializers in the world, they have different features and limitations. This project allows you to use difference serializers in the same way. Also it set nullable and default value for all serializers.
 
-Serializers can be divided into two categories:
+Serializers can be divided into two categories (binary and text):
 
 - Binary serializers
   - MemoryPack
@@ -21,6 +21,7 @@ Serializers can be divided into two categories:
 - Text serializers
   - Json
     - Jil
+    - NetJson
     - Newtonsoft.Json
     - SpanJson
     - System.Text.Json
@@ -77,6 +78,16 @@ Though some serializers does not support stream or bytes, the zaabee serializers
       - string ToYaml(Type type, object? value)
       - TValue? FromYaml\<TValue\>(string? xml)
       - object? FromYaml(Type type, string? xml)
+    - Ini
+      - string ToIni\<TValue\>(TValue? value)
+      - string ToIni(Type type, object? value)
+      - TValue? FromIni\<TValue\>(string? xml)
+      - object? FromIni(Type type, string? xml)
+    - Toml
+      - string ToToml\<TValue\>(TValue? value)
+      - string ToToml(Type type, object? value)
+      - TValue? FromToml\<TValue\>(string? xml)
+      - object? FromToml(Type type, string? xml)
 - Extensions: Supply Extension methods base by Helper. Also it supports generic type and non-generic type.
   - Bytes
     - FromBytes
