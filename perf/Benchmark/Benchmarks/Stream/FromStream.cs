@@ -1,34 +1,27 @@
-namespace Benchmark.Benchmarks;
+namespace Benchmark.Benchmarks.Stream;
 
 [MemoryDiagnoser]
 [SimpleJob]
 [MinColumn, MaxColumn, MeanColumn, MedianColumn]
 public class FromStream
 {
-    private readonly TestModel _testModel = new()
-    {
-        Id = Guid.NewGuid(),
-        Age = new Random().Next(0, 100),
-        CreateTime = new DateTime(2017, 1, 1),
-        Name = "apple",
-        Gender = Gender.Female
-    };
+    private readonly TestModel _testModel = TestModelFactory.Create();
 
-    private readonly Stream _dataContractStream;
-    private readonly Stream _jilStream;
-    private readonly Stream _memoryPackStream;
-    private readonly Stream _messagePackStream;
-    private readonly Stream _msgPackStream;
-    private readonly Stream _newtonsoftJsonStream;
-    private readonly Stream _netJsonStream;
-    private readonly Stream _protobufStream;
-    private readonly Stream _sharpYamlStream;
-    private readonly Stream _spanJsonStream;
-    private readonly Stream _systemTextJsonStream;
-    private readonly Stream _utf8JsonStream;
-    private readonly Stream _xmlStream;
-    private readonly Stream _yamlDotNetStream;
-    private readonly Stream _zeroFormatterStream;
+    private readonly System.IO.Stream _dataContractStream;
+    private readonly System.IO.Stream _jilStream;
+    private readonly System.IO.Stream _memoryPackStream;
+    private readonly System.IO.Stream _messagePackStream;
+    private readonly System.IO.Stream _msgPackStream;
+    private readonly System.IO.Stream _newtonsoftJsonStream;
+    private readonly System.IO.Stream _netJsonStream;
+    private readonly System.IO.Stream _protobufStream;
+    private readonly System.IO.Stream _sharpYamlStream;
+    private readonly System.IO.Stream _spanJsonStream;
+    private readonly System.IO.Stream _systemTextJsonStream;
+    private readonly System.IO.Stream _utf8JsonStream;
+    private readonly System.IO.Stream _xmlStream;
+    private readonly System.IO.Stream _yamlDotNetStream;
+    private readonly System.IO.Stream _zeroFormatterStream;
 
     public FromStream()
     {

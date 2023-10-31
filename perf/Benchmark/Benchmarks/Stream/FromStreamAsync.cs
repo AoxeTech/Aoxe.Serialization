@@ -1,18 +1,11 @@
-namespace Benchmark.Benchmarks;
+namespace Benchmark.Benchmarks.Stream;
 
 [MemoryDiagnoser]
 [SimpleJob]
 [MinColumn, MaxColumn, MeanColumn, MedianColumn]
 public class FromStreamAsync
 {
-    private readonly TestModel _testModel = new()
-    {
-        Id = Guid.NewGuid(),
-        Age = new Random().Next(0, 100),
-        CreateTime = new DateTime(2017, 1, 1),
-        Name = "apple",
-        Gender = Gender.Female
-    };
+    private readonly TestModel _testModel = TestModelFactory.Create();
 
     private readonly FileStream _jilStream = new(".\\JilStream", FileMode.Create);
     private readonly FileStream _memoryPackStream = new(".\\MemoryPackStream", FileMode.Create);

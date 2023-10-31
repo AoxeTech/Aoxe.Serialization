@@ -1,18 +1,11 @@
-namespace Benchmark.Benchmarks;
+namespace Benchmark.Benchmarks.Bytes;
 
 [MemoryDiagnoser]
 [SimpleJob]
 [MinColumn, MaxColumn, MeanColumn, MedianColumn]
 public class FromBytes
 {
-    private readonly TestModel _testModel = new()
-    {
-        Id = Guid.NewGuid(),
-        Age = new Random().Next(0, 100),
-        CreateTime = new DateTime(2017, 1, 1),
-        Name = "apple",
-        Gender = Gender.Female
-    };
+    private readonly TestModel _testModel = TestModelFactory.Create();
 
     private readonly byte[] _dataContractBytes;
     private readonly byte[] _jilBytes;
