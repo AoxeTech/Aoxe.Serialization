@@ -29,5 +29,5 @@ public static partial class TomletHelper
         TomlSerializerOptions? tomlSerializerOptions = null) =>
         string.IsNullOrWhiteSpace(toml)
             ? default
-            : TomletMain.To(type, TomletMain.ValueFrom(type, toml, tomlSerializerOptions)!, tomlSerializerOptions);
+            : TomletMain.To(type, new TomlParser().Parse(toml), tomlSerializerOptions);
 }

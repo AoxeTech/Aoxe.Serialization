@@ -6,8 +6,7 @@ public static partial class TomletExtensions
         this Stream? stream,
         TomlSerializerOptions? tomlSerializerOptions = null,
         Encoding? encoding = null,
-        CancellationToken cancellationToken = default)
-        where TValue : class, new() =>
+        CancellationToken cancellationToken = default) =>
         TomletHelper.FromStreamAsync<TValue>(stream, tomlSerializerOptions, encoding,
             cancellationToken: cancellationToken);
 

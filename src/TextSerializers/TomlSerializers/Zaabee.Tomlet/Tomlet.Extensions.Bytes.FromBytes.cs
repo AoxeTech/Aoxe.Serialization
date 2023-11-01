@@ -5,8 +5,7 @@ public static partial class TomletExtensions
     public static TValue? FromBytes<TValue>(
         this byte[]? bytes,
         TomlSerializerOptions? tomlSerializerOptions = null,
-        Encoding? encoding = null)
-        where TValue : class, new() =>
+        Encoding? encoding = null) =>
         TomletHelper.FromBytes<TValue>(bytes, tomlSerializerOptions, encoding);
 
     public static object? FromBytes(

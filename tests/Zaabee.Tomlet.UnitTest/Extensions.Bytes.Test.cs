@@ -8,7 +8,7 @@ public partial class ExtensionsTest
         var testModel = TestModelHelper.Create();
         var bytes = testModel.ToBytes();
         var result = bytes.FromBytes<TestModel>()!;
-        
+
         TestModelHelper.AssertEqual(testModel, result);
     }
 
@@ -27,18 +27,18 @@ public partial class ExtensionsTest
     {
         object? nullModel = null;
         byte[]? nullBytes = null;
-        Assert.Null(nullModel.ToBytes().FromBytes());
-        Assert.Null(Array.Empty<byte>().FromBytes());
-        Assert.Null(nullBytes.FromBytes());
+        Assert.Null(nullModel.ToBytes(typeof(object)).FromBytes(typeof(object)));
+        Assert.Null(Array.Empty<byte>().FromBytes(typeof(object)));
+        Assert.Null(nullBytes.FromBytes(typeof(object)));
     }
 
     [Fact]
     public void ObjectBytesTest()
     {
         var testModel = TestModelHelper.Create();
-        var bytes = testModel.ToBytes();
-        var result = bytes.FromBytes<TestModel>()!;
-        
+        var bytes = testModel.ToBytes(typeof(TestModel));
+        var result = (TestModel)bytes.FromBytes(typeof(TestModel))!;
+
         TestModelHelper.AssertEqual(testModel, result);
     }
 }

@@ -43,28 +43,13 @@ public partial class ExtensionsTest
     {
         object? nullModel = null;
 
-        var emptyStream = nullModel.ToStream();
-        Assert.Null(await emptyStream.FromStreamAsync());
+        var emptyStream = nullModel.ToStream(typeof(object));
+        Assert.Null(await emptyStream.FromStreamAsync(typeof(object)));
 
         MemoryStream? nullStream = null;
-        await nullStream.PackByAsync(nullModel);
-        await nullModel.PackToAsync(nullStream);
+        await nullStream.PackByAsync(typeof(object), nullModel);
+        await nullModel.PackToAsync(typeof(object), nullStream);
 
-        await Stream.Null.FromStreamAsync();
-    }
-
-    [Fact]
-    public async Task ObjectStreamAsyncNullTest()
-    {
-        object? nullModel = null;
-
-        var emptyStream = nullModel.ToStream();
-        Assert.Null(await emptyStream.FromStreamAsync());
-
-        MemoryStream? nullStream = null;
-        await nullStream.PackByAsync(nullModel);
-        await nullModel.PackToAsync(nullStream);
-
-        await Stream.Null.FromStreamAsync();
+        await Stream.Null.FromStreamAsync(typeof(object));
     }
 }

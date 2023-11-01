@@ -44,13 +44,13 @@ public partial class ExtensionsTest
         object? nullModel = null;
 
         var emptyStream = nullModel.ToStream();
-        Assert.Null(emptyStream.FromStream());
+        Assert.Null(emptyStream.FromStream(typeof(object)));
 
         MemoryStream? nullStream = null;
-        nullStream.PackBy(nullModel);
-        nullModel.PackTo(nullStream);
+        nullStream.PackBy(typeof(object), nullModel);
+        nullModel.PackTo(typeof(object), nullStream);
 
-        Stream.Null.FromStream();
+        Stream.Null.FromStream(typeof(object));
     }
 
     [Fact]
@@ -59,12 +59,12 @@ public partial class ExtensionsTest
         object? nullModel = null;
 
         var emptyStream = nullModel.ToStream();
-        Assert.Null(emptyStream.FromStream());
+        Assert.Null(emptyStream.FromStream(typeof(object)));
 
         MemoryStream? nullStream = null;
-        nullStream.PackBy(nullModel);
-        nullModel.PackTo(nullStream);
+        nullStream.PackBy(typeof(object), nullModel);
+        nullModel.PackTo(typeof(object), nullStream);
 
-        Stream.Null.FromStream();
+        Stream.Null.FromStream(typeof(object));
     }
 }

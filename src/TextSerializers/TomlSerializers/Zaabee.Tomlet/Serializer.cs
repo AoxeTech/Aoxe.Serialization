@@ -51,7 +51,7 @@ public class Serializer : ITomlSerializer, IStreamSerializerAsync
         TomletHelper.ToToml(value, _tomlSerializerOptions);
 
     public string ToText(Type type, object? value) =>
-        TomletHelper.ToToml(value, _tomlSerializerOptions);
+        TomletHelper.ToToml(type, value, _tomlSerializerOptions);
 
     public ValueTask<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = new CancellationToken()) =>
         TomletHelper.FromStreamAsync<TValue>(stream, _tomlSerializerOptions, _encoding, cancellationToken);

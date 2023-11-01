@@ -23,7 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\TextSerializers\TomlSerializers\Zaabee.Tomlyn\Zaabee.Tomlyn.csproj" />
+        <ProjectReference Include="..\..\src\TextSerializers\TomlSerializers\Zaabee.Tomlet\Zaabee.Tomlet.csproj" />
         <ProjectReference Include="..\TestModels\TestModels.csproj" />
     </ItemGroup>
 

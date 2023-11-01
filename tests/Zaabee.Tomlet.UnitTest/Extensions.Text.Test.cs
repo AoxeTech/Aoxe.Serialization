@@ -27,9 +27,9 @@ public partial class ExtensionsTest
     {
         object? nullModel = null;
         string? nullToml = null;
-        var emptyToml = nullModel.ToToml();
-        Assert.Null(emptyToml.FromToml());
-        Assert.Null(nullToml.FromToml());
+        var emptyToml = nullModel.ToToml(typeof(object));
+        Assert.Null(emptyToml.FromToml(typeof(object)));
+        Assert.Null(nullToml.FromToml(typeof(object)));
     }
 
     [Fact]
@@ -37,8 +37,8 @@ public partial class ExtensionsTest
     {
         object? nullModel = null;
         string? nullToml = null;
-        var emptyToml = nullModel.ToToml();
-        Assert.Null(emptyToml.FromToml());
-        Assert.Null(nullToml.FromToml());
+        var emptyToml = nullModel.ToToml(typeof(object));
+        Assert.Null(emptyToml.FromToml(typeof(object)));
+        Assert.Null(nullToml.FromToml(typeof(object)));
     }
 }

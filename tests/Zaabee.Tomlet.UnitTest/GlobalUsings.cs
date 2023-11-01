@@ -1,3 +1,3 @@
 global using TestModels;
 global using Xunit;
-global using Zaabee.Tomlyn;
+global using Zaabee.Tomlet;

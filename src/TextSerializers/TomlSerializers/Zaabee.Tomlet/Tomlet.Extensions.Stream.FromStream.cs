@@ -5,8 +5,7 @@ public static partial class TomletExtensions
     public static TValue? FromStream<TValue>(
         this Stream? stream,
         TomlSerializerOptions? tomlSerializerOptions = null,
-        Encoding? encoding = null)
-        where TValue : class, new() =>
+        Encoding? encoding = null) =>
         TomletHelper.FromStream<TValue>(stream, tomlSerializerOptions, encoding);
 
     public static object? FromStream(

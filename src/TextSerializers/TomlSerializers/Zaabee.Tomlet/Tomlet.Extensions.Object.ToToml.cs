@@ -6,4 +6,10 @@ public static partial class TomletExtensions
         this TValue? value,
         TomlSerializerOptions? tomlSerializerOptions = null) =>
         TomletHelper.ToToml(value, tomlSerializerOptions);
+
+    public static string ToToml(
+        this object? value,
+        Type type,
+        TomlSerializerOptions? tomlSerializerOptions = null) =>
+        TomletHelper.ToToml(type, value, tomlSerializerOptions);
 }
