@@ -56,7 +56,7 @@ public partial class SerializerTest
     {
         var type = typeof(TestModel);
         var stream = new MemoryStream();
-        await streamSerializerAsync.PackAsync(model, stream);
+        await streamSerializerAsync.PackAsync(type, model, stream);
         var deserializeModel = (TestModel)(await streamSerializerAsync.FromStreamAsync(type, stream))!;
 
         TestModelHelper.AssertEqual(model, deserializeModel);

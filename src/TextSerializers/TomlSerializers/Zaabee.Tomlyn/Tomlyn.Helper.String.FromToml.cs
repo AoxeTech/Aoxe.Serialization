@@ -17,7 +17,7 @@ public static partial class TomlynHelper
         where TValue : class, new() =>
         string.IsNullOrWhiteSpace(toml)
             ? default
-            : Toml.ToModel<TValue>(toml!, sourcePath, tomlModelOptions);
+            : Toml.ToModel<TValue>(toml, sourcePath, tomlModelOptions);
 
     /// <summary>
     /// Deserialize the toml to an TomlTable 
@@ -32,5 +32,5 @@ public static partial class TomlynHelper
         TomlModelOptions? tomlModelOptions = null) =>
         string.IsNullOrWhiteSpace(toml)
             ? default
-            : Toml.ToModel(toml!, sourcePath, tomlModelOptions);
+            : Toml.ToModel(toml, sourcePath, tomlModelOptions);
 }

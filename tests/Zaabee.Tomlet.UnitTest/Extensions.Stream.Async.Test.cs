@@ -39,6 +39,27 @@ public partial class ExtensionsTest
     }
 
     [Fact]
+    public async Task NonGenericTypeStreamAsyncTest()
+    {
+        object? testModel = TestModelHelper.Create();
+
+        var stream0 = testModel.ToStream();
+        var result0 = (await stream0.FromStreamAsync(typeof(TestModel)))!;
+
+        var stream1 = new MemoryStream();
+        await testModel.PackToAsync(stream1);
+        var result1 = (await stream1.FromStreamAsync(typeof(TestModel)))!;
+
+        var stream2 = new MemoryStream();
+        await stream2.PackByAsync(testModel);
+        var result2 = (await stream2.FromStreamAsync(typeof(TestModel)))!;
+
+        TestModelHelper.AssertEqual((TestModel)testModel, (TestModel)result0);
+        TestModelHelper.AssertEqual((TestModel)testModel, (TestModel)result1);
+        TestModelHelper.AssertEqual((TestModel)testModel, (TestModel)result2);
+    }
+
+    [Fact]
     public async Task NonGenericTypeStreamAsyncNullTest()
     {
         object? nullModel = null;
