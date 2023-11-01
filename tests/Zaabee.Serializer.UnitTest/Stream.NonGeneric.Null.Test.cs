@@ -51,6 +51,10 @@ public partial class SerializerTest
         StreamNonGenericNullTest(new SystemTextJson.Serializer());
 
     [Fact]
+    public void TomletStreamNonGenericNullTest() =>
+        StreamNonGenericNullTest(new Tomlet.Serializer());
+
+    [Fact]
     public void Utf8JsonStreamNonGenericNullTest() =>
         StreamNonGenericNullTest(new Utf8Json.Serializer());
 

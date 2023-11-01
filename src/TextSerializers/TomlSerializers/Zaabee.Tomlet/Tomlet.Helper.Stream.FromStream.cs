@@ -13,7 +13,7 @@ public static partial class TomletHelper
     public static TValue? FromStream<TValue>(
         Stream? stream,
         TomlSerializerOptions? tomlSerializerOptions = null,
-        Encoding? encoding = null) where TValue : class, new()
+        Encoding? encoding = null)
     {
         if (stream is null or { CanSeek: true, Length: 0 }) return default;
         var result = FromToml<TValue>(

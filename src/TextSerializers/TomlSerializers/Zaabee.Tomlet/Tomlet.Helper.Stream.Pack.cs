@@ -9,8 +9,8 @@ public static partial class TomletHelper
     /// <param name="stream"></param>
     /// <param name="tomlSerializerOptions"></param>
     /// <param name="encoding"></param>
-    public static void Pack(
-        object? value,
+    public static void Pack<TValue>(
+        TValue? value,
         Stream? stream = null,
         TomlSerializerOptions? tomlSerializerOptions = null,
         Encoding? encoding = null)

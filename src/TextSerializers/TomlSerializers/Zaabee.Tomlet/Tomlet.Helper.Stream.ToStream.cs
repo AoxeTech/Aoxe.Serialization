@@ -9,8 +9,8 @@ public static partial class TomletHelper
     /// <param name="tomlSerializerOptions"></param>
     /// <param name="encoding"></param>
     /// <returns></returns>
-    public static MemoryStream ToStream(
-        object? value,
+    public static MemoryStream ToStream<TValue>(
+        TValue? value,
         TomlSerializerOptions? tomlSerializerOptions = null,
         Encoding? encoding = null)
     {

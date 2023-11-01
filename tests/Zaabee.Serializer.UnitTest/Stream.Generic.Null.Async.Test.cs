@@ -43,6 +43,10 @@ public partial class SerializerTest
         await StreamGenericNullAsyncTest(new SystemTextJson.Serializer());
 
     [Fact]
+    public async Task TomletStreamGenericNullAsyncTest() =>
+        await StreamGenericNullAsyncTest(new Tomlet.Serializer());
+
+    [Fact]
     public async Task Utf8JsonStreamGenericNullAsyncTest() =>
         await StreamGenericNullAsyncTest(new Utf8Json.Serializer());
 

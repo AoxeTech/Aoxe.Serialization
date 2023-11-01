@@ -13,7 +13,7 @@ public static partial class TomletHelper
     public static TValue? FromBytes<TValue>(
         byte[]? bytes,
         TomlSerializerOptions? tomlSerializerOptions = null,
-        Encoding? encoding = null) where TValue : class, new() =>
+        Encoding? encoding = null) =>
         bytes is null || bytes.Length is 0
             ? default
             : FromToml<TValue>(bytes.GetString(encoding ?? Defaults.Utf8Encoding), tomlSerializerOptions);

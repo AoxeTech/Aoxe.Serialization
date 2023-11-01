@@ -29,6 +29,10 @@ public class GuidTest
         GuidSerializeTest(new MsgPack.Serializer());
 
     [Fact]
+    public void NetJsonGuidSerializeTest() =>
+        GuidSerializeTest(new NetJson.Serializer());
+
+    [Fact]
     public void NewtonsoftJsonGuidSerializeTest() =>
         GuidSerializeTest(new NewtonsoftJson.Serializer());
 
@@ -49,6 +53,10 @@ public class GuidTest
     [Fact]
     public void SystemTextJsonGuidSerializeTest() =>
         GuidSerializeTest(new SystemTextJson.Serializer());
+
+    [Fact]
+    public void TomletGuidSerializeTest() =>
+        GuidSerializeTest(new Tomlet.Serializer());
 
     [Fact]
     public void Utf8JsonGuidSerializeTest() =>

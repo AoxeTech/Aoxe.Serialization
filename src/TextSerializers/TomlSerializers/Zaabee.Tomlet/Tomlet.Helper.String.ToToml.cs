@@ -8,8 +8,8 @@ public static partial class TomletHelper
     /// <param name="value"></param>
     /// <param name="tomlSerializerOptions"></param>
     /// <returns></returns>
-    public static string ToToml(
-        object? value,
+    public static string ToToml<TValue>(
+        TValue? value,
         TomlSerializerOptions? tomlSerializerOptions = null) =>
         value is null
             ? string.Empty

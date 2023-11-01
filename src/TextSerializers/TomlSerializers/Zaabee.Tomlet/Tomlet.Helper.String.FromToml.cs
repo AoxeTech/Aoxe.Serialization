@@ -11,8 +11,7 @@ public static partial class TomletHelper
     /// <returns></returns>
     public static TValue? FromToml<TValue>(
         string? toml,
-        TomlSerializerOptions? tomlSerializerOptions = null)
-        where TValue : class, new() =>
+        TomlSerializerOptions? tomlSerializerOptions = null) =>
         string.IsNullOrWhiteSpace(toml)
             ? default
             : TomletMain.To<TValue>(toml, tomlSerializerOptions);

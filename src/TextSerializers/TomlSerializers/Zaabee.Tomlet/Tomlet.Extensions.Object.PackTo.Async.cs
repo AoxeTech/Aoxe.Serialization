@@ -2,8 +2,8 @@ namespace Zaabee.Tomlet;
 
 public static partial class TomletExtensions
 {
-    public static ValueTask PackToAsync(
-        this object? value,
+    public static ValueTask PackToAsync<TValue>(
+        this TValue? value,
         Stream? stream,
         TomlSerializerOptions? tomlSerializerOptions = null,
         Encoding? encoding = null,

@@ -16,7 +16,6 @@ public static partial class TomletHelper
         TomlSerializerOptions? tomlSerializerOptions = null,
         Encoding? encoding = null,
         CancellationToken cancellationToken = default)
-        where TValue : class, new()
     {
         if (stream is null or { CanSeek: true, Length: 0 }) return default;
         var toml = (await stream.ReadToEndAsync(cancellationToken)).GetString(encoding ?? Defaults.Utf8Encoding);

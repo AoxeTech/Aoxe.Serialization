@@ -9,8 +9,8 @@ public static partial class TomletHelper
     /// <param name="tomlSerializerOptions"></param>
     /// <param name="encoding"></param>
     /// <returns></returns>
-    public static byte[] ToBytes(
-        object? value,
+    public static byte[] ToBytes<TValue>(
+        TValue? value,
         TomlSerializerOptions? tomlSerializerOptions = null,
         Encoding? encoding = null) =>
         ToToml(value, tomlSerializerOptions).GetBytes(encoding ?? Defaults.Utf8Encoding);

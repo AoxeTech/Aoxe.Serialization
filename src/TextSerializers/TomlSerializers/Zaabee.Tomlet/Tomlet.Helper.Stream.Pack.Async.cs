@@ -11,8 +11,8 @@ public static partial class TomletHelper
     /// <param name="encoding"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async ValueTask PackAsync(
-        object? value,
+    public static async ValueTask PackAsync<TValue>(
+        TValue? value,
         Stream? stream = null,
         TomlSerializerOptions? tomlSerializerOptions = null,
         Encoding? encoding = null,

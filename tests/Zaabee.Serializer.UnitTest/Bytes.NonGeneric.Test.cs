@@ -55,6 +55,10 @@ public partial class SerializerTest
         BytesNonGenericTest(new SystemTextJson.Serializer(), TestModelHelper.Create());
 
     [Fact]
+    public void TomletBytesNonGenericTest() =>
+        BytesNonGenericTest(new Tomlet.Serializer(), TestModelHelper.Create());
+
+    [Fact]
     public void Utf8JsonBytesNonGenericTest() =>
         BytesNonGenericTest(new Utf8Json.Serializer(), TestModelHelper.Create());
 
