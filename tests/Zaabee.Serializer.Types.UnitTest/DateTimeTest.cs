@@ -1,135 +1,156 @@
+using Zaabee.Serializer.Types.UnitTest.Models;
+
 namespace Zaabee.Serializer.Types.UnitTest;
 
 public class DateTimeTest
 {
-    private readonly DateTime _localTime = new(2000, 1, 1, 0, 0, 0, DateTimeKind.Local);
-    private readonly DateTime _utcTime = new(2000, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-
 #if !NET48
     [Fact]
     public void MemoryPackLocalTimeTest() =>
-        DateTimeToBytesTest(new Zaabee.MemoryPack.Serializer(), _localTime);
+        LocalDateTimeToBytesTest(new Zaabee.MemoryPack.Serializer());
 
     [Fact]
     public void MemoryPackUtcTimeTest() =>
-        DateTimeToBytesTest(new Zaabee.MemoryPack.Serializer(), _utcTime);
+        UtcDateTimeToBytesTest(new Zaabee.MemoryPack.Serializer());
 #endif
 
     [Fact]
     public void MessagePackLocalTimeTest() =>
-        DateTimeToBytesTest(new Zaabee.MessagePack.Serializer(), _localTime);
+        LocalDateTimeToBytesTest(new Zaabee.MessagePack.Serializer());
 
     [Fact]
     public void MessagePackUtcTimeTest() =>
-        DateTimeToBytesTest(new Zaabee.MessagePack.Serializer(), _utcTime);
+        UtcDateTimeToBytesTest(new Zaabee.MessagePack.Serializer());
 
     [Fact]
     public void MsgPackLocalTimeTest() =>
-        DateTimeToBytesTest(new Zaabee.MsgPack.Serializer(), _localTime);
+        LocalDateTimeToBytesTest(new Zaabee.MsgPack.Serializer());
 
     [Fact]
     public void MsgPackUtcTimeTest() =>
-        DateTimeToBytesTest(new Zaabee.MsgPack.Serializer(), _utcTime);
+        UtcDateTimeToBytesTest(new Zaabee.MsgPack.Serializer());
 
     [Fact]
     public void ProtobufLocalTimeTest() =>
-        DateTimeToBytesTest(new Zaabee.Protobuf.Serializer(), _localTime);
+        LocalDateTimeToBytesTest(new Zaabee.Protobuf.Serializer());
 
     [Fact]
     public void ProtobufUtcTimeTest() =>
-        DateTimeToBytesTest(new Zaabee.Protobuf.Serializer(), _utcTime);
+        UtcDateTimeToBytesTest(new Zaabee.Protobuf.Serializer());
 
     [Fact]
     public void ZeroFormatterLocalTimeTest() =>
-        DateTimeToBytesTest(new Zaabee.ZeroFormatter.Serializer(), _localTime);
+        LocalDateTimeToBytesTest(new Zaabee.ZeroFormatter.Serializer());
 
     [Fact]
     public void ZeroFormatterUtcTimeTest() =>
-        DateTimeToBytesTest(new Zaabee.ZeroFormatter.Serializer(), _utcTime);
+        UtcDateTimeToBytesTest(new Zaabee.ZeroFormatter.Serializer());
 
     [Fact]
     public void JilLocalTimeTest() =>
-        DateTimeToTextTest(
+        LocalDateTimeToTextTest(
             new Zaabee.Jil.Serializer(new Options(dateFormat: DateTimeFormat.ISO8601,
-                unspecifiedDateTimeKindBehavior: UnspecifiedDateTimeKindBehavior.IsLocal)), _localTime);
+                unspecifiedDateTimeKindBehavior: UnspecifiedDateTimeKindBehavior.IsLocal)));
 
     [Fact]
     public void JilUtcTimeTest() =>
-        DateTimeToTextTest(new Zaabee.Jil.Serializer(), _utcTime);
+        UtcDateTimeToTextTest(new Zaabee.Jil.Serializer());
 
     [Fact]
     public void NewtonsoftJsonLocalTimeTest() =>
-        DateTimeToTextTest(new Zaabee.NewtonsoftJson.Serializer(), _localTime);
+        LocalDateTimeToTextTest(new Zaabee.NewtonsoftJson.Serializer());
 
     [Fact]
     public void NewtonsoftJsonUtcTimeTest() =>
-        DateTimeToTextTest(new Zaabee.NewtonsoftJson.Serializer(), _utcTime);
+        UtcDateTimeToTextTest(new Zaabee.NewtonsoftJson.Serializer());
 
     [Fact]
     public void NetJsonLocalTimeTest() =>
-        DateTimeToTextTest(new Zaabee.NetJson.Serializer(), _localTime);
+        LocalDateTimeToTextTest(new Zaabee.NetJson.Serializer());
 
     [Fact]
     public void NetJsonUtcTimeTest() =>
-        DateTimeToTextTest(new Zaabee.NetJson.Serializer(), _utcTime);
+        UtcDateTimeToTextTest(new Zaabee.NetJson.Serializer());
 
 #if !NET48
     [Fact]
     public void SpanJsonLocalTimeTest() =>
-        DateTimeToTextTest(new Zaabee.SpanJson.Serializer(), _localTime);
+        LocalDateTimeToTextTest(new Zaabee.SpanJson.Serializer());
 
     [Fact]
     public void SpanJsonUtcTimeTest() =>
-        DateTimeToTextTest(new Zaabee.SpanJson.Serializer(), _utcTime);
+        UtcDateTimeToTextTest(new Zaabee.SpanJson.Serializer());
 #endif
 
     [Fact]
     public void SystemTextJsonLocalTimeTest() =>
-        DateTimeToTextTest(new Zaabee.SystemTextJson.Serializer(), _localTime);
+        LocalDateTimeToTextTest(new Zaabee.SystemTextJson.Serializer());
 
     [Fact]
     public void SystemTextJsonUtcTimeTest() =>
-        DateTimeToTextTest(new Zaabee.SystemTextJson.Serializer(), _utcTime);
+        UtcDateTimeToTextTest(new Zaabee.SystemTextJson.Serializer());
+
+    [Fact]
+    public void TomletLocalTimeTest() =>
+        LocalDateTimeToTextTest(new Zaabee.Tomlet.Serializer());
 
     [Fact]
     public void TomletUtcTimeTest() =>
-        DateTimeToTextTest(new Zaabee.Tomlet.Serializer(), _utcTime);
+        UtcDateTimeToTextTest(new Zaabee.Tomlet.Serializer());
 
     [Fact]
     public void Utf8JsonLocalTimeTest() =>
-        DateTimeToTextTest(new Zaabee.Utf8Json.Serializer(), _localTime);
+        LocalDateTimeToTextTest(new Zaabee.Utf8Json.Serializer());
 
     [Fact]
     public void Utf8JsonUtcTimeTest() =>
-        DateTimeToTextTest(new Zaabee.Utf8Json.Serializer(), _utcTime);
+        UtcDateTimeToTextTest(new Zaabee.Utf8Json.Serializer());
 
     [Fact]
     public void XmlSerializerLocalTimeTest() =>
-        DateTimeToTextTest(new Zaabee.Xml.Serializer(), _localTime);
+        LocalDateTimeToTextTest(new Zaabee.Xml.Serializer());
 
     [Fact]
     public void XmlSerializerUtcTimeTest() =>
-        DateTimeToTextTest(new Zaabee.Xml.Serializer(), _utcTime);
+        UtcDateTimeToTextTest(new Zaabee.Xml.Serializer());
 
     [Fact]
     public void DataContractSerializerLocalTimeTest() =>
-        DateTimeToTextTest(new Zaabee.DataContractSerializer.Serializer(), _localTime);
+        LocalDateTimeToTextTest(new Zaabee.DataContractSerializer.Serializer());
 
     [Fact]
     public void DataContractSerializerUtcTimeTest() =>
-        DateTimeToTextTest(new Zaabee.DataContractSerializer.Serializer(), _utcTime);
+        UtcDateTimeToTextTest(new Zaabee.DataContractSerializer.Serializer());
 
-    private static void DateTimeToBytesTest(IBytesSerializer bytesSerializer, DateTime dateTime)
+    private static void LocalDateTimeToBytesTest(IBytesSerializer bytesSerializer)
     {
+        var dateTime = DateTimeModel.Instance(false);
         var dateTimeBytes = bytesSerializer.ToBytes(dateTime);
-        var dateTimeResult = bytesSerializer.FromBytes<DateTime>(dateTimeBytes)!;
-        Assert.Equal(new DateTimeOffset(dateTime), new DateTimeOffset(dateTimeResult));
+        var dateTimeResult = bytesSerializer.FromBytes<DateTimeModel>(dateTimeBytes)!;
+        Assert.Equal(new DateTimeOffset(dateTime.DateTime), new DateTimeOffset(dateTimeResult.DateTime));
     }
 
-    private static void DateTimeToTextTest(ITextSerializer textSerializer, DateTime dateTime)
+    private static void LocalDateTimeToTextTest(ITextSerializer textSerializer)
     {
+        var dateTime = DateTimeModel.Instance(false);
         var dateTimeText = textSerializer.ToText(dateTime);
-        var dateTimeResult = textSerializer.FromText<DateTime>(dateTimeText)!;
-        Assert.Equal(new DateTimeOffset(dateTime), new DateTimeOffset(dateTimeResult));
+        var dateTimeResult = textSerializer.FromText<DateTimeModel>(dateTimeText)!;
+        Assert.Equal(new DateTimeOffset(dateTime.DateTime), new DateTimeOffset(dateTimeResult.DateTime));
+    }
+
+    private static void UtcDateTimeToBytesTest(IBytesSerializer bytesSerializer)
+    {
+        var dateTime = DateTimeModel.Instance();
+        var dateTimeBytes = bytesSerializer.ToBytes(dateTime);
+        var dateTimeResult = bytesSerializer.FromBytes<DateTimeModel>(dateTimeBytes)!;
+        Assert.Equal(new DateTimeOffset(dateTime.DateTime), new DateTimeOffset(dateTimeResult.DateTime));
+    }
+
+    private static void UtcDateTimeToTextTest(ITextSerializer textSerializer)
+    {
+        var dateTime = DateTimeModel.Instance();
+        var dateTimeText = textSerializer.ToText(dateTime);
+        var dateTimeResult = textSerializer.FromText<DateTimeModel>(dateTimeText)!;
+        Assert.Equal(new DateTimeOffset(dateTime.DateTime), new DateTimeOffset(dateTimeResult.DateTime));
     }
 }

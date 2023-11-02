@@ -1,3 +1,5 @@
+using Zaabee.Serializer.Types.UnitTest.Models;
+
 namespace Zaabee.Serializer.Types.UnitTest;
 
 public class EnumTest
@@ -5,7 +7,7 @@ public class EnumTest
     [Fact]
     public void DataContractEnumSerializeTest() =>
         EnumSerializeTest(new DataContractSerializer.Serializer());
-    
+
     [Fact]
     public void IniEnumSerializeTest() =>
         EnumSerializeTest(new Ini.Serializer());
@@ -73,17 +75,10 @@ public class EnumTest
     [Fact]
     public void ZeroFormatterEnumSerializeTest() =>
         EnumSerializeTest(new ZeroFormatter.Serializer());
-    
+
     private static void EnumSerializeTest(IBytesSerializer bytesSerializer)
     {
-        var color = Color.Blue;
-        Assert.Equal(color, bytesSerializer.FromBytes<Color>(bytesSerializer.ToBytes(color)));
+        var colorModel = EnumModel.Instance();
+        Assert.Equal(colorModel.Color, bytesSerializer.FromBytes<EnumModel>(bytesSerializer.ToBytes(colorModel))!.Color);
     }
-}
-
-public enum Color
-{
-    Red,
-    Green,
-    Blue
 }

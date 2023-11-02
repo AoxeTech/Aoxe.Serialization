@@ -1,3 +1,5 @@
+using Zaabee.Serializer.Types.UnitTest.Models;
+
 namespace Zaabee.Serializer.Types.UnitTest;
 
 public class GuidTest
@@ -5,7 +7,7 @@ public class GuidTest
     [Fact]
     public void DataContractGuidSerializeTest() =>
         GuidSerializeTest(new DataContractSerializer.Serializer());
-    
+
     [Fact]
     public void IniGuidSerializeTest() =>
         GuidSerializeTest(new Ini.Serializer());
@@ -73,10 +75,10 @@ public class GuidTest
     [Fact]
     public void ZeroFormatterGuidSerializeTest() =>
         GuidSerializeTest(new ZeroFormatter.Serializer());
-    
+
     private static void GuidSerializeTest(IBytesSerializer bytesSerializer)
     {
-        var guid = Guid.NewGuid();
-        Assert.Equal(guid, bytesSerializer.FromBytes<Guid>(bytesSerializer.ToBytes(guid)));
+        var guidModel = GuidModel.Instance();
+        Assert.Equal(guidModel.Id, bytesSerializer.FromBytes<GuidModel>(bytesSerializer.ToBytes(guidModel))!.Id);
     }
 }
