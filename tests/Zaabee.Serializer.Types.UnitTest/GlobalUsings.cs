@@ -8,4 +8,5 @@ global using MessagePack;
 global using ProtoBuf;
 global using Zaabee.Serializer.Abstractions;
 global using Xunit;
+global using Zaabee.Serializer.Types.UnitTest.Models;
 global using ZeroFormatter;
