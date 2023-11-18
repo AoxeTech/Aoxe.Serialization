@@ -79,7 +79,6 @@ Serializers can be divided into two categories (binary and text):
   - Toml
     - Tomlet
     - Tomlyn
-    - Tommy
 
 Though some serializers does not support stream or bytes, the zaabee serializers will supply the lack. And the text serializers will support text on this base.
 
