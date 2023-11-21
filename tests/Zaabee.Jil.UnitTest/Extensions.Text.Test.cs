@@ -9,7 +9,7 @@ public partial class ExtensionsTest
         var json = testModel.ToJson();
         var result = json.FromJson<TestModel>()!;
         
-        TestModelHelper.AssertEqual(testModel, result);
+        Assert.Equal(testModel, result);
     }
 
     [Fact]
@@ -29,7 +29,7 @@ public partial class ExtensionsTest
         var json = testModel.ToJson();
         var result = (TestModel)json.FromJson(typeof(TestModel))!;
         
-        TestModelHelper.AssertEqual((TestModel)testModel, result);
+        Assert.Equal((TestModel)testModel, result);
     }
 
     [Fact]

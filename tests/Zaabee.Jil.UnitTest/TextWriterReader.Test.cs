@@ -36,8 +36,8 @@ public partial class JilUnitTest
             reader.Close();
         }
 
-        TestModelHelper.AssertEqual(testModel, result0);
-        TestModelHelper.AssertEqual(testModel, result1);
+        Assert.Equal(testModel, result0);
+        Assert.Equal(testModel, result1);
 
         using (var fs = new FileStream("TextWriterReaderTest.json", FileMode.Create))
         {

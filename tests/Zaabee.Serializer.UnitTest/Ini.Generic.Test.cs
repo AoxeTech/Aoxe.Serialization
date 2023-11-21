@@ -12,6 +12,6 @@ public partial class SerializerTest
         var ini = serializer.ToIni(model);
         var deserializeModel = serializer.FromIni<TestModel>(ini)!;
         
-        TestModelHelper.AssertEqual(model, deserializeModel);
+        Assert.Equal(model, deserializeModel);
     }
 }

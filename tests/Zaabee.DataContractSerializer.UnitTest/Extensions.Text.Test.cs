@@ -8,7 +8,7 @@ public partial class ExtensionsTest
         var testModel = TestModelHelper.Create();
         var json = testModel.ToXml();
         var result = json.FromXml<TestModel>()!;
-        TestModelHelper.AssertEqual(testModel, result);
+        Assert.Equal(testModel, result);
     }
 
     [Fact]
@@ -27,7 +27,7 @@ public partial class ExtensionsTest
         object testModel = TestModelHelper.Create();
         var json = testModel.ToXml(typeof(TestModel));
         var result = (TestModel)json.FromXml(typeof(TestModel))!;
-        TestModelHelper.AssertEqual((TestModel)testModel, result);
+        Assert.Equal((TestModel)testModel, result);
     }
 
     [Fact]

@@ -9,7 +9,7 @@ public partial class ExtensionsTest
         var xml = testModel.ToXml();
         var result = xml.FromXml<TestModel>()!;
         
-        TestModelHelper.AssertEqual(testModel, result);
+        Assert.Equal(testModel, result);
     }
 
     [Fact]
@@ -29,7 +29,7 @@ public partial class ExtensionsTest
         var xml = testModel.ToXml(typeof(TestModel));
         var result = (TestModel)xml.FromXml(typeof(TestModel))!;
         
-        TestModelHelper.AssertEqual((TestModel)testModel, result);
+        Assert.Equal((TestModel)testModel, result);
     }
 
     [Fact]

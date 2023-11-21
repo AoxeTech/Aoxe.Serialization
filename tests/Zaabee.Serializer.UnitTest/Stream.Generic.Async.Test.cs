@@ -58,6 +58,6 @@ public partial class SerializerTest
         await serializerAsync.PackAsync(model, stream);
         var deserializeModel = (await serializerAsync.FromStreamAsync<TestModel>(stream))!;
 
-        TestModelHelper.AssertEqual(model, deserializeModel);
+        Assert.Equal(model, deserializeModel);
     }
 }

@@ -36,8 +36,8 @@ public partial class JilUnitTest
             reader.Close();
         }
 
-        TestModelHelper.AssertEqual((TestModel)testModel, result0);
-        TestModelHelper.AssertEqual((TestModel)testModel, result1);
+        Assert.Equal((TestModel)testModel, result0);
+        Assert.Equal((TestModel)testModel, result1);
     }
 
     [Fact]

@@ -16,6 +16,6 @@ public partial class SerializerTest
         var yaml = serializer.ToYaml(model);
         var deserializeModel = serializer.FromYaml<TestModel>(yaml)!;
         
-        TestModelHelper.AssertEqual(model, deserializeModel);
+        Assert.Equal(model, deserializeModel);
     }
 }

@@ -82,7 +82,7 @@ public partial class SerializerTest
         var deserializeModel0 = serializer.FromStream<TestModel>(stream0)!;
         var deserializeModel1 = serializer.FromStream<TestModel>(stream1)!;
 
-        TestModelHelper.AssertEqual(model, deserializeModel0);
-        TestModelHelper.AssertEqual(model, deserializeModel1);
+        Assert.Equal(model, deserializeModel0);
+        Assert.Equal(model, deserializeModel1);
     }
 }

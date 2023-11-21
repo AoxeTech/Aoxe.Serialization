@@ -9,7 +9,7 @@ public partial class ExtensionsTest
         var toml = testModel.ToToml();
         var result = toml.FromToml<TestModel>()!;
 
-        TestModelHelper.AssertEqual(testModel, result);
+        Assert.Equal(testModel, result);
     }
 
     [Fact]

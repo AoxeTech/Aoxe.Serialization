@@ -9,7 +9,7 @@ public partial class ExtensionsTest
         var bytes = testModel.ToBytes();
         var result = bytes.FromBytes<TestModel>()!;
 
-        TestModelHelper.AssertEqual(testModel, result);
+        Assert.Equal(testModel, result);
     }
 
     [Fact]
@@ -28,7 +28,7 @@ public partial class ExtensionsTest
         object testModel = TestModelHelper.Create();
         var bytes = testModel.ToBytes();
         var result = (TestModel)bytes.FromBytes(typeof(TestModel))!;
-        TestModelHelper.AssertEqual((TestModel)testModel, result);
+        Assert.Equal((TestModel)testModel, result);
     }
 
     [Fact]

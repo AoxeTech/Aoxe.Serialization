@@ -35,6 +35,6 @@ public partial class SerializerTest
         var json = serializer.ToJson(type, model);
         var deserializeModel = (TestModel)serializer.FromJson(type, json)!;
         
-        TestModelHelper.AssertEqual(model, deserializeModel);
+        Assert.Equal(model, deserializeModel);
     }
 }

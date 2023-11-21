@@ -9,7 +9,7 @@ public partial class ExtensionsTest
         var ini = testModel.ToIni() ?? throw new ArgumentNullException("testModel.ToIni()");
         var result = ini.FromIni<TestModel>()!;
         
-        TestModelHelper.AssertEqual(testModel, result);
+        Assert.Equal(testModel, result);
     }
 
     [Fact]
@@ -29,7 +29,7 @@ public partial class ExtensionsTest
         var ini = testModel.ToIni(typeof(TestModel)) ?? throw new ArgumentNullException("testModel.ToIni(typeof(TestModel))");
         var result = (TestModel)ini.FromIni(typeof(TestModel))!;
         
-        TestModelHelper.AssertEqual((TestModel)testModel, result);
+        Assert.Equal((TestModel)testModel, result);
     }
 
     [Fact]
@@ -49,7 +49,7 @@ public partial class ExtensionsTest
         var ini = testModel.ToIni();
         var result = (TestModel)ini.FromIni(typeof(TestModel))!;
         
-        TestModelHelper.AssertEqual((TestModel)testModel, result);
+        Assert.Equal((TestModel)testModel, result);
     }
 
     [Fact]
