@@ -11,9 +11,13 @@ public static partial class Utf8JsonHelper
     /// <param name="resolver"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static async ValueTask<TValue?> FromStreamAsync<TValue>(Stream? stream, IJsonFormatterResolver? resolver = null)
+    public static async ValueTask<TValue?> FromStreamAsync<TValue>(
+        Stream? stream,
+        IJsonFormatterResolver? resolver = null
+    )
     {
-        if (stream is null or { CanSeek: true, Length: 0 }) return default;
+        if (stream is null or { CanSeek: true, Length: 0 })
+            return default;
         var result = await JsonSerializer.DeserializeAsync<TValue>(stream, resolver);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
@@ -27,10 +31,14 @@ public static partial class Utf8JsonHelper
     /// <param name="stream"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static async ValueTask<object?> FromStreamAsync(Type type, Stream? stream,
-        IJsonFormatterResolver? resolver = null)
+    public static async ValueTask<object?> FromStreamAsync(
+        Type type,
+        Stream? stream,
+        IJsonFormatterResolver? resolver = null
+    )
     {
-        if (stream is null or { CanSeek: true, Length: 0 }) return default;
+        if (stream is null or { CanSeek: true, Length: 0 })
+            return default;
         var result = await JsonSerializer.NonGeneric.DeserializeAsync(type, stream, resolver);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;

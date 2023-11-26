@@ -6,14 +6,14 @@ public static partial class MemoryPackExtensions
         this Stream? stream,
         TValue? value,
         MemoryPackSerializerOptions? options = null,
-        CancellationToken cancellationToken = default) =>
-        MemoryPackHelper.PackAsync(value, stream, options, cancellationToken);
+        CancellationToken cancellationToken = default
+    ) => MemoryPackHelper.PackAsync(value, stream, options, cancellationToken);
 
     public static ValueTask PackByAsync(
         this Stream? stream,
         Type type,
         object? value,
         MemoryPackSerializerOptions? options = null,
-        CancellationToken cancellationToken = default) =>
-        MemoryPackHelper.PackAsync(type, value, stream, options, cancellationToken);
+        CancellationToken cancellationToken = default
+    ) => MemoryPackHelper.PackAsync(type, value, stream, options, cancellationToken);
 }

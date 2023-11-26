@@ -1,8 +1,6 @@
 namespace Zaabee.Serializer.Abstractions;
 
-public interface ITomlSerializer : ITextSerializer
-{
-}
+public interface ITomlSerializer : ITextSerializer { }
 
 public static class TomlSerializerExtension
 {

@@ -1,8 +1,6 @@
 namespace Zaabee.Serializer.Abstractions;
 
-public interface IXmlSerializer : ITextSerializer
-{
-}
+public interface IXmlSerializer : ITextSerializer { }
 
 public static class XmlSerializerExtension
 {

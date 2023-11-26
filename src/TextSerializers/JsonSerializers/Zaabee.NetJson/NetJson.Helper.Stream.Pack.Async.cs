@@ -10,9 +10,14 @@ public static partial class NetJsonHelper
     /// <param name="settings"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static async ValueTask PackAsync<TValue>(TValue? value, Stream? stream, NetJSONSettings? settings = null)
+    public static async ValueTask PackAsync<TValue>(
+        TValue? value,
+        Stream? stream,
+        NetJSONSettings? settings = null
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         await ToJson(value, settings).WriteToAsync(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
@@ -24,9 +29,14 @@ public static partial class NetJsonHelper
     /// <param name="stream"></param>
     /// <param name="settings"></param>
     /// <returns></returns>
-    public static async ValueTask PackAsync(object? value, Stream? stream, NetJSONSettings? settings = null)
+    public static async ValueTask PackAsync(
+        object? value,
+        Stream? stream,
+        NetJSONSettings? settings = null
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         await ToJson(value, settings).WriteToAsync(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
@@ -39,9 +49,15 @@ public static partial class NetJsonHelper
     /// <param name="stream"></param>
     /// <param name="settings"></param>
     /// <returns></returns>
-    public static async ValueTask PackAsync(Type type, object? value, Stream? stream, NetJSONSettings? settings = null)
+    public static async ValueTask PackAsync(
+        Type type,
+        object? value,
+        Stream? stream,
+        NetJSONSettings? settings = null
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         await ToJson(type, value, settings).WriteToAsync(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
     }

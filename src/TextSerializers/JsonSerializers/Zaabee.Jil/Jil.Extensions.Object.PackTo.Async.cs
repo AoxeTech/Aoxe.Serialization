@@ -7,14 +7,14 @@ public static partial class JilExtensions
         Stream? stream,
         Options? options = null,
         Encoding? encoding = null,
-        CancellationToken cancellationToken = default) =>
-        JilHelper.PackAsync(value, stream, options, encoding, cancellationToken);
+        CancellationToken cancellationToken = default
+    ) => JilHelper.PackAsync(value, stream, options, encoding, cancellationToken);
 
     public static ValueTask PackToAsync(
         this object? value,
         Stream? stream,
         Options? options = null,
         Encoding? encoding = null,
-        CancellationToken cancellationToken = default) =>
-        JilHelper.PackAsync(value, stream, options, encoding, cancellationToken);
+        CancellationToken cancellationToken = default
+    ) => JilHelper.PackAsync(value, stream, options, encoding, cancellationToken);
 }

@@ -13,9 +13,11 @@ public static partial class TomlynHelper
         object? value,
         Stream? stream = null,
         TomlModelOptions? tomlModelOptions = null,
-        Encoding? encoding = null)
+        Encoding? encoding = null
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         ToBytes(value, tomlModelOptions, encoding).WriteTo(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
     }

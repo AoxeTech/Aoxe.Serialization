@@ -15,13 +15,17 @@ public static partial class TomlynHelper
         Stream? stream,
         string? sourcePath = null,
         TomlModelOptions? tomlModelOptions = null,
-        Encoding? encoding = null) where TValue : class, new()
+        Encoding? encoding = null
+    )
+        where TValue : class, new()
     {
-        if (stream is null or { CanSeek: true, Length: 0 }) return default;
+        if (stream is null or { CanSeek: true, Length: 0 })
+            return default;
         var result = FromToml<TValue>(
             stream.ReadToEnd().GetString(encoding ?? Defaults.Utf8Encoding),
             sourcePath,
-            tomlModelOptions);
+            tomlModelOptions
+        );
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
     }
@@ -38,10 +42,16 @@ public static partial class TomlynHelper
         Stream? stream,
         string? sourcePath = null,
         TomlModelOptions? tomlModelOptions = null,
-        Encoding? encoding = null)
+        Encoding? encoding = null
+    )
     {
-        if (stream is null or { CanSeek: true, Length: 0 }) return default;
-        var result = FromToml(stream.ReadToEnd().GetString(encoding ?? Defaults.Utf8Encoding), sourcePath, tomlModelOptions);
+        if (stream is null or { CanSeek: true, Length: 0 })
+            return default;
+        var result = FromToml(
+            stream.ReadToEnd().GetString(encoding ?? Defaults.Utf8Encoding),
+            sourcePath,
+            tomlModelOptions
+        );
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
     }

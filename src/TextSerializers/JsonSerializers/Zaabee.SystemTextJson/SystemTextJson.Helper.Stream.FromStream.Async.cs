@@ -12,11 +12,19 @@ public static partial class SystemTextJsonHelper
     /// <param name="cancellationToken"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static async ValueTask<TValue?> FromStreamAsync<TValue>(Stream? stream, JsonSerializerOptions? options = null,
-        CancellationToken cancellationToken = default)
+    public static async ValueTask<TValue?> FromStreamAsync<TValue>(
+        Stream? stream,
+        JsonSerializerOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
     {
-        if (stream is null or { CanSeek: true, Length: 0 }) return default;
-        var result = await JsonSerializer.DeserializeAsync<TValue>(stream, options, cancellationToken);
+        if (stream is null or { CanSeek: true, Length: 0 })
+            return default;
+        var result = await JsonSerializer.DeserializeAsync<TValue>(
+            stream,
+            options,
+            cancellationToken
+        );
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
     }
@@ -30,11 +38,21 @@ public static partial class SystemTextJsonHelper
     /// <param name="options"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async ValueTask<object?> FromStreamAsync(Type type, Stream? stream, JsonSerializerOptions? options = null,
-        CancellationToken cancellationToken = default)
+    public static async ValueTask<object?> FromStreamAsync(
+        Type type,
+        Stream? stream,
+        JsonSerializerOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
     {
-        if (stream is null or { CanSeek: true, Length: 0 }) return default;
-        var result = await JsonSerializer.DeserializeAsync(stream, type, options, cancellationToken);
+        if (stream is null or { CanSeek: true, Length: 0 })
+            return default;
+        var result = await JsonSerializer.DeserializeAsync(
+            stream,
+            type,
+            options,
+            cancellationToken
+        );
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
     }

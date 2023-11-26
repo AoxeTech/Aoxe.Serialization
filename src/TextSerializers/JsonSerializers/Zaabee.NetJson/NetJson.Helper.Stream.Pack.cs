@@ -11,7 +11,8 @@ public static partial class NetJsonHelper
     /// <typeparam name="TValue"></typeparam>
     public static void Pack<TValue>(TValue? value, Stream? stream, NetJSONSettings? settings = null)
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         ToJson(value, settings).WriteTo(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
@@ -24,7 +25,8 @@ public static partial class NetJsonHelper
     /// <param name="settings"></param>
     public static void Pack(object? value, Stream? stream, NetJSONSettings? settings = null)
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         ToJson(value, settings).WriteTo(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
@@ -36,9 +38,15 @@ public static partial class NetJsonHelper
     /// <param name="value"></param>
     /// <param name="stream"></param>
     /// <param name="settings"></param>
-    public static void Pack(Type type, object? value, Stream? stream, NetJSONSettings? settings = null)
+    public static void Pack(
+        Type type,
+        object? value,
+        Stream? stream,
+        NetJSONSettings? settings = null
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         ToJson(type, value, settings).WriteTo(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
     }

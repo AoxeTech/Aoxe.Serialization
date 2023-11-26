@@ -6,7 +6,8 @@ public static partial class TomlynExtensions
         this byte[]? bytes,
         string? sourcePath = null,
         TomlModelOptions? tomlModelOptions = null,
-        Encoding? encoding = null)
+        Encoding? encoding = null
+    )
         where TValue : class, new() =>
         TomlynHelper.FromBytes<TValue>(bytes, sourcePath, tomlModelOptions, encoding);
 
@@ -14,6 +15,6 @@ public static partial class TomlynExtensions
         this byte[]? bytes,
         string? sourcePath = null,
         TomlModelOptions? tomlModelOptions = null,
-        Encoding? encoding = null) =>
-        TomlynHelper.FromBytes(bytes, sourcePath, tomlModelOptions, encoding);
+        Encoding? encoding = null
+    ) => TomlynHelper.FromBytes(bytes, sourcePath, tomlModelOptions, encoding);
 }

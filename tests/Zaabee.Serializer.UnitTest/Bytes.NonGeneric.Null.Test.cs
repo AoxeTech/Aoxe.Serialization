@@ -7,12 +7,10 @@ public partial class SerializerTest
         BytesNonGenericNullTest(new DataContractSerializer.Serializer());
 
     [Fact]
-    public void IniBytesNonGenericNullTest() =>
-        BytesNonGenericNullTest(new Ini.Serializer());
+    public void IniBytesNonGenericNullTest() => BytesNonGenericNullTest(new Ini.Serializer());
 
     [Fact]
-    public void JilBytesNonGenericNullTest() =>
-        BytesNonGenericNullTest(new Jil.Serializer());
+    public void JilBytesNonGenericNullTest() => BytesNonGenericNullTest(new Jil.Serializer());
 
 #if !NET48
     [Fact]
@@ -55,16 +53,14 @@ public partial class SerializerTest
         BytesNonGenericNullTest(new SystemTextJson.Serializer());
 
     [Fact]
-    public void TomletBytesNonGenericNullTest() =>
-        BytesNonGenericNullTest(new Tomlet.Serializer());
+    public void TomletBytesNonGenericNullTest() => BytesNonGenericNullTest(new Tomlet.Serializer());
 
     [Fact]
     public void Utf8JsonBytesNonGenericNullTest() =>
         BytesNonGenericNullTest(new Utf8Json.Serializer());
 
     [Fact]
-    public void XmlBytesNonGenericNullTest() =>
-        BytesNonGenericNullTest(new Xml.Serializer());
+    public void XmlBytesNonGenericNullTest() => BytesNonGenericNullTest(new Xml.Serializer());
 
     [Fact]
     public void YamlDotNetBytesNonGenericNullTest() =>

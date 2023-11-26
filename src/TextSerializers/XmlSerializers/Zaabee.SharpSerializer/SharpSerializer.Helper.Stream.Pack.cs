@@ -10,7 +10,8 @@ public static partial class SharpSerializerHelper
     /// <typeparam name="TValue"></typeparam>
     public static void Pack<TValue>(TValue? value, Stream? stream)
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         Pack(typeof(TValue), value, stream);
     }
 
@@ -22,7 +23,8 @@ public static partial class SharpSerializerHelper
     /// <param name="stream"></param>
     public static void Pack(Type type, object? value, Stream? stream)
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         var serializer = new Polenter.Serialization.SharpSerializer(_defaultSettings);
         serializer.Serialize(value, stream);
         stream.TrySeek(0, SeekOrigin.Begin);

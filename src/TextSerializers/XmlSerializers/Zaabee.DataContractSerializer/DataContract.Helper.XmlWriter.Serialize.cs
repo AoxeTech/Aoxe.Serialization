@@ -10,7 +10,8 @@ public static partial class DataContractHelper
     /// <typeparam name="TValue"></typeparam>
     public static void Serialize<TValue>(XmlWriter? xmlWriter, TValue? value)
     {
-        if (xmlWriter is null) return;
+        if (xmlWriter is null)
+            return;
         Serialize(typeof(TValue), xmlWriter, value);
     }
 
@@ -22,7 +23,8 @@ public static partial class DataContractHelper
     /// <param name="value"></param>
     public static void Serialize(Type type, XmlWriter? xmlWriter, object? value)
     {
-        if (xmlWriter is null) return;
+        if (xmlWriter is null)
+            return;
         GetSerializer(type).WriteObject(xmlWriter, value);
     }
 }

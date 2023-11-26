@@ -7,8 +7,7 @@ public partial class SerializerTest
         XmlGenericTest(new DataContractSerializer.Serializer());
 
     [Fact]
-    public void XmlXmlGenericTest() =>
-        XmlGenericTest(new Xml.Serializer());
+    public void XmlXmlGenericTest() => XmlGenericTest(new Xml.Serializer());
 
     private static void XmlGenericTest(IXmlSerializer serializer)
     {

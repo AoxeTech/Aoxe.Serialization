@@ -9,7 +9,10 @@ public partial interface IStreamSerializerAsync
     /// <param name="cancellationToken"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    ValueTask<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default);
+    ValueTask<TValue?> FromStreamAsync<TValue>(
+        Stream? stream,
+        CancellationToken cancellationToken = default
+    );
 
     /// <summary>
     /// If the stream is null or empty will return the default value of the type.
@@ -18,5 +21,9 @@ public partial interface IStreamSerializerAsync
     /// <param name="stream"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    ValueTask<object?> FromStreamAsync(Type type, Stream? stream, CancellationToken cancellationToken = default);
+    ValueTask<object?> FromStreamAsync(
+        Type type,
+        Stream? stream,
+        CancellationToken cancellationToken = default
+    );
 }

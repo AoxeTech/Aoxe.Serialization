@@ -3,12 +3,10 @@ namespace Zaabee.Serializer.UnitTest;
 public partial class SerializerTest
 {
     [Fact]
-    public void SharpYamlYamlGenericNullTest() =>
-        YamlGenericNullTest(new SharpYaml.Serializer());
+    public void SharpYamlYamlGenericNullTest() => YamlGenericNullTest(new SharpYaml.Serializer());
 
     [Fact]
-    public void YamlDotNetYamlGenericNullTest() =>
-        YamlGenericNullTest(new YamlDotNet.Serializer());
+    public void YamlDotNetYamlGenericNullTest() => YamlGenericNullTest(new YamlDotNet.Serializer());
 
     private static void YamlGenericNullTest(IYamlSerializer serializer)
     {

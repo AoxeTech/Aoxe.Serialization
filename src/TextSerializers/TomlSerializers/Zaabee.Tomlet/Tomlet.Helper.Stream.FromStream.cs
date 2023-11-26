@@ -13,12 +13,15 @@ public static partial class TomletHelper
     public static TValue? FromStream<TValue>(
         Stream? stream,
         TomlSerializerOptions? tomlSerializerOptions = null,
-        Encoding? encoding = null)
+        Encoding? encoding = null
+    )
     {
-        if (stream is null or { CanSeek: true, Length: 0 }) return default;
+        if (stream is null or { CanSeek: true, Length: 0 })
+            return default;
         var result = FromToml<TValue>(
             stream.ReadToEnd().GetString(encoding ?? Defaults.Utf8Encoding),
-            tomlSerializerOptions);
+            tomlSerializerOptions
+        );
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
     }
@@ -35,10 +38,16 @@ public static partial class TomletHelper
         Type type,
         Stream? stream,
         TomlSerializerOptions? tomlSerializerOptions = null,
-        Encoding? encoding = null)
+        Encoding? encoding = null
+    )
     {
-        if (stream is null or { CanSeek: true, Length: 0 }) return default;
-        var result = FromToml(type, stream.ReadToEnd().GetString(encoding ?? Defaults.Utf8Encoding), tomlSerializerOptions);
+        if (stream is null or { CanSeek: true, Length: 0 })
+            return default;
+        var result = FromToml(
+            type,
+            stream.ReadToEnd().GetString(encoding ?? Defaults.Utf8Encoding),
+            tomlSerializerOptions
+        );
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
     }

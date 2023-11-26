@@ -20,10 +20,14 @@ public static partial class MsgPackHelper
     /// 	<typeparamref name="TValue" /> is not serializable even if it can be deserialized.
     /// </exception>
     /// <seealso cref="P:Capabilities" />
-    public static async ValueTask PackAsync<TValue>(TValue? value, Stream? stream,
-        CancellationToken cancellationToken = default)
+    public static async ValueTask PackAsync<TValue>(
+        TValue? value,
+        Stream? stream,
+        CancellationToken cancellationToken = default
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         await MessagePackSerializer.Get<TValue>().PackAsync(stream, value, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
@@ -44,11 +48,16 @@ public static partial class MsgPackHelper
     /// 	Failed to serialize object.
     /// </exception>
     /// <seealso cref="P:Capabilities" />
-    public static async ValueTask PackAsync(Type type, object? value, Stream? stream,
+    public static async ValueTask PackAsync(
+        Type type,
+        object? value,
+        Stream? stream,
         PackerCompatibilityOptions packerCompatibilityOptions = PackerCompatibilityOptions.None,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken = default
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         var packer = Packer.Create(stream, packerCompatibilityOptions);
         await MessagePackSerializer.Get(type).PackToAsync(packer, value, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);

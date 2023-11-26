@@ -9,7 +9,10 @@ public static partial class Utf8JsonHelper
     /// <param name="resolver"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? FromBytes<TValue>(byte[]? bytes, IJsonFormatterResolver? resolver = null) =>
+    public static TValue? FromBytes<TValue>(
+        byte[]? bytes,
+        IJsonFormatterResolver? resolver = null
+    ) =>
         bytes is null || bytes.Length is 0
             ? default
             : JsonSerializer.Deserialize<TValue>(bytes, resolver);
@@ -21,7 +24,11 @@ public static partial class Utf8JsonHelper
     /// <param name="bytes"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static object? FromBytes(Type type, byte[]? bytes, IJsonFormatterResolver? resolver = null) =>
+    public static object? FromBytes(
+        Type type,
+        byte[]? bytes,
+        IJsonFormatterResolver? resolver = null
+    ) =>
         bytes is null || bytes.Length is 0
             ? default
             : JsonSerializer.NonGeneric.Deserialize(type, bytes, resolver);

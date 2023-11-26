@@ -21,8 +21,9 @@ public static partial class DataContractHelper
     /// <param name="xmlReader"></param>
     /// <param name="verifyObjectName"></param>
     /// <returns></returns>
-    public static object? Deserialize(Type type, XmlReader? xmlReader, bool verifyObjectName = true) =>
-        xmlReader is null
-            ? default
-            : GetSerializer(type).ReadObject(xmlReader, verifyObjectName);
+    public static object? Deserialize(
+        Type type,
+        XmlReader? xmlReader,
+        bool verifyObjectName = true
+    ) => xmlReader is null ? default : GetSerializer(type).ReadObject(xmlReader, verifyObjectName);
 }

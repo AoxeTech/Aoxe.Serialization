@@ -28,6 +28,9 @@ public static partial class Utf8JsonHelper
     /// <param name="value"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static string ToJson(Type type, object? value, IJsonFormatterResolver? resolver = null) =>
-        JsonSerializer.NonGeneric.ToJsonString(type, value, resolver);
+    public static string ToJson(
+        Type type,
+        object? value,
+        IJsonFormatterResolver? resolver = null
+    ) => JsonSerializer.NonGeneric.ToJsonString(type, value, resolver);
 }

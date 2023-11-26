@@ -14,8 +14,8 @@ public static partial class IniParserHelper
         TValue? value,
         Stream? stream = null,
         Encoding? encoding = null,
-        CancellationToken cancellationToken = default) =>
-        PackAsync(typeof(TValue), value, stream, encoding, cancellationToken);
+        CancellationToken cancellationToken = default
+    ) => PackAsync(typeof(TValue), value, stream, encoding, cancellationToken);
 
     /// <summary>
     /// Serialize the object to ini and write it to the stream.
@@ -28,9 +28,11 @@ public static partial class IniParserHelper
         object? value,
         Stream? stream = null,
         Encoding? encoding = null,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken = default
+    )
     {
-        if (stream is null || value is null) return default;
+        if (stream is null || value is null)
+            return default;
         return PackAsync(value.GetType(), value, stream, encoding, cancellationToken);
     }
 
@@ -47,9 +49,11 @@ public static partial class IniParserHelper
         object? value,
         Stream? stream = null,
         Encoding? encoding = null,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken = default
+    )
     {
-        if (stream is null || value is null) return;
+        if (stream is null || value is null)
+            return;
         var data = new IniData();
         var properties = type.GetProperties();
         foreach (var property in properties)

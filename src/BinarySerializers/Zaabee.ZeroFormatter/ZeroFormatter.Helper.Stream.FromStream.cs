@@ -10,7 +10,8 @@ public static partial class ZeroFormatterHelper
     /// <returns></returns>
     public static TValue? FromStream<TValue>(Stream? stream)
     {
-        if (stream is null or { CanSeek: true, Length: 0 }) return default;
+        if (stream is null or { CanSeek: true, Length: 0 })
+            return default;
         var result = ZeroFormatterSerializer.Deserialize<TValue>(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
@@ -24,7 +25,8 @@ public static partial class ZeroFormatterHelper
     /// <returns></returns>
     public static object? FromStream(Type type, Stream? stream)
     {
-        if (stream is null or { CanSeek: true, Length: 0 }) return default;
+        if (stream is null or { CanSeek: true, Length: 0 })
+            return default;
         var result = ZeroFormatterSerializer.NonGeneric.Deserialize(type, stream);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;

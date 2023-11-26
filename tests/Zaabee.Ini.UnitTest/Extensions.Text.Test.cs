@@ -26,7 +26,9 @@ public partial class ExtensionsTest
     public void NonGenericTypeIniTest()
     {
         object testModel = TestModelHelper.Create();
-        var ini = testModel.ToIni(typeof(TestModel)) ?? throw new ArgumentNullException("testModel.ToIni(typeof(TestModel))");
+        var ini =
+            testModel.ToIni(typeof(TestModel))
+            ?? throw new ArgumentNullException("testModel.ToIni(typeof(TestModel))");
         var result = (TestModel)ini.FromIni(typeof(TestModel))!;
 
         Assert.Equal((TestModel)testModel, result);

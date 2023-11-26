@@ -12,7 +12,8 @@ public static partial class TomlynHelper
     public static MemoryStream ToStream(
         object? value,
         TomlModelOptions? tomlModelOptions = null,
-        Encoding? encoding = null)
+        Encoding? encoding = null
+    )
     {
         var ms = new MemoryStream();
         Pack(value, ms, tomlModelOptions, encoding);

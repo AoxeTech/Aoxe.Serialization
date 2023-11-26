@@ -25,9 +25,10 @@ public partial class ExtensionsTest
         // 使用反序列化后的对象
         if (deserializedObject != null)
         {
-            Console.WriteLine($"Deserialized Object: Id = {deserializedObject.Id}, Name = {deserializedObject.Name}");
+            Console.WriteLine(
+                $"Deserialized Object: Id = {deserializedObject.Id}, Name = {deserializedObject.Name}"
+            );
         }
-
 
         var testModel = TestModelHelper.Create();
         var bytes = testModel.ToBytes();

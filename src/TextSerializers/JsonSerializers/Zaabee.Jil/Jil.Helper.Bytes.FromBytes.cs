@@ -10,7 +10,11 @@ public static partial class JilHelper
     /// <param name="encoding"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? FromBytes<TValue>(byte[]? bytes, Options? options = null, Encoding? encoding = null) =>
+    public static TValue? FromBytes<TValue>(
+        byte[]? bytes,
+        Options? options = null,
+        Encoding? encoding = null
+    ) =>
         bytes is null || bytes.Length is 0
             ? default
             : FromJson<TValue>(bytes.GetString(encoding ?? Defaults.Utf8Encoding), options);
@@ -23,7 +27,12 @@ public static partial class JilHelper
     /// <param name="options"></param>
     /// <param name="encoding"></param>
     /// <returns></returns>
-    public static object? FromBytes(Type type, byte[]? bytes, Options? options = null, Encoding? encoding = null) =>
+    public static object? FromBytes(
+        Type type,
+        byte[]? bytes,
+        Options? options = null,
+        Encoding? encoding = null
+    ) =>
         bytes is null || bytes.Length is 0
             ? default
             : FromJson(type, bytes.GetString(encoding ?? Defaults.Utf8Encoding), options);

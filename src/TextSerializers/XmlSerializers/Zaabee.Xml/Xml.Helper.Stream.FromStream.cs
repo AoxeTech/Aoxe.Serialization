@@ -21,7 +21,8 @@ public static partial class XmlHelper
     /// <returns></returns>
     public static object? FromStream(Type type, Stream? stream)
     {
-        if (stream is null or { CanSeek: true, Length: 0 }) return default;
+        if (stream is null or { CanSeek: true, Length: 0 })
+            return default;
         var result = GetSerializer(type).Deserialize(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;

@@ -7,16 +7,13 @@ public partial class SerializerTest
         TextNonGenericNullTest(new DataContractSerializer.Serializer());
 
     [Fact]
-    public void IniTextNonGenericNullTest() =>
-        TextNonGenericNullTest(new Ini.Serializer());
+    public void IniTextNonGenericNullTest() => TextNonGenericNullTest(new Ini.Serializer());
 
     [Fact]
-    public void JilTextNonGenericNullTest() =>
-        TextNonGenericNullTest(new Jil.Serializer());
+    public void JilTextNonGenericNullTest() => TextNonGenericNullTest(new Jil.Serializer());
 
     [Fact]
-    public void NetJsonTextNonGenericNullTest() =>
-        TextNonGenericNullTest(new NetJson.Serializer());
+    public void NetJsonTextNonGenericNullTest() => TextNonGenericNullTest(new NetJson.Serializer());
 
     [Fact]
     public void NewtonsoftJsonTextNonGenericNullTest() =>
@@ -37,16 +34,14 @@ public partial class SerializerTest
         TextNonGenericNullTest(new SystemTextJson.Serializer());
 
     [Fact]
-    public void TomletTextNonGenericNullTest() =>
-        TextNonGenericNullTest(new Tomlet.Serializer());
+    public void TomletTextNonGenericNullTest() => TextNonGenericNullTest(new Tomlet.Serializer());
 
     [Fact]
     public void Utf8JsonTextNonGenericNullTest() =>
         TextNonGenericNullTest(new Utf8Json.Serializer());
 
     [Fact]
-    public void XmlTextNonGenericNullTest() =>
-        TextNonGenericNullTest(new Xml.Serializer());
+    public void XmlTextNonGenericNullTest() => TextNonGenericNullTest(new Xml.Serializer());
 
     [Fact]
     public void YamlDotNetTextNonGenericNullTest() =>

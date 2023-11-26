@@ -12,10 +12,16 @@ public static partial class JilHelper
     /// <param name="cancellationToken"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static async ValueTask PackAsync<TValue>(TValue? value, Stream? stream = null, Options? options = null,
-        Encoding? encoding = null, CancellationToken cancellationToken = default)
+    public static async ValueTask PackAsync<TValue>(
+        TValue? value,
+        Stream? stream = null,
+        Options? options = null,
+        Encoding? encoding = null,
+        CancellationToken cancellationToken = default
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         await ToBytes(value, options, encoding).WriteToAsync(stream, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
@@ -29,10 +35,16 @@ public static partial class JilHelper
     /// <param name="encoding"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async ValueTask PackAsync(object? value, Stream? stream = null, Options? options = null,
-        Encoding? encoding = null, CancellationToken cancellationToken = default)
+    public static async ValueTask PackAsync(
+        object? value,
+        Stream? stream = null,
+        Options? options = null,
+        Encoding? encoding = null,
+        CancellationToken cancellationToken = default
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         await ToBytes(value, options, encoding).WriteToAsync(stream, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
     }

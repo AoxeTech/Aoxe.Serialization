@@ -12,7 +12,8 @@ public static partial class TomletHelper
     public static MemoryStream ToStream<TValue>(
         TValue? value,
         TomlSerializerOptions? tomlSerializerOptions = null,
-        Encoding? encoding = null)
+        Encoding? encoding = null
+    )
     {
         var ms = new MemoryStream();
         Pack(value, ms, tomlSerializerOptions, encoding);
@@ -31,7 +32,8 @@ public static partial class TomletHelper
         Type type,
         object? value,
         TomlSerializerOptions? tomlSerializerOptions = null,
-        Encoding? encoding = null)
+        Encoding? encoding = null
+    )
     {
         var ms = new MemoryStream();
         Pack(type, value, ms, tomlSerializerOptions, encoding);

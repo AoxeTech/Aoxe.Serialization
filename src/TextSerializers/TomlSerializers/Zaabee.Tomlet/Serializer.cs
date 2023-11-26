@@ -5,7 +5,10 @@ public class Serializer : ITomlSerializer, IStreamSerializerAsync
     private readonly TomlSerializerOptions? _tomlSerializerOptions;
     private readonly Encoding? _encoding;
 
-    public Serializer(TomlSerializerOptions? tomlSerializerOptions = null, Encoding? encoding = null)
+    public Serializer(
+        TomlSerializerOptions? tomlSerializerOptions = null,
+        Encoding? encoding = null
+    )
     {
         _tomlSerializerOptions = tomlSerializerOptions;
         _encoding = encoding;
@@ -53,15 +56,42 @@ public class Serializer : ITomlSerializer, IStreamSerializerAsync
     public string ToText(Type type, object? value) =>
         TomletHelper.ToToml(type, value, _tomlSerializerOptions);
 
-    public ValueTask<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = new CancellationToken()) =>
-        TomletHelper.FromStreamAsync<TValue>(stream, _tomlSerializerOptions, _encoding, cancellationToken);
+    public ValueTask<TValue?> FromStreamAsync<TValue>(
+        Stream? stream,
+        CancellationToken cancellationToken = new CancellationToken()
+    ) =>
+        TomletHelper.FromStreamAsync<TValue>(
+            stream,
+            _tomlSerializerOptions,
+            _encoding,
+            cancellationToken
+        );
 
-    public ValueTask<object?> FromStreamAsync(Type type, Stream? stream, CancellationToken cancellationToken = new CancellationToken()) =>
-        TomletHelper.FromStreamAsync(type, stream, _tomlSerializerOptions, _encoding, cancellationToken);
+    public ValueTask<object?> FromStreamAsync(
+        Type type,
+        Stream? stream,
+        CancellationToken cancellationToken = new CancellationToken()
+    ) =>
+        TomletHelper.FromStreamAsync(
+            type,
+            stream,
+            _tomlSerializerOptions,
+            _encoding,
+            cancellationToken
+        );
 
-    public ValueTask PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = new CancellationToken()) =>
+    public ValueTask PackAsync<TValue>(
+        TValue? value,
+        Stream? stream,
+        CancellationToken cancellationToken = new CancellationToken()
+    ) =>
         TomletHelper.PackAsync(value, stream, _tomlSerializerOptions, _encoding, cancellationToken);
 
-    public ValueTask PackAsync(Type type, object? value, Stream? stream, CancellationToken cancellationToken = new CancellationToken()) =>
+    public ValueTask PackAsync(
+        Type type,
+        object? value,
+        Stream? stream,
+        CancellationToken cancellationToken = new CancellationToken()
+    ) =>
         TomletHelper.PackAsync(value, stream, _tomlSerializerOptions, _encoding, cancellationToken);
 }

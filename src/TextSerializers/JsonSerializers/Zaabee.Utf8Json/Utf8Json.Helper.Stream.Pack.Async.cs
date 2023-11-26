@@ -10,9 +10,14 @@ public static partial class Utf8JsonHelper
     /// <param name="resolver"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static async ValueTask PackAsync<TValue>(TValue? value, Stream? stream, IJsonFormatterResolver? resolver = null)
+    public static async ValueTask PackAsync<TValue>(
+        TValue? value,
+        Stream? stream,
+        IJsonFormatterResolver? resolver = null
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         await JsonSerializer.SerializeAsync(stream, value, resolver);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
@@ -25,9 +30,15 @@ public static partial class Utf8JsonHelper
     /// <param name="stream"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static async ValueTask PackAsync(Type type, object? value, Stream? stream, IJsonFormatterResolver? resolver = null)
+    public static async ValueTask PackAsync(
+        Type type,
+        object? value,
+        Stream? stream,
+        IJsonFormatterResolver? resolver = null
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         await JsonSerializer.NonGeneric.SerializeAsync(type, stream, value, resolver);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
@@ -39,9 +50,14 @@ public static partial class Utf8JsonHelper
     /// <param name="stream"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static async ValueTask PackAsync(object? value, Stream? stream, IJsonFormatterResolver? resolver = null)
+    public static async ValueTask PackAsync(
+        object? value,
+        Stream? stream,
+        IJsonFormatterResolver? resolver = null
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         await JsonSerializer.NonGeneric.SerializeAsync(stream, value, resolver);
         stream.TrySeek(0, SeekOrigin.Begin);
     }

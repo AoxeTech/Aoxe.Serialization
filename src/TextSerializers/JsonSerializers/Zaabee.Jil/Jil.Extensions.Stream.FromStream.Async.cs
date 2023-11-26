@@ -6,13 +6,14 @@ public static partial class JilExtensions
         this Stream? stream,
         Options? options = null,
         Encoding? encoding = null,
-        CancellationToken cancellationToken = default) =>
-        JilHelper.FromStreamAsync<TValue>(stream, options, encoding, cancellationToken);
+        CancellationToken cancellationToken = default
+    ) => JilHelper.FromStreamAsync<TValue>(stream, options, encoding, cancellationToken);
 
     public static ValueTask<object?> FromStreamAsync(
-        this Stream? stream, Type type,
+        this Stream? stream,
+        Type type,
         Options? options = null,
         Encoding? encoding = null,
-        CancellationToken cancellationToken = default) =>
-        JilHelper.FromStreamAsync(type, stream, options, encoding, cancellationToken);
+        CancellationToken cancellationToken = default
+    ) => JilHelper.FromStreamAsync(type, stream, options, encoding, cancellationToken);
 }

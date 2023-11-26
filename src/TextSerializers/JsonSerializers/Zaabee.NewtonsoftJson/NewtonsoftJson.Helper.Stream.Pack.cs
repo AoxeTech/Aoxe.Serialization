@@ -10,10 +10,15 @@ public static partial class NewtonsoftJsonHelper
     /// <param name="settings"></param>
     /// <param name="encoding"></param>
     /// <typeparam name="TValue"></typeparam>
-    public static void Pack<TValue>(TValue? value, Stream? stream, JsonSerializerSettings? settings = null,
-        Encoding? encoding = null)
+    public static void Pack<TValue>(
+        TValue? value,
+        Stream? stream,
+        JsonSerializerSettings? settings = null,
+        Encoding? encoding = null
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         ToBytes(value, settings, encoding ?? Defaults.Utf8Encoding).WriteTo(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
@@ -26,10 +31,16 @@ public static partial class NewtonsoftJsonHelper
     /// <param name="stream"></param>
     /// <param name="settings"></param>
     /// <param name="encoding"></param>
-    public static void Pack(Type type, object? value, Stream? stream, JsonSerializerSettings? settings = null,
-        Encoding? encoding = null)
+    public static void Pack(
+        Type type,
+        object? value,
+        Stream? stream,
+        JsonSerializerSettings? settings = null,
+        Encoding? encoding = null
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         ToBytes(type, value, settings, encoding ?? Defaults.Utf8Encoding).WriteTo(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
     }

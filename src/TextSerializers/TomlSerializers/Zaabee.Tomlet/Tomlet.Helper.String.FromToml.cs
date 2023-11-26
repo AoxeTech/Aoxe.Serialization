@@ -11,13 +11,14 @@ public static partial class TomletHelper
     /// <returns></returns>
     public static TValue? FromToml<TValue>(
         string? toml,
-        TomlSerializerOptions? tomlSerializerOptions = null) =>
+        TomlSerializerOptions? tomlSerializerOptions = null
+    ) =>
         string.IsNullOrWhiteSpace(toml)
             ? default
             : TomletMain.To<TValue>(toml, tomlSerializerOptions);
 
     /// <summary>
-    /// Deserialize the toml to an object of the <paramref name="type"/>. 
+    /// Deserialize the toml to an object of the <paramref name="type"/>.
     /// </summary>
     /// <param name="type"></param>
     /// <param name="toml"></param>
@@ -26,7 +27,8 @@ public static partial class TomletHelper
     public static object? FromToml(
         Type type,
         string? toml,
-        TomlSerializerOptions? tomlSerializerOptions = null) =>
+        TomlSerializerOptions? tomlSerializerOptions = null
+    ) =>
         string.IsNullOrWhiteSpace(toml)
             ? default
             : TomletMain.To(type, new TomlParser().Parse(toml), tomlSerializerOptions);

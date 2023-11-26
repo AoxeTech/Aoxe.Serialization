@@ -10,7 +10,8 @@ public static partial class SharpSerializerHelper
     /// <returns></returns>
     public static TValue? FromXml<TValue>(string? xml)
     {
-        if (string.IsNullOrWhiteSpace(xml)) return default;
+        if (string.IsNullOrWhiteSpace(xml))
+            return default;
         using var ms = Encoding.UTF8.GetBytes(xml).ToMemoryStream();
         return FromStream<TValue>(ms);
     }
@@ -23,7 +24,8 @@ public static partial class SharpSerializerHelper
     /// <returns></returns>
     public static object? FromXml(Type type, string? xml)
     {
-        if (string.IsNullOrWhiteSpace(xml)) return default;
+        if (string.IsNullOrWhiteSpace(xml))
+            return default;
         using var ms = Encoding.UTF8.GetBytes(xml).ToMemoryStream();
         return FromStream(type, ms);
     }

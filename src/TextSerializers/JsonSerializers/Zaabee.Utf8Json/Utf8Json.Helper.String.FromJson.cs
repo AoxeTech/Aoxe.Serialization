@@ -21,7 +21,11 @@ public static partial class Utf8JsonHelper
     /// <param name="json"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static object? FromJson(Type type, string? json, IJsonFormatterResolver? resolver = null) =>
+    public static object? FromJson(
+        Type type,
+        string? json,
+        IJsonFormatterResolver? resolver = null
+    ) =>
         string.IsNullOrWhiteSpace(json)
             ? default
             : JsonSerializer.NonGeneric.Deserialize(type, json, resolver);

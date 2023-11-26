@@ -12,12 +12,18 @@ public static partial class NetJsonHelper
     /// <param name="cancellationToken"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static async ValueTask<TValue?> FromStreamAsync<TValue>(Stream? stream,
+    public static async ValueTask<TValue?> FromStreamAsync<TValue>(
+        Stream? stream,
         NetJSONSettings? settings = null,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken = default
+    )
     {
-        if (stream is null or { CanSeek: true, Length: 0 }) return default;
-        var result = FromJson<TValue>(await stream.ReadStringAsync(cancellationToken: cancellationToken), settings);
+        if (stream is null or { CanSeek: true, Length: 0 })
+            return default;
+        var result = FromJson<TValue>(
+            await stream.ReadStringAsync(cancellationToken: cancellationToken),
+            settings
+        );
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
     }
@@ -31,13 +37,20 @@ public static partial class NetJsonHelper
     /// <param name="settings"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async ValueTask<object?> FromStreamAsync(Type type,
+    public static async ValueTask<object?> FromStreamAsync(
+        Type type,
         Stream? stream,
         NetJSONSettings? settings = null,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken = default
+    )
     {
-        if (stream is null or { CanSeek: true, Length: 0 }) return default;
-        var result = FromJson(type, await stream.ReadStringAsync(cancellationToken: cancellationToken), settings);
+        if (stream is null or { CanSeek: true, Length: 0 })
+            return default;
+        var result = FromJson(
+            type,
+            await stream.ReadStringAsync(cancellationToken: cancellationToken),
+            settings
+        );
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
     }

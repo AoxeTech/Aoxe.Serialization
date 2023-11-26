@@ -20,7 +20,8 @@ public static partial class MsgPackHelper
     /// <seealso cref="P:Capabilities" />
     public static void Pack<TValue>(TValue? value, Stream? stream)
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         MessagePackSerializer.Get<TValue>().Pack(stream, value);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
@@ -35,7 +36,8 @@ public static partial class MsgPackHelper
     /// <exception cref="T:System.Runtime.Serialization.SerializationException">Failed to serialize <paramref name="value" />. </exception>
     public static void Pack(Type type, object? value, Stream? stream)
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         MessagePackSerializer.Get(type).Pack(stream, value);
         stream.TrySeek(0, SeekOrigin.Begin);
     }

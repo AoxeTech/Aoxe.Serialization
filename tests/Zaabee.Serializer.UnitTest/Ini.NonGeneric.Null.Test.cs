@@ -3,8 +3,7 @@ namespace Zaabee.Serializer.UnitTest;
 public partial class SerializerTest
 {
     [Fact]
-    public void IniIniNonGenericNullTest() =>
-        IniNonGenericNullTest(new Ini.Serializer());
+    public void IniIniNonGenericNullTest() => IniNonGenericNullTest(new Ini.Serializer());
 
     private static void IniNonGenericNullTest(IIniSerializer serializer)
     {

@@ -2,53 +2,43 @@ namespace Zaabee.Serializer.Types.UnitTest;
 
 public class TupleTest
 {
-
     [Fact]
     public void DataContractTupleSerializeTest() =>
         TupleSerializeTest(new DataContractSerializer.Serializer());
 
     [Fact]
-    public void IniTupleSerializeTest() =>
-        TupleSerializeTest(new Ini.Serializer());
+    public void IniTupleSerializeTest() => TupleSerializeTest(new Ini.Serializer());
 
     [Fact]
-    public void JilTupleSerializeTest() =>
-        TupleSerializeTest(new Jil.Serializer());
+    public void JilTupleSerializeTest() => TupleSerializeTest(new Jil.Serializer());
 
 #if !NET48
     [Fact]
-    public void MemoryPackTupleSerializeTest() =>
-        TupleSerializeTest(new MemoryPack.Serializer());
+    public void MemoryPackTupleSerializeTest() => TupleSerializeTest(new MemoryPack.Serializer());
 #endif
 
     [Fact]
-    public void MessagePackTupleSerializeTest() =>
-        TupleSerializeTest(new MessagePack.Serializer());
+    public void MessagePackTupleSerializeTest() => TupleSerializeTest(new MessagePack.Serializer());
 
     [Fact]
-    public void MsgPackTupleSerializeTest() =>
-        TupleSerializeTest(new MsgPack.Serializer());
+    public void MsgPackTupleSerializeTest() => TupleSerializeTest(new MsgPack.Serializer());
 
     [Fact]
-    public void NetJsonTupleSerializeTest() =>
-        TupleSerializeTest(new NetJson.Serializer());
+    public void NetJsonTupleSerializeTest() => TupleSerializeTest(new NetJson.Serializer());
 
     [Fact]
     public void NewtonsoftJsonTupleSerializeTest() =>
         TupleSerializeTest(new NewtonsoftJson.Serializer());
 
     [Fact]
-    public void ProtobufTupleSerializeTest() =>
-        TupleSerializeTest(new Protobuf.Serializer());
+    public void ProtobufTupleSerializeTest() => TupleSerializeTest(new Protobuf.Serializer());
 
     [Fact]
-    public void SharpYamlTupleSerializeTest() =>
-        TupleSerializeTest(new SharpYaml.Serializer());
+    public void SharpYamlTupleSerializeTest() => TupleSerializeTest(new SharpYaml.Serializer());
 
 #if !NET48
     [Fact]
-    public void SpanJsonTupleSerializeTest() =>
-        TupleSerializeTest(new SpanJson.Serializer());
+    public void SpanJsonTupleSerializeTest() => TupleSerializeTest(new SpanJson.Serializer());
 #endif
 
     [Fact]
@@ -56,20 +46,16 @@ public class TupleTest
         TupleSerializeTest(new SystemTextJson.Serializer());
 
     [Fact]
-    public void TomletTupleSerializeTest() =>
-        TupleSerializeTest(new Tomlet.Serializer());
+    public void TomletTupleSerializeTest() => TupleSerializeTest(new Tomlet.Serializer());
 
     [Fact]
-    public void Utf8JsonTupleSerializeTest() =>
-        TupleSerializeTest(new Utf8Json.Serializer());
+    public void Utf8JsonTupleSerializeTest() => TupleSerializeTest(new Utf8Json.Serializer());
 
     [Fact]
-    public void XmlTupleSerializeTest() =>
-        TupleSerializeTest(new Xml.Serializer());
+    public void XmlTupleSerializeTest() => TupleSerializeTest(new Xml.Serializer());
 
     [Fact]
-    public void YamlDotNetTupleSerializeTest() =>
-        TupleSerializeTest(new YamlDotNet.Serializer());
+    public void YamlDotNetTupleSerializeTest() => TupleSerializeTest(new YamlDotNet.Serializer());
 
     [Fact]
     public void ZeroFormatterTupleSerializeTest() =>
@@ -79,7 +65,10 @@ public class TupleTest
     {
         var tupleModel = TupleModel.Instance();
 
-        tupleModel.Tuple = new Tuple<string, string>(Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
+        tupleModel.Tuple = new Tuple<string, string>(
+            Guid.NewGuid().ToString(),
+            Guid.NewGuid().ToString()
+        );
         tupleModel.Tuples = new List<Tuple<string, string>>
         {
             new(Guid.NewGuid().ToString(), Guid.NewGuid().ToString()),

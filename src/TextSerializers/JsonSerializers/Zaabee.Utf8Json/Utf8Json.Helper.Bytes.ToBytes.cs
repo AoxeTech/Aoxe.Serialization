@@ -19,8 +19,11 @@ public static partial class Utf8JsonHelper
     /// <param name="value"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static byte[] ToBytes(Type type, object? value, IJsonFormatterResolver? resolver = null) =>
-        JsonSerializer.NonGeneric.Serialize(type, value, resolver);
+    public static byte[] ToBytes(
+        Type type,
+        object? value,
+        IJsonFormatterResolver? resolver = null
+    ) => JsonSerializer.NonGeneric.Serialize(type, value, resolver);
 
     /// <summary>
     /// Serialize to binary with specified resolver.

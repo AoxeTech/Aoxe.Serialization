@@ -9,9 +9,14 @@ public static partial class SystemTextJsonHelper
     /// <param name="stream"></param>
     /// <param name="options"></param>
     /// <typeparam name="TValue"></typeparam>
-    public static void Pack<TValue>(TValue? value, Stream? stream, JsonSerializerOptions? options = null)
+    public static void Pack<TValue>(
+        TValue? value,
+        Stream? stream,
+        JsonSerializerOptions? options = null
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         JsonSerializer.Serialize(stream, value, options);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
@@ -23,9 +28,15 @@ public static partial class SystemTextJsonHelper
     /// <param name="value"></param>
     /// <param name="stream"></param>
     /// <param name="options"></param>
-    public static void Pack(Type type, object? value, Stream? stream, JsonSerializerOptions? options = null)
+    public static void Pack(
+        Type type,
+        object? value,
+        Stream? stream,
+        JsonSerializerOptions? options = null
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         JsonSerializer.Serialize(stream, value, type, options);
         stream.TrySeek(0, SeekOrigin.Begin);
     }

@@ -12,6 +12,6 @@ public static partial class TomlynHelper
     public static byte[] ToBytes(
         object? value,
         TomlModelOptions? tomlModelOptions = null,
-        Encoding? encoding = null) =>
-        ToToml(value, tomlModelOptions).GetBytes(encoding ?? Defaults.Utf8Encoding);
+        Encoding? encoding = null
+    ) => ToToml(value, tomlModelOptions).GetBytes(encoding ?? Defaults.Utf8Encoding);
 }

@@ -3,12 +3,10 @@ namespace Zaabee.Serializer.UnitTest;
 public partial class SerializerTest
 {
     [Fact]
-    public void JilJsonNonGenericNullTest() =>
-        JsonNonGenericNullTest(new Jil.Serializer());
+    public void JilJsonNonGenericNullTest() => JsonNonGenericNullTest(new Jil.Serializer());
 
     [Fact]
-    public void NetJsonJsonNonGenericNullTest() =>
-        JsonNonGenericNullTest(new NetJson.Serializer());
+    public void NetJsonJsonNonGenericNullTest() => JsonNonGenericNullTest(new NetJson.Serializer());
 
     [Fact]
     public void NewtonsoftJsonJsonNonGenericNullTest() =>

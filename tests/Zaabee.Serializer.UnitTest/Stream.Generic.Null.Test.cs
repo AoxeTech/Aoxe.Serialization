@@ -3,12 +3,10 @@ namespace Zaabee.Serializer.UnitTest;
 public partial class SerializerTest
 {
     [Fact]
-    public void IniStreamGenericNullTest() =>
-        StreamGenericNullTest(new Ini.Serializer());
+    public void IniStreamGenericNullTest() => StreamGenericNullTest(new Ini.Serializer());
 
     [Fact]
-    public void JilStreamGenericNullTest() =>
-        StreamGenericNullTest(new Jil.Serializer());
+    public void JilStreamGenericNullTest() => StreamGenericNullTest(new Jil.Serializer());
 
 #if !NET48
     [Fact]
@@ -21,20 +19,17 @@ public partial class SerializerTest
         StreamGenericNullTest(new MessagePack.Serializer());
 
     [Fact]
-    public void MsgPackStreamGenericNullTest() =>
-        StreamGenericNullTest(new MsgPack.Serializer());
+    public void MsgPackStreamGenericNullTest() => StreamGenericNullTest(new MsgPack.Serializer());
 
     [Fact]
     public void NewtonsoftJsonStreamGenericNullTest() =>
         StreamGenericNullTest(new NewtonsoftJson.Serializer());
 
     [Fact]
-    public void NetJsonStreamGenericNullTest() =>
-        StreamGenericNullTest(new NetJson.Serializer());
+    public void NetJsonStreamGenericNullTest() => StreamGenericNullTest(new NetJson.Serializer());
 
     [Fact]
-    public void ProtobufStreamGenericNullTest() =>
-        StreamGenericNullTest(new Protobuf.Serializer());
+    public void ProtobufStreamGenericNullTest() => StreamGenericNullTest(new Protobuf.Serializer());
 
     [Fact]
     public void SharpYamlStreamGenericNullTest() =>
@@ -42,8 +37,7 @@ public partial class SerializerTest
 
 #if !NET48
     [Fact]
-    public void SpanJsonStreamGenericNullTest() =>
-        StreamGenericNullTest(new SpanJson.Serializer());
+    public void SpanJsonStreamGenericNullTest() => StreamGenericNullTest(new SpanJson.Serializer());
 #endif
 
     [Fact]
@@ -51,16 +45,13 @@ public partial class SerializerTest
         StreamGenericNullTest(new SystemTextJson.Serializer());
 
     [Fact]
-    public void TomletStreamGenericNullTest() =>
-        StreamGenericNullTest(new Tomlet.Serializer());
+    public void TomletStreamGenericNullTest() => StreamGenericNullTest(new Tomlet.Serializer());
 
     [Fact]
-    public void Utf8JsonStreamGenericNullTest() =>
-        StreamGenericNullTest(new Utf8Json.Serializer());
+    public void Utf8JsonStreamGenericNullTest() => StreamGenericNullTest(new Utf8Json.Serializer());
 
     [Fact]
-    public void XmlStreamGenericNullTest() =>
-        StreamGenericNullTest(new Xml.Serializer());
+    public void XmlStreamGenericNullTest() => StreamGenericNullTest(new Xml.Serializer());
 
     [Fact]
     public void YamlDotNetStreamGenericNullTest() =>

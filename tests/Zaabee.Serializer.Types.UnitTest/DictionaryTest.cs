@@ -7,12 +7,10 @@ public class DictionaryTest
         DictionarySerializeTest(new DataContractSerializer.Serializer());
 
     [Fact]
-    public void IniDictionarySerializeTest() =>
-        DictionarySerializeTest(new Ini.Serializer());
+    public void IniDictionarySerializeTest() => DictionarySerializeTest(new Ini.Serializer());
 
     [Fact]
-    public void JilDictionarySerializeTest() =>
-        DictionarySerializeTest(new Jil.Serializer());
+    public void JilDictionarySerializeTest() => DictionarySerializeTest(new Jil.Serializer());
 
 #if !NET48
     [Fact]
@@ -55,16 +53,14 @@ public class DictionaryTest
         DictionarySerializeTest(new SystemTextJson.Serializer());
 
     [Fact]
-    public void TomletDictionarySerializeTest() =>
-        DictionarySerializeTest(new Tomlet.Serializer());
+    public void TomletDictionarySerializeTest() => DictionarySerializeTest(new Tomlet.Serializer());
 
     [Fact]
     public void Utf8JsonDictionarySerializeTest() =>
         DictionarySerializeTest(new Utf8Json.Serializer());
 
     [Fact]
-    public void XmlDictionarySerializeTest() =>
-        DictionarySerializeTest(new Xml.Serializer());
+    public void XmlDictionarySerializeTest() => DictionarySerializeTest(new Xml.Serializer());
 
     [Fact]
     public void YamlDotNetDictionarySerializeTest() =>
@@ -78,8 +74,28 @@ public class DictionaryTest
     {
         var dictionaryModel = DictionaryModel.Instance();
         dictionaryModel.Dictionary.Add(Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
-        Assert.Equal(dictionaryModel.Dictionary.Count, bytesSerializer.FromBytes<DictionaryModel>(bytesSerializer.ToBytes(dictionaryModel))!.Dictionary.Count);
-        Assert.Equal(dictionaryModel.Dictionary.First().Key, bytesSerializer.FromBytes<DictionaryModel>(bytesSerializer.ToBytes(dictionaryModel))!.Dictionary.First().Key);
-        Assert.Equal(dictionaryModel.Dictionary.First().Value, bytesSerializer.FromBytes<DictionaryModel>(bytesSerializer.ToBytes(dictionaryModel))!.Dictionary.First().Value);
+        Assert.Equal(
+            dictionaryModel.Dictionary.Count,
+            bytesSerializer
+                .FromBytes<DictionaryModel>(bytesSerializer.ToBytes(dictionaryModel))!
+                .Dictionary
+                .Count
+        );
+        Assert.Equal(
+            dictionaryModel.Dictionary.First().Key,
+            bytesSerializer
+                .FromBytes<DictionaryModel>(bytesSerializer.ToBytes(dictionaryModel))!
+                .Dictionary
+                .First()
+                .Key
+        );
+        Assert.Equal(
+            dictionaryModel.Dictionary.First().Value,
+            bytesSerializer
+                .FromBytes<DictionaryModel>(bytesSerializer.ToBytes(dictionaryModel))!
+                .Dictionary
+                .First()
+                .Value
+        );
     }
 }

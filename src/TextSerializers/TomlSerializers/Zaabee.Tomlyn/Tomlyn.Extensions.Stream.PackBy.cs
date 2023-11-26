@@ -6,6 +6,6 @@ public static partial class TomlynExtensions
         this Stream? stream,
         object? value,
         TomlModelOptions? tomlModelOptions = null,
-        Encoding? encoding = null) =>
-        TomlynHelper.Pack(value, stream, tomlModelOptions, encoding);
+        Encoding? encoding = null
+    ) => TomlynHelper.Pack(value, stream, tomlModelOptions, encoding);
 }

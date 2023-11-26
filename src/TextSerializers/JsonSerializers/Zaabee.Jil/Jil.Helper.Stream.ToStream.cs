@@ -10,7 +10,11 @@ public static partial class JilHelper
     /// <param name="encoding"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static MemoryStream ToStream<TValue>(TValue? value, Options? options = null, Encoding? encoding = null)
+    public static MemoryStream ToStream<TValue>(
+        TValue? value,
+        Options? options = null,
+        Encoding? encoding = null
+    )
     {
         var ms = new MemoryStream();
         Pack(value, ms, options, encoding);
@@ -24,7 +28,11 @@ public static partial class JilHelper
     /// <param name="options"></param>
     /// <param name="encoding"></param>
     /// <returns></returns>
-    public static MemoryStream ToStream(object? value, Options? options = null, Encoding? encoding = null)
+    public static MemoryStream ToStream(
+        object? value,
+        Options? options = null,
+        Encoding? encoding = null
+    )
     {
         var ms = new MemoryStream();
         Pack(value, ms, options, encoding);

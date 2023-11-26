@@ -1,8 +1,6 @@
 namespace Zaabee.Serializer.Abstractions;
 
-public interface IYamlSerializer : ITextSerializer
-{
-}
+public interface IYamlSerializer : ITextSerializer { }
 
 public static class YamlSerializerExtension
 {

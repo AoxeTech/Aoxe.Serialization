@@ -5,9 +5,11 @@ public static partial class MemoryPackHelper
     public static void Pack<TValue>(
         TValue? value,
         Stream? stream,
-        MemoryPackSerializerOptions? options = null)
+        MemoryPackSerializerOptions? options = null
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         var bufferWriter = new ArrayBufferWriter<byte>();
         MemoryPackSerializer.Serialize(bufferWriter, value, options);
         stream.Write(bufferWriter.WrittenSpan);
@@ -18,9 +20,11 @@ public static partial class MemoryPackHelper
         Type type,
         object? value,
         Stream? stream,
-        MemoryPackSerializerOptions? options = null)
+        MemoryPackSerializerOptions? options = null
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         var bufferWriter = new ArrayBufferWriter<byte>();
         MemoryPackSerializer.Serialize(type, bufferWriter, value, options);
         stream.Write(bufferWriter.WrittenSpan);

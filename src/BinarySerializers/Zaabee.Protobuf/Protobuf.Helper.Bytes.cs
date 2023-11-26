@@ -33,7 +33,8 @@ public static partial class ProtobufHelper
     /// <returns></returns>
     public static TValue? FromBytes<TValue>(byte[]? bytes)
     {
-        if (bytes is null || bytes.Length is 0) return default;
+        if (bytes is null || bytes.Length is 0)
+            return default;
         using var ms = bytes.ToMemoryStream();
         return FromStream<TValue>(ms);
     }
@@ -46,7 +47,8 @@ public static partial class ProtobufHelper
     /// <returns></returns>
     public static object? FromBytes(Type type, byte[]? bytes)
     {
-        if (bytes is null || bytes.Length is 0) return default;
+        if (bytes is null || bytes.Length is 0)
+            return default;
         using var ms = bytes.ToMemoryStream();
         return FromStream(type, ms);
     }

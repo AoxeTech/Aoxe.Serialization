@@ -21,7 +21,11 @@ public static partial class SystemTextJsonHelper
     /// <param name="json"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public static object? FromJson(Type type, string? json, JsonSerializerOptions? options = null) =>
+    public static object? FromJson(
+        Type type,
+        string? json,
+        JsonSerializerOptions? options = null
+    ) =>
         string.IsNullOrWhiteSpace(json)
             ? default
             : JsonSerializer.Deserialize(json!, type, options);

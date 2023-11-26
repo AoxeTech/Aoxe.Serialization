@@ -9,8 +9,11 @@ public static partial class IniParserHelper
     /// <param name="stream"></param>
     /// <param name="encoding"></param>
     /// <typeparam name="TValue"></typeparam>
-    public static void Pack<TValue>(TValue? value, Stream? stream = null, Encoding? encoding = null) =>
-        Pack(typeof(TValue), value, stream, encoding);
+    public static void Pack<TValue>(
+        TValue? value,
+        Stream? stream = null,
+        Encoding? encoding = null
+    ) => Pack(typeof(TValue), value, stream, encoding);
 
     /// <summary>
     /// Serialize the object to ini and write it to the stream.
@@ -20,7 +23,8 @@ public static partial class IniParserHelper
     /// <param name="encoding"></param>
     public static void Pack(object? value, Stream? stream = null, Encoding? encoding = null)
     {
-        if (stream is null || value is null) return;
+        if (stream is null || value is null)
+            return;
         Pack(value.GetType(), value, stream, encoding);
     }
 
@@ -31,9 +35,15 @@ public static partial class IniParserHelper
     /// <param name="value"></param>
     /// <param name="stream"></param>
     /// <param name="encoding"></param>
-    public static void Pack(Type type, object? value, Stream? stream = null, Encoding? encoding = null)
+    public static void Pack(
+        Type type,
+        object? value,
+        Stream? stream = null,
+        Encoding? encoding = null
+    )
     {
-        if (stream is null || value is null) return;
+        if (stream is null || value is null)
+            return;
         var data = new IniData();
         var properties = type.GetProperties();
         foreach (var property in properties)

@@ -10,7 +10,8 @@ public static partial class XmlHelper
     /// <typeparam name="TValue"></typeparam>
     public static void Serialize<TValue>(XmlWriter? xmlWriter, TValue? value)
     {
-        if (xmlWriter is null) return;
+        if (xmlWriter is null)
+            return;
         Serialize(typeof(TValue), xmlWriter, value);
     }
 
@@ -22,7 +23,8 @@ public static partial class XmlHelper
     /// <param name="value"></param>
     public static void Serialize(Type type, XmlWriter? xmlWriter, object? value)
     {
-        if (xmlWriter is null) return;
+        if (xmlWriter is null)
+            return;
         GetSerializer(type).Serialize(xmlWriter, value);
     }
 }

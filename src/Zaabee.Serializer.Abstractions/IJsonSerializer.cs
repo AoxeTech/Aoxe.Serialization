@@ -1,8 +1,6 @@
 namespace Zaabee.Serializer.Abstractions;
 
-public interface IJsonSerializer : ITextSerializer
-{
-}
+public interface IJsonSerializer : ITextSerializer { }
 
 public static class JsonSerializerExtension
 {

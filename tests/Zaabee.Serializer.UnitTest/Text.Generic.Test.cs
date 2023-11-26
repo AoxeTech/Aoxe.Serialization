@@ -7,50 +7,39 @@ public partial class SerializerTest
         TextGenericTest(new DataContractSerializer.Serializer());
 
     [Fact]
-    public void IniTextGenericTest() =>
-        TextGenericTest(new Ini.Serializer());
+    public void IniTextGenericTest() => TextGenericTest(new Ini.Serializer());
 
     [Fact]
-    public void JilTextGenericTest() =>
-        TextGenericTest(new Jil.Serializer(Options.ISO8601Utc));
+    public void JilTextGenericTest() => TextGenericTest(new Jil.Serializer(Options.ISO8601Utc));
 
     [Fact]
-    public void NetJsonTextGenericTest() =>
-        TextGenericTest(new NetJson.Serializer());
+    public void NetJsonTextGenericTest() => TextGenericTest(new NetJson.Serializer());
 
     [Fact]
-    public void NewtonsoftJsonTextGenericTest() =>
-        TextGenericTest(new NewtonsoftJson.Serializer());
+    public void NewtonsoftJsonTextGenericTest() => TextGenericTest(new NewtonsoftJson.Serializer());
 
     [Fact]
-    public void SharpYamlTextGenericTest() =>
-        TextGenericTest(new SharpYaml.Serializer());
+    public void SharpYamlTextGenericTest() => TextGenericTest(new SharpYaml.Serializer());
 
 #if !NET48
     [Fact]
-    public void SpanJsonTextGenericTest() =>
-        TextGenericTest(new SpanJson.Serializer());
+    public void SpanJsonTextGenericTest() => TextGenericTest(new SpanJson.Serializer());
 #endif
 
     [Fact]
-    public void SystemTextJsonTextGenericTest() =>
-        TextGenericTest(new SystemTextJson.Serializer());
+    public void SystemTextJsonTextGenericTest() => TextGenericTest(new SystemTextJson.Serializer());
 
     [Fact]
-    public void TomletTextGenericTest() =>
-        TextGenericTest(new Tomlet.Serializer());
+    public void TomletTextGenericTest() => TextGenericTest(new Tomlet.Serializer());
 
     [Fact]
-    public void Utf8JsonTextGenericTest() =>
-        TextGenericTest(new Utf8Json.Serializer());
+    public void Utf8JsonTextGenericTest() => TextGenericTest(new Utf8Json.Serializer());
 
     [Fact]
-    public void XmlTextGenericTest() =>
-        TextGenericTest(new Xml.Serializer());
+    public void XmlTextGenericTest() => TextGenericTest(new Xml.Serializer());
 
     [Fact]
-    public void YamlDotNetGenericTest() =>
-        TextGenericTest(new YamlDotNet.Serializer());
+    public void YamlDotNetGenericTest() => TextGenericTest(new YamlDotNet.Serializer());
 
     private static void TextGenericTest(ITextSerializer serializer)
     {

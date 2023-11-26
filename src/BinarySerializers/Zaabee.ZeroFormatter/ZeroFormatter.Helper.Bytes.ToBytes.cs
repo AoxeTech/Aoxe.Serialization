@@ -8,8 +8,7 @@ public static partial class ZeroFormatterHelper
     /// <param name="value"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static byte[] ToBytes<TValue>(TValue? value) =>
-        ZeroFormatterSerializer.Serialize(value);
+    public static byte[] ToBytes<TValue>(TValue? value) => ZeroFormatterSerializer.Serialize(value);
 
     /// <summary>
     /// Serialize the specified object to a bytes.

@@ -43,7 +43,8 @@ public class FromStream
     }
 
     [Benchmark]
-    public void DataContractFromStream() => DataContractHelper.FromStream<TestModel>(_dataContractStream);
+    public void DataContractFromStream() =>
+        DataContractHelper.FromStream<TestModel>(_dataContractStream);
 
     [Benchmark]
     public void JilFromStream() => JilHelper.FromStream<TestModel>(_jilStream);
@@ -52,7 +53,8 @@ public class FromStream
     public void MemoryPackFromStream() => MemoryPackHelper.FromStream<TestModel>(_memoryPackStream);
 
     [Benchmark]
-    public void MessagePackFromStream() => MessagePackHelper.FromStream<TestModel>(_messagePackStream);
+    public void MessagePackFromStream() =>
+        MessagePackHelper.FromStream<TestModel>(_messagePackStream);
 
     [Benchmark]
     public void MsgPackFromStream() => MsgPackHelper.FromStream<TestModel>(_msgPackStream);
@@ -61,7 +63,8 @@ public class FromStream
     public void NetJsonFromStream() => NetJsonHelper.FromStream<TestModel>(_netJsonStream);
 
     [Benchmark]
-    public void NewtonsoftJsonFromStream() => NewtonsoftJsonHelper.FromStream<TestModel>(_newtonsoftJsonStream);
+    public void NewtonsoftJsonFromStream() =>
+        NewtonsoftJsonHelper.FromStream<TestModel>(_newtonsoftJsonStream);
 
     [Benchmark]
     public void ProtobufFromStream() => ProtobufHelper.FromStream<TestModel>(_protobufStream);
@@ -73,7 +76,8 @@ public class FromStream
     public void SpanJsonFromStream() => SpanJsonHelper.FromStream<TestModel>(_spanJsonStream);
 
     [Benchmark]
-    public void SystemTextJsonFromStream() => SystemTextJsonHelper.FromStream<TestModel>(_systemTextJsonStream);
+    public void SystemTextJsonFromStream() =>
+        SystemTextJsonHelper.FromStream<TestModel>(_systemTextJsonStream);
 
     [Benchmark]
     public void Utf8JsonFromStream() => Utf8JsonHelper.FromStream<TestModel>(_utf8JsonStream);
@@ -85,5 +89,6 @@ public class FromStream
     public void YamlDotNetFromStream() => YamlDotNetHelper.FromStream<TestModel>(_yamlDotNetStream);
 
     [Benchmark]
-    public void ZeroFormatterFromStream() => ZeroFormatterHelper.FromStream<TestModel>(_zeroFormatterStream);
+    public void ZeroFormatterFromStream() =>
+        ZeroFormatterHelper.FromStream<TestModel>(_zeroFormatterStream);
 }

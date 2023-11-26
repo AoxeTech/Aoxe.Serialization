@@ -9,9 +9,7 @@ public static partial class XmlHelper
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
     public static TValue? Deserialize<TValue>(TextReader? textReader) =>
-        textReader is null
-            ? default
-            : (TValue?)Deserialize(typeof(TValue), textReader);
+        textReader is null ? default : (TValue?)Deserialize(typeof(TValue), textReader);
 
     /// <summary>
     /// Deserializes the XML document contained by the specified TextReader.
@@ -20,7 +18,5 @@ public static partial class XmlHelper
     /// <param name="textReader"></param>
     /// <returns></returns>
     public static object? Deserialize(Type type, TextReader? textReader) =>
-        textReader is null
-            ? default
-            : GetSerializer(type).Deserialize(textReader);
+        textReader is null ? default : GetSerializer(type).Deserialize(textReader);
 }

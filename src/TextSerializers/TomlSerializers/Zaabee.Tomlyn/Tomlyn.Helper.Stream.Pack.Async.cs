@@ -16,9 +16,11 @@ public static partial class TomlynHelper
         Stream? stream = null,
         TomlModelOptions? tomlModelOptions = null,
         Encoding? encoding = null,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken = default
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         await ToBytes(value, tomlModelOptions, encoding).WriteToAsync(stream, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
     }

@@ -50,8 +50,7 @@ public partial class SerializerTest
     public async Task Utf8JsonStreamGenericNullAsyncTest() =>
         await StreamGenericNullAsyncTest(new Utf8Json.Serializer());
 
-    private async Task StreamGenericNullAsyncTest(
-        IStreamSerializerAsync serializerAsync)
+    private async Task StreamGenericNullAsyncTest(IStreamSerializerAsync serializerAsync)
     {
         TestModel? model = null;
         var stream = new MemoryStream();

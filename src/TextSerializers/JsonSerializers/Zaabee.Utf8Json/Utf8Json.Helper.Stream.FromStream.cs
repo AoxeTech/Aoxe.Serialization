@@ -10,9 +10,13 @@ public static partial class Utf8JsonHelper
     /// <param name="resolver"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? FromStream<TValue>(Stream? stream, IJsonFormatterResolver? resolver = null)
+    public static TValue? FromStream<TValue>(
+        Stream? stream,
+        IJsonFormatterResolver? resolver = null
+    )
     {
-        if (stream is null or { CanSeek: true, Length: 0 }) return default;
+        if (stream is null or { CanSeek: true, Length: 0 })
+            return default;
         var result = JsonSerializer.Deserialize<TValue>(stream, resolver);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
@@ -26,9 +30,14 @@ public static partial class Utf8JsonHelper
     /// <param name="stream"></param>
     /// <param name="resolver"></param>
     /// <returns></returns>
-    public static object? FromStream(Type type, Stream? stream, IJsonFormatterResolver? resolver = null)
+    public static object? FromStream(
+        Type type,
+        Stream? stream,
+        IJsonFormatterResolver? resolver = null
+    )
     {
-        if (stream is null or { CanSeek: true, Length: 0 }) return default;
+        if (stream is null or { CanSeek: true, Length: 0 })
+            return default;
         var result = JsonSerializer.NonGeneric.Deserialize(type, stream, resolver);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;

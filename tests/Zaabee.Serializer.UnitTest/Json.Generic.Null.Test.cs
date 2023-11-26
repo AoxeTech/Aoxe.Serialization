@@ -3,12 +3,10 @@ namespace Zaabee.Serializer.UnitTest;
 public partial class SerializerTest
 {
     [Fact]
-    public void JilJsonGenericNullTest() =>
-        JsonGenericNullTest(new Jil.Serializer());
+    public void JilJsonGenericNullTest() => JsonGenericNullTest(new Jil.Serializer());
 
     [Fact]
-    public void NetJsonJsonGenericNullTest() =>
-        JsonGenericNullTest(new NetJson.Serializer());
+    public void NetJsonJsonGenericNullTest() => JsonGenericNullTest(new NetJson.Serializer());
 
     [Fact]
     public void NewtonsoftJsonJsonGenericNullTest() =>
@@ -16,8 +14,7 @@ public partial class SerializerTest
 
 #if !NET48
     [Fact]
-    public void SpanJsonJsonGenericNullTest() =>
-        JsonGenericNullTest(new SpanJson.Serializer());
+    public void SpanJsonJsonGenericNullTest() => JsonGenericNullTest(new SpanJson.Serializer());
 #endif
 
     [Fact]
@@ -25,8 +22,7 @@ public partial class SerializerTest
         JsonGenericNullTest(new SystemTextJson.Serializer());
 
     [Fact]
-    public void Utf8JsonJsonGenericNullTest() =>
-        JsonGenericNullTest(new Utf8Json.Serializer());
+    public void Utf8JsonJsonGenericNullTest() => JsonGenericNullTest(new Utf8Json.Serializer());
 
     private static void JsonGenericNullTest(IJsonSerializer serializer)
     {

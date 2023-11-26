@@ -12,8 +12,8 @@ public static partial class TomletHelper
     public static byte[] ToBytes<TValue>(
         TValue? value,
         TomlSerializerOptions? tomlSerializerOptions = null,
-        Encoding? encoding = null) =>
-        ToToml(value, tomlSerializerOptions).GetBytes(encoding ?? Defaults.Utf8Encoding);
+        Encoding? encoding = null
+    ) => ToToml(value, tomlSerializerOptions).GetBytes(encoding ?? Defaults.Utf8Encoding);
 
     /// <summary>
     /// Serialize the object to toml string and encode it into bytes used the encoding.
@@ -27,6 +27,6 @@ public static partial class TomletHelper
         Type type,
         object? value,
         TomlSerializerOptions? tomlSerializerOptions = null,
-        Encoding? encoding = null) =>
-        ToToml(type, value, tomlSerializerOptions).GetBytes(encoding ?? Defaults.Utf8Encoding);
+        Encoding? encoding = null
+    ) => ToToml(type, value, tomlSerializerOptions).GetBytes(encoding ?? Defaults.Utf8Encoding);
 }

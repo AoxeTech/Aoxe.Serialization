@@ -28,13 +28,15 @@ public class FromJson
     public void NetJsonFromText() => NetJsonHelper.FromJson<TestModel>(_netJson);
 
     [Benchmark]
-    public void NewtonsoftJsonFromText() => NewtonsoftJsonHelper.FromJson<TestModel>(_newtonsoftJson);
+    public void NewtonsoftJsonFromText() =>
+        NewtonsoftJsonHelper.FromJson<TestModel>(_newtonsoftJson);
 
     [Benchmark]
     public void SpanJsonFromText() => SpanJsonHelper.FromJson<TestModel>(_spanJson);
 
     [Benchmark]
-    public void SystemTextJsonFromText() => SystemTextJsonHelper.FromJson<TestModel>(_systemTextJson);
+    public void SystemTextJsonFromText() =>
+        SystemTextJsonHelper.FromJson<TestModel>(_systemTextJson);
 
     [Benchmark]
     public void Utf8JsonFromText() => Utf8JsonHelper.FromJson<TestModel>(_utf8Json);

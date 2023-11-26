@@ -6,20 +6,21 @@ public static partial class IniParserExtensions
         this Stream? stream,
         TValue? value,
         Encoding? encoding = null,
-        CancellationToken cancellationToken = default) =>
-        IniParserHelper.PackAsync(value, stream, encoding, cancellationToken);
+        CancellationToken cancellationToken = default
+    ) => IniParserHelper.PackAsync(value, stream, encoding, cancellationToken);
 
     public static ValueTask PackByAsync(
         this Stream? stream,
         object? value,
         Encoding? encoding = null,
-        CancellationToken cancellationToken = default) =>
-        IniParserHelper.PackAsync(value, stream, encoding, cancellationToken);
+        CancellationToken cancellationToken = default
+    ) => IniParserHelper.PackAsync(value, stream, encoding, cancellationToken);
 
     public static ValueTask PackByAsync(
         this Stream? stream,
-        Type type, object? value,
+        Type type,
+        object? value,
         Encoding? encoding = null,
-        CancellationToken cancellationToken = default) =>
-        IniParserHelper.PackAsync(type, value, stream, encoding, cancellationToken);
+        CancellationToken cancellationToken = default
+    ) => IniParserHelper.PackAsync(type, value, stream, encoding, cancellationToken);
 }

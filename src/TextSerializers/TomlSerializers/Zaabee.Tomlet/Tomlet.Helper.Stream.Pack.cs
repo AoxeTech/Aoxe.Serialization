@@ -13,9 +13,11 @@ public static partial class TomletHelper
         TValue? value,
         Stream? stream = null,
         TomlSerializerOptions? tomlSerializerOptions = null,
-        Encoding? encoding = null)
+        Encoding? encoding = null
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         ToBytes(value, tomlSerializerOptions, encoding).WriteTo(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
@@ -33,9 +35,11 @@ public static partial class TomletHelper
         object? value,
         Stream? stream = null,
         TomlSerializerOptions? tomlSerializerOptions = null,
-        Encoding? encoding = null)
+        Encoding? encoding = null
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         ToBytes(type, value, tomlSerializerOptions, encoding).WriteTo(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
     }

@@ -9,7 +9,9 @@ public partial class XmlUnitTest
         TestModel result0;
         using (var fs = new FileStream("XmlWriterReaderTest0.xml", FileMode.Create))
         {
-            var writer = XmlDictionaryWriter.CreateDictionaryWriter(new XmlTextWriter(fs, Encoding.UTF8));
+            var writer = XmlDictionaryWriter.CreateDictionaryWriter(
+                new XmlTextWriter(fs, Encoding.UTF8)
+            );
             writer.WriteXml(testModel);
             writer.Close();
         }
@@ -24,7 +26,9 @@ public partial class XmlUnitTest
         TestModel result1;
         using (var fs = new FileStream("XmlWriterReaderTest1.xml", FileMode.Create))
         {
-            var writer = XmlDictionaryWriter.CreateDictionaryWriter(new XmlTextWriter(fs, Encoding.UTF8));
+            var writer = XmlDictionaryWriter.CreateDictionaryWriter(
+                new XmlTextWriter(fs, Encoding.UTF8)
+            );
             testModel.Serialize(writer);
             writer.Close();
         }

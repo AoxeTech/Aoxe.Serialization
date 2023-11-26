@@ -10,7 +10,8 @@ public static partial class ZeroFormatterHelper
     /// <typeparam name="TValue"></typeparam>
     public static void Pack<TValue>(TValue? value, Stream? stream)
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         ZeroFormatterSerializer.Serialize(stream, value);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
@@ -23,7 +24,8 @@ public static partial class ZeroFormatterHelper
     /// <param name="stream"></param>
     public static void Pack(Type type, object? value, Stream? stream)
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         ZeroFormatterSerializer.NonGeneric.Serialize(type, stream, value);
         stream.TrySeek(0, SeekOrigin.Begin);
     }

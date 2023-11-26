@@ -7,6 +7,5 @@ public static partial class YamlDotNetHelper
     /// </summary>
     /// <param name="value"></param>
     /// <returns></returns>
-    public static string ToYaml(object? value) =>
-        Serializer.Serialize(value);
+    public static string ToYaml(object? value) => Serializer.Serialize(value);
 }

@@ -10,7 +10,8 @@ public static partial class DataContractHelper
     /// <typeparam name="TValue"></typeparam>
     public static void Pack<TValue>(TValue? value, Stream? stream)
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         Pack(typeof(TValue), value, stream);
     }
 
@@ -22,7 +23,8 @@ public static partial class DataContractHelper
     /// <param name="stream"></param>
     public static void Pack(Type type, object? value, Stream? stream)
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         GetSerializer(type).WriteObject(stream, value);
         stream.TrySeek(0, SeekOrigin.Begin);
     }

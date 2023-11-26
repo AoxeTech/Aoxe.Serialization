@@ -7,12 +7,10 @@ public partial class SerializerTest
         BytesGenericNullTest(new DataContractSerializer.Serializer());
 
     [Fact]
-    public void IniBytesGenericNullTest() =>
-        BytesGenericNullTest(new Ini.Serializer());
+    public void IniBytesGenericNullTest() => BytesGenericNullTest(new Ini.Serializer());
 
     [Fact]
-    public void JilBytesGenericNullTest() =>
-        BytesGenericNullTest(new Jil.Serializer());
+    public void JilBytesGenericNullTest() => BytesGenericNullTest(new Jil.Serializer());
 
 #if !NET48
     [Fact]
@@ -25,29 +23,24 @@ public partial class SerializerTest
         BytesGenericNullTest(new MessagePack.Serializer());
 
     [Fact]
-    public void MsgPackBytesGenericNullTest() =>
-        BytesGenericNullTest(new MsgPack.Serializer());
+    public void MsgPackBytesGenericNullTest() => BytesGenericNullTest(new MsgPack.Serializer());
 
     [Fact]
-    public void NetJsonBytesGenericNullTest() =>
-        BytesGenericNullTest(new NetJson.Serializer());
+    public void NetJsonBytesGenericNullTest() => BytesGenericNullTest(new NetJson.Serializer());
 
     [Fact]
     public void NewtonsoftJsonBytesGenericNullTest() =>
         BytesGenericNullTest(new NewtonsoftJson.Serializer());
 
     [Fact]
-    public void ProtobufBytesGenericNullTest() =>
-        BytesGenericNullTest(new Protobuf.Serializer());
+    public void ProtobufBytesGenericNullTest() => BytesGenericNullTest(new Protobuf.Serializer());
 
     [Fact]
-    public void SharpYamlBytesGenericNullTest() =>
-        BytesGenericNullTest(new SharpYaml.Serializer());
+    public void SharpYamlBytesGenericNullTest() => BytesGenericNullTest(new SharpYaml.Serializer());
 
 #if !NET48
     [Fact]
-    public void SpanJsonBytesGenericNullTest() =>
-        BytesGenericNullTest(new SpanJson.Serializer());
+    public void SpanJsonBytesGenericNullTest() => BytesGenericNullTest(new SpanJson.Serializer());
 #endif
 
     [Fact]
@@ -55,16 +48,13 @@ public partial class SerializerTest
         BytesGenericNullTest(new SystemTextJson.Serializer());
 
     [Fact]
-    public void TomletBytesGenericNullTest() =>
-        BytesGenericNullTest(new Tomlet.Serializer());
+    public void TomletBytesGenericNullTest() => BytesGenericNullTest(new Tomlet.Serializer());
 
     [Fact]
-    public void Utf8JsonBytesGenericNullTest() =>
-        BytesGenericNullTest(new Utf8Json.Serializer());
+    public void Utf8JsonBytesGenericNullTest() => BytesGenericNullTest(new Utf8Json.Serializer());
 
     [Fact]
-    public void XmlBytesGenericNullTest() =>
-        BytesGenericNullTest(new Xml.Serializer());
+    public void XmlBytesGenericNullTest() => BytesGenericNullTest(new Xml.Serializer());
 
     [Fact]
     public void YamlDotNetBytesGenericNullTest() =>

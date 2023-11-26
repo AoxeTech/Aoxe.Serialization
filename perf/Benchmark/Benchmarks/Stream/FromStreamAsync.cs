@@ -11,10 +11,12 @@ public class FromStreamAsync
     private readonly FileStream _memoryPackStream = new(".\\MemoryPackStream", FileMode.Create);
     private readonly FileStream _messagePackStream = new(".\\MessagePackStream", FileMode.Create);
     private readonly FileStream _msgPackStream = new(".\\MsgPackStream", FileMode.Create);
-    private readonly FileStream _newtonsoftJsonStream = new(".\\NewtonsoftJsonStream", FileMode.Create);
+    private readonly FileStream _newtonsoftJsonStream =
+        new(".\\NewtonsoftJsonStream", FileMode.Create);
     private readonly FileStream _netJsonStream = new(".\\NetJsonStream", FileMode.Create);
     private readonly FileStream _spanJsonStream = new(".\\SpanJsonStream", FileMode.Create);
-    private readonly FileStream _systemTextJsonStream = new(".\\SystemTextJsonStream", FileMode.Create);
+    private readonly FileStream _systemTextJsonStream =
+        new(".\\SystemTextJsonStream", FileMode.Create);
     private readonly FileStream _utf8JsonStream = new(".\\Utf8JsonStream", FileMode.Create);
 
     public FromStreamAsync()

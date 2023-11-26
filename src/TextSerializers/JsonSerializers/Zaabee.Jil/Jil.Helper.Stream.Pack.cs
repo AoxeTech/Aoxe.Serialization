@@ -10,10 +10,15 @@ public static partial class JilHelper
     /// <param name="options"></param>
     /// <param name="encoding"></param>
     /// <typeparam name="TValue"></typeparam>
-    public static void Pack<TValue>(TValue? value, Stream? stream = null, Options? options = null,
-        Encoding? encoding = null)
+    public static void Pack<TValue>(
+        TValue? value,
+        Stream? stream = null,
+        Options? options = null,
+        Encoding? encoding = null
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         ToBytes(value, options, encoding).WriteTo(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
@@ -25,9 +30,15 @@ public static partial class JilHelper
     /// <param name="stream"></param>
     /// <param name="options"></param>
     /// <param name="encoding"></param>
-    public static void Pack(object? value, Stream? stream = null, Options? options = null, Encoding? encoding = null)
+    public static void Pack(
+        object? value,
+        Stream? stream = null,
+        Options? options = null,
+        Encoding? encoding = null
+    )
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
         ToBytes(value, options, encoding).WriteTo(stream);
         stream.TrySeek(0, SeekOrigin.Begin);
     }

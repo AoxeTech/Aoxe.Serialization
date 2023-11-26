@@ -10,11 +10,19 @@ public static partial class DataContractHelper
     /// <param name="dataContractResolver"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? Deserialize<TValue>(XmlDictionaryReader? xmlDictionaryReader, bool verifyObjectName = true,
-        DataContractResolver? dataContractResolver = null) =>
+    public static TValue? Deserialize<TValue>(
+        XmlDictionaryReader? xmlDictionaryReader,
+        bool verifyObjectName = true,
+        DataContractResolver? dataContractResolver = null
+    ) =>
         xmlDictionaryReader is null
             ? default
-            : (TValue?)Deserialize(typeof(TValue), xmlDictionaryReader, verifyObjectName, dataContractResolver);
+            : (TValue?)Deserialize(
+                typeof(TValue),
+                xmlDictionaryReader,
+                verifyObjectName,
+                dataContractResolver
+            );
 
     /// <summary>
     /// Deserializes the XML document contained by the specified XmlReader.
@@ -24,9 +32,14 @@ public static partial class DataContractHelper
     /// <param name="verifyObjectName"></param>
     /// <param name="dataContractResolver"></param>
     /// <returns></returns>
-    public static object? Deserialize(Type type, XmlDictionaryReader? xmlDictionaryReader,
-        bool verifyObjectName = true, DataContractResolver? dataContractResolver = null) =>
+    public static object? Deserialize(
+        Type type,
+        XmlDictionaryReader? xmlDictionaryReader,
+        bool verifyObjectName = true,
+        DataContractResolver? dataContractResolver = null
+    ) =>
         xmlDictionaryReader is null
             ? default
-            : GetSerializer(type).ReadObject(xmlDictionaryReader, verifyObjectName, dataContractResolver);
+            : GetSerializer(type)
+                .ReadObject(xmlDictionaryReader, verifyObjectName, dataContractResolver);
 }

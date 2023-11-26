@@ -2,10 +2,8 @@ namespace Zaabee.SystemTextJson.UnitTest;
 
 public class TestNewtonJsonDiff
 {
-    private readonly JsonSerializerOptions _jsonSerializerOptions = new()
-    {
-        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-    };
+    private readonly JsonSerializerOptions _jsonSerializerOptions =
+        new() { Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
 
     [Fact]
     [Description("测试数字序列化")]

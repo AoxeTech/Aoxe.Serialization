@@ -26,7 +26,8 @@ public static partial class IniParserHelper
     /// <returns></returns>
     public static object? FromStream(Type type, Stream? stream, Encoding? encoding = null)
     {
-        if (stream is null or { CanSeek: true, Length: 0 }) return default;
+        if (stream is null or { CanSeek: true, Length: 0 })
+            return default;
         var parser = new IniDataParser();
         var bytes = stream.ReadToEnd();
         var iniData = parser.Parse((encoding ?? Defaults.Utf8Encoding).GetString(bytes));
@@ -38,11 +39,13 @@ public static partial class IniParserHelper
             var sectionName = property.DeclaringType?.Name;
             var propertyName = property.Name;
             var value = iniData[sectionName][propertyName];
-            if (string.IsNullOrEmpty(value)) continue;
+            if (string.IsNullOrEmpty(value))
+                continue;
             var propertyType = property.PropertyType;
-            var convertedValue =
-                Convert.ChangeType(TypeDescriptor.GetConverter(propertyType).ConvertFromInvariantString(value),
-                    propertyType);
+            var convertedValue = Convert.ChangeType(
+                TypeDescriptor.GetConverter(propertyType).ConvertFromInvariantString(value),
+                propertyType
+            );
             property.SetValue(obj, convertedValue);
         }
         stream.TrySeek(0, SeekOrigin.Begin);

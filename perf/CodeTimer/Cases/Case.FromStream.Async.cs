@@ -16,20 +16,58 @@ public partial class Case
 
         Runner.Initialize();
 
-        Console.WriteLine(Runner.Time("JilHelper FromStreamAsync", iteration,
-            async () => await JilHelper.FromStreamAsync<TestModel>(jilStreamAsync)));
-        Console.WriteLine(Runner.Time("MemoryPackHelper FromStreamAsync", iteration,
-            async () => await MemoryPackHelper.FromStreamAsync<TestModel>(memoryPackStreamAsync)));
-        Console.WriteLine(Runner.Time("MessagePackHelper FromStreamAsync", iteration,
-            async () => await MessagePackHelper.FromStreamAsync<TestModel>(messagePackStreamAsync)));
-        Console.WriteLine(Runner.Time("MsgPackHelper FromStreamAsync", iteration,
-            async () => await MsgPackHelper.FromStreamAsync<TestModel>(msgPackStreamAsync)));
-        Console.WriteLine(Runner.Time("NewtonsoftJsonHelper FromStreamAsync", iteration,
-            async () => await NewtonsoftJsonHelper.FromStreamAsync<TestModel>(newtonsoftJsonStreamAsync)));
-        Console.WriteLine(Runner.Time("SystemTextJsonHelper FromStreamAsync", iteration,
-            async () => await SystemTextJsonHelper.FromStreamAsync<TestModel>(systemTextJsonStreamAsync)));
-        Console.WriteLine(Runner.Time("Utf8JsonHelper FromStreamAsync", iteration,
-            async () => await Utf8JsonHelper.FromStreamAsync<TestModel>(utf8JsonStreamAsync)));
+        Console.WriteLine(
+            Runner.Time(
+                "JilHelper FromStreamAsync",
+                iteration,
+                async () => await JilHelper.FromStreamAsync<TestModel>(jilStreamAsync)
+            )
+        );
+        Console.WriteLine(
+            Runner.Time(
+                "MemoryPackHelper FromStreamAsync",
+                iteration,
+                async () => await MemoryPackHelper.FromStreamAsync<TestModel>(memoryPackStreamAsync)
+            )
+        );
+        Console.WriteLine(
+            Runner.Time(
+                "MessagePackHelper FromStreamAsync",
+                iteration,
+                async () =>
+                    await MessagePackHelper.FromStreamAsync<TestModel>(messagePackStreamAsync)
+            )
+        );
+        Console.WriteLine(
+            Runner.Time(
+                "MsgPackHelper FromStreamAsync",
+                iteration,
+                async () => await MsgPackHelper.FromStreamAsync<TestModel>(msgPackStreamAsync)
+            )
+        );
+        Console.WriteLine(
+            Runner.Time(
+                "NewtonsoftJsonHelper FromStreamAsync",
+                iteration,
+                async () =>
+                    await NewtonsoftJsonHelper.FromStreamAsync<TestModel>(newtonsoftJsonStreamAsync)
+            )
+        );
+        Console.WriteLine(
+            Runner.Time(
+                "SystemTextJsonHelper FromStreamAsync",
+                iteration,
+                async () =>
+                    await SystemTextJsonHelper.FromStreamAsync<TestModel>(systemTextJsonStreamAsync)
+            )
+        );
+        Console.WriteLine(
+            Runner.Time(
+                "Utf8JsonHelper FromStreamAsync",
+                iteration,
+                async () => await Utf8JsonHelper.FromStreamAsync<TestModel>(utf8JsonStreamAsync)
+            )
+        );
 
         Console.WriteLine("\r\nFromStreamAsync complete!\r\n");
 

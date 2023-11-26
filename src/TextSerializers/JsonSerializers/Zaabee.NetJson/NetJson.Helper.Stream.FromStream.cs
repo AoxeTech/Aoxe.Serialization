@@ -12,7 +12,8 @@ public static partial class NetJsonHelper
     /// <returns></returns>
     public static TValue? FromStream<TValue>(Stream? stream, NetJSONSettings? settings = null)
     {
-        if (stream is null or { CanSeek: true, Length: 0 }) return default;
+        if (stream is null or { CanSeek: true, Length: 0 })
+            return default;
         var result = FromJson<TValue>(stream.ReadString(), settings);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;
@@ -28,7 +29,8 @@ public static partial class NetJsonHelper
     /// <returns></returns>
     public static object? FromStream(Type type, Stream? stream, NetJSONSettings? settings = null)
     {
-        if (stream is null or { CanSeek: true, Length: 0 }) return default;
+        if (stream is null or { CanSeek: true, Length: 0 })
+            return default;
         var result = FromJson(type, stream.ReadString(), settings);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;

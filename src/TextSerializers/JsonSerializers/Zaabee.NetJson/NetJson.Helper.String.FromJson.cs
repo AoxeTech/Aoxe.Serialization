@@ -12,7 +12,9 @@ public static partial class NetJsonHelper
     public static TValue? FromJson<TValue>(string? json, NetJSONSettings? settings = null) =>
         string.IsNullOrWhiteSpace(json) || json is "null"
             ? default
-            : NetJSON.NetJSON.Deserialize<TValue>(json, settings ?? NetJSONSettings.CurrentSettings);
+            : NetJSON
+                .NetJSON
+                .Deserialize<TValue>(json, settings ?? NetJSONSettings.CurrentSettings);
 
     /// <summary>
     /// Deserialize the json to an instance of the <paramref name="type"/>.

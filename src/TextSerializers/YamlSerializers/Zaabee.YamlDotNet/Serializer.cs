@@ -31,35 +31,27 @@ public sealed class Serializer : IYamlSerializer
             ? default
             : YamlDotNetHelper.FromStream(type, stream, _encoding);
 
-    public byte[] ToBytes<TValue>(TValue? value) =>
-        YamlDotNetHelper.ToBytes(value, _encoding);
+    public byte[] ToBytes<TValue>(TValue? value) => YamlDotNetHelper.ToBytes(value, _encoding);
 
     public TValue? FromBytes<TValue>(byte[]? bytes) =>
         bytes is null || bytes.Length is 0
             ? default
             : YamlDotNetHelper.FromBytes<TValue>(bytes, _encoding);
 
-    public byte[] ToBytes(Type type, object? value) =>
-        YamlDotNetHelper.ToBytes(value, _encoding);
+    public byte[] ToBytes(Type type, object? value) => YamlDotNetHelper.ToBytes(value, _encoding);
 
     public object? FromBytes(Type type, byte[]? bytes) =>
         bytes is null || bytes.Length is 0
             ? default
             : YamlDotNetHelper.FromBytes(type, bytes, _encoding);
 
-    public string ToText<TValue>(TValue? value) =>
-        YamlDotNetHelper.ToYaml(value);
+    public string ToText<TValue>(TValue? value) => YamlDotNetHelper.ToYaml(value);
 
     public TValue? FromText<TValue>(string? text) =>
-        string.IsNullOrWhiteSpace(text)
-            ? default
-            : YamlDotNetHelper.FromYaml<TValue>(text);
+        string.IsNullOrWhiteSpace(text) ? default : YamlDotNetHelper.FromYaml<TValue>(text);
 
-    public string ToText(Type type, object? value) =>
-        YamlDotNetHelper.ToYaml(value);
+    public string ToText(Type type, object? value) => YamlDotNetHelper.ToYaml(value);
 
     public object? FromText(Type type, string? text) =>
-        string.IsNullOrWhiteSpace(text)
-            ? default
-            : YamlDotNetHelper.FromYaml(type, text);
+        string.IsNullOrWhiteSpace(text) ? default : YamlDotNetHelper.FromYaml(type, text);
 }

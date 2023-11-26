@@ -15,10 +15,16 @@ public static partial class TomlynHelper
         byte[]? bytes,
         string? sourcePath = null,
         TomlModelOptions? tomlModelOptions = null,
-        Encoding? encoding = null) where TValue : class, new() =>
+        Encoding? encoding = null
+    )
+        where TValue : class, new() =>
         bytes is null || bytes.Length is 0
             ? default
-            : FromToml<TValue>(bytes.GetString(encoding ?? Defaults.Utf8Encoding), sourcePath, tomlModelOptions);
+            : FromToml<TValue>(
+                bytes.GetString(encoding ?? Defaults.Utf8Encoding),
+                sourcePath,
+                tomlModelOptions
+            );
 
     /// <summary>
     /// Use encoding to decode the bytes into string and deserialize it.
@@ -32,8 +38,13 @@ public static partial class TomlynHelper
         byte[]? bytes,
         string? sourcePath = null,
         TomlModelOptions? tomlModelOptions = null,
-        Encoding? encoding = null) =>
+        Encoding? encoding = null
+    ) =>
         bytes is null || bytes.Length is 0
             ? default
-            : FromToml(bytes.GetString(encoding ?? Defaults.Utf8Encoding), sourcePath, tomlModelOptions);
+            : FromToml(
+                bytes.GetString(encoding ?? Defaults.Utf8Encoding),
+                sourcePath,
+                tomlModelOptions
+            );
 }

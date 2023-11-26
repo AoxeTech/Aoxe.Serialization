@@ -3,12 +3,10 @@ namespace Zaabee.Serializer.UnitTest;
 public partial class SerializerTest
 {
     [Fact]
-    public void IniStreamNonGenericNullTest() =>
-        StreamNonGenericNullTest(new Ini.Serializer());
+    public void IniStreamNonGenericNullTest() => StreamNonGenericNullTest(new Ini.Serializer());
 
     [Fact]
-    public void JilStreamNonGenericNullTest() =>
-        StreamNonGenericNullTest(new Jil.Serializer());
+    public void JilStreamNonGenericNullTest() => StreamNonGenericNullTest(new Jil.Serializer());
 
 #if !NET48
     [Fact]
@@ -59,8 +57,7 @@ public partial class SerializerTest
         StreamNonGenericNullTest(new Utf8Json.Serializer());
 
     [Fact]
-    public void XmlStreamNonGenericNullTest() =>
-        StreamNonGenericNullTest(new Xml.Serializer());
+    public void XmlStreamNonGenericNullTest() => StreamNonGenericNullTest(new Xml.Serializer());
 
     [Fact]
     public void YamlDotNetStreamNonGenericNullTest() =>

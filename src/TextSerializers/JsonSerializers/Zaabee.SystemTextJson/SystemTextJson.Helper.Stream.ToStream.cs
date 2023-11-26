@@ -9,7 +9,10 @@ public static partial class SystemTextJsonHelper
     /// <param name="options"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static MemoryStream ToStream<TValue>(TValue? value, JsonSerializerOptions? options = null)
+    public static MemoryStream ToStream<TValue>(
+        TValue? value,
+        JsonSerializerOptions? options = null
+    )
     {
         var ms = new MemoryStream();
         Pack(value, ms, options);
@@ -23,7 +26,11 @@ public static partial class SystemTextJsonHelper
     /// <param name="value"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public static MemoryStream ToStream(Type type, object? value, JsonSerializerOptions? options = null)
+    public static MemoryStream ToStream(
+        Type type,
+        object? value,
+        JsonSerializerOptions? options = null
+    )
     {
         var ms = new MemoryStream();
         Pack(type, value, ms, options);

@@ -8,7 +8,10 @@ public partial class SerializerTest
 
     [Fact]
     public async Task JilStreamNonGenericAsyncTest() =>
-        await StreamNonGenericAsyncTest(new Jil.Serializer(Options.ISO8601Utc), TestModelHelper.Create());
+        await StreamNonGenericAsyncTest(
+            new Jil.Serializer(Options.ISO8601Utc),
+            TestModelHelper.Create()
+        );
 
 #if !NET48
     [Fact]
@@ -52,12 +55,14 @@ public partial class SerializerTest
 
     private async Task StreamNonGenericAsyncTest(
         IStreamSerializerAsync streamSerializerAsync,
-        TestModel model)
+        TestModel model
+    )
     {
         var type = typeof(TestModel);
         var stream = new MemoryStream();
         await streamSerializerAsync.PackAsync(type, model, stream);
-        var deserializeModel = (TestModel)(await streamSerializerAsync.FromStreamAsync(type, stream))!;
+        var deserializeModel = (TestModel)
+            (await streamSerializerAsync.FromStreamAsync(type, stream))!;
 
         Assert.Equal(model, deserializeModel);
     }

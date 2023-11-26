@@ -7,6 +7,6 @@ public static partial class TomlynExtensions
         Stream? stream,
         TomlModelOptions? tomlModelOptions = null,
         Encoding? encoding = null,
-        CancellationToken cancellationToken = default) =>
-        TomlynHelper.PackAsync(value, stream, tomlModelOptions, encoding, cancellationToken);
+        CancellationToken cancellationToken = default
+    ) => TomlynHelper.PackAsync(value, stream, tomlModelOptions, encoding, cancellationToken);
 }

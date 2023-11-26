@@ -43,7 +43,8 @@ public class FromBytes
     }
 
     [Benchmark]
-    public void DataContractFromBytes() => DataContractHelper.FromBytes<TestModel>(_dataContractBytes);
+    public void DataContractFromBytes() =>
+        DataContractHelper.FromBytes<TestModel>(_dataContractBytes);
 
     [Benchmark]
     public void JilFromBytes() => JilHelper.FromBytes<TestModel>(_jilBytes);
@@ -61,7 +62,8 @@ public class FromBytes
     public void NetJsonFromBytes() => NetJsonHelper.FromBytes<TestModel>(_netJsonBytes);
 
     [Benchmark]
-    public void NewtonsoftJsonFromBytes() => NewtonsoftJsonHelper.FromBytes<TestModel>(_newtonsoftJsonBytes);
+    public void NewtonsoftJsonFromBytes() =>
+        NewtonsoftJsonHelper.FromBytes<TestModel>(_newtonsoftJsonBytes);
 
     [Benchmark]
     public void ProtobufFromBytes() => ProtobufHelper.FromBytes<TestModel>(_protobufBytes);
@@ -73,7 +75,8 @@ public class FromBytes
     public void SpanJsonFromBytes() => SpanJsonHelper.FromBytes<TestModel>(_spanJsonBytes);
 
     [Benchmark]
-    public void SystemTextJsonFromBytes() => SystemTextJsonHelper.FromBytes<TestModel>(_systemTextJsonBytes);
+    public void SystemTextJsonFromBytes() =>
+        SystemTextJsonHelper.FromBytes<TestModel>(_systemTextJsonBytes);
 
     [Benchmark]
     public void Utf8JsonFromBytes() => Utf8JsonHelper.FromBytes<TestModel>(_utf8JsonBytes);
@@ -85,5 +88,6 @@ public class FromBytes
     public void YamlDotNetFromBytes() => YamlDotNetHelper.FromBytes<TestModel>(_yamlDotNet);
 
     [Benchmark]
-    public void ZeroFormatterFromBytes() => ZeroFormatterHelper.FromBytes<TestModel>(_zeroFormatterBytes);
+    public void ZeroFormatterFromBytes() =>
+        ZeroFormatterHelper.FromBytes<TestModel>(_zeroFormatterBytes);
 }

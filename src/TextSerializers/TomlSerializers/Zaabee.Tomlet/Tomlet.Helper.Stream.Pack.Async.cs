@@ -16,10 +16,13 @@ public static partial class TomletHelper
         Stream? stream = null,
         TomlSerializerOptions? tomlSerializerOptions = null,
         Encoding? encoding = null,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken = default
+    )
     {
-        if (stream is null) return;
-        await ToBytes(value, tomlSerializerOptions, encoding).WriteToAsync(stream, cancellationToken);
+        if (stream is null)
+            return;
+        await ToBytes(value, tomlSerializerOptions, encoding)
+            .WriteToAsync(stream, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 
@@ -39,10 +42,13 @@ public static partial class TomletHelper
         Stream? stream = null,
         TomlSerializerOptions? tomlSerializerOptions = null,
         Encoding? encoding = null,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken = default
+    )
     {
-        if (stream is null) return;
-        await ToBytes(type, value, tomlSerializerOptions, encoding).WriteToAsync(stream, cancellationToken);
+        if (stream is null)
+            return;
+        await ToBytes(type, value, tomlSerializerOptions, encoding)
+            .WriteToAsync(stream, cancellationToken);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 }

@@ -10,10 +10,8 @@ public static partial class TomletHelper
     /// <returns></returns>
     public static string ToToml<TValue>(
         TValue? value,
-        TomlSerializerOptions? tomlSerializerOptions = null) =>
-        value is null
-            ? string.Empty
-            : TomletMain.TomlStringFrom(value, tomlSerializerOptions);
+        TomlSerializerOptions? tomlSerializerOptions = null
+    ) => value is null ? string.Empty : TomletMain.TomlStringFrom(value, tomlSerializerOptions);
 
     /// <summary>
     /// Serialize the value to toml string.
@@ -25,7 +23,8 @@ public static partial class TomletHelper
     public static string ToToml(
         Type type,
         object? value,
-        TomlSerializerOptions? tomlSerializerOptions = null) =>
+        TomlSerializerOptions? tomlSerializerOptions = null
+    ) =>
         value is null
             ? string.Empty
             : TomletMain.TomlStringFrom(type, value, tomlSerializerOptions);

@@ -7,8 +7,8 @@ public static partial class TomletExtensions
         TValue? value,
         TomlSerializerOptions? tomlSerializerOptions = null,
         Encoding? encoding = null,
-        CancellationToken cancellationToken = default) =>
-        TomletHelper.PackAsync(value, stream, tomlSerializerOptions, encoding, cancellationToken);
+        CancellationToken cancellationToken = default
+    ) => TomletHelper.PackAsync(value, stream, tomlSerializerOptions, encoding, cancellationToken);
 
     public static ValueTask PackByAsync(
         this Stream? stream,
@@ -16,6 +16,14 @@ public static partial class TomletExtensions
         object? value,
         TomlSerializerOptions? tomlSerializerOptions = null,
         Encoding? encoding = null,
-        CancellationToken cancellationToken = default) =>
-        TomletHelper.PackAsync(type, value, stream, tomlSerializerOptions, encoding, cancellationToken);
+        CancellationToken cancellationToken = default
+    ) =>
+        TomletHelper.PackAsync(
+            type,
+            value,
+            stream,
+            tomlSerializerOptions,
+            encoding,
+            cancellationToken
+        );
 }

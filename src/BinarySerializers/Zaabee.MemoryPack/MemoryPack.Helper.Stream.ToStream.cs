@@ -4,7 +4,8 @@ public static partial class MemoryPackHelper
 {
     public static MemoryStream ToStream<TValue>(
         TValue? value,
-        MemoryPackSerializerOptions? options = null)
+        MemoryPackSerializerOptions? options = null
+    )
     {
         var ms = new MemoryStream();
         Pack(value, ms, options);
@@ -14,7 +15,8 @@ public static partial class MemoryPackHelper
     public static MemoryStream ToStream(
         Type type,
         object? value,
-        MemoryPackSerializerOptions? options = null)
+        MemoryPackSerializerOptions? options = null
+    )
     {
         var ms = new MemoryStream();
         Pack(type, value, ms, options);

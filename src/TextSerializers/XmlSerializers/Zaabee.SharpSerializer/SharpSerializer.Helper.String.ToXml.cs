@@ -8,8 +8,7 @@ public static partial class SharpSerializerHelper
     /// <param name="value"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static string ToXml<TValue>(TValue? value) =>
-        ToXml(typeof(TValue), value);
+    public static string ToXml<TValue>(TValue? value) => ToXml(typeof(TValue), value);
 
     /// <summary>
     /// Serialize the object into a memory stream,get bytes from it and return the decode result.

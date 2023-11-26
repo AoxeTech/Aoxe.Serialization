@@ -4,11 +4,9 @@ public sealed class Serializer : IBytesSerializer, IStreamSerializerAsync
 {
     private readonly MessagePackSerializerOptions? _options;
 
-    public Serializer(MessagePackSerializerOptions? options = null) =>
-        _options = options;
+    public Serializer(MessagePackSerializerOptions? options = null) => _options = options;
 
-    public byte[] ToBytes<TValue>(TValue? value) =>
-        MessagePackHelper.ToBytes(value, _options);
+    public byte[] ToBytes<TValue>(TValue? value) => MessagePackHelper.ToBytes(value, _options);
 
     public byte[] ToBytes(Type type, object? value) =>
         MessagePackHelper.ToBytes(type, value, _options);
@@ -45,20 +43,32 @@ public sealed class Serializer : IBytesSerializer, IStreamSerializerAsync
             ? default
             : MessagePackHelper.FromStream(type, stream, _options);
 
-    public ValueTask PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
-        MessagePackHelper.PackAsync(value, stream, _options, cancellationToken);
+    public ValueTask PackAsync<TValue>(
+        TValue? value,
+        Stream? stream,
+        CancellationToken cancellationToken = default
+    ) => MessagePackHelper.PackAsync(value, stream, _options, cancellationToken);
 
-    public ValueTask PackAsync(Type type, object? value, Stream? stream,
-        CancellationToken cancellationToken = default) =>
-        MessagePackHelper.PackAsync(type, value, stream, _options, cancellationToken);
+    public ValueTask PackAsync(
+        Type type,
+        object? value,
+        Stream? stream,
+        CancellationToken cancellationToken = default
+    ) => MessagePackHelper.PackAsync(type, value, stream, _options, cancellationToken);
 
-    public ValueTask<TValue?> FromStreamAsync<TValue>(Stream? stream, CancellationToken cancellationToken = default) =>
+    public ValueTask<TValue?> FromStreamAsync<TValue>(
+        Stream? stream,
+        CancellationToken cancellationToken = default
+    ) =>
         stream is null or { CanSeek: true, Length: 0 }
             ? new ValueTask<TValue?>(default(TValue?))
             : MessagePackHelper.FromStreamAsync<TValue>(stream, _options, cancellationToken);
 
-    public ValueTask<object?> FromStreamAsync(Type type, Stream? stream,
-        CancellationToken cancellationToken = default) =>
+    public ValueTask<object?> FromStreamAsync(
+        Type type,
+        Stream? stream,
+        CancellationToken cancellationToken = default
+    ) =>
         stream is null or { CanSeek: true, Length: 0 }
             ? new ValueTask<object?>(default(object?))
             : MessagePackHelper.FromStreamAsync(type, stream, _options, cancellationToken);

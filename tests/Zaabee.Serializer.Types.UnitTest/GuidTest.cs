@@ -7,47 +7,38 @@ public class GuidTest
         GuidSerializeTest(new DataContractSerializer.Serializer());
 
     [Fact]
-    public void IniGuidSerializeTest() =>
-        GuidSerializeTest(new Ini.Serializer());
+    public void IniGuidSerializeTest() => GuidSerializeTest(new Ini.Serializer());
 
     [Fact]
-    public void JilGuidSerializeTest() =>
-        GuidSerializeTest(new Jil.Serializer());
+    public void JilGuidSerializeTest() => GuidSerializeTest(new Jil.Serializer());
 
 #if !NET48
     [Fact]
-    public void MemoryPackGuidSerializeTest() =>
-        GuidSerializeTest(new MemoryPack.Serializer());
+    public void MemoryPackGuidSerializeTest() => GuidSerializeTest(new MemoryPack.Serializer());
 #endif
 
     [Fact]
-    public void MessagePackGuidSerializeTest() =>
-        GuidSerializeTest(new MessagePack.Serializer());
+    public void MessagePackGuidSerializeTest() => GuidSerializeTest(new MessagePack.Serializer());
 
     [Fact]
-    public void MsgPackGuidSerializeTest() =>
-        GuidSerializeTest(new MsgPack.Serializer());
+    public void MsgPackGuidSerializeTest() => GuidSerializeTest(new MsgPack.Serializer());
 
     [Fact]
-    public void NetJsonGuidSerializeTest() =>
-        GuidSerializeTest(new NetJson.Serializer());
+    public void NetJsonGuidSerializeTest() => GuidSerializeTest(new NetJson.Serializer());
 
     [Fact]
     public void NewtonsoftJsonGuidSerializeTest() =>
         GuidSerializeTest(new NewtonsoftJson.Serializer());
 
     [Fact]
-    public void ProtobufGuidSerializeTest() =>
-        GuidSerializeTest(new Protobuf.Serializer());
+    public void ProtobufGuidSerializeTest() => GuidSerializeTest(new Protobuf.Serializer());
 
     [Fact]
-    public void SharpYamlGuidSerializeTest() =>
-        GuidSerializeTest(new SharpYaml.Serializer());
+    public void SharpYamlGuidSerializeTest() => GuidSerializeTest(new SharpYaml.Serializer());
 
 #if !NET48
     [Fact]
-    public void SpanJsonGuidSerializeTest() =>
-        GuidSerializeTest(new SpanJson.Serializer());
+    public void SpanJsonGuidSerializeTest() => GuidSerializeTest(new SpanJson.Serializer());
 #endif
 
     [Fact]
@@ -55,20 +46,16 @@ public class GuidTest
         GuidSerializeTest(new SystemTextJson.Serializer());
 
     [Fact]
-    public void TomletGuidSerializeTest() =>
-        GuidSerializeTest(new Tomlet.Serializer());
+    public void TomletGuidSerializeTest() => GuidSerializeTest(new Tomlet.Serializer());
 
     [Fact]
-    public void Utf8JsonGuidSerializeTest() =>
-        GuidSerializeTest(new Utf8Json.Serializer());
+    public void Utf8JsonGuidSerializeTest() => GuidSerializeTest(new Utf8Json.Serializer());
 
     [Fact]
-    public void XmlGuidSerializeTest() =>
-        GuidSerializeTest(new Xml.Serializer());
+    public void XmlGuidSerializeTest() => GuidSerializeTest(new Xml.Serializer());
 
     [Fact]
-    public void YamlDotNetGuidSerializeTest() =>
-        GuidSerializeTest(new YamlDotNet.Serializer());
+    public void YamlDotNetGuidSerializeTest() => GuidSerializeTest(new YamlDotNet.Serializer());
 
     [Fact]
     public void ZeroFormatterGuidSerializeTest() =>
@@ -77,6 +64,9 @@ public class GuidTest
     private static void GuidSerializeTest(IBytesSerializer bytesSerializer)
     {
         var guidModel = GuidModel.Instance();
-        Assert.Equal(guidModel.Id, bytesSerializer.FromBytes<GuidModel>(bytesSerializer.ToBytes(guidModel))!.Id);
+        Assert.Equal(
+            guidModel.Id,
+            bytesSerializer.FromBytes<GuidModel>(bytesSerializer.ToBytes(guidModel))!.Id
+        );
     }
 }

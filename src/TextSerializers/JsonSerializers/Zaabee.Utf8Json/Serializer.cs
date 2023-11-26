@@ -4,11 +4,9 @@ public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
 {
     private readonly IJsonFormatterResolver? _resolver;
 
-    public Serializer(IJsonFormatterResolver? resolver = null) =>
-        _resolver = resolver;
+    public Serializer(IJsonFormatterResolver? resolver = null) => _resolver = resolver;
 
-    public byte[] ToBytes<TValue>(TValue? value) =>
-        Utf8JsonHelper.ToBytes(value, _resolver);
+    public byte[] ToBytes<TValue>(TValue? value) => Utf8JsonHelper.ToBytes(value, _resolver);
 
     public byte[] ToBytes(Type type, object? value) =>
         Utf8JsonHelper.ToBytes(type, value, _resolver);
@@ -23,11 +21,9 @@ public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
             ? default
             : Utf8JsonHelper.FromBytes(type, bytes, _resolver);
 
-    public string ToText<TValue>(TValue? value) =>
-        Utf8JsonHelper.ToJson(value, _resolver);
+    public string ToText<TValue>(TValue? value) => Utf8JsonHelper.ToJson(value, _resolver);
 
-    public string ToText(Type type, object? value) =>
-        Utf8JsonHelper.ToJson(type, value, _resolver);
+    public string ToText(Type type, object? value) => Utf8JsonHelper.ToJson(type, value, _resolver);
 
     public TValue? FromText<TValue>(string? text) =>
         string.IsNullOrWhiteSpace(text)
@@ -35,9 +31,7 @@ public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
             : Utf8JsonHelper.FromJson<TValue>(text, _resolver);
 
     public object? FromText(Type type, string? text) =>
-        string.IsNullOrWhiteSpace(text)
-            ? default
-            : Utf8JsonHelper.FromJson(type, text, _resolver);
+        string.IsNullOrWhiteSpace(text) ? default : Utf8JsonHelper.FromJson(type, text, _resolver);
 
     public void Pack<TValue>(TValue? value, Stream? stream) =>
         Utf8JsonHelper.Pack(value, stream, _resolver);
@@ -61,18 +55,23 @@ public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
             ? default
             : Utf8JsonHelper.FromStream(type, stream, _resolver);
 
-    public ValueTask PackAsync<TValue>(TValue? value, Stream? stream, CancellationToken cancellationToken = default) =>
-        Utf8JsonHelper.PackAsync(value, stream, _resolver);
+    public ValueTask PackAsync<TValue>(
+        TValue? value,
+        Stream? stream,
+        CancellationToken cancellationToken = default
+    ) => Utf8JsonHelper.PackAsync(value, stream, _resolver);
 
-    public ValueTask PackAsync(Type type,
+    public ValueTask PackAsync(
+        Type type,
         object? value,
         Stream? stream,
-        CancellationToken cancellationToken = default) =>
-        Utf8JsonHelper.PackAsync(type, value, stream, _resolver);
+        CancellationToken cancellationToken = default
+    ) => Utf8JsonHelper.PackAsync(type, value, stream, _resolver);
 
     public ValueTask<TValue?> FromStreamAsync<TValue>(
         Stream? stream,
-        CancellationToken cancellationToken = default) =>
+        CancellationToken cancellationToken = default
+    ) =>
         stream is null or { CanSeek: true, Length: 0 }
             ? new ValueTask<TValue?>(default(TValue?))
             : Utf8JsonHelper.FromStreamAsync<TValue>(stream, _resolver);
@@ -80,7 +79,8 @@ public sealed class Serializer : IJsonSerializer, IStreamSerializerAsync
     public ValueTask<object?> FromStreamAsync(
         Type type,
         Stream? stream,
-        CancellationToken cancellationToken = default) =>
+        CancellationToken cancellationToken = default
+    ) =>
         stream is null or { CanSeek: true, Length: 0 }
             ? new ValueTask<object?>(default(object?))
             : Utf8JsonHelper.FromStreamAsync(type, stream, _resolver);

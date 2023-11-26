@@ -18,6 +18,9 @@ public static partial class NewtonsoftJsonHelper
     /// <param name="value"></param>
     /// <param name="settings"></param>
     /// <returns></returns>
-    public static string ToJson(Type type, object? value, JsonSerializerSettings? settings = null) =>
-        JsonConvert.SerializeObject(value, type, settings);
+    public static string ToJson(
+        Type type,
+        object? value,
+        JsonSerializerSettings? settings = null
+    ) => JsonConvert.SerializeObject(value, type, settings);
 }

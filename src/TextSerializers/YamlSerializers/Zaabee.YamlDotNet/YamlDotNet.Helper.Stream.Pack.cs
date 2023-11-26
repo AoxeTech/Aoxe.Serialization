@@ -10,7 +10,8 @@ public static partial class YamlDotNetHelper
     /// <param name="encoding"></param>
     public static void Pack(object? value, Stream? stream, Encoding? encoding = null)
     {
-        if (stream is null) return;
+        if (stream is null)
+            return;
 #if NETSTANDARD2_0
         var bytes = ToBytes(value, encoding ?? Defaults.Utf8Encoding);
         stream.Write(bytes, 0, bytes.Length);

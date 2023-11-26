@@ -10,9 +10,7 @@ public static partial class NewtonsoftJsonHelper
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
     public static TValue? FromJson<TValue>(string? json, JsonSerializerSettings? settings = null) =>
-        json.IsNullOrEmpty()
-            ? default
-            : JsonConvert.DeserializeObject<TValue>(json!, settings);
+        json.IsNullOrEmpty() ? default : JsonConvert.DeserializeObject<TValue>(json!, settings);
 
     /// <summary>
     /// Deserializes the JSON to the specified .NET type using <see cref="JsonSerializerSettings"/>.
@@ -21,8 +19,9 @@ public static partial class NewtonsoftJsonHelper
     /// <param name="json"></param>
     /// <param name="settings"></param>
     /// <returns></returns>
-    public static object? FromJson(Type type, string? json, JsonSerializerSettings? settings = null) =>
-        json.IsNullOrEmpty()
-            ? default
-            : JsonConvert.DeserializeObject(json!, type, settings);
+    public static object? FromJson(
+        Type type,
+        string? json,
+        JsonSerializerSettings? settings = null
+    ) => json.IsNullOrEmpty() ? default : JsonConvert.DeserializeObject(json!, type, settings);
 }

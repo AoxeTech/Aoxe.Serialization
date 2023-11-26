@@ -9,9 +9,7 @@ public static partial class YamlDotNetHelper
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
     public static TValue? FromYaml<TValue>(string? yaml) =>
-        string.IsNullOrWhiteSpace(yaml)
-            ? default
-            : Deserializer.Deserialize<TValue>(yaml!);
+        string.IsNullOrWhiteSpace(yaml) ? default : Deserializer.Deserialize<TValue>(yaml!);
 
     /// <summary>
     /// Deserialize the yaml string to an instance of the <paramref name="type"/>.
@@ -20,7 +18,5 @@ public static partial class YamlDotNetHelper
     /// <param name="yaml"></param>
     /// <returns></returns>
     public static object? FromYaml(Type type, string? yaml) =>
-        string.IsNullOrWhiteSpace(yaml)
-            ? default
-            : Deserializer.Deserialize(yaml!, type);
+        string.IsNullOrWhiteSpace(yaml) ? default : Deserializer.Deserialize(yaml!, type);
 }

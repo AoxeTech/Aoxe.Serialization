@@ -7,8 +7,7 @@ public partial class SerializerTest
         JsonNonGenericTest(new Jil.Serializer(Options.ISO8601Utc));
 
     [Fact]
-    public void NetJsonJsonNonGenericTest() =>
-        JsonNonGenericTest(new NetJson.Serializer());
+    public void NetJsonJsonNonGenericTest() => JsonNonGenericTest(new NetJson.Serializer());
 
     [Fact]
     public void NewtonsoftJsonJsonNonGenericTest() =>
@@ -16,8 +15,7 @@ public partial class SerializerTest
 
 #if !NET48
     [Fact]
-    public void SpanJsonJsonNonGenericTest() =>
-        JsonNonGenericTest(new SpanJson.Serializer());
+    public void SpanJsonJsonNonGenericTest() => JsonNonGenericTest(new SpanJson.Serializer());
 #endif
 
     [Fact]
@@ -25,8 +23,7 @@ public partial class SerializerTest
         JsonNonGenericTest(new SystemTextJson.Serializer());
 
     [Fact]
-    public void Utf8JsonJsonNonGenericTest() =>
-        JsonNonGenericTest(new Utf8Json.Serializer());
+    public void Utf8JsonJsonNonGenericTest() => JsonNonGenericTest(new Utf8Json.Serializer());
 
     private static void JsonNonGenericTest(IJsonSerializer serializer)
     {

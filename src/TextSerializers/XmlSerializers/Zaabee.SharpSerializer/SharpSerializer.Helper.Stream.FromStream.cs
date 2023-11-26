@@ -21,7 +21,8 @@ public static partial class SharpSerializerHelper
     /// <returns></returns>
     public static object? FromStream(Type type, Stream? stream)
     {
-        if (stream is null or { CanSeek: true, Length: 0 }) return default;
+        if (stream is null or { CanSeek: true, Length: 0 })
+            return default;
         var serializer = new Polenter.Serialization.SharpSerializer(_defaultSettings);
         return serializer.Deserialize(stream);
     }
