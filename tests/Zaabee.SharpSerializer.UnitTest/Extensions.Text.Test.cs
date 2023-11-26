@@ -1,4 +1,4 @@
-namespace Zaabee.Xml.UnitTest;
+namespace Zaabee.SharpSerializer.UnitTest;
 
 public partial class ExtensionsTest
 {

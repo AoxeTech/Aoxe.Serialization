@@ -8,10 +8,12 @@ public static partial class SharpSerializerHelper
     /// <param name="xml"></param>
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static TValue? FromXml<TValue>(string? xml) =>
-        string.IsNullOrWhiteSpace(xml)
-            ? default
-            : (TValue?)FromXml(typeof(TValue), xml);
+    public static TValue? FromXml<TValue>(string? xml)
+    {
+        if (string.IsNullOrWhiteSpace(xml)) return default;
+        using var ms = Encoding.UTF8.GetBytes(xml).ToMemoryStream();
+        return FromStream<TValue>(ms);
+    }
 
     /// <summary>
     /// Encode the xml to a bytes and initialize a memory stream by it,deserialize to a object.

@@ -23,7 +23,8 @@ public static partial class SharpSerializerHelper
     public static void Pack(Type type, object? value, Stream? stream)
     {
         if (stream is null) return;
-        GetSerializer(type).WriteObject(stream, value);
+        var serializer = new Polenter.Serialization.SharpSerializer(_defaultSettings);
+        serializer.Serialize(value, stream);
         stream.TrySeek(0, SeekOrigin.Begin);
     }
 }

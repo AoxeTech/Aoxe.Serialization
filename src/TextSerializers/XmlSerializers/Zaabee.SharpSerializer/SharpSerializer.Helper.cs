@@ -1,6 +1,11 @@
 namespace Zaabee.SharpSerializer;
 
-public class SharpSerializer_Helper
+public static partial class SharpSerializerHelper
 {
-    
+    private static SharpSerializerXmlSettings _defaultSettings = new()
+    {
+        IncludeAssemblyVersionInTypeName = true,
+        IncludeCultureInTypeName = true,
+        IncludePublicKeyTokenInTypeName = true
+    };
 }
