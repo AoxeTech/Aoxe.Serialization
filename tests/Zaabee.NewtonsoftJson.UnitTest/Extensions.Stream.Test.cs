@@ -17,7 +17,7 @@ public partial class ExtensionsTest
         var stream2 = new MemoryStream();
         stream2.PackBy(testModel);
         var result2 = stream2.FromStream<TestModel>()!;
-        
+
         Assert.Equal(testModel, result0);
         Assert.Equal(testModel, result1);
         Assert.Equal(testModel, result2);
@@ -53,7 +53,7 @@ public partial class ExtensionsTest
         var stream2 = new MemoryStream();
         stream2.PackBy(typeof(TestModel), testModel);
         var result2 = (TestModel)stream2.FromStream(typeof(TestModel))!;
-        
+
         Assert.Equal((TestModel)testModel, result0);
         Assert.Equal((TestModel)testModel, result1);
         Assert.Equal((TestModel)testModel, result2);

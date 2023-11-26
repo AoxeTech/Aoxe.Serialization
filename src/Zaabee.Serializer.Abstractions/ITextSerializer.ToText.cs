@@ -9,7 +9,7 @@ public partial interface ITextSerializer
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
     string ToText<TValue>(TValue? value);
-    
+
     /// <summary>
     /// Serialize to text.
     /// </summary>

@@ -57,7 +57,7 @@ public partial class SerializerTest
         var model = TestModelHelper.Create();
         var text = serializer.ToText(model);
         var deserializeModel = serializer.FromText<TestModel>(text)!;
-        
+
         Assert.Equal(model, deserializeModel);
     }
 }

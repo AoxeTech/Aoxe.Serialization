@@ -9,7 +9,7 @@ public partial interface IBytesSerializer
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
     byte[] ToBytes<TValue>(TValue? value);
-    
+
     /// <summary>
     /// Serialize to bytes.
     /// </summary>

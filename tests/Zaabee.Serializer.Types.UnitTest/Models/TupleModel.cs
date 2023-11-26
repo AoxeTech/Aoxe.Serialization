@@ -9,8 +9,8 @@ namespace Zaabee.Serializer.Types.UnitTest.Models;
 [ZeroFormattable]
 public partial class TupleModel
 {
-    [Key(0)] [ProtoMember(1)] [Index(0)] public virtual Tuple<string, string> Tuple { get; set; }
-    [Key(1)] [ProtoMember(2)] [Index(1)] public virtual List<Tuple<string, string>> Tuples { get; set; } = new();
+    [Key(0)][ProtoMember(1)][Index(0)] public virtual Tuple<string, string> Tuple { get; set; }
+    [Key(1)][ProtoMember(2)][Index(1)] public virtual List<Tuple<string, string>> Tuples { get; set; } = new();
 
     public static TupleModel Instance() => new();
 }

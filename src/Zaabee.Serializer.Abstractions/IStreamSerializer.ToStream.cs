@@ -9,7 +9,7 @@ public partial interface IStreamSerializer
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
     MemoryStream ToStream<TValue>(TValue? value);
-    
+
     /// <summary>
     /// Serialize to stream.
     /// </summary>

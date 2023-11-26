@@ -19,7 +19,7 @@ public partial class Case
         var zeroFormatterBytes = ZeroFormatterHelper.ToBytes<TestModel>(_testModel);
 
         Console.WriteLine("FromBytes go!");
-        
+
         Runner.Initialize();
 
         Console.WriteLine(Runner.Time("DataContractHelper FromBytes", iteration,
@@ -48,7 +48,7 @@ public partial class Case
             () => YamlDotNetHelper.FromBytes<TestModel>(yamlDotNetBytes)));
         Console.WriteLine(Runner.Time("ZeroFormatterHelper FromBytes", iteration,
             () => ZeroFormatterHelper.FromBytes<TestModel>(zeroFormatterBytes)));
-        
+
         Console.WriteLine("\r\nFromBytes complete!\r\n");
     }
 }

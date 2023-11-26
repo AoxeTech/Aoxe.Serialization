@@ -12,7 +12,7 @@ public partial class SerializerTest
         var type = typeof(TestModel);
         var ini = serializer.ToIni(type, model);
         var deserializeModel = (TestModel)serializer.FromIni(type, ini)!;
-        
+
         Assert.Equal(model, deserializeModel);
     }
 }

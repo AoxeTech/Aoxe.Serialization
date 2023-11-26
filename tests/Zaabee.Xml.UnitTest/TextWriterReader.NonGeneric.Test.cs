@@ -35,7 +35,7 @@ public partial class XmlUnitTest
             result1 = (TestModel)reader.ReadXml(typeof(TestModel))!;
             reader.Close();
         }
-        
+
         Assert.Equal(testModel, result0);
         Assert.Equal(testModel, result1);
     }

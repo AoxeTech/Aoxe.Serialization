@@ -10,7 +10,7 @@ public partial class ExtensionsTest
         var testModel = TestModelHelper.Create();
         var bytes = new ReadOnlySequence<byte>(testModel.ToBytes());
         var result = bytes.FromBytes<TestModel>()!;
-        
+
         Assert.Equal(testModel, result);
     }
 
@@ -20,7 +20,7 @@ public partial class ExtensionsTest
         object testModel = TestModelHelper.Create();
         var bytes = new ReadOnlySequence<byte>(testModel.ToBytes(typeof(TestModel)));
         var result = (TestModel)bytes.FromBytes(typeof(TestModel))!;
-        
+
         Assert.Equal((TestModel)testModel, result);
     }
 }

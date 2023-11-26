@@ -8,7 +8,7 @@ public partial class SystemTextJsonUnitTest
         var testModel = TestModelHelper.Create();
         var bytes = testModel.ToBytes();
         var result = ((ReadOnlySpan<byte>)bytes).FromBytes<TestModel>()!;
-        
+
         Assert.Equal(testModel, result);
     }
 }

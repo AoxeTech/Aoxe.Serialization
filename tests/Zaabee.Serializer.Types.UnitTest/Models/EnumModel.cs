@@ -9,7 +9,7 @@ namespace Zaabee.Serializer.Types.UnitTest.Models;
 [ZeroFormattable]
 public partial class EnumModel
 {
-    [Key(0)] [ProtoMember(1)] [Index(0)] public virtual Color Color { get; set; }
+    [Key(0)][ProtoMember(1)][Index(0)] public virtual Color Color { get; set; }
     public static EnumModel Instance() => new();
 }
 

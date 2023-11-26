@@ -7,7 +7,7 @@ public partial class Case
         Console.WriteLine("ToStream go!");
 
         Runner.Initialize();
-        
+
         Console.WriteLine(Runner.Time("DataContractHelper ToStream", iteration,
             () => DataContractHelper.ToStream(_testModel)));
         Console.WriteLine(Runner.Time("JilHelper ToStream", iteration,

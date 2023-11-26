@@ -8,7 +8,7 @@ public partial class ExtensionsTest
         var testModel = TestModelHelper.Create();
         var bytes = testModel.ToBytes();
         var result = bytes.FromBytes<TestModel>()!;
-        
+
         Assert.Equal(testModel, result);
     }
 
@@ -38,7 +38,7 @@ public partial class ExtensionsTest
         var testModel = TestModelHelper.Create();
         var bytes = testModel.ToBytes();
         var result = bytes.FromBytes<TestModel>()!;
-        
+
         Assert.Equal(testModel, result);
     }
 }

@@ -50,7 +50,7 @@ public class FromStream
 
     [Benchmark]
     public void MemoryPackFromStream() => MemoryPackHelper.FromStream<TestModel>(_memoryPackStream);
-    
+
     [Benchmark]
     public void MessagePackFromStream() => MessagePackHelper.FromStream<TestModel>(_messagePackStream);
 

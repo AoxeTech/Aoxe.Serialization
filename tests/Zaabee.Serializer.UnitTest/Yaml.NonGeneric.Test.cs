@@ -16,7 +16,7 @@ public partial class SerializerTest
         var type = typeof(TestModel);
         var yaml = serializer.ToYaml(type, model);
         var deserializeModel = (TestModel)serializer.FromYaml(type, yaml)!;
-        
+
         Assert.Equal(model, deserializeModel);
     }
 }

@@ -9,7 +9,7 @@ namespace Zaabee.Serializer.Types.UnitTest.Models;
 [ZeroFormattable]
 public partial class DateTimeModel
 {
-    [Key(0)] [ProtoMember(1)] [Index(0)] public virtual DateTime DateTime { get; set; } = DateTime.UtcNow;
+    [Key(0)][ProtoMember(1)][Index(0)] public virtual DateTime DateTime { get; set; } = DateTime.UtcNow;
 
     public static DateTimeModel Instance(bool isUtc = true)
     {

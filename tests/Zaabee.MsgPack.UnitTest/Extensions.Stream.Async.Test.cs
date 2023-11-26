@@ -17,7 +17,7 @@ public partial class ExtensionsTest
         var stream2 = new MemoryStream();
         await stream2.PackByAsync(testModel);
         var result2 = (await stream2.FromStreamAsync<TestModel>())!;
-        
+
         Assert.Equal(testModel, result0);
         Assert.Equal(testModel, result1);
         Assert.Equal(testModel, result2);
@@ -53,7 +53,7 @@ public partial class ExtensionsTest
         var stream2 = new MemoryStream();
         await stream2.PackByAsync(typeof(TestModel), testModel);
         var result2 = (TestModel)(await stream2.FromStreamAsync(typeof(TestModel)))!;
-        
+
         Assert.Equal((TestModel)testModel, result0);
         Assert.Equal((TestModel)testModel, result1);
         Assert.Equal((TestModel)testModel, result2);

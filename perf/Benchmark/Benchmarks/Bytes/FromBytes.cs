@@ -47,7 +47,7 @@ public class FromBytes
 
     [Benchmark]
     public void JilFromBytes() => JilHelper.FromBytes<TestModel>(_jilBytes);
-    
+
     [Benchmark]
     public void MemoryPackFromBytes() => MemoryPackHelper.FromBytes<TestModel>(_memoryPackBytes);
 
