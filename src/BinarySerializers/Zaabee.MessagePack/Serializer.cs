@@ -1,31 +1,29 @@
 namespace Zaabee.MessagePack;
 
-public sealed class Serializer : IBytesSerializer, IStreamSerializerAsync
+public sealed class Serializer(MessagePackSerializerOptions? options = null)
+    : IBytesSerializer,
+        IStreamSerializerAsync
 {
-    private readonly MessagePackSerializerOptions? _options;
-
-    public Serializer(MessagePackSerializerOptions? options = null) => _options = options;
-
-    public byte[] ToBytes<TValue>(TValue? value) => MessagePackHelper.ToBytes(value, _options);
+    public byte[] ToBytes<TValue>(TValue? value) => MessagePackHelper.ToBytes(value, options);
 
     public byte[] ToBytes(Type type, object? value) =>
-        MessagePackHelper.ToBytes(type, value, _options);
+        MessagePackHelper.ToBytes(type, value, options);
 
     public TValue? FromBytes<TValue>(byte[]? bytes) =>
         bytes is null || bytes.Length is 0
             ? default
-            : MessagePackHelper.FromBytes<TValue>(bytes, _options);
+            : MessagePackHelper.FromBytes<TValue>(bytes, options);
 
     public object? FromBytes(Type type, byte[]? bytes) =>
         bytes is null || bytes.Length is 0
             ? default
-            : MessagePackHelper.FromBytes(type, bytes, _options);
+            : MessagePackHelper.FromBytes(type, bytes, options);
 
     public MemoryStream ToStream<TValue>(TValue? value) =>
-        MessagePackHelper.ToStream(value, _options);
+        MessagePackHelper.ToStream(value, options);
 
     public MemoryStream ToStream(Type type, object? value) =>
-        MessagePackHelper.ToStream(type, value, _options);
+        MessagePackHelper.ToStream(type, value, options);
 
     public void Pack<TValue>(TValue? value, Stream? stream) =>
         MessagePackHelper.Pack(value, stream);
@@ -36,25 +34,25 @@ public sealed class Serializer : IBytesSerializer, IStreamSerializerAsync
     public TValue? FromStream<TValue>(Stream? stream) =>
         stream is null or { CanSeek: true, Length: 0 }
             ? default
-            : MessagePackHelper.FromStream<TValue>(stream, _options);
+            : MessagePackHelper.FromStream<TValue>(stream, options);
 
     public object? FromStream(Type type, Stream? stream) =>
         stream is null or { CanSeek: true, Length: 0 }
             ? default
-            : MessagePackHelper.FromStream(type, stream, _options);
+            : MessagePackHelper.FromStream(type, stream, options);
 
     public ValueTask PackAsync<TValue>(
         TValue? value,
         Stream? stream,
         CancellationToken cancellationToken = default
-    ) => MessagePackHelper.PackAsync(value, stream, _options, cancellationToken);
+    ) => MessagePackHelper.PackAsync(value, stream, options, cancellationToken);
 
     public ValueTask PackAsync(
         Type type,
         object? value,
         Stream? stream,
         CancellationToken cancellationToken = default
-    ) => MessagePackHelper.PackAsync(type, value, stream, _options, cancellationToken);
+    ) => MessagePackHelper.PackAsync(type, value, stream, options, cancellationToken);
 
     public ValueTask<TValue?> FromStreamAsync<TValue>(
         Stream? stream,
@@ -62,7 +60,7 @@ public sealed class Serializer : IBytesSerializer, IStreamSerializerAsync
     ) =>
         stream is null or { CanSeek: true, Length: 0 }
             ? new ValueTask<TValue?>(default(TValue?))
-            : MessagePackHelper.FromStreamAsync<TValue>(stream, _options, cancellationToken);
+            : MessagePackHelper.FromStreamAsync<TValue>(stream, options, cancellationToken);
 
     public ValueTask<object?> FromStreamAsync(
         Type type,
@@ -71,5 +69,5 @@ public sealed class Serializer : IBytesSerializer, IStreamSerializerAsync
     ) =>
         stream is null or { CanSeek: true, Length: 0 }
             ? new ValueTask<object?>(default(object?))
-            : MessagePackHelper.FromStreamAsync(type, stream, _options, cancellationToken);
+            : MessagePackHelper.FromStreamAsync(type, stream, options, cancellationToken);
 }

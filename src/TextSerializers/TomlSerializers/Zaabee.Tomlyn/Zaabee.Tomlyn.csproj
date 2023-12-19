@@ -17,7 +17,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Tomlyn" Version="0.16.2" />
+        <PackageReference Include="Tomlyn" Version="0.17.0" />
         <PackageReference Include="Zaabee.Extensions" Version="2023.11.1" />
         <PackageReference Include="Zaabee.Serializer.Abstractions" Version="2023.5.0" />
     </ItemGroup>

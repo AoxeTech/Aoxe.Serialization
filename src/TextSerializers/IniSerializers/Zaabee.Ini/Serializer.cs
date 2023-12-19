@@ -1,13 +1,8 @@
 namespace Zaabee.Ini;
 
-public sealed class Serializer : IIniSerializer, IStreamSerializerAsync
+public sealed class Serializer(Encoding? encoding = null) : IIniSerializer, IStreamSerializerAsync
 {
-    private readonly Encoding? _encoding;
-
-    public Serializer(Encoding? encoding = null)
-    {
-        _encoding = encoding ?? Defaults.Utf8Encoding;
-    }
+    private readonly Encoding? _encoding = encoding ?? Defaults.Utf8Encoding;
 
     public byte[] ToBytes<TValue>(TValue? value) => IniParserHelper.ToBytes(value, _encoding);
 

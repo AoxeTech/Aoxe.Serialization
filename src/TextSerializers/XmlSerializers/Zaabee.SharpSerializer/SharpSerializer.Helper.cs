@@ -2,7 +2,7 @@ namespace Zaabee.SharpSerializer;
 
 public static partial class SharpSerializerHelper
 {
-    private static SharpSerializerXmlSettings _defaultSettings =
+    private static readonly SharpSerializerXmlSettings DefaultSettings =
         new()
         {
             IncludeAssemblyVersionInTypeName = true,
