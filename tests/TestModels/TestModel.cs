@@ -24,6 +24,8 @@ public partial class TestModel
     [Index(2)]
     public virtual string? Name { get; set; }
 
+    public TestModel() { }
+
     public override bool Equals(object? obj)
     {
         if (obj is not TestModel target)

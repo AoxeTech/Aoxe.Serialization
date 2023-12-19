@@ -48,6 +48,10 @@ public partial class SerializerTest
         BytesGenericNullTest(new SystemTextJson.Serializer());
 
     [Fact]
+    public void SharpSerializerBytesGenericNullTest() =>
+        BytesGenericNullTest(new SharpSerializer.Serializer());
+
+    [Fact]
     public void TomletBytesGenericNullTest() => BytesGenericNullTest(new Tomlet.Serializer());
 
     [Fact]

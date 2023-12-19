@@ -55,6 +55,10 @@ public partial class SerializerTest
         BytesGenericTest(new SystemTextJson.Serializer(), TestModelHelper.Create());
 
     [Fact]
+    public void SharpSerializerBytesGenericTest() =>
+        BytesGenericTest(new SharpSerializer.Serializer(), TestModelHelper.Create());
+
+    [Fact]
     public void TomletBytesGenericTest() =>
         BytesGenericTest(new Tomlet.Serializer(), TestModelHelper.Create());
 

@@ -30,6 +30,10 @@ public partial class SerializerTest
     public void SystemTextJsonTextGenericTest() => TextGenericTest(new SystemTextJson.Serializer());
 
     [Fact]
+    public void SharpSerializerTextGenericTest() =>
+        TextGenericTest(new SharpSerializer.Serializer());
+
+    [Fact]
     public void TomletTextGenericTest() => TextGenericTest(new Tomlet.Serializer());
 
     [Fact]

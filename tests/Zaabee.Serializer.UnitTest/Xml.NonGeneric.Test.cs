@@ -7,6 +7,10 @@ public partial class SerializerTest
         XmlNonGenericTest(new DataContractSerializer.Serializer());
 
     [Fact]
+    public void SharpSerializerXmlNonGenericTest() =>
+        XmlNonGenericTest(new SharpSerializer.Serializer());
+
+    [Fact]
     public void XmlXmlNonGenericTest() => XmlNonGenericTest(new Xml.Serializer());
 
     private static void XmlNonGenericTest(IXmlSerializer serializer)
