@@ -33,10 +33,6 @@ public partial class SerializerTest
         TextNonGenericTest(new SystemTextJson.Serializer());
 
     [Fact]
-    public void SharpSerializerTextNonGenericTest() =>
-        TextNonGenericTest(new SharpSerializer.Serializer());
-
-    [Fact]
     public void TomletTextNonGenericTest() => TextNonGenericTest(new Tomlet.Serializer());
 
     [Fact]

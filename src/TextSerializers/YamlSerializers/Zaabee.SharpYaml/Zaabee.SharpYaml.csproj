@@ -3,8 +3,8 @@
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;net6.0;net7.0;net8.0</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageVersion>2023.6.10</PackageVersion>
-		<Version>2023.6.10</Version>
+		<PackageVersion>2024.1.0</PackageVersion>
+		<Version>2024.1.0</Version>
 		<Authors>Mutuduxf</Authors>
 		<Company>Mutuduxf</Company>
 		<PackageProjectUrl>https://github.com/PicoHex/Zaabee.Serialization</PackageProjectUrl>
@@ -17,8 +17,8 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<PackageReference Include="Zaabee.Extensions" Version="2023.11.1" />
-		<PackageReference Include="Zaabee.Serializer.Abstractions" Version="2023.5.0" />
+		<PackageReference Include="Zaabee.Extensions" Version="2024.1.0" />
+		<PackageReference Include="Zaabee.Serializer.Abstractions" Version="2024.1.0" />
 		<PackageReference Include="SharpYaml" Version="2.1.0" />
 	</ItemGroup>
 	
