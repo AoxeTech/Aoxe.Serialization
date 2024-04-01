@@ -6,7 +6,7 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="coverlet.collector" Version="6.0.0">
+		<PackageReference Include="coverlet.collector" Version="6.0.2">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
@@ -33,7 +33,6 @@
 		<ProjectReference Include="..\..\src\TextSerializers\TomlSerializers\Zaabee.Tomlet\Zaabee.Tomlet.csproj" />
 		<ProjectReference Include="..\..\src\TextSerializers\TomlSerializers\Zaabee.Tomlyn\Zaabee.Tomlyn.csproj" />
 		<ProjectReference Include="..\..\src\TextSerializers\XmlSerializers\Zaabee.DataContractSerializer\Zaabee.DataContractSerializer.csproj" />
-		<ProjectReference Include="..\..\src\TextSerializers\XmlSerializers\Zaabee.SharpSerializer\Zaabee.SharpSerializer.csproj" />
 		<ProjectReference Include="..\..\src\TextSerializers\XmlSerializers\Zaabee.Xml\Zaabee.Xml.csproj" />
 		<ProjectReference Include="..\..\src\TextSerializers\YamlSerializers\Zaabee.SharpYaml\Zaabee.SharpYaml.csproj" />
 		<ProjectReference Include="..\..\src\TextSerializers\YamlSerializers\Zaabee.YamlDotNet\Zaabee.YamlDotNet.csproj" />

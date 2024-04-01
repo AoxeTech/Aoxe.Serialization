@@ -5,11 +5,19 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="MemoryPack" Version="1.10.0" Condition="'$(TargetFramework)'!='netstandard2.0'" />
 		<PackageReference Include="MessagePack.Annotations" Version="2.5.140" />
 		<PackageReference Include="protobuf-net.Core" Version="3.2.30" />
 		<PackageReference Include="Zaabee.Extensions" Version="2024.1.2" />
 		<PackageReference Include="ZeroFormatter" Version="1.6.4" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
 		<PackageReference Include="Alexinea.ZeroFormatter" Version="1.6.4" Condition="'$(TargetFramework)' != 'netstandard2.0'" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+	  <PackageReference Include="MemoryPack" Version="1.21.0" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
+	  <PackageReference Include="MemoryPack" Version="1.21.0" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
+	  <PackageReference Include="MemoryPack" Version="1.21.0" />
 	</ItemGroup>
 </Project>
