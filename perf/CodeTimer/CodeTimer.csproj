@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Zaabee.CodeTimer" Version="2024.1.1" />
+      <PackageReference Include="Zaabee.CodeTimer" Version="2024.1.2" />
     </ItemGroup>
 
     <ItemGroup>
