@@ -2,8 +2,8 @@
 
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;net6.0;net8.0;net9.0</TargetFrameworks>
-        <PackageVersion>2024.1.9</PackageVersion>
-        <Version>2024.1.9</Version>
+        <PackageVersion>2024.1.10</PackageVersion>
+        <Version>2024.1.10</Version>
         <Description>The wrappers and extension methods for YamlDotNet</Description>
         <PackageTags>Zaabee;yaml;serialize;deserialize</PackageTags>
         <PackageProjectUrl>https://github.com/PicoHex</PackageProjectUrl>
@@ -29,7 +29,7 @@
         </PackageReference>
         <PackageReference Include="Zaabee.Extensions" Version="2024.1.6" />
         <PackageReference Include="Zaabee.Serializer.Abstractions" Version="2024.1.5" />
-        <PackageReference Include="YamlDotNet" Version="15.1.4" />
+        <PackageReference Include="YamlDotNet" Version="15.1.6" />
     </ItemGroup>
 
 </Project>
