@@ -1,29 +1,29 @@
-# Zaabee.Serialization
+# Aoxe.Serialization
 
 ---
 
-[![Build Status](https://dev.azure.com/Zaabee/Zaabee.Serialization/_apis/build/status/Mutuduxf.Zaabee.Serialization?branchName=master)](https://dev.azure.com/Zaabee/Zaabee.Serialization/_build/latest?definitionId=1&branchName=master)
+[![Build Status](https://dev.azure.com/Aoxe/Aoxe.Serialization/_apis/build/status/Mutuduxf.Aoxe.Serialization?branchName=master)](https://dev.azure.com/Aoxe/Aoxe.Serialization/_build/latest?definitionId=1&branchName=master)
 
-Provide an easy way to use serializations. It is also the serializer provider for all Zaabee technology stacks like configuration, cache, queue, rpc, etc.
+Provide an easy way to use serializations. It is also the serializer provider for all Aoxe technology stacks like configuration, cache, queue, rpc, etc.
 
-- [1. Why use Zaabee.Serialization?](#1-why-use-zaabeeserialization)
+- [1. Why use Aoxe.Serialization?](#1-why-use-Aoxeserialization)
 - [2. Explain](#2-explain)
 - [3. Getting Started](#3-getting-started)
-  - [3.1. Zaabee.DataContractSerializer](#31-zaabeedatacontractserializer)
-  - [3.2. Zaabee.Jil](#32-zaabeejil)
-  - [3.3. Zaabee.MemoryPack](#33-zaabeememorypack)
-  - [3.4. Zaabee.MessagePack](#34-zaabeemessagepack)
-  - [3.5. Zaabee.MsgPack](#35-zaabeemsgpack)
-  - [3.6. Zaabee.NetJson](#36-zaabeenetjson)
-  - [3.7. Zaabee.NewtonsoftJson](#37-zaabeenewtonsoftjson)
-  - [3.8. Zaabee.Utf8Json](#38-zaabeeutf8json)
-  - [3.9. Zaabee.Protobuf](#39-zaabeeprotobuf)
-  - [3.10. Zaabee.SharpYaml](#310-zaabeesharpyaml)
-  - [3.11. Zaabee.SpanJson](#311-zaabeespanjson)
-  - [3.12. Zaabee.SystemTextJson](#312-zaabeesystemtextjson)
-  - [3.13. Zaabee.Xml](#313-zaabeexml)
-  - [3.14. Zaabee.YamlDotNet](#314-zaabeeyamldotnet)
-  - [3.15. Zaabee.ZeroFormatter](#315-zaabeezeroformatter)
+  - [3.1. Aoxe.DataContractSerializer](#31-Aoxedatacontractserializer)
+  - [3.2. Aoxe.Jil](#32-Aoxejil)
+  - [3.3. Aoxe.MemoryPack](#33-Aoxememorypack)
+  - [3.4. Aoxe.MessagePack](#34-Aoxemessagepack)
+  - [3.5. Aoxe.MsgPack](#35-Aoxemsgpack)
+  - [3.6. Aoxe.NetJson](#36-Aoxenetjson)
+  - [3.7. Aoxe.NewtonsoftJson](#37-Aoxenewtonsoftjson)
+  - [3.8. Aoxe.Utf8Json](#38-Aoxeutf8json)
+  - [3.9. Aoxe.Protobuf](#39-Aoxeprotobuf)
+  - [3.10. Aoxe.SharpYaml](#310-Aoxesharpyaml)
+  - [3.11. Aoxe.SpanJson](#311-Aoxespanjson)
+  - [3.12. Aoxe.SystemTextJson](#312-Aoxesystemtextjson)
+  - [3.13. Aoxe.Xml](#313-Aoxexml)
+  - [3.14. Aoxe.YamlDotNet](#314-Aoxeyamldotnet)
+  - [3.15. Aoxe.ZeroFormatter](#315-Aoxezeroformatter)
 - [4. Benchmark](#4-benchmark)
   - [4.1. Stream](#41-stream)
     - [4.1.1. To Stream](#411-to-stream)
@@ -48,7 +48,7 @@ Provide an easy way to use serializations. It is also the serializer provider fo
       - [4.3.5.1. To Toml](#4351-to-toml)
       - [4.3.5.2. From Toml](#4352-from-toml)
 
-## 1. Why use Zaabee.Serialization?
+## 1. Why use Aoxe.Serialization?
 
 There are many different serializers in the world, they have different features and limitations. This project allows you to use difference serializers in the same way. Also it set nullable and default value for all serializers.
 
@@ -80,7 +80,7 @@ Serializers can be divided into two categories (binary and text):
     - Tomlet
     - Tomlyn
 
-Though some serializers does not support stream or bytes, the zaabee serializers will supply the lack. And the text serializers will support text on this base.
+Though some serializers does not support stream or bytes, the Aoxe serializers will supply the lack. And the text serializers will support text on this base.
 
 ## 2. Explain
 
@@ -143,7 +143,7 @@ Though some serializers does not support stream or bytes, the zaabee serializers
   - String
     - FromJson/FromXml/FromYaml
 - Serializer
-  Implement Zaabee.Serialization.Abstractions, The Zaabee technology stacks use this library to serialize and deserialize.
+  Implement Aoxe.Serialization.Abstractions, The Aoxe technology stacks use this library to serialize and deserialize.
   - Stream
     - stream ToStream\<TValue\>(TValue? value)
     - TValue? FromStream\<TValue\>(Stream? stream)
@@ -165,82 +165,82 @@ Though some serializers does not support stream or bytes, the zaabee serializers
 Use nuget to install the package which you want.
 
 ```shell
-PM> Install-Package Zaabee.DataContractSerializer
-PM> Install-Package Zaabee.Jil
-PM> Install-Package Zaabee.MemoryPack
-PM> Install-Package Zaabee.MessagePack
-PM> Install-Package Zaabee.MsgPack
-PM> Install-Package Zaabee.NewtonsoftJson
-PM> Install-Package Zaabee.NetJson
-PM> Install-Package Zaabee.Utf8Json
-PM> Install-Package Zaabee.Protobuf
-PM> Install-Package Zaabee.SharpYaml
-PM> Install-Package Zaabee.SpanJson
-PM> Install-Package Zaabee.SystemTextJson
-PM> Install-Package Zaabee.Xml
-PM> Install-Package Zaabee.YamlDotNet
-PM> Install-Package Zaabee.ZeroFormatter
+PM> Install-Package Aoxe.DataContractSerializer
+PM> Install-Package Aoxe.Jil
+PM> Install-Package Aoxe.MemoryPack
+PM> Install-Package Aoxe.MessagePack
+PM> Install-Package Aoxe.MsgPack
+PM> Install-Package Aoxe.NewtonsoftJson
+PM> Install-Package Aoxe.NetJson
+PM> Install-Package Aoxe.Utf8Json
+PM> Install-Package Aoxe.Protobuf
+PM> Install-Package Aoxe.SharpYaml
+PM> Install-Package Aoxe.SpanJson
+PM> Install-Package Aoxe.SystemTextJson
+PM> Install-Package Aoxe.Xml
+PM> Install-Package Aoxe.YamlDotNet
+PM> Install-Package Aoxe.ZeroFormatter
 ```
 
-### 3.1. Zaabee.DataContractSerializer
+### 3.1. Aoxe.DataContractSerializer
 
 Base by System.Runtime.Serialization.DataContractSerializer, serializes and deserializes an instance of a type into an XML stream or document using a supplied data contract.
 
-### 3.2. Zaabee.Jil
+### 3.2. Aoxe.Jil
 
 A fast JSON (de)serializer, built on [Sigil](https://github.com/kevin-montrose/Sigil) with a number of somewhat crazy optimization tricks.
 
-### 3.3. Zaabee.MemoryPack
+### 3.3. Aoxe.MemoryPack
 
 Zero encoding extreme performance binary serializer for C# and Unity.
 
-### 3.4. Zaabee.MessagePack
+### 3.4. Aoxe.MessagePack
 
 The extremely fast MessagePack serializer for C#. It is 10x faster than MsgPack-Cli and outperforms other C# serializers. MessagePack for C# also ships with built-in support for LZ4 compression - an extremely fast compression algorithm. Performance is important, particularly in applications like games, distributed computing, microservices, or data caches.
 
-### 3.5. Zaabee.MsgPack
+### 3.5. Aoxe.MsgPack
 
 MessagePack implementation for Common Language Infrastructure / msgpack.org[C#]
 
-### 3.6. Zaabee.NetJson
+### 3.6. Aoxe.NetJson
 
 Faster than Any Binary?
 
-### 3.7. Zaabee.NewtonsoftJson
+### 3.7. Aoxe.NewtonsoftJson
 
 Json.NET is a popular high-performance JSON framework for .NET [https://www.newtonsoft.com/json](https://www.newtonsoft.com/json)
 
-### 3.8. Zaabee.Utf8Json
+### 3.8. Aoxe.Utf8Json
 
 Definitely Fastest and Zero Allocation JSON Serializer for C#(NET, .NET Core, Unity, Xamarin).
 
-### 3.9. Zaabee.Protobuf
+### 3.9. Aoxe.Protobuf
 
 protobuf-net is a contract based serializer for .NET code, that happens to write data in the "protocol buffers" serialization format engineered by Google. The API, however, is very different to Google's, and follows typical .NET patterns (it is broadly comparable, in usage, to XmlSerializer, DataContractSerializer, etc). It should work for most .NET languages that write standard types and can use attributes.
 
-### 3.10. Zaabee.SharpYaml
+### 3.10. Aoxe.SharpYaml
 
 SharpYaml is a .NET library that provides a YAML parser and serialization engine for .NET objects, compatible with CoreCLR.
 
-### 3.11. Zaabee.SpanJson
+### 3.11. Aoxe.SpanJson
 
 SpanJson is a JSON serializer for .NET Core 6.0+.
 
-### 3.12. Zaabee.SystemTextJson
+### 3.12. Aoxe.SystemTextJson
 
 The System.Text.Json namespace provides high-performance, low-allocating, and standards-compliant capabilities to process JavaScript Object Notation (JSON), which includes serializing objects to JSON text and deserializing JSON text to objects, with UTF-8 support built-in. It also provides types to read and write JSON text encoded as UTF-8, and to create an in-memory document object model (DOM) for random access of the JSON elements within a structured view of the data.
 
-### 3.13. Zaabee.Xml
+### 3.13. Aoxe.Xml
 
 Serializes and deserializes objects into and from XML documents. The XmlSerializer enables you to control how objects are encoded into XML.
 
-### 3.14. Zaabee.YamlDotNet
+### 3.14. Aoxe.YamlDotNet
 
 YamlDotNet is a YAML library for netstandard and other .NET runtimes.
 
 YamlDotNet provides low level parsing and emitting of YAML as well as a high level object model similar to XmlDocument. A serialization library is also included that allows to read and write objects from and to YAML streams.
 
-### 3.15. Zaabee.ZeroFormatter
+### 3.15. Aoxe.ZeroFormatter
 
 Fastest C# Serializer and Infinitely Fast Deserializer for .NET, .NET Core and Unity.
 

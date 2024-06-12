@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>net48;net6.0;net8.0;net9.0</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="coverlet.collector" Version="6.0.2">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
+		<PackageReference Include="xunit" Version="2.8.1" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.8.1">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\src\BinarySerializers\Aoxe.MemoryPack\Aoxe.MemoryPack.csproj" Condition="'$(TargetFramework)'!='net48'" />
+		<ProjectReference Include="..\..\src\BinarySerializers\Aoxe.MessagePack\Aoxe.MessagePack.csproj" />
+		<ProjectReference Include="..\..\src\BinarySerializers\Aoxe.MsgPack\Aoxe.MsgPack.csproj" />
+		<ProjectReference Include="..\..\src\BinarySerializers\Aoxe.Protobuf\Aoxe.Protobuf.csproj" />
+		<ProjectReference Include="..\..\src\BinarySerializers\Aoxe.ZeroFormatter\Aoxe.ZeroFormatter.csproj" />
+		<ProjectReference Include="..\..\src\TextSerializers\IniSerializers\Aoxe.Ini\Aoxe.Ini.csproj" />
+		<ProjectReference Include="..\..\src\TextSerializers\JsonSerializers\Aoxe.Jil\Aoxe.Jil.csproj" />
+		<ProjectReference Include="..\..\src\TextSerializers\JsonSerializers\Aoxe.NetJson\Aoxe.NetJson.csproj" />
+		<ProjectReference Include="..\..\src\TextSerializers\JsonSerializers\Aoxe.NewtonsoftJson\Aoxe.NewtonsoftJson.csproj" />
+		<ProjectReference Include="..\..\src\TextSerializers\JsonSerializers\Aoxe.SpanJson\Aoxe.SpanJson.csproj" Condition="'$(TargetFramework)'!='net48'" />
+		<ProjectReference Include="..\..\src\TextSerializers\JsonSerializers\Aoxe.SystemTextJson\Aoxe.SystemTextJson.csproj" />
+		<ProjectReference Include="..\..\src\TextSerializers\JsonSerializers\Aoxe.Utf8Json\Aoxe.Utf8Json.csproj" />
+		<ProjectReference Include="..\..\src\TextSerializers\TomlSerializers\Aoxe.Tomlet\Aoxe.Tomlet.csproj" />
+		<ProjectReference Include="..\..\src\TextSerializers\TomlSerializers\Aoxe.Tomlyn\Aoxe.Tomlyn.csproj" />
+		<ProjectReference Include="..\..\src\TextSerializers\XmlSerializers\Aoxe.DataContractSerializer\Aoxe.DataContractSerializer.csproj" />
+		<ProjectReference Include="..\..\src\TextSerializers\XmlSerializers\Aoxe.Xml\Aoxe.Xml.csproj" />
+		<ProjectReference Include="..\..\src\TextSerializers\YamlSerializers\Aoxe.SharpYaml\Aoxe.SharpYaml.csproj" />
+		<ProjectReference Include="..\..\src\TextSerializers\YamlSerializers\Aoxe.YamlDotNet\Aoxe.YamlDotNet.csproj" />
+		<ProjectReference Include="..\TestModels\TestModels.csproj" />
+	</ItemGroup>
+</Project>
