@@ -7,7 +7,6 @@ const int iteration = 100000;
 
 @case.FromBytes(iteration);
 @case.FromStream(iteration);
-@case.FromStreamAsync(iteration);
 @case.FromText(iteration);
 @case.ToBytes(iteration);
 @case.ToStream(iteration);
