@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net6.0;net8.0;net9.0</TargetFrameworks>
-		<PackageVersion>2024.1.2</PackageVersion>
-		<Version>2024.1.2</Version>
+		<TargetFrameworks>netstandard2.0;net6.0;net8.0</TargetFrameworks>
+		<PackageVersion>2024.2.0</PackageVersion>
+		<Version>2024.2.0</Version>
 		<Description>The wrappers and extensions methods for System.Text.Json</Description>
 		<PackageTags>Aoxe;Json;System.Text.Json;serialize;deserialize</PackageTags>
 		<PackageProjectUrl>https://github.com/AoxeTech</PackageProjectUrl>
@@ -27,8 +27,8 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Aoxe.Extensions" Version="2024.2.1" />
-		<PackageReference Include="Aoxe.Serializer.Abstractions" Version="2024.1.0" />
+		<PackageReference Include="Aoxe.Extensions" Version="2024.2.2" />
+		<PackageReference Include="Aoxe.Serializer.Abstractions" Version="2024.2.0" />
 	</ItemGroup>
 	
 	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">

@@ -59,7 +59,11 @@ public sealed class Serializer(MemoryPackSerializerOptions? options = null)
         CancellationToken cancellationToken = default
     ) =>
         stream is null or { CanSeek: true, Length: 0 }
+#if NETSTANDARD2_1
+            ? new ValueTask<TValue?>(default(TValue?))
+#else
             ? ValueTask.FromResult(default(TValue?))
+#endif
             : MemoryPackHelper.FromStreamAsync<TValue>(stream, options, cancellationToken);
 
     public ValueTask<object?> FromStreamAsync(
@@ -68,6 +72,10 @@ public sealed class Serializer(MemoryPackSerializerOptions? options = null)
         CancellationToken cancellationToken = default
     ) =>
         stream is null or { CanSeek: true, Length: 0 }
+#if NETSTANDARD2_1
+            ? new ValueTask<object?>(default(object?))
+#else
             ? ValueTask.FromResult(default(object?))
+#endif
             : MemoryPackHelper.FromStreamAsync(type, stream, options, cancellationToken);
 }

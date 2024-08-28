@@ -17,7 +17,7 @@ public partial class TupleModel
     [Key(1)]
     [ProtoMember(2)]
     [Index(1)]
-    public virtual List<Tuple<string, string>> Tuples { get; set; } = new();
+    public virtual List<Tuple<string, string>> Tuples { get; set; } = [];
 
     public static TupleModel Instance() => new();
 }
