@@ -2,12 +2,12 @@
 
 ---
 
-Provide an easy way to use serializations. It is also the serializer provider for all Aoxe technology stacks like configuration, cache, queue, rpc, etc.
+提供使用序列化的简便方法。它也是所有 Aoxe 技术栈（如配置、缓存、队列、rpc 等）的序列化提供者。
 
-- [1. Why use Aoxe.Serialization?](#1-why-use-aoxeserialization)
-- [2. Functions](#2-functions)
-- [3. Getting Started](#3-getting-started)
-- [4. Packages introductions](#4-packages-introductions)
+- [1. 为什么使用 Aoxe.Serialization?](#1-为什么使用-aoxeserialization)
+- [2. 功能](#2-功能)
+- [3. 入门](#3-入门)
+- [4. 软件包介绍](#4-软件包介绍)
   - [4.1. Aoxe.DataContractSerializer](#41-aoxedatacontractserializer)
   - [4.2. Aoxe.Jil](#42-aoxejil)
   - [4.3. Aoxe.MemoryPack](#43-aoxememorypack)
@@ -47,19 +47,19 @@ Provide an easy way to use serializations. It is also the serializer provider fo
       - [5.3.5.1. To Toml](#5351-to-toml)
       - [5.3.5.2. From Toml](#5352-from-toml)
 
-## 1. Why use Aoxe.Serialization?
+## 1. 为什么使用 Aoxe.Serialization?
 
-There are many different serializers in the world, they have different features and limitations. This project allows you to use difference serializers in the same way. Also it set nullable and default value for all serializers.
+世界上有很多不同的序列化器, 他们有不同的功能和限制. 这个项目可以让你以同一种方式使用不同的序列化器. 此外，它还为所有序列化器设置了可空值和默认值.
 
-Serializers can be divided into two categories (binary and text):
+序列化器可以分为两类 (二进制和文本)
 
-- Binary serializers
+- 二进制序列化器
   - MemoryPack
   - MessagePack
   - MsgPack.Cli
   - protobuf-net
   - ZeroFormatter
-- Text serializers
+- 文本序列化器
   - Json
     - Jil
     - NetJson
@@ -79,11 +79,11 @@ Serializers can be divided into two categories (binary and text):
     - Tomlet
     - Tomlyn
 
-Though some serializers does not support stream or bytes, the Aoxe serializers will supply the lack. And the text serializers will support text on this base.
+虽然有些序列化器不支持流或字节，但 Aoxe 序列化器会提供所需的支持。文本序列化器将在此基础上支持文本功能。
 
-## 2. Functions
+## 2. 功能
 
-- Helper: Unified code style and provide lack of features. The default enconding is UTF-8.
+- Helper: 统一代码风格，并提供缺乏的功能。默认编码为 UTF-8
   - stream
     - sync
       - MemoryStream ToStream\<TValue\>(TValue? value)
@@ -128,7 +128,7 @@ Though some serializers does not support stream or bytes, the Aoxe serializers w
       - string ToToml(Type type, object? value)
       - TValue? FromToml\<TValue\>(string? xml)
       - object? FromToml(Type type, string? xml)
-- Extensions: Supply Extension methods base by Helper. Also it supports generic type and non-generic type.
+- Extensions: 提供基于 Helper 的扩展方法。此外，它还支持泛型和非泛型。
   - Bytes
     - FromBytes
   - Object
@@ -141,7 +141,7 @@ Though some serializers does not support stream or bytes, the Aoxe serializers w
     - PackBy
   - String
     - FromJson/FromXml/FromYaml
-- Serializer: Implement Aoxe.Serialization.Abstractions, The Aoxe technology stacks use this library to serialize and deserialize.
+- Serializer: 实现 Aoxe.Serialization.Abstractions, Aoxe 技术栈使用该库进行序列化和反序列化。
   - Stream
     - stream ToStream\<TValue\>(TValue? value)
     - TValue? FromStream\<TValue\>(Stream? stream)
@@ -158,9 +158,9 @@ Though some serializers does not support stream or bytes, the Aoxe serializers w
     - string ToText(Type type, object? value)
     - object? FromText(Type type, string? text)
 
-## 3. Getting Started
+## 3. 入门
 
-Use nuget to install the package which you want.
+使用 nuget 安装你想要的包
 
 ```shell
 PM> Install-Package Aoxe.DataContractSerializer
@@ -180,7 +180,7 @@ PM> Install-Package Aoxe.YamlDotNet
 PM> Install-Package Aoxe.ZeroFormatter
 ```
 
-You can then use the serializer in extension method way
+然后，您就可以通过扩展方法的方式使用序列化功能
 
 ```csharp
 var testModel = new TestModel();
@@ -193,17 +193,17 @@ var deserializedModelFromBytes = bytes.FromBytes<TestModel>();
 var stream = testModel.ToStream();
 var deserializedModelFromStream = stream.FromStream<TestModel>();
 
-// you can pack to a stream
+// 你可以将对象序列化到指定的 stream
 var stream1 = new MemoryStream();
 testModel.PackTo(stream1);
 var result1 = stream1.FromStream<TestModel>();
 
-// or use a stream pack by
+// 或者以 stream 为主将指定对象序列化到流内
 var stream2 = new MemoryStream();
 stream2.PackBy(testModel);
 var result2 = stream2.FromStream<TestModel>();
 
-// also the stream functions have async version
+// 所有的 stream 功能都有异步版本
 var stream = testModel.ToStream();
 var deserializedModelFromStream = await stream.FromStreamAsync<TestModel>();
 
@@ -216,7 +216,7 @@ await stream2.PackByAsync(testModel);
 var result2 = await stream2.FromStreamAsync<TestModel>();
 ```
 
-## 4. Packages introductions
+## 4. 软件包介绍
 
 ### 4.1. Aoxe.DataContractSerializer
 
