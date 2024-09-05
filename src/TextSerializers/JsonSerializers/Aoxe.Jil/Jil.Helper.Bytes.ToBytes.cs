@@ -8,7 +8,7 @@ public static partial class JilHelper
     /// <param name="value"></param>
     /// <param name="options"></param>
     /// <param name="encoding"></param>
-    /// <typeparam name="TValue"></typeparam>
+    /// <typeparam name="TValue"></typeparam>.p
     /// <returns></returns>
     public static byte[] ToBytes<TValue>(
         TValue? value,

@@ -2,12 +2,13 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <PackageVersion>2024.2.0</PackageVersion>
-        <Version>2024.2.0</Version>
+        <PackageVersion>2024.2.1</PackageVersion>
+        <Version>2024.2.1</Version>
         <Description>The wrappers and extensions methods for ini-parser-netstandard</Description>
         <PackageTags>Aoxe;Ini;ini-parser-netstandard;serialize;deserialize</PackageTags>
         <PackageProjectUrl>https://github.com/AoxeTech</PackageProjectUrl>
         <RepositoryUrl>https://github.com/AoxeTech/Aoxe.Serialization</RepositoryUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
@@ -28,8 +29,12 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Aoxe.Extensions" Version="2024.2.2" />
-        <PackageReference Include="Aoxe.Serializer.Abstractions" Version="2024.2.0" />
+        <PackageReference Include="Aoxe.Extensions" Version="2024.2.4" />
+        <PackageReference Include="Aoxe.Serializer.Abstractions" Version="2024.2.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="../../../../README.md" Pack="true" PackagePath="\"/>
     </ItemGroup>
 
 </Project>
