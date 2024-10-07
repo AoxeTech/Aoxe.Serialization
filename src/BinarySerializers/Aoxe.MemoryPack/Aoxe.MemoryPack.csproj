@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.1;net8.0</TargetFrameworks>
-        <PackageVersion>2024.2.1</PackageVersion>
-        <Version>2024.2.1</Version>
+        <TargetFrameworks>netstandard2.1;net8.0;net9.0</TargetFrameworks>
+        <PackageVersion>2024.3.0</PackageVersion>
+        <Version>2024.3.0</Version>
         <Description>The wrappers and extension methods for MemoryPack</Description>
         <PackageTags>Aoxe;MemoryPack;serialize;deserialize</PackageTags>
         <PackageProjectUrl>https://github.com/AoxeTech</PackageProjectUrl>
@@ -24,7 +24,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MemoryPack" Version="1.21.1" />
+        <PackageReference Include="MemoryPack" Version="1.21.3" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
