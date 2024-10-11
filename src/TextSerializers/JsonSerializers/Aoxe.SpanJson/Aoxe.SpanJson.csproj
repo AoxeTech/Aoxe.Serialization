@@ -2,8 +2,8 @@
 
     <PropertyGroup>
         <TargetFrameworks>net6.0;net8.0;net9.0</TargetFrameworks>
-        <PackageVersion>2024.3.0</PackageVersion>
-        <Version>2024.3.0</Version>
+        <PackageVersion>2024.3.1</PackageVersion>
+        <Version>2024.3.1</Version>
         <Description>The wrappers and extensions methods for SpanJson</Description>
         <PackageTags>Aoxe;Json;SpanJson;serialize;deserialize</PackageTags>
         <PackageProjectUrl>https://github.com/AoxeTech</PackageProjectUrl>
@@ -28,7 +28,7 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="SpanJson" Version="4.2.0" />
+        <PackageReference Include="SpanJson" Version="4.2.1" />
         <PackageReference Include="Aoxe.Extensions" Version="2024.2.4" />
         <PackageReference Include="Aoxe.Serializer.Abstractions" Version="2024.2.1" />
     </ItemGroup>
