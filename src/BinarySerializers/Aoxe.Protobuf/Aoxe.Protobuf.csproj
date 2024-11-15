@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net8.0;net9.0</TargetFrameworks>
-		<PackageVersion>2024.3.0</PackageVersion>
-		<Version>2024.3.0</Version>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;net8.0;net9.0</TargetFrameworks>
+		<PackageVersion>2025.1.0</PackageVersion>
+		<Version>2025.1.0</Version>
 		<Description>The wrappers and extensions methods for protobuf</Description>
 		<PackageTags>Aoxe;Protobuf;Protobuf-net;serialize;deserialize</PackageTags>
 		<PackageProjectUrl>https://github.com/AoxeTech</PackageProjectUrl>
@@ -28,9 +28,9 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="protobuf-net" Version="3.2.30" />
-		<PackageReference Include="Aoxe.Extensions" Version="2024.2.4" />
-		<PackageReference Include="Aoxe.Serializer.Abstractions" Version="2024.2.1" />
+		<PackageReference Include="protobuf-net" Version="3.2.45" />
+		<PackageReference Include="Aoxe.Extensions" Version="2025.1.0" />
+		<PackageReference Include="Aoxe.Serializer.Abstractions" Version="2025.1.0" />
 	</ItemGroup>
 
 	<ItemGroup>
