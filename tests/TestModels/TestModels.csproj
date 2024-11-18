@@ -15,7 +15,7 @@
 	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'" >
 		<PackageReference Include="ZeroFormatter" Version="1.6.4" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
 	  <PackageReference Include="MemoryPack" Version="1.21.3" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
