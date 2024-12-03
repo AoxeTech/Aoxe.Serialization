@@ -32,7 +32,7 @@
         </PackageReference>
         <PackageReference Include="Sigil" Version="5.0.0" />
         <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
-        <PackageReference Include="Aoxe.Extensions" Version="2025.1.0" />
+        <PackageReference Include="Aoxe.Extensions" Version="2025.2.0" />
         <PackageReference Include="Aoxe.Serializer.Abstractions" Version="2025.1.0" />
     </ItemGroup>
 
