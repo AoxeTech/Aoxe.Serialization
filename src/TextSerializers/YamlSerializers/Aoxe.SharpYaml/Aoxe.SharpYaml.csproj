@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net8.0;net9.0</TargetFrameworks>
-		<PackageVersion>2025.1.0</PackageVersion>
-		<Version>2025.1.0</Version>
+		<TargetFrameworks>netstandard2.0;net8.0;net10.0</TargetFrameworks>
+		<PackageVersion>2025.1.2</PackageVersion>
+		<Version>2025.1.2</Version>
 		<Description>The wrappers and extension methods for SharpYaml</Description>
 		<PackageTags>Aoxe;yaml;serialize;deserialize</PackageTags>
 		<PackageProjectUrl>https://github.com/AoxeTech</PackageProjectUrl>
@@ -28,7 +28,7 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Aoxe.Extensions" Version="2025.1.0" />
+		<PackageReference Include="Aoxe.Extensions" Version="2025.3.0" />
 		<PackageReference Include="Aoxe.Serializer.Abstractions" Version="2025.1.0" />
 		<PackageReference Include="SharpYaml" Version="2.1.1" />
 	</ItemGroup>
