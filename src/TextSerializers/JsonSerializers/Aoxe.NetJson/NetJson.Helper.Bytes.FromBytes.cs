@@ -23,6 +23,6 @@ public static partial class NetJsonHelper
     /// <returns></returns>
     public static object? FromBytes(Type type, byte[]? bytes, NetJSONSettings? settings = null) =>
         bytes is null || bytes.Length is 0
-            ? default
+            ? null
             : FromJson(type, bytes.GetStringByUtf8(), settings);
 }

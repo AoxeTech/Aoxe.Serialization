@@ -30,7 +30,7 @@ public static partial class NetJsonHelper
     public static object? FromStream(Type type, Stream? stream, NetJSONSettings? settings = null)
     {
         if (stream is null or { CanSeek: true, Length: 0 })
-            return default;
+            return null;
         var result = FromJson(type, stream.ReadString(), settings);
         stream.TrySeek(0, SeekOrigin.Begin);
         return result;

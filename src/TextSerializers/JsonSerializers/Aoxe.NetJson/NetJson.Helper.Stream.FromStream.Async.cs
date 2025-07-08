@@ -45,7 +45,7 @@ public static partial class NetJsonHelper
     )
     {
         if (stream is null or { CanSeek: true, Length: 0 })
-            return default;
+            return null;
         var result = FromJson(
             type,
             await stream.ReadStringAsync(cancellationToken: cancellationToken),

@@ -19,9 +19,7 @@ public static partial class NetJsonHelper
     /// <param name="settings"></param>
     /// <returns></returns>
     public static string ToJson(object? value, NetJSONSettings? settings = null) =>
-        value is null
-            ? "null"
-            : NetJSON.NetJSON.SerializeObject(value, settings ?? NetJSONSettings.CurrentSettings);
+        NetJSON.NetJSON.SerializeObject(value, settings ?? NetJSONSettings.CurrentSettings);
 
     /// <summary>
     /// Serialize the value to json string.
