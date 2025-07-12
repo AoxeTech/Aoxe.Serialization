@@ -2,8 +2,8 @@
 	
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;net8.0;net10.0</TargetFrameworks>
-		<PackageVersion>2025.1.2</PackageVersion>
-		<Version>2025.1.2</Version>
+		<PackageVersion>2025.1.3</PackageVersion>
+		<Version>2025.1.3</Version>
 		<Description>The wrappers and extensions methods for MessagePack</Description>
 		<PackageTags>Aoxe;MessagePack;serialize;deserialize</PackageTags>
 		<PackageProjectUrl>https://github.com/AoxeTech</PackageProjectUrl>
@@ -24,7 +24,7 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<PackageReference Include="MessagePack" Version="3.1.3" />
+		<PackageReference Include="MessagePack" Version="3.1.4" />
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

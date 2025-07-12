@@ -10,7 +10,8 @@ public static partial class NetJsonHelper
     /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
     public static TValue? FromJson<TValue>(string? json, NetJSONSettings? settings = null) =>
-        string.IsNullOrWhiteSpace(json) || json is "null"
+        string.IsNullOrWhiteSpace(json)
+            // || json is "null"
             ? default
             : NetJSON
                 .NetJSON
@@ -24,7 +25,8 @@ public static partial class NetJsonHelper
     /// <param name="settings"></param>
     /// <returns></returns>
     public static object? FromJson(Type type, string? json, NetJSONSettings? settings = null) =>
-        string.IsNullOrWhiteSpace(json) || json is "null"
-            ? default
+        string.IsNullOrWhiteSpace(json)
+            // || json is "null"
+            ? null
             : NetJSON.NetJSON.Deserialize(type, json, settings ?? NetJSONSettings.CurrentSettings);
 }

@@ -1,3 +1,5 @@
+using NetJSON;
+
 namespace Aoxe.NetJson.UnitTest;
 
 public partial class ExtensionsTest
@@ -17,6 +19,9 @@ public partial class ExtensionsTest
     {
         TestModel? nullModel = null;
         byte[]? nullBytes = null;
+
+        var json = NetJSON.NetJSON.SerializeObject(nullModel, NetJSONSettings.CurrentSettings);
+
         Assert.Null(nullModel.ToBytes().FromBytes<TestModel>());
         Assert.Null(Array.Empty<byte>().FromBytes<TestModel>());
         Assert.Null(nullBytes.FromBytes<TestModel>());
